@@ -1,0 +1,6 @@
+yfinance
+newsapi-python
+nltk
+scikit-learn
+pandas
+numpy
