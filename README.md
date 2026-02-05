@@ -1,4 +1,4 @@
-# IRIS: Vision in Volatiliyy
+# IRIS: Vision in Volatility
 CP3405 Team Project
 
 ## Project Description
