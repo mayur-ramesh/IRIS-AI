@@ -7,23 +7,16 @@ from sklearn.linear_model import LinearRegression
 import pandas as pd
 import time
 
-# ==========================================
-#  CONFIGURATION
-# ==========================================
-# 1. Register at https://newsapi.org/ to get your key.
-# 2. Paste it below.
-#    Example: NEWS_API_KEY = "a1b2c3d4..."
+
 NEWS_API_KEY = None
 
-# Note: If you leave this as None, IRIS will run in "Simulation Mode"
-# so you can test the logic immediately without an API key.
-# ==========================================
+
 
 class IRIS_System:
     def __init__(self):
         print("\n  Initializing IRIS Risk Engines...")
         
-        # 1. Setup Sentiment Brain (VADER)
+        #. Setup Sentiment Brain (VADER)
         # We download the dictionary required to understand words like "crash" or "soar"
         try:
             nltk.data.find('sentiment/vader_lexicon.zip')
@@ -33,7 +26,7 @@ class IRIS_System:
         
         self.sentiment_analyzer = SentimentIntensityAnalyzer()
         
-        # 2. Setup News Connection
+        #  Setup News Connection
         self.news_api = None
         if NEWS_API_KEY:
             self.news_api = NewsApiClient(api_key=NEWS_API_KEY)
@@ -65,7 +58,7 @@ class IRIS_System:
         """Fetches headlines and calculates a Sentiment Score (-1.0 to +1.0)."""
         headlines = []
         
-        # A. Try to get real news
+        #  Try to get real news
         if self.news_api:
             try:
                 response = self.news_api.get_everything(
@@ -78,7 +71,7 @@ class IRIS_System:
             except:
                 pass # Fail silently and use simulation if API errors out
         
-        # B. Fallback: Simulation Mode (If no Key or API failure)
+        #  Fallback: Simulation Mode (If no Key or API failure)
         if not headlines:
             if ticker == "TSLA":
                 headlines = [
@@ -96,7 +89,7 @@ class IRIS_System:
                     "Market volatility continues ahead of Fed decision"
                 ]
 
-        # C. Analyze Sentiment
+        #  Analyze Sentiment
         total_score = 0
         for h in headlines:
             # compound score ranges from -1 (Negative) to +1 (Positive)
@@ -119,18 +112,18 @@ class IRIS_System:
         model = LinearRegression()
         model.fit(days, history_prices)
 
-        # 1. Predict Next Day Price
+        #  Predict Next Day Price
         next_day_index = np.array([[len(history_prices)]])
         predicted_price = model.predict(next_day_index)[0]
         
-        # 2. Calculate Slope (Steepness of the trend)
+        #  Calculate Slope (Steepness of the trend)
         slope = model.coef_[0]
 
-        # 3. Label the Trend
-        if slope > 0.5: label = "STRONG UPTREND 🚀"
-        elif slope > 0: label = "WEAK UPTREND ↗️"
-        elif slope < -0.5: label = "STRONG DOWNTREND 📉"
-        else: label = "WEAK DOWNTREND ↘️"
+        #  Label the Trend
+        if slope > 0.5: label = "STRONG UPTREND "
+        elif slope > 0: label = "WEAK UPTREND "
+        elif slope < -0.5: label = "STRONG DOWNTREND "
+        else: label = "WEAK DOWNTREND "
 
         return label, predicted_price
 
@@ -150,34 +143,34 @@ class IRIS_System:
 
             print(f"... Analyzing noise for {ticker} ...")
             
-            # STEP 1: Get Data
+            #  Get Data
             data = self.get_market_data(ticker)
             if not data:
-                print("❌ Stock not found or connection error.")
+                print(" Stock not found or connection error.")
                 continue
 
-            # STEP 2: Run AI Engines
+            #  Run AI Engines
             sentiment_score, headlines = self.analyze_news(ticker)
             trend_label, predicted_price = self.predict_trend(data['history'])
 
-            # STEP 3: The Check Engine Logic (Filter)
-            # Logic: If Sentiment is Bad OR Trend is crashing -> RED
-            light = "🟢 GREEN (Safe to Proceed)"
+            #  The Check Engine Logic (Filter)
+            #  If Sentiment is Bad OR Trend is crashing -> RED
+            light = " GREEN (Safe to Proceed)"
             
             if sentiment_score < -0.05 or "STRONG DOWNTREND" in trend_label:
-                light = "🔴 RED (Risk Detected - Caution)"
+                light = " RED (Risk Detected - Caution)"
             elif abs(sentiment_score) < 0.05 and "WEAK" in trend_label:
-                light = "🟡 YELLOW (Neutral / Noise)"
+                light = " YELLOW (Neutral / Noise)"
 
-            # STEP 4: The Report
+            # The Report
             print("\n" + "-"*40)
             print(f"REPORT: {data['symbol']}")
             print("-" * 40)
             print(f" Current Price:   ${data['current_price']:.2f}")
             print(f" AI Projection:   ${predicted_price:.2f} (Next Session)")
             print("-" * 40)
-            print(f" 📈 TREND AI:     {trend_label}")
-            print(f" 🧠 SENTIMENT AI: {sentiment_score:.2f} (Scale: -1 to 1)")
+            print(f"  TREND AI:     {trend_label}")
+            print(f"  SENTIMENT AI: {sentiment_score:.2f} (Scale: -1 to 1)")
             print("-" * 40)
             print(f" CHECK ENGINE LIGHT: {light}")
             print("="*40)
