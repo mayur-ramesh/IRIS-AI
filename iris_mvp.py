@@ -6,6 +6,8 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 import pandas as pd
 import time
+import json
+from pathlib import Path
 
 
 NEWS_API_KEY = None
@@ -33,6 +35,13 @@ class IRIS_System:
             print("   -> NewsAPI Connection: ESTABLISHED")
         else:
             print("   -> NewsAPI Connection: SIMULATION MODE (No Key Found)")
+
+    def save_report(self, report: dict, filename: str):
+        Path("data").mkdir(exist_ok=True)
+        out_path = Path("data") / filename
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(report, f, indent=2)
+        return str(out_path)
 
     def get_market_data(self, ticker):
         """Fetches current price and 30-day history for the Prediction Engine."""
@@ -173,6 +182,29 @@ class IRIS_System:
             print(f"  SENTIMENT AI: {sentiment_score:.2f} (Scale: -1 to 1)")
             print("-" * 40)
             print(f" CHECK ENGINE LIGHT: {light}")
+            report = {
+                "meta": {
+                    "symbol": data["symbol"],
+                    "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                    "mode": "live" if NEWS_API_KEY else "simulation"
+                },
+                "market": {
+                    "current_price": float(data["current_price"]),
+                    "predicted_price_next_session": float(predicted_price)
+                },
+                "signals": {
+                    "trend_label": trend_label,
+                    "sentiment_score": float(sentiment_score),
+                    "check_engine_light": light
+                },
+                "evidence": {
+                    "headlines_used": headlines if isinstance(headlines, list) else []
+                }
+            }
+
+            saved_path = self.save_report(report, f"{data['symbol']}_report.json")
+            print(f"Saved JSON report: {saved_path}")
+
             print("="*40)
             time.sleep(0.5)
 
