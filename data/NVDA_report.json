@@ -1,0 +1,24 @@
+[
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-09T03:38:55Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 185.41000366210938,
+      "predicted_price_next_session": 182.5168068019823
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia announces breakthrough AI chip",
+        "Quarterly revenue beats expectations by 20%"
+      ]
+    }
+  }
+]

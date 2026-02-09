@@ -1,0 +1,24 @@
+[
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-02-09T03:39:20Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 661.4600219726562,
+      "predicted_price_next_session": 676.1624615548671
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "META announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  }
+]

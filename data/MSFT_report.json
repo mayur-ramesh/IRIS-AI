@@ -1,0 +1,24 @@
+[
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-02-09T03:39:29Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 401.1400146484375,
+      "predicted_price_next_session": 418.23432490907874
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "MSFT announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  }
+]
