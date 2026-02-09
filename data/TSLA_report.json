@@ -1,22 +1,46 @@
-{
-  "meta": {
-    "symbol": "TSLA",
-    "generated_at": "2026-02-06T05:45:21Z",
-    "mode": "simulation"
+[
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-02-06T05:45:21Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 397.2099914550781,
+      "predicted_price_next_session": 410.9564348593526
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.2006,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla recalls 2 million vehicles due to autopilot risk",
+        "Analysts downgrade stock amid slowing EV demand"
+      ]
+    }
   },
-  "market": {
-    "current_price": 397.2099914550781,
-    "predicted_price_next_session": 410.9564348593526
-  },
-  "signals": {
-    "trend_label": "STRONG DOWNTREND ",
-    "sentiment_score": -0.2006,
-    "check_engine_light": " RED (Risk Detected - Caution)"
-  },
-  "evidence": {
-    "headlines_used": [
-      "Tesla recalls 2 million vehicles due to autopilot risk",
-      "Analysts downgrade stock amid slowing EV demand"
-    ]
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-02-09T02:30:14Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 411.1099853515625,
+      "predicted_price_next_session": 410.4772142432202
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.2006,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla recalls 2 million vehicles due to autopilot risk",
+        "Analysts downgrade stock amid slowing EV demand"
+      ]
+    }
   }
-}
+]

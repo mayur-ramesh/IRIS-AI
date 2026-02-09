@@ -39,8 +39,24 @@ class IRIS_System:
     def save_report(self, report: dict, filename: str):
         Path("data").mkdir(exist_ok=True)
         out_path = Path("data") / filename
+        
+        # Load existing reports if file exists
+        reports = []
+        if out_path.exists():
+            try:
+                with open(out_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    # Handle both array format and legacy single object format
+                    reports = data if isinstance(data, list) else [data]
+            except (json.JSONDecodeError, IOError):
+                reports = []
+        
+        # Append new report
+        reports.append(report)
+        
+        # Save all reports
         with open(out_path, "w", encoding="utf-8") as f:
-            json.dump(report, f, indent=2)
+            json.dump(reports, f, indent=2)
         return str(out_path)
 
     def get_market_data(self, ticker):

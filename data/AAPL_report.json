@@ -1,22 +1,46 @@
-{
-  "meta": {
-    "symbol": "AAPL",
-    "generated_at": "2026-02-06T05:44:38Z",
-    "mode": "simulation"
+[
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-06T05:44:38Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 275.9100036621094,
+      "predicted_price_next_session": 257.85804853768184
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AAPL announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
   },
-  "market": {
-    "current_price": 275.9100036621094,
-    "predicted_price_next_session": 257.85804853768184
-  },
-  "signals": {
-    "trend_label": "WEAK DOWNTREND ",
-    "sentiment_score": 0.0,
-    "check_engine_light": " YELLOW (Neutral / Noise)"
-  },
-  "evidence": {
-    "headlines_used": [
-      "AAPL announces date for shareholder meeting",
-      "Market volatility continues ahead of Fed decision"
-    ]
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-09T03:33:03Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 278.1199951171875,
+      "predicted_price_next_session": 260.6098403755276
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AAPL announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
   }
-}
+]

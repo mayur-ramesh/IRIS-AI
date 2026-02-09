@@ -1,22 +1,46 @@
-{
-  "meta": {
-    "symbol": "NKE",
-    "generated_at": "2026-02-06T05:47:30Z",
-    "mode": "simulation"
+[
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-02-06T05:47:30Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 62.70000076293945,
+      "predicted_price_next_session": 64.2554488171106
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "NKE announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
   },
-  "market": {
-    "current_price": 62.70000076293945,
-    "predicted_price_next_session": 64.2554488171106
-  },
-  "signals": {
-    "trend_label": "WEAK UPTREND ",
-    "sentiment_score": 0.0,
-    "check_engine_light": " YELLOW (Neutral / Noise)"
-  },
-  "evidence": {
-    "headlines_used": [
-      "NKE announces date for shareholder meeting",
-      "Market volatility continues ahead of Fed decision"
-    ]
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-02-09T02:30:45Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 63.91999816894531,
+      "predicted_price_next_session": 63.874023314728134
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "NKE announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
   }
-}
+]
