@@ -20,5 +20,27 @@
         "Market volatility continues ahead of Fed decision"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-02-11T01:55:06Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 670.719970703125,
+      "predicted_price_next_session": 681.2538314643947
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "META announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
   }
 ]

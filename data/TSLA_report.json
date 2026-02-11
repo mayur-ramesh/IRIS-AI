@@ -42,5 +42,27 @@
         "Analysts downgrade stock amid slowing EV demand"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-02-11T01:55:41Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 425.2099914550781,
+      "predicted_price_next_session": 412.94857002346
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.2006,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla recalls 2 million vehicles due to autopilot risk",
+        "Analysts downgrade stock amid slowing EV demand"
+      ]
+    }
   }
 ]

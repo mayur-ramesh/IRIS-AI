@@ -20,5 +20,27 @@
         "Market volatility continues ahead of Fed decision"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-02-11T01:55:25Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 413.2699890136719,
+      "predicted_price_next_session": 410.72756389749463
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "MSFT announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
   }
 ]

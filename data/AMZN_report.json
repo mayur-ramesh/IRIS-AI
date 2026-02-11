@@ -20,5 +20,27 @@
         "Market volatility continues ahead of Fed decision"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-11T01:54:57Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 206.9600067138672,
+      "predicted_price_next_session": 227.13717360222475
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AMZN announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
   }
 ]
