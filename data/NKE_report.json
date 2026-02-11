@@ -64,5 +64,27 @@
         "Market volatility continues ahead of Fed decision"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-02-11T02:26:45Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 63.040000915527344,
+      "predicted_price_next_session": 64.11262399887005
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "NKE announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
   }
 ]
