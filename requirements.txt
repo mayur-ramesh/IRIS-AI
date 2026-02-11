@@ -4,3 +4,6 @@ nltk
 scikit-learn
 pandas
 numpy
+matplotlib
+schedule
+python-dotenv
