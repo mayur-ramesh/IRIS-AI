@@ -15,17 +15,17 @@ from pathlib import Path
 
 # Optional: charting (graceful fallback if matplotlib missing)
 try:
-    import matplotlib
+    import matplotlib  # type: ignore
     matplotlib.use("Agg")
-    import matplotlib.dates as mdates
-    import matplotlib.pyplot as plt
+    import matplotlib.dates as mdates  # type: ignore
+    import matplotlib.pyplot as plt  # type: ignore
     _HAS_MATPLOTLIB = True
 except ImportError:
     _HAS_MATPLOTLIB = False
 
 # Load .env if available (for NEWS_API_KEY, IRIS_TICKERS)
 try:
-    from dotenv import load_dotenv
+    from dotenv import load_dotenv  # type: ignore
     load_dotenv()
 except ImportError:
     pass
@@ -219,10 +219,13 @@ class IRIS_System:
         return label, predicted_price
 
     def draw_chart(self, symbol: str, history_df, current_price: float, predicted_price: float, trend_label: str, save_dir: str = "data/charts"):
-        """Draw live price history and prediction trend; save to data/charts."""
+        """Draw live price history and prediction trend; save to dated subfolder under data/charts (YYYY-MM-DD)."""
         if not _HAS_MATPLOTLIB or history_df is None or history_df.empty:
             return None
-        Path(save_dir).mkdir(parents=True, exist_ok=True)
+        base_dir = Path(save_dir)
+        date_str = time.strftime("%Y-%m-%d")
+        daily_dir = base_dir / date_str
+        daily_dir.mkdir(parents=True, exist_ok=True)
         fig, ax = plt.subplots(figsize=(10, 5))
         dates = history_df.index
         ax.plot(dates, history_df["Close"], color="steelblue", linewidth=2, label="Close price")
@@ -240,7 +243,7 @@ class IRIS_System:
         ax.xaxis.set_major_locator(mdates.WeekdayLocator(interval=1))
         plt.xticks(rotation=15)
         plt.tight_layout()
-        path = Path(save_dir) / f"{symbol}_trend.png"
+        path = daily_dir / f"{symbol}_trend.png"
         fig.savefig(path, dpi=120)
         plt.close(fig)
         return str(path)
