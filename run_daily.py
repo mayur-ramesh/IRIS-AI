@@ -18,7 +18,7 @@ os.chdir(_PROJECT_ROOT)
 sys.path.insert(0, str(_PROJECT_ROOT))
 
 try:
-    from dotenv import load_dotenv
+    from dotenv import load_dotenv  # type: ignore
     load_dotenv(_PROJECT_ROOT / ".env")
 except ImportError:
     pass
@@ -38,7 +38,7 @@ def run_once(tickers=None):
 
 
 def run_scheduled():
-    import schedule
+    import schedule  # type: ignore
     tickers = DEFAULT_TICKERS or _FALLBACK_TICKERS
     if not tickers:
         tickers = _FALLBACK_TICKERS
