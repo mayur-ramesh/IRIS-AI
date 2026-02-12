@@ -64,5 +64,49 @@
         "Market volatility continues ahead of Fed decision"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-02-12T13:23:05Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 404.3699951171875,
+      "predicted_price_next_session": 393.94253479247425
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "MSFT announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-02-12T13:25:20Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 404.3699951171875,
+      "predicted_price_next_session": 393.94253479247425
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "MSFT announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
   }
 ]

@@ -64,5 +64,49 @@
         "Quarterly revenue beats expectations by 20%"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-12T13:23:15Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 190.0500030517578,
+      "predicted_price_next_session": 188.15822542067735
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia announces breakthrough AI chip",
+        "Quarterly revenue beats expectations by 20%"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-12T13:25:29Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 190.0500030517578,
+      "predicted_price_next_session": 188.15822542067735
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia announces breakthrough AI chip",
+        "Quarterly revenue beats expectations by 20%"
+      ]
+    }
   }
 ]
