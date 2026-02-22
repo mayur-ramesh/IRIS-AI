@@ -7,3 +7,5 @@ numpy
 matplotlib
 schedule
 python-dotenv
+flask
+flask-cors

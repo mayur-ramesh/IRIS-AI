@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRIS-AI | Vision in Volatility</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👁️</text></svg>">
+</head>
+
+<body>
+    <div class="glow-bg"></div>
+
+    <header>
+        <div class="logo">
+            <h1>IRIS<span class="highlight">-AI</span></h1>
+        </div>
+        <p class="subtitle">Vision in Volatility</p>
+    </header>
+
+    <main class="container">
+        <!-- Search Bar section -->
+        <section class="search-section glass-panel">
+            <h2>Enter Ticker to Analyze</h2>
+            <form id="analyze-form">
+                <div class="search-box">
+                    <input type="text" id="ticker-input" placeholder="e.g. AAPL, TSLA, NVDA" required
+                        autocomplete="off">
+                    <button type="submit" id="analyze-btn">
+                        <span class="btn-text">Analyze Risk</span>
+                        <div class="spinner hidden" id="loading-spinner"></div>
+                    </button>
+                </div>
+            </form>
+            <div id="error-message" class="error-msg hidden"></div>
+        </section>
+
+        <!-- Dashboard Results (Hidden by default) -->
+        <section id="results-dashboard" class="dashboard hidden">
+            <div class="dashboard-header">
+                <h2 id="res-ticker">AAPL</h2>
+                <div class="time-stamp" id="res-time">Updated: --</div>
+            </div>
+
+            <div class="cards-grid">
+
+                <!-- Check Engine Light -->
+                <div class="card glass-panel engine-light-card">
+                    <h3>Risk Indicator</h3>
+                    <div class="engine-indicator" id="engine-light">
+                        <div class="light-bulb" id="light-bulb"></div>
+                        <h4 id="light-status">NEUTRAL</h4>
+                    </div>
+                </div>
+
+                <!-- Price Prediction -->
+                <div class="card glass-panel price-card">
+                    <h3>Market Prediction</h3>
+                    <div class="price-info">
+                        <div class="price-row">
+                            <span class="label">Current</span>
+                            <span class="value" id="current-price">$0.00</span>
+                        </div>
+                        <div class="price-row highlight">
+                            <span class="label">Predicted (Next Session)</span>
+                            <span class="value" id="predicted-price">$0.00</span>
+                        </div>
+                    </div>
+                    <div class="trend-badge" id="trend-label">UNKNOWN TREND</div>
+                </div>
+
+                <!-- Sentiment Engine -->
+                <div class="card glass-panel sentiment-card">
+                    <h3>Sentiment Analysis</h3>
+                    <div class="sentiment-meter">
+                        <div class="score-display">
+                            <span id="sentiment-score">0.00</span>
+                        </div>
+                        <p class="sentiment-desc" id="sentiment-desc">Neutral Sentiment</p>
+                    </div>
+                    <div class="headlines-section">
+                        <h4>Recent Headlines Analyzed:</h4>
+                        <ul id="headlines-list" class="headlines-list">
+                            <!-- Headlines will be injected here -->
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Market Chart -->
+            <div class="card glass-panel chart-card" id="chart-section">
+                <h3>Market Chart & Trend</h3>
+                <div class="chart-container">
+                    <img id="market-chart" src="" alt="Market Chart" class="hidden">
+                    <div id="chart-placeholder" class="chart-placeholder">Loading chart...</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>IRIS-AI provides decision support flags based on historical data and sentiment analysis. It does not provide
+            financial advice.</p>
+        <p>&copy; CP3405 Team Project</p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+
+</html>

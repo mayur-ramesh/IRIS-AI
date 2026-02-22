@@ -174,5 +174,93 @@
         "Market volatility continues ahead of Fed decision"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-22T11:31:26Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 264.5799865722656,
+      "predicted_price_next_session": 263.6039510735431
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AAPL announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-22T11:32:14Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 264.5799865722656,
+      "predicted_price_next_session": 263.6039510735431
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AAPL announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-22T11:37:09Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 264.5799865722656,
+      "predicted_price_next_session": 263.6039510735431
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AAPL announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-22T11:37:50Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 264.5799865722656,
+      "predicted_price_next_session": 263.6039510735431
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AAPL announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
   }
 ]

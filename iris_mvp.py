@@ -293,6 +293,9 @@ class IRIS_System:
             print(f"  Chart saved: {chart_path}")
         if not quiet:
             print(f"  Report: {data['symbol']} — {light} | Predicted next: ${predicted_price:.2f} | {saved_path}")
+        
+        report["evidence"]["chart_path"] = chart_path
+        
         return report
 
     def run_auto(self, tickers: list):

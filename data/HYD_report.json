@@ -1,0 +1,24 @@
+[
+  {
+    "meta": {
+      "symbol": "HYD",
+      "generated_at": "2026-02-22T11:40:01Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 51.290000915527344,
+      "predicted_price_next_session": 51.25373603251769
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "HYD announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  }
+]
