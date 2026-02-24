@@ -1,10 +1,12 @@
 import argparse
 import os
 import sys
+import os
+os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 import yfinance as yf
 from newsapi import NewsApiClient
 import nltk
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from transformers import pipeline
 import numpy as np
 from sklearn.linear_model import Ridge
 from sklearn.preprocessing import StandardScaler
@@ -38,15 +40,14 @@ class IRIS_System:
     def __init__(self):
         print("\n  Initializing IRIS Risk Engines...")
         
-        #. Setup Sentiment Brain (VADER)
-        # We download the dictionary required to understand words like "crash" or "soar"
+        # Setup Sentiment Brain (FinBERT - financial sentiment model)
+        print("   -> Loading FinBERT AI Model (This may take a moment on first run)...")
         try:
-            nltk.data.find('sentiment/vader_lexicon.zip')
-        except LookupError:
-            print("   -> Downloading NLTK lexicon...")
-            nltk.download('vader_lexicon', quiet=True)
-        
-        self.sentiment_analyzer = SentimentIntensityAnalyzer()
+            self.sentiment_analyzer = pipeline("sentiment-analysis", model="ProsusAI/finbert")
+            print("   -> FinBERT Loaded Successfully!")
+        except Exception as e:
+            print(f"   -> Error loading FinBERT: {e}")
+            self.sentiment_analyzer = None
         
         #  Setup News Connection
         self.news_api = None
@@ -119,20 +120,20 @@ class IRIS_System:
         """Fetches headlines and calculates a Sentiment Score (-1.0 to +1.0)."""
         headlines = []
         
-        #  Try to get real news
-        if self.news_api:
-            try:
-                response = self.news_api.get_everything(
-                    q=ticker, 
-                    language='en', 
-                    sort_by='publishedAt',
-                    page_size=5
-                )
-                headlines = [art['title'] for art in response['articles']]
-            except:
-                pass # Fail silently and use simulation if API errors out
+        # Fetch real, live news using yfinance
+        try:
+            stock = yf.Ticker(ticker)
+            news_items = stock.news
+            if news_items:
+                for item in news_items[:5]: # Get up to 5 recent headlines
+                    if 'title' in item:
+                        headlines.append(item['title'])
+                    elif 'content' in item and 'title' in item['content']:
+                        headlines.append(item['content']['title'])
+        except Exception:
+            pass
         
-        #  Fallback: Simulation Mode (If no Key or API failure)
+        #  Fallback: Simulation Mode (If internet/API failure)
         if not headlines:
             if ticker == "TSLA":
                 headlines = [
@@ -141,8 +142,8 @@ class IRIS_System:
                 ]
             elif ticker == "NVDA":
                 headlines = [
-                    "Nvidia announces breakthrough AI chip", 
-                    "Quarterly revenue beats expectations by 20%"
+                    "Nvidia announces fantastic breakthrough AI chip", 
+                    "Excellent quarterly revenue brilliantly beats expectations by 20%"
                 ]
             else:
                 headlines = [
@@ -150,14 +151,31 @@ class IRIS_System:
                     "Market volatility continues ahead of Fed decision"
                 ]
 
-        #  Analyze Sentiment
+        #  Analyze Sentiment using FinBERT
         total_score = 0
-        for h in headlines:
-            # compound score ranges from -1 (Negative) to +1 (Positive)
-            score = self.sentiment_analyzer.polarity_scores(h)['compound']
-            total_score += score
+        valid_headlines = 0
         
-        avg_score = total_score / len(headlines) if headlines else 0
+        if self.sentiment_analyzer and headlines:
+            for h in headlines:
+                try:
+                    # FinBERT returns labels like 'positive', 'negative', 'neutral'
+                    result = self.sentiment_analyzer(h)[0]
+                    label = result['label']
+                    score = result['score'] # Confidence score 0 to 1
+                    
+                    if label == 'positive':
+                        total_score += score
+                        valid_headlines += 1
+                    elif label == 'negative':
+                        total_score -= score
+                        valid_headlines += 1
+                    else: # neutral
+                        valid_headlines += 1
+                        # neutral adds 0 to total score
+                except Exception:
+                    pass
+        
+        avg_score = total_score / valid_headlines if valid_headlines > 0 else 0
         return avg_score, headlines
 
     def predict_trend(self, data):

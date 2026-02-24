@@ -1,0 +1,24 @@
+[
+  {
+    "meta": {
+      "symbol": "JPM",
+      "generated_at": "2026-02-23T08:42:39Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 310.7900085449219,
+      "predicted_price_next_session": 309.0033495630095
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "JPM announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  }
+]
