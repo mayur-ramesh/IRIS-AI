@@ -262,5 +262,165 @@
         "Market volatility continues ahead of Fed decision"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-23T01:14:33Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 264.5799865722656,
+      "predicted_price_next_session": 263.6039510735431
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AAPL announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-23T01:15:16Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 264.5799865722656,
+      "predicted_price_next_session": 263.6039510735431
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AAPL announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-23T05:39:54Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 264.5799865722656,
+      "predicted_price_next_session": 263.6039510735431
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AAPL announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-23T05:43:04Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 264.5799865722656,
+      "predicted_price_next_session": 263.6039510735431
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AAPL announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-24T18:22:36Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 272.0799865722656,
+      "predicted_price_next_session": 271.1916873801394
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AAPL announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-24T18:31:24Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 271.4501953125,
+      "predicted_price_next_session": 270.45189562206014
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.25094306468963623,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Alphabet, Apple, and Microsoft Got Kicked Out of the $4 Trillion Club. Could Nvidia Be Next?",
+        "Nvidia's Earnings Are Almost Here. Here's the State of the Magnificent 7 Stocks.",
+        "Qualcomm Upgrade Tied To $7 Billion AI Opportunity",
+        "Apple shareholders reject shareholder proposal asking for report on China entanglements",
+        "Apple shareholders reject call for report on China manufacturing risks"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-24T18:36:09Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 271.55999755859375,
+      "predicted_price_next_session": 270.56608353577127
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.25094306468963623,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Alphabet, Apple, and Microsoft Got Kicked Out of the $4 Trillion Club. Could Nvidia Be Next?",
+        "Nvidia's Earnings Are Almost Here. Here's the State of the Magnificent 7 Stocks.",
+        "Qualcomm Upgrade Tied To $7 Billion AI Opportunity",
+        "Apple shareholders reject shareholder proposal asking for report on China entanglements",
+        "Apple shareholders reject call for report on China manufacturing risks"
+      ]
+    }
   }
 ]

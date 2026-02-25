@@ -3,6 +3,9 @@ from flask_cors import CORS
 import traceback
 import os
 
+# Fix for Windows: Disable symlink warnings which can cause the Hugging Face download to hang
+os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
+
 # Import the IRIS_System from the existing MVP script
 try:
     from iris_mvp import IRIS_System

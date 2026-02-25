@@ -9,3 +9,5 @@ schedule
 python-dotenv
 flask
 flask-cors
+transformers
+torch

@@ -134,7 +134,7 @@
   {
     "meta": {
       "symbol": "NVDA",
-      "generated_at": "2026-02-23T06:20:34Z",
+      "generated_at": "2026-02-23T05:48:59Z",
       "mode": "simulation"
     },
     "market": {
@@ -150,6 +150,31 @@
       "headlines_used": [
         "Nvidia announces breakthrough AI chip",
         "Quarterly revenue beats expectations by 20%"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-24T18:37:38Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 192.92010498046875,
+      "predicted_price_next_session": 191.9294845184434
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.2476778507232666,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tech news today: Countdown to Nvidia earnings begins as AI fears weigh on stocks",
+        "Earnings live: Home Depot stock climbs after earnings beat, Hims & Hers slides, Constellation Energy rises",
+        "Billionaire Investor Philippe Laffont's Hedge Fund Sold Its Entire Stake in The Trade Desk and Increased Its Position in This Streaming Giant by 17x",
+        "Why Clarivate Stock Is Skyrocketing Today",
+        "40% of Enterprise Apps Will Embed AI Agents by End of 2026, According to Gartner. Here's How to Profit."
       ]
     }
   }

@@ -1,0 +1,27 @@
+[
+  {
+    "meta": {
+      "symbol": "FRD",
+      "generated_at": "2026-02-24T18:37:08Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 18.309999465942383,
+      "predicted_price_next_session": 18.009047988427024
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.0051790356636047365,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Friedman Stock Declines Post Q3 Earnings Despite Sales Surge",
+        "Friedman Industries, Incorporated (NASDAQ:FRD) is favoured by institutional owners who hold 54% of the company",
+        "The Zacks Analyst Blog Highlights Broadcom, Exxon Mobil, Johnson & Johnson, Investors Title and Friedman Industries",
+        "Top Research Reports for Broadcom, Exxon Mobil & Johnson & Johnson",
+        "Friedman Upgraded to Outperform on Synergies, BV Value & Capacity"
+      ]
+    }
+  }
+]
