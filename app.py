@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template, send_file
 from flask_cors import CORS
 import traceback
 import os
+from pathlib import Path
 
 # Fix for Windows: Disable symlink warnings which can cause the Hugging Face download to hang
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
@@ -64,6 +65,14 @@ def get_chart():
         return jsonify({"error": "Chart not found"}), 404
         
     return send_file(full_path, mimetype='image/png')
+
+@app.route('/api/session-summary/latest')
+def latest_session_summary():
+    """Return the most recent session summary with comparisons."""
+    path = Path("data") / "sessions" / "latest_session_summary.json"
+    if not path.exists():
+        return jsonify({"error": "No session summary found yet."}), 404
+    return send_file(str(path), mimetype="application/json")
 
 if __name__ == '__main__':
     # Run the Flask app
