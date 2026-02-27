@@ -1,0 +1,112 @@
+[
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-27T06:10:56Z",
+      "mode": "forecast"
+    },
+    "market": {
+      "current_price": 272.50,
+      "predicted_price_next_session": 275.00
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.15,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Apple shifts some Mac mini production to Houston to hedge against tariffs",
+        "CEO Tim Cook teases a 'big week' of product launches starting Monday"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-27T06:10:56Z",
+      "mode": "forecast"
+    },
+    "market": {
+      "current_price": 207.50,
+      "predicted_price_next_session": 203.00
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.35,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Rumors swirl regarding Amazon's potential $50 billion investment into OpenAI",
+        "Investors worry over Big Tech's escalating capital expenditures"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-02-27T06:10:56Z",
+      "mode": "forecast"
+    },
+    "market": {
+      "current_price": 313.50,
+      "predicted_price_next_session": 308.00
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.15,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Google signs massive clean energy deals in Texas and Minnesota",
+        "Broader market punishes tech stocks for rising data center infrastructure costs"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-27T06:10:56Z",
+      "mode": "forecast"
+    },
+    "market": {
+      "current_price": 188.00,
+      "predicted_price_next_session": 185.00
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.25,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia reports massive Q4 revenue beat of $68.1 billion, up 73%",
+        "Market demands direct cash returns as stock is priced for perfection"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-02-27T06:10:56Z",
+      "mode": "forecast"
+    },
+    "market": {
+      "current_price": 416.00,
+      "predicted_price_next_session": 405.00
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.40,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla management signals massive capital expenditures over $20 billion for 2026",
+        "Technical indicators show Tesla slipping below short-term moving averages"
+      ]
+    }
+  }
+]

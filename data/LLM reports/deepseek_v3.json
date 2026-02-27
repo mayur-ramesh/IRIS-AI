@@ -1,0 +1,127 @@
+[
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-28T01:00:00Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 270.83768220862675,
+      "predicted_price_next_session": 268.7437
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.19203763008117675,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia earnings, Apple CEO teases product launches: Tech Support",
+        "1 Spectacular Stock to Buy Before It Joins Nvidia, Alphabet, and Apple in the $3 Trillion Club",
+        "Stock Market Today, Feb. 26: Nasdaq and S&P 500 Stumble on Fading Nvidia Optimism",
+        "Tim Cook 'Sleeps With One Eye Open' After CIA Taiwan Warning, But Do Prediction Markets Agree He Should Be Worried?",
+        "Q&A: Francisco Partners on the software sell-off"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-28T01:00:00Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 206.7820578124479,
+      "predicted_price_next_session": 205.6501
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.7330503106117249,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
+        "Trump lays out a new ground rule for Big Tech's AI build-out: Bring your own power",
+        "Bitcoin Headed For Worst Month In 4 Years: 'Either It's Dead Or Dollar Cost Average From Here,' Analyst Says",
+        "Amazon’s OpenAI Bet, Antitrust Pressure And AI Turnover Weigh On Valuation",
+        "What a $75 Million Exit From MDU Might Signal Amid a 24% One-Year Rally"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-02-28T01:00:00Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 307.8415083942282,
+      "predicted_price_next_session": 308.5345
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.23526339530944823,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
+        "Trump lays out a new ground rule for Big Tech's AI build-out: Bring your own power",
+        "Bitcoin Headed For Worst Month In 4 Years: 'Either It's Dead Or Dollar Cost Average From Here,' Analyst Says",
+        "TTM Technologies Stock Surges 250% In a Year, and This Fund Is Betting Nearly $40 Million on More Growth",
+        "1 Spectacular Stock to Buy Before It Joins Nvidia, Alphabet, and Apple in the $3 Trillion Club"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-28T01:00:00Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 191.9294845184434,
+      "predicted_price_next_session": 190.9440
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.2476778507232666,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tech news today: Countdown to Nvidia earnings begins as AI fears weigh on stocks",
+        "Earnings live: Home Depot stock climbs after earnings beat, Hims & Hers slides, Constellation Energy rises",
+        "Billionaire Investor Philippe Laffont's Hedge Fund Sold Its Entire Stake in The Trade Desk and Increased Its Position in This Streaming Giant by 17x",
+        "Why Clarivate Stock Is Skyrocketing Today",
+        "40% of Enterprise Apps Will Embed AI Agents by End of 2026, According to Gartner. Here's How to Profit."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-02-28T01:00:00Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 401.5881892061239,
+      "predicted_price_next_session": 394.7162
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.12423256635665894,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla Stock Falls. What Nvidia’s Earnings Mean for the EV Maker’s Robots.",
+        "Nasdaq Sinks 1.2%. It's All About Nvidia.",
+        "Every \"Magnificent Seven\" Stock Is Underperforming the S&P 500 in 2026. Here's One to Buy and One to Avoid.",
+        "Tesla Stock Forecast: Is TSLA Headed to $25 Or $600 in 2026?",
+        "Lemonade Posted Its First Positive Cash Flow Quarter and Reddit Is Getting Bullish"
+      ]
+    }
+  }
+]
