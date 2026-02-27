@@ -133,5 +133,32 @@
         "Citrini Scare Marked the Bottom, Says Fund Betting on Bounce"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-02-27T11:36:58Z",
+      "market_session_date": "2026-02-26",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 401.7200012207031,
+      "predicted_price_next_session": 393.1060175078982
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.38712135553359983,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
+        "Nvidia Looks Like a Value Stock Even as Earnings Scream Growth",
+        "CoreWeave Stock Drops. It Posted Mixed Earnings and a Whole Lot of Debt.",
+        "Magnet Wars: How the U.S. Plans to Break China\u2019s Grip on Rare Earths",
+        "Wartsila CEO eyes boost from Trump datacenter push"
+      ],
+      "chart_path": "data\\charts\\2026-02-27\\MSFT_trend.png"
+    }
   }
 ]

@@ -24,28 +24,6 @@
   {
     "meta": {
       "symbol": "GOOG",
-      "generated_at": "2026-02-11T01:55:01Z",
-      "mode": "simulation"
-    },
-    "market": {
-      "current_price": 318.6300048828125,
-      "predicted_price_next_session": 336.8054701531071
-    },
-    "signals": {
-      "trend_label": "STRONG UPTREND ",
-      "sentiment_score": 0.0,
-      "check_engine_light": " GREEN (Safe to Proceed)"
-    },
-    "evidence": {
-      "headlines_used": [
-        "GOOG announces date for shareholder meeting",
-        "Market volatility continues ahead of Fed decision"
-      ]
-    }
-  },
-  {
-    "meta": {
-      "symbol": "GOOG",
       "generated_at": "2026-02-11T02:24:16Z",
       "mode": "simulation"
     },
@@ -61,28 +39,6 @@
     "evidence": {
       "headlines_used": [
         "GOOGL announces date for shareholder meeting",
-        "Market volatility continues ahead of Fed decision"
-      ]
-    }
-  },
-  {
-    "meta": {
-      "symbol": "GOOG",
-      "generated_at": "2026-02-12T13:22:09Z",
-      "mode": "simulation"
-    },
-    "market": {
-      "current_price": 311.3299865722656,
-      "predicted_price_next_session": 312.63754947237237
-    },
-    "signals": {
-      "trend_label": "WEAK UPTREND ",
-      "sentiment_score": 0.0,
-      "check_engine_light": " YELLOW (Neutral / Noise)"
-    },
-    "evidence": {
-      "headlines_used": [
-        "GOOG announces date for shareholder meeting",
         "Market volatility continues ahead of Fed decision"
       ]
     }
@@ -134,26 +90,28 @@
   {
     "meta": {
       "symbol": "GOOG",
-      "generated_at": "2026-02-27T01:32:30Z",
+      "generated_at": "2026-02-27T11:36:59Z",
+      "market_session_date": "2026-02-26",
       "mode": "simulation"
     },
     "market": {
-      "current_price": 307.1499938964844,
-      "predicted_price_next_session": 307.8415083942282
+      "current_price": 307.3800048828125,
+      "predicted_price_next_session": 308.3468509219732
     },
     "signals": {
       "trend_label": "WEAK UPTREND ",
-      "sentiment_score": -0.1409770667552948,
-      "check_engine_light": " RED (Risk Detected - Caution)"
+      "sentiment_score": -0.007429265975952148,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
     },
     "evidence": {
       "headlines_used": [
         "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
-        "Trump lays out a new ground rule for Big Tech's AI build-out: Bring your own power",
-        "TTM Technologies Stock Surges 250% In a Year, and This Fund Is Betting Nearly $40 Million on More Growth",
-        "1 Spectacular Stock to Buy Before It Joins Nvidia, Alphabet, and Apple in the $3 Trillion Club",
-        "Why Nvidia\u2019s Huge Numbers Don\u2019t Settle the Latest AI Fears"
-      ]
+        "Google Reportedly Gets South Korea's Conditional Approval to Offer High-Precision Maps in Country",
+        "'Bitcoin Retail Investors Are All In' And That's Why There's No Floor, Blockstream CEO Says",
+        "Nvidia Looks Like a Value Stock Even as Earnings Scream Growth",
+        "Magnet Wars: How the U.S. Plans to Break China\u2019s Grip on Rare Earths"
+      ],
+      "chart_path": "data\\charts\\2026-02-27\\GOOGL_trend.png"
     }
   },
   {

@@ -177,5 +177,32 @@
         "40% of Enterprise Apps Will Embed AI Agents by End of 2026, According to Gartner. Here's How to Profit."
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-27T11:37:01Z",
+      "market_session_date": "2026-02-26",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 184.88999938964844,
+      "predicted_price_next_session": 182.66823730500124
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.5538105487823486,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Earnings live: Block stock surges over 20% after Jack Dorsey cuts nearly half of staff, Dell stock jumps",
+        "Tech stocks today: Anthropic CEO Dario Amodei rejects Defense Department demands over AI guardrails",
+        "Stock market today: S&P 500, Nasdaq retreat as Nvidia falls 5% despite stellar earnings",
+        "The next catalysts for AI hyperscalers",
+        "Deere, industrial stocks could be the new AI winners. Here's why."
+      ],
+      "chart_path": "data\\charts\\2026-02-27\\NVDA_trend.png"
+    }
   }
 ]

@@ -133,5 +133,32 @@
         "Block lays off nearly half its staff because of AI. Its CEO said most companies will do the same"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-02-27T11:37:01Z",
+      "market_session_date": "2026-02-26",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 657.010009765625,
+      "predicted_price_next_session": 656.4870628358221
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.38712135553359983,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
+        "'Bitcoin Retail Investors Are All In' And That's Why There's No Floor, Blockstream CEO Says",
+        "Nvidia Looks Like a Value Stock Even as Earnings Scream Growth",
+        "CoreWeave Stock Drops. It Posted Mixed Earnings and a Whole Lot of Debt.",
+        "Popular messaging app behind one in five bank scams"
+      ],
+      "chart_path": "data\\charts\\2026-02-27\\META_trend.png"
+    }
   }
 ]
