@@ -422,5 +422,30 @@
         "Apple shareholders reject call for report on China manufacturing risks"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-27T01:31:20Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 272.95001220703125,
+      "predicted_price_next_session": 270.83768220862675
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.19203763008117675,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia earnings, Apple CEO teases product launches: Tech Support",
+        "1 Spectacular Stock to Buy Before It Joins Nvidia, Alphabet, and Apple in the $3 Trillion Club",
+        "Stock Market Today, Feb. 26: Nasdaq and S&P 500 Stumble on Fading Nvidia Optimism",
+        "Tim Cook 'Sleeps With One Eye Open' After CIA Taiwan Warning, But Do Prediction Markets Agree He Should Be Worried?",
+        "Q&A: Francisco Partners on the software sell-off"
+      ]
+    }
   }
 ]
