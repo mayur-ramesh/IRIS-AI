@@ -316,7 +316,8 @@
   {
     "meta": {
       "symbol": "TSLA",
-      "generated_at": "2026-02-27T11:37:02Z",
+      "source_symbol": "TSLA",
+      "generated_at": "2026-02-27T14:01:43Z",
       "market_session_date": "2026-02-26",
       "mode": "simulation"
     },
@@ -326,16 +327,16 @@
     },
     "signals": {
       "trend_label": "STRONG DOWNTREND ",
-      "sentiment_score": -0.3132686376571655,
+      "sentiment_score": -0.49383347034454345,
       "check_engine_light": " RED (Risk Detected - Caution)"
     },
     "evidence": {
       "headlines_used": [
-        "Magnet Wars: How the U.S. Plans to Break China\u2019s Grip on Rare Earths",
-        "Tesla Stock Falls. What Nvidia\u2019s Earnings Mean for the EV Maker\u2019s Robots.",
-        "Nasdaq Sinks 1.2%. It's All About Nvidia.",
-        "Every \"Magnificent Seven\" Stock Is Underperforming the S&P 500 in 2026. Here's One to Buy and One to Avoid.",
-        "Tesla Stock Forecast: Is TSLA Headed to $25 Or $600 in 2026?"
+        "Tesla\u2019s Robotaxi Promises Are Empty: Zero Miles Logged, No Permits, Now Suing Regulators",
+        "Stocks Are Set for a February Slide. Can the Magnificent 7 Spark a March Rebound?",
+        "'Michael Saylor Should Be In Jail' And 'Bitcoin Is For Boomers' Says Ex-Fidelity Star, Who Also Has A Contrarian Take On Tesla",
+        "Tesla Stock Faces Another Weekly Loss. Cybercab Exec Exits Vital Robo-Taxi Arm.",
+        "Elon Musk's Tesla Files USPTO Appeal Against Unibev Over 'Cybercab' Trademark: Report"
       ],
       "chart_path": "data\\charts\\2026-02-27\\TSLA_trend.png"
     }

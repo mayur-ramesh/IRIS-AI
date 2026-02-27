@@ -181,7 +181,8 @@
   {
     "meta": {
       "symbol": "NVDA",
-      "generated_at": "2026-02-27T11:37:01Z",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-02-27T14:01:41Z",
       "market_session_date": "2026-02-26",
       "mode": "simulation"
     },
@@ -191,12 +192,12 @@
     },
     "signals": {
       "trend_label": "STRONG UPTREND ",
-      "sentiment_score": -0.5538105487823486,
+      "sentiment_score": -0.5608546376228333,
       "check_engine_light": " RED (Risk Detected - Caution)"
     },
     "evidence": {
       "headlines_used": [
-        "Earnings live: Block stock surges over 20% after Jack Dorsey cuts nearly half of staff, Dell stock jumps",
+        "Earnings live: Block stock surges after Jack Dorsey cuts 40% of workforce, Duolingo shares drop premarket",
         "Tech stocks today: Anthropic CEO Dario Amodei rejects Defense Department demands over AI guardrails",
         "Stock market today: S&P 500, Nasdaq retreat as Nvidia falls 5% despite stellar earnings",
         "The next catalysts for AI hyperscalers",

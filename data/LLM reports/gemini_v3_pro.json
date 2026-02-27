@@ -108,5 +108,116 @@
         "Technical indicators show Tesla slipping below short-term moving averages"
       ]
     }
+  },
+
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-27T14:01:10Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 272.95,
+      "predicted_price_next_session": 275.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.15,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Apple continues to hold steady around $272 as market awaits next catalysts.",
+        "Investors anticipate upcoming product events."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-27T14:01:10Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 207.92,
+      "predicted_price_next_session": 204.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.2,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Amazon faces headwinds as tech sector sees minor pullbacks.",
+        "Concerns over extensive AI capital expenditure continue."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-02-27T14:01:10Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 307.15,
+      "predicted_price_next_session": 304.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.1,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Alphabet sees slight dip trading around $307.",
+        "Broader tech market remains cautious on rising infrastructure costs."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-27T14:01:10Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 184.89,
+      "predicted_price_next_session": 181.0
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.45,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia drops to $184 level amid post-earnings sell-off.",
+        "Market prices in perfection, taking profits despite strong fundamentals."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-02-27T14:01:10Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 408.58,
+      "predicted_price_next_session": 402.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.3,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla shares slide to $408 under pressure from EV margin concerns.",
+        "Sector-wide rotation puts downward pressure on high-capex tech."
+      ]
+    }
   }
 ]

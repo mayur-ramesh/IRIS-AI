@@ -123,5 +123,118 @@
         "Lemonade Posted Its First Positive Cash Flow Quarter and Reddit Is Getting Bullish"
       ]
     }
+},
+{
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-27T16:00:00Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 272.95,
+      "predicted_price_next_session": 271.58
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.47,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Apple (AAPL) closes at $272.95, down 0.47% [citation:1]",
+        "Prediction markets show 44% probability of AAPL closing above $270 by end of February [citation:6]"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-27T16:00:00Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 207.92,
+      "predicted_price_next_session": 205.15
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -1.29,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Amazon (AMZN) closes at $207.92, down 1.29% [citation:2]",
+        "Trading volume reached 47.76 million shares with day's range of $205.345 - $211.050 [citation:7]"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-02-27T16:00:00Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 307.65,
+      "predicted_price_next_session": 309.82
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -1.72,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Alphabet (GOOG) closes at $307.65, down 1.72% [citation:3]",
+        "Google launches Nano Banana 2 AI image generator, updating viral tool with faster performance [citation:3]",
+        "Waymo expands robotaxi service to four new cities including Dallas and Orlando [citation:3]"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-27T16:00:00Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 184.89,
+      "predicted_price_next_session": 182.45
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -5.46,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia (NVDA) closes at $184.89, plunging 5.46% despite strong Q4 earnings [citation:4][citation:9]",
+        "Market capitalization drops to $4.49 trillion with $290 billion erased in single session [citation:4]",
+        "Analysts cite concerns over AI capital expenditure sustainability and high investor expectations [citation:4]"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-02-27T16:00:00Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 408.58,
+      "predicted_price_next_session": 400.25
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -2.11,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla (TSLA) closes at $408.58, down 2.11% with volume of 53.6 million shares [citation:5][citation:10]",
+        "Analyst consensus rates TSLA as 'Hold' with price target of $396.15 (-3.04% downside) [citation:10]",
+        "Cybercab vehicle program manager departure adds to concerns over robo-taxi timeline [citation:10]"
+      ]
+    }
   }
 ]

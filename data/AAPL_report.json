@@ -451,7 +451,8 @@
   {
     "meta": {
       "symbol": "AAPL",
-      "generated_at": "2026-02-27T11:36:57Z",
+      "source_symbol": "AAPL",
+      "generated_at": "2026-02-27T14:01:31Z",
       "market_session_date": "2026-02-26",
       "mode": "simulation"
     },
@@ -461,16 +462,16 @@
     },
     "signals": {
       "trend_label": "WEAK UPTREND ",
-      "sentiment_score": -0.3430737376213074,
+      "sentiment_score": -0.3062717080116272,
       "check_engine_light": " RED (Risk Detected - Caution)"
     },
     "evidence": {
       "headlines_used": [
         "Nvidia earnings, Apple CEO teases product launches: Tech Support",
-        "Oil prices climb after the US and Iran extend nuclear talks",
-        "Why Franklin Templeton is betting big on tokenised funds",
-        "9 luxury homes under the \u00a32m mansion tax threshold",
-        "Berkshire Hathaway Shifts As Buffett Exits And Abel Faces New Tests"
+        "Stocks Are Set for a February Slide. Can the Magnificent 7 Spark a March Rebound?",
+        "These New AI Smart Devices Could Boost Apple Stock",
+        "Samsung Evaluates Next Super-Thin Phone After Lower S25 Edge Sales",
+        "Oil prices climb after the US and Iran extend nuclear talks"
       ],
       "chart_path": "data\\charts\\2026-02-27\\AAPL_trend.png"
     }

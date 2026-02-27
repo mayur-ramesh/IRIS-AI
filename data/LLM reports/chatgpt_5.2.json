@@ -1,3 +1,4 @@
+[
 {
   "next_session_predictions": [
     {
@@ -36,4 +37,44 @@
       "rationale": "Tesla’s volatility may continue but Zacks attention metrics and mixed fundamental signals could provide slight support."
     }
   ]
+},
+{
+  "next_session_predictions": [
+    {
+      "ticker": "AAPL",
+      "current_price": 272.95,
+      "predicted_price_next_session": 274.00,
+      "directional_bias": "slightly_bullish",
+      "rationale": "AAPL shows support near current levels and tends toward mild upside in stable market conditions; broader tech sentiment remains mixed."
+    },
+    {
+      "ticker": "AMZN",
+      "current_price": 207.92,
+      "predicted_price_next_session": 206.50,
+      "directional_bias": "neutral_to_slightly_bearish",
+      "rationale": "AMZN recent performance reflects near-term pressure despite long-term growth drivers; likely range-bound with mild downside if tech sentiment softens."
+    },
+    {
+      "ticker": "GOOGL",
+      "current_price": 307.38,
+      "predicted_price_next_session": 309.00,
+      "directional_bias": "neutral_to_slightly_bullish",
+      "rationale": "GOOGL maintains solid revenue growth and AI positioning; minor upside plausible absent negative macro catalysts."
+    },
+    {
+      "ticker": "NVDA",
+      "current_price": 184.89,
+      "predicted_price_next_session": 186.50,
+      "directional_bias": "slightly_bullish",
+      "rationale": "NVDA benefits from AI demand tailwinds and momentum remains positive; next session could see modest gains if sector sentiment holds."
+    },
+    {
+      "ticker": "TSLA",
+      "current_price": 408.58,
+      "predicted_price_next_session": 405.00,
+      "directional_bias": "neutral_to_slightly_bearish",
+      "rationale": "TSLA volatility and valuation pressures suggest possible mild pullback; electric vehicle demand trends and news flow may drive short-term swings."
+    }
+  ]
 }
+]

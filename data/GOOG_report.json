@@ -90,28 +90,29 @@
   {
     "meta": {
       "symbol": "GOOG",
-      "generated_at": "2026-02-27T11:36:59Z",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-02-27T14:01:34Z",
       "market_session_date": "2026-02-26",
       "mode": "simulation"
     },
     "market": {
-      "current_price": 307.3800048828125,
-      "predicted_price_next_session": 308.3468509219732
+      "current_price": 307.1499938964844,
+      "predicted_price_next_session": 307.8415083942282
     },
     "signals": {
       "trend_label": "WEAK UPTREND ",
-      "sentiment_score": -0.007429265975952148,
-      "check_engine_light": " YELLOW (Neutral / Noise)"
+      "sentiment_score": -0.05972137451171875,
+      "check_engine_light": " RED (Risk Detected - Caution)"
     },
     "evidence": {
       "headlines_used": [
         "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
-        "Google Reportedly Gets South Korea's Conditional Approval to Offer High-Precision Maps in Country",
-        "'Bitcoin Retail Investors Are All In' And That's Why There's No Floor, Blockstream CEO Says",
-        "Nvidia Looks Like a Value Stock Even as Earnings Scream Growth",
-        "Magnet Wars: How the U.S. Plans to Break China\u2019s Grip on Rare Earths"
+        "CoreWeave shares slump as doubling capital expenditure\u00a0sparks margin concerns",
+        "'Michael Saylor Should Be In Jail' And 'Bitcoin Is For Boomers' Says Ex-Fidelity Star, Who Also Has A Contrarian Take On Tesla",
+        "Meta Expands Its AI Bet Beyond Nvidia",
+        "Google Wins Approval to Export 1:5,000 Map Data in South Korea"
       ],
-      "chart_path": "data\\charts\\2026-02-27\\GOOGL_trend.png"
+      "chart_path": "data\\charts\\2026-02-27\\GOOG_trend.png"
     }
   },
   {

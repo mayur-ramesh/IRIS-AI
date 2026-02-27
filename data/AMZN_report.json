@@ -228,7 +228,8 @@
   {
     "meta": {
       "symbol": "AMZN",
-      "generated_at": "2026-02-27T11:36:59Z",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-02-27T14:01:33Z",
       "market_session_date": "2026-02-26",
       "mode": "simulation"
     },
@@ -238,16 +239,16 @@
     },
     "signals": {
       "trend_label": "STRONG DOWNTREND ",
-      "sentiment_score": -0.06612592935562134,
+      "sentiment_score": -0.3865353584289551,
       "check_engine_light": " RED (Risk Detected - Caution)"
     },
     "evidence": {
       "headlines_used": [
         "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
-        "'Bitcoin Retail Investors Are All In' And That's Why There's No Floor, Blockstream CEO Says",
-        "Amazon Tries Its Low-Cost Approach to Winning the AI Race",
-        "Nvidia Looks Like a Value Stock Even as Earnings Scream Growth",
-        "Want to Own Anthropic Stock But Can't? You Need to Buy Its AI Data Center Provider Instead."
+        "OpenAI's $110 billion funding round draws investment from Amazon , Nvidia, SoftBank",
+        "CoreWeave shares slump as doubling capital expenditure\u00a0sparks margin concerns",
+        "'Michael Saylor Should Be In Jail' And 'Bitcoin Is For Boomers' Says Ex-Fidelity Star, Who Also Has A Contrarian Take On Tesla",
+        "Anthropic CEO Refuses to Allow Pentagon Use AI Tech for Mass Surveillance, Autonomous Weapons"
       ],
       "chart_path": "data\\charts\\2026-02-27\\AMZN_trend.png"
     }

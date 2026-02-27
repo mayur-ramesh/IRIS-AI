@@ -155,5 +155,33 @@
         "Zalando launches pre-owned kids\u2019 fashion in 14 European markets"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "source_symbol": "NKE",
+      "generated_at": "2026-02-27T14:01:39Z",
+      "market_session_date": "2026-02-26",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 63.95000076293945,
+      "predicted_price_next_session": 64.13186836983783
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.1044421911239624,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Here's Why I'm Looking at Nike Stock, Now That the Noise Has Died Down",
+        "Nike, Adidas and Puma to Lead Sneaker Market Growth Via Innovation, Sustainability",
+        "Wolverine World Wide (WWW) Q4 Earnings and Revenues Top Estimates",
+        "NIKE, Inc. (NKE) is Attracting Investor Attention: Here is What You Should Know",
+        "Zalando launches pre-owned kids\u2019 fashion in 14 European markets"
+      ],
+      "chart_path": "data\\charts\\2026-02-27\\NKE_trend.png"
+    }
   }
 ]
