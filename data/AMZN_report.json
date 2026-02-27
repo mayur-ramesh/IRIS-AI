@@ -199,5 +199,30 @@
         "TTM Technologies Stock Surges 250% In a Year, and This Fund Is Betting Nearly $40 Million on More Growth"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-27T02:42:35Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 207.9199981689453,
+      "predicted_price_next_session": 206.7820578124479
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.7330503106117249,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
+        "Trump lays out a new ground rule for Big Tech's AI build-out: Bring your own power",
+        "Bitcoin Headed For Worst Month In 4 Years: 'Either It's Dead Or Dollar Cost Average From Here,' Analyst Says",
+        "Amazon\u2019s OpenAI Bet, Antitrust Pressure And AI Turnover Weigh On Valuation",
+        "What a $75 Million Exit From MDU Might Signal Amid a 24% One-Year Rally"
+      ]
+    }
   }
 ]

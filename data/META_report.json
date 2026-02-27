@@ -108,5 +108,30 @@
         "Market volatility continues ahead of Fed decision"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-02-27T02:42:53Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 657.010009765625,
+      "predicted_price_next_session": 656.4870628358221
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.4167275309562683,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
+        "Trump lays out a new ground rule for Big Tech's AI build-out: Bring your own power",
+        "Bitcoin Headed For Worst Month In 4 Years: 'Either It's Dead Or Dollar Cost Average From Here,' Analyst Says",
+        "AMD\u2019s Meta And Nutanix AI Deals Reframe Growth And Risk Profile",
+        "Block lays off nearly half its staff because of AI. Its CEO said most companies will do the same"
+      ]
+    }
   }
 ]

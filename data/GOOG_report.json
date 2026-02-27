@@ -155,5 +155,30 @@
         "Why Nvidia\u2019s Huge Numbers Don\u2019t Settle the Latest AI Fears"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-02-27T02:41:31Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 307.1499938964844,
+      "predicted_price_next_session": 307.8415083942282
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.23526339530944823,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
+        "Trump lays out a new ground rule for Big Tech's AI build-out: Bring your own power",
+        "Bitcoin Headed For Worst Month In 4 Years: 'Either It's Dead Or Dollar Cost Average From Here,' Analyst Says",
+        "TTM Technologies Stock Surges 250% In a Year, and This Fund Is Betting Nearly $40 Million on More Growth",
+        "1 Spectacular Stock to Buy Before It Joins Nvidia, Alphabet, and Apple in the $3 Trillion Club"
+      ]
+    }
   }
 ]

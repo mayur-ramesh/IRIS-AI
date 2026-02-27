@@ -287,5 +287,30 @@
         "Tesla must face lawsuit alleging anti-American bias in hiring, US judge rules"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-02-27T02:42:07Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 408.5799865722656,
+      "predicted_price_next_session": 401.5881892061239
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.12423256635665894,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla Stock Falls. What Nvidia\u2019s Earnings Mean for the EV Maker\u2019s Robots.",
+        "Nasdaq Sinks 1.2%. It's All About Nvidia.",
+        "Every \"Magnificent Seven\" Stock Is Underperforming the S&P 500 in 2026. Here's One to Buy and One to Avoid.",
+        "Tesla Stock Forecast: Is TSLA Headed to $25 Or $600 in 2026?",
+        "Lemonade Posted Its First Positive Cash Flow Quarter and Reddit Is Getting Bullish"
+      ]
+    }
   }
 ]

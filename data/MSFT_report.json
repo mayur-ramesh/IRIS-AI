@@ -108,5 +108,30 @@
         "Market volatility continues ahead of Fed decision"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-02-27T02:43:20Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 401.7200012207031,
+      "predicted_price_next_session": 393.1060175078982
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.5697961688041687,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
+        "Trump lays out a new ground rule for Big Tech's AI build-out: Bring your own power",
+        "1 Clear Signal to Buy Microsoft Stock",
+        "Block lays off nearly half its staff because of AI. Its CEO said most companies will do the same",
+        "Citrini Scare Marked the Bottom, Says Fund Betting on Bounce"
+      ]
+    }
   }
 ]
