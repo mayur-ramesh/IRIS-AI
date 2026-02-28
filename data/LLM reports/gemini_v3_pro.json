@@ -219,5 +219,115 @@
         "Sector-wide rotation puts downward pressure on high-capex tech."
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-28T00:29:13Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 264.17,
+      "predicted_price_next_session": 260.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.25,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Apple stock drops over 3% closing at $264.17.",
+        "Broader market tech sell-off weighs heavily on AAPL."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-28T00:29:13Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 209.97,
+      "predicted_price_next_session": 215.0
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.35,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Amazon commits $50 billion to OpenAI expansion in new funding round.",
+        "AWS and OpenAI expand long-term cloud agreement."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-02-28T00:29:13Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 311.43,
+      "predicted_price_next_session": 315.0
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.15,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Alphabet sees slight 1.39% bump, closing above $311.",
+        "Google stabilizes as broader market digests tech sector movements."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-28T00:29:13Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 177.19,
+      "predicted_price_next_session": 172.0
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.55,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock continues to slide, dropping 4% to $177 level.",
+        "Profit-taking momentum holds despite strong fundamentals."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-02-28T00:29:13Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 402.51,
+      "predicted_price_next_session": 395.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.35,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla stock dips 1.48% closing near $402.",
+        "EV margin concerns and sector-wide tech pressure drag on shares."
+      ]
+    }
   }
 ]

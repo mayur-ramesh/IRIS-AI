@@ -236,5 +236,121 @@
         "Cybercab vehicle program manager departure adds to concerns over robo-taxi timeline [citation:10]"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-28T00:30:00Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 267.73,
+      "predicted_price_next_session": 265.34
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.34,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Apple (AAPL) closes at $267.73, down 1.91% on February 27, 2026 [citation:1]",
+        "Apple's AI strategy shifts toward device-side integration with potential Gemini collaboration, attracting defensive capital amid cloud investment concerns [citation:6]",
+        "Siri AI upgrade and potential PayPal acquisition speculation highlight Apple's service expansion efforts [citation:6]"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-28T00:30:00Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 210.64,
+      "predicted_price_next_session": 213.20
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.28,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Amazon (AMZN) closes at approximately $210.64 on February 27, 2026 [citation:2]",
+        "Amazon announces $500 billion strategic alliance with OpenAI, including $150 billion upfront and $350 billion milestone-based investment [citation:7]",
+        "Bank of America reiterates Buy rating with $275 price target, citing AWS capacity doubling and Trainium AI chip momentum [citation:2]",
+        "Amazon secures $50 billion U.S. government contract for AI infrastructure expansion [citation:2]"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-02-28T00:30:00Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 310.50,
+      "predicted_price_next_session": 313.25
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.15,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Alphabet (GOOG) closes near $310.50 on February 27, 2026, with day range of $303.59 - $312.00 [citation:3][citation:8]",
+        "Google secures clean energy deals for data centers and forms strategic AI partnerships to enhance capabilities [citation:8]",
+        "Analysts maintain positive outlook with 1-year price target of $359.24 [citation:8]"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-28T00:30:00Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 191.55,
+      "predicted_price_next_session": 187.80
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.42,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia (NVDA) closed at $191.55 on February 27, 2026, with intraday volatility reaching as low as $179.35 during session [citation:4][citation:9]",
+        "93% of 74 surveyed analysts rate Nvidia as Buy, with consensus reflecting strong long-term outlook despite recent volatility [citation:4]",
+        "AI infrastructure spending sustainability concerns create short-term price pressure despite robust earnings [citation:4]"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-02-28T00:30:00Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 399.06,
+      "predicted_price_next_session": 391.50
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.58,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla (TSLA) closes near $399.06 on February 27, 2026, down approximately 2.3% with trading volume of 25 million shares [citation:5][citation:10]",
+        "Technical resistance noted at $418.6 level; stock faces pressure from competitive EV landscape and margin concerns [citation:5][citation:10]",
+        "Market analysts suggest cautious approach with $396.15 price target indicating limited near-term upside [citation:5]"
+      ]
+    }
   }
 ]

@@ -76,5 +76,45 @@
       "rationale": "TSLA volatility and valuation pressures suggest possible mild pullback; electric vehicle demand trends and news flow may drive short-term swings."
     }
   ]
+},
+{
+  "generated_time": "2026-02-27T21:50:00Z",
+  "stocks": [
+    {
+      "ticker": "AAPL",
+      "current_price": 264.18,
+      "predicted_price_next_session": 266.00,
+      "directional_bias": "neutral_to_slightly_bullish",
+      "rationale": "Price supported near lower range with mixed sector sentiment; slight upside if tech sector stabilises."
+    },
+    {
+      "ticker": "AMZN",
+      "current_price": 210.00,
+      "predicted_price_next_session": 208.50,
+      "directional_bias": "neutral_to_slightly_bearish",
+      "rationale": "Amazon shows profit pressure and macro risk; likely range-bound with mild downside pressure."
+    },
+    {
+      "ticker": "GOOGL",
+      "current_price": 311.76,
+      "predicted_price_next_session": 312.50,
+      "directional_bias": "neutral_to_slightly_bullish",
+      "rationale": "Alphabet’s AI and ad revenue momentum moderate near-term upside; lacks strong catalyst to break out aggressively."
+    },
+    {
+      "ticker": "NVDA",
+      "current_price": 177.19,
+      "predicted_price_next_session": 179.50,
+      "directional_bias": "slightly_bullish",
+      "rationale": "NVIDIA benefits from ongoing AI hardware demand; next session could reflect modest carry-forward momentum."
+    },
+    {
+      "ticker": "TSLA",
+      "current_price": 402.51,
+      "predicted_price_next_session": 400.00,
+      "directional_bias": "neutral_to_slightly_bearish",
+      "rationale": "TSLA’s near-term volatility and valuation pressures could lead to slight pullback or sideways trading."
+    }
+  ]
 }
 ]
