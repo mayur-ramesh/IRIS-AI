@@ -118,26 +118,29 @@
   {
     "meta": {
       "symbol": "GOOG",
-      "generated_at": "2026-02-27T02:41:31Z",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-02-28T00:30:14Z",
+      "market_session_date": "2026-02-27",
       "mode": "simulation"
     },
     "market": {
-      "current_price": 307.1499938964844,
-      "predicted_price_next_session": 307.8415083942282
+      "current_price": 311.42999267578125,
+      "predicted_price_next_session": 315.8812613570071
     },
     "signals": {
       "trend_label": "WEAK UPTREND ",
-      "sentiment_score": -0.23526339530944823,
-      "check_engine_light": " RED (Risk Detected - Caution)"
+      "sentiment_score": 0.1750251293182373,
+      "check_engine_light": " GREEN (Safe to Proceed)"
     },
     "evidence": {
       "headlines_used": [
-        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
-        "Trump lays out a new ground rule for Big Tech's AI build-out: Bring your own power",
-        "Bitcoin Headed For Worst Month In 4 Years: 'Either It's Dead Or Dollar Cost Average From Here,' Analyst Says",
-        "TTM Technologies Stock Surges 250% In a Year, and This Fund Is Betting Nearly $40 Million on More Growth",
-        "1 Spectacular Stock to Buy Before It Joins Nvidia, Alphabet, and Apple in the $3 Trillion Club"
-      ]
+        "Alphabet Inc. (GOOG) Increases Despite Market Slip: Here's What You Need to Know",
+        "Alphabet (GOOGL) Ascends While Market Falls: Some Facts to Note",
+        "Why Google Stock Is Still An Undisputed IPO Benchmark To Learn From",
+        "Alphabet (GOOGL) Secures Power Deals with AES, Xcel for Data Centers",
+        "On The Road To A Breakout: Sector Leader Paves AI-Enabled Path"
+      ],
+      "chart_path": "data\\charts\\2026-02-28\\GOOG_trend.png"
     }
   }
 ]

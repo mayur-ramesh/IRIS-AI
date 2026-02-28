@@ -112,26 +112,29 @@
   {
     "meta": {
       "symbol": "META",
-      "generated_at": "2026-02-27T02:42:53Z",
+      "source_symbol": "META",
+      "generated_at": "2026-02-28T00:30:15Z",
+      "market_session_date": "2026-02-27",
       "mode": "simulation"
     },
     "market": {
-      "current_price": 657.010009765625,
-      "predicted_price_next_session": 656.4870628358221
+      "current_price": 648.1799926757812,
+      "predicted_price_next_session": 645.4226551925448
     },
     "signals": {
       "trend_label": "WEAK UPTREND ",
-      "sentiment_score": -0.4167275309562683,
+      "sentiment_score": -0.2024816632270813,
       "check_engine_light": " RED (Risk Detected - Caution)"
     },
     "evidence": {
       "headlines_used": [
-        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
-        "Trump lays out a new ground rule for Big Tech's AI build-out: Bring your own power",
-        "Bitcoin Headed For Worst Month In 4 Years: 'Either It's Dead Or Dollar Cost Average From Here,' Analyst Says",
-        "AMD\u2019s Meta And Nutanix AI Deals Reframe Growth And Risk Profile",
-        "Block lays off nearly half its staff because of AI. Its CEO said most companies will do the same"
-      ]
+        "CoreWeave\u2019s AI Buildout Tests Valuation As Losses Mount And Funding Surges",
+        "CoreWeave suffers worst rout in six months over spending fears",
+        "Best Buy Seen Reporting Tough Q4 With Sales Down 2%, Says UBS",
+        "Why the Dow Is Holding Up Better Than the Nasdaq and S&P 500 Today",
+        "Is AMD a Buy After Meta Deal?"
+      ],
+      "chart_path": "data\\charts\\2026-02-28\\META_trend.png"
     }
   },
   {

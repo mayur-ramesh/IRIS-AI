@@ -178,26 +178,29 @@
   {
     "meta": {
       "symbol": "AMZN",
-      "generated_at": "2026-02-27T01:33:39Z",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-02-28T00:30:13Z",
+      "market_session_date": "2026-02-27",
       "mode": "simulation"
     },
     "market": {
-      "current_price": 207.9199981689453,
-      "predicted_price_next_session": 206.7820578124479
+      "current_price": 210.0,
+      "predicted_price_next_session": 211.61983565991252
     },
     "signals": {
       "trend_label": "STRONG DOWNTREND ",
-      "sentiment_score": -0.39761327505111693,
+      "sentiment_score": -0.19343634843826293,
       "check_engine_light": " RED (Risk Detected - Caution)"
     },
     "evidence": {
       "headlines_used": [
-        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
-        "Trump lays out a new ground rule for Big Tech's AI build-out: Bring your own power",
-        "What a $75 Million Exit From MDU Might Signal Amid a 24% One-Year Rally",
-        "Block lays off nearly half its staff because of AI. Its CEO said most companies will do the same",
-        "TTM Technologies Stock Surges 250% In a Year, and This Fund Is Betting Nearly $40 Million on More Growth"
-      ]
+        "Coinbase exec says crypto 'corrections' are simple math, not a catastrophe",
+        "A look at Warren Buffett's final moves as Berkshire CEO",
+        "Before Retiring, Warren Buffett Sold These 3 Stocks and Piled Into This High-Yield Investment",
+        "Nasdaq, S&P 500 Fall After Hot PPI Report; Both Indexes Log Monthly Declines",
+        "With Trump\u2019s apparent blessing, the Ellisons are amassing a media empire"
+      ],
+      "chart_path": "data\\charts\\2026-02-28\\AMZN_trend.png"
     }
   },
   {

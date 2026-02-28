@@ -291,26 +291,29 @@
   {
     "meta": {
       "symbol": "TSLA",
-      "generated_at": "2026-02-27T02:42:07Z",
+      "source_symbol": "TSLA",
+      "generated_at": "2026-02-28T00:30:18Z",
+      "market_session_date": "2026-02-27",
       "mode": "simulation"
     },
     "market": {
-      "current_price": 408.5799865722656,
-      "predicted_price_next_session": 401.5881892061239
+      "current_price": 402.510009765625,
+      "predicted_price_next_session": 400.7889833563406
     },
     "signals": {
       "trend_label": "STRONG DOWNTREND ",
-      "sentiment_score": -0.12423256635665894,
+      "sentiment_score": -0.018394935131072997,
       "check_engine_light": " RED (Risk Detected - Caution)"
     },
     "evidence": {
       "headlines_used": [
-        "Tesla Stock Falls. What Nvidia\u2019s Earnings Mean for the EV Maker\u2019s Robots.",
-        "Nasdaq Sinks 1.2%. It's All About Nvidia.",
-        "Every \"Magnificent Seven\" Stock Is Underperforming the S&P 500 in 2026. Here's One to Buy and One to Avoid.",
-        "Tesla Stock Forecast: Is TSLA Headed to $25 Or $600 in 2026?",
-        "Lemonade Posted Its First Positive Cash Flow Quarter and Reddit Is Getting Bullish"
-      ]
+        "Tesla Stock Posts Another Weekly Loss. Cybercab Exec Exits Vital Robo-Taxi Arm.",
+        "Old Mission Capital Boosts iShares MSCI China ETF Allocation During China\u2019s Market Reset",
+        "Elon Musk: Tesla FSD Coming To Europe, Alongside Cybercab, Optimus Production",
+        "Forget Tech Stocks: The Construction Stock Building Tomorrow's Data Centers",
+        "Tesla\u2019s China Problem Is Getting Worse \u2014 Here Are the 3 Rivals Taking Its Market Share"
+      ],
+      "chart_path": "data\\charts\\2026-02-28\\TSLA_trend.png"
     }
   },
   {

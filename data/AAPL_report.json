@@ -426,26 +426,29 @@
   {
     "meta": {
       "symbol": "AAPL",
-      "generated_at": "2026-02-27T01:31:20Z",
+      "source_symbol": "AAPL",
+      "generated_at": "2026-02-28T00:30:13Z",
+      "market_session_date": "2026-02-27",
       "mode": "simulation"
     },
     "market": {
-      "current_price": 272.95001220703125,
-      "predicted_price_next_session": 270.83768220862675
+      "current_price": 264.17999267578125,
+      "predicted_price_next_session": 263.0160316364355
     },
     "signals": {
       "trend_label": "WEAK UPTREND ",
-      "sentiment_score": -0.19203763008117675,
-      "check_engine_light": " RED (Risk Detected - Caution)"
+      "sentiment_score": 0.27609153985977175,
+      "check_engine_light": " GREEN (Safe to Proceed)"
     },
     "evidence": {
       "headlines_used": [
-        "Nvidia earnings, Apple CEO teases product launches: Tech Support",
-        "1 Spectacular Stock to Buy Before It Joins Nvidia, Alphabet, and Apple in the $3 Trillion Club",
-        "Stock Market Today, Feb. 26: Nasdaq and S&P 500 Stumble on Fading Nvidia Optimism",
-        "Tim Cook 'Sleeps With One Eye Open' After CIA Taiwan Warning, But Do Prediction Markets Agree He Should Be Worried?",
-        "Q&A: Francisco Partners on the software sell-off"
-      ]
+        "A look at Warren Buffett's final moves as Berkshire CEO",
+        "Dow Jones Futures: Major Indexes Mask Market Strength; S&P 500's Top Stock Setting Up",
+        "Apple to Purchase 100M Chips from Taiwan Semiconductor Manufacturing (TSM) Arizona Facility",
+        "Jobs Data, Earnings From Broadcom and Target: What to Watch Next Week",
+        "This Advisor Added $3.33 Million to a Bond Position to Balance Nvidia and Apple Holdings"
+      ],
+      "chart_path": "data\\charts\\2026-02-28\\AAPL_trend.png"
     }
   },
   {
