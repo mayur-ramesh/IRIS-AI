@@ -44,7 +44,7 @@
         "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
         "Trump lays out a new ground rule for Big Tech's AI build-out: Bring your own power",
         "Bitcoin Headed For Worst Month In 4 Years: 'Either It's Dead Or Dollar Cost Average From Here,' Analyst Says",
-        "Amazon’s OpenAI Bet, Antitrust Pressure And AI Turnover Weigh On Valuation",
+        "Amazon\u2019s OpenAI Bet, Antitrust Pressure And AI Turnover Weigh On Valuation",
         "What a $75 Million Exit From MDU Might Signal Amid a 24% One-Year Rally"
       ]
     }
@@ -82,7 +82,7 @@
     },
     "market": {
       "current_price": 191.9294845184434,
-      "predicted_price_next_session": 190.9440
+      "predicted_price_next_session": 190.944
     },
     "signals": {
       "trend_label": "STRONG UPTREND ",
@@ -116,15 +116,15 @@
     },
     "evidence": {
       "headlines_used": [
-        "Tesla Stock Falls. What Nvidia’s Earnings Mean for the EV Maker’s Robots.",
+        "Tesla Stock Falls. What Nvidia\u2019s Earnings Mean for the EV Maker\u2019s Robots.",
         "Nasdaq Sinks 1.2%. It's All About Nvidia.",
         "Every \"Magnificent Seven\" Stock Is Underperforming the S&P 500 in 2026. Here's One to Buy and One to Avoid.",
         "Tesla Stock Forecast: Is TSLA Headed to $25 Or $600 in 2026?",
         "Lemonade Posted Its First Positive Cash Flow Quarter and Reddit Is Getting Bullish"
       ]
     }
-},
-{
+  },
+  {
     "meta": {
       "symbol": "AAPL",
       "generated_at": "2026-02-27T16:00:00Z",
@@ -268,7 +268,7 @@
     },
     "market": {
       "current_price": 210.64,
-      "predicted_price_next_session": 213.20
+      "predicted_price_next_session": 213.2
     },
     "signals": {
       "trend_label": "WEAK UPTREND ",
@@ -291,7 +291,7 @@
       "mode": "simulation"
     },
     "market": {
-      "current_price": 310.50,
+      "current_price": 310.5,
       "predicted_price_next_session": 313.25
     },
     "signals": {
@@ -315,7 +315,7 @@
     },
     "market": {
       "current_price": 191.55,
-      "predicted_price_next_session": 187.80
+      "predicted_price_next_session": 187.8
     },
     "signals": {
       "trend_label": "WEAK DOWNTREND ",
@@ -338,7 +338,7 @@
     },
     "market": {
       "current_price": 399.06,
-      "predicted_price_next_session": 391.50
+      "predicted_price_next_session": 391.5
     },
     "signals": {
       "trend_label": "STRONG DOWNTREND ",
@@ -350,6 +350,358 @@
         "Tesla (TSLA) closes near $399.06 on February 27, 2026, down approximately 2.3% with trading volume of 25 million shares [citation:5][citation:10]",
         "Technical resistance noted at $418.6 level; stock faces pressure from competitive EV landscape and margin concerns [citation:5][citation:10]",
         "Market analysts suggest cautious approach with $396.15 price target indicating limited near-term upside [citation:5]"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-01T10:00:35Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 189.75,
+      "predicted_price_next_session": 191.2
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.15,
+      "check_engine_light": "YELLOW (Mixed signals from technical indicators and market breadth)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Apple announces new AI features for upcoming iOS update",
+        "Broader market volatility weighs on tech sector momentum"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-01T10:00:54Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 178.5,
+      "predicted_price_next_session": 180.25
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.15,
+      "check_engine_light": "YELLOW (Mixed signals from retail and cloud segments)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AWS growth steady amid enterprise AI demand",
+        "Holiday retail sales momentum meets margin pressure"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-01T10:01:10Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 172.45,
+      "predicted_price_next_session": 174.1
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.25,
+      "check_engine_light": "YELLOW (Mixed signals from AI product launches and regulatory scrutiny)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Strong Q3 earnings beat on cloud and advertising revenue",
+        "Ongoing antitrust lawsuit weighs on investor sentiment"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-01T10:01:24Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 495.75,
+      "predicted_price_next_session": 502.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.3,
+      "check_engine_light": "YELLOW (Momentum positive but facing resistance near $500)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AI infrastructure investment seen driving long-term growth",
+        "Ad revenue growth stable amid broader digital ad market concerns"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-01T10:01:41Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 414.75,
+      "predicted_price_next_session": 416.8
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.15,
+      "check_engine_light": "YELLOW (Moderate volume and stable macro conditions support a slight upward bias, but momentum indicators are mixed.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Microsoft Azure growth steady amid enterprise AI demand.",
+        "Broad market indices show cautious optimism ahead of key data."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-01T10:02:01Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 93.5,
+      "predicted_price_next_session": 94.2
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.15,
+      "check_engine_light": "YELLOW (Mixed signals from recent earnings and forward guidance)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nike Q1 revenue beats estimates but margins pressured",
+        "Analysts note cautious consumer spending outlook for apparel"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-01T10:02:26Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 129.85,
+      "predicted_price_next_session": 131.2
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.15,
+      "check_engine_light": "YELLOW (Momentum positive but facing resistance near recent highs)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AI chip demand remains robust, supporting sector outlook",
+        "Broad market volatility tempers aggressive bullish sentiment"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-01T10:02:44Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 245.5,
+      "predicted_price_next_session": 248.75
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.15,
+      "check_engine_light": "YELLOW (Mixed signals from volume and macro uncertainty)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla Cybertruck deliveries accelerate, boosting near-term revenue outlook",
+        "Broader EV sector faces pressure from rising interest rate concerns"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-01T10:16:25Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 178.5,
+      "predicted_price_next_session": 179.25
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.15,
+      "check_engine_light": "YELLOW (Mixed signals from technical indicators and market sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Apple announces new AI features for upcoming iOS update",
+        "Concerns over iPhone demand in key markets persist"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-01T10:16:42Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 178.45,
+      "predicted_price_next_session": 179.85
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.15,
+      "check_engine_light": "YELLOW (Mixed signals from retail data and cloud growth)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AWS growth stabilizes in Q4 outlook",
+        "Holiday retail sales show modest consumer resilience"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-01T10:17:01Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 172.85,
+      "predicted_price_next_session": 174.2
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.15,
+      "check_engine_light": "YELLOW (Mixed signals from AI product cycle and regulatory scrutiny)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Strong Q3 cloud revenue growth reported",
+        "Antitrust lawsuit uncertainty weighs on sentiment"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-01T10:17:35Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 485.75,
+      "predicted_price_next_session": 492.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.3,
+      "check_engine_light": "YELLOW (Mixed signals from AI monetization progress and regulatory scrutiny)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Strong Q4 ad revenue growth reported",
+        "Ongoing EU regulatory pressure on data practices"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-01T10:18:21Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 412.5,
+      "predicted_price_next_session": 414.8
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.15,
+      "check_engine_light": "YELLOW (Moderate volume and stable macro conditions support a slight upward bias, but near-term resistance may cap gains.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AI product momentum continues to drive investor optimism.",
+        "Broad market indices show steady, low-volatility trading."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-01T10:18:37Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 94.5,
+      "predicted_price_next_session": 95.2
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.15,
+      "check_engine_light": "YELLOW (Mixed signals from recent earnings and forward guidance)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nike Q2 revenue meets expectations, but margins pressured",
+        "Analysts note cautious consumer spending outlook for apparel"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-01T10:19:03Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 128.5,
+      "predicted_price_next_session": 131.2
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.4,
+      "check_engine_light": "YELLOW (Elevated valuation and sector rotation create near-term volatility risk)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Strong Q3 earnings beat driven by data center demand",
+        "Market sentiment cautious amid broader tech sector pullback"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-01T10:19:34Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 245.5,
+      "predicted_price_next_session": 248.75
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.15,
+      "check_engine_light": "YELLOW (Mixed signals from volume and recent price action)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla Cybertruck deliveries accelerate, boosting near-term revenue outlook",
+        "Broader EV sector faces pressure from softening demand forecasts"
       ]
     }
   }
