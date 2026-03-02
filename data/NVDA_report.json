@@ -210,9 +210,9 @@
     "meta": {
       "symbol": "NVDA",
       "source_symbol": "NVDA",
-      "generated_at": "2026-02-28T00:30:18Z",
+      "generated_at": "2026-03-02T08:11:59Z",
       "market_session_date": "2026-02-27",
-      "mode": "simulation"
+      "mode": "live"
     },
     "market": {
       "current_price": 177.19000244140625,
@@ -220,18 +220,18 @@
     },
     "signals": {
       "trend_label": "WEAK UPTREND ",
-      "sentiment_score": -0.24753517508506775,
-      "check_engine_light": " RED (Risk Detected - Caution)"
+      "sentiment_score": 0.2998053073883057,
+      "check_engine_light": " GREEN (Safe to Proceed)"
     },
     "evidence": {
       "headlines_used": [
-        "Earnings live: Block mass layoffs earn Wall Street's approval, Duolingo shares plunge",
-        "Nvidia will remain the bellwether of AI, analyst explains",
-        "These 2 Dividend Kings Just Declared Dividend Raises",
-        "Why Beyond Meat Stock Skyrocketed Today",
-        "Want Decades of Passive Income? 2 Stocks to Buy Now and Hold Forever"
+        "February jobs data, Broadcom earnings, and AI fears abound: What to watch this week",
+        "Better Quantum Computing Stock: Rigetti Computing vs. D-Wave Quantum",
+        "If a Market Crash Hits in 2026, Will Gold, Silver, or Bitcoin Protect Your Wealth Best?",
+        "3 Dividend Stocks to Double Up on Right Now",
+        "Better Cryptocurrency to Buy Now With $1,000 and Hold for 3 Years: XRP vs. Ethereum"
       ],
-      "chart_path": "data\\charts\\2026-02-28\\NVDA_trend.png"
+      "chart_path": "data\\charts\\2026-03-02\\NVDA_trend.png"
     }
   }
 ]

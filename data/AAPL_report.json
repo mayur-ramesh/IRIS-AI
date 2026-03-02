@@ -427,9 +427,9 @@
     "meta": {
       "symbol": "AAPL",
       "source_symbol": "AAPL",
-      "generated_at": "2026-02-28T00:30:13Z",
+      "generated_at": "2026-03-02T08:10:57Z",
       "market_session_date": "2026-02-27",
-      "mode": "simulation"
+      "mode": "live"
     },
     "market": {
       "current_price": 264.17999267578125,
@@ -437,18 +437,18 @@
     },
     "signals": {
       "trend_label": "WEAK UPTREND ",
-      "sentiment_score": 0.27609153985977175,
-      "check_engine_light": " GREEN (Safe to Proceed)"
+      "sentiment_score": -0.01267549991607666,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
     },
     "evidence": {
       "headlines_used": [
-        "A look at Warren Buffett's final moves as Berkshire CEO",
-        "Dow Jones Futures: Major Indexes Mask Market Strength; S&P 500's Top Stock Setting Up",
-        "Apple to Purchase 100M Chips from Taiwan Semiconductor Manufacturing (TSM) Arizona Facility",
-        "Jobs Data, Earnings From Broadcom and Target: What to Watch Next Week",
-        "This Advisor Added $3.33 Million to a Bond Position to Balance Nvidia and Apple Holdings"
+        "What are expat mortgages and how high are the interest rates?",
+        "Britain\u2019s old-economy giants are the City\u2019s new favourite trade",
+        "If You Already Own These Household-Name Stocks, Here\u2019s the Risk You Might Be Missing",
+        "South Street Advisors Dumps $2.5 Million of its Stride Position Amid Stock's Halving",
+        "Ancora Advisors Opens New $148 Million Americold Realty Position Amid the REIT's 42% Pullback"
       ],
-      "chart_path": "data\\charts\\2026-02-28\\AAPL_trend.png"
+      "chart_path": "data\\charts\\2026-03-02\\AAPL_trend.png"
     }
   },
   {
