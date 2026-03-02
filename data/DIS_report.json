@@ -20,5 +20,30 @@
         "Market volatility continues ahead of Fed decision"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "DIS",
+      "generated_at": "2026-02-25T03:43:23Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 106.05000305175781,
+      "predicted_price_next_session": 106.11806857917851
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Gap Rolls Out Encore Membership",
+        "Disney OpenAI Deal Tests Monetization Of Iconic Characters Through AI Video",
+        "Netflix Declines 8% Post Q4 Earnings: Buy, Sell or Hold the Stock?",
+        "Factbox-From OpenAI to Nvidia, firms channel billions into AI infrastructure as demand booms",
+        "Adeia Q4 Earnings Call Highlights"
+      ]
+    }
   }
 ]

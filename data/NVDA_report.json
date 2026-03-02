@@ -177,5 +177,55 @@
         "40% of Enterprise Apps Will Embed AI Agents by End of 2026, According to Gartner. Here's How to Profit."
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-25T03:08:15Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 192.85000610351562,
+      "predicted_price_next_session": 191.85235957927324
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.13961873054504395,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Stock market today: Dow, S&P 500, Nasdaq futures rise as Trump delivers State of the Union, Nvidia earnings loom",
+        "Earnings live: Workday stock plunges amid AI disruption concerns, Lucid falls on mixed quarter, HP tumbles",
+        "Meta strikes massive 6-gigawatt AI chip deal with AMD",
+        "Meta and AMD announce 6-gigawatt GPU deal as part of AI build-out, AMD stock jumps",
+        "Nvidia earnings: Here's the 'real question mark'"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-25T03:42:20Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 192.85000610351562,
+      "predicted_price_next_session": 191.85235957927324
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.08626625537872315,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Stock market today: Dow, S&P 500, Nasdaq jump as software leads AI relief rally ahead of Nvidia earnings",
+        "Earnings live: Workday stock plunges amid AI disruption concerns, Lucid falls on mixed quarter, HP tumbles",
+        "Meta strikes massive 6-gigawatt AI chip deal with AMD",
+        "Meta and AMD announce 6-gigawatt GPU deal as part of AI build-out, AMD stock jumps",
+        "Nvidia earnings: Here's the 'real question mark'"
+      ]
+    }
   }
 ]
