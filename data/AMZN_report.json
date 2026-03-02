@@ -174,5 +174,86 @@
         "Market volatility continues ahead of Fed decision"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-02-28T00:30:13Z",
+      "market_session_date": "2026-02-27",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 210.0,
+      "predicted_price_next_session": 211.61983565991252
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.19343634843826293,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Coinbase exec says crypto 'corrections' are simple math, not a catastrophe",
+        "A look at Warren Buffett's final moves as Berkshire CEO",
+        "Before Retiring, Warren Buffett Sold These 3 Stocks and Piled Into This High-Yield Investment",
+        "Nasdaq, S&P 500 Fall After Hot PPI Report; Both Indexes Log Monthly Declines",
+        "With Trump\u2019s apparent blessing, the Ellisons are amassing a media empire"
+      ],
+      "chart_path": "data\\charts\\2026-02-28\\AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-27T02:42:35Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 207.9199981689453,
+      "predicted_price_next_session": 206.7820578124479
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.7330503106117249,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
+        "Trump lays out a new ground rule for Big Tech's AI build-out: Bring your own power",
+        "Bitcoin Headed For Worst Month In 4 Years: 'Either It's Dead Or Dollar Cost Average From Here,' Analyst Says",
+        "Amazon\u2019s OpenAI Bet, Antitrust Pressure And AI Turnover Weigh On Valuation",
+        "What a $75 Million Exit From MDU Might Signal Amid a 24% One-Year Rally"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-02-27T14:01:33Z",
+      "market_session_date": "2026-02-26",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 207.9199981689453,
+      "predicted_price_next_session": 206.7820578124479
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.3865353584289551,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
+        "OpenAI's $110 billion funding round draws investment from Amazon , Nvidia, SoftBank",
+        "CoreWeave shares slump as doubling capital expenditure\u00a0sparks margin concerns",
+        "'Michael Saylor Should Be In Jail' And 'Bitcoin Is For Boomers' Says Ex-Fidelity Star, Who Also Has A Contrarian Take On Tesla",
+        "Anthropic CEO Refuses to Allow Pentagon Use AI Tech for Mass Surveillance, Autonomous Weapons"
+      ],
+      "chart_path": "data\\charts\\2026-02-27\\AMZN_trend.png"
+    }
   }
 ]

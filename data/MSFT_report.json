@@ -108,5 +108,61 @@
         "Market volatility continues ahead of Fed decision"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "source_symbol": "MSFT",
+      "generated_at": "2026-02-28T00:30:16Z",
+      "market_session_date": "2026-02-27",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 392.739990234375,
+      "predicted_price_next_session": 383.1936070908439
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.38729616403579714,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Stock Market Today, Feb. 27: CoreWeave Falls After Q4 Loss Widens and Revenue Guidance Misses Expectations",
+        "Top Stock Reports for NVIDIA, Microsoft & JPMorgan",
+        "These Stocks Lead Dow Jones In February. Hint: It's Not AI Companies.",
+        "CoreWeave suffers worst rout in six months over spending fears",
+        "The Dow Is on Fire This Year. What Ignited the Gains."
+      ],
+      "chart_path": "data\\charts\\2026-02-28\\MSFT_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "source_symbol": "MSFT",
+      "generated_at": "2026-02-27T14:01:38Z",
+      "market_session_date": "2026-02-26",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 401.7200012207031,
+      "predicted_price_next_session": 393.1060175078982
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.5794898748397828,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
+        "CoreWeave shares slump as doubling capital expenditure\u00a0sparks margin concerns",
+        "Japan Antitrust Raid Puts Microsoft Azure Growth And Margins Under Scrutiny",
+        "2 No-Brainer Artificial Intelligence (AI) Stocks to Buy Right Now",
+        "'Michael Saylor Should Be In Jail' And 'Bitcoin Is For Boomers' Says Ex-Fidelity Star, Who Also Has A Contrarian Take On Tesla"
+      ],
+      "chart_path": "data\\charts\\2026-02-27\\MSFT_trend.png"
+    }
   }
 ]

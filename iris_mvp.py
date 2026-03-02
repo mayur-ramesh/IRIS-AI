@@ -1,7 +1,5 @@
 import argparse
 import os
-import sys
-import os
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 import yfinance as yf
 from newsapi import NewsApiClient
@@ -32,7 +30,51 @@ try:
 except ImportError:
     pass
 NEWS_API_KEY = os.environ.get("NEWS_API_KEY") or None
-DEFAULT_TICKERS = [t for t in os.environ.get("IRIS_TICKERS", "AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA").split(",") if t.strip()]
+TICKER_ALIASES = {
+    "GOOGL": "GOOG",
+}
+COMPANY_NAME_TO_TICKERS = {
+    "GOOGLE": ["GOOG", "GOOGL"],
+    "ALPHABET": ["GOOG", "GOOGL"],
+    "ALPHABETINC": ["GOOG", "GOOGL"],
+    "ALPHABETCLASSA": ["GOOGL"],
+    "ALPHABETCLASSC": ["GOOG"],
+    "APPLE": ["AAPL"],
+    "MICROSOFT": ["MSFT"],
+    "AMAZON": ["AMZN"],
+    "TESLA": ["TSLA"],
+    "NVIDIA": ["NVDA"],
+    "META": ["META"],
+    "NIKE": ["NKE"],
+}
+
+
+def normalize_ticker_symbol(symbol: str):
+    token = str(symbol or "").strip().upper()
+    if not token:
+        return token
+    return TICKER_ALIASES.get(token, token)
+
+
+def sanitize_company_token(value: str):
+    return "".join(ch for ch in str(value or "").upper() if ch.isalnum())
+
+
+def normalize_ticker_list(symbols):
+    seen = set()
+    normalized = []
+    for symbol in symbols or []:
+        token = normalize_ticker_symbol(symbol)
+        if not token or token in seen:
+            continue
+        seen.add(token)
+        normalized.append(token)
+    return normalized
+
+
+DEFAULT_TICKERS = normalize_ticker_list(
+    os.environ.get("IRIS_TICKERS", "AAPL,MSFT,GOOG,AMZN,NVDA,META,TSLA").split(",")
+)
 
 
 
@@ -56,10 +98,125 @@ class IRIS_System:
             print("   -> NewsAPI Connection: ESTABLISHED")
         else:
             print("   -> NewsAPI Connection: SIMULATION MODE (No Key Found)")
+        self.merge_alias_reports()
+
+    def _read_report_file(self, path: Path):
+        if not path.exists():
+            return []
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                return data if isinstance(data, list) else [data]
+        except (json.JSONDecodeError, IOError):
+            return []
+
+    def resolve_user_ticker_input(self, raw_input: str, interactive_prompt: bool = False, quiet: bool = False):
+        token = str(raw_input or "").strip().upper()
+        if not token:
+            return ""
+
+        company_key = sanitize_company_token(token)
+        candidates = COMPANY_NAME_TO_TICKERS.get(company_key, [])
+        if not candidates:
+            # Exact ticker input or direct alias.
+            if token.isalpha() and 1 <= len(token) <= 6:
+                return token
+            return token
+
+        if len(candidates) == 1:
+            corrected = candidates[0]
+            if not quiet:
+                print(f"  Auto-correct: '{raw_input}' -> '{corrected}'")
+            return corrected
+
+        # Ambiguous company input (e.g., GOOGLE -> GOOG/GOOGL)
+        if interactive_prompt:
+            if not quiet:
+                print(f"  Input '{raw_input}' is ambiguous.")
+                print("  Did you refer to GOOG or GOOGL?")
+            choice = input("Choose ticker [GOOG/GOOGL] (default GOOG): ").strip().upper()
+            if choice in candidates:
+                return choice
+        if not quiet:
+            print(f"  Auto-correct: '{raw_input}' -> '{candidates[0]}'")
+        return candidates[0]
+
+    def _report_generated_at(self, report: dict):
+        if not isinstance(report, dict):
+            return ""
+        meta = report.get("meta", {})
+        if not isinstance(meta, dict):
+            return ""
+        return str(meta.get("generated_at", "")).strip()
+
+    def _report_sort_key(self, report: dict):
+        session_date = self._extract_session_date(report) or ""
+        generated_at = self._report_generated_at(report)
+        return (session_date, generated_at)
+
+    def merge_alias_reports(self):
+        """Merge alias symbols into canonical report files (e.g. GOOGL -> GOOG)."""
+        data_dir = Path("data")
+        if not data_dir.exists():
+            return None
+
+        for alias, canonical in TICKER_ALIASES.items():
+            alias_path = data_dir / f"{alias}_report.json"
+            canonical_path = data_dir / f"{canonical}_report.json"
+            alias_reports = self._read_report_file(alias_path)
+            if not alias_reports:
+                continue
+            canonical_reports = self._read_report_file(canonical_path)
+
+            merged = {}
+            for report in canonical_reports + alias_reports:
+                if not isinstance(report, dict):
+                    continue
+                meta = report.get("meta")
+                if not isinstance(meta, dict):
+                    meta = {}
+                    report["meta"] = meta
+                meta["symbol"] = canonical
+
+                session_key = self._extract_session_date(report) or self._report_generated_at(report)
+                if not session_key:
+                    session_key = f"legacy_{len(merged)}"
+
+                existing = merged.get(session_key)
+                if existing is None or self._report_generated_at(report) >= self._report_generated_at(existing):
+                    merged[session_key] = report
+
+            merged_reports = sorted(merged.values(), key=self._report_sort_key)
+            if merged_reports:
+                with open(canonical_path, "w", encoding="utf-8") as f:
+                    json.dump(merged_reports, f, indent=2)
+            try:
+                alias_path.unlink()
+            except OSError:
+                pass
+
+    def _extract_session_date(self, report: dict):
+        """Return market session date (YYYY-MM-DD) from a report, with legacy fallback."""
+        if not isinstance(report, dict):
+            return None
+        meta = report.get("meta", {})
+        if not isinstance(meta, dict):
+            return None
+        session_date = str(meta.get("market_session_date", "")).strip()
+        if len(session_date) == 10:
+            return session_date
+        generated_at = str(meta.get("generated_at", "")).strip()
+        if len(generated_at) >= 10:
+            return generated_at[:10]
+        return None
 
     def save_report(self, report: dict, filename: str):
         Path("data").mkdir(exist_ok=True)
-        out_path = Path("data") / filename
+        canonical_filename = filename
+        if filename.endswith("_report.json"):
+            symbol = filename[:-12]
+            canonical_filename = f"{normalize_ticker_symbol(symbol)}_report.json"
+        out_path = Path("data") / canonical_filename
         
         # Load existing reports if file exists
         reports = []
@@ -72,13 +229,150 @@ class IRIS_System:
             except (json.JSONDecodeError, IOError):
                 reports = []
         
-        # Append new report
-        reports.append(report)
+        # Upsert by market session date to avoid duplicate entries for the same trading session.
+        target_session = self._extract_session_date(report)
+        updated = False
+        if target_session:
+            for idx, existing in enumerate(reports):
+                if self._extract_session_date(existing) == target_session:
+                    reports[idx] = report
+                    updated = True
+                    break
+        if not updated:
+            reports.append(report)
         
         # Save all reports
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(reports, f, indent=2)
         return str(out_path)
+
+    def _load_symbol_reports(self, symbol: str):
+        canonical_symbol = normalize_ticker_symbol(symbol)
+        out_path = Path("data") / f"{canonical_symbol}_report.json"
+        if not out_path.exists():
+            return []
+        return self._read_report_file(out_path)
+
+    def _find_previous_session_report(self, symbol: str, current_session_date: str):
+        reports = self._load_symbol_reports(symbol)
+        if not reports:
+            return None
+
+        candidates = []
+        for report in reports:
+            session_date = self._extract_session_date(report)
+            if session_date and session_date < current_session_date:
+                candidates.append((session_date, report))
+
+        if candidates:
+            candidates.sort(key=lambda x: x[0])
+            return candidates[-1][1]
+
+        # Fallback for legacy/missing dates.
+        for report in reversed(reports):
+            session_date = self._extract_session_date(report)
+            if session_date != current_session_date:
+                return report
+        return None
+
+    def _build_comparison(self, current_report: dict, previous_report: dict):
+        symbol = current_report.get("meta", {}).get("symbol", "")
+        current_session_date = self._extract_session_date(current_report)
+        if not previous_report:
+            return {
+                "symbol": symbol,
+                "current_session_date": current_session_date,
+                "previous_session_date": None,
+                "has_previous_session": False,
+                "changes": {},
+            }
+
+        previous_session_date = self._extract_session_date(previous_report)
+        current_market = current_report.get("market", {})
+        previous_market = previous_report.get("market", {})
+        current_signals = current_report.get("signals", {})
+        previous_signals = previous_report.get("signals", {})
+
+        current_price = float(current_market.get("current_price", 0.0))
+        previous_price = float(previous_market.get("current_price", 0.0))
+        current_pred = float(current_market.get("predicted_price_next_session", 0.0))
+        previous_pred = float(previous_market.get("predicted_price_next_session", 0.0))
+        current_sent = float(current_signals.get("sentiment_score", 0.0))
+        previous_sent = float(previous_signals.get("sentiment_score", 0.0))
+
+        return {
+            "symbol": symbol,
+            "current_session_date": current_session_date,
+            "previous_session_date": previous_session_date,
+            "has_previous_session": True,
+            "changes": {
+                "current_price_delta": current_price - previous_price,
+                "predicted_price_delta": current_pred - previous_pred,
+                "sentiment_score_delta": current_sent - previous_sent,
+                "trend_label_changed": current_signals.get("trend_label") != previous_signals.get("trend_label"),
+                "check_engine_light_changed": current_signals.get("check_engine_light") != previous_signals.get("check_engine_light"),
+            },
+            "current_snapshot": {
+                "current_price": current_price,
+                "predicted_price_next_session": current_pred,
+                "trend_label": current_signals.get("trend_label"),
+                "sentiment_score": current_sent,
+                "check_engine_light": current_signals.get("check_engine_light"),
+            },
+            "previous_snapshot": {
+                "current_price": previous_price,
+                "predicted_price_next_session": previous_pred,
+                "trend_label": previous_signals.get("trend_label"),
+                "sentiment_score": previous_sent,
+                "check_engine_light": previous_signals.get("check_engine_light"),
+            },
+        }
+
+    def save_session_summary(self, reports: list):
+        """Save per-session aggregate with comparisons against previous session."""
+        if not reports:
+            return None
+
+        session_dates = [self._extract_session_date(r) for r in reports if self._extract_session_date(r)]
+        session_date = max(session_dates) if session_dates else time.strftime("%Y-%m-%d")
+        generated_at = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+
+        # Use one latest report per symbol for summary stability.
+        latest_by_symbol = {}
+        for report in reports:
+            symbol = str(report.get("meta", {}).get("symbol", "")).upper()
+            if symbol:
+                latest_by_symbol[symbol] = report
+
+        ordered_symbols = sorted(latest_by_symbol.keys())
+        comparisons = []
+        for symbol in ordered_symbols:
+            current = latest_by_symbol[symbol]
+            current_session = self._extract_session_date(current) or session_date
+            previous = self._find_previous_session_report(symbol, current_session)
+            comparisons.append(self._build_comparison(current, previous))
+
+        payload = {
+            "meta": {
+                "generated_at": generated_at,
+                "session_date": session_date,
+                "symbols": ordered_symbols,
+                "report_count": len(ordered_symbols),
+            },
+            "reports": [latest_by_symbol[s] for s in ordered_symbols],
+            "comparisons": comparisons,
+        }
+
+        sessions_dir = Path("data") / "sessions" / session_date
+        sessions_dir.mkdir(parents=True, exist_ok=True)
+        summary_path = sessions_dir / "session_summary.json"
+        with open(summary_path, "w", encoding="utf-8") as f:
+            json.dump(payload, f, indent=2)
+
+        latest_path = Path("data") / "sessions" / "latest_session_summary.json"
+        with open(latest_path, "w", encoding="utf-8") as f:
+            json.dump(payload, f, indent=2)
+        return str(summary_path)
 
     def get_market_data(self, ticker):
         """Fetches current price and 60-day history with features for the Prediction Engine."""
@@ -253,7 +547,7 @@ class IRIS_System:
             next_ts = last_ts + pd.Timedelta(days=1)
             ax.scatter([next_ts], [predicted_price], color="darkorange", s=80, zorder=5, label="AI prediction")
             ax.axhline(y=current_price, color="gray", linestyle="--", alpha=0.7, label=f"Current ${current_price:.2f}")
-        ax.set_title(f"{symbol} — Live price & prediction | {trend_label.strip()}")
+        ax.set_title(f"{symbol} - Live price & prediction | {trend_label.strip()}")
         ax.set_xlabel("Date")
         ax.set_ylabel("Price ($)")
         ax.legend(loc="best")
@@ -266,26 +560,43 @@ class IRIS_System:
         plt.close(fig)
         return str(path)
 
-    def run_one_ticker(self, ticker: str, quiet: bool = False):
+    def run_one_ticker(self, ticker: str, quiet: bool = False, interactive_prompt: bool = False):
         """Run analysis for a single ticker; returns report dict or None."""
+        ticker = self.resolve_user_ticker_input(ticker, interactive_prompt=interactive_prompt, quiet=quiet)
+        analyzed_ticker = str(ticker).strip().upper()
+        canonical_ticker = normalize_ticker_symbol(analyzed_ticker)
         if not quiet:
-            print(f"... Analyzing {ticker} ...")
-        data = self.get_market_data(ticker)
+            print(f"... Analyzing {analyzed_ticker} ...")
+            if canonical_ticker != analyzed_ticker:
+                print(f"  Note: {analyzed_ticker} will be merged into canonical symbol {canonical_ticker}.")
+        data = self.get_market_data(analyzed_ticker)
         if not data:
             if not quiet:
-                print(f"  {ticker}: Stock not found or connection error.")
+                print(f"  {analyzed_ticker}: Stock not found or connection error.")
             return None
-        sentiment_score, headlines = self.analyze_news(ticker)
+
+        sentiment_score, headlines = self.analyze_news(analyzed_ticker)
         trend_label, predicted_price = self.predict_trend(data)
         light = " GREEN (Safe to Proceed)"
         if sentiment_score < -0.05 or "STRONG DOWNTREND" in trend_label:
             light = " RED (Risk Detected - Caution)"
         elif abs(sentiment_score) < 0.05 and "WEAK" in trend_label:
             light = " YELLOW (Neutral / Noise)"
+
+        market_session_date = None
+        history_df = data.get("history_df")
+        if history_df is not None and len(history_df):
+            try:
+                market_session_date = str(pd.Timestamp(history_df.index[-1]).date())
+            except Exception:
+                market_session_date = None
+
         report = {
             "meta": {
-                "symbol": data["symbol"],
+                "symbol": canonical_ticker,
+                "source_symbol": analyzed_ticker,
                 "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "market_session_date": market_session_date,
                 "mode": "live" if NEWS_API_KEY else "simulation",
             },
             "market": {
@@ -299,34 +610,38 @@ class IRIS_System:
             },
             "evidence": {"headlines_used": headlines if isinstance(headlines, list) else []},
         }
-        saved_path = self.save_report(report, f"{data['symbol']}_report.json")
+
         chart_path = self.draw_chart(
-            data["symbol"],
+            canonical_ticker,
             data.get("history_df"),
             data["current_price"],
             predicted_price,
             trend_label,
         )
+        report["evidence"]["chart_path"] = chart_path
+        saved_path = self.save_report(report, f"{canonical_ticker}_report.json")
+
         if chart_path and not quiet:
             print(f"  Chart saved: {chart_path}")
         if not quiet:
-            print(f"  Report: {data['symbol']} — {light} | Predicted next: ${predicted_price:.2f} | {saved_path}")
-        
-        report["evidence"]["chart_path"] = chart_path
-        
+            print(f"  Report: {canonical_ticker} | {light} | Predicted next: ${predicted_price:.2f} | {saved_path}")
         return report
 
     def run_auto(self, tickers: list):
         """Run analysis for a list of tickers (for automated daily runs)."""
         print("\n-- IRIS automated run --")
         results = []
-        for t in tickers:
-            t = str(t).strip().upper()
+        for t in normalize_ticker_list(tickers):
             if not t:
                 continue
-            r = self.run_one_ticker(t, quiet=False)
-            if r:
-                results.append(r)
+            report = self.run_one_ticker(t, quiet=False)
+            if report:
+                results.append(report)
+
+        if results:
+            summary_path = self.save_session_summary(results)
+            if summary_path:
+                print(f"Session summary: {summary_path}")
         return results
 
     def run(self):
@@ -335,19 +650,19 @@ class IRIS_System:
         print("    'The Check Engine Light for your Portfolio'")
         print("="*50)
         while True:
-            ticker = input("\nEnter Stock Ticker (e.g., AAPL, TSLA) or 'q' to quit: ").strip().upper()
+            ticker = input("\nEnter Stock Ticker or Company Name (e.g., AAPL, TSLA, Google) or 'q' to quit: ").strip().upper()
             if ticker == "Q":
                 print("Shutting down IRIS...")
                 break
             if not ticker:
                 continue
-            self.run_one_ticker(ticker, quiet=False)
+            self.run_one_ticker(ticker, quiet=False, interactive_prompt=True)
             print("="*40)
             time.sleep(0.5)
 
 
 def main():
-    parser = argparse.ArgumentParser(description="IRIS — Intelligent Risk Identification System")
+    parser = argparse.ArgumentParser(description="IRIS - Intelligent Risk Identification System")
     parser.add_argument(
         "--tickers",
         type=str,
@@ -375,3 +690,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

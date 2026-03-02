@@ -1,0 +1,461 @@
+{
+  "meta": {
+    "generated_at": "2026-02-28T00:30:19Z",
+    "session_date": "2026-02-27",
+    "symbols": [
+      "AAPL",
+      "AMZN",
+      "GOOG",
+      "META",
+      "MSFT",
+      "NKE",
+      "NVDA",
+      "TSLA"
+    ],
+    "report_count": 8
+  },
+  "reports": [
+    {
+      "meta": {
+        "symbol": "AAPL",
+        "source_symbol": "AAPL",
+        "generated_at": "2026-02-28T00:30:13Z",
+        "market_session_date": "2026-02-27",
+        "mode": "simulation"
+      },
+      "market": {
+        "current_price": 264.17999267578125,
+        "predicted_price_next_session": 263.0160316364355
+      },
+      "signals": {
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": 0.27609153985977175,
+        "check_engine_light": " GREEN (Safe to Proceed)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "A look at Warren Buffett's final moves as Berkshire CEO",
+          "Dow Jones Futures: Major Indexes Mask Market Strength; S&P 500's Top Stock Setting Up",
+          "Apple to Purchase 100M Chips from Taiwan Semiconductor Manufacturing (TSM) Arizona Facility",
+          "Jobs Data, Earnings From Broadcom and Target: What to Watch Next Week",
+          "This Advisor Added $3.33 Million to a Bond Position to Balance Nvidia and Apple Holdings"
+        ],
+        "chart_path": "data\\charts\\2026-02-28\\AAPL_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "AMZN",
+        "source_symbol": "AMZN",
+        "generated_at": "2026-02-28T00:30:13Z",
+        "market_session_date": "2026-02-27",
+        "mode": "simulation"
+      },
+      "market": {
+        "current_price": 210.0,
+        "predicted_price_next_session": 211.61983565991252
+      },
+      "signals": {
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": -0.19343634843826293,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "Coinbase exec says crypto 'corrections' are simple math, not a catastrophe",
+          "A look at Warren Buffett's final moves as Berkshire CEO",
+          "Before Retiring, Warren Buffett Sold These 3 Stocks and Piled Into This High-Yield Investment",
+          "Nasdaq, S&P 500 Fall After Hot PPI Report; Both Indexes Log Monthly Declines",
+          "With Trump\u2019s apparent blessing, the Ellisons are amassing a media empire"
+        ],
+        "chart_path": "data\\charts\\2026-02-28\\AMZN_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "GOOG",
+        "source_symbol": "GOOG",
+        "generated_at": "2026-02-28T00:30:14Z",
+        "market_session_date": "2026-02-27",
+        "mode": "simulation"
+      },
+      "market": {
+        "current_price": 311.42999267578125,
+        "predicted_price_next_session": 315.8812613570071
+      },
+      "signals": {
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": 0.1750251293182373,
+        "check_engine_light": " GREEN (Safe to Proceed)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "Alphabet Inc. (GOOG) Increases Despite Market Slip: Here's What You Need to Know",
+          "Alphabet (GOOGL) Ascends While Market Falls: Some Facts to Note",
+          "Why Google Stock Is Still An Undisputed IPO Benchmark To Learn From",
+          "Alphabet (GOOGL) Secures Power Deals with AES, Xcel for Data Centers",
+          "On The Road To A Breakout: Sector Leader Paves AI-Enabled Path"
+        ],
+        "chart_path": "data\\charts\\2026-02-28\\GOOG_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "META",
+        "source_symbol": "META",
+        "generated_at": "2026-02-28T00:30:15Z",
+        "market_session_date": "2026-02-27",
+        "mode": "simulation"
+      },
+      "market": {
+        "current_price": 648.1799926757812,
+        "predicted_price_next_session": 645.4226551925448
+      },
+      "signals": {
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": -0.2024816632270813,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "CoreWeave\u2019s AI Buildout Tests Valuation As Losses Mount And Funding Surges",
+          "CoreWeave suffers worst rout in six months over spending fears",
+          "Best Buy Seen Reporting Tough Q4 With Sales Down 2%, Says UBS",
+          "Why the Dow Is Holding Up Better Than the Nasdaq and S&P 500 Today",
+          "Is AMD a Buy After Meta Deal?"
+        ],
+        "chart_path": "data\\charts\\2026-02-28\\META_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "MSFT",
+        "source_symbol": "MSFT",
+        "generated_at": "2026-02-28T00:30:16Z",
+        "market_session_date": "2026-02-27",
+        "mode": "simulation"
+      },
+      "market": {
+        "current_price": 392.739990234375,
+        "predicted_price_next_session": 383.1936070908439
+      },
+      "signals": {
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": -0.38729616403579714,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "Stock Market Today, Feb. 27: CoreWeave Falls After Q4 Loss Widens and Revenue Guidance Misses Expectations",
+          "Top Stock Reports for NVIDIA, Microsoft & JPMorgan",
+          "These Stocks Lead Dow Jones In February. Hint: It's Not AI Companies.",
+          "CoreWeave suffers worst rout in six months over spending fears",
+          "The Dow Is on Fire This Year. What Ignited the Gains."
+        ],
+        "chart_path": "data\\charts\\2026-02-28\\MSFT_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "NKE",
+        "source_symbol": "NKE",
+        "generated_at": "2026-02-28T00:30:17Z",
+        "market_session_date": "2026-02-27",
+        "mode": "simulation"
+      },
+      "market": {
+        "current_price": 62.18000030517578,
+        "predicted_price_next_session": 61.41377867132003
+      },
+      "signals": {
+        "trend_label": "WEAK DOWNTREND ",
+        "sentiment_score": 0.33093491196632385,
+        "check_engine_light": " GREEN (Safe to Proceed)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "5 Shoes & Retail Apparel Stocks Capitalizing on Premiumization Trends",
+          "Implied Volatility Surging for NIKE Stock Options",
+          "Here's Why I'm Looking at Nike Stock, Now That the Noise Has Died Down",
+          "Nike, Adidas and Puma to Lead Sneaker Market Growth Via Innovation, Sustainability",
+          "Wolverine World Wide (WWW) Q4 Earnings and Revenues Top Estimates"
+        ],
+        "chart_path": "data\\charts\\2026-02-28\\NKE_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "NVDA",
+        "source_symbol": "NVDA",
+        "generated_at": "2026-02-28T00:30:18Z",
+        "market_session_date": "2026-02-27",
+        "mode": "simulation"
+      },
+      "market": {
+        "current_price": 177.19000244140625,
+        "predicted_price_next_session": 180.08608047762687
+      },
+      "signals": {
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": -0.24753517508506775,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "Earnings live: Block mass layoffs earn Wall Street's approval, Duolingo shares plunge",
+          "Nvidia will remain the bellwether of AI, analyst explains",
+          "These 2 Dividend Kings Just Declared Dividend Raises",
+          "Why Beyond Meat Stock Skyrocketed Today",
+          "Want Decades of Passive Income? 2 Stocks to Buy Now and Hold Forever"
+        ],
+        "chart_path": "data\\charts\\2026-02-28\\NVDA_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "TSLA",
+        "source_symbol": "TSLA",
+        "generated_at": "2026-02-28T00:30:18Z",
+        "market_session_date": "2026-02-27",
+        "mode": "simulation"
+      },
+      "market": {
+        "current_price": 402.510009765625,
+        "predicted_price_next_session": 400.7889833563406
+      },
+      "signals": {
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": -0.018394935131072997,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "Tesla Stock Posts Another Weekly Loss. Cybercab Exec Exits Vital Robo-Taxi Arm.",
+          "Old Mission Capital Boosts iShares MSCI China ETF Allocation During China\u2019s Market Reset",
+          "Elon Musk: Tesla FSD Coming To Europe, Alongside Cybercab, Optimus Production",
+          "Forget Tech Stocks: The Construction Stock Building Tomorrow's Data Centers",
+          "Tesla\u2019s China Problem Is Getting Worse \u2014 Here Are the 3 Rivals Taking Its Market Share"
+        ],
+        "chart_path": "data\\charts\\2026-02-28\\TSLA_trend.png"
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "symbol": "AAPL",
+      "current_session_date": "2026-02-27",
+      "previous_session_date": "2026-02-26",
+      "has_previous_session": true,
+      "changes": {
+        "current_price_delta": -8.77001953125,
+        "predicted_price_delta": -7.821650572191231,
+        "sentiment_score_delta": 0.5823632478713989,
+        "trend_label_changed": false,
+        "check_engine_light_changed": true
+      },
+      "current_snapshot": {
+        "current_price": 264.17999267578125,
+        "predicted_price_next_session": 263.0160316364355,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": 0.27609153985977175,
+        "check_engine_light": " GREEN (Safe to Proceed)"
+      },
+      "previous_snapshot": {
+        "current_price": 272.95001220703125,
+        "predicted_price_next_session": 270.83768220862675,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": -0.3062717080116272,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      }
+    },
+    {
+      "symbol": "AMZN",
+      "current_session_date": "2026-02-27",
+      "previous_session_date": "2026-02-26",
+      "has_previous_session": true,
+      "changes": {
+        "current_price_delta": 2.0800018310546875,
+        "predicted_price_delta": 4.837777847464622,
+        "sentiment_score_delta": 0.19309900999069216,
+        "trend_label_changed": false,
+        "check_engine_light_changed": false
+      },
+      "current_snapshot": {
+        "current_price": 210.0,
+        "predicted_price_next_session": 211.61983565991252,
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": -0.19343634843826293,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "previous_snapshot": {
+        "current_price": 207.9199981689453,
+        "predicted_price_next_session": 206.7820578124479,
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": -0.3865353584289551,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      }
+    },
+    {
+      "symbol": "GOOG",
+      "current_session_date": "2026-02-27",
+      "previous_session_date": "2026-02-26",
+      "has_previous_session": true,
+      "changes": {
+        "current_price_delta": 4.279998779296875,
+        "predicted_price_delta": 8.039752962778891,
+        "sentiment_score_delta": 0.23474650382995604,
+        "trend_label_changed": false,
+        "check_engine_light_changed": true
+      },
+      "current_snapshot": {
+        "current_price": 311.42999267578125,
+        "predicted_price_next_session": 315.8812613570071,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": 0.1750251293182373,
+        "check_engine_light": " GREEN (Safe to Proceed)"
+      },
+      "previous_snapshot": {
+        "current_price": 307.1499938964844,
+        "predicted_price_next_session": 307.8415083942282,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": -0.05972137451171875,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      }
+    },
+    {
+      "symbol": "META",
+      "current_session_date": "2026-02-27",
+      "previous_session_date": "2026-02-26",
+      "has_previous_session": true,
+      "changes": {
+        "current_price_delta": -8.83001708984375,
+        "predicted_price_delta": -11.064407643277377,
+        "sentiment_score_delta": -0.14939913749694825,
+        "trend_label_changed": false,
+        "check_engine_light_changed": false
+      },
+      "current_snapshot": {
+        "current_price": 648.1799926757812,
+        "predicted_price_next_session": 645.4226551925448,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": -0.2024816632270813,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "previous_snapshot": {
+        "current_price": 657.010009765625,
+        "predicted_price_next_session": 656.4870628358221,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": -0.05308252573013306,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      }
+    },
+    {
+      "symbol": "MSFT",
+      "current_session_date": "2026-02-27",
+      "previous_session_date": "2026-02-26",
+      "has_previous_session": true,
+      "changes": {
+        "current_price_delta": -8.980010986328125,
+        "predicted_price_delta": -9.912410417054275,
+        "sentiment_score_delta": 0.19219371080398562,
+        "trend_label_changed": false,
+        "check_engine_light_changed": false
+      },
+      "current_snapshot": {
+        "current_price": 392.739990234375,
+        "predicted_price_next_session": 383.1936070908439,
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": -0.38729616403579714,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "previous_snapshot": {
+        "current_price": 401.7200012207031,
+        "predicted_price_next_session": 393.1060175078982,
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": -0.5794898748397828,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      }
+    },
+    {
+      "symbol": "NKE",
+      "current_session_date": "2026-02-27",
+      "previous_session_date": "2026-02-26",
+      "has_previous_session": true,
+      "changes": {
+        "current_price_delta": -1.7700004577636719,
+        "predicted_price_delta": -2.718089698517801,
+        "sentiment_score_delta": 0.22649272084236144,
+        "trend_label_changed": true,
+        "check_engine_light_changed": true
+      },
+      "current_snapshot": {
+        "current_price": 62.18000030517578,
+        "predicted_price_next_session": 61.41377867132003,
+        "trend_label": "WEAK DOWNTREND ",
+        "sentiment_score": 0.33093491196632385,
+        "check_engine_light": " GREEN (Safe to Proceed)"
+      },
+      "previous_snapshot": {
+        "current_price": 63.95000076293945,
+        "predicted_price_next_session": 64.13186836983783,
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": 0.1044421911239624,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      }
+    },
+    {
+      "symbol": "NVDA",
+      "current_session_date": "2026-02-27",
+      "previous_session_date": "2026-02-26",
+      "has_previous_session": true,
+      "changes": {
+        "current_price_delta": -7.6999969482421875,
+        "predicted_price_delta": -2.5821568273743765,
+        "sentiment_score_delta": 0.31331946253776555,
+        "trend_label_changed": true,
+        "check_engine_light_changed": false
+      },
+      "current_snapshot": {
+        "current_price": 177.19000244140625,
+        "predicted_price_next_session": 180.08608047762687,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": -0.24753517508506775,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "previous_snapshot": {
+        "current_price": 184.88999938964844,
+        "predicted_price_next_session": 182.66823730500124,
+        "trend_label": "STRONG UPTREND ",
+        "sentiment_score": -0.5608546376228333,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      }
+    },
+    {
+      "symbol": "TSLA",
+      "current_session_date": "2026-02-27",
+      "previous_session_date": "2026-02-26",
+      "has_previous_session": true,
+      "changes": {
+        "current_price_delta": -6.069976806640625,
+        "predicted_price_delta": -0.7992058497832772,
+        "sentiment_score_delta": 0.47543853521347046,
+        "trend_label_changed": false,
+        "check_engine_light_changed": false
+      },
+      "current_snapshot": {
+        "current_price": 402.510009765625,
+        "predicted_price_next_session": 400.7889833563406,
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": -0.018394935131072997,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "previous_snapshot": {
+        "current_price": 408.5799865722656,
+        "predicted_price_next_session": 401.5881892061239,
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": -0.49383347034454345,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      }
+    }
+  ]
+}

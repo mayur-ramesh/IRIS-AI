@@ -1,0 +1,296 @@
+[
+  {
+    "next_session_predictions": [
+      {
+        "ticker": "AAPL",
+        "current_price": 272.95,
+        "predicted_price_next_session": 274.5,
+        "directional_bias": "slightly_bullish",
+        "rationale": "Apple\u2019s recent support and moderate buy consensus suggest slight upward pressure, though sector volatility may keep gains limited."
+      },
+      {
+        "ticker": "GOOGL",
+        "current_price": 307.38,
+        "predicted_price_next_session": 308.75,
+        "directional_bias": "neutral_to_slightly_bullish",
+        "rationale": "Alphabet\u2019s recent rally and technical momentum could support modest gains, but overbought short-term signals suggest limited upside."
+      },
+      {
+        "ticker": "MSFT",
+        "current_price": 401.72,
+        "predicted_price_next_session": 400.0,
+        "directional_bias": "neutral",
+        "rationale": "Microsoft\u2019s price may stay range-bound as cloud/AI spending debates balance positive long-term outlook with near-term profit-taking."
+      },
+      {
+        "ticker": "AMZN",
+        "current_price": 207.92,
+        "predicted_price_next_session": 206.0,
+        "directional_bias": "neutral_to_slightly_bearish",
+        "rationale": "Amazon faces short-term pressure from profitability concerns despite strong AWS revenue, possibly leading to mild downside."
+      },
+      {
+        "ticker": "TSLA",
+        "current_price": 408.58,
+        "predicted_price_next_session": 410.0,
+        "directional_bias": "neutral_to_slightly_bullish",
+        "rationale": "Tesla\u2019s volatility may continue but Zacks attention metrics and mixed fundamental signals could provide slight support."
+      }
+    ]
+  },
+  {
+    "next_session_predictions": [
+      {
+        "ticker": "AAPL",
+        "current_price": 272.95,
+        "predicted_price_next_session": 274.0,
+        "directional_bias": "slightly_bullish",
+        "rationale": "AAPL shows support near current levels and tends toward mild upside in stable market conditions; broader tech sentiment remains mixed."
+      },
+      {
+        "ticker": "AMZN",
+        "current_price": 207.92,
+        "predicted_price_next_session": 206.5,
+        "directional_bias": "neutral_to_slightly_bearish",
+        "rationale": "AMZN recent performance reflects near-term pressure despite long-term growth drivers; likely range-bound with mild downside if tech sentiment softens."
+      },
+      {
+        "ticker": "GOOGL",
+        "current_price": 307.38,
+        "predicted_price_next_session": 309.0,
+        "directional_bias": "neutral_to_slightly_bullish",
+        "rationale": "GOOGL maintains solid revenue growth and AI positioning; minor upside plausible absent negative macro catalysts."
+      },
+      {
+        "ticker": "NVDA",
+        "current_price": 184.89,
+        "predicted_price_next_session": 186.5,
+        "directional_bias": "slightly_bullish",
+        "rationale": "NVDA benefits from AI demand tailwinds and momentum remains positive; next session could see modest gains if sector sentiment holds."
+      },
+      {
+        "ticker": "TSLA",
+        "current_price": 408.58,
+        "predicted_price_next_session": 405.0,
+        "directional_bias": "neutral_to_slightly_bearish",
+        "rationale": "TSLA volatility and valuation pressures suggest possible mild pullback; electric vehicle demand trends and news flow may drive short-term swings."
+      }
+    ]
+  },
+  {
+    "generated_time": "2026-02-27T21:50:00Z",
+    "stocks": [
+      {
+        "ticker": "AAPL",
+        "current_price": 264.18,
+        "predicted_price_next_session": 266.0,
+        "directional_bias": "neutral_to_slightly_bullish",
+        "rationale": "Price supported near lower range with mixed sector sentiment; slight upside if tech sector stabilises."
+      },
+      {
+        "ticker": "AMZN",
+        "current_price": 210.0,
+        "predicted_price_next_session": 208.5,
+        "directional_bias": "neutral_to_slightly_bearish",
+        "rationale": "Amazon shows profit pressure and macro risk; likely range-bound with mild downside pressure."
+      },
+      {
+        "ticker": "GOOGL",
+        "current_price": 311.76,
+        "predicted_price_next_session": 312.5,
+        "directional_bias": "neutral_to_slightly_bullish",
+        "rationale": "Alphabet\u2019s AI and ad revenue momentum moderate near-term upside; lacks strong catalyst to break out aggressively."
+      },
+      {
+        "ticker": "NVDA",
+        "current_price": 177.19,
+        "predicted_price_next_session": 179.5,
+        "directional_bias": "slightly_bullish",
+        "rationale": "NVIDIA benefits from ongoing AI hardware demand; next session could reflect modest carry-forward momentum."
+      },
+      {
+        "ticker": "TSLA",
+        "current_price": 402.51,
+        "predicted_price_next_session": 400.0,
+        "directional_bias": "neutral_to_slightly_bearish",
+        "rationale": "TSLA\u2019s near-term volatility and valuation pressures could lead to slight pullback or sideways trading."
+      }
+    ]
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-01T10:16:18Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 175.5,
+      "predicted_price_next_session": 176.2
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.3,
+      "check_engine_light": "YELLOW (Moderate volatility expected)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Apple releases new product line with positive reviews",
+        "Tech sector shows signs of recovery amidst economic concerns"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-01T10:16:35Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 128.5,
+      "predicted_price_next_session": 129.75
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.35,
+      "check_engine_light": "GREEN (Stable market conditions)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Amazon announces expansion of logistics network",
+        "Positive analyst ratings boost Amazon stock outlook"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-01T10:16:54Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 2800.5,
+      "predicted_price_next_session": 2825.75
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.65,
+      "check_engine_light": "GREEN (Positive market sentiment and strong earnings report)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Google reports strong quarterly earnings beating expectations",
+        "Analysts upgrade Google stock amid positive market trends"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-01T10:17:28Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 315.75,
+      "predicted_price_next_session": 318.2
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.4,
+      "check_engine_light": "GREEN (Positive momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Meta announces new AI features",
+        "Positive quarterly earnings report"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-01T10:18:14Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 315.5,
+      "predicted_price_next_session": 317.2
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.3,
+      "check_engine_light": "GREEN (Positive momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Microsoft announces new AI partnership",
+        "Analysts upgrade Microsoft stock outlook"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-01T10:18:30Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 98.75,
+      "predicted_price_next_session": 99.3
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.3,
+      "check_engine_light": "YELLOW (Moderate volatility expected)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nike's new product line receives positive reviews",
+        "Analysts remain cautious amid broader market uncertainty"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-01T10:18:55Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 450.75,
+      "predicted_price_next_session": 455.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.65,
+      "check_engine_light": "GREEN (Positive earnings outlook)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "NVIDIA reports strong quarterly earnings, beating expectations",
+        "Analysts upgrade NVIDIA on AI growth potential"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-01T10:19:26Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 250.75,
+      "predicted_price_next_session": 253.2
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.3,
+      "check_engine_light": "YELLOW (mixed technical signals)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla expands production capacity in new markets",
+        "Analysts remain cautious on Tesla's valuation"
+      ]
+    }
+  }
+]

@@ -422,30 +422,5 @@
         "Apple shareholders reject call for report on China manufacturing risks"
       ]
     }
-  },
-  {
-    "meta": {
-      "symbol": "AAPL",
-      "generated_at": "2026-02-25T03:42:55Z",
-      "mode": "simulation"
-    },
-    "market": {
-      "current_price": 272.1400146484375,
-      "predicted_price_next_session": 271.2639706912462
-    },
-    "signals": {
-      "trend_label": "WEAK DOWNTREND ",
-      "sentiment_score": 0.0,
-      "check_engine_light": " YELLOW (Neutral / Noise)"
-    },
-    "evidence": {
-      "headlines_used": [
-        "AI trade: Who are the hardware winners and the services losers?",
-        "Why Apple Stock Ascended Today",
-        "Review and Preview: On Claude Nine",
-        "Michael Saylor compares Bitcoin with Apple, Amazon",
-        "'Trust Me': CEO Jamie Dimon Reportedly Set To Defend $2 Billion Weekly Spending Plan At JPMorgan"
-      ]
-    }
   }
 ]

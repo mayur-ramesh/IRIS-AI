@@ -1,0 +1,30 @@
+[
+  {
+    "meta": {
+      "symbol": "XOM",
+      "source_symbol": "XOM",
+      "generated_at": "2026-03-02T08:23:41Z",
+      "market_session_date": "2026-02-27",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 152.5,
+      "predicted_price_next_session": 154.28856299545077
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.2106947422027588,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Oil surges and stock futures sink after war in Iran disrupts crude supply",
+        "Exxon Mobil Guyana Growth Meets Ongoing Legal Tests For Long Term Story",
+        "Should Investors Worry About ExxonMobil if Oil Prices Slip in 2026?",
+        "Oil Price Tops $70 Amid Trump, Iran Fears. Where It Goes From Here.",
+        "Exxon Mobil Corporation (XOM) Is a Trending Stock: Facts to Know Before Betting on It"
+      ],
+      "chart_path": "data\\charts\\2026-03-02\\XOM_trend.png"
+    }
+  }
+]

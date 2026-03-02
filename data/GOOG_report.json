@@ -24,28 +24,6 @@
   {
     "meta": {
       "symbol": "GOOG",
-      "generated_at": "2026-02-11T01:55:01Z",
-      "mode": "simulation"
-    },
-    "market": {
-      "current_price": 318.6300048828125,
-      "predicted_price_next_session": 336.8054701531071
-    },
-    "signals": {
-      "trend_label": "STRONG UPTREND ",
-      "sentiment_score": 0.0,
-      "check_engine_light": " GREEN (Safe to Proceed)"
-    },
-    "evidence": {
-      "headlines_used": [
-        "GOOG announces date for shareholder meeting",
-        "Market volatility continues ahead of Fed decision"
-      ]
-    }
-  },
-  {
-    "meta": {
-      "symbol": "GOOG",
       "generated_at": "2026-02-11T02:24:16Z",
       "mode": "simulation"
     },
@@ -61,28 +39,6 @@
     "evidence": {
       "headlines_used": [
         "GOOGL announces date for shareholder meeting",
-        "Market volatility continues ahead of Fed decision"
-      ]
-    }
-  },
-  {
-    "meta": {
-      "symbol": "GOOG",
-      "generated_at": "2026-02-12T13:22:09Z",
-      "mode": "simulation"
-    },
-    "market": {
-      "current_price": 311.3299865722656,
-      "predicted_price_next_session": 312.63754947237237
-    },
-    "signals": {
-      "trend_label": "WEAK UPTREND ",
-      "sentiment_score": 0.0,
-      "check_engine_light": " YELLOW (Neutral / Noise)"
-    },
-    "evidence": {
-      "headlines_used": [
-        "GOOG announces date for shareholder meeting",
         "Market volatility continues ahead of Fed decision"
       ]
     }
@@ -129,6 +85,62 @@
         "GOOG announces date for shareholder meeting",
         "Market volatility continues ahead of Fed decision"
       ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-02-27T14:01:34Z",
+      "market_session_date": "2026-02-26",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 307.1499938964844,
+      "predicted_price_next_session": 307.8415083942282
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.05972137451171875,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
+        "CoreWeave shares slump as doubling capital expenditure\u00a0sparks margin concerns",
+        "'Michael Saylor Should Be In Jail' And 'Bitcoin Is For Boomers' Says Ex-Fidelity Star, Who Also Has A Contrarian Take On Tesla",
+        "Meta Expands Its AI Bet Beyond Nvidia",
+        "Google Wins Approval to Export 1:5,000 Map Data in South Korea"
+      ],
+      "chart_path": "data\\charts\\2026-02-27\\GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-02-28T00:30:14Z",
+      "market_session_date": "2026-02-27",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 311.42999267578125,
+      "predicted_price_next_session": 315.8812613570071
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.1750251293182373,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Alphabet Inc. (GOOG) Increases Despite Market Slip: Here's What You Need to Know",
+        "Alphabet (GOOGL) Ascends While Market Falls: Some Facts to Note",
+        "Why Google Stock Is Still An Undisputed IPO Benchmark To Learn From",
+        "Alphabet (GOOGL) Secures Power Deals with AES, Xcel for Data Centers",
+        "On The Road To A Breakout: Sector Leader Paves AI-Enabled Path"
+      ],
+      "chart_path": "data\\charts\\2026-02-28\\GOOG_trend.png"
     }
   }
 ]

@@ -108,5 +108,61 @@
         "Market volatility continues ahead of Fed decision"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "source_symbol": "META",
+      "generated_at": "2026-02-28T00:30:15Z",
+      "market_session_date": "2026-02-27",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 648.1799926757812,
+      "predicted_price_next_session": 645.4226551925448
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.2024816632270813,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "CoreWeave\u2019s AI Buildout Tests Valuation As Losses Mount And Funding Surges",
+        "CoreWeave suffers worst rout in six months over spending fears",
+        "Best Buy Seen Reporting Tough Q4 With Sales Down 2%, Says UBS",
+        "Why the Dow Is Holding Up Better Than the Nasdaq and S&P 500 Today",
+        "Is AMD a Buy After Meta Deal?"
+      ],
+      "chart_path": "data\\charts\\2026-02-28\\META_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "source_symbol": "META",
+      "generated_at": "2026-02-27T14:01:36Z",
+      "market_session_date": "2026-02-26",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 657.010009765625,
+      "predicted_price_next_session": 656.4870628358221
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.05308252573013306,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
+        "2 No-Brainer Artificial Intelligence (AI) Stocks to Buy Right Now",
+        "'Michael Saylor Should Be In Jail' And 'Bitcoin Is For Boomers' Says Ex-Fidelity Star, Who Also Has A Contrarian Take On Tesla",
+        "Meta Expands Its AI Bet Beyond Nvidia",
+        "Florida realtor discovers her property listed on Facebook as fake rental. Here\u2019s what landlords and renters should know"
+      ],
+      "chart_path": "data\\charts\\2026-02-27\\META_trend.png"
+    }
   }
 ]

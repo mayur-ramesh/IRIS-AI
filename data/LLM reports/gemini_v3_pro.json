@@ -1,0 +1,662 @@
+[
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-27T06:10:56Z",
+      "mode": "forecast"
+    },
+    "market": {
+      "current_price": 272.5,
+      "predicted_price_next_session": 275.0
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.15,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Apple shifts some Mac mini production to Houston to hedge against tariffs",
+        "CEO Tim Cook teases a 'big week' of product launches starting Monday"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-27T06:10:56Z",
+      "mode": "forecast"
+    },
+    "market": {
+      "current_price": 207.5,
+      "predicted_price_next_session": 203.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.35,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Rumors swirl regarding Amazon's potential $50 billion investment into OpenAI",
+        "Investors worry over Big Tech's escalating capital expenditures"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-02-27T06:10:56Z",
+      "mode": "forecast"
+    },
+    "market": {
+      "current_price": 313.5,
+      "predicted_price_next_session": 308.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.15,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Google signs massive clean energy deals in Texas and Minnesota",
+        "Broader market punishes tech stocks for rising data center infrastructure costs"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-27T06:10:56Z",
+      "mode": "forecast"
+    },
+    "market": {
+      "current_price": 188.0,
+      "predicted_price_next_session": 185.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.25,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia reports massive Q4 revenue beat of $68.1 billion, up 73%",
+        "Market demands direct cash returns as stock is priced for perfection"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-02-27T06:10:56Z",
+      "mode": "forecast"
+    },
+    "market": {
+      "current_price": 416.0,
+      "predicted_price_next_session": 405.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.4,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla management signals massive capital expenditures over $20 billion for 2026",
+        "Technical indicators show Tesla slipping below short-term moving averages"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-27T14:01:10Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 272.95,
+      "predicted_price_next_session": 275.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.15,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Apple continues to hold steady around $272 as market awaits next catalysts.",
+        "Investors anticipate upcoming product events."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-27T14:01:10Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 207.92,
+      "predicted_price_next_session": 204.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.2,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Amazon faces headwinds as tech sector sees minor pullbacks.",
+        "Concerns over extensive AI capital expenditure continue."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-02-27T14:01:10Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 307.15,
+      "predicted_price_next_session": 304.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.1,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Alphabet sees slight dip trading around $307.",
+        "Broader tech market remains cautious on rising infrastructure costs."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-27T14:01:10Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 184.89,
+      "predicted_price_next_session": 181.0
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.45,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia drops to $184 level amid post-earnings sell-off.",
+        "Market prices in perfection, taking profits despite strong fundamentals."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-02-27T14:01:10Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 408.58,
+      "predicted_price_next_session": 402.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.3,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla shares slide to $408 under pressure from EV margin concerns.",
+        "Sector-wide rotation puts downward pressure on high-capex tech."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-02-28T00:29:13Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 264.17,
+      "predicted_price_next_session": 260.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.25,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Apple stock drops over 3% closing at $264.17.",
+        "Broader market tech sell-off weighs heavily on AAPL."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-28T00:29:13Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 209.97,
+      "predicted_price_next_session": 215.0
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.35,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Amazon commits $50 billion to OpenAI expansion in new funding round.",
+        "AWS and OpenAI expand long-term cloud agreement."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-02-28T00:29:13Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 311.43,
+      "predicted_price_next_session": 315.0
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.15,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Alphabet sees slight 1.39% bump, closing above $311.",
+        "Google stabilizes as broader market digests tech sector movements."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-28T00:29:13Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 177.19,
+      "predicted_price_next_session": 172.0
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.55,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock continues to slide, dropping 4% to $177 level.",
+        "Profit-taking momentum holds despite strong fundamentals."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-02-28T00:29:13Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 402.51,
+      "predicted_price_next_session": 395.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.35,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla stock dips 1.48% closing near $402.",
+        "EV margin concerns and sector-wide tech pressure drag on shares."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-01T10:00:43Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 214.24,
+      "predicted_price_next_session": 216.1
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.85,
+      "check_engine_light": "GREEN (Bullish momentum following Apple Intelligence integration news)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Analysts raise price targets citing AI-driven upgrade cycle",
+        "Institutional inflows increase following WWDC software showcases"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-01T10:01:01Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 188.75,
+      "predicted_price_next_session": 190.42
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.62,
+      "check_engine_light": "GREEN (Sustained AWS growth and retail margin expansion)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AWS remains a dominant leader in cloud infrastructure",
+        "Prime Day preparations signal strong retail demand"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-01T10:01:31Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 467.78,
+      "predicted_price_next_session": 471.12
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.58,
+      "check_engine_light": "GREEN (Bullish momentum supported by AI monetization optimism)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Meta expands generative AI ad tools to global advertisers",
+        "Institutional confidence grows following robust Q1 engagement metrics"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-01T10:01:51Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 415.15,
+      "predicted_price_next_session": 417.8
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.58,
+      "check_engine_light": "GREEN (Strong enterprise AI demand and Azure scaling)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Sustained Azure cloud demand drives growth forecasts",
+        "Wider enterprise rollout of Copilot AI features"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-01T10:02:15Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 77.12,
+      "predicted_price_next_session": 76.85
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.12,
+      "check_engine_light": "YELLOW (Market monitoring innovation cycle and competitive headwinds)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nike loses market share to emerging running footwear brands",
+        "Analysts signal caution over consumer discretionary spending outlook"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-01T10:02:35Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 125.2,
+      "predicted_price_next_session": 128.45
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.88,
+      "check_engine_light": "GREEN (Data center demand remains at record highs)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Broad-market rotation into tech leaders following CPI cooling",
+        "Increased Blackwell chip production guidance for Q3"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-01T10:02:53Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 173.92,
+      "predicted_price_next_session": 175.45
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.18,
+      "check_engine_light": "YELLOW (High volatility and margin compression risks)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Renewed focus on autonomous driving software in China",
+        "Concerns persist over global EV demand and inventory levels"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-01T10:16:32Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 231.41,
+      "predicted_price_next_session": 232.55
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.42,
+      "check_engine_light": "GREEN (Solid fundamentals and institutional support)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "iPhone 16 Pro lead times stabilizing globally",
+        "Bullish sentiment ahead of Apple Intelligence feature launch"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-01T10:16:52Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 181.28,
+      "predicted_price_next_session": 183.15
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.62,
+      "check_engine_light": "GREEN (Strong AWS momentum vs macroeconomic headwinds)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AWS cloud growth re-accelerates behind AI demand",
+        "Operational efficiencies in retail division boost quarterly margins"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-01T10:17:27Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 176.42,
+      "predicted_price_next_session": 177.95
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.72,
+      "check_engine_light": "GREEN (Sustained momentum in AI integration and search stability)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Alphabet expands AI Overviews to international markets following US rollout",
+        "Cloud sector growth stabilizes as enterprise AI spending accelerates"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-01T10:18:12Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 586.4,
+      "predicted_price_next_session": 591.25
+    },
+    "signals": {
+      "trend_label": "MODERATE UPTREND",
+      "sentiment_score": 0.78,
+      "check_engine_light": "GREEN (Strong institutional support)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Meta AI integration drives higher user retention",
+        "Robust ad spending outlook for holiday season"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-01T10:18:28Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 424.52,
+      "predicted_price_next_session": 426.85
+    },
+    "signals": {
+      "trend_label": "MODERATE UPTREND",
+      "sentiment_score": 0.78,
+      "check_engine_light": "GREEN (BULLISH MOMENTUM)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Azure cloud growth accelerates via enterprise AI integration",
+        "Robust demand for AI-enabled Copilot subscriptions"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-01T10:18:53Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 76.42,
+      "predicted_price_next_session": 75.85
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.35,
+      "check_engine_light": "YELLOW (Strategy pivot uncertainty and competitive headwinds)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nike faces increased market share erosion from emerging technical footwear brands",
+        "Investor caution persists as market awaits concrete turnaround plans from new leadership"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-01T10:19:24Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 126.09,
+      "predicted_price_next_session": 128.45
+    },
+    "signals": {
+      "trend_label": "MODERATE UPTREND",
+      "sentiment_score": 0.72,
+      "check_engine_light": "GREEN (Bullish momentum supported by AI infra demand)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Increased Blackwell architecture pre-orders from major cloud providers",
+        "Technical support confirmed at the 20-day moving average"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-01T10:19:42Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 178.25,
+      "predicted_price_next_session": 175.4
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.25,
+      "check_engine_light": "YELLOW (Price compression and slowing delivery growth)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Analysts flag slowing EV demand in core international markets",
+        "Investor focus intensifies on upcoming June shareholder vote outcomes"
+      ]
+    }
+  }
+]
