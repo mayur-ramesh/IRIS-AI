@@ -255,5 +255,33 @@
       ],
       "chart_path": "data\\charts\\2026-02-27\\AMZN_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-03T01:18:51Z",
+      "market_session_date": "2026-03-02",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 208.38999938964844,
+      "predicted_price_next_session": 207.77391593629747
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.009344732761383057,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "'A stark contrast': Wall Street weighs winners and losers amid AI-driven tech sell-off",
+        "Stock Market Today, March 2: Netflix Advances After Dropping Pursuit of Warner Bros. Deal",
+        "Amazon data center unit acquires George Washington University Virginia campus",
+        "Should You Buy Amazon Stock If It Falls Under $200?",
+        "Michael Saylor Once Said You Should Master This Technology To Get Wealthy: Bitcoin Billionaire Wants People To Set Their Egos Aside To Achieve Success"
+      ],
+      "chart_path": "data\\charts\\2026-03-03\\AMZN_trend.png"
+    }
   }
 ]

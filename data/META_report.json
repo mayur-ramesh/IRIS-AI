@@ -164,5 +164,33 @@
       ],
       "chart_path": "data\\charts\\2026-02-27\\META_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "source_symbol": "META",
+      "generated_at": "2026-03-03T01:18:52Z",
+      "market_session_date": "2026-03-02",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 653.5599975585938,
+      "predicted_price_next_session": 658.2086546155315
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.3464497923851013,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "'A stark contrast': Wall Street weighs winners and losers amid AI-driven tech sell-off",
+        "Facebook Co-Founder Chris Hughes Lists Historic DC Mansion For $8.8M",
+        "Michael Saylor Once Said You Should Master This Technology To Get Wealthy: Bitcoin Billionaire Wants People To Set Their Egos Aside To Achieve Success",
+        "AES to Be Taken Private in $33 Billion Deal. Why It\u2019s the S&P 500\u2019s Worst Stock Today.",
+        "Are the Magnificent Seven Stocks Losing Steam? Should You Buy, Hold, or Sell?"
+      ],
+      "chart_path": "data\\charts\\2026-03-03\\META_trend.png"
+    }
   }
 ]

@@ -164,5 +164,33 @@
       ],
       "chart_path": "data\\charts\\2026-02-27\\MSFT_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "source_symbol": "MSFT",
+      "generated_at": "2026-03-03T01:18:54Z",
+      "market_session_date": "2026-03-02",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 398.54998779296875,
+      "predicted_price_next_session": 397.82638369625664
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.638618266582489,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "'A stark contrast': Wall Street weighs winners and losers amid AI-driven tech sell-off",
+        "A Market Frenzy Is Lurking Beneath Those Calm Stock Indexes",
+        "Barry Diller\u2019s IAC Agrees to Sell Care.com",
+        "Stock Market Today: Dow Dips As Trump Says This On Iran; Warren Buffett Stock Flashes Sell Signal (Live Coverage)",
+        "AES to Be Taken Private in $33 Billion Deal. Why It\u2019s the S&P 500\u2019s Worst Stock Today."
+      ],
+      "chart_path": "data\\charts\\2026-03-03\\MSFT_trend.png"
+    }
   }
 ]

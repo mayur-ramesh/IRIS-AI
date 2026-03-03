@@ -6,6 +6,9 @@ Generate prediction data for tickers in watchlist.txt using three LLMs:
 
 Results are appended to the existing JSON report files in data/LLM reports/,
 using the same schema as gemini_v3_pro.json.
+
+To run the script, type in the terminal:
+    python generate_llm_reports.py
 """
 
 from __future__ import annotations

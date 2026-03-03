@@ -142,5 +142,33 @@
       ],
       "chart_path": "data\\charts\\2026-02-28\\GOOG_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-03T01:18:51Z",
+      "market_session_date": "2026-03-02",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 306.3599853515625,
+      "predicted_price_next_session": 305.8359139797262
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.020976555347442628,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "'A stark contrast': Wall Street weighs winners and losers amid AI-driven tech sell-off",
+        "Michael Saylor Once Said You Should Master This Technology To Get Wealthy: Bitcoin Billionaire Wants People To Set Their Egos Aside To Achieve Success",
+        "Nvidia Stock, Biotech Put This Line In Focus Amid U.S.-Iran Attacks",
+        "Are the Magnificent Seven Stocks Losing Steam? Should You Buy, Hold, or Sell?",
+        "Anthropic\u2019s Claude Holds Top Spot in App Store Following U.S. Government Ban"
+      ],
+      "chart_path": "data\\charts\\2026-03-03\\GOOG_trend.png"
+    }
   }
 ]
