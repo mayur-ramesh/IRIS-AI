@@ -22,8 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const sentimentDescEl = document.getElementById('sentiment-desc');
     const headlinesList = document.getElementById('headlines-list');
 
-    const chartImg = document.getElementById('market-chart');
+    const chartContainer = document.getElementById('advanced-chart');
     const chartPlaceholder = document.getElementById('chart-placeholder');
+    let lwChart = null;
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -44,18 +45,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(data.error || 'Failed to fetch data');
             }
 
-            // Populate DOM with data
-            updateDashboard(data);
-
-            // Show Dashboard
+            // Show Dashboard first so containers have dimensions
             dashboard.classList.remove('hidden');
+
+            // Populate DOM with data (including charts which depend on clientWidth)
+            updateDashboard(data);
 
         } catch (error) {
             console.error(error);
             errorMsg.textContent = error.message;
             errorMsg.classList.remove('hidden');
+            dashboard.classList.add('hidden');
         } finally {
             setLoading(false);
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        if (lwChart && chartContainer) {
+            lwChart.applyOptions({ width: chartContainer.clientWidth });
         }
     });
 
@@ -145,23 +153,123 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Chart display
-        const chartPath = data.evidence.chart_path;
-        if (chartPath) {
-            // Encode path for safety, browser will fetch image and then we hide placeholder
-            chartImg.src = `/api/chart?path=${encodeURIComponent(chartPath)}`;
-            chartImg.onload = () => {
-                chartImg.classList.remove('hidden');
-                chartPlaceholder.classList.add('hidden');
-            };
-            chartImg.onerror = () => {
-                chartImg.classList.add('hidden');
-                chartPlaceholder.classList.remove('hidden');
-                chartPlaceholder.textContent = "Failed to load chart image.";
-            };
+        if (lwChart) {
+            lwChart.remove();
+            lwChart = null;
+        }
+
+        const history = data.market.history;
+        if (history && history.length > 0) {
+            chartPlaceholder.classList.add('hidden');
+
+            const isUptrend = data.signals.trend_label.includes('UPTREND');
+            const lineColor = isUptrend ? '#10b981' : '#ef4444';
+            const topColor = isUptrend ? 'rgba(16, 185, 129, 0.4)' : 'rgba(239, 68, 68, 0.4)';
+            const bottomColor = isUptrend ? 'rgba(16, 185, 129, 0.0)' : 'rgba(239, 68, 68, 0.0)';
+
+            lwChart = LightweightCharts.createChart(chartContainer, {
+                width: chartContainer.clientWidth,
+                height: 300,
+                layout: {
+                    background: { type: 'solid', color: 'transparent' },
+                    textColor: '#9ca3af',
+                },
+                grid: {
+                    vertLines: { color: 'rgba(255, 255, 255, 0.05)' },
+                    horzLines: { color: 'rgba(255, 255, 255, 0.05)' },
+                },
+                rightPriceScale: {
+                    borderVisible: false,
+                },
+                timeScale: {
+                    borderVisible: false,
+                    timeVisible: true,
+                },
+                crosshair: {
+                    mode: LightweightCharts.CrosshairMode.Normal,
+                },
+            });
+
+            let areaSeries;
+            if (typeof lwChart.addAreaSeries === 'function') {
+                areaSeries = lwChart.addAreaSeries({
+                    lineColor: lineColor,
+                    topColor: topColor,
+                    bottomColor: bottomColor,
+                    lineWidth: 2,
+                    priceFormat: {
+                        type: 'price',
+                        precision: 2,
+                        minMove: 0.01,
+                    },
+                });
+            } else {
+                // Version 5+ syntax
+                areaSeries = lwChart.addSeries(LightweightCharts.AreaSeries, {
+                    lineColor: lineColor,
+                    topColor: topColor,
+                    bottomColor: bottomColor,
+                    lineWidth: 2,
+                    priceFormat: {
+                        type: 'price',
+                        precision: 2,
+                        minMove: 0.01,
+                    },
+                });
+            }
+
+            areaSeries.setData(history);
+
+            // Predict line
+            const lastDataPoint = history[history.length - 1];
+            if (data.market.predicted_price_next_session) {
+                const predictedDate = new Date(lastDataPoint.time);
+                predictedDate.setDate(predictedDate.getDate() + 1);
+
+                // skip weekend
+                if (predictedDate.getDay() === 6) predictedDate.setDate(predictedDate.getDate() + 2);
+                if (predictedDate.getDay() === 0) predictedDate.setDate(predictedDate.getDate() + 1);
+
+                const y = predictedDate.getFullYear();
+                const m = String(predictedDate.getMonth() + 1).padStart(2, '0');
+                const d = String(predictedDate.getDate()).padStart(2, '0');
+                const predTime = `${y}-${m}-${d}`;
+
+                let lineSeries;
+                const lineOptions = {
+                    color: '#f59e0b',
+                    lineWidth: 2,
+                    lineStyle: LightweightCharts.LineStyle.Dashed,
+                };
+                if (typeof lwChart.addLineSeries === 'function') {
+                    lineSeries = lwChart.addLineSeries(lineOptions);
+                } else {
+                    lineSeries = lwChart.addSeries(LightweightCharts.LineSeries, lineOptions);
+                }
+                lineSeries.setData([
+                    { time: lastDataPoint.time, value: lastDataPoint.value },
+                    { time: predTime, value: data.market.predicted_price_next_session }
+                ]);
+
+                // Create a marker for the prediction
+                lineSeries.setMarkers([
+                    {
+                        time: predTime,
+                        position: 'aboveBar',
+                        color: '#f59e0b',
+                        shape: 'circle',
+                        text: 'Predicted',
+                    }
+                ]);
+            }
+
+            lwChart.timeScale().fitContent();
+
         } else {
-            chartImg.classList.add('hidden');
-            chartPlaceholder.classList.remove('hidden');
-            chartPlaceholder.textContent = "Chart not available.";
+            if (chartContainer) {
+                chartPlaceholder.classList.remove('hidden');
+                chartPlaceholder.textContent = "Chart not available.";
+            }
         }
     }
 });

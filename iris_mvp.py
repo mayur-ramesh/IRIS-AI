@@ -602,6 +602,7 @@ class IRIS_System:
             "market": {
                 "current_price": float(data["current_price"]),
                 "predicted_price_next_session": float(predicted_price),
+                "history": [{"time": ts.strftime('%Y-%m-%d'), "value": float(price)} for ts, price in history_df["Close"].items()] if history_df is not None else [],
             },
             "signals": {
                 "trend_label": trend_label,
