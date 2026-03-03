@@ -658,5 +658,181 @@
         "Investor focus intensifies on upcoming June shareholder vote outcomes"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-03T01:14:01Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 228.22,
+      "predicted_price_next_session": 229.45
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.35,
+      "check_engine_light": "GREEN (Positive product mix and stable demand)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "iPhone 16 Pro lead times indicate sustained demand",
+        "Market anticipation grows for upcoming Apple Intelligence features"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-03T01:14:16Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 183.15,
+      "predicted_price_next_session": 184.92
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.45,
+      "check_engine_light": "GREEN (Steady AWS growth offset by consumer spending caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AWS expands infrastructure to support rising AI compute demand",
+        "Retail division optimizes regional fulfillment to lower per-unit costs"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-03T01:14:31Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 178.43,
+      "predicted_price_next_session": 179.65
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.58,
+      "check_engine_light": "GREEN (Consistent AI infrastructure demand)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Alphabet pushes deeper into AI-integrated search results",
+        "Institutional interest remains high following robust Q1 earnings beat"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-03T01:14:49Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 592.85,
+      "predicted_price_next_session": 598.4
+    },
+    "signals": {
+      "trend_label": "MODERATE UPTREND ",
+      "sentiment_score": 0.72,
+      "check_engine_light": "GREEN (Strong AI-driven ad performance and Reels monetization)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Meta AI integration driving higher advertiser conversion rates",
+        "Instagram Reels engagement metrics surpass internal projections"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-03T01:15:05Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 423.85,
+      "predicted_price_next_session": 426.15
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.72,
+      "check_engine_light": "GREEN (Healthy balance sheet and AI leadership)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Azure cloud growth accelerates on back of enterprise AI adoption",
+        "Broader tech sector stability supports premium valuation for MSFT"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-03T01:15:22Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 82.35,
+      "predicted_price_next_session": 81.85
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.25,
+      "check_engine_light": "YELLOW (Softness in global consumer discretionary spending)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Retail sector faces headwinds as discretionary spending cools",
+        "Analyst consensus remains cautious ahead of inventory updates"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-03T01:15:40Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 125.2,
+      "predicted_price_next_session": 127.45
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.88,
+      "check_engine_light": "GREEN (High institutional accumulation and AI sector leadership)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Record revenue projections for Blackwell architecture chips",
+        "Increased retail accessibility following 10-for-1 stock split"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-03T01:15:59Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 173.86,
+      "predicted_price_next_session": 175.4
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.15,
+      "check_engine_light": "YELLOW (High implied volatility ahead of June shareholder vote)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Speculation grows over FSD licensing potential in international markets",
+        "Short-term consolidation observed at the 50-day moving average"
+      ]
+    }
   }
 ]

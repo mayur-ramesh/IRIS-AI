@@ -292,5 +292,181 @@
         "Analysts remain cautious on Tesla's valuation"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-03T01:13:44Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 175.23,
+      "predicted_price_next_session": 176.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.3,
+      "check_engine_light": "GREEN (Positive momentum with stable indicators)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Apple announces new product launch event",
+        "Strong demand for iPhone 15 boosts sales outlook"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-03T01:14:03Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 132.45,
+      "predicted_price_next_session": 133.6
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.3,
+      "check_engine_light": "GREEN (Positive momentum detected)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Amazon announces expansion of logistics network",
+        "Analysts optimistic about Amazon's holiday sales"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-03T01:14:19Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 2800.5,
+      "predicted_price_next_session": 2815.75
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.3,
+      "check_engine_light": "YELLOW (Caution: Mixed Economic Data)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Google announces expansion of AI services",
+        "Tech sector faces regulatory challenges"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-03T01:14:35Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 315.5,
+      "predicted_price_next_session": 318.75
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.45,
+      "check_engine_light": "GREEN (Positive momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Meta announces new AI features for businesses",
+        "Positive earnings report boosts investor confidence"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-03T01:14:52Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 315.5,
+      "predicted_price_next_session": 317.2
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.35,
+      "check_engine_light": "GREEN (Positive momentum observed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Microsoft announces new AI partnership",
+        "Strong quarterly earnings reported by Microsoft"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-03T01:15:09Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 98.75,
+      "predicted_price_next_session": 99.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.35,
+      "check_engine_light": "GREEN (Positive momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nike reports strong quarterly earnings",
+        "Analysts upgrade Nike stock amid positive sales outlook"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-03T01:15:25Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 450.25,
+      "predicted_price_next_session": 455.75
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.65,
+      "check_engine_light": "GREEN (Positive momentum observed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "NVIDIA announces new AI chip with increased efficiency",
+        "Strong demand for NVIDIA's gaming GPUs reported"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-03T01:15:44Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 250.75,
+      "predicted_price_next_session": 252.1
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.3,
+      "check_engine_light": "YELLOW (Moderate volatility expected)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tesla announces new battery technology",
+        "Analysts optimistic about Tesla's Q4 performance"
+      ]
+    }
   }
 ]
