@@ -186,5 +186,33 @@
       ],
       "chart_path": "data\\charts\\2026-02-27\\NKE_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "source_symbol": "NKE",
+      "generated_at": "2026-03-03T01:18:55Z",
+      "market_session_date": "2026-03-02",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 61.0099983215332,
+      "predicted_price_next_session": 61.235739066045205
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.2693966865539551,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nike Restructuring And China Pressures Test New CEO Turnaround Plan",
+        "Nike (NKE) Stock Drops Despite Market Gains: Important Facts to Note",
+        "Dr. Martens\u2019 Chief Product Officer Exits Company",
+        "Where Will Nike Be in 3 Years?",
+        "Zacks Industry Outlook Highlights NIKE, adidas, Birkenstock, Carter's and Caleres"
+      ],
+      "chart_path": "data\\charts\\2026-03-03\\NKE_trend.png"
+    }
   }
 ]

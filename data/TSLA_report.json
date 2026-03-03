@@ -343,5 +343,33 @@
       ],
       "chart_path": "data\\charts\\2026-02-27\\TSLA_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "source_symbol": "TSLA",
+      "generated_at": "2026-03-03T01:18:56Z",
+      "market_session_date": "2026-03-02",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 403.32000732421875,
+      "predicted_price_next_session": 405.9717148025721
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.12825946807861327,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "BYD stock jumps on 'disruptive tech'  teaser, despite 41% sales tumble",
+        "Tesla gets some more good news from a key region",
+        "Dow Jones Futures: U.S.-Iran Conflict Sparks Market Upheaval As Nvidia Rallies; Credo, MongoDB Plunge Late",
+        "Tesla\u2019s Robotics And Robotaxi Shift Reshapes Risk Profile For Investors",
+        "Tesla Stock Eked Out Small Gain. Why It No Longer Gets a Boost From Higher Oil Prices."
+      ],
+      "chart_path": "data\\charts\\2026-03-03\\TSLA_trend.png"
+    }
   }
 ]

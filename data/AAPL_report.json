@@ -422,5 +422,33 @@
         "Apple shareholders reject call for report on China manufacturing risks"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "source_symbol": "AAPL",
+      "generated_at": "2026-03-03T01:18:49Z",
+      "market_session_date": "2026-03-02",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 264.7200012207031,
+      "predicted_price_next_session": 269.30853681447564
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.12622131109237672,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Apple unveils low-cost iPhone 17e with a price tag of $599",
+        "Dow Jones Futures: U.S.-Iran Conflict Sparks Market Upheaval As Nvidia Rallies; Credo, MongoDB Plunge Late",
+        "Stock Market Today, March 2: Energy and Defense Stocks Surge on Middle East Conflict",
+        "Apple Drops Budget iPhone 17e to Stave Off Upgrade Fatigue",
+        "Stocks to Watch Monday Recap: Norwegian Cruise Line, United Airlines, Lumentum, Elevance"
+      ],
+      "chart_path": "data\\charts\\2026-03-03\\AAPL_trend.png"
+    }
   }
 ]
