@@ -1,0 +1,30 @@
+[
+  {
+    "meta": {
+      "symbol": "HON",
+      "source_symbol": "HON",
+      "generated_at": "2026-03-02T05:12:33Z",
+      "market_session_date": "2026-02-27",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 243.58999633789062,
+      "predicted_price_next_session": 246.8610858987099
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.22084624767303468,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Middleby Is Spinning Off Its Food Processing Segment After a $540 Million Asset Sale. Can the Breakup Close Its Valuation Gap?",
+        "Honeywell Stock Is Gaining Momentum. It\u2019s Finally Time to Buy, Analyst Says.",
+        "The Dow Is on Fire This Year. What Ignited the Gains.",
+        "Block upgraded, Duolingo downgraded: Wall Street's top analyst calls",
+        "Top Midday Stories: Nvidia Shares Fall After Earnings; Janus Henderson Receives Acquisition Offer From Victory"
+      ],
+      "chart_path": "data\\charts\\2026-03-02\\HON_trend.png"
+    }
+  }
+]

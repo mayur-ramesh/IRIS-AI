@@ -135,7 +135,7 @@
     "meta": {
       "symbol": "NKE",
       "source_symbol": "NKE",
-      "generated_at": "2026-02-28T00:30:17Z",
+      "generated_at": "2026-03-02T05:10:48Z",
       "market_session_date": "2026-02-27",
       "mode": "simulation"
     },
@@ -145,18 +145,18 @@
     },
     "signals": {
       "trend_label": "WEAK DOWNTREND ",
-      "sentiment_score": 0.33093491196632385,
-      "check_engine_light": " GREEN (Safe to Proceed)"
+      "sentiment_score": -0.030189383029937743,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
     },
     "evidence": {
       "headlines_used": [
-        "5 Shoes & Retail Apparel Stocks Capitalizing on Premiumization Trends",
-        "Implied Volatility Surging for NIKE Stock Options",
-        "Here's Why I'm Looking at Nike Stock, Now That the Noise Has Died Down",
-        "Nike, Adidas and Puma to Lead Sneaker Market Growth Via Innovation, Sustainability",
-        "Wolverine World Wide (WWW) Q4 Earnings and Revenues Top Estimates"
+        "Nike\u2019s China Challenges Remain in Focus as BNP Paribas Maintains Bearish Outlook",
+        "The Hard Part of Nike's Turnaround Is Just Beginning",
+        "Nike China Pressures Deepen As Pou Sheng Hit Tests Valuation",
+        "Billionaire Investor Ole Andreas Halvorsen Sold His Hedge Fund's Entire Stake in Nike, Netflix, and Meta and Bought 3 Insurance Stocks Instead",
+        "5 Shoes & Retail Apparel Stocks Capitalizing on Premiumization Trends"
       ],
-      "chart_path": "data\\charts\\2026-02-28\\NKE_trend.png"
+      "chart_path": "data\\charts\\2026-03-02\\NKE_trend.png"
     }
   },
   {

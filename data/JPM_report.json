@@ -20,5 +20,33 @@
         "Market volatility continues ahead of Fed decision"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "JPM",
+      "source_symbol": "JPM",
+      "generated_at": "2026-03-02T05:11:26Z",
+      "market_session_date": "2026-02-27",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 300.29998779296875,
+      "predicted_price_next_session": 296.28848361171646
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.5231252431869506,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Jamie Dimon warns markets resemble pre-financial crisis era: 'I see a couple of people doing some dumb things'",
+        "Why The Stabilus (XTRA:STM) Narrative Is Shifting After Target Cuts And New Guidance",
+        "Crypto Loses Its Grip on Retail Crowd Now Defecting to Equities",
+        "The Real Reason JPMorgan Chase Shut Down Its Robo-Advisor Services",
+        "JPMorgan Lawsuit And AI Overhaul Put Risk Culture Under The Microscope"
+      ],
+      "chart_path": "data\\charts\\2026-03-02\\JPM_trend.png"
+    }
   }
 ]

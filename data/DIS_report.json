@@ -20,5 +20,33 @@
         "Market volatility continues ahead of Fed decision"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "DIS",
+      "source_symbol": "DIS",
+      "generated_at": "2026-03-02T05:10:42Z",
+      "market_session_date": "2026-02-27",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 106.04000091552734,
+      "predicted_price_next_session": 105.29287502586776
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.09190480709075928,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Cramer: \u201cDisney Should Buy Norwegian Cruise. There\u2019s a Big Ship Shortage\u201d",
+        "All the Ways Netflix Actually Won Even Though It Lost Warner",
+        "Disney Leadership And Communications Shift Puts Focus On Streaming Story",
+        "Stock Market Today, Feb. 27: Paramount Skydance Rallies as Warner Bros. Deal Reshapes Streaming Landscape",
+        "Stock Market Today, Feb. 27: Netflix Surges After Dropping Warner Bros. Bid and Securing Breakup Fee"
+      ],
+      "chart_path": "data\\charts\\2026-03-02\\DIS_trend.png"
+    }
   }
 ]

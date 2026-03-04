@@ -292,7 +292,7 @@
     "meta": {
       "symbol": "TSLA",
       "source_symbol": "TSLA",
-      "generated_at": "2026-02-28T00:30:18Z",
+      "generated_at": "2026-03-02T05:14:49Z",
       "market_session_date": "2026-02-27",
       "mode": "simulation"
     },
@@ -302,18 +302,18 @@
     },
     "signals": {
       "trend_label": "STRONG DOWNTREND ",
-      "sentiment_score": -0.018394935131072997,
+      "sentiment_score": -0.27820554971694944,
       "check_engine_light": " RED (Risk Detected - Caution)"
     },
     "evidence": {
       "headlines_used": [
-        "Tesla Stock Posts Another Weekly Loss. Cybercab Exec Exits Vital Robo-Taxi Arm.",
-        "Old Mission Capital Boosts iShares MSCI China ETF Allocation During China\u2019s Market Reset",
-        "Elon Musk: Tesla FSD Coming To Europe, Alongside Cybercab, Optimus Production",
-        "Forget Tech Stocks: The Construction Stock Building Tomorrow's Data Centers",
-        "Tesla\u2019s China Problem Is Getting Worse \u2014 Here Are the 3 Rivals Taking Its Market Share"
+        "NFL quarterback Jameis Winston on how he turned from burning through cash to investing strategically",
+        "Tesla Seeing Strong Demand For Cheaper Cybertruck, But Musk's 10-Day Deadline Remains In Place",
+        "Why March 9 Could Be a Huge Day for Tesla Investors",
+        "Tesla Balances Autopilot Scrutiny Robotaxis And China Risks For Investors",
+        "Chinese EV Sales Slow Dramatically. What That Means for Tesla Stock."
       ],
-      "chart_path": "data\\charts\\2026-02-28\\TSLA_trend.png"
+      "chart_path": "data\\charts\\2026-03-02\\TSLA_trend.png"
     }
   },
   {
