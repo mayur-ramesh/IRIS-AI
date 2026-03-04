@@ -210,13 +210,13 @@
     "meta": {
       "symbol": "NVDA",
       "source_symbol": "NVDA",
-      "generated_at": "2026-03-03T17:09:36Z",
+      "generated_at": "2026-03-04T03:34:29Z",
       "market_session_date": "2026-03-03",
-      "mode": "live"
+      "mode": "simulation"
     },
     "market": {
-      "current_price": 179.85000610351562,
-      "predicted_price_next_session": 180.0872586072445,
+      "current_price": 180.0500030517578,
+      "predicted_price_next_session": 180.31265655941334,
       "history": [
         {
           "time": "2025-12-05",
@@ -452,22 +452,22 @@
         },
         {
           "time": "2026-03-03",
-          "value": 179.85499572753906
+          "value": 180.0500030517578
         }
       ]
     },
     "signals": {
       "trend_label": "WEAK DOWNTREND ",
-      "sentiment_score": -0.006674647331237793,
+      "sentiment_score": -0.0023630499839782716,
       "check_engine_light": " YELLOW (Neutral / Noise)"
     },
     "evidence": {
       "headlines_used": [
-        "Earnings live: Best Buy stock jumps despite softer holiday demand, Target stock rises",
-        "Why Did StoneCo Stock Crash Today?",
-        "2 High-Yield Dividend Stocks I Wouldn't Hesitate To Buy For Passive Income in March",
-        "Stock Market Today: Dow Tumbles 800 Points On U.S.-Iran Conflict; Cruise Lines Take A Bath (Live Coverage)",
-        "Why Did FedEx Stock Surge 20% in February?"
+        "Tech stocks today: OpenAI makes changes to military contract, Amazon data centers struck in Middle East warfare",
+        "Earnings live: Ross Stores stock jumps on upbeat results, CrowdStrike posts slight top- and bottom-line beats",
+        "Dow Jones Futures Fall As Korean Stocks Dive Again; Trump Makes This Pledge",
+        "Tesla vs. Amazon: Which AI Stock Is the Better Buy Now?",
+        "3 Red-Hot Growth Stocks to Buy in 2026"
       ],
       "chart_path": "data\\charts\\2026-03-04\\NVDA_trend.png"
     }
