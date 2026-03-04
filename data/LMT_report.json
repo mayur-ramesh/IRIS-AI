@@ -1,0 +1,30 @@
+[
+  {
+    "meta": {
+      "symbol": "LMT",
+      "source_symbol": "LMT",
+      "generated_at": "2026-03-02T08:22:36Z",
+      "market_session_date": "2026-02-27",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 658.0800170898438,
+      "predicted_price_next_session": 674.7484230071663
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.18291077613830567,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Oil surges and stock futures sink after war in Iran disrupts crude supply",
+        "U.S. strikes on Iran will likely boost defense stocks. Here\u2019s what will keep the cash flowing even after the conflict ends.",
+        "What Defense Stocks Stand to Gain\u2014and Lose\u2014From the U.S. Attacks on Iran",
+        "Lockheed Martin Balances Defense Contracts And Quantum Research As Valuation Steadies",
+        "Pentagon Anthropic feud has sales and AI warfare\u00a0at stake as Friday deadline looms"
+      ],
+      "chart_path": "data\\charts\\2026-03-02\\LMT_trend.png"
+    }
+  }
+]

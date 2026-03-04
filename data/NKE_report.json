@@ -186,5 +186,299 @@
       ],
       "chart_path": "data\\charts\\2026-02-27\\NKE_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "source_symbol": "NKE",
+      "generated_at": "2026-03-03T01:18:55Z",
+      "market_session_date": "2026-03-02",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 61.0099983215332,
+      "predicted_price_next_session": 61.235739066045205
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.2693966865539551,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nike Restructuring And China Pressures Test New CEO Turnaround Plan",
+        "Nike (NKE) Stock Drops Despite Market Gains: Important Facts to Note",
+        "Dr. Martens\u2019 Chief Product Officer Exits Company",
+        "Where Will Nike Be in 3 Years?",
+        "Zacks Industry Outlook Highlights NIKE, adidas, Birkenstock, Carter's and Caleres"
+      ],
+      "chart_path": "data\\charts\\2026-03-03\\NKE_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "source_symbol": "NKE",
+      "generated_at": "2026-03-03T17:09:35Z",
+      "market_session_date": "2026-03-03",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 58.970001220703125,
+      "predicted_price_next_session": 59.09931383004283,
+      "history": [
+        {
+          "time": "2025-12-05",
+          "value": 65.42573547363281
+        },
+        {
+          "time": "2025-12-08",
+          "value": 63.12103271484375
+        },
+        {
+          "time": "2025-12-09",
+          "value": 62.912418365478516
+        },
+        {
+          "time": "2025-12-10",
+          "value": 65.35619354248047
+        },
+        {
+          "time": "2025-12-11",
+          "value": 67.2933349609375
+        },
+        {
+          "time": "2025-12-12",
+          "value": 67.0251235961914
+        },
+        {
+          "time": "2025-12-15",
+          "value": 67.33307647705078
+        },
+        {
+          "time": "2025-12-16",
+          "value": 66.67742919921875
+        },
+        {
+          "time": "2025-12-17",
+          "value": 65.2568588256836
+        },
+        {
+          "time": "2025-12-18",
+          "value": 65.19725036621094
+        },
+        {
+          "time": "2025-12-19",
+          "value": 58.322879791259766
+        },
+        {
+          "time": "2025-12-22",
+          "value": 56.84270477294922
+        },
+        {
+          "time": "2025-12-23",
+          "value": 56.9619140625
+        },
+        {
+          "time": "2025-12-24",
+          "value": 59.604373931884766
+        },
+        {
+          "time": "2025-12-26",
+          "value": 60.52824401855469
+        },
+        {
+          "time": "2025-12-29",
+          "value": 60.806396484375
+        },
+        {
+          "time": "2025-12-30",
+          "value": 60.78652572631836
+        },
+        {
+          "time": "2025-12-31",
+          "value": 63.28990936279297
+        },
+        {
+          "time": "2026-01-02",
+          "value": 62.86274719238281
+        },
+        {
+          "time": "2026-01-05",
+          "value": 64.10449981689453
+        },
+        {
+          "time": "2026-01-06",
+          "value": 64.91909790039062
+        },
+        {
+          "time": "2026-01-07",
+          "value": 62.80314254760742
+        },
+        {
+          "time": "2026-01-08",
+          "value": 64.82969665527344
+        },
+        {
+          "time": "2026-01-09",
+          "value": 65.48533630371094
+        },
+        {
+          "time": "2026-01-12",
+          "value": 65.20718383789062
+        },
+        {
+          "time": "2026-01-13",
+          "value": 65.86283874511719
+        },
+        {
+          "time": "2026-01-14",
+          "value": 65.13764953613281
+        },
+        {
+          "time": "2026-01-15",
+          "value": 64.16410827636719
+        },
+        {
+          "time": "2026-01-16",
+          "value": 63.95549011230469
+        },
+        {
+          "time": "2026-01-20",
+          "value": 63.21044158935547
+        },
+        {
+          "time": "2026-01-21",
+          "value": 64.97870635986328
+        },
+        {
+          "time": "2026-01-22",
+          "value": 65.02837371826172
+        },
+        {
+          "time": "2026-01-23",
+          "value": 64.61114501953125
+        },
+        {
+          "time": "2026-01-26",
+          "value": 64.56147003173828
+        },
+        {
+          "time": "2026-01-27",
+          "value": 62.67399978637695
+        },
+        {
+          "time": "2026-01-28",
+          "value": 61.82960510253906
+        },
+        {
+          "time": "2026-01-29",
+          "value": 62.18722915649414
+        },
+        {
+          "time": "2026-01-30",
+          "value": 61.40243911743164
+        },
+        {
+          "time": "2026-02-02",
+          "value": 61.77000045776367
+        },
+        {
+          "time": "2026-02-03",
+          "value": 60.52824401855469
+        },
+        {
+          "time": "2026-02-04",
+          "value": 63.79655075073242
+        },
+        {
+          "time": "2026-02-05",
+          "value": 62.28657150268555
+        },
+        {
+          "time": "2026-02-06",
+          "value": 63.4985237121582
+        },
+        {
+          "time": "2026-02-09",
+          "value": 61.99848175048828
+        },
+        {
+          "time": "2026-02-10",
+          "value": 62.62432861328125
+        },
+        {
+          "time": "2026-02-11",
+          "value": 61.93887710571289
+        },
+        {
+          "time": "2026-02-12",
+          "value": 60.697120666503906
+        },
+        {
+          "time": "2026-02-13",
+          "value": 62.71373748779297
+        },
+        {
+          "time": "2026-02-17",
+          "value": 64.39259338378906
+        },
+        {
+          "time": "2026-02-18",
+          "value": 65.11778259277344
+        },
+        {
+          "time": "2026-02-19",
+          "value": 65.17738342285156
+        },
+        {
+          "time": "2026-02-20",
+          "value": 64.9687728881836
+        },
+        {
+          "time": "2026-02-23",
+          "value": 62.67399978637695
+        },
+        {
+          "time": "2026-02-24",
+          "value": 63.66740036010742
+        },
+        {
+          "time": "2026-02-25",
+          "value": 62.981956481933594
+        },
+        {
+          "time": "2026-02-26",
+          "value": 63.52832794189453
+        },
+        {
+          "time": "2026-02-27",
+          "value": 61.77000045776367
+        },
+        {
+          "time": "2026-03-02",
+          "value": 61.0099983215332
+        },
+        {
+          "time": "2026-03-03",
+          "value": 58.970001220703125
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.01911783218383789,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Where Will Nike (NKE) Stock Be in 3 Years?",
+        "Jim Cramer on NIKE: \u201cI\u2019m Betting That With More Time, It Will Not Be Disappointing\u201d",
+        "Has Nike Lost Its Edge in Performance Running?",
+        "Sportswear brand On sees possible boost from lower US tariff rate",
+        "Nike Restructuring And China Pressures Test New CEO Turnaround Plan"
+      ],
+      "chart_path": "data\\charts\\2026-03-04\\NKE_trend.png"
+    }
   }
 ]

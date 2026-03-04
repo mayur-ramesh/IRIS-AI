@@ -477,16 +477,16 @@ footer p {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 200px;
-    padding: 1rem 0;
+    min-height: 300px;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    border: 1px inset rgba(255, 255, 255, 0.05);
 }
 
-.chart-container img {
-    max-width: 100%;
-    height: auto;
+.chart-container .tv-lightweight-charts {
     border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    border: 1px solid var(--panel-border);
+    overflow: hidden;
 }
 
 .chart-placeholder {
