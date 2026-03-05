@@ -1010,5 +1010,181 @@
         "Investor focus shifts toward AI growth and August Robotaxi reveal"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-05T14:04:42Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 226.78,
+      "predicted_price_next_session": 228.15
+    },
+    "signals": {
+      "trend_label": "MODERATE UPTREND",
+      "sentiment_score": 0.42,
+      "check_engine_light": "GREEN (Positive momentum ahead of product launch event)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "iPhone 16 supply chain data suggests high initial production targets",
+        "Apple Intelligence roll-out fuels expectations for strong upgrade cycle"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-05T14:04:59Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 181.05,
+      "predicted_price_next_session": 182.45
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.62,
+      "check_engine_light": "GREEN (AWS demand offsets retail margin pressure)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AWS cloud revenue acceleration continues to lead segment growth",
+        "Logistics network optimization improves delivery speed and margins"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-05T14:05:22Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 177.85,
+      "predicted_price_next_session": 179.15
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.62,
+      "check_engine_light": "GREEN (Strong institutional support and AI sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Broad rollout of AI-integrated search features boosts engagement",
+        "Stabilizing cloud margins support constructive long-term outlook"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-05T14:05:42Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 473.15,
+      "predicted_price_next_session": 478.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.45,
+      "check_engine_light": "GREEN (Sustained institutional interest in AI monetization)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Llama 3 integration boosts platform engagement metrics",
+        "Digital ad spend remains resilient amid macroeconomic uncertainty"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-05T14:06:02Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 429.25,
+      "predicted_price_next_session": 432.1
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.72,
+      "check_engine_light": "GREEN (Strong Azure demand signals)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Enterprise AI integration accelerates cloud revenue",
+        "Robust PC market rebound bolsters Windows OEM growth"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-05T14:06:25Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 91.55,
+      "predicted_price_next_session": 91.05
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.25,
+      "check_engine_light": "YELLOW (Competitive pressure from niche footwear brands persists)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nike faces headwinds as innovation cycle lags behind competitors.",
+        "Direct-to-consumer strategy under scrutiny amid wholesale reset."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-05T14:06:45Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 949.5,
+      "predicted_price_next_session": 968.75
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.92,
+      "check_engine_light": "GREEN (Exceptional earnings beat and Blackwell chip outlook)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Q1 revenue triples as AI data center demand remains insatiable",
+        "NVIDIA announces 10-for-1 stock split and increased dividend"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-05T14:07:04Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 214.11,
+      "predicted_price_next_session": 211.75
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.18,
+      "check_engine_light": "YELLOW (High volatility and pressure on delivery margins)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Analysts signal caution ahead of upcoming hardware shifts",
+        "Macro concerns regarding consumer spend on luxury EVs"
+      ]
+    }
   }
 ]
