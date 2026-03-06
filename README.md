@@ -32,13 +32,19 @@ IRIS provides decision support flags based on historical data and sentiment anal
 
 ---
 
-## Iteration 1
----
+## Current Work Progress
 
-## Iteration 2
----
-
-## Iteration 3
----
-
-## Iteration 4
+* **Backend & REST API (`app.py`):** * Set up a Flask server with CORS support.
+  * Implemented core API endpoints (`/api/analyze`, `/api/chart`, `/api/session-summary/latest`) to securely interface the frontend dashboard with the backend AI engines.
+* **AI & Risk Engine (`iris_mvp.py`):**
+  * **Market Data:** Integrated `yfinance` to pull 60-day historical data and calculate Simple Moving Averages (SMA).
+  * **Trend Prediction:** Built a "Crystal Ball" feature using `scikit-learn`'s Ridge regression to predict next-session prices and identify Uptrends/Downtrends.
+  * **Sentiment Analysis:** Integrated the `transformers` library using the `ProsusAI/finbert` model to analyze the sentiment of recent market headlines and generate a normalized Sentiment Score.
+  * **Charting:** Built a fallback charting module using `matplotlib` to render static trend visualizations.
+* **Automated Schedulers (`run_daily.py`):**
+  * Developed timezone-aware automation scripts to trigger bulk ticker analyses exactly at the US market open (09:00 ET).
+  * Added features to install and manage background cron jobs via Windows Task Scheduler.
+* **Interactive Frontend Dashboard (`index.html` & `app.js`):**
+  * Built a sleek, responsive UI to query tickers dynamically.
+  * Integrated **TradingView Lightweight Charts** for interactive, real-time visualization of stock history and AI price predictions.
+  * Added dynamic UI widgets for the "Check Engine Light" (Risk Indicator), Market Prediction summaries, and a Sentiment Meter with recent headline rendering.
