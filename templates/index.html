@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IRIS-AI | Vision in Volatility</title>
+    <script>
+        (function () {
+            const saved = localStorage.getItem('iris-theme');
+            const preferDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = saved === 'dark' || saved === 'light' ? saved : (preferDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/style.css">
     <link rel="icon" type="image/svg+xml"
@@ -13,6 +21,21 @@
 
 <body>
     <div class="glow-bg"></div>
+    <nav class="top-nav">
+        <div class="top-nav-inner">
+            <a href="/" class="nav-brand">IRIS<span class="brand-highlight">-AI</span></a>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light and dark mode" aria-pressed="false">
+                    <span class="theme-toggle-track" aria-hidden="true">
+                        <span class="theme-toggle-thumb"></span>
+                    </span>
+                    <span class="theme-toggle-label">Light / Dark</span>
+                </button>
+                <a href="/login" class="nav-link">Login</a>
+                <a href="/signup" class="nav-signup">Sign Up</a>
+            </div>
+        </div>
+    </nav>
 
     <header>
         <div class="logo">
@@ -111,7 +134,7 @@
     <!-- TradingView Lightweight Charts -->
     <script
         src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js?v=4"></script>
-    <script src="/static/app.js?v=2"></script>
+    <script src="/static/app.js?v=4"></script>
 </body>
 
 </html>

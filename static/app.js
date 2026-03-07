@@ -1,4 +1,32 @@
+const THEME_STORAGE_KEY = 'iris-theme';
+
+function getPreferredTheme() {
+    let savedTheme = null;
+    try {
+        savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    } catch (error) {
+        savedTheme = null;
+    }
+
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+        return savedTheme;
+    }
+
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return prefersDark ? 'dark' : 'light';
+}
+
+function applyTheme(theme) {
+    const normalizedTheme = theme === 'dark' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', normalizedTheme);
+}
+
+(function initializeThemeImmediately() {
+    applyTheme(getPreferredTheme());
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
     const form = document.getElementById('analyze-form');
     const input = document.getElementById('ticker-input');
     const btnText = document.querySelector('.btn-text');
@@ -25,6 +53,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const chartContainer = document.getElementById('advanced-chart');
     const chartPlaceholder = document.getElementById('chart-placeholder');
     let lwChart = null;
+
+    function getChartDimensions() {
+        if (!chartContainer) {
+            return { width: 0, height: 300 };
+        }
+        const styles = window.getComputedStyle(chartContainer);
+        const padX = (parseFloat(styles.paddingLeft) || 0) + (parseFloat(styles.paddingRight) || 0);
+        const padY = (parseFloat(styles.paddingTop) || 0) + (parseFloat(styles.paddingBottom) || 0);
+        const width = Math.max(0, chartContainer.clientWidth - padX);
+        const rawHeight = chartContainer.clientHeight - padY;
+        const height = Math.max(220, Number.isFinite(rawHeight) ? rawHeight : 300);
+        return { width, height };
+    }
+
+    function resizeChartToContainer() {
+        if (!lwChart || !chartContainer) return;
+        const { width, height } = getChartDimensions();
+        if (!width || !height) return;
+        if (typeof lwChart.resize === 'function') {
+            lwChart.resize(width, height);
+        } else {
+            lwChart.applyOptions({ width, height });
+        }
+    }
+
+    function syncThemeToggleState() {
+        if (!themeToggle) return;
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+            const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(nextTheme);
+            try {
+                localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+            } catch (error) {
+                // Ignore storage failures and continue with in-memory theme.
+            }
+            syncThemeToggleState();
+        });
+        syncThemeToggleState();
+    }
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -62,9 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('resize', () => {
-        if (lwChart && chartContainer) {
-            lwChart.applyOptions({ width: chartContainer.clientWidth });
-        }
+        resizeChartToContainer();
     });
 
     function setLoading(isLoading) {
@@ -161,29 +232,39 @@ document.addEventListener('DOMContentLoaded', () => {
         const history = data.market.history;
         if (history && history.length > 0) {
             chartPlaceholder.classList.add('hidden');
+            const { width: chartWidth, height: chartHeight } = getChartDimensions();
 
             const isUptrend = data.signals.trend_label.includes('UPTREND');
             const lineColor = isUptrend ? '#10b981' : '#ef4444';
             const topColor = isUptrend ? 'rgba(16, 185, 129, 0.4)' : 'rgba(239, 68, 68, 0.4)';
             const bottomColor = isUptrend ? 'rgba(16, 185, 129, 0.0)' : 'rgba(239, 68, 68, 0.0)';
 
+            const cssVars = window.getComputedStyle(document.documentElement);
+            const chartTextColor = cssVars.getPropertyValue('--text-muted').trim() || '#9ca3af';
+            const chartGridColor = cssVars.getPropertyValue('--chart-border').trim() || 'rgba(255, 255, 255, 0.08)';
+
             lwChart = LightweightCharts.createChart(chartContainer, {
-                width: chartContainer.clientWidth,
-                height: 300,
+                width: chartWidth || chartContainer.clientWidth,
+                height: chartHeight || 300,
                 layout: {
                     background: { type: 'solid', color: 'transparent' },
-                    textColor: '#9ca3af',
+                    textColor: chartTextColor,
                 },
                 grid: {
-                    vertLines: { color: 'rgba(255, 255, 255, 0.05)' },
-                    horzLines: { color: 'rgba(255, 255, 255, 0.05)' },
+                    vertLines: { color: chartGridColor },
+                    horzLines: { color: chartGridColor },
                 },
                 rightPriceScale: {
+                    visible: true,
+                    autoScale: true,
                     borderVisible: false,
+                    minimumWidth: 68,
+                    scaleMargins: { top: 0.08, bottom: 0.08 },
                 },
                 timeScale: {
                     borderVisible: false,
                     timeVisible: true,
+                    rightOffset: 2,
                 },
                 crosshair: {
                     mode: LightweightCharts.CrosshairMode.Normal,
