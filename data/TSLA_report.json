@@ -350,6 +350,7 @@
       "source_symbol": "TSLA",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "generated_at": "2026-03-03T17:09:36Z",
       "market_session_date": "2026-03-03",
       "mode": "live"
@@ -360,6 +361,8 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
       "generated_at": "2026-03-03T16:46:49Z",
       "market_session_date": "2026-03-02",
       "mode": "simulation"
@@ -368,6 +371,9 @@
       "current_price": 393.2049865722656,
       "predicted_price_next_session": 405.88994343744355,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -605,10 +611,13 @@
           "value": 403.32000732421875
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         },
         {
           "time": "2026-03-03",
           "value": 391.152587890625
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -620,7 +629,11 @@
       "trend_label": "STRONG DOWNTREND ",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "sentiment_score": 0.007143926620483398,
+=======
+      "sentiment_score": 0.0071438908576965336,
+>>>>>>> Stashed changes
 =======
       "sentiment_score": 0.0071438908576965336,
 >>>>>>> Stashed changes
@@ -639,6 +652,7 @@
       ],
       "chart_path": "data\\charts\\2026-03-04\\TSLA_trend.png"
     }
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
   },
@@ -1453,6 +1467,8 @@
       ],
       "chart_path": "data\\charts\\2026-03-07\\TSLA_trend.png"
     }
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
