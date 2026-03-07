@@ -14,11 +14,14 @@ To run the script, type in the terminal:
 from __future__ import annotations
 
 import json
+import math
 import os
 import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterable, List
+
+from iris_mvp import IRIS_System
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent
@@ -153,10 +156,31 @@ def _ensure_meta_fields(obj: Dict[str, Any], symbol: str, mode: str) -> Dict[str
     return obj
 
 
-def _build_forecast_prompt(symbol: str, mode: str) -> str:
+def _safe_float(value: Any, fallback: float = 0.0) -> float:
+    try:
+        num = float(value)
+    except (TypeError, ValueError):
+        return fallback
+    if not math.isfinite(num):
+        return fallback
+    return num
+
+
+def _build_forecast_prompt(
+    symbol: str,
+    mode: str,
+    current_price: float,
+    sma_5: float,
+    sentiment_score: float,
+) -> str:
     return f"""You are a financial forecasting assistant.
 
 Given the stock ticker "{symbol}", produce a concise next-session forecast.
+
+Current IRIS metrics (use these as factual context):
+- current_price_usd: {current_price:.4f}
+- sma_5_usd: {sma_5:.4f}
+- sentiment_score: {sentiment_score:.4f}
 
 Respond with a single JSON object with this exact structure and field names:
 {{
@@ -185,10 +209,20 @@ Respond with a single JSON object with this exact structure and field names:
 Rules:
 - Only output raw JSON (no markdown, no code fences, no commentary).
 - Use realistic but approximate prices in USD.
+- Set market.current_price to current_price_usd exactly.
+- Set signals.sentiment_score to sentiment_score exactly.
+- Use sma_5_usd relative to current_price_usd and sentiment_score for trend reasoning.
 - Headlines should be short, plausible summaries of the rationale."""
 
 
-def get_chatgpt52_forecast(symbol: str, *, mode: str = "live_forecast") -> Dict[str, Any]:
+def get_chatgpt52_forecast(
+    symbol: str,
+    current_price: float,
+    sma_5: float,
+    sentiment_score: float,
+    *,
+    mode: str = "live_forecast",
+) -> Dict[str, Any]:
     """
     Call ChatGPT 5.2 (or configured OpenAI model) to get a forecast JSON.
 
@@ -204,7 +238,13 @@ def get_chatgpt52_forecast(symbol: str, *, mode: str = "live_forecast") -> Dict[
     client = OpenAI()
     model_name = os.environ.get("OPENAI_MODEL_CHATGPT52", "gpt-4o")
 
-    prompt = _build_forecast_prompt(symbol, mode)
+    prompt = _build_forecast_prompt(
+        symbol,
+        mode,
+        current_price,
+        sma_5,
+        sentiment_score,
+    )
     response = client.chat.completions.create(
         model=model_name,
         messages=[
@@ -218,7 +258,14 @@ def get_chatgpt52_forecast(symbol: str, *, mode: str = "live_forecast") -> Dict[
     return _ensure_meta_fields(data, symbol, mode)
 
 
-def get_deepseek_v3_forecast(symbol: str, *, mode: str = "live_forecast") -> Dict[str, Any]:
+def get_deepseek_v3_forecast(
+    symbol: str,
+    current_price: float,
+    sma_5: float,
+    sentiment_score: float,
+    *,
+    mode: str = "live_forecast",
+) -> Dict[str, Any]:
     """
     Call DeepSeek V3 API (OpenAI-compatible HTTP) to get a forecast JSON.
 
@@ -240,7 +287,13 @@ def get_deepseek_v3_forecast(symbol: str, *, mode: str = "live_forecast") -> Dic
     model_name = os.environ.get("DEEPSEEK_MODEL", "deepseek-chat")
     url = f"{base_url.rstrip('/')}/v1/chat/completions"
 
-    prompt = _build_forecast_prompt(symbol, mode)
+    prompt = _build_forecast_prompt(
+        symbol,
+        mode,
+        current_price,
+        sma_5,
+        sentiment_score,
+    )
     payload = {
         "model": model_name,
         "messages": [
@@ -261,7 +314,14 @@ def get_deepseek_v3_forecast(symbol: str, *, mode: str = "live_forecast") -> Dic
     return _ensure_meta_fields(data, symbol, mode)
 
 
-def get_geminiv3_forecast(symbol: str, *, mode: str = "live_forecast") -> Dict[str, Any]:
+def get_geminiv3_forecast(
+    symbol: str,
+    current_price: float,
+    sma_5: float,
+    sentiment_score: float,
+    *,
+    mode: str = "live_forecast",
+) -> Dict[str, Any]:
     """
     Call Gemini V3 Pro via google-genai client to get a forecast JSON.
 
@@ -281,7 +341,13 @@ def get_geminiv3_forecast(symbol: str, *, mode: str = "live_forecast") -> Dict[s
     model_name = os.environ.get("GEMINI_MODEL", "gemini-3-flash-preview")
     client = genai.Client(api_key=api_key)
 
-    prompt = _build_forecast_prompt(symbol, mode)
+    prompt = _build_forecast_prompt(
+        symbol,
+        mode,
+        current_price,
+        sma_5,
+        sentiment_score,
+    )
     response = client.models.generate_content(model=model_name, contents=prompt)
     content = response.text or ""
     data = _parse_llm_json(content)
@@ -305,13 +371,32 @@ def generate_reports_for_watchlist(*, mode: str = "live_forecast") -> None:
     existing: Dict[str, List[Dict[str, Any]]] = {
         key: _load_json_array(path) for key, path in files.items()
     }
+    app = IRIS_System()
 
     for symbol in tickers:
         print(f"Fetching LLM forecasts for {symbol}...")
+        market_data = app.get_market_data(symbol) or {}
+        sentiment_raw, _headlines = app.analyze_news(symbol)
+
+        current_price = _safe_float(market_data.get("current_price"), 0.0)
+        sma_5 = current_price
+        history_df = market_data.get("history_df")
+        if history_df is not None:
+            try:
+                sma_5 = _safe_float(history_df["sma_5"].iloc[-1], current_price)
+            except Exception:
+                sma_5 = current_price
+        sentiment_score = _safe_float(sentiment_raw, 0.0)
 
         # ChatGPT 5.2
         try:
-            chatgpt_obj = get_chatgpt52_forecast(symbol, mode=mode)
+            chatgpt_obj = get_chatgpt52_forecast(
+                symbol,
+                current_price,
+                sma_5,
+                sentiment_score,
+                mode=mode,
+            )
         except Exception as exc:
             print(f"  ChatGPT 5.2 error for {symbol}: {exc}")
         else:
@@ -319,7 +404,13 @@ def generate_reports_for_watchlist(*, mode: str = "live_forecast") -> None:
 
         # DeepSeek V3
         try:
-            deepseek_obj = get_deepseek_v3_forecast(symbol, mode=mode)
+            deepseek_obj = get_deepseek_v3_forecast(
+                symbol,
+                current_price,
+                sma_5,
+                sentiment_score,
+                mode=mode,
+            )
         except Exception as exc:
             print(f"  DeepSeek V3 error for {symbol}: {exc}")
         else:
@@ -327,7 +418,13 @@ def generate_reports_for_watchlist(*, mode: str = "live_forecast") -> None:
 
         # Gemini V3 Pro
         try:
-            gemini_obj = get_geminiv3_forecast(symbol, mode=mode)
+            gemini_obj = get_geminiv3_forecast(
+                symbol,
+                current_price,
+                sma_5,
+                sentiment_score,
+                mode=mode,
+            )
         except Exception as exc:
             print(f"  Gemini V3 Pro error for {symbol}: {exc}")
         else:
