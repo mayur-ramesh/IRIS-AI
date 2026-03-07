@@ -1408,5 +1408,181 @@
         "Broader EV sector faces pressure from interest rate concerns"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-07T14:08:47Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 257.46,
+      "predicted_price_next_session": 259.2
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price below 5-day SMA indicates near-term weakness, but neutral sentiment provides no directional catalyst)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AAPL trades below its 5-day moving average, signaling short-term bearish pressure",
+        "Market sentiment neutral, lacking clear positive or negative news catalysts"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-07T14:09:07Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 213.21,
+      "predicted_price_next_session": 214.75
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.1022,
+      "check_engine_light": "YELLOW (Price near short-term average with slightly positive sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Price consolidates near 5-day SMA, indicating potential for a breakout",
+        "Positive market sentiment supports a modest upward move"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-07T14:09:31Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 298.3,
+      "predicted_price_next_session": 299.85
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.1022,
+      "check_engine_light": "YELLOW (Price below short-term average, but positive sentiment provides support)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Stock trading below 5-day SMA indicates near-term technical weakness",
+        "Positive market sentiment may provide a floor for the stock price"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-07T14:09:54Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 644.86,
+      "predicted_price_next_session": 648.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price below short-term average with neutral sentiment suggests consolidation)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Stock trading below 5-day moving average, indicating near-term technical weakness",
+        "Neutral market sentiment provides no clear directional catalyst"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-07T14:10:15Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 408.96,
+      "predicted_price_next_session": 410.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price above short-term average but neutral sentiment suggests limited momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "MSFT trades above 5-day SMA, indicating short-term technical support",
+        "Neutral market sentiment tempers bullish momentum for next session"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-07T14:10:33Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 57.01,
+      "predicted_price_next_session": 56.45
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.5771,
+      "check_engine_light": "YELLOW (Negative sentiment and price below short-term average suggest caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Price remains below 5-day SMA, indicating short-term bearish pressure",
+        "Negative market sentiment reflects ongoing concerns over demand and margins"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-07T14:10:55Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 177.82,
+      "predicted_price_next_session": 179.25
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.2799,
+      "check_engine_light": "YELLOW (Price below short-term average but positive sentiment provides support)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Stock trading below 5-day SMA indicating near-term pressure",
+        "Positive market sentiment may cushion downside and support a modest rebound"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-07T14:11:16Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 396.73,
+      "predicted_price_next_session": 398.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0218,
+      "check_engine_light": "YELLOW (Price below short-term average with negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Stock trading below 5-day moving average",
+        "Market sentiment remains slightly negative"
+      ]
+    }
   }
 ]
