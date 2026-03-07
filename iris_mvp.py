@@ -6,8 +6,7 @@ from newsapi import NewsApiClient
 import nltk
 from transformers import pipeline
 import numpy as np
-from sklearn.linear_model import Ridge
-from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestRegressor
 import pandas as pd
 import time
 import json
@@ -472,58 +471,56 @@ class IRIS_System:
         avg_score = total_score / valid_headlines if valid_headlines > 0 else 0
         return avg_score, headlines
 
-    def predict_trend(self, data):
+    def predict_trend(self, data, sentiment_score):
         """
-        The 'Crystal Ball': Uses Ridge regression with multiple features for better accuracy.
+        The 'Crystal Ball': Uses Random Forest with technical and sentiment features.
         data: dict with 'history' (array) and optionally 'history_df' (DataFrame with features).
         """
         history_prices = data.get("history") if isinstance(data, dict) else data
         history_df = data.get("history_df") if isinstance(data, dict) else None
+        try:
+            sentiment_value = float(sentiment_score)
+        except (TypeError, ValueError):
+            sentiment_value = 0.0
 
         if history_prices is None or len(history_prices) < 5:
             return "INSUFFICIENT DATA", 0.0
 
-        # Feature matrix: day index + optional technical features for better accuracy
+        # Feature matrix: day index + optional technical features + sentiment.
         if history_df is not None and len(history_df) >= 5 and "sma_5" in history_df.columns:
             n = len(history_df)
             days = np.arange(n).reshape(-1, 1)
             X = np.hstack([
                 days,
                 history_df[["sma_5", "sma_10", "returns_1d"]].values,
+                np.full((n, 1), sentiment_value),
             ])
             y = history_df["Close"].values
             last = history_df.iloc[-1]
             next_sma5 = (float(last["Close"]) + float(last["sma_5"]) * 4) / 5
             next_sma10 = (float(last["Close"]) + float(last["sma_10"]) * 9) / 10
             next_ret = float(last.get("returns_1d", 0) or 0)
-            next_row = np.array([[n, next_sma5, next_sma10, next_ret]])
-            scaler = StandardScaler()
-            X_scaled = scaler.fit_transform(X)
-            model = Ridge(alpha=1.0, random_state=42)
-            model.fit(X_scaled, y)
-            next_X = scaler.transform(next_row)
-            predicted_price = float(model.predict(next_X)[0])
-            slope = float(model.coef_[0]) if len(model.coef_) else 0
+            next_row = np.array([[n, next_sma5, next_sma10, next_ret, sentiment_value]])
+            model = RandomForestRegressor(n_estimators=100, random_state=42)
+            model.fit(X, y)
+            predicted_price = float(model.predict(next_row)[0])
         else:
             n = len(history_prices)
             days = np.arange(n).reshape(-1, 1)
-            scaler = StandardScaler()
-            X_scaled = scaler.fit_transform(days)
-            model = Ridge(alpha=1.0, random_state=42)
-            model.fit(X_scaled, history_prices)
-            next_day_index = scaler.transform(np.array([[n]]))
-            predicted_price = float(model.predict(next_day_index)[0])
-            slope = float(model.coef_[0])
+            X = np.hstack([days, np.full((n, 1), sentiment_value)])
+            y = np.array(history_prices, dtype=float)
+            model = RandomForestRegressor(n_estimators=100, random_state=42)
+            model.fit(X, y)
+            predicted_price = float(model.predict(np.array([[n, sentiment_value]]))[0])
 
-        # Normalize slope by typical price level for consistent thresholds
-        avg_price = np.mean(history_prices)
-        slope_norm = (slope / avg_price * 100) if avg_price else 0
+        current_price = float(history_prices[-1]) if len(history_prices) else 0.0
+        pct_change = ((predicted_price - current_price) / current_price * 100) if current_price else 0.0
 
-        if slope_norm > 0.15:
+        if pct_change > 0.5:
             label = "STRONG UPTREND "
-        elif slope_norm > 0:
+        elif pct_change > 0:
             label = "WEAK UPTREND "
-        elif slope_norm < -0.15:
+        elif pct_change < -0.5:
             label = "STRONG DOWNTREND "
         else:
             label = "WEAK DOWNTREND "
@@ -576,7 +573,7 @@ class IRIS_System:
             return None
 
         sentiment_score, headlines = self.analyze_news(analyzed_ticker)
-        trend_label, predicted_price = self.predict_trend(data)
+        trend_label, predicted_price = self.predict_trend(data, sentiment_score)
         light = " GREEN (Safe to Proceed)"
         if sentiment_score < -0.05 or "STRONG DOWNTREND" in trend_label:
             light = " RED (Risk Detected - Caution)"
