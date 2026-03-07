@@ -1514,5 +1514,285 @@
       ],
       "chart_path": "data\\charts\\2026-03-06\\AAPL_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "source_symbol": "AAPL",
+      "generated_at": "2026-03-07T14:39:54Z",
+      "market_session_date": "2026-03-06",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 257.4599914550781,
+      "predicted_price_next_session": 258.5011840820313,
+      "history": [
+        {
+          "time": "2025-12-09",
+          "value": 276.9208679199219
+        },
+        {
+          "time": "2025-12-10",
+          "value": 278.5193786621094
+        },
+        {
+          "time": "2025-12-11",
+          "value": 277.77008056640625
+        },
+        {
+          "time": "2025-12-12",
+          "value": 278.0198669433594
+        },
+        {
+          "time": "2025-12-15",
+          "value": 273.8537292480469
+        },
+        {
+          "time": "2025-12-16",
+          "value": 274.353271484375
+        },
+        {
+          "time": "2025-12-17",
+          "value": 271.58587646484375
+        },
+        {
+          "time": "2025-12-18",
+          "value": 271.935546875
+        },
+        {
+          "time": "2025-12-19",
+          "value": 273.4141845703125
+        },
+        {
+          "time": "2025-12-22",
+          "value": 270.7166748046875
+        },
+        {
+          "time": "2025-12-23",
+          "value": 272.1053771972656
+        },
+        {
+          "time": "2025-12-24",
+          "value": 273.55401611328125
+        },
+        {
+          "time": "2025-12-26",
+          "value": 273.1444091796875
+        },
+        {
+          "time": "2025-12-29",
+          "value": 273.50408935546875
+        },
+        {
+          "time": "2025-12-30",
+          "value": 272.82470703125
+        },
+        {
+          "time": "2025-12-31",
+          "value": 271.6058349609375
+        },
+        {
+          "time": "2026-01-02",
+          "value": 270.75665283203125
+        },
+        {
+          "time": "2026-01-05",
+          "value": 267.0101623535156
+        },
+        {
+          "time": "2026-01-06",
+          "value": 262.1147155761719
+        },
+        {
+          "time": "2026-01-07",
+          "value": 260.08660888671875
+        },
+        {
+          "time": "2026-01-08",
+          "value": 258.7978515625
+        },
+        {
+          "time": "2026-01-09",
+          "value": 259.1275329589844
+        },
+        {
+          "time": "2026-01-12",
+          "value": 260.0067138671875
+        },
+        {
+          "time": "2026-01-13",
+          "value": 260.8059387207031
+        },
+        {
+          "time": "2026-01-14",
+          "value": 259.71697998046875
+        },
+        {
+          "time": "2026-01-15",
+          "value": 257.9685974121094
+        },
+        {
+          "time": "2026-01-16",
+          "value": 255.29112243652344
+        },
+        {
+          "time": "2026-01-20",
+          "value": 246.46937561035156
+        },
+        {
+          "time": "2026-01-21",
+          "value": 247.41848754882812
+        },
+        {
+          "time": "2026-01-22",
+          "value": 248.1178436279297
+        },
+        {
+          "time": "2026-01-23",
+          "value": 247.80812072753906
+        },
+        {
+          "time": "2026-01-26",
+          "value": 255.17123413085938
+        },
+        {
+          "time": "2026-01-27",
+          "value": 258.0285339355469
+        },
+        {
+          "time": "2026-01-28",
+          "value": 256.2002868652344
+        },
+        {
+          "time": "2026-01-29",
+          "value": 258.0385437011719
+        },
+        {
+          "time": "2026-01-30",
+          "value": 259.2374267578125
+        },
+        {
+          "time": "2026-02-02",
+          "value": 269.7575988769531
+        },
+        {
+          "time": "2026-02-03",
+          "value": 269.22808837890625
+        },
+        {
+          "time": "2026-02-04",
+          "value": 276.23150634765625
+        },
+        {
+          "time": "2026-02-05",
+          "value": 275.6520690917969
+        },
+        {
+          "time": "2026-02-06",
+          "value": 277.8599853515625
+        },
+        {
+          "time": "2026-02-09",
+          "value": 274.6199951171875
+        },
+        {
+          "time": "2026-02-10",
+          "value": 273.67999267578125
+        },
+        {
+          "time": "2026-02-11",
+          "value": 275.5
+        },
+        {
+          "time": "2026-02-12",
+          "value": 261.7300109863281
+        },
+        {
+          "time": "2026-02-13",
+          "value": 255.77999877929688
+        },
+        {
+          "time": "2026-02-17",
+          "value": 263.8800048828125
+        },
+        {
+          "time": "2026-02-18",
+          "value": 264.3500061035156
+        },
+        {
+          "time": "2026-02-19",
+          "value": 260.5799865722656
+        },
+        {
+          "time": "2026-02-20",
+          "value": 264.5799865722656
+        },
+        {
+          "time": "2026-02-23",
+          "value": 266.17999267578125
+        },
+        {
+          "time": "2026-02-24",
+          "value": 272.1400146484375
+        },
+        {
+          "time": "2026-02-25",
+          "value": 274.2300109863281
+        },
+        {
+          "time": "2026-02-26",
+          "value": 272.95001220703125
+        },
+        {
+          "time": "2026-02-27",
+          "value": 264.17999267578125
+        },
+        {
+          "time": "2026-03-02",
+          "value": 264.7200012207031
+        },
+        {
+          "time": "2026-03-03",
+          "value": 263.75
+        },
+        {
+          "time": "2026-03-04",
+          "value": 262.5199890136719
+        },
+        {
+          "time": "2026-03-05",
+          "value": 260.2900085449219
+        },
+        {
+          "time": "2026-03-06",
+          "value": 257.4599914550781
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "OKX is building a social network directly into its trading app after massive $25 billion valuation",
+        "Apple just made it easier for people to become customers",
+        "3 world-class ASX ETFs to buy and hold",
+        "polygon-options-puller added to PyPI",
+        "caracal-trading added to PyPI",
+        "Parallels\u3001Apple A18 Pro\u30c1\u30c3\u30d7\u3092\u642d\u8f09\u3057\u305fMacBook Neo\u306f8GB\u30e1\u30e2\u30ea\u3084\u30d5\u30a1\u30f3\u30ec\u30b9\u4ed5\u69d8\u3068\u3044\u3046\u5236\u9650\u304b\u3089Parallels Desktop\u306b\u3088\u308bWindows\u4eee\u60f3\u30de\u30b7\u30f3\u306e\u69cb\u7bc9\u306b\u306f\u5411\u304b\u305a\u3001\u4eca\u5f8c\u691c\u8a3c\u304c\u5fc5\u8981\u3060\u3068\u767a\u8868\u3002",
+        "The easy way to build a diversified ASX share portfolio",
+        "Apple\u3001\u30d0\u30b0\u306e\u4fee\u6b63\u306b\u52a0\u3048Studio Display (2026)\u3068Studio Display XDR\u306b\u5bfe\u5fdc\u3059\u308b\u300ciOS/iPadOS 26.3.1\u300d\u3092\u30ea\u30ea\u30fc\u30b9\u3002",
+        "Apple\u3001\u30d0\u30b0\u306e\u4fee\u6b63\u306b\u52a0\u3048Studio Display (2026)\u3068Studio Display XDR\u306b\u5bfe\u5fdc\u3059\u308b\u300cmacOS Tahoe 26.3.1\u300d\u3092\u30ea\u30ea\u30fc\u30b9\u3002",
+        "Ray Dalio: Gold is a better option than Bitcoin, tech stocks because\u2026",
+        "Show HN: AgentBus \u2013 Centralized AI Agent-to-Agent Messaging via REST API",
+        "The easy way to invest globally is with these ASX ETFs",
+        "Most Analysts Are Chasing Memory Stocks, But This 1 Wall Street Expert Thinks You Should Buy Apple Instead",
+        "Apple\u3001M5 Pro/Max\u30c1\u30c3\u30d7\u3068\u6700\u59272\u500d\u9ad8\u901f\u306aSSD\u3001Thunderbolt 5\u3001N1\u30c1\u30c3\u30d7\u306b\u3088\u308bWi-Fi 7/Bluetooth 6\u3092\u30b5\u30dd\u30fc\u30c8\u3057\u305f\u300cMacBook Pro\u300d\u30923\u670811\u65e5\u3088\u308a\u767a\u58f2\u3002",
+        "langchain-agent-toolbox added to PyPI"
+      ],
+      "chart_path": "data\\charts\\2026-03-07\\AAPL_trend.png"
+    }
   }
 ]

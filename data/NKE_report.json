@@ -1012,5 +1012,282 @@
       ],
       "chart_path": "data\\charts\\2026-03-06\\NKE_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "source_symbol": "NKE",
+      "generated_at": "2026-03-07T14:40:14Z",
+      "market_session_date": "2026-03-06",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 57.0099983215332,
+      "predicted_price_next_session": 58.64567050933838,
+      "history": [
+        {
+          "time": "2025-12-09",
+          "value": 62.912418365478516
+        },
+        {
+          "time": "2025-12-10",
+          "value": 65.35619354248047
+        },
+        {
+          "time": "2025-12-11",
+          "value": 67.2933349609375
+        },
+        {
+          "time": "2025-12-12",
+          "value": 67.0251235961914
+        },
+        {
+          "time": "2025-12-15",
+          "value": 67.33307647705078
+        },
+        {
+          "time": "2025-12-16",
+          "value": 66.67742919921875
+        },
+        {
+          "time": "2025-12-17",
+          "value": 65.2568588256836
+        },
+        {
+          "time": "2025-12-18",
+          "value": 65.19725036621094
+        },
+        {
+          "time": "2025-12-19",
+          "value": 58.322879791259766
+        },
+        {
+          "time": "2025-12-22",
+          "value": 56.84270477294922
+        },
+        {
+          "time": "2025-12-23",
+          "value": 56.9619140625
+        },
+        {
+          "time": "2025-12-24",
+          "value": 59.604373931884766
+        },
+        {
+          "time": "2025-12-26",
+          "value": 60.52824401855469
+        },
+        {
+          "time": "2025-12-29",
+          "value": 60.806396484375
+        },
+        {
+          "time": "2025-12-30",
+          "value": 60.78652572631836
+        },
+        {
+          "time": "2025-12-31",
+          "value": 63.28990936279297
+        },
+        {
+          "time": "2026-01-02",
+          "value": 62.86274719238281
+        },
+        {
+          "time": "2026-01-05",
+          "value": 64.10449981689453
+        },
+        {
+          "time": "2026-01-06",
+          "value": 64.91909790039062
+        },
+        {
+          "time": "2026-01-07",
+          "value": 62.80314254760742
+        },
+        {
+          "time": "2026-01-08",
+          "value": 64.82969665527344
+        },
+        {
+          "time": "2026-01-09",
+          "value": 65.48533630371094
+        },
+        {
+          "time": "2026-01-12",
+          "value": 65.20718383789062
+        },
+        {
+          "time": "2026-01-13",
+          "value": 65.86283874511719
+        },
+        {
+          "time": "2026-01-14",
+          "value": 65.13764953613281
+        },
+        {
+          "time": "2026-01-15",
+          "value": 64.16410827636719
+        },
+        {
+          "time": "2026-01-16",
+          "value": 63.95549011230469
+        },
+        {
+          "time": "2026-01-20",
+          "value": 63.21044158935547
+        },
+        {
+          "time": "2026-01-21",
+          "value": 64.97870635986328
+        },
+        {
+          "time": "2026-01-22",
+          "value": 65.02837371826172
+        },
+        {
+          "time": "2026-01-23",
+          "value": 64.61114501953125
+        },
+        {
+          "time": "2026-01-26",
+          "value": 64.56147003173828
+        },
+        {
+          "time": "2026-01-27",
+          "value": 62.67399978637695
+        },
+        {
+          "time": "2026-01-28",
+          "value": 61.82960510253906
+        },
+        {
+          "time": "2026-01-29",
+          "value": 62.18722915649414
+        },
+        {
+          "time": "2026-01-30",
+          "value": 61.40243911743164
+        },
+        {
+          "time": "2026-02-02",
+          "value": 61.77000045776367
+        },
+        {
+          "time": "2026-02-03",
+          "value": 60.52824401855469
+        },
+        {
+          "time": "2026-02-04",
+          "value": 63.79655075073242
+        },
+        {
+          "time": "2026-02-05",
+          "value": 62.28657150268555
+        },
+        {
+          "time": "2026-02-06",
+          "value": 63.4985237121582
+        },
+        {
+          "time": "2026-02-09",
+          "value": 61.99848175048828
+        },
+        {
+          "time": "2026-02-10",
+          "value": 62.62432861328125
+        },
+        {
+          "time": "2026-02-11",
+          "value": 61.93887710571289
+        },
+        {
+          "time": "2026-02-12",
+          "value": 60.697120666503906
+        },
+        {
+          "time": "2026-02-13",
+          "value": 62.71373748779297
+        },
+        {
+          "time": "2026-02-17",
+          "value": 64.39259338378906
+        },
+        {
+          "time": "2026-02-18",
+          "value": 65.11778259277344
+        },
+        {
+          "time": "2026-02-19",
+          "value": 65.17738342285156
+        },
+        {
+          "time": "2026-02-20",
+          "value": 64.9687728881836
+        },
+        {
+          "time": "2026-02-23",
+          "value": 62.67399978637695
+        },
+        {
+          "time": "2026-02-24",
+          "value": 63.66740036010742
+        },
+        {
+          "time": "2026-02-25",
+          "value": 62.981956481933594
+        },
+        {
+          "time": "2026-02-26",
+          "value": 63.52832794189453
+        },
+        {
+          "time": "2026-02-27",
+          "value": 61.77000045776367
+        },
+        {
+          "time": "2026-03-02",
+          "value": 61.0099983215332
+        },
+        {
+          "time": "2026-03-03",
+          "value": 59.38999938964844
+        },
+        {
+          "time": "2026-03-04",
+          "value": 58.63999938964844
+        },
+        {
+          "time": "2026-03-05",
+          "value": 58.02000045776367
+        },
+        {
+          "time": "2026-03-06",
+          "value": 57.0099983215332
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.06643453737099965,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Is NIKE, Inc. (NKE) Stock A Good Buy Right Now?",
+        "The easy way to build a diversified ASX share portfolio",
+        "Where Will Nike (NKE) Stock Be in 3 Years?",
+        "Why are there only 30 stocks in the Dow? The case for (& against) a narrow index",
+        "Nike\u2019s China Challenges Remain in Focus as BNP Paribas Maintains Bearish Outlook",
+        "5 amazing ASX ETFs to buy and hold for 20 years",
+        "Here\u2019s Why Madison Large Cap Fund Chose to Exit Nike (NKE)",
+        "6 Stocks with Dangerous Free Cash Flow Trend \u2013 Should you Sell them or Buy More? [Podcast]",
+        "Dow Jones 101: How many stocks are in the Dow in 2026?",
+        "3 Option Ideas to Consider this Wednesday for Income and Growth",
+        "Hsp90 buffers behavioral variability by regulating Pdf transcription in clock neurons of Drosophila melanogaster",
+        "What Makes Nike (NKE) an Investment Bet?"
+      ],
+      "chart_path": "data\\charts\\2026-03-07\\NKE_trend.png"
+    }
   }
 ]
