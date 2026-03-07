@@ -395,11 +395,30 @@ class IRIS_System:
                 df["Volume"] = hist["Volume"]
             else:
                 df["Volume"] = 0
+            df["Volume"] = pd.to_numeric(df["Volume"], errors="coerce").fillna(0.0).clip(lower=0.0)
             df["returns_1d"] = df["Close"].pct_change()
             df["sma_5"] = df["Close"].rolling(5, min_periods=1).mean()
             df["sma_10"] = df["Close"].rolling(10, min_periods=1).mean()
             df["sma_20"] = df["Close"].rolling(20, min_periods=1).mean()
-            df = df.dropna()
+
+            # Standard RSI(14) using Wilder-style exponential averaging.
+            delta = df["Close"].diff()
+            gain = delta.clip(lower=0.0)
+            loss = -delta.clip(upper=0.0)
+            avg_gain = gain.ewm(alpha=1 / 14, adjust=False, min_periods=14).mean()
+            avg_loss = loss.ewm(alpha=1 / 14, adjust=False, min_periods=14).mean()
+            rs = avg_gain / avg_loss.replace(0.0, np.nan)
+            rsi = 100.0 - (100.0 / (1.0 + rs))
+            rsi = rsi.where(avg_loss != 0.0, 100.0)
+            rsi = rsi.where(~((avg_loss == 0.0) & (avg_gain == 0.0)), 50.0)
+            df["rsi_14"] = rsi
+
+            # Handle NaN/inf values for model stability.
+            df = df.replace([np.inf, -np.inf], np.nan)
+            df["returns_1d"] = df["returns_1d"].fillna(0.0)
+            df["rsi_14"] = df["rsi_14"].fillna(50.0).clip(0.0, 100.0)
+            df["Volume"] = df["Volume"].fillna(0.0).clip(lower=0.0)
+            df = df.dropna(subset=["Close", "sma_5", "sma_10", "sma_20", "returns_1d", "rsi_14", "Volume"])
             return {
                 "current_price": float(price),
                 "history": df["Close"].values,
@@ -486,32 +505,95 @@ class IRIS_System:
         if history_prices is None or len(history_prices) < 5:
             return "INSUFFICIENT DATA", 0.0
 
-        # Feature matrix: day index + optional technical features + sentiment.
-        if history_df is not None and len(history_df) >= 5 and "sma_5" in history_df.columns:
+        # Feature matrix: day index + technical features + sentiment.
+        required_cols = ["sma_5", "sma_10", "sma_20", "returns_1d", "rsi_14", "Volume"]
+        if history_df is not None and len(history_df) >= 5 and all(col in history_df.columns for col in required_cols):
             n = len(history_df)
             days = np.arange(n).reshape(-1, 1)
             X = np.hstack([
                 days,
-                history_df[["sma_5", "sma_10", "returns_1d"]].values,
+                history_df[required_cols].values,
                 np.full((n, 1), sentiment_value),
             ])
             y = history_df["Close"].values
             last = history_df.iloc[-1]
+            last_close = float(last["Close"])
             next_sma5 = (float(last["Close"]) + float(last["sma_5"]) * 4) / 5
             next_sma10 = (float(last["Close"]) + float(last["sma_10"]) * 9) / 10
-            next_ret = float(last.get("returns_1d", 0) or 0)
-            next_row = np.array([[n, next_sma5, next_sma10, next_ret, sentiment_value]])
+            next_sma20 = (float(last["Close"]) + float(last["sma_20"]) * 19) / 20
+
+            # Use next SMA(5) implied close drift for next-day return estimate.
+            implied_next_close = float(next_sma5)
+            next_ret = ((implied_next_close - last_close) / last_close) if last_close else float(last.get("returns_1d", 0) or 0.0)
+
+            recent_vol = pd.to_numeric(history_df["Volume"].tail(5), errors="coerce").dropna()
+            next_volume = float(recent_vol.mean()) if len(recent_vol) else float(last.get("Volume", 0.0) or 0.0)
+
+            last_rsi = float(last.get("rsi_14", 50.0) or 50.0)
+            next_rsi14 = float(np.clip(last_rsi + (next_ret * 100.0), 0.0, 100.0))
+
+            next_row = np.array([[
+                n,
+                next_sma5,
+                next_sma10,
+                next_sma20,
+                next_ret,
+                next_rsi14,
+                next_volume,
+                sentiment_value,
+            ]])
             model = RandomForestRegressor(n_estimators=100, random_state=42)
             model.fit(X, y)
             predicted_price = float(model.predict(next_row)[0])
         else:
             n = len(history_prices)
             days = np.arange(n).reshape(-1, 1)
-            X = np.hstack([days, np.full((n, 1), sentiment_value)])
-            y = np.array(history_prices, dtype=float)
+            close_series = pd.Series(np.array(history_prices, dtype=float))
+            sma_5 = close_series.rolling(5, min_periods=1).mean()
+            sma_10 = close_series.rolling(10, min_periods=1).mean()
+            sma_20 = close_series.rolling(20, min_periods=1).mean()
+            returns_1d = close_series.pct_change().replace([np.inf, -np.inf], np.nan).fillna(0.0)
+
+            delta = close_series.diff()
+            gain = delta.clip(lower=0.0)
+            loss = -delta.clip(upper=0.0)
+            avg_gain = gain.ewm(alpha=1 / 14, adjust=False, min_periods=14).mean()
+            avg_loss = loss.ewm(alpha=1 / 14, adjust=False, min_periods=14).mean()
+            rs = avg_gain / avg_loss.replace(0.0, np.nan)
+            rsi_14 = 100.0 - (100.0 / (1.0 + rs))
+            rsi_14 = rsi_14.where(avg_loss != 0.0, 100.0)
+            rsi_14 = rsi_14.where(~((avg_loss == 0.0) & (avg_gain == 0.0)), 50.0).fillna(50.0).clip(0.0, 100.0)
+
+            volume = np.zeros(n, dtype=float)
+            X = np.column_stack([
+                days.ravel(),
+                sma_5.values,
+                sma_10.values,
+                sma_20.values,
+                returns_1d.values,
+                rsi_14.values,
+                volume,
+                np.full(n, sentiment_value),
+            ])
+            y = close_series.values
+            last_close = float(close_series.iloc[-1]) if n else 0.0
+            next_sma5 = (last_close + float(sma_5.iloc[-1]) * 4) / 5 if n else 0.0
+            next_sma10 = (last_close + float(sma_10.iloc[-1]) * 9) / 10 if n else 0.0
+            next_sma20 = (last_close + float(sma_20.iloc[-1]) * 19) / 20 if n else 0.0
+            next_ret = ((next_sma5 - last_close) / last_close) if last_close else 0.0
+            next_rsi14 = float(np.clip(float(rsi_14.iloc[-1]) + (next_ret * 100.0), 0.0, 100.0)) if n else 50.0
             model = RandomForestRegressor(n_estimators=100, random_state=42)
             model.fit(X, y)
-            predicted_price = float(model.predict(np.array([[n, sentiment_value]]))[0])
+            predicted_price = float(model.predict(np.array([[
+                n,
+                next_sma5,
+                next_sma10,
+                next_sma20,
+                next_ret,
+                next_rsi14,
+                0.0,
+                sentiment_value,
+            ]]))[0])
 
         current_price = float(history_prices[-1]) if len(history_prices) else 0.0
         pct_change = ((predicted_price - current_price) / current_price * 100) if current_price else 0.0
