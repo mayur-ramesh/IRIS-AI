@@ -431,19 +431,39 @@ class IRIS_System:
     def analyze_news(self, ticker):
         """Fetches headlines and calculates a Sentiment Score (-1.0 to +1.0)."""
         headlines = []
-        
-        # Fetch real, live news using yfinance
-        try:
-            stock = yf.Ticker(ticker)
-            news_items = stock.news
-            if news_items:
-                for item in news_items[:5]: # Get up to 5 recent headlines
-                    if 'title' in item:
-                        headlines.append(item['title'])
-                    elif 'content' in item and 'title' in item['content']:
-                        headlines.append(item['content']['title'])
-        except Exception:
-            pass
+
+        # Preferred source: NewsAPI (if configured) for a larger headline baseline.
+        if self.news_api:
+            try:
+                response = self.news_api.get_everything(
+                    q=ticker,
+                    language="en",
+                    sort_by="publishedAt",
+                    page_size=15,
+                )
+                if isinstance(response, dict):
+                    for article in response.get("articles", []) or []:
+                        if not isinstance(article, dict):
+                            continue
+                        title = str(article.get("title", "")).strip()
+                        if title:
+                            headlines.append(title)
+            except Exception:
+                headlines = []
+
+        # Fallback: existing yfinance extraction when NewsAPI is unavailable/failed/empty.
+        if not headlines:
+            try:
+                stock = yf.Ticker(ticker)
+                news_items = stock.news
+                if news_items:
+                    for item in news_items[:5]: # Get up to 5 recent headlines
+                        if 'title' in item:
+                            headlines.append(item['title'])
+                        elif 'content' in item and 'title' in item['content']:
+                            headlines.append(item['content']['title'])
+            except Exception:
+                pass
         
         #  Fallback: Simulation Mode (If internet/API failure)
         if not headlines:
