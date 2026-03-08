@@ -1519,9 +1519,9 @@
     "meta": {
       "symbol": "AAPL",
       "source_symbol": "AAPL",
-      "generated_at": "2026-03-07T14:39:54Z",
+      "generated_at": "2026-03-08T09:43:45Z",
       "market_session_date": "2026-03-06",
-      "mode": "live"
+      "mode": "simulation"
     },
     "market": {
       "current_price": 257.4599914550781,
@@ -1771,28 +1771,18 @@
     },
     "signals": {
       "trend_label": "WEAK UPTREND ",
-      "sentiment_score": 0.0,
-      "check_engine_light": " YELLOW (Neutral / Noise)"
+      "sentiment_score": 0.186289381980896,
+      "check_engine_light": " GREEN (Safe to Proceed)"
     },
     "evidence": {
       "headlines_used": [
-        "OKX is building a social network directly into its trading app after massive $25 billion valuation",
-        "Apple just made it easier for people to become customers",
-        "3 world-class ASX ETFs to buy and hold",
-        "polygon-options-puller added to PyPI",
-        "caracal-trading added to PyPI",
-        "Parallels\u3001Apple A18 Pro\u30c1\u30c3\u30d7\u3092\u642d\u8f09\u3057\u305fMacBook Neo\u306f8GB\u30e1\u30e2\u30ea\u3084\u30d5\u30a1\u30f3\u30ec\u30b9\u4ed5\u69d8\u3068\u3044\u3046\u5236\u9650\u304b\u3089Parallels Desktop\u306b\u3088\u308bWindows\u4eee\u60f3\u30de\u30b7\u30f3\u306e\u69cb\u7bc9\u306b\u306f\u5411\u304b\u305a\u3001\u4eca\u5f8c\u691c\u8a3c\u304c\u5fc5\u8981\u3060\u3068\u767a\u8868\u3002",
-        "The easy way to build a diversified ASX share portfolio",
-        "Apple\u3001\u30d0\u30b0\u306e\u4fee\u6b63\u306b\u52a0\u3048Studio Display (2026)\u3068Studio Display XDR\u306b\u5bfe\u5fdc\u3059\u308b\u300ciOS/iPadOS 26.3.1\u300d\u3092\u30ea\u30ea\u30fc\u30b9\u3002",
-        "Apple\u3001\u30d0\u30b0\u306e\u4fee\u6b63\u306b\u52a0\u3048Studio Display (2026)\u3068Studio Display XDR\u306b\u5bfe\u5fdc\u3059\u308b\u300cmacOS Tahoe 26.3.1\u300d\u3092\u30ea\u30ea\u30fc\u30b9\u3002",
-        "Ray Dalio: Gold is a better option than Bitcoin, tech stocks because\u2026",
-        "Show HN: AgentBus \u2013 Centralized AI Agent-to-Agent Messaging via REST API",
-        "The easy way to invest globally is with these ASX ETFs",
-        "Most Analysts Are Chasing Memory Stocks, But This 1 Wall Street Expert Thinks You Should Buy Apple Instead",
-        "Apple\u3001M5 Pro/Max\u30c1\u30c3\u30d7\u3068\u6700\u59272\u500d\u9ad8\u901f\u306aSSD\u3001Thunderbolt 5\u3001N1\u30c1\u30c3\u30d7\u306b\u3088\u308bWi-Fi 7/Bluetooth 6\u3092\u30b5\u30dd\u30fc\u30c8\u3057\u305f\u300cMacBook Pro\u300d\u30923\u670811\u65e5\u3088\u308a\u767a\u58f2\u3002",
-        "langchain-agent-toolbox added to PyPI"
+        "Formula 1 and Apple's big gamble kicks off this weekend",
+        "Apple's $599 MacBook Neo May Boost Revenue By 0.5% While Expanding Into Student Market, Gene Munster Says",
+        "The Best \"Magnificent Seven\" Stocks to Buy in March",
+        "Apple\u2019s Cheaper Devices And F1 Deal Test Growth And Valuation",
+        "Magnificent 7 News: Microsoft Rebounds While Apple and Alphabet Fall This Week"
       ],
-      "chart_path": "data\\charts\\2026-03-07\\AAPL_trend.png"
+      "chart_path": "data\\charts\\2026-03-08\\AAPL_trend.png"
     }
   }
 ]
