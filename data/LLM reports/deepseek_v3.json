@@ -1584,5 +1584,269 @@
         "Market sentiment remains slightly negative"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-09T14:01:02Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 255.97,
+      "predicted_price_next_session": 253.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0636,
+      "check_engine_light": "YELLOW (Price below short-term average with negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Stock trading below 5-day moving average",
+        "Negative market sentiment persists"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-09T14:01:29Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 207.49,
+      "predicted_price_next_session": 209.75
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price below 5-day SMA suggests near-term weakness, but neutral sentiment tempers bearish outlook)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AMZN trades below its 5-day moving average, indicating short-term selling pressure",
+        "Neutral market sentiment provides no clear directional catalyst for next session"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-09T14:01:59Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 295.5,
+      "predicted_price_next_session": 297.2
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0775,
+      "check_engine_light": "YELLOW (Price below short-term average with negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Stock trading below 5-day moving average",
+        "Negative market sentiment persists"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-09T14:02:22Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 628.9,
+      "predicted_price_next_session": 635.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price below short-term average, but neutral sentiment suggests consolidation)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Stock trading below 5-day SMA, indicating short-term bearish pressure",
+        "Neutral market sentiment provides no clear directional catalyst"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-09T14:02:46Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 405.2,
+      "predicted_price_next_session": 406.75
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0573,
+      "check_engine_light": "YELLOW (Price below short-term average, but positive sentiment provides support)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Stock trades below 5-day moving average, indicating near-term pressure",
+        "Slightly positive market sentiment may limit downside"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-09T14:03:12Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 55.71,
+      "predicted_price_next_session": 56.25
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0664,
+      "check_engine_light": "YELLOW (Price below short-term average with negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nike trades below 5-day moving average, indicating near-term pressure",
+        "Negative market sentiment persists amid concerns over demand outlook"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-09T14:03:36Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 177.51,
+      "predicted_price_next_session": 179.25
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1109,
+      "check_engine_light": "YELLOW (Price below short-term average with negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Stock trading below 5-day moving average",
+        "Negative market sentiment persists"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-09T14:04:00Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 385.63,
+      "predicted_price_next_session": 392.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.1018,
+      "check_engine_light": "YELLOW (Price below short-term average, but positive sentiment may provide support)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Stock trading below 5-day SMA, indicating near-term technical weakness",
+        "Slightly positive market sentiment could fuel a modest rebound"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "generated_at": "2026-03-09T14:13:54Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 99.197,
+      "predicted_price_next_session": 99.05
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": -0.882,
+      "check_engine_light": "YELLOW (Negative sentiment weighs on weak technical momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Price holds just above 5-day SMA, indicating fragile support",
+        "Strongly negative market sentiment pressures bullish momentum"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GC=F",
+      "generated_at": "2026-03-09T14:14:18Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5092.1001,
+      "predicted_price_next_session": 5085.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0499,
+      "check_engine_light": "YELLOW (Price below short-term average with negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Gold futures trade below 5-day moving average",
+        "Slight negative sentiment pressure persists in market"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "HG=F",
+      "generated_at": "2026-03-09T14:14:42Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5.781,
+      "predicted_price_next_session": 5.795
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0165,
+      "check_engine_light": "YELLOW (Price near short-term average with slightly positive sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Copper futures hold near 5-day average, signaling consolidation",
+        "Slight positive sentiment supports a modest upward bias"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "generated_at": "2026-03-09T14:15:04Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 84.255,
+      "predicted_price_next_session": 84.65
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price above 5-day SMA suggests momentum, but neutral sentiment provides no catalyst)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Silver futures hold above key short-term moving average",
+        "Market sentiment neutral amid lack of fresh macro drivers"
+      ]
+    }
   }
 ]
