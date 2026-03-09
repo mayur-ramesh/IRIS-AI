@@ -1008,7 +1008,7 @@
     "meta": {
       "symbol": "NVDA",
       "source_symbol": "NVDA",
-      "generated_at": "2026-03-07T14:40:16Z",
+      "generated_at": "2026-03-09T07:48:41Z",
       "market_session_date": "2026-03-06",
       "mode": "live"
     },
@@ -1260,11 +1260,16 @@
     },
     "signals": {
       "trend_label": "STRONG UPTREND ",
-      "sentiment_score": -0.11384588877360026,
+      "sentiment_score": -0.11563372214635213,
       "check_engine_light": " RED (Risk Detected - Caution)"
     },
     "evidence": {
       "headlines_used": [
+        "Dow Jones Industrial Average Falls 453 Points as Oil Surge and Weak Jobs Data Weigh on Markets",
+        "The $200 Billion Question: Is Amazon Finally Ready to Pay a Dividend?",
+        "Nvidia sets $4 million target cash bonus for CEO Huang under fiscal 2027 plan",
+        "NVIDIA Corporation (NVDA) Price Target Increased to $220 at Deutsche Bank",
+        "Nvidia pauses new AI startup bets after backing OpenAI, Anthropic",
         "Is Nvidia (NVDA) Shifting its Investment Strategy Towards OpenAI and Anthropic?",
         "Divyangjan staff association airs fears over service continuity, protection in IDBI Bank",
         "New Export Rules Could Be Coming for AI Chipmakers' Sales",
@@ -1274,14 +1279,9 @@
         "Investors Are Piling Into the 'HALO' Trade. Here's What That Means and What They're Buying",
         "Dow down 400 points while Nasdaq rises: Why Dow Jones drops over 400 points today while Nasdaq stays in green \u2014 S&P 500 also slips as US stock market shows mixed signals",
         "GraniteShares Announces Weekly Distributions for its YieldBOOST ETFs: COYY, TSYY, NVYY, XBTY, AMYY, TQQY, AZYY, YSPY, MTYY, PLYY, HOYY, SMYY, BBYY, FBYY, IOYY, MAAY, NUGY, SEMY, QBY, RGYY, HMYY and RTYY",
-        "IREN to expand processing capacity by 50%, prepares at-the-market offering",
-        "Everything you never wanted to know about visually-hidden",
-        "Baird Raises Price Target on Nvidia (NVDA)",
-        "NVIDIA CEO \u30b8\u30a7\u30f3\u30b9\u30f3 \u30d5\u30a2\u30f3\u3068\u4e16\u754c\u306e\u30c6\u30af\u30ce\u30ed\u30b8 \u30ea\u30fc\u30c0\u30fc\u304c GTC 2026 \u3067 AI \u306e\u6642\u4ee3\u3092\u62ab\u9732",
-        "The easy way to build a diversified ASX share portfolio",
-        "Buy Nvidia Shares Ahead of GTC, Says Wells Fargo - TipRanks"
+        "IREN to expand processing capacity by 50%, prepares at-the-market offering"
       ],
-      "chart_path": "data\\charts\\2026-03-07\\NVDA_trend.png"
+      "chart_path": "data\\charts\\2026-03-09\\NVDA_trend.png"
     }
   }
 ]
