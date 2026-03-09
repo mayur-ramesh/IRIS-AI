@@ -995,18 +995,14 @@
     "meta": {
       "symbol": "META",
       "source_symbol": "META",
-      "generated_at": "2026-03-07T14:40:07Z",
+      "generated_at": "2026-03-09T14:16:37Z",
       "market_session_date": "2026-03-06",
       "mode": "live"
     },
     "market": {
-      "current_price": 644.8599853515625,
-      "predicted_price_next_session": 651.6570220947266,
+      "current_price": 628.3699951171875,
+      "predicted_price_next_session": 647.7913177490234,
       "history": [
-        {
-          "time": "2025-12-09",
-          "value": 656.4246826171875
-        },
         {
           "time": "2025-12-10",
           "value": 649.6002197265625
@@ -1246,29 +1242,29 @@
       ]
     },
     "signals": {
-      "trend_label": "STRONG UPTREND ",
-      "sentiment_score": 0.05860129992167155,
-      "check_engine_light": " GREEN (Safe to Proceed)"
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.04173119068145752,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
     },
     "evidence": {
       "headlines_used": [
-        "ChargeSini deploys 80kW DC Charger at Sunway 163 Mall",
-        "A tool that REMOVES censorship from ANY open-weight LLM with a single click",
-        "Audience & Brand Manager \u2013 Music Ally \u2013 London",
-        "Indonesia outlines plan to limit under-16s' access to social media | TechCrunch",
-        "$399.99* | KEF Q1 Meta Bookshelf Speakers (Pair, Black) at Amazon (2 replies)",
-        "Ask AI: \"Describe Joseph Champlin's Revolutionary War Military Service\"",
-        "New Mexico Jurors Heard From Zuckerberg in Meta Child Safety Trial",
-        "AI mastered language. The physical world is next",
-        "8 Reasons XGIMI\u2019s No-Camera Glasses Won Over MWC 2026",
-        "Long-term prognostic value of microvascular obstruction by cardiac magnetic resonance in ST-segment elevation myocardial infarction",
-        "An integrative analysis reveals the mechanism of plastic stabilizers inducing breast cancer",
-        "An assessment of sensory sensitivity, including certain anhedonia dimensions, in patients with schizophrenia using transcutaneous electrical nerve stimulation",
-        "SGLT2 inhibitors, GLP-1 RAs, and DPP4 inhibitors and the risk of hypomagnesemia in type 2 diabetes: A target trial emulation",
-        "Evaluating how demography and temperature increase might alter the burden of congenital Toxoplasmosis in Africa",
-        "From tests to truth: A misclassification-aware machine learning framework for estimating brucellosis seroprevalence in wild canids"
+        "How Generative AI Is Changing The Role Of Instructors And Learning Platforms",
+        "Cathay Pacific: New York \u2013 Colombo, Sri Lanka. $752. Roundtrip, including all Taxes",
+        "Cathay Pacific: Boston \u2013 Kuala Lumpur, Malaysia. $745. Roundtrip, including all Taxes",
+        "Behind Trump\u2019s war fever lies profound weakness",
+        "Show HN: CCP, a CLI proxy that trims terminal output without changing commands",
+        "Copa: Washington D.C. \u2013 Cali, Colombia. $295 (Basic Economy / $425 (Regular Economy). Roundtrip, including all Taxes",
+        "8 Hidden Health Benefits of Green Tea",
+        "uv-bundler added to PyPI",
+        "Apple AirPods Pro 3 review: I didn't think earbuds could pull off immersive ANC like this",
+        "What To Read This Weekend",
+        "Python's Lazy Imports: Why It Took Three Years and Two Attempts",
+        "If It Quacks Like a Package Manager",
+        "Man behind Quran-stepping video likely convicted for similar acts, may be mentally unwell: Shanmugam",
+        "Man behind Quran-stepping video likely convicted for similar acts, may be mentally unwell: Shanmugam",
+        "Show HN: API versioning for Laravel \u2013 one codebase, support old versions forever"
       ],
-      "chart_path": "data\\charts\\2026-03-07\\META_trend.png"
+      "chart_path": "data\\charts\\2026-03-09\\META_trend.png"
     }
   }
 ]

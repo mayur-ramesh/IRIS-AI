@@ -1146,18 +1146,14 @@
     "meta": {
       "symbol": "TSLA",
       "source_symbol": "TSLA",
-      "generated_at": "2026-03-07T14:40:19Z",
+      "generated_at": "2026-03-09T14:16:48Z",
       "market_session_date": "2026-03-06",
       "mode": "live"
     },
     "market": {
-      "current_price": 396.7300109863281,
-      "predicted_price_next_session": 402.0006042480469,
+      "current_price": 384.0033874511719,
+      "predicted_price_next_session": 404.69749938964844,
       "history": [
-        {
-          "time": "2025-12-09",
-          "value": 445.1700134277344
-        },
         {
           "time": "2025-12-10",
           "value": 451.45001220703125
@@ -1398,11 +1394,16 @@
     },
     "signals": {
       "trend_label": "STRONG UPTREND ",
-      "sentiment_score": 0.02391420602798462,
+      "sentiment_score": 0.10178745587666829,
       "check_engine_light": " GREEN (Safe to Proceed)"
     },
     "evidence": {
       "headlines_used": [
+        "Tesla Stock Faces Volatility Ahead of Pivotal NHTSA Deadline as Tesla Pivots to Autonomy and Robotics",
+        "Bank of America Is Bullish on Tesla Again. Is That a Reason to Buy TSLA Stock?",
+        "Bank of America Resumes Coverage on Tesla, Inc. (TSLA), Upgrades to Buy",
+        "The 24/7 Takeover: How Crypto\u2019s $130B TradFi Surge Is Absorbing The Global Commodities Trade",
+        "The $200 Billion Question: Is Amazon Finally Ready to Pay a Dividend?",
         "OKX is building a social network directly into its trading app after massive $25 billion valuation",
         "Tesla Stock Dips Slightly in Early Trading Amid Robotaxi Optimism and Analyst Upgrades",
         "GraniteShares Announces Weekly Distributions for its YieldBOOST ETFs: COYY, TSYY, NVYY, XBTY, AMYY, TQQY, AZYY, YSPY, MTYY, PLYY, HOYY, SMYY, BBYY, FBYY, IOYY, MAAY, NUGY, SEMY, QBY, RGYY, HMYY and RTYY",
@@ -1412,14 +1413,9 @@
         "I Went $100,000 All-In on This Mega-Yield ETF \u2014 Here\u2019s Exactly What Happened Next",
         "Ray Dalio: Gold is a better option than Bitcoin, tech stocks because\u2026",
         "Tesla Shares Dip 2.7% Amid Geopolitical Volatility, But Analyst Upgrades Signal Optimism for Robotaxi",
-        "Interpretable ESG\u2013sentiment hybrid deep learning for asset return forecasting with quantified interactions and latency-aware deployment",
-        "Is IonQ Stock the Tesla of Quantum Computing?",
-        "GraniteShares Announces Weekly Distributions for its Autocallable ETFs: ANV and TLA",
-        "Tesla Stock Closes Near $403 Amid Geopolitical Pressures and Autonomy Focus",
-        "Show HN: Finclaw, Openclaw for financial information",
-        "Nasdaq files for prediction market-style options on Nasdaq-100"
+        "Interpretable ESG\u2013sentiment hybrid deep learning for asset return forecasting with quantified interactions and latency-aware deployment"
       ],
-      "chart_path": "data\\charts\\2026-03-07\\TSLA_trend.png"
+      "chart_path": "data\\charts\\2026-03-09\\TSLA_trend.png"
     }
   }
 ]

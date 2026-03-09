@@ -995,18 +995,14 @@
     "meta": {
       "symbol": "MSFT",
       "source_symbol": "MSFT",
-      "generated_at": "2026-03-07T14:40:11Z",
+      "generated_at": "2026-03-09T14:16:40Z",
       "market_session_date": "2026-03-06",
       "mode": "live"
     },
     "market": {
-      "current_price": 408.9599914550781,
-      "predicted_price_next_session": 407.1721798706055,
+      "current_price": 404.590087890625,
+      "predicted_price_next_session": 407.589885559082,
       "history": [
-        {
-          "time": "2025-12-09",
-          "value": 490.8995361328125
-        },
         {
           "time": "2025-12-10",
           "value": 477.4701843261719
@@ -1247,11 +1243,13 @@
     },
     "signals": {
       "trend_label": "WEAK DOWNTREND ",
-      "sentiment_score": 0.17972126801808674,
+      "sentiment_score": 0.057345902919769286,
       "check_engine_light": " GREEN (Safe to Proceed)"
     },
     "evidence": {
       "headlines_used": [
+        "The $200 Billion Question: Is Amazon Finally Ready to Pay a Dividend?",
+        "7 stock winners Jefferies says are sitting 'in the discount bin' after the AI-disruption panic",
         "Microsoft (MSFT) Stock Price Today: Shares Climb to $410.68 on March 5, 2026",
         "Down 15% in 2026, Should You Buy the Dip in Microsoft Stock?",
         "3 world-class ASX ETFs to buy and hold",
@@ -1264,11 +1262,9 @@
         "Ray Dalio: Gold is a better option than Bitcoin, tech stocks because\u2026",
         "The easy way to invest globally is with these ASX ETFs",
         "MSFT stock price today: Microsoft shares rise, investors watch AI execution",
-        "Goldman names 3 catalysts that guarantee mega tech stocks revival",
-        "Intel (INTC) Hopes To Continue Surge And Avoid Another Disappointment",
-        "IonQ in Rebound Mode: Buy the Thesis, Respect the Risk"
+        "Goldman names 3 catalysts that guarantee mega tech stocks revival"
       ],
-      "chart_path": "data\\charts\\2026-03-07\\MSFT_trend.png"
+      "chart_path": "data\\charts\\2026-03-09\\MSFT_trend.png"
     }
   }
 ]

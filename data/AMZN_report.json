@@ -1086,18 +1086,14 @@
     "meta": {
       "symbol": "AMZN",
       "source_symbol": "AMZN",
-      "generated_at": "2026-03-07T14:40:00Z",
+      "generated_at": "2026-03-09T14:16:26Z",
       "market_session_date": "2026-03-06",
       "mode": "live"
     },
     "market": {
-      "current_price": 213.2100067138672,
-      "predicted_price_next_session": 215.01300491333006,
+      "current_price": 208.5500030517578,
+      "predicted_price_next_session": 214.0230047607422,
       "history": [
-        {
-          "time": "2025-12-09",
-          "value": 227.9199981689453
-        },
         {
           "time": "2025-12-10",
           "value": 231.77999877929688
@@ -1337,29 +1333,29 @@
       ]
     },
     "signals": {
-      "trend_label": "STRONG UPTREND ",
+      "trend_label": "WEAK UPTREND ",
       "sentiment_score": 0.0,
-      "check_engine_light": " GREEN (Safe to Proceed)"
+      "check_engine_light": " YELLOW (Neutral / Noise)"
     },
     "evidence": {
       "headlines_used": [
-        "What Makes Amazon (AMZN) an Overall High-Quality Growth Compounder?",
-        "Ladies Of London S04E02 1080p AMZN WEB-DL H264-RAWR",
-        "Ladies Of London S04E01 1080p AMZN WEB-DL H264-RAWR",
-        "The Heat 2026 S01E10 1080p AMZN WEB-DL H264-RAWR",
-        "Mothers Baby 2025 1080p AMZN WEB-DL H264-SCOPE",
-        "HEEL 2025 720p AMZN WEB-DL H264-SCOPE",
-        "Love After Lockup S07E08 1080p AMZN WEB-DL H264-RAWR",
-        "THE STRANGERS CHAPTER 3 2026 1080p AMZN WEB-DL H264-KyoGo",
-        "Cold Storage 2026 1080p AMZN WEB-DL H264-KyoGo",
-        "Others 2025 1080p AMZN WEB-DL H264-KHN",
-        "Outerlands 2025 1080p AMZN WEB-DL H264-MADSKY",
-        "Loving Every Minute 2023 1080p AMZN WEB-DL H264-NaB",
-        "Roast Battle Canada S05 1080p AMZN WEB-DL H264-RAWR",
-        "Curiosa 2019 1080p AMZN WEB-DL H264-DJT",
-        "3 world-class ASX ETFs to buy and hold"
+        "Have I Got News For You US S04E07 720p AMZN WEB-DL H264-RAWR",
+        "The Princess Diaries S02 1080p AMZN WEB-DL H264-RAWR",
+        "Cursed Hearse 2026 1080p AMZN WEB-DL H264-BobDobbs",
+        "Gone 2026 S01 720p AMZN WEB-DL H264-RAWR",
+        "Vanished Without A Trace 1999 AMZN WEB-DL H264-TEPES",
+        "All Thats Left Of You 2025 720p AMZN WEB-DL H264-MADSKY",
+        "Sahib Bibi Aur Ghulam 1962 1080p AMZN WEB-DL H264-KHN",
+        "Down To The Felt 2025 1080p AMZN WEB-DL H264-playWEB",
+        "adaptive-simple-text-classifier added to PyPI",
+        "Elizabethtown 2005 1080p AMZN WEB-DL H264-alfaHD",
+        "Deadly Crush 2018 1080p AMZN WEB-DL H264-HypStu",
+        "The Four Gates Of Death 2026 1080p AMZN WEB-DL H264-playWEB",
+        "Stork Of Hope 2025 720p AMZN WEB-DL DD+5 1 H264-playWEB",
+        "Dark Winds S04E04 1080p AMZN WEB-DL H264-RAWR",
+        "Mayday S26E07 1080p AMZN WEB-DL H264-Kitsune"
       ],
-      "chart_path": "data\\charts\\2026-03-07\\AMZN_trend.png"
+      "chart_path": "data\\charts\\2026-03-09\\AMZN_trend.png"
     }
   }
 ]

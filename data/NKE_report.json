@@ -1017,18 +1017,14 @@
     "meta": {
       "symbol": "NKE",
       "source_symbol": "NKE",
-      "generated_at": "2026-03-07T14:40:14Z",
+      "generated_at": "2026-03-09T14:16:42Z",
       "market_session_date": "2026-03-06",
       "mode": "live"
     },
     "market": {
-      "current_price": 57.0099983215332,
-      "predicted_price_next_session": 58.64567050933838,
+      "current_price": 55.560001373291016,
+      "predicted_price_next_session": 59.023699264526364,
       "history": [
-        {
-          "time": "2025-12-09",
-          "value": 62.912418365478516
-        },
         {
           "time": "2025-12-10",
           "value": 65.35619354248047
@@ -1287,7 +1283,7 @@
         "Hsp90 buffers behavioral variability by regulating Pdf transcription in clock neurons of Drosophila melanogaster",
         "What Makes Nike (NKE) an Investment Bet?"
       ],
-      "chart_path": "data\\charts\\2026-03-07\\NKE_trend.png"
+      "chart_path": "data\\charts\\2026-03-09\\NKE_trend.png"
     }
   }
 ]
