@@ -29,12 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const TIMEFRAME_TO_QUERY = {
         '1D': { period: '1d', interval: '2m' },
         '5D': { period: '5d', interval: '15m' },
-        '1M': { period: '1mo', interval: '1h' },
+        '1M': { period: '1mo', interval: '60m' },
         '6M': { period: '6mo', interval: '1d' },
         'YTD': { period: 'ytd', interval: '1d' },
         '1Y': { period: '1y', interval: '1d' },
         '5Y': { period: '5y', interval: '1wk' },
-        'MAX': { period: 'max', interval: '1mo' },
     };
 
     const themeToggle = document.getElementById('theme-toggle');
@@ -66,6 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const chartPlaceholder = document.getElementById('chart-placeholder');
     let lwChart = null;
     let currentTicker = '';
+    let latestPredictedPrice = null;
+    let latestAnalyzeHistory = [];
+    let latestAnalyzeTimeframe = '6M';
+    let historyRequestId = 0;
     const usdFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
 
     const chartTooltip = document.createElement('div');
@@ -157,18 +160,117 @@ document.addEventListener('DOMContentLoaded', () => {
         return match ? match[0] : getActiveTimeframe();
     }
 
-    async function loadTickerData(ticker, timeframeKey, keepDashboardVisible = false) {
+    async function fetchHistoryData(ticker, timeframeKey) {
         const normalizedTicker = String(ticker || '').trim().toUpperCase();
-        if (!normalizedTicker) return;
-
+        if (!normalizedTicker) return [];
         const activeTimeframe = TIMEFRAME_TO_QUERY[timeframeKey] ? timeframeKey : '6M';
         const mapped = TIMEFRAME_TO_QUERY[activeTimeframe];
         const params = new URLSearchParams({
-            ticker: normalizedTicker,
-            timeframe: activeTimeframe,
             period: mapped.period,
             interval: mapped.interval,
         });
+        const response = await fetch(`/api/history/${encodeURIComponent(normalizedTicker)}?${params.toString()}`);
+        const body = await response.json();
+        if (!response.ok) {
+            throw new Error(body.error || 'Failed to fetch history data');
+        }
+        const history = normalizeHistoryPoints(body.data);
+        if (history.length > 0) {
+            return history;
+        }
+        const providerMessage = String(body?.message || '').trim();
+        throw new Error(
+            providerMessage || `No history data returned for ${normalizedTicker} (${mapped.period}, ${mapped.interval}).`
+        );
+    }
+
+    async function fetchAnalyzeHistoryData(ticker, timeframeKey) {
+        const normalizedTicker = String(ticker || '').trim().toUpperCase();
+        if (!normalizedTicker) return { history: [], predicted: null };
+        const activeTimeframe = TIMEFRAME_TO_QUERY[timeframeKey] ? timeframeKey : '6M';
+        const mapped = TIMEFRAME_TO_QUERY[activeTimeframe];
+
+        const params = new URLSearchParams({ ticker: normalizedTicker });
+        params.set('timeframe', activeTimeframe);
+        params.set('period', mapped.period);
+        params.set('interval', mapped.interval);
+
+        const response = await fetch(`/api/analyze?${params.toString()}`);
+        const body = await response.json();
+        if (!response.ok) {
+            throw new Error(body.error || 'Failed to fetch fallback history data');
+        }
+
+        const history = normalizeHistoryPoints(body?.market?.history);
+        if (!history.length) {
+            throw new Error(`No fallback history data returned for ${normalizedTicker} (${mapped.period}, ${mapped.interval}).`);
+        }
+        const predicted = Number(body?.market?.predicted_price_next_session);
+        return { history, predicted: Number.isFinite(predicted) ? predicted : null };
+    }
+
+    async function refreshChartForTimeframe(ticker, timeframeKey, useLoadingState = true) {
+        const normalizedTicker = String(ticker || '').trim().toUpperCase();
+        if (!normalizedTicker) return;
+        const requestedTimeframe = TIMEFRAME_TO_QUERY[timeframeKey] ? timeframeKey : '6M';
+        const requestId = ++historyRequestId;
+        if (useLoadingState) {
+            setLoading(true);
+        }
+        try {
+            const history = await fetchHistoryData(normalizedTicker, requestedTimeframe);
+            if (requestId !== historyRequestId) return;
+            latestAnalyzeHistory = history;
+            latestAnalyzeTimeframe = requestedTimeframe;
+            renderChart(history, latestPredictedPrice);
+        } catch (error) {
+            if (requestId !== historyRequestId) return;
+            console.error(error);
+            try {
+                const fallback = await fetchAnalyzeHistoryData(normalizedTicker, requestedTimeframe);
+                if (requestId !== historyRequestId) return;
+                latestAnalyzeHistory = fallback.history;
+                latestAnalyzeTimeframe = requestedTimeframe;
+                if (Number.isFinite(fallback.predicted)) {
+                    latestPredictedPrice = fallback.predicted;
+                }
+                renderChart(fallback.history, latestPredictedPrice);
+                errorMsg.classList.add('hidden');
+                return;
+            } catch (fallbackError) {
+                if (requestId !== historyRequestId) return;
+                console.error(fallbackError);
+            }
+
+            if (Array.isArray(latestAnalyzeHistory) && latestAnalyzeHistory.length > 0) {
+                renderChart(latestAnalyzeHistory, latestPredictedPrice);
+                errorMsg.classList.add('hidden');
+                return;
+            }
+
+            if (chartContainer) {
+                chartPlaceholder.classList.remove('hidden');
+                chartPlaceholder.textContent = "Chart not available.";
+                chartTooltip.style.display = 'none';
+            }
+            errorMsg.textContent = error.message || 'Failed to fetch chart data';
+            errorMsg.classList.remove('hidden');
+        } finally {
+            if (useLoadingState) {
+                setLoading(false);
+            }
+        }
+    }
+
+    async function loadTickerData(ticker, keepDashboardVisible = false) {
+        const normalizedTicker = String(ticker || '').trim().toUpperCase();
+        if (!normalizedTicker) return;
+        const activeTimeframe = getActiveTimeframe();
+        const mapped = TIMEFRAME_TO_QUERY[activeTimeframe];
+        const params = new URLSearchParams({ ticker: normalizedTicker });
+        params.set('timeframe', activeTimeframe);
+        params.set('period', mapped.period);
+        params.set('interval', mapped.interval);
 
         setLoading(true);
         errorMsg.classList.add('hidden');
@@ -186,7 +288,11 @@ document.addEventListener('DOMContentLoaded', () => {
             dashboard.classList.remove('hidden');
             currentTicker = String(data?.meta?.symbol || normalizedTicker).toUpperCase();
             input.value = currentTicker;
+            latestPredictedPrice = Number(data?.market?.predicted_price_next_session);
+            latestAnalyzeHistory = normalizeHistoryPoints(data?.market?.history);
+            latestAnalyzeTimeframe = getActiveTimeframe();
             updateDashboard(data);
+            await refreshChartForTimeframe(currentTicker, getActiveTimeframe(), false);
         } catch (error) {
             console.error(error);
             errorMsg.textContent = error.message || 'Failed to fetch data';
@@ -203,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const ticker = input.value.trim().toUpperCase();
         if (!ticker) return;
-        await loadTickerData(ticker, getActiveTimeframe(), false);
+        await loadTickerData(ticker, false);
     });
 
     timeframeButtons.forEach((btn) => {
@@ -218,7 +324,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 errorMsg.classList.remove('hidden');
                 return;
             }
-            await loadTickerData(ticker, timeframeKey, true);
+            currentTicker = ticker;
+            await refreshChartForTimeframe(currentTicker, timeframeKey, true);
         });
     });
     setActiveTimeframe(getActiveTimeframe());
@@ -280,7 +387,20 @@ document.addEventListener('DOMContentLoaded', () => {
             if (normalizedTime === null) return;
             normalized.push({ time: normalizedTime, value: rawValue });
         });
-        return normalized;
+
+        // Ensure ascending, unique timestamps for Lightweight Charts stability.
+        const deduped = new Map();
+        normalized.forEach((point) => {
+            deduped.set(String(point.time), point);
+        });
+        return Array.from(deduped.values()).sort((a, b) => {
+            const toSortable = (t) => {
+                if (typeof t === 'number' && Number.isFinite(t)) return t;
+                const parsed = Date.parse(String(t));
+                return Number.isFinite(parsed) ? Math.round(parsed / 1000) : 0;
+            };
+            return toSortable(a.time) - toSortable(b.time);
+        });
     }
 
     function readCrosshairPrice(param, series) {
@@ -334,6 +454,198 @@ document.addEventListener('DOMContentLoaded', () => {
             minute: '2-digit',
             hour12: false,
         }).format(dt);
+    }
+
+    function renderChart(history, predictedPrice) {
+        if (lwChart) {
+            lwChart.remove();
+            lwChart = null;
+        }
+        chartTooltip.style.display = 'none';
+
+        if (!Array.isArray(history) || history.length === 0) {
+            if (chartContainer) {
+                chartPlaceholder.classList.remove('hidden');
+                chartPlaceholder.textContent = "Chart not available.";
+            }
+            return;
+        }
+
+        chartPlaceholder.classList.add('hidden');
+        const { width: chartWidth, height: chartHeight } = getChartDimensions();
+
+        const lastValue = Number(history[history.length - 1]?.value);
+        const isUptrend = Number.isFinite(predictedPrice) && Number.isFinite(lastValue)
+            ? predictedPrice >= lastValue
+            : true;
+        const lineColor = isUptrend ? '#10b981' : '#ef4444';
+        const topColor = isUptrend ? 'rgba(16, 185, 129, 0.4)' : 'rgba(239, 68, 68, 0.4)';
+        const bottomColor = isUptrend ? 'rgba(16, 185, 129, 0.0)' : 'rgba(239, 68, 68, 0.0)';
+
+        const cssVars = window.getComputedStyle(document.documentElement);
+        const chartTextColor = cssVars.getPropertyValue('--text-muted').trim() || '#9ca3af';
+        const chartGridColor = cssVars.getPropertyValue('--chart-border').trim() || 'rgba(255, 255, 255, 0.08)';
+        const crosshairColor = cssVars.getPropertyValue('--panel-border').trim() || 'rgba(148, 163, 184, 0.35)';
+        const labelBg = cssVars.getPropertyValue('--panel-bg').trim() || 'rgba(15, 23, 42, 0.9)';
+
+        lwChart = LightweightCharts.createChart(chartContainer, {
+            width: chartWidth || chartContainer.clientWidth,
+            height: chartHeight || 300,
+            layout: {
+                background: { type: 'solid', color: 'transparent' },
+                textColor: chartTextColor,
+            },
+            grid: {
+                vertLines: { color: chartGridColor },
+                horzLines: { color: chartGridColor },
+            },
+            rightPriceScale: {
+                visible: true,
+                autoScale: true,
+                borderVisible: false,
+                minimumWidth: 68,
+                scaleMargins: { top: 0.08, bottom: 0.08 },
+            },
+            timeScale: {
+                borderVisible: false,
+                timeVisible: true,
+                secondsVisible: false,
+                rightOffset: 2,
+            },
+            crosshair: {
+                mode: LightweightCharts.CrosshairMode.Normal,
+                vertLine: {
+                    width: 1,
+                    color: crosshairColor,
+                    style: LightweightCharts.LineStyle.Dashed,
+                    labelBackgroundColor: labelBg,
+                },
+                horzLine: {
+                    width: 1,
+                    color: crosshairColor,
+                    style: LightweightCharts.LineStyle.Dashed,
+                    labelBackgroundColor: labelBg,
+                },
+            },
+        });
+
+        let areaSeries;
+        if (typeof lwChart.addAreaSeries === 'function') {
+            areaSeries = lwChart.addAreaSeries({
+                lineColor: lineColor,
+                topColor: topColor,
+                bottomColor: bottomColor,
+                lineWidth: 2,
+                priceFormat: {
+                    type: 'price',
+                    precision: 2,
+                    minMove: 0.01,
+                },
+            });
+        } else {
+            // Version 5+ syntax
+            areaSeries = lwChart.addSeries(LightweightCharts.AreaSeries, {
+                lineColor: lineColor,
+                topColor: topColor,
+                bottomColor: bottomColor,
+                lineWidth: 2,
+                priceFormat: {
+                    type: 'price',
+                    precision: 2,
+                    minMove: 0.01,
+                },
+            });
+        }
+
+        areaSeries.setData(history);
+        lwChart.subscribeCrosshairMove((param) => {
+            if (!param || !param.point || !param.time) {
+                chartTooltip.style.display = 'none';
+                return;
+            }
+            if (!chartContainer || param.point.x < 0 || param.point.y < 0) {
+                chartTooltip.style.display = 'none';
+                return;
+            }
+
+            const priceAtCursor = readCrosshairPrice(param, areaSeries);
+            if (!Number.isFinite(priceAtCursor)) {
+                chartTooltip.style.display = 'none';
+                return;
+            }
+            const timeLabel = formatCrosshairTime(param.time);
+            chartTooltip.innerHTML = `<div>${timeLabel}</div><div>${usdFormatter.format(priceAtCursor)}</div>`;
+            chartTooltip.style.display = 'block';
+
+            const containerRect = chartContainer.getBoundingClientRect();
+            const tooltipWidth = chartTooltip.offsetWidth || 120;
+            const tooltipHeight = chartTooltip.offsetHeight || 44;
+            const x = Math.min(
+                Math.max(6, param.point.x + 12),
+                containerRect.width - tooltipWidth - 6
+            );
+            const y = Math.min(
+                Math.max(6, param.point.y + 12),
+                containerRect.height - tooltipHeight - 6
+            );
+            chartTooltip.style.left = `${x}px`;
+            chartTooltip.style.top = `${y}px`;
+        });
+
+        const lastDataPoint = history[history.length - 1];
+        if (Number.isFinite(predictedPrice) && lastDataPoint) {
+            const lastTime = lastDataPoint.time;
+            let predTime = null;
+            if (typeof lastTime === 'number' && Number.isFinite(lastTime)) {
+                let stepSeconds = 24 * 60 * 60;
+                if (history.length >= 2) {
+                    const prevTime = history[history.length - 2].time;
+                    if (typeof prevTime === 'number' && Number.isFinite(prevTime) && lastTime > prevTime) {
+                        stepSeconds = Math.max(60, Math.round(lastTime - prevTime));
+                    }
+                }
+                predTime = lastTime + stepSeconds;
+            } else {
+                const predictedDate = new Date(lastTime);
+                predictedDate.setDate(predictedDate.getDate() + 1);
+                if (predictedDate.getDay() === 6) predictedDate.setDate(predictedDate.getDate() + 2);
+                if (predictedDate.getDay() === 0) predictedDate.setDate(predictedDate.getDate() + 1);
+                const y = predictedDate.getFullYear();
+                const m = String(predictedDate.getMonth() + 1).padStart(2, '0');
+                const d = String(predictedDate.getDate()).padStart(2, '0');
+                predTime = `${y}-${m}-${d}`;
+            }
+
+            let lineSeries;
+            const lineOptions = {
+                color: '#f59e0b',
+                lineWidth: 2,
+                lineStyle: LightweightCharts.LineStyle.Dashed,
+            };
+            if (typeof lwChart.addLineSeries === 'function') {
+                lineSeries = lwChart.addLineSeries(lineOptions);
+            } else {
+                lineSeries = lwChart.addSeries(LightweightCharts.LineSeries, lineOptions);
+            }
+            lineSeries.setData([
+                { time: lastDataPoint.time, value: lastDataPoint.value },
+                { time: predTime, value: predictedPrice },
+            ]);
+
+            if (typeof lineSeries.setMarkers === 'function') {
+                lineSeries.setMarkers([
+                    {
+                        time: predTime,
+                        position: 'aboveBar',
+                        color: '#f59e0b',
+                        shape: 'circle',
+                        text: 'Predicted',
+                    },
+                ]);
+            }
+        }
+
+        lwChart.timeScale().fitContent();
     }
 
     function updateDashboard(data) {
@@ -436,211 +748,6 @@ document.addEventListener('DOMContentLoaded', () => {
             li.style.color = "var(--text-muted)";
             li.style.borderLeftColor = "transparent";
             headlinesList.appendChild(li);
-        }
-
-        // Chart display
-        if (lwChart) {
-            lwChart.remove();
-            lwChart = null;
-        }
-        chartTooltip.style.display = 'none';
-
-        const history = normalizeHistoryPoints(data?.market?.history);
-        if (history.length > 0) {
-            chartPlaceholder.classList.add('hidden');
-            const { width: chartWidth, height: chartHeight } = getChartDimensions();
-
-            const isUptrend = data.signals.trend_label.includes('UPTREND');
-            const lineColor = isUptrend ? '#10b981' : '#ef4444';
-            const topColor = isUptrend ? 'rgba(16, 185, 129, 0.4)' : 'rgba(239, 68, 68, 0.4)';
-            const bottomColor = isUptrend ? 'rgba(16, 185, 129, 0.0)' : 'rgba(239, 68, 68, 0.0)';
-
-            const cssVars = window.getComputedStyle(document.documentElement);
-            const chartTextColor = cssVars.getPropertyValue('--text-muted').trim() || '#9ca3af';
-            const chartGridColor = cssVars.getPropertyValue('--chart-border').trim() || 'rgba(255, 255, 255, 0.08)';
-            const crosshairColor = cssVars.getPropertyValue('--panel-border').trim() || 'rgba(148, 163, 184, 0.35)';
-            const labelBg = cssVars.getPropertyValue('--panel-bg').trim() || 'rgba(15, 23, 42, 0.9)';
-
-            lwChart = LightweightCharts.createChart(chartContainer, {
-                width: chartWidth || chartContainer.clientWidth,
-                height: chartHeight || 300,
-                layout: {
-                    background: { type: 'solid', color: 'transparent' },
-                    textColor: chartTextColor,
-                },
-                grid: {
-                    vertLines: { color: chartGridColor },
-                    horzLines: { color: chartGridColor },
-                },
-                rightPriceScale: {
-                    visible: true,
-                    autoScale: true,
-                    borderVisible: false,
-                    minimumWidth: 68,
-                    scaleMargins: { top: 0.08, bottom: 0.08 },
-                },
-                timeScale: {
-                    borderVisible: false,
-                    timeVisible: true,
-                    secondsVisible: false,
-                    rightOffset: 2,
-                },
-                crosshair: {
-                    mode: LightweightCharts.CrosshairMode.Normal,
-                    vertLine: {
-                        width: 1,
-                        color: crosshairColor,
-                        style: LightweightCharts.LineStyle.Dashed,
-                        labelBackgroundColor: labelBg,
-                    },
-                    horzLine: {
-                        width: 1,
-                        color: crosshairColor,
-                        style: LightweightCharts.LineStyle.Dashed,
-                        labelBackgroundColor: labelBg,
-                    },
-                },
-            });
-
-            let areaSeries;
-            if (typeof lwChart.addAreaSeries === 'function') {
-                areaSeries = lwChart.addAreaSeries({
-                    lineColor: lineColor,
-                    topColor: topColor,
-                    bottomColor: bottomColor,
-                    lineWidth: 2,
-                    priceFormat: {
-                        type: 'price',
-                        precision: 2,
-                        minMove: 0.01,
-                    },
-                });
-            } else {
-                // Version 5+ syntax
-                areaSeries = lwChart.addSeries(LightweightCharts.AreaSeries, {
-                    lineColor: lineColor,
-                    topColor: topColor,
-                    bottomColor: bottomColor,
-                    lineWidth: 2,
-                    priceFormat: {
-                        type: 'price',
-                        precision: 2,
-                        minMove: 0.01,
-                    },
-                });
-            }
-
-            areaSeries.setData(history);
-            lwChart.subscribeCrosshairMove((param) => {
-                if (!param || !param.point || !param.time) {
-                    chartTooltip.style.display = 'none';
-                    return;
-                }
-                if (!chartContainer || param.point.x < 0 || param.point.y < 0) {
-                    chartTooltip.style.display = 'none';
-                    return;
-                }
-
-                const priceAtCursor = readCrosshairPrice(param, areaSeries);
-                if (!Number.isFinite(priceAtCursor)) {
-                    chartTooltip.style.display = 'none';
-                    return;
-                }
-                const timeLabel = formatCrosshairTime(param.time);
-                chartTooltip.innerHTML = `<div>${timeLabel}</div><div>${usdFormatter.format(priceAtCursor)}</div>`;
-                chartTooltip.style.display = 'block';
-
-                const containerRect = chartContainer.getBoundingClientRect();
-                const tooltipWidth = chartTooltip.offsetWidth || 120;
-                const tooltipHeight = chartTooltip.offsetHeight || 44;
-                const x = Math.min(
-                    Math.max(6, param.point.x + 12),
-                    containerRect.width - tooltipWidth - 6
-                );
-                const y = Math.min(
-                    Math.max(6, param.point.y + 12),
-                    containerRect.height - tooltipHeight - 6
-                );
-                chartTooltip.style.left = `${x}px`;
-                chartTooltip.style.top = `${y}px`;
-            });
-
-            // Predict line
-            const lastDataPoint = history[history.length - 1];
-            if (data.market.predicted_price_next_session) {
-                let predTime = null;
-                const lastTime = lastDataPoint.time;
-                const intervalHint = String((data.meta && data.meta.interval) || '').toLowerCase();
-
-                if (typeof lastTime === 'number' && Number.isFinite(lastTime)) {
-                    let stepSeconds = 24 * 60 * 60; // default daily step
-                    if (history.length >= 2) {
-                        const prevTime = history[history.length - 2].time;
-                        if (typeof prevTime === 'number' && Number.isFinite(prevTime) && lastTime > prevTime) {
-                            stepSeconds = Math.max(60, Math.round(lastTime - prevTime));
-                        }
-                    } else if (intervalHint.endsWith('h')) {
-                        const hours = parseInt(intervalHint, 10);
-                        if (Number.isFinite(hours) && hours > 0) {
-                            stepSeconds = hours * 60 * 60;
-                        }
-                    } else if (intervalHint.endsWith('m')) {
-                        const mins = parseInt(intervalHint, 10);
-                        if (Number.isFinite(mins) && mins > 0) {
-                            stepSeconds = mins * 60;
-                        }
-                    }
-                    predTime = lastTime + stepSeconds;
-                } else {
-                    const predictedDate = new Date(lastTime);
-                    predictedDate.setDate(predictedDate.getDate() + 1);
-
-                    // skip weekend for legacy date-string datasets
-                    if (predictedDate.getDay() === 6) predictedDate.setDate(predictedDate.getDate() + 2);
-                    if (predictedDate.getDay() === 0) predictedDate.setDate(predictedDate.getDate() + 1);
-
-                    const y = predictedDate.getFullYear();
-                    const m = String(predictedDate.getMonth() + 1).padStart(2, '0');
-                    const d = String(predictedDate.getDate()).padStart(2, '0');
-                    predTime = `${y}-${m}-${d}`;
-                }
-
-                let lineSeries;
-                const lineOptions = {
-                    color: '#f59e0b',
-                    lineWidth: 2,
-                    lineStyle: LightweightCharts.LineStyle.Dashed,
-                };
-                if (typeof lwChart.addLineSeries === 'function') {
-                    lineSeries = lwChart.addLineSeries(lineOptions);
-                } else {
-                    lineSeries = lwChart.addSeries(LightweightCharts.LineSeries, lineOptions);
-                }
-                lineSeries.setData([
-                    { time: lastDataPoint.time, value: lastDataPoint.value },
-                    { time: predTime, value: data.market.predicted_price_next_session }
-                ]);
-
-                // Create a marker for the prediction
-                lineSeries.setMarkers([
-                    {
-                        time: predTime,
-                        position: 'aboveBar',
-                        color: '#f59e0b',
-                        shape: 'circle',
-                        text: 'Predicted',
-                    }
-                ]);
-            }
-
-            lwChart.timeScale().fitContent();
-
-        } else {
-            if (chartContainer) {
-                chartPlaceholder.classList.remove('hidden');
-                chartPlaceholder.textContent = "Chart not available.";
-                chartTooltip.style.display = 'none';
-            }
         }
     }
 });
