@@ -18,6 +18,17 @@ except ImportError as e:
 app = Flask(__name__)
 CORS(app) # Enable CORS for all routes
 
+TIMEFRAME_TO_YFINANCE = {
+    "1D": ("1d", "2m"),
+    "5D": ("5d", "15m"),
+    "1M": ("1mo", "1h"),
+    "6M": ("6mo", "1d"),
+    "YTD": ("ytd", "1d"),
+    "1Y": ("1y", "1d"),
+    "5Y": ("5y", "1wk"),
+    "MAX": ("max", "1mo"),
+}
+
 @app.route('/')
 def index():
     """Serve the main dashboard."""
@@ -34,11 +45,31 @@ def analyze_ticker():
         return jsonify({"error": "Ticker parameter is required"}), 400
 
     ticker = str(ticker).strip().upper()
+    timeframe = str(request.args.get('timeframe', '') or '').strip().upper()
+
+    if timeframe:
+        mapped = TIMEFRAME_TO_YFINANCE.get(timeframe)
+        if not mapped:
+            return jsonify({
+                "error": "Invalid timeframe. Supported values: 1D, 5D, 1M, 6M, YTD, 1Y, 5Y, MAX."
+            }), 400
+        period, interval = mapped
+    else:
+        period = str(request.args.get('period', '60d') or '60d').strip()
+        interval = str(request.args.get('interval', '1d') or '1d').strip()
 
     try:
-        print(f"API Request for Analysis: {ticker}")
+        print(
+            f"API Request for Analysis: {ticker} | timeframe={timeframe or 'custom'} | "
+            f"period={period} interval={interval}"
+        )
         # Run the analysis for the single ticker quietly
-        report = iris_app.run_one_ticker(ticker, quiet=True)
+        report = iris_app.run_one_ticker(
+            ticker,
+            quiet=True,
+            period=period,
+            interval=interval,
+        )
         
         if report:
             return jsonify(report)

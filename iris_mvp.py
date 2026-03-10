@@ -357,22 +357,81 @@ class IRIS_System:
             json.dump(payload, f, indent=2)
         return str(summary_path)
 
-    def get_market_data(self, ticker):
-        """Fetches current price and 60-day history with features for the Prediction Engine."""
+    def get_market_data(self, ticker, period="60d", interval="1d"):
+        """Fetches market history/features and chart points using the requested yfinance period/interval."""
         try:
             stock = yf.Ticker(ticker)
             price = getattr(stock.fast_info, "last_price", None) or getattr(stock.fast_info, "previous_close", None)
             if price is None:
                 return None
-            # Use 60d for more robust feature computation (SMAs, etc.)
-            hist = stock.history(period="60d")
-            if hist is None or hist.empty or len(hist) < 10:
+            hist = stock.history(period=period, interval=interval)
+            if hist is None or hist.empty:
                 return {
                     "current_price": float(price),
                     "history": None,
                     "history_df": None,
+                    "history_points": [],
                     "symbol": ticker.upper(),
                 }
+
+            def _infer_unix_seconds_from_index(index_values):
+                raw_index = pd.Index(index_values)
+
+                def _convert_numeric_to_seconds(numeric_values):
+                    numeric_values = np.asarray(numeric_values, dtype=np.float64)
+                    if numeric_values.size == 0:
+                        return np.array([], dtype=np.int64)
+                    abs_median = float(np.nanmedian(np.abs(numeric_values)))
+                    if not np.isfinite(abs_median):
+                        return np.array([], dtype=np.int64)
+                    if abs_median >= 1e17:
+                        secs = numeric_values / 1e9      # nanoseconds
+                    elif abs_median >= 1e14:
+                        secs = numeric_values / 1e6      # microseconds
+                    elif abs_median >= 1e11:
+                        secs = numeric_values / 1e3      # milliseconds
+                    else:
+                        secs = numeric_values            # seconds
+                    return np.asarray(np.rint(secs), dtype=np.int64)
+
+                if isinstance(raw_index, pd.DatetimeIndex):
+                    dt_index = raw_index.tz_localize("UTC") if raw_index.tz is None else raw_index.tz_convert("UTC")
+                    raw_int = np.asarray(dt_index.astype("int64"), dtype=np.int64)
+                    # Handle malformed datetime indexes that were created with wrong epoch units.
+                    abs_median = float(np.nanmedian(np.abs(raw_int))) if raw_int.size else 0.0
+                    if 1e8 <= abs_median < 1e14:
+                        unix_seconds = _convert_numeric_to_seconds(raw_int)
+                    else:
+                        unix_seconds = np.asarray(raw_int // 10**9, dtype=np.int64)
+                else:
+                    numeric_index = pd.to_numeric(raw_index, errors="coerce")
+                    numeric_valid = np.isfinite(numeric_index)
+                    if np.any(numeric_valid):
+                        unix_seconds = np.full(len(raw_index), -1, dtype=np.int64)
+                        unix_seconds[numeric_valid] = _convert_numeric_to_seconds(np.asarray(numeric_index[numeric_valid], dtype=np.float64))
+                    else:
+                        dt_index = pd.to_datetime(raw_index.astype(str), utc=True, errors="coerce")
+                        unix_seconds = np.asarray(dt_index.astype("int64") // 10**9, dtype=np.int64)
+                return unix_seconds
+
+            close_series = pd.to_numeric(hist.get("Close"), errors="coerce") if "Close" in hist.columns else None
+            if close_series is None:
+                return {
+                    "current_price": float(price),
+                    "history": None,
+                    "history_df": None,
+                    "history_points": [],
+                    "symbol": ticker.upper(),
+                }
+
+            close_values = np.asarray(close_series, dtype=np.float64)
+            unix_seconds_all = _infer_unix_seconds_from_index(hist.index)
+            valid_chart_mask = np.isfinite(close_values) & np.isfinite(unix_seconds_all) & (unix_seconds_all >= 1e8)
+            history_points = [
+                {"time": int(ts), "value": float(val)}
+                for ts, val in zip(unix_seconds_all[valid_chart_mask], close_values[valid_chart_mask])
+            ]
+            history_values = close_values[valid_chart_mask]
             # Build feature-rich DataFrame for better model accuracy
             df = hist[["Close"]].copy()
             if "Volume" in hist.columns:
@@ -403,10 +462,12 @@ class IRIS_System:
             df["rsi_14"] = df["rsi_14"].fillna(50.0).clip(0.0, 100.0)
             df["Volume"] = df["Volume"].fillna(0.0).clip(lower=0.0)
             df = df.dropna(subset=["Close", "sma_5", "sma_10", "sma_20", "returns_1d", "rsi_14", "Volume"])
+
             return {
                 "current_price": float(price),
-                "history": df["Close"].values,
-                "history_df": df,
+                "history": history_values if len(history_values) else None,
+                "history_df": df if not df.empty else None,
+                "history_points": history_points,
                 "symbol": ticker.upper(),
             }
         except Exception:
@@ -702,7 +763,14 @@ class IRIS_System:
         plt.close(fig)
         return str(path)
 
-    def run_one_ticker(self, ticker: str, quiet: bool = False, interactive_prompt: bool = False):
+    def run_one_ticker(
+        self,
+        ticker: str,
+        quiet: bool = False,
+        interactive_prompt: bool = False,
+        period: str = "60d",
+        interval: str = "1d",
+    ):
         """Run analysis for a single ticker; returns report dict or None."""
         ticker = self.resolve_user_ticker_input(ticker, interactive_prompt=interactive_prompt, quiet=quiet)
         analyzed_ticker = str(ticker).strip().upper()
@@ -711,7 +779,7 @@ class IRIS_System:
             print(f"... Analyzing {analyzed_ticker} ...")
             if canonical_ticker != analyzed_ticker:
                 print(f"  Note: {analyzed_ticker} will be merged into canonical symbol {canonical_ticker}.")
-        data = self.get_market_data(analyzed_ticker)
+        data = self.get_market_data(analyzed_ticker, period=period, interval=interval)
         if not data:
             if not quiet:
                 print(f"  {analyzed_ticker}: Stock not found or connection error.")
@@ -753,11 +821,13 @@ class IRIS_System:
                 "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                 "market_session_date": market_session_date,
                 "mode": "live" if NEWS_API_KEY else "simulation",
+                "period": period,
+                "interval": interval,
             },
             "market": {
                 "current_price": float(data["current_price"]),
                 "predicted_price_next_session": float(predicted_price),
-                "history": [{"time": ts.strftime('%Y-%m-%d'), "value": float(price)} for ts, price in history_df["Close"].items()] if history_df is not None else [],
+                "history": data.get("history_points", []) if isinstance(data.get("history_points", []), list) else [],
             },
             "signals": {
                 "trend_label": trend_label,
