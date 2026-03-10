@@ -29,6 +29,11 @@ try:
 except ImportError:
     pass
 NEWS_API_KEY = os.environ.get("NEWS_API_KEY") or None
+PROJECT_ROOT = Path(__file__).resolve().parent
+DATA_DIR = PROJECT_ROOT / "data"
+SESSIONS_DIR = DATA_DIR / "sessions"
+CHARTS_DIR = DATA_DIR / "charts"
+YF_CACHE_DIR = DATA_DIR / "yfinance_tz_cache"
 TICKER_ALIASES = {
     "GOOGL": "GOOG",
 }
@@ -80,6 +85,41 @@ DEFAULT_TICKERS = normalize_ticker_list(
 class IRIS_System:
     def __init__(self):
         print("\n  Initializing IRIS Risk Engines...")
+        DATA_DIR.mkdir(parents=True, exist_ok=True)
+        YF_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        try:
+            cache_mod = getattr(yf, "cache", None)
+            cache_setter = getattr(cache_mod, "set_cache_location", None)
+            if callable(cache_setter):
+                cache_setter(str(YF_CACHE_DIR))
+            if hasattr(yf, "set_tz_cache_location"):
+                yf.set_tz_cache_location(str(YF_CACHE_DIR))
+        except Exception:
+            pass
+        try:
+            import sqlite3
+
+            probe_path = YF_CACHE_DIR / ".cache_probe.sqlite3"
+            conn = sqlite3.connect(str(probe_path))
+            conn.execute("CREATE TABLE IF NOT EXISTS _probe (id INTEGER)")
+            conn.close()
+            try:
+                probe_path.unlink()
+            except OSError:
+                pass
+        except Exception:
+            # Fall back to in-memory/dummy cache objects when SQLite cache is not writable.
+            try:
+                cache_mod = getattr(yf, "cache", None)
+                if cache_mod is not None:
+                    if hasattr(cache_mod, "_CookieCacheManager") and hasattr(cache_mod, "_CookieCacheDummy"):
+                        cache_mod._CookieCacheManager._Cookie_cache = cache_mod._CookieCacheDummy()
+                    if hasattr(cache_mod, "_ISINCacheManager") and hasattr(cache_mod, "_ISINCacheDummy"):
+                        cache_mod._ISINCacheManager._isin_cache = cache_mod._ISINCacheDummy()
+                    if hasattr(cache_mod, "_TzCacheManager") and hasattr(cache_mod, "_TzCacheDummy"):
+                        cache_mod._TzCacheManager._tz_cache = cache_mod._TzCacheDummy()
+            except Exception:
+                pass
         
         # Setup Sentiment Brain (FinBERT - financial sentiment model)
         print("   -> Loading FinBERT AI Model (This may take a moment on first run)...")
@@ -155,7 +195,7 @@ class IRIS_System:
 
     def merge_alias_reports(self):
         """Merge alias symbols into canonical report files (e.g. GOOGL -> GOOG) without dropping history."""
-        data_dir = Path("data")
+        data_dir = DATA_DIR
         if not data_dir.exists():
             return None
 
@@ -203,12 +243,12 @@ class IRIS_System:
         return None
 
     def save_report(self, report: dict, filename: str):
-        Path("data").mkdir(exist_ok=True)
+        DATA_DIR.mkdir(parents=True, exist_ok=True)
         canonical_filename = filename
         if filename.endswith("_report.json"):
             symbol = filename[:-12]
             canonical_filename = f"{normalize_ticker_symbol(symbol)}_report.json"
-        out_path = Path("data") / canonical_filename
+        out_path = DATA_DIR / canonical_filename
         
         # Load existing reports if file exists
         reports = []
@@ -231,7 +271,7 @@ class IRIS_System:
 
     def _load_symbol_reports(self, symbol: str):
         canonical_symbol = normalize_ticker_symbol(symbol)
-        out_path = Path("data") / f"{canonical_symbol}_report.json"
+        out_path = DATA_DIR / f"{canonical_symbol}_report.json"
         if not out_path.exists():
             return []
         return self._read_report_file(out_path)
@@ -346,13 +386,13 @@ class IRIS_System:
             "comparisons": comparisons,
         }
 
-        sessions_dir = Path("data") / "sessions" / session_date
+        sessions_dir = SESSIONS_DIR / session_date
         sessions_dir.mkdir(parents=True, exist_ok=True)
         summary_path = sessions_dir / "session_summary.json"
         with open(summary_path, "w", encoding="utf-8") as f:
             json.dump(payload, f, indent=2)
 
-        latest_path = Path("data") / "sessions" / "latest_session_summary.json"
+        latest_path = SESSIONS_DIR / "latest_session_summary.json"
         with open(latest_path, "w", encoding="utf-8") as f:
             json.dump(payload, f, indent=2)
         return str(summary_path)
@@ -396,7 +436,7 @@ class IRIS_System:
 
                 if isinstance(raw_index, pd.DatetimeIndex):
                     dt_index = raw_index.tz_localize("UTC") if raw_index.tz is None else raw_index.tz_convert("UTC")
-                    raw_int = np.asarray(dt_index.astype("int64"), dtype=np.int64)
+                    raw_int = np.asarray(dt_index.asi8, dtype=np.int64)
                     # Handle malformed datetime indexes that were created with wrong epoch units.
                     abs_median = float(np.nanmedian(np.abs(raw_int))) if raw_int.size else 0.0
                     if 1e8 <= abs_median < 1e14:
@@ -411,7 +451,7 @@ class IRIS_System:
                         unix_seconds[numeric_valid] = _convert_numeric_to_seconds(np.asarray(numeric_index[numeric_valid], dtype=np.float64))
                     else:
                         dt_index = pd.to_datetime(raw_index.astype(str), utc=True, errors="coerce")
-                        unix_seconds = np.asarray(dt_index.astype("int64") // 10**9, dtype=np.int64)
+                        unix_seconds = np.asarray(dt_index.asi8 // 10**9, dtype=np.int64)
                 return unix_seconds
 
             close_series = pd.to_numeric(hist.get("Close"), errors="coerce") if "Close" in hist.columns else None
@@ -733,11 +773,13 @@ class IRIS_System:
 
         return label, predicted_price
 
-    def draw_chart(self, symbol: str, history_df, current_price: float, predicted_price: float, trend_label: str, save_dir: str = "data/charts"):
+    def draw_chart(self, symbol: str, history_df, current_price: float, predicted_price: float, trend_label: str, save_dir: str = ""):
         """Draw live price history and prediction trend; save to dated subfolder under data/charts (YYYY-MM-DD)."""
         if not _HAS_MATPLOTLIB or history_df is None or history_df.empty:
             return None
-        base_dir = Path(save_dir)
+        base_dir = Path(save_dir) if str(save_dir or "").strip() else CHARTS_DIR
+        if not base_dir.is_absolute():
+            base_dir = PROJECT_ROOT / base_dir
         date_str = time.strftime("%Y-%m-%d")
         daily_dir = base_dir / date_str
         daily_dir.mkdir(parents=True, exist_ok=True)
@@ -761,7 +803,10 @@ class IRIS_System:
         path = daily_dir / f"{symbol}_trend.png"
         fig.savefig(path, dpi=120)
         plt.close(fig)
-        return str(path)
+        try:
+            return str(path.relative_to(PROJECT_ROOT)).replace("\\", "/")
+        except ValueError:
+            return str(path)
 
     def run_one_ticker(
         self,
@@ -770,6 +815,7 @@ class IRIS_System:
         interactive_prompt: bool = False,
         period: str = "60d",
         interval: str = "1d",
+        include_chart_history: bool = False,
     ):
         """Run analysis for a single ticker; returns report dict or None."""
         ticker = self.resolve_user_ticker_input(ticker, interactive_prompt=interactive_prompt, quiet=quiet)
@@ -827,7 +873,6 @@ class IRIS_System:
             "market": {
                 "current_price": float(data["current_price"]),
                 "predicted_price_next_session": float(predicted_price),
-                "history": data.get("history_points", []) if isinstance(data.get("history_points", []), list) else [],
             },
             "signals": {
                 "trend_label": trend_label,
@@ -851,6 +896,13 @@ class IRIS_System:
             print(f"  Chart saved: {chart_path}")
         if not quiet:
             print(f"  Report: {canonical_ticker} | {light} | Predicted next: ${predicted_price:.2f} | {saved_path}")
+
+        # Optionally include chart history in API response without storing it in report logs.
+        if include_chart_history:
+            history_points = data.get("history_points", []) if isinstance(data.get("history_points", []), list) else []
+            response = json.loads(json.dumps(report))
+            response.setdefault("market", {})["history"] = history_points
+            return response
         return report
 
     def run_auto(self, tickers: list):
