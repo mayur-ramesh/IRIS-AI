@@ -2,19 +2,23 @@
 Draw a trend-direction accuracy comparison chart for IRIS and three LLMs.
 
 Data sources:
-- data/<TICKER>_report.json (IRIS reports)
-- data/LLM reports/chatgpt_5.2.json
-- data/LLM reports/deepseek_v3.json
-- data/LLM reports/gemini_v3_pro.json
+- <data-dir>/<TICKER>_report.json (IRIS reports)
+- <data-dir>/LLM reports/chatgpt_5.2.json
+- <data-dir>/LLM reports/deepseek_v3.json
+- <data-dir>/LLM reports/gemini_v3_pro.json
 
-Default tracked tickers:
-AMZN, NVDA, TSLA, AAPL, GOOG
+Ticker selection order:
+1) --tickers
+2) watchlist.txt (project root)
+3) discovered *_report.json files in --data-dir
+4) fallback defaults
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import re
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -27,14 +31,14 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 
-TRACKED_TICKERS = ["AMZN", "NVDA", "TSLA", "AAPL", "GOOG"]
+DEFAULT_FALLBACK_TICKERS = ["AMZN", "NVDA", "TSLA", "AAPL", "GOOG"]
 TICKER_ALIASES = {"GOOGL": "GOOG"}
 
 MODEL_CONFIG = {
-    "iris": {"label": "IRIS", "path": None},
-    "chatgpt_5_2": {"label": "ChatGPT 5.2", "path": Path("data") / "LLM reports" / "chatgpt_5.2.json"},
-    "deepseek_v3": {"label": "DeepSeek V3", "path": Path("data") / "LLM reports" / "deepseek_v3.json"},
-    "gemini_v3_pro": {"label": "Gemini V3 Pro", "path": Path("data") / "LLM reports" / "gemini_v3_pro.json"},
+    "iris": {"label": "IRIS", "relative_path": None},
+    "chatgpt_5_2": {"label": "ChatGPT 5.2", "relative_path": Path("LLM reports") / "chatgpt_5.2.json"},
+    "deepseek_v3": {"label": "DeepSeek V3", "relative_path": Path("LLM reports") / "deepseek_v3.json"},
+    "gemini_v3_pro": {"label": "Gemini V3 Pro", "relative_path": Path("LLM reports") / "gemini_v3_pro.json"},
 }
 
 MODEL_COLORS = {
@@ -93,11 +97,68 @@ def _filter_iris_by_date(
     }
 
 
-def _collect_actual_dates(actual_direction_map: Dict[str, Dict[str, int]]) -> List[str]:
+def _normalize_ticker_list(symbols: List[str]) -> List[str]:
+    seen = set()
+    normalized: List[str] = []
+    for symbol in symbols:
+        token = _canonical_ticker(symbol)
+        if not token or token in seen:
+            continue
+        seen.add(token)
+        normalized.append(token)
+    return normalized
+
+
+def _parse_tickers(raw: str) -> List[str]:
+    tokenized = [p for p in re.split(r"[\s,]+", str(raw or "").strip()) if p]
+    return _normalize_ticker_list(tokenized)
+
+
+def _load_watchlist_tickers(watchlist_path: Path) -> List[str]:
+    if not watchlist_path.exists():
+        return []
+    out: List[str] = []
+    for raw_line in watchlist_path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.split("#", 1)[0].strip()
+        if not line:
+            continue
+        out.extend([p for p in re.split(r"[\s,]+", line) if p])
+    return _normalize_ticker_list(out)
+
+
+def _discover_report_tickers(data_dir: Path) -> List[str]:
+    suffix = "_report.json"
+    discovered = []
+    for path in sorted(data_dir.glob(f"*{suffix}")):
+        name = path.name
+        if not name.endswith(suffix):
+            continue
+        discovered.append(name[: -len(suffix)])
+    return _normalize_ticker_list(discovered)
+
+
+def resolve_tracked_tickers(data_dir: Path, ticker_arg: str) -> List[str]:
+    explicit = _parse_tickers(ticker_arg)
+    if explicit:
+        return explicit
+
+    watchlist_path = Path(__file__).resolve().parent / "watchlist.txt"
+    from_watchlist = _load_watchlist_tickers(watchlist_path)
+    if from_watchlist:
+        return from_watchlist
+
+    discovered = _discover_report_tickers(data_dir)
+    if discovered:
+        return discovered
+
+    return DEFAULT_FALLBACK_TICKERS.copy()
+
+
+def _collect_actual_dates(actual_direction_map: Dict[str, Dict[str, int]], tracked_tickers: List[str]) -> List[str]:
     dates = sorted(
         {
             session_date
-            for ticker in TRACKED_TICKERS
+            for ticker in tracked_tickers
             for session_date in actual_direction_map.get(ticker, {}).keys()
         }
     )
@@ -170,12 +231,12 @@ def _upsert_prediction(store: Dict[Tuple[str, str], Prediction], item: Predictio
         store[key] = item
 
 
-def load_iris_predictions(data_dir: Path) -> Dict[str, List[Prediction]]:
+def load_iris_predictions(data_dir: Path, tracked_tickers: List[str]) -> Dict[str, List[Prediction]]:
     by_ticker_raw: Dict[str, Dict[Tuple[str, str], Prediction]] = {
-        ticker: {} for ticker in TRACKED_TICKERS
+        ticker: {} for ticker in tracked_tickers
     }
 
-    for ticker in TRACKED_TICKERS:
+    for ticker in tracked_tickers:
         path = data_dir / f"{ticker}_report.json"
         for item in _read_json_as_list(path):
             meta = item.get("meta") if isinstance(item.get("meta"), dict) else {}
@@ -211,8 +272,8 @@ def load_iris_predictions(data_dir: Path) -> Dict[str, List[Prediction]]:
 
 
 def build_actual_direction_map(iris_by_ticker: Dict[str, List[Prediction]]) -> Dict[str, Dict[str, int]]:
-    out: Dict[str, Dict[str, int]] = {ticker: {} for ticker in TRACKED_TICKERS}
-    for ticker in TRACKED_TICKERS:
+    out: Dict[str, Dict[str, int]] = {ticker: {} for ticker in iris_by_ticker.keys()}
+    for ticker in iris_by_ticker.keys():
         rows = iris_by_ticker.get(ticker, [])
         for idx in range(len(rows) - 1):
             current_row = rows[idx]
@@ -221,8 +282,9 @@ def build_actual_direction_map(iris_by_ticker: Dict[str, List[Prediction]]) -> D
     return out
 
 
-def load_llm_predictions(path: Path) -> List[Prediction]:
+def load_llm_predictions(path: Path, tracked_tickers: List[str]) -> List[Prediction]:
     store: Dict[Tuple[str, str], Prediction] = {}
+    tracked_set = set(tracked_tickers)
 
     for item in _read_json_as_list(path):
         parent_meta = item.get("meta") if isinstance(item.get("meta"), dict) else {}
@@ -242,7 +304,7 @@ def load_llm_predictions(path: Path) -> List[Prediction]:
             predicted_price: object,
         ) -> None:
             ticker = _canonical_ticker(symbol)
-            if ticker not in TRACKED_TICKERS or not session_date:
+            if ticker not in tracked_set or not session_date:
                 return
             current_value = _safe_float(current_price)
             predicted_value = _safe_float(predicted_price)
@@ -305,10 +367,11 @@ def load_llm_predictions(path: Path) -> List[Prediction]:
 def evaluate_model_accuracy(
     predictions: List[Prediction],
     actual_direction_map: Dict[str, Dict[str, int]],
+    tracked_tickers: List[str],
 ) -> dict:
     per_ticker = {
         ticker: {"correct": 0, "total": 0, "accuracy": None}
-        for ticker in TRACKED_TICKERS
+        for ticker in tracked_tickers
     }
     overall_correct = 0
     overall_total = 0
@@ -327,7 +390,7 @@ def evaluate_model_accuracy(
             overall_correct += 1
             per_ticker[row.ticker]["correct"] += 1
 
-    for ticker in TRACKED_TICKERS:
+    for ticker in tracked_tickers:
         total = per_ticker[ticker]["total"]
         if total > 0:
             per_ticker[ticker]["accuracy"] = per_ticker[ticker]["correct"] / total
@@ -344,18 +407,31 @@ def evaluate_model_accuracy(
     }
 
 
-def draw_accuracy_chart(stats_by_model: dict, output_path: Path, date_range_label: str) -> None:
-    labels = TRACKED_TICKERS + ["OVERALL"]
+def _format_ticker_set_label(tracked_tickers: List[str]) -> str:
+    if len(tracked_tickers) <= 6:
+        return ", ".join(tracked_tickers)
+    preview = ", ".join(tracked_tickers[:6])
+    return f"{len(tracked_tickers)} tickers ({preview}, ...)"
+
+
+def draw_accuracy_chart(
+    stats_by_model: dict,
+    output_path: Path,
+    date_range_label: str,
+    tracked_tickers: List[str],
+) -> None:
+    labels = tracked_tickers + ["OVERALL"]
     model_ids = list(MODEL_CONFIG.keys())
     x = np.arange(len(labels), dtype=float)
-    width = 0.18
+    width = min(0.22, 0.8 / max(len(model_ids), 1))
 
-    fig, ax = plt.subplots(figsize=(13.5, 7))
+    fig_width = max(13.5, 5.0 + 0.85 * len(labels))
+    fig, ax = plt.subplots(figsize=(fig_width, 7))
 
     for idx, model_id in enumerate(model_ids):
         model_stats = stats_by_model[model_id]
         acc_values = []
-        for ticker in TRACKED_TICKERS:
+        for ticker in tracked_tickers:
             ticker_acc = model_stats["per_ticker"][ticker]["accuracy"]
             acc_values.append(ticker_acc * 100 if ticker_acc is not None else 0.0)
         overall_acc = model_stats["overall"]["accuracy"]
@@ -371,7 +447,7 @@ def draw_accuracy_chart(stats_by_model: dict, output_path: Path, date_range_labe
             alpha=0.9,
         )
 
-        raw_accs = [model_stats["per_ticker"][ticker]["accuracy"] for ticker in TRACKED_TICKERS] + [overall_acc]
+        raw_accs = [model_stats["per_ticker"][ticker]["accuracy"] for ticker in tracked_tickers] + [overall_acc]
         for bar, raw_acc in zip(bars, raw_accs):
             x_pos = bar.get_x() + bar.get_width() / 2.0
             if raw_acc is None:
@@ -382,9 +458,11 @@ def draw_accuracy_chart(stats_by_model: dict, output_path: Path, date_range_labe
     ax.set_ylim(0, 100)
     ax.set_xticks(x)
     ax.set_xticklabels(labels)
+    if len(labels) > 8 or any(len(label) > 5 for label in labels):
+        plt.setp(ax.get_xticklabels(), rotation=30, ha="right")
     ax.set_ylabel("Trend Direction Accuracy (%)")
     ax.set_title(
-        "Trend Prediction Accuracy: IRIS vs LLMs (AMZN, NVDA, TSLA, AAPL, GOOG)\n"
+        f"Trend Prediction Accuracy: IRIS vs LLMs ({_format_ticker_set_label(tracked_tickers)})\n"
         f"Session range: {date_range_label}"
     )
     ax.grid(axis="y", linestyle="--", linewidth=0.7, alpha=0.35)
@@ -402,13 +480,14 @@ def save_summary_json(
     selected_start_date: Optional[str],
     selected_end_date: Optional[str],
     actual_dates: List[str],
+    tracked_tickers: List[str],
 ) -> Path:
     actual_start = actual_dates[0] if actual_dates else None
     actual_end = actual_dates[-1] if actual_dates else None
     payload = {
         "meta": {
             "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "tickers": TRACKED_TICKERS,
+            "tickers": tracked_tickers,
             "selected_range": {
                 "start_date": selected_start_date,
                 "end_date": selected_end_date,
@@ -436,9 +515,9 @@ def save_summary_json(
     return output_json
 
 
-def print_summary(stats_by_model: dict) -> None:
+def print_summary(stats_by_model: dict, tracked_tickers: List[str]) -> None:
     print("\nTrend Direction Accuracy Summary")
-    print("Ticker set:", ", ".join(TRACKED_TICKERS))
+    print("Ticker set:", ", ".join(tracked_tickers))
     print("-" * 72)
     for model_id, cfg in MODEL_CONFIG.items():
         overall = stats_by_model[model_id]["overall"]
@@ -464,6 +543,12 @@ def main() -> int:
         type=str,
         default="data",
         help="Path to data directory (default: data).",
+    )
+    parser.add_argument(
+        "--tickers",
+        type=str,
+        default="",
+        help="Comma/space-separated ticker list. Overrides watchlist/discovery.",
     )
     parser.add_argument(
         "--output",
@@ -495,39 +580,49 @@ def main() -> int:
     if start_date and end_date and start_date > end_date:
         parser.error("--start-date must be <= --end-date")
 
+    tracked_tickers = resolve_tracked_tickers(data_dir, args.tickers)
+    if not tracked_tickers:
+        parser.error("No tickers resolved. Use --tickers or provide watchlist/report files.")
+
     selected_range_label = _format_date_range_label(start_date, end_date)
 
-    iris_by_ticker_all = load_iris_predictions(data_dir)
+    iris_by_ticker_all = load_iris_predictions(data_dir, tracked_tickers)
     iris_by_ticker = _filter_iris_by_date(iris_by_ticker_all, start_date, end_date)
     actual_directions = build_actual_direction_map(iris_by_ticker)
-    actual_dates = _collect_actual_dates(actual_directions)
+    actual_dates = _collect_actual_dates(actual_directions, tracked_tickers)
 
     stats_by_model = {}
     for model_id, cfg in MODEL_CONFIG.items():
         if model_id == "iris":
             iris_predictions: List[Prediction] = []
-            for ticker in TRACKED_TICKERS:
+            for ticker in tracked_tickers:
                 iris_predictions.extend(iris_by_ticker.get(ticker, []))
-            stats_by_model[model_id] = evaluate_model_accuracy(iris_predictions, actual_directions)
+            stats_by_model[model_id] = evaluate_model_accuracy(
+                iris_predictions, actual_directions, tracked_tickers
+            )
             continue
 
-        model_path = cfg["path"]
+        relative_path = cfg["relative_path"]
+        model_path = (data_dir / relative_path) if relative_path is not None else None
         if model_path is None:
-            stats_by_model[model_id] = evaluate_model_accuracy([], actual_directions)
+            stats_by_model[model_id] = evaluate_model_accuracy([], actual_directions, tracked_tickers)
             continue
-        model_predictions = load_llm_predictions(model_path)
+        model_predictions = load_llm_predictions(model_path, tracked_tickers)
         model_predictions = _filter_predictions_by_date(model_predictions, start_date, end_date)
-        stats_by_model[model_id] = evaluate_model_accuracy(model_predictions, actual_directions)
+        stats_by_model[model_id] = evaluate_model_accuracy(
+            model_predictions, actual_directions, tracked_tickers
+        )
 
-    draw_accuracy_chart(stats_by_model, output_path, selected_range_label)
+    draw_accuracy_chart(stats_by_model, output_path, selected_range_label, tracked_tickers)
     summary_path = save_summary_json(
         stats_by_model,
         output_path,
         selected_start_date=start_date,
         selected_end_date=end_date,
         actual_dates=actual_dates,
+        tracked_tickers=tracked_tickers,
     )
-    print_summary(stats_by_model)
+    print_summary(stats_by_model, tracked_tickers)
     print(f"Date range: {selected_range_label}")
     print(f"\nChart saved: {output_path}")
     print(f"Summary JSON saved: {summary_path}")
