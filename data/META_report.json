@@ -1829,5 +1829,38 @@
       ],
       "chart_path": "data\\charts\\2026-03-10\\META_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "source_symbol": "META",
+      "generated_at": "2026-03-10T14:02:33Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 653.0700073242188,
+      "predicted_price_next_session": 654.521494140625
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.3916410803794861,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Ex-Meta execs pop up on Nscale board as rent-a-GPU firm raises $2B",
+          "url": "https://www.theregister.com/2026/03/09/nscale_board_picks/"
+        },
+        {
+          "title": "Meta Just Became the Best Stock in the Magnificent 7 \u2014 Here\u2019s the Data That Proves It",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_da68a88d-0601-4e22-9ccc-6bcc41e7f7bd"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/META_trend.png"
+    }
   }
 ]

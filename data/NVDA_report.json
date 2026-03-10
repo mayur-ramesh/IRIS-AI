@@ -1844,5 +1844,54 @@
       ],
       "chart_path": "data\\charts\\2026-03-10\\NVDA_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-10T14:02:40Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 182.360107421875,
+      "predicted_price_next_session": 183.4109959411621
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0002800126870473226,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Tesla billionaire doubles Nvidia stake; says convinced AI not a bubble, hopes contribution \u2018calms nervous market\u2019",
+          "url": "https://www.livemint.com/companies/news/tesla-billionaire-koguan-le-buys-additional-million-nvidia-shares-hopeful-little-contribution-can-calm-nervous-market-11773059338262.html"
+        },
+        {
+          "title": "NVIDIA Corporation (NVDA) Halts China-bound H200 Output, Reuters Reports",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_5ec118d0-26eb-427b-893a-643f8553d7ad"
+        },
+        {
+          "title": "Nvidia sets $4 million target cash bonus for CEO Huang under fiscal 2027 plan",
+          "url": "https://finance.yahoo.com/news/nvidia-sets-4-million-cash-212604965.html"
+        },
+        {
+          "title": "NVIDIA Corporation (NVDA) Price Target Increased to $220 at Deutsche Bank",
+          "url": "https://finance.yahoo.com/news/nvidia-corporation-nvda-price-target-172908747.html"
+        },
+        {
+          "title": "Nvidia pauses new AI startup bets after backing OpenAI, Anthropic",
+          "url": "https://www.thestreet.com/crypto/technology/nvidia-pauses-new-ai-startup-bets-after-backing-openai-anthropic"
+        },
+        {
+          "title": "Is Nvidia (NVDA) Shifting its Investment Strategy Towards OpenAI and Anthropic?",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_e249870d-d10a-41a9-8627-1d582e8ef6fc"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/NVDA_trend.png"
+    }
   }
 ]

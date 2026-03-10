@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-03-10T08:00:54Z",
+    "generated_at": "2026-03-10T14:02:44Z",
     "session_date": "2026-03-10",
     "symbols": [
       "AAPL",
@@ -24,3448 +24,621 @@
       "meta": {
         "symbol": "AAPL",
         "source_symbol": "AAPL",
-        "generated_at": "2026-03-10T08:00:29Z",
-        "market_session_date": "2026-03-09",
-        "mode": "live"
+        "generated_at": "2026-03-10T14:02:15Z",
+        "market_session_date": "2026-03-10",
+        "mode": "live",
+        "period": "60d",
+        "interval": "1d"
       },
       "market": {
-        "current_price": 259.8800048828125,
-        "predicted_price_next_session": 259.7519906616211,
-        "history": [
-          {
-            "time": "2025-12-10",
-            "value": 278.5193786621094
-          },
-          {
-            "time": "2025-12-11",
-            "value": 277.77008056640625
-          },
-          {
-            "time": "2025-12-12",
-            "value": 278.0198669433594
-          },
-          {
-            "time": "2025-12-15",
-            "value": 273.8537292480469
-          },
-          {
-            "time": "2025-12-16",
-            "value": 274.353271484375
-          },
-          {
-            "time": "2025-12-17",
-            "value": 271.58587646484375
-          },
-          {
-            "time": "2025-12-18",
-            "value": 271.935546875
-          },
-          {
-            "time": "2025-12-19",
-            "value": 273.4141845703125
-          },
-          {
-            "time": "2025-12-22",
-            "value": 270.7166748046875
-          },
-          {
-            "time": "2025-12-23",
-            "value": 272.1053771972656
-          },
-          {
-            "time": "2025-12-24",
-            "value": 273.55401611328125
-          },
-          {
-            "time": "2025-12-26",
-            "value": 273.1444091796875
-          },
-          {
-            "time": "2025-12-29",
-            "value": 273.50408935546875
-          },
-          {
-            "time": "2025-12-30",
-            "value": 272.82470703125
-          },
-          {
-            "time": "2025-12-31",
-            "value": 271.6058349609375
-          },
-          {
-            "time": "2026-01-02",
-            "value": 270.75665283203125
-          },
-          {
-            "time": "2026-01-05",
-            "value": 267.0101623535156
-          },
-          {
-            "time": "2026-01-06",
-            "value": 262.1147155761719
-          },
-          {
-            "time": "2026-01-07",
-            "value": 260.08660888671875
-          },
-          {
-            "time": "2026-01-08",
-            "value": 258.7978515625
-          },
-          {
-            "time": "2026-01-09",
-            "value": 259.1275329589844
-          },
-          {
-            "time": "2026-01-12",
-            "value": 260.0067138671875
-          },
-          {
-            "time": "2026-01-13",
-            "value": 260.8059387207031
-          },
-          {
-            "time": "2026-01-14",
-            "value": 259.71697998046875
-          },
-          {
-            "time": "2026-01-15",
-            "value": 257.9685974121094
-          },
-          {
-            "time": "2026-01-16",
-            "value": 255.29112243652344
-          },
-          {
-            "time": "2026-01-20",
-            "value": 246.46937561035156
-          },
-          {
-            "time": "2026-01-21",
-            "value": 247.41848754882812
-          },
-          {
-            "time": "2026-01-22",
-            "value": 248.1178436279297
-          },
-          {
-            "time": "2026-01-23",
-            "value": 247.80812072753906
-          },
-          {
-            "time": "2026-01-26",
-            "value": 255.17123413085938
-          },
-          {
-            "time": "2026-01-27",
-            "value": 258.0285339355469
-          },
-          {
-            "time": "2026-01-28",
-            "value": 256.2002868652344
-          },
-          {
-            "time": "2026-01-29",
-            "value": 258.0385437011719
-          },
-          {
-            "time": "2026-01-30",
-            "value": 259.2374267578125
-          },
-          {
-            "time": "2026-02-02",
-            "value": 269.7575988769531
-          },
-          {
-            "time": "2026-02-03",
-            "value": 269.22808837890625
-          },
-          {
-            "time": "2026-02-04",
-            "value": 276.23150634765625
-          },
-          {
-            "time": "2026-02-05",
-            "value": 275.6520690917969
-          },
-          {
-            "time": "2026-02-06",
-            "value": 277.8599853515625
-          },
-          {
-            "time": "2026-02-09",
-            "value": 274.6199951171875
-          },
-          {
-            "time": "2026-02-10",
-            "value": 273.67999267578125
-          },
-          {
-            "time": "2026-02-11",
-            "value": 275.5
-          },
-          {
-            "time": "2026-02-12",
-            "value": 261.7300109863281
-          },
-          {
-            "time": "2026-02-13",
-            "value": 255.77999877929688
-          },
-          {
-            "time": "2026-02-17",
-            "value": 263.8800048828125
-          },
-          {
-            "time": "2026-02-18",
-            "value": 264.3500061035156
-          },
-          {
-            "time": "2026-02-19",
-            "value": 260.5799865722656
-          },
-          {
-            "time": "2026-02-20",
-            "value": 264.5799865722656
-          },
-          {
-            "time": "2026-02-23",
-            "value": 266.17999267578125
-          },
-          {
-            "time": "2026-02-24",
-            "value": 272.1400146484375
-          },
-          {
-            "time": "2026-02-25",
-            "value": 274.2300109863281
-          },
-          {
-            "time": "2026-02-26",
-            "value": 272.95001220703125
-          },
-          {
-            "time": "2026-02-27",
-            "value": 264.17999267578125
-          },
-          {
-            "time": "2026-03-02",
-            "value": 264.7200012207031
-          },
-          {
-            "time": "2026-03-03",
-            "value": 263.75
-          },
-          {
-            "time": "2026-03-04",
-            "value": 262.5199890136719
-          },
-          {
-            "time": "2026-03-05",
-            "value": 260.2900085449219
-          },
-          {
-            "time": "2026-03-06",
-            "value": 257.4599914550781
-          },
-          {
-            "time": "2026-03-09",
-            "value": 259.8800048828125
-          }
-        ]
+        "current_price": 257.92498779296875,
+        "predicted_price_next_session": 258.71371978759765
       },
       "signals": {
-        "trend_label": "WEAK DOWNTREND ",
-        "sentiment_score": -0.06359819968541464,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": -0.23849324882030487,
         "check_engine_light": " RED (Risk Detected - Caution)"
       },
       "evidence": {
         "headlines_used": [
-          "Warren Buffett Is Gone. Here\u2019s What His Successor Greg Abel May Do With Berkshire\u2019s Biggest Stock Holdings",
-          "sharia-screener added to PyPI",
-          "Show HN: System R \u2013 Risk intelligence API for autonomous trading agents",
-          "Show HN: I logged Gemini's stock predictions for 38 days to study LLM drift",
-          "Apple Stock Slips 1.09% as Geopolitical Jitters Offset Fresh Product Momentum",
-          "Billionaire Peter Thiel Dumps $74,400,000 Stake in Three Assets, Including One Warren Buffett Favorite",
-          "The $200 Billion Question: Is Amazon Finally Ready to Pay a Dividend?",
-          "A $100 Billion and More Reasons to Buy Broadcom Stock Now",
-          "Apple Just Unveiled the New iPhone 17e. Should You Buy, Sell, or Hold AAPL Stock Now?",
-          "OKX is building a social network directly into its trading app after massive $25 billion valuation",
-          "Apple just made it easier for people to become customers",
-          "3 world-class ASX ETFs to buy and hold",
-          "polygon-options-puller added to PyPI",
-          "caracal-trading added to PyPI",
-          "Parallels\u3001Apple A18 Pro\u30c1\u30c3\u30d7\u3092\u642d\u8f09\u3057\u305fMacBook Neo\u306f8GB\u30e1\u30e2\u30ea\u3084\u30d5\u30a1\u30f3\u30ec\u30b9\u4ed5\u69d8\u3068\u3044\u3046\u5236\u9650\u304b\u3089Parallels Desktop\u306b\u3088\u308bWindows\u4eee\u60f3\u30de\u30b7\u30f3\u306e\u69cb\u7bc9\u306b\u306f\u5411\u304b\u305a\u3001\u4eca\u5f8c\u691c\u8a3c\u304c\u5fc5\u8981\u3060\u3068\u767a\u8868\u3002"
+          {
+            "title": "Apple Stock Slips 1.09% as Geopolitical Jitters Offset Fresh Product Momentum",
+            "url": "https://www.ibtimes.com.au/apple-stock-slips-109-geopolitical-jitters-offset-fresh-product-momentum-1862931"
+          },
+          {
+            "title": "Apple Just Unveiled the New iPhone 17e. Should You Buy, Sell, or Hold AAPL Stock Now?",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_fd091681-ef10-4009-b4d5-fd71a3936bb9"
+          },
+          {
+            "title": "Apple just made it easier for people to become customers",
+            "url": "https://macdailynews.com/2026/03/05/apple-just-made-it-easier-for-people-to-become-customers/"
+          },
+          {
+            "title": "Parallels\u3001Apple A18 Pro\u30c1\u30c3\u30d7\u3092\u642d\u8f09\u3057\u305fMacBook Neo\u306f8GB\u30e1\u30e2\u30ea\u3084\u30d5\u30a1\u30f3\u30ec\u30b9\u4ed5\u69d8\u3068\u3044\u3046\u5236\u9650\u304b\u3089Parallels Desktop\u306b\u3088\u308bWindows\u4eee\u60f3\u30de\u30b7\u30f3\u306e\u69cb\u7bc9\u306b\u306f\u5411\u304b\u305a\u3001\u4eca\u5f8c\u691c\u8a3c\u304c\u5fc5\u8981\u3060\u3068\u767a\u8868\u3002",
+            "url": "https://applech2.com/archives/20260305-parallels-desktop-and-macbook-neo-compatibility.html"
+          }
         ],
-        "chart_path": "data\\charts\\2026-03-10\\AAPL_trend.png"
+        "chart_path": "data/charts/2026-03-10/AAPL_trend.png"
       }
     },
     {
       "meta": {
         "symbol": "AMZN",
         "source_symbol": "AMZN",
-        "generated_at": "2026-03-10T08:00:31Z",
-        "market_session_date": "2026-03-09",
-        "mode": "live"
+        "generated_at": "2026-03-10T14:02:18Z",
+        "market_session_date": "2026-03-10",
+        "mode": "live",
+        "period": "60d",
+        "interval": "1d"
       },
       "market": {
-        "current_price": 213.49000549316406,
-        "predicted_price_next_session": 213.99550537109374,
-        "history": [
-          {
-            "time": "2025-12-10",
-            "value": 231.77999877929688
-          },
-          {
-            "time": "2025-12-11",
-            "value": 230.27999877929688
-          },
-          {
-            "time": "2025-12-12",
-            "value": 226.19000244140625
-          },
-          {
-            "time": "2025-12-15",
-            "value": 222.5399932861328
-          },
-          {
-            "time": "2025-12-16",
-            "value": 222.55999755859375
-          },
-          {
-            "time": "2025-12-17",
-            "value": 221.27000427246094
-          },
-          {
-            "time": "2025-12-18",
-            "value": 226.75999450683594
-          },
-          {
-            "time": "2025-12-19",
-            "value": 227.35000610351562
-          },
-          {
-            "time": "2025-12-22",
-            "value": 228.42999267578125
-          },
-          {
-            "time": "2025-12-23",
-            "value": 232.13999938964844
-          },
-          {
-            "time": "2025-12-24",
-            "value": 232.3800048828125
-          },
-          {
-            "time": "2025-12-26",
-            "value": 232.52000427246094
-          },
-          {
-            "time": "2025-12-29",
-            "value": 232.07000732421875
-          },
-          {
-            "time": "2025-12-30",
-            "value": 232.52999877929688
-          },
-          {
-            "time": "2025-12-31",
-            "value": 230.82000732421875
-          },
-          {
-            "time": "2026-01-02",
-            "value": 226.5
-          },
-          {
-            "time": "2026-01-05",
-            "value": 233.05999755859375
-          },
-          {
-            "time": "2026-01-06",
-            "value": 240.92999267578125
-          },
-          {
-            "time": "2026-01-07",
-            "value": 241.55999755859375
-          },
-          {
-            "time": "2026-01-08",
-            "value": 246.2899932861328
-          },
-          {
-            "time": "2026-01-09",
-            "value": 247.3800048828125
-          },
-          {
-            "time": "2026-01-12",
-            "value": 246.47000122070312
-          },
-          {
-            "time": "2026-01-13",
-            "value": 242.60000610351562
-          },
-          {
-            "time": "2026-01-14",
-            "value": 236.64999389648438
-          },
-          {
-            "time": "2026-01-15",
-            "value": 238.17999267578125
-          },
-          {
-            "time": "2026-01-16",
-            "value": 239.1199951171875
-          },
-          {
-            "time": "2026-01-20",
-            "value": 231.0
-          },
-          {
-            "time": "2026-01-21",
-            "value": 231.30999755859375
-          },
-          {
-            "time": "2026-01-22",
-            "value": 234.33999633789062
-          },
-          {
-            "time": "2026-01-23",
-            "value": 239.16000366210938
-          },
-          {
-            "time": "2026-01-26",
-            "value": 238.4199981689453
-          },
-          {
-            "time": "2026-01-27",
-            "value": 244.67999267578125
-          },
-          {
-            "time": "2026-01-28",
-            "value": 243.00999450683594
-          },
-          {
-            "time": "2026-01-29",
-            "value": 241.72999572753906
-          },
-          {
-            "time": "2026-01-30",
-            "value": 239.3000030517578
-          },
-          {
-            "time": "2026-02-02",
-            "value": 242.9600067138672
-          },
-          {
-            "time": "2026-02-03",
-            "value": 238.6199951171875
-          },
-          {
-            "time": "2026-02-04",
-            "value": 232.99000549316406
-          },
-          {
-            "time": "2026-02-05",
-            "value": 222.69000244140625
-          },
-          {
-            "time": "2026-02-06",
-            "value": 210.32000732421875
-          },
-          {
-            "time": "2026-02-09",
-            "value": 208.72000122070312
-          },
-          {
-            "time": "2026-02-10",
-            "value": 206.9600067138672
-          },
-          {
-            "time": "2026-02-11",
-            "value": 204.0800018310547
-          },
-          {
-            "time": "2026-02-12",
-            "value": 199.60000610351562
-          },
-          {
-            "time": "2026-02-13",
-            "value": 198.7899932861328
-          },
-          {
-            "time": "2026-02-17",
-            "value": 201.14999389648438
-          },
-          {
-            "time": "2026-02-18",
-            "value": 204.7899932861328
-          },
-          {
-            "time": "2026-02-19",
-            "value": 204.86000061035156
-          },
-          {
-            "time": "2026-02-20",
-            "value": 210.11000061035156
-          },
-          {
-            "time": "2026-02-23",
-            "value": 205.27000427246094
-          },
-          {
-            "time": "2026-02-24",
-            "value": 208.55999755859375
-          },
-          {
-            "time": "2026-02-25",
-            "value": 210.63999938964844
-          },
-          {
-            "time": "2026-02-26",
-            "value": 207.9199981689453
-          },
-          {
-            "time": "2026-02-27",
-            "value": 210.0
-          },
-          {
-            "time": "2026-03-02",
-            "value": 208.38999938964844
-          },
-          {
-            "time": "2026-03-03",
-            "value": 208.72999572753906
-          },
-          {
-            "time": "2026-03-04",
-            "value": 216.82000732421875
-          },
-          {
-            "time": "2026-03-05",
-            "value": 218.94000244140625
-          },
-          {
-            "time": "2026-03-06",
-            "value": 213.2100067138672
-          },
-          {
-            "time": "2026-03-09",
-            "value": 213.49000549316406
-          }
-        ]
+        "current_price": 213.3300018310547,
+        "predicted_price_next_session": 214.64630401611328
       },
       "signals": {
-        "trend_label": "WEAK UPTREND ",
-        "sentiment_score": 0.060727047920227054,
+        "trend_label": "STRONG UPTREND ",
+        "sentiment_score": 0.011747149626413982,
         "check_engine_light": " GREEN (Safe to Proceed)"
       },
       "evidence": {
         "headlines_used": [
-          "Amazon.com, Inc. (AMZN) Among Bill Ackman\u2019s Top Picks Amid Strong Secular Growth Trends",
-          "Pledge This 2006 1080p AMZN WEB-DL x264-FLUX",
-          "Mock The Week S22E06 720p AMZN WEB-DL H264-RAWR",
-          "Eminem AKA 2004 AMZN WEB-DL H264-Kitsune",
-          "The Last Drive-in With Joe Bob Briggs S33E24 720p AMZN WEB-DL H264-BFM",
-          "The Last Drive-in With Joe Bob Briggs S33E23 720p AMZN WEB-DL H264-BFM",
-          "Have I Got News For You US S04E07 720p AMZN WEB-DL H264-RAWR",
-          "Compute Capacity Offering Support to Amazon (AMZN)",
-          "The Princess Diaries S02 1080p AMZN WEB-DL H264-RAWR",
-          "Cursed Hearse 2026 1080p AMZN WEB-DL H264-BobDobbs",
-          "Gone 2026 S01 720p AMZN WEB-DL H264-RAWR",
-          "Vanished Without A Trace 1999 AMZN WEB-DL H264-TEPES",
-          "All Thats Left Of You 2025 720p AMZN WEB-DL H264-MADSKY",
-          "Sahib Bibi Aur Ghulam 1962 1080p AMZN WEB-DL H264-KHN",
-          "Down To The Felt 2025 1080p AMZN WEB-DL H264-playWEB"
+          {
+            "title": "Clairtone 2025 720p AMZN WEB-DL H264-Kitsune",
+            "url": "https://post.rlsbb.to/clairtone-2025-720p-amzn-web-dl-h264-kitsune/"
+          },
+          {
+            "title": "Stripped Down S01E01 720p AMZN WEB-DL H264-RAWR",
+            "url": "https://post.rlsbb.to/stripped-down-s01e01-720p-amzn-web-dl-h264-rawr/"
+          },
+          {
+            "title": "Amazon.com, Inc. (AMZN) Among Bill Ackman\u2019s Top Picks Amid Strong Secular Growth Trends",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_9e5833a7-6ba2-4217-b45b-c72bab903d3e"
+          },
+          {
+            "title": "Pledge This 2006 1080p AMZN WEB-DL x264-FLUX",
+            "url": "https://post.rlsbb.to/pledge-this-2006-1080p-amzn-web-dl-x264-flux/"
+          },
+          {
+            "title": "Mock The Week S22E06 720p AMZN WEB-DL H264-RAWR",
+            "url": "https://post.rlsbb.to/mock-the-week-s22e06-720p-amzn-web-dl-h264-rawr/"
+          },
+          {
+            "title": "Eminem AKA 2004 AMZN WEB-DL H264-Kitsune",
+            "url": "https://post.rlsbb.to/eminem-aka-2004-amzn-web-dl-h264-kitsune/"
+          },
+          {
+            "title": "The Last Drive-in With Joe Bob Briggs S33E24 720p AMZN WEB-DL H264-BFM",
+            "url": "https://post.rlsbb.to/the-last-drive-in-with-joe-bob-briggs-s33e24-720p-amzn-web-dl-h264-bfm/"
+          },
+          {
+            "title": "The Last Drive-in With Joe Bob Briggs S33E23 720p AMZN WEB-DL H264-BFM",
+            "url": "https://post.rlsbb.to/the-last-drive-in-with-joe-bob-briggs-s33e23-720p-amzn-web-dl-h264-bfm/"
+          },
+          {
+            "title": "Have I Got News For You US S04E07 720p AMZN WEB-DL H264-RAWR",
+            "url": "https://post.rlsbb.to/have-i-got-news-for-you-us-s04e07-720p-amzn-web-dl-h264-rawr/"
+          },
+          {
+            "title": "Compute Capacity Offering Support to Amazon (AMZN)",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_ac1a020e-b380-473a-842e-d678e786536e"
+          },
+          {
+            "title": "The Princess Diaries S02 1080p AMZN WEB-DL H264-RAWR",
+            "url": "https://post.rlsbb.to/the-princess-diaries-s02-1080p-amzn-web-dl-h264-rawr/"
+          },
+          {
+            "title": "Cursed Hearse 2026 1080p AMZN WEB-DL H264-BobDobbs",
+            "url": "https://post.rlsbb.to/cursed-hearse-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+          },
+          {
+            "title": "Gone 2026 S01 720p AMZN WEB-DL H264-RAWR",
+            "url": "https://post.rlsbb.to/gone-2026-s01-720p-amzn-web-dl-h264-rawr/"
+          },
+          {
+            "title": "Vanished Without A Trace 1999 AMZN WEB-DL H264-TEPES",
+            "url": "https://post.rlsbb.to/vanished-without-a-trace-1999-amzn-web-dl-h264-tepes/"
+          },
+          {
+            "title": "All Thats Left Of You 2025 720p AMZN WEB-DL H264-MADSKY",
+            "url": "https://post.rlsbb.to/all-thats-left-of-you-2025-720p-amzn-web-dl-h264-madsky/"
+          }
         ],
-        "chart_path": "data\\charts\\2026-03-10\\AMZN_trend.png"
+        "chart_path": "data/charts/2026-03-10/AMZN_trend.png"
       }
     },
     {
       "meta": {
         "symbol": "CL=F",
         "source_symbol": "CL=F",
-        "generated_at": "2026-03-10T08:00:34Z",
+        "generated_at": "2026-03-10T14:02:21Z",
         "market_session_date": "2026-03-10",
-        "mode": "live"
+        "mode": "live",
+        "period": "60d",
+        "interval": "1d"
       },
       "market": {
-        "current_price": 86.73999786376953,
-        "predicted_price_next_session": 82.05149963378906,
-        "history": [
-          {
-            "time": "2025-12-29",
-            "value": 58.08000183105469
-          },
-          {
-            "time": "2025-12-30",
-            "value": 57.95000076293945
-          },
-          {
-            "time": "2025-12-31",
-            "value": 57.41999816894531
-          },
-          {
-            "time": "2026-01-02",
-            "value": 57.31999969482422
-          },
-          {
-            "time": "2026-01-05",
-            "value": 58.31999969482422
-          },
-          {
-            "time": "2026-01-06",
-            "value": 57.130001068115234
-          },
-          {
-            "time": "2026-01-07",
-            "value": 55.9900016784668
-          },
-          {
-            "time": "2026-01-08",
-            "value": 57.7599983215332
-          },
-          {
-            "time": "2026-01-09",
-            "value": 59.119998931884766
-          },
-          {
-            "time": "2026-01-12",
-            "value": 59.5
-          },
-          {
-            "time": "2026-01-13",
-            "value": 61.150001525878906
-          },
-          {
-            "time": "2026-01-14",
-            "value": 62.02000045776367
-          },
-          {
-            "time": "2026-01-15",
-            "value": 59.189998626708984
-          },
-          {
-            "time": "2026-01-16",
-            "value": 59.439998626708984
-          },
-          {
-            "time": "2026-01-20",
-            "value": 60.34000015258789
-          },
-          {
-            "time": "2026-01-21",
-            "value": 60.619998931884766
-          },
-          {
-            "time": "2026-01-22",
-            "value": 59.36000061035156
-          },
-          {
-            "time": "2026-01-23",
-            "value": 61.06999969482422
-          },
-          {
-            "time": "2026-01-26",
-            "value": 60.630001068115234
-          },
-          {
-            "time": "2026-01-27",
-            "value": 62.38999938964844
-          },
-          {
-            "time": "2026-01-28",
-            "value": 63.209999084472656
-          },
-          {
-            "time": "2026-01-29",
-            "value": 65.41999816894531
-          },
-          {
-            "time": "2026-01-30",
-            "value": 65.20999908447266
-          },
-          {
-            "time": "2026-02-02",
-            "value": 62.13999938964844
-          },
-          {
-            "time": "2026-02-03",
-            "value": 63.209999084472656
-          },
-          {
-            "time": "2026-02-04",
-            "value": 65.13999938964844
-          },
-          {
-            "time": "2026-02-05",
-            "value": 63.290000915527344
-          },
-          {
-            "time": "2026-02-06",
-            "value": 63.54999923706055
-          },
-          {
-            "time": "2026-02-09",
-            "value": 64.36000061035156
-          },
-          {
-            "time": "2026-02-10",
-            "value": 63.959999084472656
-          },
-          {
-            "time": "2026-02-11",
-            "value": 64.62999725341797
-          },
-          {
-            "time": "2026-02-12",
-            "value": 62.84000015258789
-          },
-          {
-            "time": "2026-02-13",
-            "value": 62.88999938964844
-          },
-          {
-            "time": "2026-02-17",
-            "value": 62.33000183105469
-          },
-          {
-            "time": "2026-02-18",
-            "value": 65.19000244140625
-          },
-          {
-            "time": "2026-02-19",
-            "value": 66.43000030517578
-          },
-          {
-            "time": "2026-02-20",
-            "value": 66.38999938964844
-          },
-          {
-            "time": "2026-02-23",
-            "value": 66.30999755859375
-          },
-          {
-            "time": "2026-02-24",
-            "value": 65.62999725341797
-          },
-          {
-            "time": "2026-02-25",
-            "value": 65.41999816894531
-          },
-          {
-            "time": "2026-02-26",
-            "value": 65.20999908447266
-          },
-          {
-            "time": "2026-02-27",
-            "value": 67.0199966430664
-          },
-          {
-            "time": "2026-03-02",
-            "value": 71.2300033569336
-          },
-          {
-            "time": "2026-03-03",
-            "value": 74.55999755859375
-          },
-          {
-            "time": "2026-03-04",
-            "value": 74.66000366210938
-          },
-          {
-            "time": "2026-03-05",
-            "value": 81.01000213623047
-          },
-          {
-            "time": "2026-03-06",
-            "value": 90.9000015258789
-          },
-          {
-            "time": "2026-03-10",
-            "value": 86.73999786376953
-          }
-        ]
+        "current_price": 88.45999908447266,
+        "predicted_price_next_session": 87.51839935302735
       },
       "signals": {
         "trend_label": "STRONG DOWNTREND ",
-        "sentiment_score": 0.03539597193400065,
+        "sentiment_score": 0.0,
         "check_engine_light": " RED (Risk Detected - Caution)"
       },
       "evidence": {
         "headlines_used": [
-          "Chronological Reading for Monday March 9, 2026 (NIV)",
-          "Chronological Reading for Sunday March 8, 2026 (NIV)",
-          "Old/New Testament Reading for Sunday March 8, 2026 (NIV)",
-          "Chronological Reading for Saturday March 7, 2026 (NIV)",
-          "opendose-poppk added to PyPI",
-          "Built-in tandem catalysis in hierarchical pores for efficient vinyl chloride production",
-          "US oil prices notch biggest weekly surge since at least 1985 as Iran war disrupts Strait of Hormuz",
-          "Comparative susceptibility of Old World and New World bat cell lines to Zika virus: Insights into viral replication and inflammatory responses",
-          "Perception on blackflies and community ownership of the \u201cSlash-and-Clear\u201d vector control intervention in onchocerciasis-endemic communities along Edo-Ondo border in Southern Nigeria",
-          "Chronological Reading for Friday March 6, 2026 (NIV)",
-          "Cm-p5, a synthetic antimicrobial peptide shows anti-Trypanosoma cruzi activity",
-          "Old/New Testament Reading for Thursday March 5, 2026 (NIV)",
-          "Chronological Reading for Thursday March 5, 2026 (NIV)",
-          "HCl-selective ionization reactions for improved Cl detection robustness in post-inductively coupled plasma chemical ionization",
-          "Enhanced photocatalytic and antibacterial performance of LaMnCeO3/TiO2 composites modified with Ti3C2Tx MXene for efficient methyl red degradation"
+          {
+            "title": "Oil prices: How the Big Beautiful Bill has Trump's hands tied",
+            "url": ""
+          },
+          {
+            "title": "Oil prices aren't at recession levels, but they might be at $150",
+            "url": ""
+          }
         ],
-        "chart_path": "data\\charts\\2026-03-10\\CL=F_trend.png"
+        "chart_path": "data/charts/2026-03-10/CL=F_trend.png"
       }
     },
     {
       "meta": {
         "symbol": "DX-Y.NYB",
         "source_symbol": "DX-Y.NYB",
-        "generated_at": "2026-03-10T08:00:35Z",
+        "generated_at": "2026-03-10T14:02:24Z",
         "market_session_date": "2026-03-10",
-        "mode": "live"
+        "mode": "live",
+        "period": "60d",
+        "interval": "1d"
       },
       "market": {
-        "current_price": 98.52100372314453,
-        "predicted_price_next_session": 99.08683929443359,
-        "history": [
-          {
-            "time": "2025-12-29",
-            "value": 98.04000091552734
-          },
-          {
-            "time": "2025-12-30",
-            "value": 98.23999786376953
-          },
-          {
-            "time": "2025-12-31",
-            "value": 98.27999877929688
-          },
-          {
-            "time": "2026-01-02",
-            "value": 98.41999816894531
-          },
-          {
-            "time": "2026-01-05",
-            "value": 98.2699966430664
-          },
-          {
-            "time": "2026-01-06",
-            "value": 98.58000183105469
-          },
-          {
-            "time": "2026-01-07",
-            "value": 98.68000030517578
-          },
-          {
-            "time": "2026-01-08",
-            "value": 98.93000030517578
-          },
-          {
-            "time": "2026-01-09",
-            "value": 99.12999725341797
-          },
-          {
-            "time": "2026-01-12",
-            "value": 98.86000061035156
-          },
-          {
-            "time": "2026-01-13",
-            "value": 99.12999725341797
-          },
-          {
-            "time": "2026-01-14",
-            "value": 99.12999725341797
-          },
-          {
-            "time": "2026-01-15",
-            "value": 99.31999969482422
-          },
-          {
-            "time": "2026-01-16",
-            "value": 99.38999938964844
-          },
-          {
-            "time": "2026-01-20",
-            "value": 98.63999938964844
-          },
-          {
-            "time": "2026-01-21",
-            "value": 98.76000213623047
-          },
-          {
-            "time": "2026-01-22",
-            "value": 98.36000061035156
-          },
-          {
-            "time": "2026-01-23",
-            "value": 97.5999984741211
-          },
-          {
-            "time": "2026-01-26",
-            "value": 97.04000091552734
-          },
-          {
-            "time": "2026-01-27",
-            "value": 96.22000122070312
-          },
-          {
-            "time": "2026-01-28",
-            "value": 96.44999694824219
-          },
-          {
-            "time": "2026-01-29",
-            "value": 96.27999877929688
-          },
-          {
-            "time": "2026-01-30",
-            "value": 96.98999786376953
-          },
-          {
-            "time": "2026-02-02",
-            "value": 97.61000061035156
-          },
-          {
-            "time": "2026-02-03",
-            "value": 97.44000244140625
-          },
-          {
-            "time": "2026-02-04",
-            "value": 97.62000274658203
-          },
-          {
-            "time": "2026-02-05",
-            "value": 97.81999969482422
-          },
-          {
-            "time": "2026-02-06",
-            "value": 97.62999725341797
-          },
-          {
-            "time": "2026-02-09",
-            "value": 96.81999969482422
-          },
-          {
-            "time": "2026-02-10",
-            "value": 96.80000305175781
-          },
-          {
-            "time": "2026-02-11",
-            "value": 96.83000183105469
-          },
-          {
-            "time": "2026-02-12",
-            "value": 96.93000030517578
-          },
-          {
-            "time": "2026-02-13",
-            "value": 96.87999725341797
-          },
-          {
-            "time": "2026-02-17",
-            "value": 97.16000366210938
-          },
-          {
-            "time": "2026-02-18",
-            "value": 97.69999694824219
-          },
-          {
-            "time": "2026-02-19",
-            "value": 97.93000030517578
-          },
-          {
-            "time": "2026-02-20",
-            "value": 97.80000305175781
-          },
-          {
-            "time": "2026-02-23",
-            "value": 97.69999694824219
-          },
-          {
-            "time": "2026-02-24",
-            "value": 97.87999725341797
-          },
-          {
-            "time": "2026-02-25",
-            "value": 97.69999694824219
-          },
-          {
-            "time": "2026-02-26",
-            "value": 97.79000091552734
-          },
-          {
-            "time": "2026-02-27",
-            "value": 97.61000061035156
-          },
-          {
-            "time": "2026-03-02",
-            "value": 98.37999725341797
-          },
-          {
-            "time": "2026-03-03",
-            "value": 99.05000305175781
-          },
-          {
-            "time": "2026-03-04",
-            "value": 98.7699966430664
-          },
-          {
-            "time": "2026-03-05",
-            "value": 99.31999969482422
-          },
-          {
-            "time": "2026-03-06",
-            "value": 98.98999786376953
-          },
-          {
-            "time": "2026-03-09",
-            "value": 99.18000030517578
-          },
-          {
-            "time": "2026-03-10",
-            "value": 98.52100372314453
-          }
-        ]
+        "current_price": 98.73200225830078,
+        "predicted_price_next_session": 99.11129951477051
       },
       "signals": {
-        "trend_label": "STRONG UPTREND ",
-        "sentiment_score": -0.8678621252377828,
-        "check_engine_light": " RED (Risk Detected - Caution)"
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": 0.3939298689365387,
+        "check_engine_light": " GREEN (Safe to Proceed)"
       },
       "evidence": {
         "headlines_used": [
-          "Gold tumbles amid broader market sell-off as dollar rises",
-          "Stock market today: Dow falls by 700 points, S&P 500 and Nasdaq sink as oil surges amid war worries",
-          "Stock market today: Dow, S&P 500, Nasdaq slide as Trump's latest tariff salvo reverberates through markets",
-          "Stock market today: Dow, S&P 500, Nasdaq rise after Supreme Court strikes down Trump tariffs",
-          "Gold price below $5,000 as investors wait on Fed guidance for clues",
-          "Stock market today: Nasdaq, S&P 500 slide to kick off shortened week with AI fears in focus"
+          {
+            "title": "DX-Y.NYB announces date for shareholder meeting",
+            "url": ""
+          },
+          {
+            "title": "DX-Y.NYB news flow remains active amid market volatility",
+            "url": ""
+          }
         ],
-        "chart_path": "data\\charts\\2026-03-10\\DX-Y.NYB_trend.png"
+        "chart_path": "data/charts/2026-03-10/DX-Y.NYB_trend.png"
       }
     },
     {
       "meta": {
         "symbol": "GC=F",
         "source_symbol": "GC=F",
-        "generated_at": "2026-03-10T08:00:37Z",
+        "generated_at": "2026-03-10T14:02:26Z",
         "market_session_date": "2026-03-10",
-        "mode": "live"
+        "mode": "live",
+        "period": "60d",
+        "interval": "1d"
       },
       "market": {
-        "current_price": 5188.10009765625,
-        "predicted_price_next_session": 5133.866015625,
-        "history": [
-          {
-            "time": "2025-12-29",
-            "value": 4325.10009765625
-          },
-          {
-            "time": "2025-12-30",
-            "value": 4370.10009765625
-          },
-          {
-            "time": "2025-12-31",
-            "value": 4325.60009765625
-          },
-          {
-            "time": "2026-01-02",
-            "value": 4314.39990234375
-          },
-          {
-            "time": "2026-01-05",
-            "value": 4436.89990234375
-          },
-          {
-            "time": "2026-01-06",
-            "value": 4482.2001953125
-          },
-          {
-            "time": "2026-01-07",
-            "value": 4449.2998046875
-          },
-          {
-            "time": "2026-01-08",
-            "value": 4449.7001953125
-          },
-          {
-            "time": "2026-01-09",
-            "value": 4490.2998046875
-          },
-          {
-            "time": "2026-01-12",
-            "value": 4604.2998046875
-          },
-          {
-            "time": "2026-01-13",
-            "value": 4589.2001953125
-          },
-          {
-            "time": "2026-01-14",
-            "value": 4626.2998046875
-          },
-          {
-            "time": "2026-01-15",
-            "value": 4616.2998046875
-          },
-          {
-            "time": "2026-01-16",
-            "value": 4588.39990234375
-          },
-          {
-            "time": "2026-01-20",
-            "value": 4759.60009765625
-          },
-          {
-            "time": "2026-01-21",
-            "value": 4831.7998046875
-          },
-          {
-            "time": "2026-01-22",
-            "value": 4908.7998046875
-          },
-          {
-            "time": "2026-01-23",
-            "value": 4976.2001953125
-          },
-          {
-            "time": "2026-01-26",
-            "value": 5079.7001953125
-          },
-          {
-            "time": "2026-01-27",
-            "value": 5079.89990234375
-          },
-          {
-            "time": "2026-01-28",
-            "value": 5301.60009765625
-          },
-          {
-            "time": "2026-01-29",
-            "value": 5318.39990234375
-          },
-          {
-            "time": "2026-01-30",
-            "value": 4713.89990234375
-          },
-          {
-            "time": "2026-02-02",
-            "value": 4622.5
-          },
-          {
-            "time": "2026-02-03",
-            "value": 4903.7001953125
-          },
-          {
-            "time": "2026-02-04",
-            "value": 4920.39990234375
-          },
-          {
-            "time": "2026-02-05",
-            "value": 4861.39990234375
-          },
-          {
-            "time": "2026-02-06",
-            "value": 4951.2001953125
-          },
-          {
-            "time": "2026-02-09",
-            "value": 5050.89990234375
-          },
-          {
-            "time": "2026-02-10",
-            "value": 5003.7998046875
-          },
-          {
-            "time": "2026-02-11",
-            "value": 5071.60009765625
-          },
-          {
-            "time": "2026-02-12",
-            "value": 4923.7001953125
-          },
-          {
-            "time": "2026-02-13",
-            "value": 5022.0
-          },
-          {
-            "time": "2026-02-17",
-            "value": 4882.89990234375
-          },
-          {
-            "time": "2026-02-18",
-            "value": 4986.5
-          },
-          {
-            "time": "2026-02-19",
-            "value": 4975.89990234375
-          },
-          {
-            "time": "2026-02-20",
-            "value": 5059.2998046875
-          },
-          {
-            "time": "2026-02-23",
-            "value": 5204.7001953125
-          },
-          {
-            "time": "2026-02-24",
-            "value": 5155.7998046875
-          },
-          {
-            "time": "2026-02-25",
-            "value": 5206.39990234375
-          },
-          {
-            "time": "2026-02-26",
-            "value": 5176.5
-          },
-          {
-            "time": "2026-02-27",
-            "value": 5230.5
-          },
-          {
-            "time": "2026-03-02",
-            "value": 5294.39990234375
-          },
-          {
-            "time": "2026-03-03",
-            "value": 5107.39990234375
-          },
-          {
-            "time": "2026-03-04",
-            "value": 5120.2001953125
-          },
-          {
-            "time": "2026-03-05",
-            "value": 5065.2998046875
-          },
-          {
-            "time": "2026-03-06",
-            "value": 5146.10009765625
-          },
-          {
-            "time": "2026-03-10",
-            "value": 5188.10009765625
-          }
-        ]
+        "current_price": 5213.2998046875,
+        "predicted_price_next_session": 5119.538989257812
       },
       "signals": {
         "trend_label": "STRONG DOWNTREND ",
-        "sentiment_score": -0.04988439480463664,
+        "sentiment_score": 0.9235941171646118,
         "check_engine_light": " RED (Risk Detected - Caution)"
       },
       "evidence": {
         "headlines_used": [
-          "Old/New Testament Reading for Sunday March 8, 2026 (NIV)",
-          "Lyn governs the establishment and maintenance of B cell anergy by suppressing PI3K signaling",
-          "residue-protocol added to PyPI",
-          "Evaluating how demography and temperature increase might alter the burden of congenital Toxoplasmosis in Africa",
-          "From tests to truth: A misclassification-aware machine learning framework for estimating brucellosis seroprevalence in wild canids",
-          "Structural characterization and antifungal properties of sequentially extracted polysaccharides from Algerian Opuntia ficus-indica L. cladodes",
-          "Show HN: DeraineDB \u2013 A 33MB Vector DB in Zig/Go with Sub-Millisecond HNSW",
-          "Rob Rausch Bought Maura Higgins A Birkin After His \u2018Traitors\u2019 Win",
-          "Pandas vs. Polars: A Complete Comparison of Syntax, Speed, and Memory",
-          "Unique ecology of co-occurring functionally and phylogenetically undescribed species in the infant oral microbiome",
-          "Understanding security challenges in the software supply chain through causal relationships",
-          "DNA-based characterization of rays (Elasmobranchii: Batoidea) from Bangladesh using mitochondrial markers: Implications for conservation and management",
-          "The adaptor protein TASL is required for age-related B cell emergence and lupus-like disease development in mice",
-          "David Harbour\u2019s Alleged Partner Kicked Out Of Lily Allen Producer\u2019s Party In Stunning Scene",
-          "HUTCHMED Reports 2025 Full Year Results and Business Updates"
+          {
+            "title": "Gold price today, Tuesday, March 10: Gold rises after President Trump signalled quick end to Iran war",
+            "url": ""
+          }
         ],
-        "chart_path": "data\\charts\\2026-03-10\\GC=F_trend.png"
+        "chart_path": "data/charts/2026-03-10/GC=F_trend.png"
       }
     },
     {
       "meta": {
         "symbol": "GOOG",
         "source_symbol": "GOOG",
-        "generated_at": "2026-03-10T08:00:39Z",
-        "market_session_date": "2026-03-09",
-        "mode": "live"
+        "generated_at": "2026-03-10T14:02:28Z",
+        "market_session_date": "2026-03-10",
+        "mode": "live",
+        "period": "60d",
+        "interval": "1d"
       },
       "market": {
-        "current_price": 306.010009765625,
-        "predicted_price_next_session": 303.9187908935547,
-        "history": [
-          {
-            "time": "2025-12-10",
-            "value": 320.7740173339844
-          },
-          {
-            "time": "2025-12-11",
-            "value": 313.4791564941406
-          },
-          {
-            "time": "2025-12-12",
-            "value": 310.3013916015625
-          },
-          {
-            "time": "2025-12-15",
-            "value": 309.10223388671875
-          },
-          {
-            "time": "2025-12-16",
-            "value": 307.51336669921875
-          },
-          {
-            "time": "2025-12-17",
-            "value": 297.85015869140625
-          },
-          {
-            "time": "2025-12-18",
-            "value": 303.5361633300781
-          },
-          {
-            "time": "2025-12-19",
-            "value": 308.3927307128906
-          },
-          {
-            "time": "2025-12-22",
-            "value": 311.1108093261719
-          },
-          {
-            "time": "2025-12-23",
-            "value": 315.457763671875
-          },
-          {
-            "time": "2025-12-24",
-            "value": 315.4477844238281
-          },
-          {
-            "time": "2025-12-26",
-            "value": 314.7382507324219
-          },
-          {
-            "time": "2025-12-29",
-            "value": 314.168701171875
-          },
-          {
-            "time": "2025-12-30",
-            "value": 314.32855224609375
-          },
-          {
-            "time": "2025-12-31",
-            "value": 313.5790710449219
-          },
-          {
-            "time": "2026-01-02",
-            "value": 315.0980224609375
-          },
-          {
-            "time": "2026-01-05",
-            "value": 317.09661865234375
-          },
-          {
-            "time": "2026-01-06",
-            "value": 314.32855224609375
-          },
-          {
-            "time": "2026-01-07",
-            "value": 322.2030029296875
-          },
-          {
-            "time": "2026-01-08",
-            "value": 325.7804870605469
-          },
-          {
-            "time": "2026-01-09",
-            "value": 328.9082946777344
-          },
-          {
-            "time": "2026-01-12",
-            "value": 332.4957580566406
-          },
-          {
-            "time": "2026-01-13",
-            "value": 336.1931457519531
-          },
-          {
-            "time": "2026-01-14",
-            "value": 336.0732421875
-          },
-          {
-            "time": "2026-01-15",
-            "value": 332.92547607421875
-          },
-          {
-            "time": "2026-01-16",
-            "value": 330.1074523925781
-          },
-          {
-            "time": "2026-01-20",
-            "value": 321.9331970214844
-          },
-          {
-            "time": "2026-01-21",
-            "value": 328.1488342285156
-          },
-          {
-            "time": "2026-01-22",
-            "value": 330.6070861816406
-          },
-          {
-            "time": "2026-01-23",
-            "value": 328.19879150390625
-          },
-          {
-            "time": "2026-01-26",
-            "value": 333.35516357421875
-          },
-          {
-            "time": "2026-01-27",
-            "value": 334.76416015625
-          },
-          {
-            "time": "2026-01-28",
-            "value": 336.04327392578125
-          },
-          {
-            "time": "2026-01-29",
-            "value": 338.4216003417969
-          },
-          {
-            "time": "2026-01-30",
-            "value": 338.29168701171875
-          },
-          {
-            "time": "2026-02-02",
-            "value": 344.6571960449219
-          },
-          {
-            "time": "2026-02-03",
-            "value": 340.4601745605469
-          },
-          {
-            "time": "2026-02-04",
-            "value": 333.1053161621094
-          },
-          {
-            "time": "2026-02-05",
-            "value": 331.09674072265625
-          },
-          {
-            "time": "2026-02-06",
-            "value": 322.87255859375
-          },
-          {
-            "time": "2026-02-09",
-            "value": 324.171630859375
-          },
-          {
-            "time": "2026-02-10",
-            "value": 318.40570068359375
-          },
-          {
-            "time": "2026-02-11",
-            "value": 311.1108093261719
-          },
-          {
-            "time": "2026-02-12",
-            "value": 309.1521911621094
-          },
-          {
-            "time": "2026-02-13",
-            "value": 305.8045654296875
-          },
-          {
-            "time": "2026-02-17",
-            "value": 302.6068115234375
-          },
-          {
-            "time": "2026-02-18",
-            "value": 303.7260437011719
-          },
-          {
-            "time": "2026-02-19",
-            "value": 303.3462829589844
-          },
-          {
-            "time": "2026-02-20",
-            "value": 314.6783142089844
-          },
-          {
-            "time": "2026-02-23",
-            "value": 311.4705810546875
-          },
-          {
-            "time": "2026-02-24",
-            "value": 310.7011413574219
-          },
-          {
-            "time": "2026-02-25",
-            "value": 312.80963134765625
-          },
-          {
-            "time": "2026-02-26",
-            "value": 306.93377685546875
-          },
-          {
-            "time": "2026-02-27",
-            "value": 311.21075439453125
-          },
-          {
-            "time": "2026-03-02",
-            "value": 306.1443176269531
-          },
-          {
-            "time": "2026-03-03",
-            "value": 303.3462829589844
-          },
-          {
-            "time": "2026-03-04",
-            "value": 303.23638916015625
-          },
-          {
-            "time": "2026-03-05",
-            "value": 300.6981506347656
-          },
-          {
-            "time": "2026-03-06",
-            "value": 298.0899963378906
-          },
-          {
-            "time": "2026-03-09",
-            "value": 306.010009765625
-          }
-        ]
+        "current_price": 306.19989013671875,
+        "predicted_price_next_session": 303.02708435058594
       },
       "signals": {
         "trend_label": "STRONG DOWNTREND ",
-        "sentiment_score": -0.07749665180842082,
+        "sentiment_score": -0.19374162952105203,
         "check_engine_light": " RED (Risk Detected - Caution)"
       },
       "evidence": {
         "headlines_used": [
-          "Show HN: I logged Gemini's stock predictions for 38 days to study LLM drift",
-          "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
-          "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
-          "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
-          "Alphabet (GOOG) Doubled by the End of the Year. Here\u2019s How",
-          "Want to Invest in AI? Consider These 3 Bank Stocks.",
-          "Ray Dalio: Gold is a better option than Bitcoin, tech stocks because\u2026",
-          "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
-          "Longbridge Securities Launches the World\u2019s First Pre-Market U.S. Options Trading\uff0cEmpowering Investors to Overcome Time Zone Barriers and Stay Ahead of the Market Movement",
-          "New to the share market? Here are 3 ASX ETFs to buy for easy investing",
-          "Claude Code\u306bGoogle\u306eDeveloper Knowledge API & MCP Server\u306e\u8a2d\u5b9a\u3092\u3059\u308b",
-          "Today's news and jokes",
-          "Re: How long AS-PATH policies have you used",
-          "\u2018The Collapse of Everything AI\u2019 Could Hinge on Nvidia\u2019s Earnings. What Wall Street Expects from NVDA Stock.",
-          "IonQ Just Won a Golden Dome Contract. Should You Buy the Quantum Computing Stock Now?"
+          {
+            "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+            "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092"
+          },
+          {
+            "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+            "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701"
+          },
+          {
+            "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+            "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html"
+          },
+          {
+            "title": "Alphabet (GOOG) Doubled by the End of the Year. Here\u2019s How",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_3ec46630-08c4-434c-bab4-9cd0819f2621"
+          },
+          {
+            "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+            "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560"
+          },
+          {
+            "title": "Claude Code\u306bGoogle\u306eDeveloper Knowledge API & MCP Server\u306e\u8a2d\u5b9a\u3092\u3059\u308b",
+            "url": "https://dev.classmethod.jp/articles/setup-google-developer-knowledge-api-mcp-server-claude-code/"
+          }
         ],
-        "chart_path": "data\\charts\\2026-03-10\\GOOG_trend.png"
+        "chart_path": "data/charts/2026-03-10/GOOG_trend.png"
       }
     },
     {
       "meta": {
         "symbol": "HG=F",
         "source_symbol": "HG=F",
-        "generated_at": "2026-03-10T08:00:42Z",
+        "generated_at": "2026-03-10T14:02:31Z",
         "market_session_date": "2026-03-10",
-        "mode": "live"
+        "mode": "live",
+        "period": "60d",
+        "interval": "1d"
       },
       "market": {
-        "current_price": 5.933499813079834,
-        "predicted_price_next_session": 5.7854998636245725,
-        "history": [
-          {
-            "time": "2025-12-29",
-            "value": 5.490499973297119
-          },
-          {
-            "time": "2025-12-30",
-            "value": 5.727499961853027
-          },
-          {
-            "time": "2025-12-31",
-            "value": 5.630000114440918
-          },
-          {
-            "time": "2026-01-02",
-            "value": 5.639999866485596
-          },
-          {
-            "time": "2026-01-05",
-            "value": 5.924499988555908
-          },
-          {
-            "time": "2026-01-06",
-            "value": 6.010499954223633
-          },
-          {
-            "time": "2026-01-07",
-            "value": 5.809000015258789
-          },
-          {
-            "time": "2026-01-08",
-            "value": 5.746500015258789
-          },
-          {
-            "time": "2026-01-09",
-            "value": 5.855500221252441
-          },
-          {
-            "time": "2026-01-12",
-            "value": 5.985000133514404
-          },
-          {
-            "time": "2026-01-13",
-            "value": 5.96999979019165
-          },
-          {
-            "time": "2026-01-14",
-            "value": 6.008999824523926
-          },
-          {
-            "time": "2026-01-15",
-            "value": 5.947999954223633
-          },
-          {
-            "time": "2026-01-16",
-            "value": 5.78849983215332
-          },
-          {
-            "time": "2026-01-20",
-            "value": 5.7729997634887695
-          },
-          {
-            "time": "2026-01-21",
-            "value": 5.729499816894531
-          },
-          {
-            "time": "2026-01-22",
-            "value": 5.742499828338623
-          },
-          {
-            "time": "2026-01-23",
-            "value": 5.910999774932861
-          },
-          {
-            "time": "2026-01-26",
-            "value": 5.984000205993652
-          },
-          {
-            "time": "2026-01-27",
-            "value": 5.828499794006348
-          },
-          {
-            "time": "2026-01-28",
-            "value": 5.892499923706055
-          },
-          {
-            "time": "2026-01-29",
-            "value": 6.17549991607666
-          },
-          {
-            "time": "2026-01-30",
-            "value": 5.896999835968018
-          },
-          {
-            "time": "2026-02-02",
-            "value": 5.801499843597412
-          },
-          {
-            "time": "2026-02-03",
-            "value": 6.0625
-          },
-          {
-            "time": "2026-02-04",
-            "value": 5.826000213623047
-          },
-          {
-            "time": "2026-02-05",
-            "value": 5.798999786376953
-          },
-          {
-            "time": "2026-02-06",
-            "value": 5.863500118255615
-          },
-          {
-            "time": "2026-02-09",
-            "value": 5.945000171661377
-          },
-          {
-            "time": "2026-02-10",
-            "value": 5.895999908447266
-          },
-          {
-            "time": "2026-02-11",
-            "value": 5.948999881744385
-          },
-          {
-            "time": "2026-02-12",
-            "value": 5.770999908447266
-          },
-          {
-            "time": "2026-02-13",
-            "value": 5.792500019073486
-          },
-          {
-            "time": "2026-02-17",
-            "value": 5.632999897003174
-          },
-          {
-            "time": "2026-02-18",
-            "value": 5.793499946594238
-          },
-          {
-            "time": "2026-02-19",
-            "value": 5.730000019073486
-          },
-          {
-            "time": "2026-02-20",
-            "value": 5.830999851226807
-          },
-          {
-            "time": "2026-02-23",
-            "value": 5.7729997634887695
-          },
-          {
-            "time": "2026-02-24",
-            "value": 5.922999858856201
-          },
-          {
-            "time": "2026-02-25",
-            "value": 5.979499816894531
-          },
-          {
-            "time": "2026-02-26",
-            "value": 5.947000026702881
-          },
-          {
-            "time": "2026-02-27",
-            "value": 6.004499912261963
-          },
-          {
-            "time": "2026-03-02",
-            "value": 5.894499778747559
-          },
-          {
-            "time": "2026-03-03",
-            "value": 5.773499965667725
-          },
-          {
-            "time": "2026-03-04",
-            "value": 5.855000019073486
-          },
-          {
-            "time": "2026-03-05",
-            "value": 5.752999782562256
-          },
-          {
-            "time": "2026-03-06",
-            "value": 5.756999969482422
-          },
-          {
-            "time": "2026-03-10",
-            "value": 5.933499813079834
-          }
-        ]
+        "current_price": 5.926499843597412,
+        "predicted_price_next_session": 5.797269878387451
       },
       "signals": {
         "trend_label": "STRONG DOWNTREND ",
-        "sentiment_score": 0.016546384493509928,
+        "sentiment_score": 0.4046784043312073,
         "check_engine_light": " RED (Risk Detected - Caution)"
       },
       "evidence": {
         "headlines_used": [
-          "Structural characterization and antifungal properties of sequentially extracted polysaccharides from Algerian Opuntia ficus-indica L. cladodes",
-          "Sprawling investigation finds decades of sexual abuse among Catholic priests in Rhode Island",
-          "Comparative outcomes of DSAEK and DMEK in eyes with prior Ahmed glaucoma valve implantation",
-          "Behavior change intervention targeting physical activity and diet improves stress and sleep",
-          "A modular nanoparticle display strategy for varicella-zoster virus gE based on a licensed protein scaffold",
-          "Predicting drainage capillary pressure curves in natural porous media by NMR-T2 relaxometry: implications for CO2 storage",
-          "Co-modulation of clinical courses of hypertension and depression in public health facilities in Ethiopia: A six-month follow-up study protocol",
-          "Enabling low-temperature aqueous zinc/copper-sulfur hybrid batteries through electrolyte design",
-          "Blizzard of '26: Power restored for many in Attleboro area day after historic snowstorm",
-          "Detection and characterization of Hepatitis B virus double-stranded linear DNA-derived covalently closed circular DNA in chronic hepatitis B patients",
-          "Taenia solium neurocysticercosis: Its current epidemiological, diagnostic, therapeutic, and control landscapes",
-          "Targeted near-infrared imaging utilizing a cathepsin-activated fluorophore for the intraoperative detection of canine insulinoma",
-          "The crosstalk between acute hepatopancreatic necrosis disease (AHPND) and the Vibrio quorum sensing (QS) system: A review",
-          "Care practices, popular knowledge, and health promotion among quilombola woman in Brazil",
-          "Genomic characterization of Sabi\u00e1 virus in Brazil, 2019\u20132020: Implications for diagnostics, virus evolution, and receptor binding"
+          {
+            "title": "HG=F announces date for shareholder meeting",
+            "url": ""
+          },
+          {
+            "title": "HG=F news flow remains active amid market volatility",
+            "url": ""
+          }
         ],
-        "chart_path": "data\\charts\\2026-03-10\\HG=F_trend.png"
+        "chart_path": "data/charts/2026-03-10/HG=F_trend.png"
       }
     },
     {
       "meta": {
         "symbol": "META",
         "source_symbol": "META",
-        "generated_at": "2026-03-10T08:00:44Z",
-        "market_session_date": "2026-03-09",
-        "mode": "live"
+        "generated_at": "2026-03-10T14:02:33Z",
+        "market_session_date": "2026-03-10",
+        "mode": "live",
+        "period": "60d",
+        "interval": "1d"
       },
       "market": {
-        "current_price": 647.3900146484375,
-        "predicted_price_next_session": 648.3652264404296,
-        "history": [
-          {
-            "time": "2025-12-10",
-            "value": 649.6002197265625
-          },
-          {
-            "time": "2025-12-11",
-            "value": 652.1781005859375
-          },
-          {
-            "time": "2025-12-12",
-            "value": 643.7050170898438
-          },
-          {
-            "time": "2025-12-15",
-            "value": 647.510009765625
-          },
-          {
-            "time": "2025-12-16",
-            "value": 657.1500244140625
-          },
-          {
-            "time": "2025-12-17",
-            "value": 649.5
-          },
-          {
-            "time": "2025-12-18",
-            "value": 664.4500122070312
-          },
-          {
-            "time": "2025-12-19",
-            "value": 658.77001953125
-          },
-          {
-            "time": "2025-12-22",
-            "value": 661.5
-          },
-          {
-            "time": "2025-12-23",
-            "value": 664.9400024414062
-          },
-          {
-            "time": "2025-12-24",
-            "value": 667.5499877929688
-          },
-          {
-            "time": "2025-12-26",
-            "value": 663.2899780273438
-          },
-          {
-            "time": "2025-12-29",
-            "value": 658.6900024414062
-          },
-          {
-            "time": "2025-12-30",
-            "value": 665.9500122070312
-          },
-          {
-            "time": "2025-12-31",
-            "value": 660.0900268554688
-          },
-          {
-            "time": "2026-01-02",
-            "value": 650.4099731445312
-          },
-          {
-            "time": "2026-01-05",
-            "value": 658.7899780273438
-          },
-          {
-            "time": "2026-01-06",
-            "value": 660.6199951171875
-          },
-          {
-            "time": "2026-01-07",
-            "value": 648.6900024414062
-          },
-          {
-            "time": "2026-01-08",
-            "value": 646.0599975585938
-          },
-          {
-            "time": "2026-01-09",
-            "value": 653.0599975585938
-          },
-          {
-            "time": "2026-01-12",
-            "value": 641.969970703125
-          },
-          {
-            "time": "2026-01-13",
-            "value": 631.0900268554688
-          },
-          {
-            "time": "2026-01-14",
-            "value": 615.52001953125
-          },
-          {
-            "time": "2026-01-15",
-            "value": 620.7999877929688
-          },
-          {
-            "time": "2026-01-16",
-            "value": 620.25
-          },
-          {
-            "time": "2026-01-20",
-            "value": 604.1199951171875
-          },
-          {
-            "time": "2026-01-21",
-            "value": 612.9600219726562
-          },
-          {
-            "time": "2026-01-22",
-            "value": 647.6300048828125
-          },
-          {
-            "time": "2026-01-23",
-            "value": 658.760009765625
-          },
-          {
-            "time": "2026-01-26",
-            "value": 672.3599853515625
-          },
-          {
-            "time": "2026-01-27",
-            "value": 672.969970703125
-          },
-          {
-            "time": "2026-01-28",
-            "value": 668.72998046875
-          },
-          {
-            "time": "2026-01-29",
-            "value": 738.3099975585938
-          },
-          {
-            "time": "2026-01-30",
-            "value": 716.5
-          },
-          {
-            "time": "2026-02-02",
-            "value": 706.4099731445312
-          },
-          {
-            "time": "2026-02-03",
-            "value": 691.7000122070312
-          },
-          {
-            "time": "2026-02-04",
-            "value": 668.989990234375
-          },
-          {
-            "time": "2026-02-05",
-            "value": 670.2100219726562
-          },
-          {
-            "time": "2026-02-06",
-            "value": 661.4600219726562
-          },
-          {
-            "time": "2026-02-09",
-            "value": 677.219970703125
-          },
-          {
-            "time": "2026-02-10",
-            "value": 670.719970703125
-          },
-          {
-            "time": "2026-02-11",
-            "value": 668.6900024414062
-          },
-          {
-            "time": "2026-02-12",
-            "value": 649.8099975585938
-          },
-          {
-            "time": "2026-02-13",
-            "value": 639.77001953125
-          },
-          {
-            "time": "2026-02-17",
-            "value": 639.2899780273438
-          },
-          {
-            "time": "2026-02-18",
-            "value": 643.219970703125
-          },
-          {
-            "time": "2026-02-19",
-            "value": 644.780029296875
-          },
-          {
-            "time": "2026-02-20",
-            "value": 655.6599731445312
-          },
-          {
-            "time": "2026-02-23",
-            "value": 637.25
-          },
-          {
-            "time": "2026-02-24",
-            "value": 639.2999877929688
-          },
-          {
-            "time": "2026-02-25",
-            "value": 653.6900024414062
-          },
-          {
-            "time": "2026-02-26",
-            "value": 657.010009765625
-          },
-          {
-            "time": "2026-02-27",
-            "value": 648.1799926757812
-          },
-          {
-            "time": "2026-03-02",
-            "value": 653.5599975585938
-          },
-          {
-            "time": "2026-03-03",
-            "value": 655.0800170898438
-          },
-          {
-            "time": "2026-03-04",
-            "value": 667.72998046875
-          },
-          {
-            "time": "2026-03-05",
-            "value": 660.5700073242188
-          },
-          {
-            "time": "2026-03-06",
-            "value": 644.8599853515625
-          },
-          {
-            "time": "2026-03-09",
-            "value": 647.3900146484375
-          }
-        ]
+        "current_price": 653.0700073242188,
+        "predicted_price_next_session": 654.521494140625
       },
       "signals": {
         "trend_label": "WEAK UPTREND ",
-        "sentiment_score": 0.0231358806292216,
-        "check_engine_light": " YELLOW (Neutral / Noise)"
+        "sentiment_score": 0.3916410803794861,
+        "check_engine_light": " GREEN (Safe to Proceed)"
       },
       "evidence": {
         "headlines_used": [
-          "ngksdevfabeco added to PyPI",
-          "ngksdevfabeco 0.1.1",
-          "AI factory builder Nscale announces another $2bn of funding",
-          "tracemap added to PyPI",
-          "Show HN: Run 500B+ Parameter LLMs Locally on a Mac Mini",
-          "Bill Ackman\u2019s Eyes Meta Platforms, Inc. (META) Amid Cheap Valuation",
-          "Trump announces energy pledge with major tech firms to cover AI power costs",
-          "Dana White: 'Jon Jones was never remotely considered for the UFC White House event'",
-          "And New! Opetaia Becomes First Zuffa Boxing Champion",
-          "Your next phone will cost more\u2014and have less RAM: The hidden \u2018AI Tax\u2019 hitting India\u2019s mid-range market",
-          "Meta\u2019s measurement and attribution updates are welcomed, but not ground-breaking, ad execs say",
-          "Media Buying Briefing: Overheard at DMBS Spring 2026: AI from the top to the bottom of agencies",
-          "AI Updates for the Week of 3/8/26",
-          "Show HN: Andon \u2013 Toyota Production System for LLM Coding Agents",
-          "OpenAI senior robotics exec resigns over Pentagon deal; Anthropic formally designated as supply-chain risk"
+          {
+            "title": "Ex-Meta execs pop up on Nscale board as rent-a-GPU firm raises $2B",
+            "url": "https://www.theregister.com/2026/03/09/nscale_board_picks/"
+          },
+          {
+            "title": "Meta Just Became the Best Stock in the Magnificent 7 \u2014 Here\u2019s the Data That Proves It",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_da68a88d-0601-4e22-9ccc-6bcc41e7f7bd"
+          }
         ],
-        "chart_path": "data\\charts\\2026-03-10\\META_trend.png"
+        "chart_path": "data/charts/2026-03-10/META_trend.png"
       }
     },
     {
       "meta": {
         "symbol": "MSFT",
         "source_symbol": "MSFT",
-        "generated_at": "2026-03-10T08:00:46Z",
-        "market_session_date": "2026-03-09",
-        "mode": "live"
+        "generated_at": "2026-03-10T14:02:35Z",
+        "market_session_date": "2026-03-10",
+        "mode": "live",
+        "period": "60d",
+        "interval": "1d"
       },
       "market": {
-        "current_price": 409.4100036621094,
-        "predicted_price_next_session": 408.40541778564454,
-        "history": [
-          {
-            "time": "2025-12-10",
-            "value": 477.4701843261719
-          },
-          {
-            "time": "2025-12-11",
-            "value": 482.3690185546875
-          },
-          {
-            "time": "2025-12-12",
-            "value": 477.4402770996094
-          },
-          {
-            "time": "2025-12-15",
-            "value": 473.73870849609375
-          },
-          {
-            "time": "2025-12-16",
-            "value": 475.3051452636719
-          },
-          {
-            "time": "2025-12-17",
-            "value": 475.0357360839844
-          },
-          {
-            "time": "2025-12-18",
-            "value": 482.87786865234375
-          },
-          {
-            "time": "2025-12-19",
-            "value": 484.8134460449219
-          },
-          {
-            "time": "2025-12-22",
-            "value": 483.81573486328125
-          },
-          {
-            "time": "2025-12-23",
-            "value": 485.7413330078125
-          },
-          {
-            "time": "2025-12-24",
-            "value": 486.90863037109375
-          },
-          {
-            "time": "2025-12-26",
-            "value": 486.599365234375
-          },
-          {
-            "time": "2025-12-29",
-            "value": 485.9907531738281
-          },
-          {
-            "time": "2025-12-30",
-            "value": 486.3699035644531
-          },
-          {
-            "time": "2025-12-31",
-            "value": 482.5186767578125
-          },
-          {
-            "time": "2026-01-02",
-            "value": 471.8630065917969
-          },
-          {
-            "time": "2026-01-05",
-            "value": 471.773193359375
-          },
-          {
-            "time": "2026-01-06",
-            "value": 477.4203186035156
-          },
-          {
-            "time": "2026-01-07",
-            "value": 482.3690185546875
-          },
-          {
-            "time": "2026-01-08",
-            "value": 477.0212097167969
-          },
-          {
-            "time": "2026-01-09",
-            "value": 478.1885681152344
-          },
-          {
-            "time": "2026-01-12",
-            "value": 476.09332275390625
-          },
-          {
-            "time": "2026-01-13",
-            "value": 469.5981750488281
-          },
-          {
-            "time": "2026-01-14",
-            "value": 458.3338928222656
-          },
-          {
-            "time": "2026-01-15",
-            "value": 455.6200866699219
-          },
-          {
-            "time": "2026-01-16",
-            "value": 458.8127746582031
-          },
-          {
-            "time": "2026-01-20",
-            "value": 453.48492431640625
-          },
-          {
-            "time": "2026-01-21",
-            "value": 443.0986328125
-          },
-          {
-            "time": "2026-01-22",
-            "value": 450.1126403808594
-          },
-          {
-            "time": "2026-01-23",
-            "value": 464.888916015625
-          },
-          {
-            "time": "2026-01-26",
-            "value": 469.20904541015625
-          },
-          {
-            "time": "2026-01-27",
-            "value": 479.485595703125
-          },
-          {
-            "time": "2026-01-28",
-            "value": 480.533203125
-          },
-          {
-            "time": "2026-01-29",
-            "value": 432.5128173828125
-          },
-          {
-            "time": "2026-01-30",
-            "value": 429.31011962890625
-          },
-          {
-            "time": "2026-02-02",
-            "value": 422.4058837890625
-          },
-          {
-            "time": "2026-02-03",
-            "value": 410.2735595703125
-          },
-          {
-            "time": "2026-02-04",
-            "value": 413.2467956542969
-          },
-          {
-            "time": "2026-02-05",
-            "value": 392.7735290527344
-          },
-          {
-            "time": "2026-02-06",
-            "value": 400.22650146484375
-          },
-          {
-            "time": "2026-02-09",
-            "value": 412.65814208984375
-          },
-          {
-            "time": "2026-02-10",
-            "value": 412.328857421875
-          },
-          {
-            "time": "2026-02-11",
-            "value": 403.4491271972656
-          },
-          {
-            "time": "2026-02-12",
-            "value": 400.9248962402344
-          },
-          {
-            "time": "2026-02-13",
-            "value": 400.4060974121094
-          },
-          {
-            "time": "2026-02-17",
-            "value": 395.95623779296875
-          },
-          {
-            "time": "2026-02-18",
-            "value": 398.69000244140625
-          },
-          {
-            "time": "2026-02-19",
-            "value": 398.4599914550781
-          },
-          {
-            "time": "2026-02-20",
-            "value": 397.2300109863281
-          },
-          {
-            "time": "2026-02-23",
-            "value": 384.4700012207031
-          },
-          {
-            "time": "2026-02-24",
-            "value": 389.0
-          },
-          {
-            "time": "2026-02-25",
-            "value": 400.6000061035156
-          },
-          {
-            "time": "2026-02-26",
-            "value": 401.7200012207031
-          },
-          {
-            "time": "2026-02-27",
-            "value": 392.739990234375
-          },
-          {
-            "time": "2026-03-02",
-            "value": 398.54998779296875
-          },
-          {
-            "time": "2026-03-03",
-            "value": 403.92999267578125
-          },
-          {
-            "time": "2026-03-04",
-            "value": 405.20001220703125
-          },
-          {
-            "time": "2026-03-05",
-            "value": 410.67999267578125
-          },
-          {
-            "time": "2026-03-06",
-            "value": 408.9599914550781
-          },
-          {
-            "time": "2026-03-09",
-            "value": 409.4100036621094
-          }
-        ]
+        "current_price": 404.3599853515625,
+        "predicted_price_next_session": 406.364912109375
       },
       "signals": {
-        "trend_label": "WEAK DOWNTREND ",
-        "sentiment_score": 0.057345902919769286,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": 0.2161981239914894,
         "check_engine_light": " GREEN (Safe to Proceed)"
       },
       "evidence": {
         "headlines_used": [
-          "sharia-screener added to PyPI",
-          "The $200 Billion Question: Is Amazon Finally Ready to Pay a Dividend?",
-          "7 stock winners Jefferies says are sitting 'in the discount bin' after the AI-disruption panic",
-          "Microsoft (MSFT) Stock Price Today: Shares Climb to $410.68 on March 5, 2026",
-          "Down 15% in 2026, Should You Buy the Dip in Microsoft Stock?",
-          "3 world-class ASX ETFs to buy and hold",
-          "Here\u2019s what Makes Microsoft Corporation (MSFT) Significantly Resilient",
-          "Microsoft (MSFT) Determined To Keep Leveraging On OpenAI Partnership",
-          "The easy way to build a diversified ASX share portfolio",
-          "OpenAI Funding Gives Microsoft (MSFT) Stock Breathing Space",
-          "Microsoft Corporation\u2019s (MSFT) Strategic Wins Highlight Resilience and Growth Potential",
-          "Melius Research and Stifel Downgrade Microsoft Corporation (MSFT) to Hold",
-          "Ray Dalio: Gold is a better option than Bitcoin, tech stocks because\u2026",
-          "The easy way to invest globally is with these ASX ETFs",
-          "MSFT stock price today: Microsoft shares rise, investors watch AI execution"
+          {
+            "title": "Microsoft adds higher-priced Office tier with Copilot as it tries to juice sales with AI",
+            "url": "https://www.cnbc.com/2026/03/09/microsoft-office-365-e7-copilot-ai.html"
+          },
+          {
+            "title": "Microsoft (MSFT) Stock Price Today: Shares Climb to $410.68 on March 5, 2026",
+            "url": "https://www.ibtimes.com.au/microsoft-msft-stock-price-today-shares-climb-41068-march-5-2026-1862773"
+          },
+          {
+            "title": "Down 15% in 2026, Should You Buy the Dip in Microsoft Stock?",
+            "url": "https://www.barchart.com/story/news/594329/down-15-in-2026-should-you-buy-the-dip-in-microsoft-stock"
+          },
+          {
+            "title": "Here\u2019s what Makes Microsoft Corporation (MSFT) Significantly Resilient",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_580b910c-9465-4e4d-a6e1-d5ca2a261eca"
+          },
+          {
+            "title": "Microsoft (MSFT) Determined To Keep Leveraging On OpenAI Partnership",
+            "url": "https://finance.yahoo.com/news/microsoft-msft-determined-keep-leveraging-072754419.html"
+          },
+          {
+            "title": "OpenAI Funding Gives Microsoft (MSFT) Stock Breathing Space",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_9d39d732-4e43-40ab-8beb-84bce145f423"
+          },
+          {
+            "title": "Microsoft Corporation\u2019s (MSFT) Strategic Wins Highlight Resilience and Growth Potential",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_515decfd-a65b-438e-9b50-4e574e4f0364"
+          },
+          {
+            "title": "Melius Research and Stifel Downgrade Microsoft Corporation (MSFT) to Hold",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_da3af05e-9962-4bbf-adf8-736dc762c95e"
+          }
         ],
-        "chart_path": "data\\charts\\2026-03-10\\MSFT_trend.png"
+        "chart_path": "data/charts/2026-03-10/MSFT_trend.png"
       }
     },
     {
       "meta": {
         "symbol": "NKE",
         "source_symbol": "NKE",
-        "generated_at": "2026-03-10T08:00:48Z",
-        "market_session_date": "2026-03-09",
-        "mode": "live"
+        "generated_at": "2026-03-10T14:02:38Z",
+        "market_session_date": "2026-03-10",
+        "mode": "live",
+        "period": "60d",
+        "interval": "1d"
       },
       "market": {
-        "current_price": 56.529998779296875,
-        "predicted_price_next_session": 58.052095603942874,
-        "history": [
-          {
-            "time": "2025-12-10",
-            "value": 65.35619354248047
-          },
-          {
-            "time": "2025-12-11",
-            "value": 67.2933349609375
-          },
-          {
-            "time": "2025-12-12",
-            "value": 67.0251235961914
-          },
-          {
-            "time": "2025-12-15",
-            "value": 67.33307647705078
-          },
-          {
-            "time": "2025-12-16",
-            "value": 66.67742919921875
-          },
-          {
-            "time": "2025-12-17",
-            "value": 65.2568588256836
-          },
-          {
-            "time": "2025-12-18",
-            "value": 65.19725036621094
-          },
-          {
-            "time": "2025-12-19",
-            "value": 58.322879791259766
-          },
-          {
-            "time": "2025-12-22",
-            "value": 56.84270477294922
-          },
-          {
-            "time": "2025-12-23",
-            "value": 56.9619140625
-          },
-          {
-            "time": "2025-12-24",
-            "value": 59.604373931884766
-          },
-          {
-            "time": "2025-12-26",
-            "value": 60.52824401855469
-          },
-          {
-            "time": "2025-12-29",
-            "value": 60.806396484375
-          },
-          {
-            "time": "2025-12-30",
-            "value": 60.78652572631836
-          },
-          {
-            "time": "2025-12-31",
-            "value": 63.28990936279297
-          },
-          {
-            "time": "2026-01-02",
-            "value": 62.86274719238281
-          },
-          {
-            "time": "2026-01-05",
-            "value": 64.10449981689453
-          },
-          {
-            "time": "2026-01-06",
-            "value": 64.91909790039062
-          },
-          {
-            "time": "2026-01-07",
-            "value": 62.80314254760742
-          },
-          {
-            "time": "2026-01-08",
-            "value": 64.82969665527344
-          },
-          {
-            "time": "2026-01-09",
-            "value": 65.48533630371094
-          },
-          {
-            "time": "2026-01-12",
-            "value": 65.20718383789062
-          },
-          {
-            "time": "2026-01-13",
-            "value": 65.86283874511719
-          },
-          {
-            "time": "2026-01-14",
-            "value": 65.13764953613281
-          },
-          {
-            "time": "2026-01-15",
-            "value": 64.16410827636719
-          },
-          {
-            "time": "2026-01-16",
-            "value": 63.95549011230469
-          },
-          {
-            "time": "2026-01-20",
-            "value": 63.21044158935547
-          },
-          {
-            "time": "2026-01-21",
-            "value": 64.97870635986328
-          },
-          {
-            "time": "2026-01-22",
-            "value": 65.02837371826172
-          },
-          {
-            "time": "2026-01-23",
-            "value": 64.61114501953125
-          },
-          {
-            "time": "2026-01-26",
-            "value": 64.56147003173828
-          },
-          {
-            "time": "2026-01-27",
-            "value": 62.67399978637695
-          },
-          {
-            "time": "2026-01-28",
-            "value": 61.82960510253906
-          },
-          {
-            "time": "2026-01-29",
-            "value": 62.18722915649414
-          },
-          {
-            "time": "2026-01-30",
-            "value": 61.40243911743164
-          },
-          {
-            "time": "2026-02-02",
-            "value": 61.77000045776367
-          },
-          {
-            "time": "2026-02-03",
-            "value": 60.52824401855469
-          },
-          {
-            "time": "2026-02-04",
-            "value": 63.79655075073242
-          },
-          {
-            "time": "2026-02-05",
-            "value": 62.28657150268555
-          },
-          {
-            "time": "2026-02-06",
-            "value": 63.4985237121582
-          },
-          {
-            "time": "2026-02-09",
-            "value": 61.99848175048828
-          },
-          {
-            "time": "2026-02-10",
-            "value": 62.62432861328125
-          },
-          {
-            "time": "2026-02-11",
-            "value": 61.93887710571289
-          },
-          {
-            "time": "2026-02-12",
-            "value": 60.697120666503906
-          },
-          {
-            "time": "2026-02-13",
-            "value": 62.71373748779297
-          },
-          {
-            "time": "2026-02-17",
-            "value": 64.39259338378906
-          },
-          {
-            "time": "2026-02-18",
-            "value": 65.11778259277344
-          },
-          {
-            "time": "2026-02-19",
-            "value": 65.17738342285156
-          },
-          {
-            "time": "2026-02-20",
-            "value": 64.9687728881836
-          },
-          {
-            "time": "2026-02-23",
-            "value": 62.67399978637695
-          },
-          {
-            "time": "2026-02-24",
-            "value": 63.66740036010742
-          },
-          {
-            "time": "2026-02-25",
-            "value": 62.981956481933594
-          },
-          {
-            "time": "2026-02-26",
-            "value": 63.52832794189453
-          },
-          {
-            "time": "2026-02-27",
-            "value": 61.77000045776367
-          },
-          {
-            "time": "2026-03-02",
-            "value": 61.0099983215332
-          },
-          {
-            "time": "2026-03-03",
-            "value": 59.38999938964844
-          },
-          {
-            "time": "2026-03-04",
-            "value": 58.63999938964844
-          },
-          {
-            "time": "2026-03-05",
-            "value": 58.02000045776367
-          },
-          {
-            "time": "2026-03-06",
-            "value": 57.0099983215332
-          },
-          {
-            "time": "2026-03-09",
-            "value": 56.529998779296875
-          }
-        ]
+        "current_price": 55.994998931884766,
+        "predicted_price_next_session": 58.210912170410154
       },
       "signals": {
         "trend_label": "STRONG UPTREND ",
-        "sentiment_score": -0.06643453737099965,
+        "sentiment_score": -0.15944288969039916,
         "check_engine_light": " RED (Risk Detected - Caution)"
       },
       "evidence": {
         "headlines_used": [
-          "Is NIKE, Inc. (NKE) Stock A Good Buy Right Now?",
-          "The easy way to build a diversified ASX share portfolio",
-          "Where Will Nike (NKE) Stock Be in 3 Years?",
-          "Why are there only 30 stocks in the Dow? The case for (& against) a narrow index",
-          "Nike\u2019s China Challenges Remain in Focus as BNP Paribas Maintains Bearish Outlook",
-          "5 amazing ASX ETFs to buy and hold for 20 years",
-          "Here\u2019s Why Madison Large Cap Fund Chose to Exit Nike (NKE)",
-          "6 Stocks with Dangerous Free Cash Flow Trend \u2013 Should you Sell them or Buy More? [Podcast]",
-          "Dow Jones 101: How many stocks are in the Dow in 2026?",
-          "3 Option Ideas to Consider this Wednesday for Income and Growth",
-          "Hsp90 buffers behavioral variability by regulating Pdf transcription in clock neurons of Drosophila melanogaster",
-          "What Makes Nike (NKE) an Investment Bet?"
+          {
+            "title": "Is NIKE, Inc. (NKE) Stock A Good Buy Right Now?",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_37fc7c3a-7795-4901-a5f6-617faf399127"
+          },
+          {
+            "title": "Where Will Nike (NKE) Stock Be in 3 Years?",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_aa6e3fca-2cc3-48fd-a7e7-9632ba356de9"
+          },
+          {
+            "title": "Nike\u2019s China Challenges Remain in Focus as BNP Paribas Maintains Bearish Outlook",
+            "url": "https://finance.yahoo.com/news/nike-china-challenges-remain-focus-030140189.html"
+          },
+          {
+            "title": "Here\u2019s Why Madison Large Cap Fund Chose to Exit Nike (NKE)",
+            "url": "https://finance.yahoo.com/news/why-madison-large-cap-fund-123443957.html"
+          },
+          {
+            "title": "What Makes Nike (NKE) an Investment Bet?",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_881caa50-2ad6-4416-801e-713eec8dd1ac"
+          }
         ],
-        "chart_path": "data\\charts\\2026-03-10\\NKE_trend.png"
+        "chart_path": "data/charts/2026-03-10/NKE_trend.png"
       }
     },
     {
       "meta": {
         "symbol": "NVDA",
         "source_symbol": "NVDA",
-        "generated_at": "2026-03-10T08:00:50Z",
-        "market_session_date": "2026-03-09",
-        "mode": "live"
+        "generated_at": "2026-03-10T14:02:40Z",
+        "market_session_date": "2026-03-10",
+        "mode": "live",
+        "period": "60d",
+        "interval": "1d"
       },
       "market": {
-        "current_price": 182.64999389648438,
-        "predicted_price_next_session": 182.92079605102538,
-        "history": [
-          {
-            "time": "2025-12-10",
-            "value": 183.77999877929688
-          },
-          {
-            "time": "2025-12-11",
-            "value": 180.92999267578125
-          },
-          {
-            "time": "2025-12-12",
-            "value": 175.02000427246094
-          },
-          {
-            "time": "2025-12-15",
-            "value": 176.2899932861328
-          },
-          {
-            "time": "2025-12-16",
-            "value": 177.72000122070312
-          },
-          {
-            "time": "2025-12-17",
-            "value": 170.94000244140625
-          },
-          {
-            "time": "2025-12-18",
-            "value": 174.13999938964844
-          },
-          {
-            "time": "2025-12-19",
-            "value": 180.99000549316406
-          },
-          {
-            "time": "2025-12-22",
-            "value": 183.69000244140625
-          },
-          {
-            "time": "2025-12-23",
-            "value": 189.2100067138672
-          },
-          {
-            "time": "2025-12-24",
-            "value": 188.61000061035156
-          },
-          {
-            "time": "2025-12-26",
-            "value": 190.52999877929688
-          },
-          {
-            "time": "2025-12-29",
-            "value": 188.22000122070312
-          },
-          {
-            "time": "2025-12-30",
-            "value": 187.5399932861328
-          },
-          {
-            "time": "2025-12-31",
-            "value": 186.5
-          },
-          {
-            "time": "2026-01-02",
-            "value": 188.85000610351562
-          },
-          {
-            "time": "2026-01-05",
-            "value": 188.1199951171875
-          },
-          {
-            "time": "2026-01-06",
-            "value": 187.24000549316406
-          },
-          {
-            "time": "2026-01-07",
-            "value": 189.11000061035156
-          },
-          {
-            "time": "2026-01-08",
-            "value": 185.0399932861328
-          },
-          {
-            "time": "2026-01-09",
-            "value": 184.86000061035156
-          },
-          {
-            "time": "2026-01-12",
-            "value": 184.94000244140625
-          },
-          {
-            "time": "2026-01-13",
-            "value": 185.80999755859375
-          },
-          {
-            "time": "2026-01-14",
-            "value": 183.13999938964844
-          },
-          {
-            "time": "2026-01-15",
-            "value": 187.0500030517578
-          },
-          {
-            "time": "2026-01-16",
-            "value": 186.22999572753906
-          },
-          {
-            "time": "2026-01-20",
-            "value": 178.07000732421875
-          },
-          {
-            "time": "2026-01-21",
-            "value": 183.32000732421875
-          },
-          {
-            "time": "2026-01-22",
-            "value": 184.83999633789062
-          },
-          {
-            "time": "2026-01-23",
-            "value": 187.6699981689453
-          },
-          {
-            "time": "2026-01-26",
-            "value": 186.47000122070312
-          },
-          {
-            "time": "2026-01-27",
-            "value": 188.52000427246094
-          },
-          {
-            "time": "2026-01-28",
-            "value": 191.52000427246094
-          },
-          {
-            "time": "2026-01-29",
-            "value": 192.50999450683594
-          },
-          {
-            "time": "2026-01-30",
-            "value": 191.1300048828125
-          },
-          {
-            "time": "2026-02-02",
-            "value": 185.61000061035156
-          },
-          {
-            "time": "2026-02-03",
-            "value": 180.33999633789062
-          },
-          {
-            "time": "2026-02-04",
-            "value": 174.19000244140625
-          },
-          {
-            "time": "2026-02-05",
-            "value": 171.8800048828125
-          },
-          {
-            "time": "2026-02-06",
-            "value": 185.41000366210938
-          },
-          {
-            "time": "2026-02-09",
-            "value": 190.0399932861328
-          },
-          {
-            "time": "2026-02-10",
-            "value": 188.5399932861328
-          },
-          {
-            "time": "2026-02-11",
-            "value": 190.0500030517578
-          },
-          {
-            "time": "2026-02-12",
-            "value": 186.94000244140625
-          },
-          {
-            "time": "2026-02-13",
-            "value": 182.80999755859375
-          },
-          {
-            "time": "2026-02-17",
-            "value": 184.97000122070312
-          },
-          {
-            "time": "2026-02-18",
-            "value": 187.97999572753906
-          },
-          {
-            "time": "2026-02-19",
-            "value": 187.89999389648438
-          },
-          {
-            "time": "2026-02-20",
-            "value": 189.82000732421875
-          },
-          {
-            "time": "2026-02-23",
-            "value": 191.5500030517578
-          },
-          {
-            "time": "2026-02-24",
-            "value": 192.85000610351562
-          },
-          {
-            "time": "2026-02-25",
-            "value": 195.55999755859375
-          },
-          {
-            "time": "2026-02-26",
-            "value": 184.88999938964844
-          },
-          {
-            "time": "2026-02-27",
-            "value": 177.19000244140625
-          },
-          {
-            "time": "2026-03-02",
-            "value": 182.47999572753906
-          },
-          {
-            "time": "2026-03-03",
-            "value": 180.0500030517578
-          },
-          {
-            "time": "2026-03-04",
-            "value": 183.0399932861328
-          },
-          {
-            "time": "2026-03-05",
-            "value": 183.33999633789062
-          },
-          {
-            "time": "2026-03-06",
-            "value": 177.82000732421875
-          },
-          {
-            "time": "2026-03-09",
-            "value": 182.64999389648438
-          }
-        ]
+        "current_price": 182.360107421875,
+        "predicted_price_next_session": 183.4109959411621
       },
       "signals": {
-        "trend_label": "WEAK UPTREND ",
-        "sentiment_score": -0.10894347429275512,
-        "check_engine_light": " RED (Risk Detected - Caution)"
+        "trend_label": "STRONG UPTREND ",
+        "sentiment_score": 0.0002800126870473226,
+        "check_engine_light": " GREEN (Safe to Proceed)"
       },
       "evidence": {
         "headlines_used": [
-          "Show HN: System R \u2013 Risk intelligence API for autonomous trading agents",
-          "Top Wall Street analysts are bullish on these 3 stocks despite ongoing volatility",
-          "NVIDIA Corporation (NVDA) Halts China-bound H200 Output, Reuters Reports",
-          "Dow Jones Industrial Average Falls 453 Points as Oil Surge and Weak Jobs Data Weigh on Markets",
-          "The $200 Billion Question: Is Amazon Finally Ready to Pay a Dividend?",
-          "Nvidia sets $4 million target cash bonus for CEO Huang under fiscal 2027 plan",
-          "NVIDIA Corporation (NVDA) Price Target Increased to $220 at Deutsche Bank",
-          "Nvidia pauses new AI startup bets after backing OpenAI, Anthropic",
-          "Is Nvidia (NVDA) Shifting its Investment Strategy Towards OpenAI and Anthropic?",
-          "Divyangjan staff association airs fears over service continuity, protection in IDBI Bank",
-          "New Export Rules Could Be Coming for AI Chipmakers' Sales",
-          "3 world-class ASX ETFs to buy and hold",
-          "Beware the IVES of March: Why This Rookie ETF May Be a Shakespearean Tragedy in the Making",
-          "US stock market today dow jones crash 800 points: Dow, S&P 500 and Nasdaq all in deep red \u2014 What\u2019s happening to Wall Street today?",
-          "Investors Are Piling Into the 'HALO' Trade. Here's What That Means and What They're Buying"
+          {
+            "title": "Tesla billionaire doubles Nvidia stake; says convinced AI not a bubble, hopes contribution \u2018calms nervous market\u2019",
+            "url": "https://www.livemint.com/companies/news/tesla-billionaire-koguan-le-buys-additional-million-nvidia-shares-hopeful-little-contribution-can-calm-nervous-market-11773059338262.html"
+          },
+          {
+            "title": "NVIDIA Corporation (NVDA) Halts China-bound H200 Output, Reuters Reports",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_5ec118d0-26eb-427b-893a-643f8553d7ad"
+          },
+          {
+            "title": "Nvidia sets $4 million target cash bonus for CEO Huang under fiscal 2027 plan",
+            "url": "https://finance.yahoo.com/news/nvidia-sets-4-million-cash-212604965.html"
+          },
+          {
+            "title": "NVIDIA Corporation (NVDA) Price Target Increased to $220 at Deutsche Bank",
+            "url": "https://finance.yahoo.com/news/nvidia-corporation-nvda-price-target-172908747.html"
+          },
+          {
+            "title": "Nvidia pauses new AI startup bets after backing OpenAI, Anthropic",
+            "url": "https://www.thestreet.com/crypto/technology/nvidia-pauses-new-ai-startup-bets-after-backing-openai-anthropic"
+          },
+          {
+            "title": "Is Nvidia (NVDA) Shifting its Investment Strategy Towards OpenAI and Anthropic?",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_e249870d-d10a-41a9-8627-1d582e8ef6fc"
+          }
         ],
-        "chart_path": "data\\charts\\2026-03-10\\NVDA_trend.png"
+        "chart_path": "data/charts/2026-03-10/NVDA_trend.png"
       }
     },
     {
       "meta": {
         "symbol": "SI=F",
         "source_symbol": "SI=F",
-        "generated_at": "2026-03-10T08:00:52Z",
+        "generated_at": "2026-03-10T14:02:42Z",
         "market_session_date": "2026-03-10",
-        "mode": "live"
+        "mode": "live",
+        "period": "60d",
+        "interval": "1d"
       },
       "market": {
-        "current_price": 89.46499633789062,
-        "predicted_price_next_session": 83.48544960021972,
-        "history": [
-          {
-            "time": "2025-12-29",
-            "value": 69.85600280761719
-          },
-          {
-            "time": "2025-12-30",
-            "value": 77.3740005493164
-          },
-          {
-            "time": "2025-12-31",
-            "value": 70.13400268554688
-          },
-          {
-            "time": "2026-01-02",
-            "value": 70.55599975585938
-          },
-          {
-            "time": "2026-01-05",
-            "value": 76.16400146484375
-          },
-          {
-            "time": "2026-01-06",
-            "value": 80.52999877929688
-          },
-          {
-            "time": "2026-01-07",
-            "value": 77.13500213623047
-          },
-          {
-            "time": "2026-01-08",
-            "value": 74.71600341796875
-          },
-          {
-            "time": "2026-01-09",
-            "value": 78.88400268554688
-          },
-          {
-            "time": "2026-01-12",
-            "value": 84.61000061035156
-          },
-          {
-            "time": "2026-01-13",
-            "value": 85.87699890136719
-          },
-          {
-            "time": "2026-01-14",
-            "value": 90.86900329589844
-          },
-          {
-            "time": "2026-01-15",
-            "value": 91.8759994506836
-          },
-          {
-            "time": "2026-01-16",
-            "value": 88.09100341796875
-          },
-          {
-            "time": "2026-01-20",
-            "value": 94.20600128173828
-          },
-          {
-            "time": "2026-01-21",
-            "value": 92.20999908447266
-          },
-          {
-            "time": "2026-01-22",
-            "value": 95.97599792480469
-          },
-          {
-            "time": "2026-01-23",
-            "value": 100.92500305175781
-          },
-          {
-            "time": "2026-01-26",
-            "value": 115.08000183105469
-          },
-          {
-            "time": "2026-01-27",
-            "value": 105.52300262451172
-          },
-          {
-            "time": "2026-01-28",
-            "value": 113.11100006103516
-          },
-          {
-            "time": "2026-01-29",
-            "value": 114.03700256347656
-          },
-          {
-            "time": "2026-01-30",
-            "value": 78.29000091552734
-          },
-          {
-            "time": "2026-02-02",
-            "value": 76.77799987792969
-          },
-          {
-            "time": "2026-02-03",
-            "value": 83.04199981689453
-          },
-          {
-            "time": "2026-02-04",
-            "value": 84.16500091552734
-          },
-          {
-            "time": "2026-02-05",
-            "value": 76.52899932861328
-          },
-          {
-            "time": "2026-02-06",
-            "value": 76.73500061035156
-          },
-          {
-            "time": "2026-02-09",
-            "value": 82.06500244140625
-          },
-          {
-            "time": "2026-02-10",
-            "value": 80.21800231933594
-          },
-          {
-            "time": "2026-02-11",
-            "value": 83.75399780273438
-          },
-          {
-            "time": "2026-02-12",
-            "value": 75.5459976196289
-          },
-          {
-            "time": "2026-02-13",
-            "value": 77.85099792480469
-          },
-          {
-            "time": "2026-02-17",
-            "value": 73.4469985961914
-          },
-          {
-            "time": "2026-02-18",
-            "value": 77.50900268554688
-          },
-          {
-            "time": "2026-02-19",
-            "value": 77.56500244140625
-          },
-          {
-            "time": "2026-02-20",
-            "value": 82.28299713134766
-          },
-          {
-            "time": "2026-02-23",
-            "value": 86.52300262451172
-          },
-          {
-            "time": "2026-02-24",
-            "value": 87.45700073242188
-          },
-          {
-            "time": "2026-02-25",
-            "value": 90.93900299072266
-          },
-          {
-            "time": "2026-02-26",
-            "value": 86.99800109863281
-          },
-          {
-            "time": "2026-02-27",
-            "value": 92.68199920654297
-          },
-          {
-            "time": "2026-03-02",
-            "value": 88.28399658203125
-          },
-          {
-            "time": "2026-03-03",
-            "value": 82.9229965209961
-          },
-          {
-            "time": "2026-03-04",
-            "value": 82.63300323486328
-          },
-          {
-            "time": "2026-03-05",
-            "value": 81.68699645996094
-          },
-          {
-            "time": "2026-03-06",
-            "value": 83.81600189208984
-          },
-          {
-            "time": "2026-03-10",
-            "value": 89.46499633789062
-          }
-        ]
+        "current_price": 89.0,
+        "predicted_price_next_session": 83.56905876159668
       },
       "signals": {
         "trend_label": "STRONG DOWNTREND ",
-        "sentiment_score": -0.007300841808319092,
+        "sentiment_score": 0.0,
         "check_engine_light": " RED (Risk Detected - Caution)"
       },
       "evidence": {
         "headlines_used": [
-          "Regenerating end-of-life membranes for enhanced sustainability and unexpected performance",
-          "Engineering fibrous-interconnected potassium bis(dioxovanadium) phosphate frameworks for fast-charging and high-rate sodium-ion supercapacitors",
-          "Room-temperature two-dimensional multiferroic metal with voltage-controllable magnetic order",
-          "Development of a sustained anticancer drug delivery system based on hybridization between diatomite and nanostructured lipid carriers",
-          "Correction: In situ investigation of Li permeation through grain boundaries in garnet-based solid electrolytes",
-          "Geometric origin of particle and dislocation dynamics during grain boundary migration",
-          "Illicit Trading, Using BTS As Collateral, Connection To A Fugitive \u2014 Whistleblower\u2019s Bomshell Press Conference Against Bang Si Hyuk Stirs Uproar",
-          "Show HN: Kula \u2013 Lightweight, self-contained Linux server monitoring tool",
-          "Harnessing fano-like line shape resonance in a rectangular waveguide for filtering applications",
-          "From tests to truth: A misclassification-aware machine learning framework for estimating brucellosis seroprevalence in wild canids",
-          "Motorola Edge 70 Fusion (India) hands-on: Snapdragon 7s Gen 4 SoC and 7,000 mAh battery",
-          "chemsmart 0.3.2",
-          "Cm-p5, a synthetic antimicrobial peptide shows anti-Trypanosoma cruzi activity",
-          "Understanding security challenges in the software supply chain through causal relationships",
-          "Di tutto conosciamo il prezzo. Di niente il valore. F. Nietzsche. AFORISMI-CITAZIONI"
+          {
+            "title": "From tests to truth: A misclassification-aware machine learning framework for estimating brucellosis seroprevalence in wild canids",
+            "url": "https://journals.plos.org/plosntds/article?id=10.1371/journal.pntd.0014029"
+          }
         ],
-        "chart_path": "data\\charts\\2026-03-10\\SI=F_trend.png"
+        "chart_path": "data/charts/2026-03-10/SI=F_trend.png"
       }
     },
     {
       "meta": {
         "symbol": "TSLA",
         "source_symbol": "TSLA",
-        "generated_at": "2026-03-10T08:00:54Z",
-        "market_session_date": "2026-03-09",
-        "mode": "live"
+        "generated_at": "2026-03-10T14:02:44Z",
+        "market_session_date": "2026-03-10",
+        "mode": "live",
+        "period": "60d",
+        "interval": "1d"
       },
       "market": {
-        "current_price": 398.67999267578125,
-        "predicted_price_next_session": 400.7341952514648,
-        "history": [
-          {
-            "time": "2025-12-10",
-            "value": 451.45001220703125
-          },
-          {
-            "time": "2025-12-11",
-            "value": 446.8900146484375
-          },
-          {
-            "time": "2025-12-12",
-            "value": 458.9599914550781
-          },
-          {
-            "time": "2025-12-15",
-            "value": 475.30999755859375
-          },
-          {
-            "time": "2025-12-16",
-            "value": 489.8800048828125
-          },
-          {
-            "time": "2025-12-17",
-            "value": 467.260009765625
-          },
-          {
-            "time": "2025-12-18",
-            "value": 483.3699951171875
-          },
-          {
-            "time": "2025-12-19",
-            "value": 481.20001220703125
-          },
-          {
-            "time": "2025-12-22",
-            "value": 488.7300109863281
-          },
-          {
-            "time": "2025-12-23",
-            "value": 485.55999755859375
-          },
-          {
-            "time": "2025-12-24",
-            "value": 485.3999938964844
-          },
-          {
-            "time": "2025-12-26",
-            "value": 475.19000244140625
-          },
-          {
-            "time": "2025-12-29",
-            "value": 459.6400146484375
-          },
-          {
-            "time": "2025-12-30",
-            "value": 454.42999267578125
-          },
-          {
-            "time": "2025-12-31",
-            "value": 449.7200012207031
-          },
-          {
-            "time": "2026-01-02",
-            "value": 438.07000732421875
-          },
-          {
-            "time": "2026-01-05",
-            "value": 451.6700134277344
-          },
-          {
-            "time": "2026-01-06",
-            "value": 432.9599914550781
-          },
-          {
-            "time": "2026-01-07",
-            "value": 431.4100036621094
-          },
-          {
-            "time": "2026-01-08",
-            "value": 435.79998779296875
-          },
-          {
-            "time": "2026-01-09",
-            "value": 445.010009765625
-          },
-          {
-            "time": "2026-01-12",
-            "value": 448.9599914550781
-          },
-          {
-            "time": "2026-01-13",
-            "value": 447.20001220703125
-          },
-          {
-            "time": "2026-01-14",
-            "value": 439.20001220703125
-          },
-          {
-            "time": "2026-01-15",
-            "value": 438.57000732421875
-          },
-          {
-            "time": "2026-01-16",
-            "value": 437.5
-          },
-          {
-            "time": "2026-01-20",
-            "value": 419.25
-          },
-          {
-            "time": "2026-01-21",
-            "value": 431.44000244140625
-          },
-          {
-            "time": "2026-01-22",
-            "value": 449.3599853515625
-          },
-          {
-            "time": "2026-01-23",
-            "value": 449.05999755859375
-          },
-          {
-            "time": "2026-01-26",
-            "value": 435.20001220703125
-          },
-          {
-            "time": "2026-01-27",
-            "value": 430.8999938964844
-          },
-          {
-            "time": "2026-01-28",
-            "value": 431.4599914550781
-          },
-          {
-            "time": "2026-01-29",
-            "value": 416.55999755859375
-          },
-          {
-            "time": "2026-01-30",
-            "value": 430.4100036621094
-          },
-          {
-            "time": "2026-02-02",
-            "value": 421.80999755859375
-          },
-          {
-            "time": "2026-02-03",
-            "value": 421.9599914550781
-          },
-          {
-            "time": "2026-02-04",
-            "value": 406.010009765625
-          },
-          {
-            "time": "2026-02-05",
-            "value": 397.2099914550781
-          },
-          {
-            "time": "2026-02-06",
-            "value": 411.1099853515625
-          },
-          {
-            "time": "2026-02-09",
-            "value": 417.32000732421875
-          },
-          {
-            "time": "2026-02-10",
-            "value": 425.2099914550781
-          },
-          {
-            "time": "2026-02-11",
-            "value": 428.2699890136719
-          },
-          {
-            "time": "2026-02-12",
-            "value": 417.07000732421875
-          },
-          {
-            "time": "2026-02-13",
-            "value": 417.44000244140625
-          },
-          {
-            "time": "2026-02-17",
-            "value": 410.6300048828125
-          },
-          {
-            "time": "2026-02-18",
-            "value": 411.32000732421875
-          },
-          {
-            "time": "2026-02-19",
-            "value": 411.7099914550781
-          },
-          {
-            "time": "2026-02-20",
-            "value": 411.82000732421875
-          },
-          {
-            "time": "2026-02-23",
-            "value": 399.8299865722656
-          },
-          {
-            "time": "2026-02-24",
-            "value": 409.3800048828125
-          },
-          {
-            "time": "2026-02-25",
-            "value": 417.3999938964844
-          },
-          {
-            "time": "2026-02-26",
-            "value": 408.5799865722656
-          },
-          {
-            "time": "2026-02-27",
-            "value": 402.510009765625
-          },
-          {
-            "time": "2026-03-02",
-            "value": 403.32000732421875
-          },
-          {
-            "time": "2026-03-03",
-            "value": 392.42999267578125
-          },
-          {
-            "time": "2026-03-04",
-            "value": 405.94000244140625
-          },
-          {
-            "time": "2026-03-05",
-            "value": 405.54998779296875
-          },
-          {
-            "time": "2026-03-06",
-            "value": 396.7300109863281
-          },
-          {
-            "time": "2026-03-09",
-            "value": 398.67999267578125
-          }
-        ]
+        "current_price": 405.6700134277344,
+        "predicted_price_next_session": 406.44740203857424
       },
       "signals": {
-        "trend_label": "STRONG UPTREND ",
-        "sentiment_score": 0.09376840591430664,
-        "check_engine_light": " GREEN (Safe to Proceed)"
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": -0.19692028562227884,
+        "check_engine_light": " RED (Risk Detected - Caution)"
       },
       "evidence": {
         "headlines_used": [
-          "Show HN: AlphaPerch \u2013 Track product execution for companies you follow using AI",
-          "Show HN: System R \u2013 Risk intelligence API for autonomous trading agents",
-          "YieldMax\u2019s TSLA Option Income ETF Has a 60%+ Yield And a Track Record That Should Terrify You",
-          "Tesla Stock Faces Volatility Ahead of Pivotal NHTSA Deadline as Tesla Pivots to Autonomy and Robotics",
-          "Bank of America Is Bullish on Tesla Again. Is That a Reason to Buy TSLA Stock?",
-          "Bank of America Resumes Coverage on Tesla, Inc. (TSLA), Upgrades to Buy",
-          "The 24/7 Takeover: How Crypto\u2019s $130B TradFi Surge Is Absorbing The Global Commodities Trade",
-          "The $200 Billion Question: Is Amazon Finally Ready to Pay a Dividend?",
-          "OKX is building a social network directly into its trading app after massive $25 billion valuation",
-          "Tesla Stock Dips Slightly in Early Trading Amid Robotaxi Optimism and Analyst Upgrades",
-          "GraniteShares Announces Weekly Distributions for its YieldBOOST ETFs: COYY, TSYY, NVYY, XBTY, AMYY, TQQY, AZYY, YSPY, MTYY, PLYY, HOYY, SMYY, BBYY, FBYY, IOYY, MAAY, NUGY, SEMY, QBY, RGYY, HMYY and RTYY",
-          "polygon-options-puller added to PyPI",
-          "Tesla\u2019s (TSLA) February Sales Figures Show Sales Growth",
-          "How Hyperliquid\u2019s TradFi Edge Could Lift HYPE Price 90% \u2014 New All-Time High Coming?",
-          "I Went $100,000 All-In on This Mega-Yield ETF \u2014 Here\u2019s Exactly What Happened Next"
+          {
+            "title": "Why Tesla stock (TSLA) falls as NHTSA probe into FSD vehicles and March 9 deadline spark investor concerns",
+            "url": "https://economictimes.indiatimes.com/news/international/us/why-tesla-stock-tsla-falls-as-nhtsa-probe-into-fsd-vehicles-and-march-9-deadline-spark-investor-concerns/articleshow/129331955.cms"
+          },
+          {
+            "title": "YieldMax\u2019s TSLA Option Income ETF Has a 60%+ Yield And a Track Record That Should Terrify You",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_f4012047-65d8-46e3-a21a-da42331647d4"
+          },
+          {
+            "title": "Tesla Stock Faces Volatility Ahead of Pivotal NHTSA Deadline as Tesla Pivots to Autonomy and Robotics",
+            "url": "https://www.ibtimes.com.au/tesla-stock-faces-volatility-ahead-pivotal-nhtsa-deadline-tesla-pivots-autonomy-robotics-1862965"
+          },
+          {
+            "title": "Bank of America Is Bullish on Tesla Again. Is That a Reason to Buy TSLA Stock?",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_0f9d62a3-a471-4248-8528-397f1f4e7418"
+          },
+          {
+            "title": "Bank of America Resumes Coverage on Tesla, Inc. (TSLA), Upgrades to Buy",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_cc6c5b81-5a6f-4767-b5cd-5eab1348d37b"
+          },
+          {
+            "title": "Tesla Stock Dips Slightly in Early Trading Amid Robotaxi Optimism and Analyst Upgrades",
+            "url": "https://www.ibtimes.com.au/tesla-stock-dips-slightly-early-trading-amid-robotaxi-optimism-analyst-upgrades-1862695"
+          }
         ],
-        "chart_path": "data\\charts\\2026-03-10\\TSLA_trend.png"
+        "chart_path": "data/charts/2026-03-10/TSLA_trend.png"
       }
     }
   ],
   "comparisons": [
     {
       "symbol": "AAPL",
-      "current_session_date": "2026-03-09",
-      "previous_session_date": "2026-03-06",
+      "current_session_date": "2026-03-10",
+      "previous_session_date": "2026-03-09",
       "has_previous_session": true,
       "changes": {
-        "current_price_delta": 2.420013427734375,
-        "predicted_price_delta": 1.2508065795898347,
-        "sentiment_score_delta": -0.24988758166631064,
+        "current_price_delta": -1.95501708984375,
+        "predicted_price_delta": -1.0382708740234534,
+        "sentiment_score_delta": 0.0,
         "trend_label_changed": true,
-        "check_engine_light_changed": true
+        "check_engine_light_changed": false
       },
       "current_snapshot": {
-        "current_price": 259.8800048828125,
-        "predicted_price_next_session": 259.7519906616211,
-        "trend_label": "WEAK DOWNTREND ",
-        "sentiment_score": -0.06359819968541464,
+        "current_price": 257.92498779296875,
+        "predicted_price_next_session": 258.71371978759765,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": -0.23849324882030487,
         "check_engine_light": " RED (Risk Detected - Caution)"
       },
       "previous_snapshot": {
-        "current_price": 257.4599914550781,
-        "predicted_price_next_session": 258.5011840820313,
-        "trend_label": "WEAK UPTREND ",
-        "sentiment_score": 0.186289381980896,
-        "check_engine_light": " GREEN (Safe to Proceed)"
+        "current_price": 259.8800048828125,
+        "predicted_price_next_session": 259.7519906616211,
+        "trend_label": "WEAK DOWNTREND ",
+        "sentiment_score": -0.23849324882030487,
+        "check_engine_light": " RED (Risk Detected - Caution)"
       }
     },
     {
       "symbol": "AMZN",
-      "current_session_date": "2026-03-09",
-      "previous_session_date": "2026-03-06",
+      "current_session_date": "2026-03-10",
+      "previous_session_date": "2026-03-09",
       "has_previous_session": true,
       "changes": {
-        "current_price_delta": 4.94000244140625,
-        "predicted_price_delta": -0.027499389648454553,
-        "sentiment_score_delta": 0.060727047920227054,
+        "current_price_delta": -0.160003662109375,
+        "predicted_price_delta": -0.12590072631837756,
+        "sentiment_score_delta": -0.04897989829381307,
         "trend_label_changed": false,
-        "check_engine_light_changed": true
+        "check_engine_light_changed": false
       },
       "current_snapshot": {
-        "current_price": 213.49000549316406,
-        "predicted_price_next_session": 213.99550537109374,
-        "trend_label": "WEAK UPTREND ",
-        "sentiment_score": 0.060727047920227054,
+        "current_price": 213.3300018310547,
+        "predicted_price_next_session": 214.64630401611328,
+        "trend_label": "STRONG UPTREND ",
+        "sentiment_score": 0.011747149626413982,
         "check_engine_light": " GREEN (Safe to Proceed)"
       },
       "previous_snapshot": {
-        "current_price": 208.5500030517578,
-        "predicted_price_next_session": 214.0230047607422,
-        "trend_label": "WEAK UPTREND ",
-        "sentiment_score": 0.0,
-        "check_engine_light": " YELLOW (Neutral / Noise)"
+        "current_price": 213.49000549316406,
+        "predicted_price_next_session": 214.77220474243165,
+        "trend_label": "STRONG UPTREND ",
+        "sentiment_score": 0.060727047920227054,
+        "check_engine_light": " GREEN (Safe to Proceed)"
       }
     },
     {
@@ -3474,17 +647,17 @@
       "previous_session_date": "2026-03-09",
       "has_previous_session": true,
       "changes": {
-        "current_price_delta": -15.8800048828125,
-        "predicted_price_delta": -3.635101089477544,
-        "sentiment_score_delta": 0.0,
+        "current_price_delta": -14.160003662109375,
+        "predicted_price_delta": 1.8317986297607405,
+        "sentiment_score_delta": -0.03539597193400065,
         "trend_label_changed": false,
         "check_engine_light_changed": false
       },
       "current_snapshot": {
-        "current_price": 86.73999786376953,
-        "predicted_price_next_session": 82.05149963378906,
+        "current_price": 88.45999908447266,
+        "predicted_price_next_session": 87.51839935302735,
         "trend_label": "STRONG DOWNTREND ",
-        "sentiment_score": 0.03539597193400065,
+        "sentiment_score": 0.0,
         "check_engine_light": " RED (Risk Detected - Caution)"
       },
       "previous_snapshot": {
@@ -3501,18 +674,18 @@
       "previous_session_date": "2026-03-09",
       "has_previous_session": true,
       "changes": {
-        "current_price_delta": -0.7999954223632812,
-        "predicted_price_delta": -0.019180221557618893,
-        "sentiment_score_delta": 0.014180853253319081,
+        "current_price_delta": -0.5889968872070312,
+        "predicted_price_delta": 0.005279998779300854,
+        "sentiment_score_delta": 1.2759728474276406,
         "trend_label_changed": true,
-        "check_engine_light_changed": false
+        "check_engine_light_changed": true
       },
       "current_snapshot": {
-        "current_price": 98.52100372314453,
-        "predicted_price_next_session": 99.08683929443359,
-        "trend_label": "STRONG UPTREND ",
-        "sentiment_score": -0.8678621252377828,
-        "check_engine_light": " RED (Risk Detected - Caution)"
+        "current_price": 98.73200225830078,
+        "predicted_price_next_session": 99.11129951477051,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": 0.3939298689365387,
+        "check_engine_light": " GREEN (Safe to Proceed)"
       },
       "previous_snapshot": {
         "current_price": 99.32099914550781,
@@ -3528,17 +701,17 @@
       "previous_session_date": "2026-03-09",
       "has_previous_session": true,
       "changes": {
-        "current_price_delta": 99.60009765625,
-        "predicted_price_delta": 48.072060546875036,
-        "sentiment_score_delta": 0.0,
+        "current_price_delta": 124.7998046875,
+        "predicted_price_delta": 33.745034179687536,
+        "sentiment_score_delta": 0.9734785119692485,
         "trend_label_changed": true,
         "check_engine_light_changed": true
       },
       "current_snapshot": {
-        "current_price": 5188.10009765625,
-        "predicted_price_next_session": 5133.866015625,
+        "current_price": 5213.2998046875,
+        "predicted_price_next_session": 5119.538989257812,
         "trend_label": "STRONG DOWNTREND ",
-        "sentiment_score": -0.04988439480463664,
+        "sentiment_score": 0.9235941171646118,
         "check_engine_light": " RED (Risk Detected - Caution)"
       },
       "previous_snapshot": {
@@ -3551,28 +724,28 @@
     },
     {
       "symbol": "GOOG",
-      "current_session_date": "2026-03-09",
-      "previous_session_date": "2026-03-06",
+      "current_session_date": "2026-03-10",
+      "previous_session_date": "2026-03-09",
       "has_previous_session": true,
       "changes": {
-        "current_price_delta": 10.029998779296875,
-        "predicted_price_delta": 1.5224960327148551,
+        "current_price_delta": 0.18988037109375,
+        "predicted_price_delta": -0.8917065429687341,
         "sentiment_score_delta": 0.0,
-        "trend_label_changed": true,
+        "trend_label_changed": false,
         "check_engine_light_changed": false
       },
       "current_snapshot": {
-        "current_price": 306.010009765625,
-        "predicted_price_next_session": 303.9187908935547,
+        "current_price": 306.19989013671875,
+        "predicted_price_next_session": 303.02708435058594,
         "trend_label": "STRONG DOWNTREND ",
-        "sentiment_score": -0.07749665180842082,
+        "sentiment_score": -0.19374162952105203,
         "check_engine_light": " RED (Risk Detected - Caution)"
       },
       "previous_snapshot": {
-        "current_price": 295.9800109863281,
-        "predicted_price_next_session": 302.3962948608398,
-        "trend_label": "STRONG UPTREND ",
-        "sentiment_score": -0.07749665180842082,
+        "current_price": 306.010009765625,
+        "predicted_price_next_session": 303.9187908935547,
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": -0.19374162952105203,
         "check_engine_light": " RED (Risk Detected - Caution)"
       }
     },
@@ -3582,17 +755,17 @@
       "previous_session_date": "2026-03-09",
       "has_previous_session": true,
       "changes": {
-        "current_price_delta": 0.16549968719482422,
-        "predicted_price_delta": 0.008529849052428595,
-        "sentiment_score_delta": 0.0,
+        "current_price_delta": 0.15849971771240234,
+        "predicted_price_delta": 0.020299863815306907,
+        "sentiment_score_delta": 0.38813201983769735,
         "trend_label_changed": true,
         "check_engine_light_changed": true
       },
       "current_snapshot": {
-        "current_price": 5.933499813079834,
-        "predicted_price_next_session": 5.7854998636245725,
+        "current_price": 5.926499843597412,
+        "predicted_price_next_session": 5.797269878387451,
         "trend_label": "STRONG DOWNTREND ",
-        "sentiment_score": 0.016546384493509928,
+        "sentiment_score": 0.4046784043312073,
         "check_engine_light": " RED (Risk Detected - Caution)"
       },
       "previous_snapshot": {
@@ -3605,110 +778,110 @@
     },
     {
       "symbol": "META",
-      "current_session_date": "2026-03-09",
-      "previous_session_date": "2026-03-06",
+      "current_session_date": "2026-03-10",
+      "previous_session_date": "2026-03-09",
       "has_previous_session": true,
       "changes": {
-        "current_price_delta": 19.02001953125,
-        "predicted_price_delta": 0.5739086914062455,
-        "sentiment_score_delta": 0.06486707131067912,
+        "current_price_delta": 5.67999267578125,
+        "predicted_price_delta": 6.156267700195372,
+        "sentiment_score_delta": 0.3916410803794861,
         "trend_label_changed": false,
-        "check_engine_light_changed": false
+        "check_engine_light_changed": true
       },
       "current_snapshot": {
+        "current_price": 653.0700073242188,
+        "predicted_price_next_session": 654.521494140625,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": 0.3916410803794861,
+        "check_engine_light": " GREEN (Safe to Proceed)"
+      },
+      "previous_snapshot": {
         "current_price": 647.3900146484375,
         "predicted_price_next_session": 648.3652264404296,
         "trend_label": "WEAK UPTREND ",
-        "sentiment_score": 0.0231358806292216,
-        "check_engine_light": " YELLOW (Neutral / Noise)"
-      },
-      "previous_snapshot": {
-        "current_price": 628.3699951171875,
-        "predicted_price_next_session": 647.7913177490234,
-        "trend_label": "WEAK UPTREND ",
-        "sentiment_score": -0.04173119068145752,
+        "sentiment_score": 0.0,
         "check_engine_light": " YELLOW (Neutral / Noise)"
       }
     },
     {
       "symbol": "MSFT",
-      "current_session_date": "2026-03-09",
-      "previous_session_date": "2026-03-06",
+      "current_session_date": "2026-03-10",
+      "previous_session_date": "2026-03-09",
       "has_previous_session": true,
       "changes": {
-        "current_price_delta": 4.819915771484375,
-        "predicted_price_delta": 0.8155322265625387,
-        "sentiment_score_delta": 0.0,
-        "trend_label_changed": false,
+        "current_price_delta": -5.050018310546875,
+        "predicted_price_delta": -2.040505676269561,
+        "sentiment_score_delta": -0.003037169575691223,
+        "trend_label_changed": true,
         "check_engine_light_changed": false
       },
       "current_snapshot": {
-        "current_price": 409.4100036621094,
-        "predicted_price_next_session": 408.40541778564454,
-        "trend_label": "WEAK DOWNTREND ",
-        "sentiment_score": 0.057345902919769286,
+        "current_price": 404.3599853515625,
+        "predicted_price_next_session": 406.364912109375,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": 0.2161981239914894,
         "check_engine_light": " GREEN (Safe to Proceed)"
       },
       "previous_snapshot": {
-        "current_price": 404.590087890625,
-        "predicted_price_next_session": 407.589885559082,
+        "current_price": 409.4100036621094,
+        "predicted_price_next_session": 408.40541778564454,
         "trend_label": "WEAK DOWNTREND ",
-        "sentiment_score": 0.057345902919769286,
+        "sentiment_score": 0.21923529356718063,
         "check_engine_light": " GREEN (Safe to Proceed)"
       }
     },
     {
       "symbol": "NKE",
-      "current_session_date": "2026-03-09",
-      "previous_session_date": "2026-03-06",
+      "current_session_date": "2026-03-10",
+      "previous_session_date": "2026-03-09",
       "has_previous_session": true,
       "changes": {
-        "current_price_delta": 0.9699974060058594,
-        "predicted_price_delta": -0.9716036605834901,
+        "current_price_delta": -0.5349998474121094,
+        "predicted_price_delta": 0.5869747543334967,
         "sentiment_score_delta": 0.0,
         "trend_label_changed": false,
         "check_engine_light_changed": false
       },
       "current_snapshot": {
-        "current_price": 56.529998779296875,
-        "predicted_price_next_session": 58.052095603942874,
+        "current_price": 55.994998931884766,
+        "predicted_price_next_session": 58.210912170410154,
         "trend_label": "STRONG UPTREND ",
-        "sentiment_score": -0.06643453737099965,
+        "sentiment_score": -0.15944288969039916,
         "check_engine_light": " RED (Risk Detected - Caution)"
       },
       "previous_snapshot": {
-        "current_price": 55.560001373291016,
-        "predicted_price_next_session": 59.023699264526364,
+        "current_price": 56.529998779296875,
+        "predicted_price_next_session": 57.62393741607666,
         "trend_label": "STRONG UPTREND ",
-        "sentiment_score": -0.06643453737099965,
+        "sentiment_score": -0.15944288969039916,
         "check_engine_light": " RED (Risk Detected - Caution)"
       }
     },
     {
       "symbol": "NVDA",
-      "current_session_date": "2026-03-09",
-      "previous_session_date": "2026-03-06",
+      "current_session_date": "2026-03-10",
+      "previous_session_date": "2026-03-09",
       "has_previous_session": true,
       "changes": {
-        "current_price_delta": 5.41009521484375,
-        "predicted_price_delta": 0.013197174072246298,
-        "sentiment_score_delta": 0.0019231915473938016,
+        "current_price_delta": -0.289886474609375,
+        "predicted_price_delta": 0.49019989013672216,
+        "sentiment_score_delta": -5.6002537409464515e-05,
         "trend_label_changed": true,
-        "check_engine_light_changed": false
+        "check_engine_light_changed": true
       },
       "current_snapshot": {
+        "current_price": 182.360107421875,
+        "predicted_price_next_session": 183.4109959411621,
+        "trend_label": "STRONG UPTREND ",
+        "sentiment_score": 0.0002800126870473226,
+        "check_engine_light": " GREEN (Safe to Proceed)"
+      },
+      "previous_snapshot": {
         "current_price": 182.64999389648438,
         "predicted_price_next_session": 182.92079605102538,
         "trend_label": "WEAK UPTREND ",
-        "sentiment_score": -0.10894347429275512,
-        "check_engine_light": " RED (Risk Detected - Caution)"
-      },
-      "previous_snapshot": {
-        "current_price": 177.23989868164062,
-        "predicted_price_next_session": 182.90759887695313,
-        "trend_label": "STRONG UPTREND ",
-        "sentiment_score": -0.11086666584014893,
-        "check_engine_light": " RED (Risk Detected - Caution)"
+        "sentiment_score": 0.0003360152244567871,
+        "check_engine_light": " YELLOW (Neutral / Noise)"
       }
     },
     {
@@ -3717,17 +890,17 @@
       "previous_session_date": "2026-03-09",
       "has_previous_session": true,
       "changes": {
-        "current_price_delta": 5.454994201660156,
-        "predicted_price_delta": 0.3894689941406284,
-        "sentiment_score_delta": -0.007300841808319092,
+        "current_price_delta": 4.989997863769531,
+        "predicted_price_delta": 0.4730781555175838,
+        "sentiment_score_delta": 0.0,
         "trend_label_changed": false,
         "check_engine_light_changed": false
       },
       "current_snapshot": {
-        "current_price": 89.46499633789062,
-        "predicted_price_next_session": 83.48544960021972,
+        "current_price": 89.0,
+        "predicted_price_next_session": 83.56905876159668,
         "trend_label": "STRONG DOWNTREND ",
-        "sentiment_score": -0.007300841808319092,
+        "sentiment_score": 0.0,
         "check_engine_light": " RED (Risk Detected - Caution)"
       },
       "previous_snapshot": {
@@ -3740,28 +913,28 @@
     },
     {
       "symbol": "TSLA",
-      "current_session_date": "2026-03-09",
-      "previous_session_date": "2026-03-06",
+      "current_session_date": "2026-03-10",
+      "previous_session_date": "2026-03-09",
       "has_previous_session": true,
       "changes": {
-        "current_price_delta": 14.676605224609375,
-        "predicted_price_delta": -3.9633041381836165,
-        "sentiment_score_delta": -0.008019049962361649,
-        "trend_label_changed": false,
-        "check_engine_light_changed": false
+        "current_price_delta": 6.990020751953125,
+        "predicted_price_delta": 5.713206787109414,
+        "sentiment_score_delta": -0.29214031497637427,
+        "trend_label_changed": true,
+        "check_engine_light_changed": true
       },
       "current_snapshot": {
+        "current_price": 405.6700134277344,
+        "predicted_price_next_session": 406.44740203857424,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": -0.19692028562227884,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "previous_snapshot": {
         "current_price": 398.67999267578125,
         "predicted_price_next_session": 400.7341952514648,
         "trend_label": "STRONG UPTREND ",
-        "sentiment_score": 0.09376840591430664,
-        "check_engine_light": " GREEN (Safe to Proceed)"
-      },
-      "previous_snapshot": {
-        "current_price": 384.0033874511719,
-        "predicted_price_next_session": 404.69749938964844,
-        "trend_label": "STRONG UPTREND ",
-        "sentiment_score": 0.10178745587666829,
+        "sentiment_score": 0.09522002935409546,
         "check_engine_light": " GREEN (Safe to Proceed)"
       }
     }

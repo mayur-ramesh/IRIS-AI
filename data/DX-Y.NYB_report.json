@@ -453,5 +453,38 @@
       ],
       "chart_path": "data\\charts\\2026-03-10\\DX-Y.NYB_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "source_symbol": "DX-Y.NYB",
+      "generated_at": "2026-03-10T14:02:24Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 98.73200225830078,
+      "predicted_price_next_session": 99.11129951477051
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.3939298689365387,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "DX-Y.NYB announces date for shareholder meeting",
+          "url": ""
+        },
+        {
+          "title": "DX-Y.NYB news flow remains active amid market volatility",
+          "url": ""
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/DX-Y.NYB_trend.png"
+    }
   }
 ]

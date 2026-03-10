@@ -2065,5 +2065,46 @@
       ],
       "chart_path": "data\\charts\\2026-03-10\\AAPL_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "source_symbol": "AAPL",
+      "generated_at": "2026-03-10T14:02:15Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 257.92498779296875,
+      "predicted_price_next_session": 258.71371978759765
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.23849324882030487,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Apple Stock Slips 1.09% as Geopolitical Jitters Offset Fresh Product Momentum",
+          "url": "https://www.ibtimes.com.au/apple-stock-slips-109-geopolitical-jitters-offset-fresh-product-momentum-1862931"
+        },
+        {
+          "title": "Apple Just Unveiled the New iPhone 17e. Should You Buy, Sell, or Hold AAPL Stock Now?",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_fd091681-ef10-4009-b4d5-fd71a3936bb9"
+        },
+        {
+          "title": "Apple just made it easier for people to become customers",
+          "url": "https://macdailynews.com/2026/03/05/apple-just-made-it-easier-for-people-to-become-customers/"
+        },
+        {
+          "title": "Parallels\u3001Apple A18 Pro\u30c1\u30c3\u30d7\u3092\u642d\u8f09\u3057\u305fMacBook Neo\u306f8GB\u30e1\u30e2\u30ea\u3084\u30d5\u30a1\u30f3\u30ec\u30b9\u4ed5\u69d8\u3068\u3044\u3046\u5236\u9650\u304b\u3089Parallels Desktop\u306b\u3088\u308bWindows\u4eee\u60f3\u30de\u30b7\u30f3\u306e\u69cb\u7bc9\u306b\u306f\u5411\u304b\u305a\u3001\u4eca\u5f8c\u691c\u8a3c\u304c\u5fc5\u8981\u3060\u3068\u767a\u8868\u3002",
+          "url": "https://applech2.com/archives/20260305-parallels-desktop-and-macbook-neo-compatibility.html"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/AAPL_trend.png"
+    }
   }
 ]

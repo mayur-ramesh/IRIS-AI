@@ -466,5 +466,38 @@
       ],
       "chart_path": "data\\charts\\2026-03-10\\HG=F_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "HG=F",
+      "source_symbol": "HG=F",
+      "generated_at": "2026-03-10T14:02:31Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 5.926499843597412,
+      "predicted_price_next_session": 5.797269878387451
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.4046784043312073,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "HG=F announces date for shareholder meeting",
+          "url": ""
+        },
+        {
+          "title": "HG=F news flow remains active amid market volatility",
+          "url": ""
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/HG=F_trend.png"
+    }
   }
 ]

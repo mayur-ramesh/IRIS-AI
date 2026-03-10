@@ -2220,5 +2220,90 @@
       ],
       "chart_path": "data\\charts\\2026-03-10\\AMZN_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-10T14:02:18Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 213.3300018310547,
+      "predicted_price_next_session": 214.64630401611328
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.011747149626413982,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Clairtone 2025 720p AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/clairtone-2025-720p-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "Stripped Down S01E01 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/stripped-down-s01e01-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Amazon.com, Inc. (AMZN) Among Bill Ackman\u2019s Top Picks Amid Strong Secular Growth Trends",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_9e5833a7-6ba2-4217-b45b-c72bab903d3e"
+        },
+        {
+          "title": "Pledge This 2006 1080p AMZN WEB-DL x264-FLUX",
+          "url": "https://post.rlsbb.to/pledge-this-2006-1080p-amzn-web-dl-x264-flux/"
+        },
+        {
+          "title": "Mock The Week S22E06 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/mock-the-week-s22e06-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Eminem AKA 2004 AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/eminem-aka-2004-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "The Last Drive-in With Joe Bob Briggs S33E24 720p AMZN WEB-DL H264-BFM",
+          "url": "https://post.rlsbb.to/the-last-drive-in-with-joe-bob-briggs-s33e24-720p-amzn-web-dl-h264-bfm/"
+        },
+        {
+          "title": "The Last Drive-in With Joe Bob Briggs S33E23 720p AMZN WEB-DL H264-BFM",
+          "url": "https://post.rlsbb.to/the-last-drive-in-with-joe-bob-briggs-s33e23-720p-amzn-web-dl-h264-bfm/"
+        },
+        {
+          "title": "Have I Got News For You US S04E07 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/have-i-got-news-for-you-us-s04e07-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Compute Capacity Offering Support to Amazon (AMZN)",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_ac1a020e-b380-473a-842e-d678e786536e"
+        },
+        {
+          "title": "The Princess Diaries S02 1080p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/the-princess-diaries-s02-1080p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Cursed Hearse 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/cursed-hearse-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        },
+        {
+          "title": "Gone 2026 S01 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/gone-2026-s01-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Vanished Without A Trace 1999 AMZN WEB-DL H264-TEPES",
+          "url": "https://post.rlsbb.to/vanished-without-a-trace-1999-amzn-web-dl-h264-tepes/"
+        },
+        {
+          "title": "All Thats Left Of You 2025 720p AMZN WEB-DL H264-MADSKY",
+          "url": "https://post.rlsbb.to/all-thats-left-of-you-2025-720p-amzn-web-dl-h264-madsky/"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/AMZN_trend.png"
+    }
   }
 ]

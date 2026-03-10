@@ -466,5 +466,38 @@
       ],
       "chart_path": "data\\charts\\2026-03-10\\CL=F_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "CL=F",
+      "source_symbol": "CL=F",
+      "generated_at": "2026-03-10T14:02:21Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 88.45999908447266,
+      "predicted_price_next_session": 87.51839935302735
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Oil prices: How the Big Beautiful Bill has Trump's hands tied",
+          "url": ""
+        },
+        {
+          "title": "Oil prices aren't at recession levels, but they might be at $150",
+          "url": ""
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/CL=F_trend.png"
+    }
   }
 ]

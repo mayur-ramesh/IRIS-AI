@@ -1706,5 +1706,54 @@
       ],
       "chart_path": "data\\charts\\2026-03-10\\TSLA_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "source_symbol": "TSLA",
+      "generated_at": "2026-03-10T14:02:44Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 405.6700134277344,
+      "predicted_price_next_session": 406.44740203857424
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.19692028562227884,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Why Tesla stock (TSLA) falls as NHTSA probe into FSD vehicles and March 9 deadline spark investor concerns",
+          "url": "https://economictimes.indiatimes.com/news/international/us/why-tesla-stock-tsla-falls-as-nhtsa-probe-into-fsd-vehicles-and-march-9-deadline-spark-investor-concerns/articleshow/129331955.cms"
+        },
+        {
+          "title": "YieldMax\u2019s TSLA Option Income ETF Has a 60%+ Yield And a Track Record That Should Terrify You",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_f4012047-65d8-46e3-a21a-da42331647d4"
+        },
+        {
+          "title": "Tesla Stock Faces Volatility Ahead of Pivotal NHTSA Deadline as Tesla Pivots to Autonomy and Robotics",
+          "url": "https://www.ibtimes.com.au/tesla-stock-faces-volatility-ahead-pivotal-nhtsa-deadline-tesla-pivots-autonomy-robotics-1862965"
+        },
+        {
+          "title": "Bank of America Is Bullish on Tesla Again. Is That a Reason to Buy TSLA Stock?",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_0f9d62a3-a471-4248-8528-397f1f4e7418"
+        },
+        {
+          "title": "Bank of America Resumes Coverage on Tesla, Inc. (TSLA), Upgrades to Buy",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_cc6c5b81-5a6f-4767-b5cd-5eab1348d37b"
+        },
+        {
+          "title": "Tesla Stock Dips Slightly in Early Trading Amid Robotaxi Optimism and Analyst Upgrades",
+          "url": "https://www.ibtimes.com.au/tesla-stock-dips-slightly-early-trading-amid-robotaxi-optimism-analyst-upgrades-1862695"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/TSLA_trend.png"
+    }
   }
 ]

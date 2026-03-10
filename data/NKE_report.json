@@ -1607,5 +1607,50 @@
       ],
       "chart_path": "data\\charts\\2026-03-10\\NKE_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "source_symbol": "NKE",
+      "generated_at": "2026-03-10T14:02:38Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 55.994998931884766,
+      "predicted_price_next_session": 58.210912170410154
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.15944288969039916,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Is NIKE, Inc. (NKE) Stock A Good Buy Right Now?",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_37fc7c3a-7795-4901-a5f6-617faf399127"
+        },
+        {
+          "title": "Where Will Nike (NKE) Stock Be in 3 Years?",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_aa6e3fca-2cc3-48fd-a7e7-9632ba356de9"
+        },
+        {
+          "title": "Nike\u2019s China Challenges Remain in Focus as BNP Paribas Maintains Bearish Outlook",
+          "url": "https://finance.yahoo.com/news/nike-china-challenges-remain-focus-030140189.html"
+        },
+        {
+          "title": "Here\u2019s Why Madison Large Cap Fund Chose to Exit Nike (NKE)",
+          "url": "https://finance.yahoo.com/news/why-madison-large-cap-fund-123443957.html"
+        },
+        {
+          "title": "What Makes Nike (NKE) an Investment Bet?",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_881caa50-2ad6-4416-801e-713eec8dd1ac"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/NKE_trend.png"
+    }
   }
 ]
