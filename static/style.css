@@ -645,6 +645,18 @@ header {
     border-left: 3px solid var(--accent-blue);
 }
 
+.headline-link {
+    color: var(--text-main);
+    text-decoration: none;
+    border-bottom: 1px dotted transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.headline-link:hover {
+    color: var(--accent-blue);
+    border-color: var(--accent-blue);
+}
+
 .headlines-list::-webkit-scrollbar {
     width: 6px;
 }
