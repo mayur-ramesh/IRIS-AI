@@ -2088,5 +2088,291 @@
         "Near-neutral sentiment indicates lack of significant upside catalyst"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-10T14:04:08Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 257.81,
+      "predicted_price_next_session": 256.45
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.2385,
+      "check_engine_light": "YELLOW (Bearish momentum indicated by SMA and sentiment divergence)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Short-term price action remains constrained below 5-day SMA",
+        "Sentiment scores dip into negative territory following recent market volatility"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-10T14:04:27Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 213.315,
+      "predicted_price_next_session": 212.75
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0117,
+      "check_engine_light": "YELLOW (Price remains below 5-day SMA indicating short-term bearish pressure)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Technical resistance identified at the 5-day moving average level",
+        "Neutral sentiment signals a lack of strong buying conviction in the immediate term"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "CL=F",
+      "generated_at": "2026-03-10T14:04:51Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 87.81,
+      "predicted_price_next_session": 88.35
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price trading above SMA support)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Bullish gap between current spot and 5-day moving average",
+        "Stabilizing market volume despite neutral sentiment indicators"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "generated_at": "2026-03-10T14:05:13Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 98.715,
+      "predicted_price_next_session": 98.842
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.3939,
+      "check_engine_light": "YELLOW (Price below SMA_5 despite positive sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Dollar Index faces resistance below 5-day moving average",
+        "Cautious optimism persists in sentiment data despite price lag"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GC=F",
+      "generated_at": "2026-03-10T14:05:32Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5216.3999,
+      "predicted_price_next_session": 5242.85
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.9236,
+      "check_engine_light": "GREEN (Bullish technicals paired with high market conviction)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Bullish momentum accelerates as gold holds significantly above its 5-day moving average.",
+        "Extreme positive sentiment score suggests sustained demand for safe-haven assets."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-10T14:06:05Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 306.54,
+      "predicted_price_next_session": 305.78
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": -0.1937,
+      "check_engine_light": "YELLOW (Technical support offset by bearish sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Technical indicators show price holding above 5-day moving average",
+        "Negative sentiment score suggests potential consolidation in next session"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "HG=F",
+      "generated_at": "2026-03-10T14:06:28Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5.933,
+      "predicted_price_next_session": 5.9615
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.4047,
+      "check_engine_light": "GREEN (Price remains above SMA-5 with positive sentiment support)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Copper futures maintain bullish momentum above 5-day moving average",
+        "Positive investor sentiment reflects tightening global supply expectations"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-10T14:06:47Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 653.63,
+      "predicted_price_next_session": 655.45
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.3916,
+      "check_engine_light": "YELLOW (Price trading below 5-day SMA despite positive sentiment support)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "META price action shows consolidation below short-term moving average",
+        "Sentiment remains robust as ad-platform AI innovations drive analyst optimism"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-10T14:07:07Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 404.115,
+      "predicted_price_next_session": 405.12
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.2162,
+      "check_engine_light": "YELLOW (Price below SMA_5 indicating short-term pressure)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "MSFT technicals show bearish divergence from 5-day SMA",
+        "Slightly positive news sentiment counters immediate sell-off"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-10T14:07:29Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 56.02,
+      "predicted_price_next_session": 55.45
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1594,
+      "check_engine_light": "YELLOW (Bearish momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Spot price trading below 5-day SMA indicates short-term technical weakness.",
+        "Negative sentiment score suggests prevailing cautious outlook among retail analysts."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-10T14:07:50Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 182.9457,
+      "predicted_price_next_session": 183.52
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0003,
+      "check_engine_light": "GREEN (ABOVE SMA_5)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "NVDA price maintains support above the 5-day moving average",
+        "Neutral sentiment indicates stability amidst minor upward momentum"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "generated_at": "2026-03-10T14:08:18Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 89.165,
+      "predicted_price_next_session": 90.25
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price momentum remains robust above short-term moving average)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Spot price shows significant technical breakout above the 5-day moving average.",
+        "Neutral sentiment indicates potential for further technical-driven price appreciation."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-10T14:08:41Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 403.715,
+      "predicted_price_next_session": 402.95
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": -0.1969,
+      "check_engine_light": "YELLOW (Negative Sentiment Divergence)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Price maintains position above 5-day SMA average",
+        "Negative sentiment score suggests impending price correction"
+      ]
+    }
   }
 ]
