@@ -234,5 +234,237 @@
       ],
       "chart_path": "data\\charts\\2026-03-09\\CL=F_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "CL=F",
+      "source_symbol": "CL=F",
+      "generated_at": "2026-03-10T08:00:34Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 86.73999786376953,
+      "predicted_price_next_session": 82.05149963378906,
+      "history": [
+        {
+          "time": "2025-12-29",
+          "value": 58.08000183105469
+        },
+        {
+          "time": "2025-12-30",
+          "value": 57.95000076293945
+        },
+        {
+          "time": "2025-12-31",
+          "value": 57.41999816894531
+        },
+        {
+          "time": "2026-01-02",
+          "value": 57.31999969482422
+        },
+        {
+          "time": "2026-01-05",
+          "value": 58.31999969482422
+        },
+        {
+          "time": "2026-01-06",
+          "value": 57.130001068115234
+        },
+        {
+          "time": "2026-01-07",
+          "value": 55.9900016784668
+        },
+        {
+          "time": "2026-01-08",
+          "value": 57.7599983215332
+        },
+        {
+          "time": "2026-01-09",
+          "value": 59.119998931884766
+        },
+        {
+          "time": "2026-01-12",
+          "value": 59.5
+        },
+        {
+          "time": "2026-01-13",
+          "value": 61.150001525878906
+        },
+        {
+          "time": "2026-01-14",
+          "value": 62.02000045776367
+        },
+        {
+          "time": "2026-01-15",
+          "value": 59.189998626708984
+        },
+        {
+          "time": "2026-01-16",
+          "value": 59.439998626708984
+        },
+        {
+          "time": "2026-01-20",
+          "value": 60.34000015258789
+        },
+        {
+          "time": "2026-01-21",
+          "value": 60.619998931884766
+        },
+        {
+          "time": "2026-01-22",
+          "value": 59.36000061035156
+        },
+        {
+          "time": "2026-01-23",
+          "value": 61.06999969482422
+        },
+        {
+          "time": "2026-01-26",
+          "value": 60.630001068115234
+        },
+        {
+          "time": "2026-01-27",
+          "value": 62.38999938964844
+        },
+        {
+          "time": "2026-01-28",
+          "value": 63.209999084472656
+        },
+        {
+          "time": "2026-01-29",
+          "value": 65.41999816894531
+        },
+        {
+          "time": "2026-01-30",
+          "value": 65.20999908447266
+        },
+        {
+          "time": "2026-02-02",
+          "value": 62.13999938964844
+        },
+        {
+          "time": "2026-02-03",
+          "value": 63.209999084472656
+        },
+        {
+          "time": "2026-02-04",
+          "value": 65.13999938964844
+        },
+        {
+          "time": "2026-02-05",
+          "value": 63.290000915527344
+        },
+        {
+          "time": "2026-02-06",
+          "value": 63.54999923706055
+        },
+        {
+          "time": "2026-02-09",
+          "value": 64.36000061035156
+        },
+        {
+          "time": "2026-02-10",
+          "value": 63.959999084472656
+        },
+        {
+          "time": "2026-02-11",
+          "value": 64.62999725341797
+        },
+        {
+          "time": "2026-02-12",
+          "value": 62.84000015258789
+        },
+        {
+          "time": "2026-02-13",
+          "value": 62.88999938964844
+        },
+        {
+          "time": "2026-02-17",
+          "value": 62.33000183105469
+        },
+        {
+          "time": "2026-02-18",
+          "value": 65.19000244140625
+        },
+        {
+          "time": "2026-02-19",
+          "value": 66.43000030517578
+        },
+        {
+          "time": "2026-02-20",
+          "value": 66.38999938964844
+        },
+        {
+          "time": "2026-02-23",
+          "value": 66.30999755859375
+        },
+        {
+          "time": "2026-02-24",
+          "value": 65.62999725341797
+        },
+        {
+          "time": "2026-02-25",
+          "value": 65.41999816894531
+        },
+        {
+          "time": "2026-02-26",
+          "value": 65.20999908447266
+        },
+        {
+          "time": "2026-02-27",
+          "value": 67.0199966430664
+        },
+        {
+          "time": "2026-03-02",
+          "value": 71.2300033569336
+        },
+        {
+          "time": "2026-03-03",
+          "value": 74.55999755859375
+        },
+        {
+          "time": "2026-03-04",
+          "value": 74.66000366210938
+        },
+        {
+          "time": "2026-03-05",
+          "value": 81.01000213623047
+        },
+        {
+          "time": "2026-03-06",
+          "value": 90.9000015258789
+        },
+        {
+          "time": "2026-03-10",
+          "value": 86.73999786376953
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.03539597193400065,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Chronological Reading for Monday March 9, 2026 (NIV)",
+        "Chronological Reading for Sunday March 8, 2026 (NIV)",
+        "Old/New Testament Reading for Sunday March 8, 2026 (NIV)",
+        "Chronological Reading for Saturday March 7, 2026 (NIV)",
+        "opendose-poppk added to PyPI",
+        "Built-in tandem catalysis in hierarchical pores for efficient vinyl chloride production",
+        "US oil prices notch biggest weekly surge since at least 1985 as Iran war disrupts Strait of Hormuz",
+        "Comparative susceptibility of Old World and New World bat cell lines to Zika virus: Insights into viral replication and inflammatory responses",
+        "Perception on blackflies and community ownership of the \u201cSlash-and-Clear\u201d vector control intervention in onchocerciasis-endemic communities along Edo-Ondo border in Southern Nigeria",
+        "Chronological Reading for Friday March 6, 2026 (NIV)",
+        "Cm-p5, a synthetic antimicrobial peptide shows anti-Trypanosoma cruzi activity",
+        "Old/New Testament Reading for Thursday March 5, 2026 (NIV)",
+        "Chronological Reading for Thursday March 5, 2026 (NIV)",
+        "HCl-selective ionization reactions for improved Cl detection robustness in post-inductively coupled plasma chemical ionization",
+        "Enhanced photocatalytic and antibacterial performance of LaMnCeO3/TiO2 composites modified with Ti3C2Tx MXene for efficient methyl red degradation"
+      ],
+      "chart_path": "data\\charts\\2026-03-10\\CL=F_trend.png"
+    }
   }
 ]

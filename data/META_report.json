@@ -1266,5 +1266,285 @@
       ],
       "chart_path": "data\\charts\\2026-03-09\\META_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "source_symbol": "META",
+      "generated_at": "2026-03-10T08:00:44Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 647.3900146484375,
+      "predicted_price_next_session": 648.3652264404296,
+      "history": [
+        {
+          "time": "2025-12-10",
+          "value": 649.6002197265625
+        },
+        {
+          "time": "2025-12-11",
+          "value": 652.1781005859375
+        },
+        {
+          "time": "2025-12-12",
+          "value": 643.7050170898438
+        },
+        {
+          "time": "2025-12-15",
+          "value": 647.510009765625
+        },
+        {
+          "time": "2025-12-16",
+          "value": 657.1500244140625
+        },
+        {
+          "time": "2025-12-17",
+          "value": 649.5
+        },
+        {
+          "time": "2025-12-18",
+          "value": 664.4500122070312
+        },
+        {
+          "time": "2025-12-19",
+          "value": 658.77001953125
+        },
+        {
+          "time": "2025-12-22",
+          "value": 661.5
+        },
+        {
+          "time": "2025-12-23",
+          "value": 664.9400024414062
+        },
+        {
+          "time": "2025-12-24",
+          "value": 667.5499877929688
+        },
+        {
+          "time": "2025-12-26",
+          "value": 663.2899780273438
+        },
+        {
+          "time": "2025-12-29",
+          "value": 658.6900024414062
+        },
+        {
+          "time": "2025-12-30",
+          "value": 665.9500122070312
+        },
+        {
+          "time": "2025-12-31",
+          "value": 660.0900268554688
+        },
+        {
+          "time": "2026-01-02",
+          "value": 650.4099731445312
+        },
+        {
+          "time": "2026-01-05",
+          "value": 658.7899780273438
+        },
+        {
+          "time": "2026-01-06",
+          "value": 660.6199951171875
+        },
+        {
+          "time": "2026-01-07",
+          "value": 648.6900024414062
+        },
+        {
+          "time": "2026-01-08",
+          "value": 646.0599975585938
+        },
+        {
+          "time": "2026-01-09",
+          "value": 653.0599975585938
+        },
+        {
+          "time": "2026-01-12",
+          "value": 641.969970703125
+        },
+        {
+          "time": "2026-01-13",
+          "value": 631.0900268554688
+        },
+        {
+          "time": "2026-01-14",
+          "value": 615.52001953125
+        },
+        {
+          "time": "2026-01-15",
+          "value": 620.7999877929688
+        },
+        {
+          "time": "2026-01-16",
+          "value": 620.25
+        },
+        {
+          "time": "2026-01-20",
+          "value": 604.1199951171875
+        },
+        {
+          "time": "2026-01-21",
+          "value": 612.9600219726562
+        },
+        {
+          "time": "2026-01-22",
+          "value": 647.6300048828125
+        },
+        {
+          "time": "2026-01-23",
+          "value": 658.760009765625
+        },
+        {
+          "time": "2026-01-26",
+          "value": 672.3599853515625
+        },
+        {
+          "time": "2026-01-27",
+          "value": 672.969970703125
+        },
+        {
+          "time": "2026-01-28",
+          "value": 668.72998046875
+        },
+        {
+          "time": "2026-01-29",
+          "value": 738.3099975585938
+        },
+        {
+          "time": "2026-01-30",
+          "value": 716.5
+        },
+        {
+          "time": "2026-02-02",
+          "value": 706.4099731445312
+        },
+        {
+          "time": "2026-02-03",
+          "value": 691.7000122070312
+        },
+        {
+          "time": "2026-02-04",
+          "value": 668.989990234375
+        },
+        {
+          "time": "2026-02-05",
+          "value": 670.2100219726562
+        },
+        {
+          "time": "2026-02-06",
+          "value": 661.4600219726562
+        },
+        {
+          "time": "2026-02-09",
+          "value": 677.219970703125
+        },
+        {
+          "time": "2026-02-10",
+          "value": 670.719970703125
+        },
+        {
+          "time": "2026-02-11",
+          "value": 668.6900024414062
+        },
+        {
+          "time": "2026-02-12",
+          "value": 649.8099975585938
+        },
+        {
+          "time": "2026-02-13",
+          "value": 639.77001953125
+        },
+        {
+          "time": "2026-02-17",
+          "value": 639.2899780273438
+        },
+        {
+          "time": "2026-02-18",
+          "value": 643.219970703125
+        },
+        {
+          "time": "2026-02-19",
+          "value": 644.780029296875
+        },
+        {
+          "time": "2026-02-20",
+          "value": 655.6599731445312
+        },
+        {
+          "time": "2026-02-23",
+          "value": 637.25
+        },
+        {
+          "time": "2026-02-24",
+          "value": 639.2999877929688
+        },
+        {
+          "time": "2026-02-25",
+          "value": 653.6900024414062
+        },
+        {
+          "time": "2026-02-26",
+          "value": 657.010009765625
+        },
+        {
+          "time": "2026-02-27",
+          "value": 648.1799926757812
+        },
+        {
+          "time": "2026-03-02",
+          "value": 653.5599975585938
+        },
+        {
+          "time": "2026-03-03",
+          "value": 655.0800170898438
+        },
+        {
+          "time": "2026-03-04",
+          "value": 667.72998046875
+        },
+        {
+          "time": "2026-03-05",
+          "value": 660.5700073242188
+        },
+        {
+          "time": "2026-03-06",
+          "value": 644.8599853515625
+        },
+        {
+          "time": "2026-03-09",
+          "value": 647.3900146484375
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.0231358806292216,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "ngksdevfabeco added to PyPI",
+        "ngksdevfabeco 0.1.1",
+        "AI factory builder Nscale announces another $2bn of funding",
+        "tracemap added to PyPI",
+        "Show HN: Run 500B+ Parameter LLMs Locally on a Mac Mini",
+        "Bill Ackman\u2019s Eyes Meta Platforms, Inc. (META) Amid Cheap Valuation",
+        "Trump announces energy pledge with major tech firms to cover AI power costs",
+        "Dana White: 'Jon Jones was never remotely considered for the UFC White House event'",
+        "And New! Opetaia Becomes First Zuffa Boxing Champion",
+        "Your next phone will cost more\u2014and have less RAM: The hidden \u2018AI Tax\u2019 hitting India\u2019s mid-range market",
+        "Meta\u2019s measurement and attribution updates are welcomed, but not ground-breaking, ad execs say",
+        "Media Buying Briefing: Overheard at DMBS Spring 2026: AI from the top to the bottom of agencies",
+        "AI Updates for the Week of 3/8/26",
+        "Show HN: Andon \u2013 Toyota Production System for LLM Coding Agents",
+        "OpenAI senior robotics exec resigns over Pentagon deal; Anthropic formally designated as supply-chain risk"
+      ],
+      "chart_path": "data\\charts\\2026-03-10\\META_trend.png"
+    }
   }
 ]

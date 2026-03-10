@@ -1357,5 +1357,285 @@
       ],
       "chart_path": "data\\charts\\2026-03-09\\AMZN_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-10T08:00:31Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 213.49000549316406,
+      "predicted_price_next_session": 213.99550537109374,
+      "history": [
+        {
+          "time": "2025-12-10",
+          "value": 231.77999877929688
+        },
+        {
+          "time": "2025-12-11",
+          "value": 230.27999877929688
+        },
+        {
+          "time": "2025-12-12",
+          "value": 226.19000244140625
+        },
+        {
+          "time": "2025-12-15",
+          "value": 222.5399932861328
+        },
+        {
+          "time": "2025-12-16",
+          "value": 222.55999755859375
+        },
+        {
+          "time": "2025-12-17",
+          "value": 221.27000427246094
+        },
+        {
+          "time": "2025-12-18",
+          "value": 226.75999450683594
+        },
+        {
+          "time": "2025-12-19",
+          "value": 227.35000610351562
+        },
+        {
+          "time": "2025-12-22",
+          "value": 228.42999267578125
+        },
+        {
+          "time": "2025-12-23",
+          "value": 232.13999938964844
+        },
+        {
+          "time": "2025-12-24",
+          "value": 232.3800048828125
+        },
+        {
+          "time": "2025-12-26",
+          "value": 232.52000427246094
+        },
+        {
+          "time": "2025-12-29",
+          "value": 232.07000732421875
+        },
+        {
+          "time": "2025-12-30",
+          "value": 232.52999877929688
+        },
+        {
+          "time": "2025-12-31",
+          "value": 230.82000732421875
+        },
+        {
+          "time": "2026-01-02",
+          "value": 226.5
+        },
+        {
+          "time": "2026-01-05",
+          "value": 233.05999755859375
+        },
+        {
+          "time": "2026-01-06",
+          "value": 240.92999267578125
+        },
+        {
+          "time": "2026-01-07",
+          "value": 241.55999755859375
+        },
+        {
+          "time": "2026-01-08",
+          "value": 246.2899932861328
+        },
+        {
+          "time": "2026-01-09",
+          "value": 247.3800048828125
+        },
+        {
+          "time": "2026-01-12",
+          "value": 246.47000122070312
+        },
+        {
+          "time": "2026-01-13",
+          "value": 242.60000610351562
+        },
+        {
+          "time": "2026-01-14",
+          "value": 236.64999389648438
+        },
+        {
+          "time": "2026-01-15",
+          "value": 238.17999267578125
+        },
+        {
+          "time": "2026-01-16",
+          "value": 239.1199951171875
+        },
+        {
+          "time": "2026-01-20",
+          "value": 231.0
+        },
+        {
+          "time": "2026-01-21",
+          "value": 231.30999755859375
+        },
+        {
+          "time": "2026-01-22",
+          "value": 234.33999633789062
+        },
+        {
+          "time": "2026-01-23",
+          "value": 239.16000366210938
+        },
+        {
+          "time": "2026-01-26",
+          "value": 238.4199981689453
+        },
+        {
+          "time": "2026-01-27",
+          "value": 244.67999267578125
+        },
+        {
+          "time": "2026-01-28",
+          "value": 243.00999450683594
+        },
+        {
+          "time": "2026-01-29",
+          "value": 241.72999572753906
+        },
+        {
+          "time": "2026-01-30",
+          "value": 239.3000030517578
+        },
+        {
+          "time": "2026-02-02",
+          "value": 242.9600067138672
+        },
+        {
+          "time": "2026-02-03",
+          "value": 238.6199951171875
+        },
+        {
+          "time": "2026-02-04",
+          "value": 232.99000549316406
+        },
+        {
+          "time": "2026-02-05",
+          "value": 222.69000244140625
+        },
+        {
+          "time": "2026-02-06",
+          "value": 210.32000732421875
+        },
+        {
+          "time": "2026-02-09",
+          "value": 208.72000122070312
+        },
+        {
+          "time": "2026-02-10",
+          "value": 206.9600067138672
+        },
+        {
+          "time": "2026-02-11",
+          "value": 204.0800018310547
+        },
+        {
+          "time": "2026-02-12",
+          "value": 199.60000610351562
+        },
+        {
+          "time": "2026-02-13",
+          "value": 198.7899932861328
+        },
+        {
+          "time": "2026-02-17",
+          "value": 201.14999389648438
+        },
+        {
+          "time": "2026-02-18",
+          "value": 204.7899932861328
+        },
+        {
+          "time": "2026-02-19",
+          "value": 204.86000061035156
+        },
+        {
+          "time": "2026-02-20",
+          "value": 210.11000061035156
+        },
+        {
+          "time": "2026-02-23",
+          "value": 205.27000427246094
+        },
+        {
+          "time": "2026-02-24",
+          "value": 208.55999755859375
+        },
+        {
+          "time": "2026-02-25",
+          "value": 210.63999938964844
+        },
+        {
+          "time": "2026-02-26",
+          "value": 207.9199981689453
+        },
+        {
+          "time": "2026-02-27",
+          "value": 210.0
+        },
+        {
+          "time": "2026-03-02",
+          "value": 208.38999938964844
+        },
+        {
+          "time": "2026-03-03",
+          "value": 208.72999572753906
+        },
+        {
+          "time": "2026-03-04",
+          "value": 216.82000732421875
+        },
+        {
+          "time": "2026-03-05",
+          "value": 218.94000244140625
+        },
+        {
+          "time": "2026-03-06",
+          "value": 213.2100067138672
+        },
+        {
+          "time": "2026-03-09",
+          "value": 213.49000549316406
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.060727047920227054,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Amazon.com, Inc. (AMZN) Among Bill Ackman\u2019s Top Picks Amid Strong Secular Growth Trends",
+        "Pledge This 2006 1080p AMZN WEB-DL x264-FLUX",
+        "Mock The Week S22E06 720p AMZN WEB-DL H264-RAWR",
+        "Eminem AKA 2004 AMZN WEB-DL H264-Kitsune",
+        "The Last Drive-in With Joe Bob Briggs S33E24 720p AMZN WEB-DL H264-BFM",
+        "The Last Drive-in With Joe Bob Briggs S33E23 720p AMZN WEB-DL H264-BFM",
+        "Have I Got News For You US S04E07 720p AMZN WEB-DL H264-RAWR",
+        "Compute Capacity Offering Support to Amazon (AMZN)",
+        "The Princess Diaries S02 1080p AMZN WEB-DL H264-RAWR",
+        "Cursed Hearse 2026 1080p AMZN WEB-DL H264-BobDobbs",
+        "Gone 2026 S01 720p AMZN WEB-DL H264-RAWR",
+        "Vanished Without A Trace 1999 AMZN WEB-DL H264-TEPES",
+        "All Thats Left Of You 2025 720p AMZN WEB-DL H264-MADSKY",
+        "Sahib Bibi Aur Ghulam 1962 1080p AMZN WEB-DL H264-KHN",
+        "Down To The Felt 2025 1080p AMZN WEB-DL H264-playWEB"
+      ],
+      "chart_path": "data\\charts\\2026-03-10\\AMZN_trend.png"
+    }
   }
 ]

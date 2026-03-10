@@ -1789,13 +1789,13 @@
     "meta": {
       "symbol": "AAPL",
       "source_symbol": "AAPL",
-      "generated_at": "2026-03-09T14:16:24Z",
+      "generated_at": "2026-03-10T08:00:29Z",
       "market_session_date": "2026-03-09",
       "mode": "live"
     },
     "market": {
-      "current_price": 255.6999969482422,
-      "predicted_price_next_session": 257.2026890563965,
+      "current_price": 259.8800048828125,
+      "predicted_price_next_session": 259.7519906616211,
       "history": [
         {
           "time": "2025-12-10",
@@ -2035,17 +2035,20 @@
         },
         {
           "time": "2026-03-09",
-          "value": 255.6999969482422
+          "value": 259.8800048828125
         }
       ]
     },
     "signals": {
-      "trend_label": "STRONG UPTREND ",
+      "trend_label": "WEAK DOWNTREND ",
       "sentiment_score": -0.06359819968541464,
       "check_engine_light": " RED (Risk Detected - Caution)"
     },
     "evidence": {
       "headlines_used": [
+        "Warren Buffett Is Gone. Here\u2019s What His Successor Greg Abel May Do With Berkshire\u2019s Biggest Stock Holdings",
+        "sharia-screener added to PyPI",
+        "Show HN: System R \u2013 Risk intelligence API for autonomous trading agents",
         "Show HN: I logged Gemini's stock predictions for 38 days to study LLM drift",
         "Apple Stock Slips 1.09% as Geopolitical Jitters Offset Fresh Product Momentum",
         "Billionaire Peter Thiel Dumps $74,400,000 Stake in Three Assets, Including One Warren Buffett Favorite",
@@ -2057,12 +2060,9 @@
         "3 world-class ASX ETFs to buy and hold",
         "polygon-options-puller added to PyPI",
         "caracal-trading added to PyPI",
-        "Parallels\u3001Apple A18 Pro\u30c1\u30c3\u30d7\u3092\u642d\u8f09\u3057\u305fMacBook Neo\u306f8GB\u30e1\u30e2\u30ea\u3084\u30d5\u30a1\u30f3\u30ec\u30b9\u4ed5\u69d8\u3068\u3044\u3046\u5236\u9650\u304b\u3089Parallels Desktop\u306b\u3088\u308bWindows\u4eee\u60f3\u30de\u30b7\u30f3\u306e\u69cb\u7bc9\u306b\u306f\u5411\u304b\u305a\u3001\u4eca\u5f8c\u691c\u8a3c\u304c\u5fc5\u8981\u3060\u3068\u767a\u8868\u3002",
-        "The easy way to build a diversified ASX share portfolio",
-        "Apple\u3001\u30d0\u30b0\u306e\u4fee\u6b63\u306b\u52a0\u3048Studio Display (2026)\u3068Studio Display XDR\u306b\u5bfe\u5fdc\u3059\u308b\u300ciOS/iPadOS 26.3.1\u300d\u3092\u30ea\u30ea\u30fc\u30b9\u3002",
-        "Apple\u3001\u30d0\u30b0\u306e\u4fee\u6b63\u306b\u52a0\u3048Studio Display (2026)\u3068Studio Display XDR\u306b\u5bfe\u5fdc\u3059\u308b\u300cmacOS Tahoe 26.3.1\u300d\u3092\u30ea\u30ea\u30fc\u30b9\u3002"
+        "Parallels\u3001Apple A18 Pro\u30c1\u30c3\u30d7\u3092\u642d\u8f09\u3057\u305fMacBook Neo\u306f8GB\u30e1\u30e2\u30ea\u3084\u30d5\u30a1\u30f3\u30ec\u30b9\u4ed5\u69d8\u3068\u3044\u3046\u5236\u9650\u304b\u3089Parallels Desktop\u306b\u3088\u308bWindows\u4eee\u60f3\u30de\u30b7\u30f3\u306e\u69cb\u7bc9\u306b\u306f\u5411\u304b\u305a\u3001\u4eca\u5f8c\u691c\u8a3c\u304c\u5fc5\u8981\u3060\u3068\u767a\u8868\u3002"
       ],
-      "chart_path": "data\\charts\\2026-03-09\\AAPL_trend.png"
+      "chart_path": "data\\charts\\2026-03-10\\AAPL_trend.png"
     }
   }
 ]
