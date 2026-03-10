@@ -1546,5 +1546,288 @@
       ],
       "chart_path": "data\\charts\\2026-03-10\\META_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "source_symbol": "META",
+      "generated_at": "2026-03-10T09:26:31Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 647.3900146484375,
+      "predicted_price_next_session": 648.3652264404296,
+      "history": [
+        {
+          "time": 1,
+          "value": 649.6002197265625
+        },
+        {
+          "time": 1,
+          "value": 652.1781005859375
+        },
+        {
+          "time": 1,
+          "value": 643.7050170898438
+        },
+        {
+          "time": 1,
+          "value": 647.510009765625
+        },
+        {
+          "time": 1,
+          "value": 657.1500244140625
+        },
+        {
+          "time": 1,
+          "value": 649.5
+        },
+        {
+          "time": 1,
+          "value": 664.4500122070312
+        },
+        {
+          "time": 1,
+          "value": 658.77001953125
+        },
+        {
+          "time": 1,
+          "value": 661.5
+        },
+        {
+          "time": 1,
+          "value": 664.9400024414062
+        },
+        {
+          "time": 1,
+          "value": 667.5499877929688
+        },
+        {
+          "time": 1,
+          "value": 663.2899780273438
+        },
+        {
+          "time": 1,
+          "value": 658.6900024414062
+        },
+        {
+          "time": 1,
+          "value": 665.9500122070312
+        },
+        {
+          "time": 1,
+          "value": 660.0900268554688
+        },
+        {
+          "time": 1,
+          "value": 650.4099731445312
+        },
+        {
+          "time": 1,
+          "value": 658.7899780273438
+        },
+        {
+          "time": 1,
+          "value": 660.6199951171875
+        },
+        {
+          "time": 1,
+          "value": 648.6900024414062
+        },
+        {
+          "time": 1,
+          "value": 646.0599975585938
+        },
+        {
+          "time": 1,
+          "value": 653.0599975585938
+        },
+        {
+          "time": 1,
+          "value": 641.969970703125
+        },
+        {
+          "time": 1,
+          "value": 631.0900268554688
+        },
+        {
+          "time": 1,
+          "value": 615.52001953125
+        },
+        {
+          "time": 1,
+          "value": 620.7999877929688
+        },
+        {
+          "time": 1,
+          "value": 620.25
+        },
+        {
+          "time": 1,
+          "value": 604.1199951171875
+        },
+        {
+          "time": 1,
+          "value": 612.9600219726562
+        },
+        {
+          "time": 1,
+          "value": 647.6300048828125
+        },
+        {
+          "time": 1,
+          "value": 658.760009765625
+        },
+        {
+          "time": 1,
+          "value": 672.3599853515625
+        },
+        {
+          "time": 1,
+          "value": 672.969970703125
+        },
+        {
+          "time": 1,
+          "value": 668.72998046875
+        },
+        {
+          "time": 1,
+          "value": 738.3099975585938
+        },
+        {
+          "time": 1,
+          "value": 716.5
+        },
+        {
+          "time": 1,
+          "value": 706.4099731445312
+        },
+        {
+          "time": 1,
+          "value": 691.7000122070312
+        },
+        {
+          "time": 1,
+          "value": 668.989990234375
+        },
+        {
+          "time": 1,
+          "value": 670.2100219726562
+        },
+        {
+          "time": 1,
+          "value": 661.4600219726562
+        },
+        {
+          "time": 1,
+          "value": 677.219970703125
+        },
+        {
+          "time": 1,
+          "value": 670.719970703125
+        },
+        {
+          "time": 1,
+          "value": 668.6900024414062
+        },
+        {
+          "time": 1,
+          "value": 649.8099975585938
+        },
+        {
+          "time": 1,
+          "value": 639.77001953125
+        },
+        {
+          "time": 1,
+          "value": 639.2899780273438
+        },
+        {
+          "time": 1,
+          "value": 643.219970703125
+        },
+        {
+          "time": 1,
+          "value": 644.780029296875
+        },
+        {
+          "time": 1,
+          "value": 655.6599731445312
+        },
+        {
+          "time": 1,
+          "value": 637.25
+        },
+        {
+          "time": 1,
+          "value": 639.2999877929688
+        },
+        {
+          "time": 1,
+          "value": 653.6900024414062
+        },
+        {
+          "time": 1,
+          "value": 657.010009765625
+        },
+        {
+          "time": 1,
+          "value": 648.1799926757812
+        },
+        {
+          "time": 1,
+          "value": 653.5599975585938
+        },
+        {
+          "time": 1,
+          "value": 655.0800170898438
+        },
+        {
+          "time": 1,
+          "value": 667.72998046875
+        },
+        {
+          "time": 1,
+          "value": 660.5700073242188
+        },
+        {
+          "time": 1,
+          "value": 644.8599853515625
+        },
+        {
+          "time": 1,
+          "value": 647.3900146484375
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "For the First Time in 13 Quarters, Billionaire Chase Coleman's No. 1 Holding Isn't Meta Platforms or Microsoft -- but It Is a \"Magnificent\" Stock",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_4833dfb6-f156-45c7-8d5c-2de6686d49a1"
+        },
+        {
+          "title": "Nscale Raises $2 Billion and Adds Sandberg, Clegg to Board",
+          "url": "https://financialpost.com/pmn/business-pmn/nscale-raises-2-billion-and-adds-sandberg-clegg-to-board"
+        },
+        {
+          "title": "ngksdevfabeco 0.1.1",
+          "url": "https://pypi.org/project/ngksdevfabeco/0.1.1/"
+        },
+        {
+          "title": "ngksdevfabeco added to PyPI",
+          "url": "https://pypi.org/project/ngksdevfabeco/"
+        }
+      ],
+      "chart_path": "data\\charts\\2026-03-10\\META_trend.png"
+    }
   }
 ]

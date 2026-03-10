@@ -1422,7 +1422,7 @@
     "meta": {
       "symbol": "TSLA",
       "source_symbol": "TSLA",
-      "generated_at": "2026-03-10T08:00:54Z",
+      "generated_at": "2026-03-10T08:50:22Z",
       "market_session_date": "2026-03-09",
       "mode": "live"
     },
@@ -1674,26 +1674,35 @@
     },
     "signals": {
       "trend_label": "STRONG UPTREND ",
-      "sentiment_score": 0.09376840591430664,
+      "sentiment_score": 0.09522002935409546,
       "check_engine_light": " GREEN (Safe to Proceed)"
     },
     "evidence": {
       "headlines_used": [
-        "Show HN: AlphaPerch \u2013 Track product execution for companies you follow using AI",
-        "Show HN: System R \u2013 Risk intelligence API for autonomous trading agents",
-        "YieldMax\u2019s TSLA Option Income ETF Has a 60%+ Yield And a Track Record That Should Terrify You",
-        "Tesla Stock Faces Volatility Ahead of Pivotal NHTSA Deadline as Tesla Pivots to Autonomy and Robotics",
-        "Bank of America Is Bullish on Tesla Again. Is That a Reason to Buy TSLA Stock?",
-        "Bank of America Resumes Coverage on Tesla, Inc. (TSLA), Upgrades to Buy",
-        "The 24/7 Takeover: How Crypto\u2019s $130B TradFi Surge Is Absorbing The Global Commodities Trade",
-        "The $200 Billion Question: Is Amazon Finally Ready to Pay a Dividend?",
-        "OKX is building a social network directly into its trading app after massive $25 billion valuation",
-        "Tesla Stock Dips Slightly in Early Trading Amid Robotaxi Optimism and Analyst Upgrades",
-        "GraniteShares Announces Weekly Distributions for its YieldBOOST ETFs: COYY, TSYY, NVYY, XBTY, AMYY, TQQY, AZYY, YSPY, MTYY, PLYY, HOYY, SMYY, BBYY, FBYY, IOYY, MAAY, NUGY, SEMY, QBY, RGYY, HMYY and RTYY",
-        "polygon-options-puller added to PyPI",
-        "Tesla\u2019s (TSLA) February Sales Figures Show Sales Growth",
-        "How Hyperliquid\u2019s TradFi Edge Could Lift HYPE Price 90% \u2014 New All-Time High Coming?",
-        "I Went $100,000 All-In on This Mega-Yield ETF \u2014 Here\u2019s Exactly What Happened Next"
+        {
+          "title": "YieldMax\u2019s TSLA Option Income ETF Has a 60%+ Yield And a Track Record That Should Terrify You",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_f4012047-65d8-46e3-a21a-da42331647d4"
+        },
+        {
+          "title": "Tesla Stock Faces Volatility Ahead of Pivotal NHTSA Deadline as Tesla Pivots to Autonomy and Robotics",
+          "url": "https://www.ibtimes.com.au/tesla-stock-faces-volatility-ahead-pivotal-nhtsa-deadline-tesla-pivots-autonomy-robotics-1862965"
+        },
+        {
+          "title": "Bank of America Is Bullish on Tesla Again. Is That a Reason to Buy TSLA Stock?",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_0f9d62a3-a471-4248-8528-397f1f4e7418"
+        },
+        {
+          "title": "Bank of America Resumes Coverage on Tesla, Inc. (TSLA), Upgrades to Buy",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_cc6c5b81-5a6f-4767-b5cd-5eab1348d37b"
+        },
+        {
+          "title": "Tesla Stock Dips Slightly in Early Trading Amid Robotaxi Optimism and Analyst Upgrades",
+          "url": "https://www.ibtimes.com.au/tesla-stock-dips-slightly-early-trading-amid-robotaxi-optimism-analyst-upgrades-1862695"
+        },
+        {
+          "title": "Tesla\u2019s (TSLA) February Sales Figures Show Sales Growth",
+          "url": "https://finance.yahoo.com/news/tesla-tsla-february-sales-figures-004432094.html"
+        }
       ],
       "chart_path": "data\\charts\\2026-03-10\\TSLA_trend.png"
     }

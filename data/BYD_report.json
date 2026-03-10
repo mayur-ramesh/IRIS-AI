@@ -1,0 +1,297 @@
+[
+  {
+    "meta": {
+      "symbol": "BYD",
+      "source_symbol": "BYD",
+      "generated_at": "2026-03-10T09:29:07Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 80.5,
+      "predicted_price_next_session": 80.9853141784668,
+      "history": [
+        {
+          "time": 1,
+          "value": 81.79662322998047
+        },
+        {
+          "time": 1,
+          "value": 84.21150207519531
+        },
+        {
+          "time": 1,
+          "value": 84.91999816894531
+        },
+        {
+          "time": 1,
+          "value": 85.11000061035156
+        },
+        {
+          "time": 1,
+          "value": 85.01000213623047
+        },
+        {
+          "time": 1,
+          "value": 85.23999786376953
+        },
+        {
+          "time": 1,
+          "value": 85.63999938964844
+        },
+        {
+          "time": 1,
+          "value": 86.37000274658203
+        },
+        {
+          "time": 1,
+          "value": 86.69999694824219
+        },
+        {
+          "time": 1,
+          "value": 85.69000244140625
+        },
+        {
+          "time": 1,
+          "value": 85.41000366210938
+        },
+        {
+          "time": 1,
+          "value": 86.5999984741211
+        },
+        {
+          "time": 1,
+          "value": 86.12999725341797
+        },
+        {
+          "time": 1,
+          "value": 85.86000061035156
+        },
+        {
+          "time": 1,
+          "value": 85.23999786376953
+        },
+        {
+          "time": 1,
+          "value": 86.19000244140625
+        },
+        {
+          "time": 1,
+          "value": 88.4000015258789
+        },
+        {
+          "time": 1,
+          "value": 87.80999755859375
+        },
+        {
+          "time": 1,
+          "value": 86.06999969482422
+        },
+        {
+          "time": 1,
+          "value": 88.33000183105469
+        },
+        {
+          "time": 1,
+          "value": 87.91999816894531
+        },
+        {
+          "time": 1,
+          "value": 87.79000091552734
+        },
+        {
+          "time": 1,
+          "value": 88.02999877929688
+        },
+        {
+          "time": 1,
+          "value": 87.47000122070312
+        },
+        {
+          "time": 1,
+          "value": 89.55999755859375
+        },
+        {
+          "time": 1,
+          "value": 88.6500015258789
+        },
+        {
+          "time": 1,
+          "value": 85.69000244140625
+        },
+        {
+          "time": 1,
+          "value": 85.16000366210938
+        },
+        {
+          "time": 1,
+          "value": 85.08999633789062
+        },
+        {
+          "time": 1,
+          "value": 83.88999938964844
+        },
+        {
+          "time": 1,
+          "value": 83.4800033569336
+        },
+        {
+          "time": 1,
+          "value": 82.2300033569336
+        },
+        {
+          "time": 1,
+          "value": 83.5
+        },
+        {
+          "time": 1,
+          "value": 84.18000030517578
+        },
+        {
+          "time": 1,
+          "value": 84.54000091552734
+        },
+        {
+          "time": 1,
+          "value": 84.56999969482422
+        },
+        {
+          "time": 1,
+          "value": 83.0
+        },
+        {
+          "time": 1,
+          "value": 84.77999877929688
+        },
+        {
+          "time": 1,
+          "value": 83.63999938964844
+        },
+        {
+          "time": 1,
+          "value": 83.23999786376953
+        },
+        {
+          "time": 1,
+          "value": 82.80999755859375
+        },
+        {
+          "time": 1,
+          "value": 84.43000030517578
+        },
+        {
+          "time": 1,
+          "value": 83.41000366210938
+        },
+        {
+          "time": 1,
+          "value": 82.16999816894531
+        },
+        {
+          "time": 1,
+          "value": 81.98999786376953
+        },
+        {
+          "time": 1,
+          "value": 83.22000122070312
+        },
+        {
+          "time": 1,
+          "value": 84.75
+        },
+        {
+          "time": 1,
+          "value": 85.05999755859375
+        },
+        {
+          "time": 1,
+          "value": 86.19999694824219
+        },
+        {
+          "time": 1,
+          "value": 83.62000274658203
+        },
+        {
+          "time": 1,
+          "value": 85.19999694824219
+        },
+        {
+          "time": 1,
+          "value": 84.93000030517578
+        },
+        {
+          "time": 1,
+          "value": 87.70999908447266
+        },
+        {
+          "time": 1,
+          "value": 83.2300033569336
+        },
+        {
+          "time": 1,
+          "value": 82.48999786376953
+        },
+        {
+          "time": 1,
+          "value": 81.37999725341797
+        },
+        {
+          "time": 1,
+          "value": 82.19999694824219
+        },
+        {
+          "time": 1,
+          "value": 82.02999877929688
+        },
+        {
+          "time": 1,
+          "value": 80.12999725341797
+        },
+        {
+          "time": 1,
+          "value": 80.5
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.12511114989008223,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "BYD Sime Motors plans network expansion in 2026, opening flagship BYD Mansion outlet in Penang",
+          "url": "https://paultan.org/2026/03/09/byd-sime-motors-plans-network-expansion-in-2026-opening-flagship-byd-mansion-outlet-in-penang/"
+        },
+        {
+          "title": "BYD Has Fallen to One Third of China Sales Compared to 1 Year Ago",
+          "url": "https://www.nextbigfuture.com/2026/03/byd-has-fallen-to-one-third-of-china-sales-compared-to-1-year-ago.html"
+        },
+        {
+          "title": "BYD claims longest-range EV and 3-row SUV titles with new Blade 2.0 battery",
+          "url": "https://www.notebookcheck.net/BYD-claims-longest-range-EV-and-3-row-SUV-titles-with-new-Blade-2-0-battery.1245291.0.html"
+        },
+        {
+          "title": "BYD\u2019s 1.5 MW \u201cFlash\u201d Charging Wasn\u2019t A Gimmick. The Battery Chemistry Behind It Could Change The Industry.",
+          "url": "https://cleantechnica.com/2026/03/08/byds-1-5-mw-flash-charging-wasnt-a-gimmick-the-battery-chemistry-behind-it-could-change-the-industry/"
+        },
+        {
+          "title": "Tesla Rival BYD Applies For Permit To Allow Canada Imports After Tariff Agreement",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_d74c6c21-903a-464f-a690-9a4ef0457726"
+        },
+        {
+          "title": "Canada's auto market is officially open to Chinese EVs, but you won't see cheaper models right away",
+          "url": "https://www.cbc.ca/news/business/chinese-evs-canada-timeline-9.7117780"
+        },
+        {
+          "title": "BYD debuts second-gen blade battery with 5-minute flash charge",
+          "url": "https://timesofindia.indiatimes.com/auto/cars/byd-debuts-second-gen-blade-battery-with-5-minute-flash-charge/articleshow/129201537.cms"
+        }
+      ],
+      "chart_path": "data\\charts\\2026-03-10\\BYD_trend.png"
+    }
+  }
+]

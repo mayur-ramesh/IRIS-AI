@@ -26,5 +26,42 @@
       ],
       "chart_path": "data\\charts\\2026-03-02\\XOM_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "XOM",
+      "source_symbol": "XOM",
+      "generated_at": "2026-03-10T10:16:14Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 150.44000244140625,
+      "predicted_price_next_session": 151.05135299682618
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.005192180474599202,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "XOM stock today jumps as oil price spikes on US-Iran tensions \u2013 here's what investors need to know about Exxon Mobil stock price target",
+          "url": "https://economictimes.indiatimes.com/news/international/us/xom-stock-today-jumps-as-oil-price-spikes-on-us-iran-tensions-heres-what-investors-need-to-know-about-exxon-mobil-stock-price-target/articleshow/128947464.cms"
+        },
+        {
+          "title": "Exxon Mobil Stock Rallies on Oil Price Surge Amid U.S.-Iran Conflict Escalation",
+          "url": "https://www.ibtimes.com.au/exxon-mobil-stock-rallies-oil-price-surge-amid-us-iran-conflict-escalation-1862465"
+        },
+        {
+          "title": "Wells Fargo Increases Exxon Mobil (XOM) Price Forecast, Maintains Bullish View",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_1df6322c-8b5a-4b43-a164-2927827e1982"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/XOM_trend.png"
+    }
   }
 ]

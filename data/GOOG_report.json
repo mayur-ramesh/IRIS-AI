@@ -1524,5 +1524,296 @@
       ],
       "chart_path": "data\\charts\\2026-03-10\\GOOG_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-10T09:16:38Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 306.010009765625,
+      "predicted_price_next_session": 303.9187908935547,
+      "history": [
+        {
+          "time": 1,
+          "value": 320.7740173339844
+        },
+        {
+          "time": 1,
+          "value": 313.4791564941406
+        },
+        {
+          "time": 1,
+          "value": 310.3013916015625
+        },
+        {
+          "time": 1,
+          "value": 309.10223388671875
+        },
+        {
+          "time": 1,
+          "value": 307.51336669921875
+        },
+        {
+          "time": 1,
+          "value": 297.85015869140625
+        },
+        {
+          "time": 1,
+          "value": 303.5361633300781
+        },
+        {
+          "time": 1,
+          "value": 308.3927307128906
+        },
+        {
+          "time": 1,
+          "value": 311.1108093261719
+        },
+        {
+          "time": 1,
+          "value": 315.457763671875
+        },
+        {
+          "time": 1,
+          "value": 315.4477844238281
+        },
+        {
+          "time": 1,
+          "value": 314.7382507324219
+        },
+        {
+          "time": 1,
+          "value": 314.168701171875
+        },
+        {
+          "time": 1,
+          "value": 314.32855224609375
+        },
+        {
+          "time": 1,
+          "value": 313.5790710449219
+        },
+        {
+          "time": 1,
+          "value": 315.0980224609375
+        },
+        {
+          "time": 1,
+          "value": 317.09661865234375
+        },
+        {
+          "time": 1,
+          "value": 314.32855224609375
+        },
+        {
+          "time": 1,
+          "value": 322.2030029296875
+        },
+        {
+          "time": 1,
+          "value": 325.7804870605469
+        },
+        {
+          "time": 1,
+          "value": 328.9082946777344
+        },
+        {
+          "time": 1,
+          "value": 332.4957580566406
+        },
+        {
+          "time": 1,
+          "value": 336.1931457519531
+        },
+        {
+          "time": 1,
+          "value": 336.0732421875
+        },
+        {
+          "time": 1,
+          "value": 332.92547607421875
+        },
+        {
+          "time": 1,
+          "value": 330.1074523925781
+        },
+        {
+          "time": 1,
+          "value": 321.9331970214844
+        },
+        {
+          "time": 1,
+          "value": 328.1488342285156
+        },
+        {
+          "time": 1,
+          "value": 330.6070861816406
+        },
+        {
+          "time": 1,
+          "value": 328.19879150390625
+        },
+        {
+          "time": 1,
+          "value": 333.35516357421875
+        },
+        {
+          "time": 1,
+          "value": 334.76416015625
+        },
+        {
+          "time": 1,
+          "value": 336.04327392578125
+        },
+        {
+          "time": 1,
+          "value": 338.4216003417969
+        },
+        {
+          "time": 1,
+          "value": 338.29168701171875
+        },
+        {
+          "time": 1,
+          "value": 344.6571960449219
+        },
+        {
+          "time": 1,
+          "value": 340.4601745605469
+        },
+        {
+          "time": 1,
+          "value": 333.1053161621094
+        },
+        {
+          "time": 1,
+          "value": 331.09674072265625
+        },
+        {
+          "time": 1,
+          "value": 322.87255859375
+        },
+        {
+          "time": 1,
+          "value": 324.171630859375
+        },
+        {
+          "time": 1,
+          "value": 318.40570068359375
+        },
+        {
+          "time": 1,
+          "value": 311.1108093261719
+        },
+        {
+          "time": 1,
+          "value": 309.1521911621094
+        },
+        {
+          "time": 1,
+          "value": 305.8045654296875
+        },
+        {
+          "time": 1,
+          "value": 302.6068115234375
+        },
+        {
+          "time": 1,
+          "value": 303.7260437011719
+        },
+        {
+          "time": 1,
+          "value": 303.3462829589844
+        },
+        {
+          "time": 1,
+          "value": 314.6783142089844
+        },
+        {
+          "time": 1,
+          "value": 311.4705810546875
+        },
+        {
+          "time": 1,
+          "value": 310.7011413574219
+        },
+        {
+          "time": 1,
+          "value": 312.80963134765625
+        },
+        {
+          "time": 1,
+          "value": 306.93377685546875
+        },
+        {
+          "time": 1,
+          "value": 311.21075439453125
+        },
+        {
+          "time": 1,
+          "value": 306.1443176269531
+        },
+        {
+          "time": 1,
+          "value": 303.3462829589844
+        },
+        {
+          "time": 1,
+          "value": 303.23638916015625
+        },
+        {
+          "time": 1,
+          "value": 300.6981506347656
+        },
+        {
+          "time": 1,
+          "value": 298.0899963378906
+        },
+        {
+          "time": 1,
+          "value": 306.010009765625
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.19374162952105203,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092"
+        },
+        {
+          "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701"
+        },
+        {
+          "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html"
+        },
+        {
+          "title": "Alphabet (GOOG) Doubled by the End of the Year. Here\u2019s How",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_3ec46630-08c4-434c-bab4-9cd0819f2621"
+        },
+        {
+          "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560"
+        },
+        {
+          "title": "Claude Code\u306bGoogle\u306eDeveloper Knowledge API & MCP Server\u306e\u8a2d\u5b9a\u3092\u3059\u308b",
+          "url": "https://dev.classmethod.jp/articles/setup-google-developer-knowledge-api-mcp-server-claude-code/"
+        }
+      ],
+      "chart_path": "data\\charts\\2026-03-10\\GOOG_trend.png"
+    }
   }
 ]

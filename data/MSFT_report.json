@@ -1546,5 +1546,304 @@
       ],
       "chart_path": "data\\charts\\2026-03-10\\MSFT_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "source_symbol": "MSFT",
+      "generated_at": "2026-03-10T09:17:27Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 409.4100036621094,
+      "predicted_price_next_session": 408.40541778564454,
+      "history": [
+        {
+          "time": 1,
+          "value": 477.4701843261719
+        },
+        {
+          "time": 1,
+          "value": 482.3690185546875
+        },
+        {
+          "time": 1,
+          "value": 477.4402770996094
+        },
+        {
+          "time": 1,
+          "value": 473.73870849609375
+        },
+        {
+          "time": 1,
+          "value": 475.3051452636719
+        },
+        {
+          "time": 1,
+          "value": 475.0357360839844
+        },
+        {
+          "time": 1,
+          "value": 482.87786865234375
+        },
+        {
+          "time": 1,
+          "value": 484.8134460449219
+        },
+        {
+          "time": 1,
+          "value": 483.81573486328125
+        },
+        {
+          "time": 1,
+          "value": 485.7413330078125
+        },
+        {
+          "time": 1,
+          "value": 486.90863037109375
+        },
+        {
+          "time": 1,
+          "value": 486.599365234375
+        },
+        {
+          "time": 1,
+          "value": 485.9907531738281
+        },
+        {
+          "time": 1,
+          "value": 486.3699035644531
+        },
+        {
+          "time": 1,
+          "value": 482.5186767578125
+        },
+        {
+          "time": 1,
+          "value": 471.8630065917969
+        },
+        {
+          "time": 1,
+          "value": 471.773193359375
+        },
+        {
+          "time": 1,
+          "value": 477.4203186035156
+        },
+        {
+          "time": 1,
+          "value": 482.3690185546875
+        },
+        {
+          "time": 1,
+          "value": 477.0212097167969
+        },
+        {
+          "time": 1,
+          "value": 478.1885681152344
+        },
+        {
+          "time": 1,
+          "value": 476.09332275390625
+        },
+        {
+          "time": 1,
+          "value": 469.5981750488281
+        },
+        {
+          "time": 1,
+          "value": 458.3338928222656
+        },
+        {
+          "time": 1,
+          "value": 455.6200866699219
+        },
+        {
+          "time": 1,
+          "value": 458.8127746582031
+        },
+        {
+          "time": 1,
+          "value": 453.48492431640625
+        },
+        {
+          "time": 1,
+          "value": 443.0986328125
+        },
+        {
+          "time": 1,
+          "value": 450.1126403808594
+        },
+        {
+          "time": 1,
+          "value": 464.888916015625
+        },
+        {
+          "time": 1,
+          "value": 469.20904541015625
+        },
+        {
+          "time": 1,
+          "value": 479.485595703125
+        },
+        {
+          "time": 1,
+          "value": 480.533203125
+        },
+        {
+          "time": 1,
+          "value": 432.5128173828125
+        },
+        {
+          "time": 1,
+          "value": 429.31011962890625
+        },
+        {
+          "time": 1,
+          "value": 422.4058837890625
+        },
+        {
+          "time": 1,
+          "value": 410.2735595703125
+        },
+        {
+          "time": 1,
+          "value": 413.2467956542969
+        },
+        {
+          "time": 1,
+          "value": 392.7735290527344
+        },
+        {
+          "time": 1,
+          "value": 400.22650146484375
+        },
+        {
+          "time": 1,
+          "value": 412.65814208984375
+        },
+        {
+          "time": 1,
+          "value": 412.328857421875
+        },
+        {
+          "time": 1,
+          "value": 403.4491271972656
+        },
+        {
+          "time": 1,
+          "value": 400.9248962402344
+        },
+        {
+          "time": 1,
+          "value": 400.4060974121094
+        },
+        {
+          "time": 1,
+          "value": 395.95623779296875
+        },
+        {
+          "time": 1,
+          "value": 398.69000244140625
+        },
+        {
+          "time": 1,
+          "value": 398.4599914550781
+        },
+        {
+          "time": 1,
+          "value": 397.2300109863281
+        },
+        {
+          "time": 1,
+          "value": 384.4700012207031
+        },
+        {
+          "time": 1,
+          "value": 389.0
+        },
+        {
+          "time": 1,
+          "value": 400.6000061035156
+        },
+        {
+          "time": 1,
+          "value": 401.7200012207031
+        },
+        {
+          "time": 1,
+          "value": 392.739990234375
+        },
+        {
+          "time": 1,
+          "value": 398.54998779296875
+        },
+        {
+          "time": 1,
+          "value": 403.92999267578125
+        },
+        {
+          "time": 1,
+          "value": 405.20001220703125
+        },
+        {
+          "time": 1,
+          "value": 410.67999267578125
+        },
+        {
+          "time": 1,
+          "value": 408.9599914550781
+        },
+        {
+          "time": 1,
+          "value": 409.4100036621094
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.21923529356718063,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Microsoft (MSFT) Stock Price Today: Shares Climb to $410.68 on March 5, 2026",
+          "url": "https://www.ibtimes.com.au/microsoft-msft-stock-price-today-shares-climb-41068-march-5-2026-1862773"
+        },
+        {
+          "title": "Down 15% in 2026, Should You Buy the Dip in Microsoft Stock?",
+          "url": "https://www.barchart.com/story/news/594329/down-15-in-2026-should-you-buy-the-dip-in-microsoft-stock"
+        },
+        {
+          "title": "Here\u2019s what Makes Microsoft Corporation (MSFT) Significantly Resilient",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_580b910c-9465-4e4d-a6e1-d5ca2a261eca"
+        },
+        {
+          "title": "Microsoft (MSFT) Determined To Keep Leveraging On OpenAI Partnership",
+          "url": "https://finance.yahoo.com/news/microsoft-msft-determined-keep-leveraging-072754419.html"
+        },
+        {
+          "title": "OpenAI Funding Gives Microsoft (MSFT) Stock Breathing Space",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_9d39d732-4e43-40ab-8beb-84bce145f423"
+        },
+        {
+          "title": "Microsoft Corporation\u2019s (MSFT) Strategic Wins Highlight Resilience and Growth Potential",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_515decfd-a65b-438e-9b50-4e574e4f0364"
+        },
+        {
+          "title": "Melius Research and Stifel Downgrade Microsoft Corporation (MSFT) to Hold",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_da3af05e-9962-4bbf-adf8-736dc762c95e"
+        },
+        {
+          "title": "MSFT stock price today: Microsoft shares rise, investors watch AI execution",
+          "url": "https://onmsft.com/uncategorized/msft-stock-price-today-microsoft-shares-rise-investors-watch-ai-execution/"
+        }
+      ],
+      "chart_path": "data\\charts\\2026-03-10\\MSFT_trend.png"
+    }
   }
 ]
