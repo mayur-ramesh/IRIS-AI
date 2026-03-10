@@ -154,7 +154,7 @@ class IRIS_System:
         return (session_date, generated_at)
 
     def merge_alias_reports(self):
-        """Merge alias symbols into canonical report files (e.g. GOOGL -> GOOG)."""
+        """Merge alias symbols into canonical report files (e.g. GOOGL -> GOOG) without dropping history."""
         data_dir = Path("data")
         if not data_dir.exists():
             return None
@@ -167,7 +167,7 @@ class IRIS_System:
                 continue
             canonical_reports = self._read_report_file(canonical_path)
 
-            merged = {}
+            merged_reports = []
             for report in canonical_reports + alias_reports:
                 if not isinstance(report, dict):
                     continue
@@ -176,16 +176,9 @@ class IRIS_System:
                     meta = {}
                     report["meta"] = meta
                 meta["symbol"] = canonical
+                merged_reports.append(report)
 
-                session_key = self._extract_session_date(report) or self._report_generated_at(report)
-                if not session_key:
-                    session_key = f"legacy_{len(merged)}"
-
-                existing = merged.get(session_key)
-                if existing is None or self._report_generated_at(report) >= self._report_generated_at(existing):
-                    merged[session_key] = report
-
-            merged_reports = sorted(merged.values(), key=self._report_sort_key)
+            merged_reports = sorted(merged_reports, key=self._report_sort_key)
             if merged_reports:
                 with open(canonical_path, "w", encoding="utf-8") as f:
                     json.dump(merged_reports, f, indent=2)
@@ -227,18 +220,9 @@ class IRIS_System:
                     reports = data if isinstance(data, list) else [data]
             except (json.JSONDecodeError, IOError):
                 reports = []
-        
-        # Upsert by market session date to avoid duplicate entries for the same trading session.
-        target_session = self._extract_session_date(report)
-        updated = False
-        if target_session:
-            for idx, existing in enumerate(reports):
-                if self._extract_session_date(existing) == target_session:
-                    reports[idx] = report
-                    updated = True
-                    break
-        if not updated:
-            reports.append(report)
+
+        # Always append so every run remains accumulative.
+        reports.append(report)
         
         # Save all reports
         with open(out_path, "w", encoding="utf-8") as f:
@@ -430,7 +414,48 @@ class IRIS_System:
 
     def analyze_news(self, ticker):
         """Fetches headlines and calculates a Sentiment Score (-1.0 to +1.0)."""
+        ticker_symbol = normalize_ticker_symbol(ticker).upper()
         headlines = []
+        seen = set()
+
+        # Build strict relevance terms: ticker + known company names mapped to this ticker.
+        relevance_terms = {ticker_symbol}
+        for company_name, tickers in COMPANY_NAME_TO_TICKERS.items():
+            normalized = normalize_ticker_list(tickers)
+            if ticker_symbol in normalized:
+                relevance_terms.add(str(company_name or "").upper())
+
+        def add_relevant_article(title, url="", description=""):
+            if len(headlines) >= 15:
+                return
+            clean_title = str(title or "").strip()
+            if not clean_title:
+                return
+            clean_url = str(url or "").strip()
+            clean_description = str(description or "").strip()
+
+            combined_text = f"{clean_title} {clean_description}".upper()
+            tokenized_combined = sanitize_company_token(combined_text)
+            is_relevant = False
+            for term in relevance_terms:
+                term_upper = str(term or "").upper().strip()
+                if not term_upper:
+                    continue
+                if term_upper in combined_text:
+                    is_relevant = True
+                    break
+                tokenized_term = sanitize_company_token(term_upper)
+                if tokenized_term and tokenized_term in tokenized_combined:
+                    is_relevant = True
+                    break
+            if not is_relevant:
+                return
+
+            dedupe_key = (clean_title, clean_url)
+            if dedupe_key in seen:
+                return
+            seen.add(dedupe_key)
+            headlines.append({"title": clean_title, "url": clean_url})
 
         # Preferred source: NewsAPI (if configured) for a larger headline baseline.
         if self.news_api:
@@ -446,10 +471,14 @@ class IRIS_System:
                         if not isinstance(article, dict):
                             continue
                         title = str(article.get("title", "")).strip()
-                        if title:
-                            headlines.append(title)
+                        url = article.get("url", "")
+                        description = article.get("description", "")
+                        add_relevant_article(title=title, url=url, description=description)
+                        if len(headlines) >= 15:
+                            break
             except Exception:
                 headlines = []
+                seen = set()
 
         # Fallback: existing yfinance extraction when NewsAPI is unavailable/failed/empty.
         if not headlines:
@@ -457,41 +486,55 @@ class IRIS_System:
                 stock = yf.Ticker(ticker)
                 news_items = stock.news
                 if news_items:
-                    for item in news_items[:5]: # Get up to 5 recent headlines
-                        if 'title' in item:
-                            headlines.append(item['title'])
-                        elif 'content' in item and 'title' in item['content']:
-                            headlines.append(item['content']['title'])
+                    for item in news_items[:30]:
+                        if not isinstance(item, dict):
+                            continue
+                        content = item.get("content") if isinstance(item.get("content"), dict) else {}
+                        title = item.get("title") or content.get("title") or ""
+                        description = item.get("description") or item.get("summary") or content.get("description") or content.get("summary") or ""
+                        url = item.get("link") or item.get("url") or content.get("link") or content.get("url") or ""
+                        add_relevant_article(title=title, url=url, description=description)
+                        if len(headlines) >= 15:
+                            break
             except Exception:
                 pass
         
         #  Fallback: Simulation Mode (If internet/API failure)
         if not headlines:
             if ticker == "TSLA":
-                headlines = [
-                    "Tesla recalls 2 million vehicles due to autopilot risk",
-                    "Analysts downgrade stock amid slowing EV demand"
+                simulation_items = [
+                    {"title": "Tesla recalls 2 million vehicles due to autopilot risk", "url": ""},
+                    {"title": "Analysts downgrade Tesla stock amid slowing EV demand", "url": ""},
                 ]
             elif ticker == "NVDA":
-                headlines = [
-                    "Nvidia announces fantastic breakthrough AI chip", 
-                    "Excellent quarterly revenue brilliantly beats expectations by 20%"
+                simulation_items = [
+                    {"title": "Nvidia announces fantastic breakthrough AI chip", "url": ""},
+                    {"title": "Nvidia quarterly revenue brilliantly beats expectations by 20%", "url": ""},
                 ]
             else:
-                headlines = [
-                    f"{ticker} announces date for shareholder meeting",
-                    "Market volatility continues ahead of Fed decision"
+                simulation_items = [
+                    {"title": f"{ticker_symbol} announces date for shareholder meeting", "url": ""},
+                    {"title": f"{ticker_symbol} news flow remains active amid market volatility", "url": ""},
                 ]
+            for entry in simulation_items:
+                add_relevant_article(
+                    title=entry.get("title", ""),
+                    url=entry.get("url", ""),
+                    description="",
+                )
 
         #  Analyze Sentiment using FinBERT
         total_score = 0
         valid_headlines = 0
         
         if self.sentiment_analyzer and headlines:
-            for h in headlines:
+            for headline in headlines:
                 try:
+                    title_text = str(headline.get("title", "")).strip() if isinstance(headline, dict) else str(headline or "").strip()
+                    if not title_text:
+                        continue
                     # FinBERT returns labels like 'positive', 'negative', 'neutral'
-                    result = self.sentiment_analyzer(h)[0]
+                    result = self.sentiment_analyzer(title_text)[0]
                     label = result['label']
                     score = result['score'] # Confidence score 0 to 1
                     
@@ -690,6 +733,19 @@ class IRIS_System:
             except Exception:
                 market_session_date = None
 
+        evidence_headlines = []
+        if isinstance(headlines, list):
+            for entry in headlines:
+                if not isinstance(entry, dict):
+                    continue
+                title_text = str(entry.get("title", "")).strip()
+                if not title_text:
+                    continue
+                evidence_headlines.append({
+                    "title": title_text,
+                    "url": str(entry.get("url", "")).strip(),
+                })
+
         report = {
             "meta": {
                 "symbol": canonical_ticker,
@@ -708,7 +764,7 @@ class IRIS_System:
                 "sentiment_score": float(sentiment_score),
                 "check_engine_light": light,
             },
-            "evidence": {"headlines_used": headlines if isinstance(headlines, list) else []},
+            "evidence": {"headlines_used": evidence_headlines},
         }
 
         chart_path = self.draw_chart(

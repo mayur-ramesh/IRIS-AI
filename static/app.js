@@ -209,11 +209,40 @@ document.addEventListener('DOMContentLoaded', () => {
         headlinesList.innerHTML = '';
         const headlines = data.evidence.headlines_used;
         if (headlines && headlines.length > 0) {
-            headlines.forEach(headline => {
+            headlines.forEach((headline) => {
+                let title = '';
+                let url = '';
+                if (headline && typeof headline === 'object') {
+                    title = String(headline.title || '').trim();
+                    url = String(headline.url || '').trim();
+                } else {
+                    title = String(headline || '').trim();
+                }
+                if (!title) return;
+
                 const li = document.createElement('li');
-                li.textContent = headline;
+                const isHttpUrl = /^https?:\/\//i.test(url);
+                if (isHttpUrl) {
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
+                    link.className = 'headline-link';
+                    link.textContent = title;
+                    li.appendChild(link);
+                } else {
+                    li.textContent = title;
+                }
                 headlinesList.appendChild(li);
             });
+            if (!headlinesList.children.length) {
+                const li = document.createElement('li');
+                li.textContent = "No recent headlines found.";
+                li.style.fontStyle = "italic";
+                li.style.color = "var(--text-muted)";
+                li.style.borderLeftColor = "transparent";
+                headlinesList.appendChild(li);
+            }
         } else {
             const li = document.createElement('li');
             li.textContent = "No recent headlines found.";
