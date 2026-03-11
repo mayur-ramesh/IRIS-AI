@@ -29,7 +29,7 @@ _MARKET_TZ = ZoneInfo("America/New_York")
 _MARKET_OPEN_HOUR = 9
 _MARKET_OPEN_MINUTE = 0
 _MARKET_OPEN_WINDOW_MINUTES = 10
-_RUN_MARKER_PATH = _PROJECT_ROOT / "data" / "sessions" / ".last_market_open_run_et_date"
+_RUN_MARKER_PATH = None
 
 # Ensure we run from project root (so data/ and data/charts/ are in the right place)
 os.chdir(_PROJECT_ROOT)
@@ -41,6 +41,29 @@ try:
     load_dotenv(_PROJECT_ROOT / ".env")
 except ImportError:
     pass
+
+
+def _resolve_runtime_data_dir():
+    demo_mode = os.environ.get("DEMO_MODE", "false").lower() == "true"
+    preferred_rel = Path("data/demo_guests") if demo_mode else Path("data")
+    preferred = _PROJECT_ROOT / preferred_rel
+    if demo_mode:
+        try:
+            (_PROJECT_ROOT / Path("data/demo_guests")).mkdir(parents=True, exist_ok=True)
+        except OSError:
+            pass
+    try:
+        preferred.mkdir(parents=True, exist_ok=True)
+        return preferred
+    except OSError:
+        fallback_name = "demo_guests_data" if demo_mode else "runtime_data"
+        fallback = _PROJECT_ROOT / fallback_name
+        fallback.mkdir(parents=True, exist_ok=True)
+        return fallback
+
+
+_RUN_MARKER_PATH = _resolve_runtime_data_dir() / "sessions" / ".last_market_open_run_et_date"
+
 
 def _parse_tickers(raw: str):
     if not raw:

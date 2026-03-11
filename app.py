@@ -9,8 +9,29 @@ import yfinance as yf
 
 # Fix for Windows: Disable symlink warnings which can cause the Hugging Face download to hang
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
+DEMO_MODE = os.environ.get("DEMO_MODE", "false").lower() == "true"
 PROJECT_ROOT = Path(__file__).resolve().parent
-DATA_DIR = PROJECT_ROOT / "data"
+
+
+def _resolve_data_dir():
+    preferred_rel = Path("data/demo_guests") if DEMO_MODE else Path("data")
+    preferred = PROJECT_ROOT / preferred_rel
+    if DEMO_MODE:
+        try:
+            (PROJECT_ROOT / Path("data/demo_guests")).mkdir(parents=True, exist_ok=True)
+        except OSError:
+            pass
+    try:
+        preferred.mkdir(parents=True, exist_ok=True)
+        return preferred
+    except OSError:
+        fallback_name = "demo_guests_data" if DEMO_MODE else "runtime_data"
+        fallback = PROJECT_ROOT / fallback_name
+        fallback.mkdir(parents=True, exist_ok=True)
+        return fallback
+
+
+DATA_DIR = _resolve_data_dir()
 SESSIONS_DIR = DATA_DIR / "sessions"
 YF_CACHE_DIR = DATA_DIR / "yfinance_tz_cache"
 
