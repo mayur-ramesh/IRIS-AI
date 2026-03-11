@@ -18,6 +18,7 @@ import sys
 import time
 from pathlib import Path
 from zoneinfo import ZoneInfo
+from storage_paths import resolve_data_dir
 
 _PROJECT_ROOT = Path(__file__).resolve().parent
 _DEFAULT_TASK_NAME = "IRIS-Daily-Reports"
@@ -45,21 +46,7 @@ except ImportError:
 
 def _resolve_runtime_data_dir():
     demo_mode = os.environ.get("DEMO_MODE", "false").lower() == "true"
-    preferred_rel = Path("data/demo_guests") if demo_mode else Path("data")
-    preferred = _PROJECT_ROOT / preferred_rel
-    if demo_mode:
-        try:
-            (_PROJECT_ROOT / Path("data/demo_guests")).mkdir(parents=True, exist_ok=True)
-        except OSError:
-            pass
-    try:
-        preferred.mkdir(parents=True, exist_ok=True)
-        return preferred
-    except OSError:
-        fallback_name = "demo_guests_data" if demo_mode else "runtime_data"
-        fallback = _PROJECT_ROOT / fallback_name
-        fallback.mkdir(parents=True, exist_ok=True)
-        return fallback
+    return resolve_data_dir(_PROJECT_ROOT, demo_mode)
 
 
 _RUN_MARKER_PATH = _resolve_runtime_data_dir() / "sessions" / ".last_market_open_run_et_date"

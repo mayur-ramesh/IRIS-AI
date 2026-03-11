@@ -8,32 +8,13 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import yfinance as yf
+from storage_paths import resolve_data_dir
 
 # Fix for Windows: Disable symlink warnings which can cause the Hugging Face download to hang
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 DEMO_MODE = os.environ.get("DEMO_MODE", "false").lower() == "true"
 PROJECT_ROOT = Path(__file__).resolve().parent
-
-
-def _resolve_data_dir():
-    preferred_rel = Path("data/demo_guests") if DEMO_MODE else Path("data")
-    preferred = PROJECT_ROOT / preferred_rel
-    if DEMO_MODE:
-        try:
-            (PROJECT_ROOT / Path("data/demo_guests")).mkdir(parents=True, exist_ok=True)
-        except OSError:
-            pass
-    try:
-        preferred.mkdir(parents=True, exist_ok=True)
-        return preferred
-    except OSError:
-        fallback_name = "demo_guests_data" if DEMO_MODE else "runtime_data"
-        fallback = PROJECT_ROOT / fallback_name
-        fallback.mkdir(parents=True, exist_ok=True)
-        return fallback
-
-
-DATA_DIR = _resolve_data_dir()
+DATA_DIR = resolve_data_dir(PROJECT_ROOT, DEMO_MODE)
 SESSIONS_DIR = DATA_DIR / "sessions"
 YF_CACHE_DIR = DATA_DIR / "yfinance_tz_cache"
 
@@ -293,68 +274,34 @@ def submit_feedback():
 
     feedback_item = dict(payload)
     feedback_item["timestamp"] = datetime.now(timezone.utc).isoformat()
-
-    preferred_log_path = (
-        PROJECT_ROOT / Path("data/demo_guests/feedback_logs.json")
-        if DEMO_MODE
-        else PROJECT_ROOT / Path("data/feedback_logs.json")
-    )
-    data_dir_log_path = DATA_DIR / "feedback_logs.json"
-    runtime_fallback_path = (
-        PROJECT_ROOT / ("demo_guests_data" if DEMO_MODE else "runtime_data") / "feedback_logs.json"
-    )
-
-    def append_feedback(path: Path):
-        path.parent.mkdir(parents=True, exist_ok=True)
-        logs = []
-        if path.exists():
-            try:
-                with open(path, "r", encoding="utf-8") as f:
-                    loaded = json.load(f)
-                    if isinstance(loaded, list):
-                        logs = loaded
-            except (OSError, json.JSONDecodeError):
-                logs = []
-        logs.append(feedback_item)
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump(logs, f, indent=2)
-
-    candidate_paths = []
-    for candidate in (preferred_log_path, data_dir_log_path, runtime_fallback_path):
-        resolved = candidate.resolve()
-        if resolved not in candidate_paths:
-            candidate_paths.append(resolved)
-
-    saved_paths = []
-    errors = []
-    for candidate in candidate_paths:
+    log_path = DATA_DIR / "feedback_logs.json"
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    logs = []
+    if log_path.exists():
         try:
-            append_feedback(candidate)
-            saved_paths.append(candidate)
-        except OSError as exc:
-            errors.append((candidate, exc))
+            with open(log_path, "r", encoding="utf-8") as f:
+                loaded = json.load(f)
+                if isinstance(loaded, list):
+                    logs = loaded
+        except (OSError, json.JSONDecodeError):
+            logs = []
 
-    if not saved_paths:
-        if errors:
-            detail = "; ".join(f"{path}: {exc}" for path, exc in errors)
-            print(f"Feedback write failed across all candidate paths: {detail}")
+    logs.append(feedback_item)
+    try:
+        with open(log_path, "w", encoding="utf-8") as f:
+            json.dump(logs, f, indent=2)
+    except OSError:
         return jsonify({"error": "Failed to write feedback log"}), 500
 
-    if errors:
-        detail = "; ".join(f"{path}: {exc}" for path, exc in errors)
-        print(f"Feedback partially saved. Failed paths: {detail}")
-
-    relative_saved = []
-    for path in saved_paths:
-        try:
-            relative_saved.append(str(path.relative_to(PROJECT_ROOT)))
-        except ValueError:
-            relative_saved.append(str(path))
+    try:
+        saved_to = str(log_path.relative_to(PROJECT_ROOT))
+    except ValueError:
+        saved_to = str(log_path)
 
     return jsonify({
         "status": "success",
         "message": "Feedback logged",
-        "saved_to": relative_saved,
+        "saved_to": saved_to,
     })
 
 @app.route('/api/session-summary/latest')

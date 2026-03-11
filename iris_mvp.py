@@ -12,6 +12,7 @@ import pandas as pd
 import time
 import json
 from pathlib import Path
+from storage_paths import resolve_data_dir
 
 # Optional: charting (graceful fallback if matplotlib missing)
 try:
@@ -32,27 +33,7 @@ except ImportError:
 NEWS_API_KEY = os.environ.get("NEWS_API_KEY") or None
 DEMO_MODE = os.environ.get("DEMO_MODE", "false").lower() == "true"
 PROJECT_ROOT = Path(__file__).resolve().parent
-
-
-def _resolve_data_dir():
-    preferred_rel = Path("data/demo_guests") if DEMO_MODE else Path("data")
-    preferred = PROJECT_ROOT / preferred_rel
-    if DEMO_MODE:
-        try:
-            (PROJECT_ROOT / Path("data/demo_guests")).mkdir(parents=True, exist_ok=True)
-        except OSError:
-            pass
-    try:
-        preferred.mkdir(parents=True, exist_ok=True)
-        return preferred
-    except OSError:
-        fallback_name = "demo_guests_data" if DEMO_MODE else "runtime_data"
-        fallback = PROJECT_ROOT / fallback_name
-        fallback.mkdir(parents=True, exist_ok=True)
-        return fallback
-
-
-DATA_DIR = _resolve_data_dir()
+DATA_DIR = resolve_data_dir(PROJECT_ROOT, DEMO_MODE)
 SESSIONS_DIR = DATA_DIR / "sessions"
 CHARTS_DIR = DATA_DIR / "charts"
 YF_CACHE_DIR = DATA_DIR / "yfinance_tz_cache"
