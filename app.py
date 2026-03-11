@@ -344,6 +344,23 @@ def feedback_status():
         "last_timestamp": last_timestamp,
     })
 
+
+@app.route('/api/admin/feedback')
+def admin_feedback_logs():
+    """Download the current feedback log file from the runtime container."""
+    relative_log_path = (
+        Path("data/demo_guests/feedback_logs.json")
+        if DEMO_MODE
+        else Path("data/feedback_logs.json")
+    )
+    log_path = PROJECT_ROOT / relative_log_path
+    if log_path.exists():
+        return send_file(str(log_path), mimetype='application/json')
+    return jsonify({
+        "status": "empty",
+        "message": "No feedback logs have been generated yet.",
+    })
+
 @app.route('/api/session-summary/latest')
 def latest_session_summary():
     """Return the most recent session summary with comparisons."""
