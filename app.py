@@ -299,7 +299,10 @@ def submit_feedback():
         if DEMO_MODE
         else PROJECT_ROOT / Path("data/feedback_logs.json")
     )
-    fallback_log_path = DATA_DIR / "feedback_logs.json"
+    data_dir_log_path = DATA_DIR / "feedback_logs.json"
+    runtime_fallback_path = (
+        PROJECT_ROOT / ("demo_guests_data" if DEMO_MODE else "runtime_data") / "feedback_logs.json"
+    )
 
     def append_feedback(path: Path):
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -316,15 +319,24 @@ def submit_feedback():
         with open(path, "w", encoding="utf-8") as f:
             json.dump(logs, f, indent=2)
 
-    try:
-        append_feedback(preferred_log_path)
-    except OSError:
-        try:
-            append_feedback(fallback_log_path)
-        except OSError:
-            return jsonify({"error": "Failed to write feedback log"}), 500
+    candidate_paths = []
+    for candidate in (data_dir_log_path, preferred_log_path, runtime_fallback_path):
+        # Keep order deterministic and skip duplicates from equivalent paths.
+        if candidate not in candidate_paths:
+            candidate_paths.append(candidate)
 
-    return jsonify({"status": "success", "message": "Feedback logged"})
+    last_error = None
+    for candidate in candidate_paths:
+        try:
+            append_feedback(candidate)
+            return jsonify({"status": "success", "message": "Feedback logged"})
+        except OSError as exc:
+            last_error = exc
+
+    if last_error:
+        print(f"Feedback write failed across all candidate paths: {last_error}")
+
+    return jsonify({"error": "Failed to write feedback log"}), 500
 
 @app.route('/api/session-summary/latest')
 def latest_session_summary():
