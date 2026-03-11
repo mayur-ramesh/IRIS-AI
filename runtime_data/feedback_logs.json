@@ -1,0 +1,11 @@
+[
+  {
+    "context": {
+      "status": "GREEN",
+      "ticker": "AAPL",
+      "timeframe": "1D"
+    },
+    "message": "path-debug-after-fix-default",
+    "timestamp": "2026-03-11T03:12:33.003734+00:00"
+  }
+]
