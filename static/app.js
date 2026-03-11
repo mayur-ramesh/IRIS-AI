@@ -60,6 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const sentimentScoreEl = document.getElementById('sentiment-score');
     const sentimentDescEl = document.getElementById('sentiment-desc');
     const headlinesList = document.getElementById('headlines-list');
+    const feedbackOpenBtn = document.getElementById('feedback-open');
+    const feedbackModal = document.getElementById('feedback-modal');
+    const feedbackCancelBtn = document.getElementById('feedback-cancel');
+    const feedbackSubmitBtn = document.getElementById('feedback-submit');
+    const feedbackMessageEl = document.getElementById('feedback-message');
 
     const chartContainer = document.getElementById('advanced-chart');
     const chartPlaceholder = document.getElementById('chart-placeholder');
@@ -333,6 +338,97 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
         resizeChartToContainer();
     });
+
+    function openFeedbackModal() {
+        if (!feedbackModal) return;
+        feedbackModal.classList.remove('hidden');
+        if (feedbackMessageEl) {
+            feedbackMessageEl.focus();
+        }
+    }
+
+    function closeFeedbackModal() {
+        if (!feedbackModal) return;
+        feedbackModal.classList.add('hidden');
+    }
+
+    if (feedbackOpenBtn) {
+        feedbackOpenBtn.addEventListener('click', () => {
+            openFeedbackModal();
+        });
+    }
+
+    if (feedbackCancelBtn) {
+        feedbackCancelBtn.addEventListener('click', () => {
+            closeFeedbackModal();
+        });
+    }
+
+    if (feedbackModal) {
+        feedbackModal.addEventListener('click', (event) => {
+            if (event.target === feedbackModal) {
+                closeFeedbackModal();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && feedbackModal && !feedbackModal.classList.contains('hidden')) {
+            closeFeedbackModal();
+        }
+    });
+
+    function getFeedbackContext() {
+        const tickerFromHeader = String(resTicker?.textContent || '').trim().toUpperCase();
+        const tickerFromInput = String(input?.value || '').trim().toUpperCase();
+        const ticker = tickerFromHeader || currentTicker || tickerFromInput || '';
+        const timeframe = getActiveTimeframe();
+        const statusFromLight = String(lightStatusText?.textContent || '').trim();
+        const statusFromTrend = String(trendLabelEl?.textContent || '').trim();
+        const status = statusFromLight || statusFromTrend || 'UNKNOWN';
+
+        return { ticker, timeframe, status };
+    }
+
+    if (feedbackSubmitBtn) {
+        feedbackSubmitBtn.addEventListener('click', async () => {
+            const message = String(feedbackMessageEl?.value || '').trim();
+            if (!message) {
+                alert('Please enter feedback before submitting.');
+                return;
+            }
+
+            const payload = {
+                message,
+                context: getFeedbackContext(),
+            };
+
+            try {
+                feedbackSubmitBtn.disabled = true;
+                const response = await fetch('/api/feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                });
+                if (!response.ok) {
+                    const body = await response.json().catch(() => ({}));
+                    throw new Error(body.error || 'Failed to send feedback.');
+                }
+                alert('Feedback sent!');
+                if (feedbackMessageEl) {
+                    feedbackMessageEl.value = '';
+                }
+                closeFeedbackModal();
+            } catch (error) {
+                console.error(error);
+                alert(error.message || 'Failed to send feedback.');
+            } finally {
+                feedbackSubmitBtn.disabled = false;
+            }
+        });
+    }
 
     function setLoading(isLoading) {
         if (isLoading) {
