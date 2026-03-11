@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify, render_template, send_file
 from flask_cors import CORS
 import traceback
 import os
+import json
+from datetime import datetime, timezone
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -281,6 +283,48 @@ def get_chart():
         return jsonify({"error": "Chart not found"}), 404
 
     return send_file(str(full_path), mimetype='image/png')
+
+@app.route('/api/feedback', methods=['POST'])
+def submit_feedback():
+    """Receive dashboard feedback payloads and append them to a JSON log."""
+    payload = request.get_json(silent=True)
+    if not isinstance(payload, dict):
+        return jsonify({"error": "Invalid JSON payload"}), 400
+
+    feedback_item = dict(payload)
+    feedback_item["timestamp"] = datetime.now(timezone.utc).isoformat()
+
+    preferred_log_path = (
+        PROJECT_ROOT / Path("data/demo_guests/feedback_logs.json")
+        if DEMO_MODE
+        else PROJECT_ROOT / Path("data/feedback_logs.json")
+    )
+    fallback_log_path = DATA_DIR / "feedback_logs.json"
+
+    def append_feedback(path: Path):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        logs = []
+        if path.exists():
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    loaded = json.load(f)
+                    if isinstance(loaded, list):
+                        logs = loaded
+            except (OSError, json.JSONDecodeError):
+                logs = []
+        logs.append(feedback_item)
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(logs, f, indent=2)
+
+    try:
+        append_feedback(preferred_log_path)
+    except OSError:
+        try:
+            append_feedback(fallback_log_path)
+        except OSError:
+            return jsonify({"error": "Failed to write feedback log"}), 500
+
+    return jsonify({"status": "success", "message": "Feedback logged"})
 
 @app.route('/api/session-summary/latest')
 def latest_session_summary():
