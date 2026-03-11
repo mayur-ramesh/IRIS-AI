@@ -412,11 +412,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     body: JSON.stringify(payload),
                 });
+                const body = await response.json().catch(() => ({}));
                 if (!response.ok) {
-                    const body = await response.json().catch(() => ({}));
                     throw new Error(body.error || 'Failed to send feedback.');
                 }
-                alert('Feedback sent!');
+                const destination = String(body.saved_to || '').trim();
+                alert(destination ? `Feedback sent! Saved to ${destination}` : 'Feedback sent!');
                 if (feedbackMessageEl) {
                     feedbackMessageEl.value = '';
                 }

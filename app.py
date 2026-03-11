@@ -30,6 +30,16 @@ app = Flask(__name__)
 CORS(app) # Enable CORS for all routes
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 YF_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def _feedback_log_path() -> Path:
+    """Return the canonical feedback log path for the current runtime mode."""
+    if DEMO_MODE:
+        demo_dir = PROJECT_ROOT / "data" / "demo_guests"
+        demo_dir.mkdir(parents=True, exist_ok=True)
+        return demo_dir / "feedback_logs.json"
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    return DATA_DIR / "feedback_logs.json"
 try:
     cache_mod = getattr(yf, "cache", None)
     cache_setter = getattr(cache_mod, "set_cache_location", None)
@@ -274,17 +284,16 @@ def submit_feedback():
 
     feedback_item = dict(payload)
     feedback_item["timestamp"] = datetime.now(timezone.utc).isoformat()
-    log_path = DATA_DIR / "feedback_logs.json"
+    log_path = _feedback_log_path()
     log_path.parent.mkdir(parents=True, exist_ok=True)
-    logs = []
-    if log_path.exists():
-        try:
-            with open(log_path, "r", encoding="utf-8") as f:
-                loaded = json.load(f)
-                if isinstance(loaded, list):
-                    logs = loaded
-        except (OSError, json.JSONDecodeError):
-            logs = []
+    try:
+        with open(log_path, "r", encoding="utf-8") as f:
+            loaded = json.load(f)
+            logs = loaded if isinstance(loaded, list) else []
+    except FileNotFoundError:
+        logs = []
+    except (OSError, json.JSONDecodeError):
+        logs = []
 
     logs.append(feedback_item)
     try:
@@ -302,6 +311,37 @@ def submit_feedback():
         "status": "success",
         "message": "Feedback logged",
         "saved_to": saved_to,
+        "demo_mode": DEMO_MODE,
+    })
+
+
+@app.route('/api/feedback/status', methods=['GET'])
+def feedback_status():
+    """Expose current feedback storage wiring for runtime debugging."""
+    log_path = _feedback_log_path()
+    exists = log_path.exists()
+    count = 0
+    last_timestamp = None
+    if exists:
+        try:
+            with open(log_path, "r", encoding="utf-8") as f:
+                loaded = json.load(f)
+            if isinstance(loaded, list):
+                count = len(loaded)
+                if loaded and isinstance(loaded[-1], dict):
+                    last_timestamp = loaded[-1].get("timestamp")
+        except (OSError, json.JSONDecodeError):
+            pass
+
+    return jsonify({
+        "demo_mode": DEMO_MODE,
+        "cwd": os.getcwd(),
+        "project_root": str(PROJECT_ROOT),
+        "data_dir": str(DATA_DIR),
+        "feedback_log_path": str(log_path),
+        "feedback_log_exists": exists,
+        "feedback_log_entries": count,
+        "last_timestamp": last_timestamp,
     })
 
 @app.route('/api/session-summary/latest')

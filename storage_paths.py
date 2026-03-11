@@ -12,8 +12,9 @@ def resolve_data_dir(project_root: Path, demo_mode: bool) -> Path:
 
     Priority:
     1) IRIS_DATA_DIR (absolute or project-relative)
-    2) IRIS_USE_REPO_DATA=true -> data/ (or data/demo_guests in demo mode)
-    3) default isolated runtime dir -> runtime_data/ (or demo_guests_data/)
+    2) Demo mode -> data/demo_guests (single canonical feedback/report path)
+    3) IRIS_USE_REPO_DATA=true -> data/
+    4) default isolated runtime dir -> runtime_data/
     """
     explicit_dir = str(os.environ.get("IRIS_DATA_DIR", "")).strip()
     if explicit_dir:
@@ -23,18 +24,17 @@ def resolve_data_dir(project_root: Path, demo_mode: bool) -> Path:
         candidate.mkdir(parents=True, exist_ok=True)
         return candidate
 
-    use_repo_data = _as_bool(os.environ.get("IRIS_USE_REPO_DATA", "false"))
-    if use_repo_data:
-        preferred_rel = Path("data/demo_guests") if demo_mode else Path("data")
+    if demo_mode:
+        preferred_rel = Path("data/demo_guests")
     else:
-        preferred_rel = Path("demo_guests_data") if demo_mode else Path("runtime_data")
+        use_repo_data = _as_bool(os.environ.get("IRIS_USE_REPO_DATA", "false"))
+        preferred_rel = Path("data") if use_repo_data else Path("runtime_data")
 
     preferred = project_root / preferred_rel
     try:
         preferred.mkdir(parents=True, exist_ok=True)
         return preferred
     except OSError:
-        fallback_rel = Path("demo_guests_data") if demo_mode else Path("runtime_data")
-        fallback = project_root / fallback_rel
+        fallback = project_root / Path("runtime_data")
         fallback.mkdir(parents=True, exist_ok=True)
         return fallback
