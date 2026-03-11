@@ -140,6 +140,31 @@
         <p>&copy; CP3405 Team Project</p>
     </footer>
 
+    <button
+        id="feedback-open"
+        class="feedback-fab"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="feedback-modal"
+    >
+        Feedback
+    </button>
+
+    <div id="feedback-modal" class="feedback-modal hidden" role="dialog" aria-modal="true" aria-labelledby="feedback-modal-title">
+        <div class="feedback-modal-card">
+            <h3 id="feedback-modal-title">Report an Issue</h3>
+            <textarea
+                id="feedback-message"
+                class="feedback-textarea"
+                placeholder="Tell us what went wrong or how we can improve..."
+            ></textarea>
+            <div class="feedback-modal-actions">
+                <button id="feedback-cancel" class="feedback-btn feedback-btn-secondary" type="button">Cancel</button>
+                <button id="feedback-submit" class="feedback-btn feedback-btn-primary" type="button">Submit</button>
+            </div>
+        </div>
+    </div>
+
     <!-- TradingView Lightweight Charts -->
     <script
         src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js?v=4"></script>
