@@ -26,5 +26,42 @@
       ],
       "chart_path": "data\\charts\\2026-03-02\\LMT_trend.png"
     }
+  },
+  {
+    "meta": {
+      "symbol": "LMT",
+      "source_symbol": "LMT",
+      "generated_at": "2026-03-10T10:27:05Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 664.1500244140625,
+      "predicted_price_next_session": 663.7143572998046
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.27085961898167926,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Lockheed Martin\u2019s (LMT) $18.9M Trident II D5 LE2 Modification Extends SSP Design Work Through 2030",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_155ce6e3-dca8-4e03-97ec-e992ad36816c"
+        },
+        {
+          "title": "LMT Stock Up 38% in 2026 and the Rally Has Real Earnings Behind It",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_5ff074b5-1b2c-499d-a3db-67b917100334"
+        },
+        {
+          "title": "Lockheed Martin (LMT) stock jumps while S&P 500 slides \u2013 why investors are rushing to defence stocks as US-Iran conflict escalates",
+          "url": "https://economictimes.indiatimes.com/news/international/us/lockheed-martin-lmt-stock-jumps-while-sp-500-slides-why-investors-are-rushing-to-defence-stocks-as-us-iran-conflict-escalates/articleshow/128949246.cms"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/LMT_trend.png"
+    }
   }
 ]

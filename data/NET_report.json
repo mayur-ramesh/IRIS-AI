@@ -1,0 +1,150 @@
+[
+  {
+    "meta": {
+      "symbol": "NET",
+      "source_symbol": "NET",
+      "generated_at": "2026-03-10T10:34:11Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 201.47999572753906,
+      "predicted_price_next_session": 192.50979934692384
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.47085540493329364,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "47 Hairstyles People Swear Were Cool In The 80s But Look Hilarious Now",
+          "url": "https://www.boredpanda.com/80s-biggest-hairdos-msn/"
+        },
+        {
+          "title": "\u65e5\u672c\u306e\u8ecd\u4e8b\u8cbb\u5897\u52a0\u306b\u3064\u3044\u3066\u4e2d\u56fd\u300c\u30a2\u30b8\u30a2\u306e\u4eba\u3005\u304c\u65e5\u672c\u3092\u8b66\u6212\u3059\u308b\u306e\u306f\u5f53\u7136\u300d",
+          "url": "https://itainews.com/archives/2059762.html"
+        },
+        {
+          "title": "Ridgeline Surpasses $650B in Committed AUM as Investment Managers Embrace the AI-Native Platform",
+          "url": "https://financialpost.com/globe-newswire/ridgeline-surpasses-650b-in-committed-aum-as-investment-managers-embrace-the-ai-native-platform"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/NET_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NET",
+      "source_symbol": "NET",
+      "generated_at": "2026-03-10T10:34:13Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 201.47999572753906,
+      "predicted_price_next_session": 192.50979934692384
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.47085540493329364,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "47 Hairstyles People Swear Were Cool In The 80s But Look Hilarious Now",
+          "url": "https://www.boredpanda.com/80s-biggest-hairdos-msn/"
+        },
+        {
+          "title": "\u65e5\u672c\u306e\u8ecd\u4e8b\u8cbb\u5897\u52a0\u306b\u3064\u3044\u3066\u4e2d\u56fd\u300c\u30a2\u30b8\u30a2\u306e\u4eba\u3005\u304c\u65e5\u672c\u3092\u8b66\u6212\u3059\u308b\u306e\u306f\u5f53\u7136\u300d",
+          "url": "https://itainews.com/archives/2059762.html"
+        },
+        {
+          "title": "Ridgeline Surpasses $650B in Committed AUM as Investment Managers Embrace the AI-Native Platform",
+          "url": "https://financialpost.com/globe-newswire/ridgeline-surpasses-650b-in-committed-aum-as-investment-managers-embrace-the-ai-native-platform"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/NET_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NET",
+      "source_symbol": "NET",
+      "generated_at": "2026-03-10T10:34:37Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "1mo",
+      "interval": "1h"
+    },
+    "market": {
+      "current_price": 201.47999572753906,
+      "predicted_price_next_session": 201.31459899902345
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.47085540493329364,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "47 Hairstyles People Swear Were Cool In The 80s But Look Hilarious Now",
+          "url": "https://www.boredpanda.com/80s-biggest-hairdos-msn/"
+        },
+        {
+          "title": "\u65e5\u672c\u306e\u8ecd\u4e8b\u8cbb\u5897\u52a0\u306b\u3064\u3044\u3066\u4e2d\u56fd\u300c\u30a2\u30b8\u30a2\u306e\u4eba\u3005\u304c\u65e5\u672c\u3092\u8b66\u6212\u3059\u308b\u306e\u306f\u5f53\u7136\u300d",
+          "url": "https://itainews.com/archives/2059762.html"
+        },
+        {
+          "title": "Ridgeline Surpasses $650B in Committed AUM as Investment Managers Embrace the AI-Native Platform",
+          "url": "https://financialpost.com/globe-newswire/ridgeline-surpasses-650b-in-committed-aum-as-investment-managers-embrace-the-ai-native-platform"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/NET_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NET",
+      "source_symbol": "NET",
+      "generated_at": "2026-03-10T10:34:39Z",
+      "market_session_date": "2026-03-02",
+      "mode": "live",
+      "period": "5y",
+      "interval": "1wk"
+    },
+    "market": {
+      "current_price": 201.47999572753906,
+      "predicted_price_next_session": 174.75560127258302
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.47085540493329364,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "47 Hairstyles People Swear Were Cool In The 80s But Look Hilarious Now",
+          "url": "https://www.boredpanda.com/80s-biggest-hairdos-msn/"
+        },
+        {
+          "title": "\u65e5\u672c\u306e\u8ecd\u4e8b\u8cbb\u5897\u52a0\u306b\u3064\u3044\u3066\u4e2d\u56fd\u300c\u30a2\u30b8\u30a2\u306e\u4eba\u3005\u304c\u65e5\u672c\u3092\u8b66\u6212\u3059\u308b\u306e\u306f\u5f53\u7136\u300d",
+          "url": "https://itainews.com/archives/2059762.html"
+        },
+        {
+          "title": "Ridgeline Surpasses $650B in Committed AUM as Investment Managers Embrace the AI-Native Platform",
+          "url": "https://financialpost.com/globe-newswire/ridgeline-surpasses-650b-in-committed-aum-as-investment-managers-embrace-the-ai-native-platform"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/NET_trend.png"
+    }
+  }
+]

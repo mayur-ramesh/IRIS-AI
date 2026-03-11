@@ -31,8 +31,6 @@
                     </span>
                     <span class="theme-toggle-label">Light / Dark</span>
                 </button>
-                <a href="/login" class="nav-link">Login</a>
-                <a href="/signup" class="nav-signup">Sign Up</a>
             </div>
         </div>
     </nav>
@@ -117,6 +115,15 @@
             <!-- Market Chart -->
             <div class="card glass-panel chart-card" id="chart-section">
                 <h3>Market Chart & Trend</h3>
+                <div class="chart-timeframes" role="tablist" aria-label="Chart timeframe">
+                    <button type="button" class="timeframe-btn" data-timeframe="1D">1D</button>
+                    <button type="button" class="timeframe-btn" data-timeframe="5D">5D</button>
+                    <button type="button" class="timeframe-btn" data-timeframe="1M">1M</button>
+                    <button type="button" class="timeframe-btn active" data-timeframe="6M">6M</button>
+                    <button type="button" class="timeframe-btn" data-timeframe="YTD">YTD</button>
+                    <button type="button" class="timeframe-btn" data-timeframe="1Y">1Y</button>
+                    <button type="button" class="timeframe-btn" data-timeframe="5Y">5Y</button>
+                </div>
                 <div class="chart-container" id="advanced-chart"
                     style="position: relative; width: 100%; height: 300px;">
                     <div id="chart-placeholder" class="chart-placeholder">Loading chart...</div>
@@ -131,10 +138,35 @@
         <p>&copy; CP3405 Team Project</p>
     </footer>
 
+    <button
+        id="feedback-open"
+        class="feedback-fab"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="feedback-modal"
+    >
+        Feedback
+    </button>
+
+    <div id="feedback-modal" class="feedback-modal hidden" role="dialog" aria-modal="true" aria-labelledby="feedback-modal-title">
+        <div class="feedback-modal-card">
+            <h3 id="feedback-modal-title">Report an Issue</h3>
+            <textarea
+                id="feedback-message"
+                class="feedback-textarea"
+                placeholder="Tell us what went wrong or how we can improve..."
+            ></textarea>
+            <div class="feedback-modal-actions">
+                <button id="feedback-cancel" class="feedback-btn feedback-btn-secondary" type="button">Cancel</button>
+                <button id="feedback-submit" class="feedback-btn feedback-btn-primary" type="button">Submit</button>
+            </div>
+        </div>
+    </div>
+
     <!-- TradingView Lightweight Charts -->
     <script
         src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js?v=4"></script>
-    <script src="/static/app.js?v=4"></script>
+    <script src="/static/app.js?v=13"></script>
 </body>
 
 </html>

@@ -1,16 +1,18 @@
 import argparse
 import os
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
+os.environ.setdefault("DISABLE_SAFETENSORS_CONVERSION", "1")
 import yfinance as yf
 from newsapi import NewsApiClient
 import nltk
-from transformers import pipeline
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
 import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 import pandas as pd
 import time
 import json
 from pathlib import Path
+from storage_paths import resolve_data_dir
 
 # Optional: charting (graceful fallback if matplotlib missing)
 try:
@@ -29,6 +31,12 @@ try:
 except ImportError:
     pass
 NEWS_API_KEY = os.environ.get("NEWS_API_KEY") or None
+DEMO_MODE = os.environ.get("DEMO_MODE", "false").lower() == "true"
+PROJECT_ROOT = Path(__file__).resolve().parent
+DATA_DIR = resolve_data_dir(PROJECT_ROOT, DEMO_MODE)
+SESSIONS_DIR = DATA_DIR / "sessions"
+CHARTS_DIR = DATA_DIR / "charts"
+YF_CACHE_DIR = DATA_DIR / "yfinance_tz_cache"
 TICKER_ALIASES = {
     "GOOGL": "GOOG",
 }
@@ -80,11 +88,56 @@ DEFAULT_TICKERS = normalize_ticker_list(
 class IRIS_System:
     def __init__(self):
         print("\n  Initializing IRIS Risk Engines...")
+        DATA_DIR.mkdir(parents=True, exist_ok=True)
+        YF_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        try:
+            cache_mod = getattr(yf, "cache", None)
+            cache_setter = getattr(cache_mod, "set_cache_location", None)
+            if callable(cache_setter):
+                cache_setter(str(YF_CACHE_DIR))
+            if hasattr(yf, "set_tz_cache_location"):
+                yf.set_tz_cache_location(str(YF_CACHE_DIR))
+        except Exception:
+            pass
+        try:
+            import sqlite3
+
+            probe_path = YF_CACHE_DIR / ".cache_probe.sqlite3"
+            conn = sqlite3.connect(str(probe_path))
+            conn.execute("CREATE TABLE IF NOT EXISTS _probe (id INTEGER)")
+            conn.close()
+            try:
+                probe_path.unlink()
+            except OSError:
+                pass
+        except Exception:
+            # Fall back to in-memory/dummy cache objects when SQLite cache is not writable.
+            try:
+                cache_mod = getattr(yf, "cache", None)
+                if cache_mod is not None:
+                    if hasattr(cache_mod, "_CookieCacheManager") and hasattr(cache_mod, "_CookieCacheDummy"):
+                        cache_mod._CookieCacheManager._Cookie_cache = cache_mod._CookieCacheDummy()
+                    if hasattr(cache_mod, "_ISINCacheManager") and hasattr(cache_mod, "_ISINCacheDummy"):
+                        cache_mod._ISINCacheManager._isin_cache = cache_mod._ISINCacheDummy()
+                    if hasattr(cache_mod, "_TzCacheManager") and hasattr(cache_mod, "_TzCacheDummy"):
+                        cache_mod._TzCacheManager._tz_cache = cache_mod._TzCacheDummy()
+            except Exception:
+                pass
         
         # Setup Sentiment Brain (FinBERT - financial sentiment model)
         print("   -> Loading FinBERT AI Model (This may take a moment on first run)...")
         try:
-            self.sentiment_analyzer = pipeline("sentiment-analysis", model="ProsusAI/finbert")
+            finbert_model_id = "ProsusAI/finbert"
+            tokenizer = AutoTokenizer.from_pretrained(finbert_model_id)
+            model = AutoModelForSequenceClassification.from_pretrained(
+                finbert_model_id,
+                use_safetensors=False,
+            )
+            self.sentiment_analyzer = pipeline(
+                "sentiment-analysis",
+                model=model,
+                tokenizer=tokenizer,
+            )
             print("   -> FinBERT Loaded Successfully!")
         except Exception as e:
             print(f"   -> Error loading FinBERT: {e}")
@@ -154,8 +207,8 @@ class IRIS_System:
         return (session_date, generated_at)
 
     def merge_alias_reports(self):
-        """Merge alias symbols into canonical report files (e.g. GOOGL -> GOOG)."""
-        data_dir = Path("data")
+        """Merge alias symbols into canonical report files (e.g. GOOGL -> GOOG) without dropping history."""
+        data_dir = DATA_DIR
         if not data_dir.exists():
             return None
 
@@ -167,7 +220,7 @@ class IRIS_System:
                 continue
             canonical_reports = self._read_report_file(canonical_path)
 
-            merged = {}
+            merged_reports = []
             for report in canonical_reports + alias_reports:
                 if not isinstance(report, dict):
                     continue
@@ -176,16 +229,9 @@ class IRIS_System:
                     meta = {}
                     report["meta"] = meta
                 meta["symbol"] = canonical
+                merged_reports.append(report)
 
-                session_key = self._extract_session_date(report) or self._report_generated_at(report)
-                if not session_key:
-                    session_key = f"legacy_{len(merged)}"
-
-                existing = merged.get(session_key)
-                if existing is None or self._report_generated_at(report) >= self._report_generated_at(existing):
-                    merged[session_key] = report
-
-            merged_reports = sorted(merged.values(), key=self._report_sort_key)
+            merged_reports = sorted(merged_reports, key=self._report_sort_key)
             if merged_reports:
                 with open(canonical_path, "w", encoding="utf-8") as f:
                     json.dump(merged_reports, f, indent=2)
@@ -210,12 +256,13 @@ class IRIS_System:
         return None
 
     def save_report(self, report: dict, filename: str):
-        Path("data").mkdir(exist_ok=True)
+        base_data_dir = DATA_DIR
+        base_data_dir.mkdir(parents=True, exist_ok=True)
         canonical_filename = filename
         if filename.endswith("_report.json"):
             symbol = filename[:-12]
             canonical_filename = f"{normalize_ticker_symbol(symbol)}_report.json"
-        out_path = Path("data") / canonical_filename
+        out_path = base_data_dir / canonical_filename
         
         # Load existing reports if file exists
         reports = []
@@ -227,18 +274,9 @@ class IRIS_System:
                     reports = data if isinstance(data, list) else [data]
             except (json.JSONDecodeError, IOError):
                 reports = []
-        
-        # Upsert by market session date to avoid duplicate entries for the same trading session.
-        target_session = self._extract_session_date(report)
-        updated = False
-        if target_session:
-            for idx, existing in enumerate(reports):
-                if self._extract_session_date(existing) == target_session:
-                    reports[idx] = report
-                    updated = True
-                    break
-        if not updated:
-            reports.append(report)
+
+        # Always append so every run remains accumulative.
+        reports.append(report)
         
         # Save all reports
         with open(out_path, "w", encoding="utf-8") as f:
@@ -247,7 +285,7 @@ class IRIS_System:
 
     def _load_symbol_reports(self, symbol: str):
         canonical_symbol = normalize_ticker_symbol(symbol)
-        out_path = Path("data") / f"{canonical_symbol}_report.json"
+        out_path = DATA_DIR / f"{canonical_symbol}_report.json"
         if not out_path.exists():
             return []
         return self._read_report_file(out_path)
@@ -362,33 +400,138 @@ class IRIS_System:
             "comparisons": comparisons,
         }
 
-        sessions_dir = Path("data") / "sessions" / session_date
+        base_sessions_dir = SESSIONS_DIR
+        base_sessions_dir.mkdir(parents=True, exist_ok=True)
+        sessions_dir = base_sessions_dir / session_date
         sessions_dir.mkdir(parents=True, exist_ok=True)
         summary_path = sessions_dir / "session_summary.json"
         with open(summary_path, "w", encoding="utf-8") as f:
             json.dump(payload, f, indent=2)
 
-        latest_path = Path("data") / "sessions" / "latest_session_summary.json"
+        latest_path = base_sessions_dir / "latest_session_summary.json"
         with open(latest_path, "w", encoding="utf-8") as f:
             json.dump(payload, f, indent=2)
         return str(summary_path)
 
-    def get_market_data(self, ticker):
-        """Fetches current price and 60-day history with features for the Prediction Engine."""
+    def _simulated_market_data(self, ticker: str, price_hint=None):
+        """Build deterministic synthetic market data so demo flows still work offline."""
+        symbol = str(ticker or "").strip().upper() or "DEMO"
+        seed = sum((idx + 1) * ord(ch) for idx, ch in enumerate(symbol))
+        rng = np.random.default_rng(seed)
+        try:
+            base_price = float(price_hint)
+            if not np.isfinite(base_price) or base_price <= 0:
+                raise ValueError
+        except (TypeError, ValueError):
+            base_price = float(50 + (seed % 350))
+
+        points = 60
+        trend = np.linspace(-0.03, 0.03, points)
+        noise = rng.normal(0.0, 0.01, points)
+        close_values = np.maximum(1.0, base_price * (1.0 + trend + noise))
+        close_values[-1] = max(1.0, float(base_price))
+
+        date_index = pd.date_range(end=pd.Timestamp.utcnow().floor("D"), periods=points, freq="D", tz="UTC")
+        df = pd.DataFrame(
+            {
+                "Close": close_values.astype(float),
+                "Volume": rng.integers(700000, 3500000, size=points).astype(float),
+            },
+            index=date_index,
+        )
+        df["returns_1d"] = df["Close"].pct_change().fillna(0.0)
+        df["sma_5"] = df["Close"].rolling(5, min_periods=1).mean()
+        df["sma_10"] = df["Close"].rolling(10, min_periods=1).mean()
+        df["sma_20"] = df["Close"].rolling(20, min_periods=1).mean()
+
+        delta = df["Close"].diff()
+        gain = delta.clip(lower=0.0)
+        loss = -delta.clip(upper=0.0)
+        avg_gain = gain.ewm(alpha=1 / 14, adjust=False, min_periods=14).mean()
+        avg_loss = loss.ewm(alpha=1 / 14, adjust=False, min_periods=14).mean()
+        rs = avg_gain / avg_loss.replace(0.0, np.nan)
+        rsi = 100.0 - (100.0 / (1.0 + rs))
+        rsi = rsi.where(avg_loss != 0.0, 100.0)
+        rsi = rsi.where(~((avg_loss == 0.0) & (avg_gain == 0.0)), 50.0)
+        df["rsi_14"] = rsi.fillna(50.0).clip(0.0, 100.0)
+
+        unix_seconds = np.asarray(date_index.asi8 // 10**9, dtype=np.int64)
+        history_points = [
+            {"time": int(ts), "value": float(val)}
+            for ts, val in zip(unix_seconds, close_values)
+            if ts > 0 and np.isfinite(val)
+        ]
+        return {
+            "current_price": float(close_values[-1]),
+            "history": close_values.astype(float),
+            "history_df": df,
+            "history_points": history_points,
+            "symbol": symbol,
+        }
+
+    def get_market_data(self, ticker, period="60d", interval="1d"):
+        """Fetches market history/features and chart points using the requested yfinance period/interval."""
         try:
             stock = yf.Ticker(ticker)
             price = getattr(stock.fast_info, "last_price", None) or getattr(stock.fast_info, "previous_close", None)
             if price is None:
-                return None
-            # Use 60d for more robust feature computation (SMAs, etc.)
-            hist = stock.history(period="60d")
-            if hist is None or hist.empty or len(hist) < 10:
-                return {
-                    "current_price": float(price),
-                    "history": None,
-                    "history_df": None,
-                    "symbol": ticker.upper(),
-                }
+                return self._simulated_market_data(ticker)
+            hist = stock.history(period=period, interval=interval)
+            if hist is None or hist.empty:
+                return self._simulated_market_data(ticker, price_hint=price)
+
+            def _infer_unix_seconds_from_index(index_values):
+                raw_index = pd.Index(index_values)
+
+                def _convert_numeric_to_seconds(numeric_values):
+                    numeric_values = np.asarray(numeric_values, dtype=np.float64)
+                    if numeric_values.size == 0:
+                        return np.array([], dtype=np.int64)
+                    abs_median = float(np.nanmedian(np.abs(numeric_values)))
+                    if not np.isfinite(abs_median):
+                        return np.array([], dtype=np.int64)
+                    if abs_median >= 1e17:
+                        secs = numeric_values / 1e9      # nanoseconds
+                    elif abs_median >= 1e14:
+                        secs = numeric_values / 1e6      # microseconds
+                    elif abs_median >= 1e11:
+                        secs = numeric_values / 1e3      # milliseconds
+                    else:
+                        secs = numeric_values            # seconds
+                    return np.asarray(np.rint(secs), dtype=np.int64)
+
+                if isinstance(raw_index, pd.DatetimeIndex):
+                    dt_index = raw_index.tz_localize("UTC") if raw_index.tz is None else raw_index.tz_convert("UTC")
+                    raw_int = np.asarray(dt_index.asi8, dtype=np.int64)
+                    # Handle malformed datetime indexes that were created with wrong epoch units.
+                    abs_median = float(np.nanmedian(np.abs(raw_int))) if raw_int.size else 0.0
+                    if 1e8 <= abs_median < 1e14:
+                        unix_seconds = _convert_numeric_to_seconds(raw_int)
+                    else:
+                        unix_seconds = np.asarray(raw_int // 10**9, dtype=np.int64)
+                else:
+                    numeric_index = pd.to_numeric(raw_index, errors="coerce")
+                    numeric_valid = np.isfinite(numeric_index)
+                    if np.any(numeric_valid):
+                        unix_seconds = np.full(len(raw_index), -1, dtype=np.int64)
+                        unix_seconds[numeric_valid] = _convert_numeric_to_seconds(np.asarray(numeric_index[numeric_valid], dtype=np.float64))
+                    else:
+                        dt_index = pd.to_datetime(raw_index.astype(str), utc=True, errors="coerce")
+                        unix_seconds = np.asarray(dt_index.asi8 // 10**9, dtype=np.int64)
+                return unix_seconds
+
+            close_series = pd.to_numeric(hist.get("Close"), errors="coerce") if "Close" in hist.columns else None
+            if close_series is None:
+                return self._simulated_market_data(ticker, price_hint=price)
+
+            close_values = np.asarray(close_series, dtype=np.float64)
+            unix_seconds_all = _infer_unix_seconds_from_index(hist.index)
+            valid_chart_mask = np.isfinite(close_values) & np.isfinite(unix_seconds_all) & (unix_seconds_all >= 1e8)
+            history_points = [
+                {"time": int(ts), "value": float(val)}
+                for ts, val in zip(unix_seconds_all[valid_chart_mask], close_values[valid_chart_mask])
+            ]
+            history_values = close_values[valid_chart_mask]
             # Build feature-rich DataFrame for better model accuracy
             df = hist[["Close"]].copy()
             if "Volume" in hist.columns:
@@ -419,18 +562,61 @@ class IRIS_System:
             df["rsi_14"] = df["rsi_14"].fillna(50.0).clip(0.0, 100.0)
             df["Volume"] = df["Volume"].fillna(0.0).clip(lower=0.0)
             df = df.dropna(subset=["Close", "sma_5", "sma_10", "sma_20", "returns_1d", "rsi_14", "Volume"])
+
             return {
                 "current_price": float(price),
-                "history": df["Close"].values,
-                "history_df": df,
+                "history": history_values if len(history_values) else None,
+                "history_df": df if not df.empty else None,
+                "history_points": history_points,
                 "symbol": ticker.upper(),
             }
         except Exception:
-            return None
+            return self._simulated_market_data(ticker)
 
     def analyze_news(self, ticker):
         """Fetches headlines and calculates a Sentiment Score (-1.0 to +1.0)."""
+        ticker_symbol = normalize_ticker_symbol(ticker).upper()
         headlines = []
+        seen = set()
+
+        # Build strict relevance terms: ticker + known company names mapped to this ticker.
+        relevance_terms = {ticker_symbol}
+        for company_name, tickers in COMPANY_NAME_TO_TICKERS.items():
+            normalized = normalize_ticker_list(tickers)
+            if ticker_symbol in normalized:
+                relevance_terms.add(str(company_name or "").upper())
+
+        def add_relevant_article(title, url="", description=""):
+            if len(headlines) >= 15:
+                return
+            clean_title = str(title or "").strip()
+            if not clean_title:
+                return
+            clean_url = str(url or "").strip()
+            clean_description = str(description or "").strip()
+
+            combined_text = f"{clean_title} {clean_description}".upper()
+            tokenized_combined = sanitize_company_token(combined_text)
+            is_relevant = False
+            for term in relevance_terms:
+                term_upper = str(term or "").upper().strip()
+                if not term_upper:
+                    continue
+                if term_upper in combined_text:
+                    is_relevant = True
+                    break
+                tokenized_term = sanitize_company_token(term_upper)
+                if tokenized_term and tokenized_term in tokenized_combined:
+                    is_relevant = True
+                    break
+            if not is_relevant:
+                return
+
+            dedupe_key = (clean_title, clean_url)
+            if dedupe_key in seen:
+                return
+            seen.add(dedupe_key)
+            headlines.append({"title": clean_title, "url": clean_url})
 
         # Preferred source: NewsAPI (if configured) for a larger headline baseline.
         if self.news_api:
@@ -446,10 +632,14 @@ class IRIS_System:
                         if not isinstance(article, dict):
                             continue
                         title = str(article.get("title", "")).strip()
-                        if title:
-                            headlines.append(title)
+                        url = article.get("url", "")
+                        description = article.get("description", "")
+                        add_relevant_article(title=title, url=url, description=description)
+                        if len(headlines) >= 15:
+                            break
             except Exception:
                 headlines = []
+                seen = set()
 
         # Fallback: existing yfinance extraction when NewsAPI is unavailable/failed/empty.
         if not headlines:
@@ -457,41 +647,55 @@ class IRIS_System:
                 stock = yf.Ticker(ticker)
                 news_items = stock.news
                 if news_items:
-                    for item in news_items[:5]: # Get up to 5 recent headlines
-                        if 'title' in item:
-                            headlines.append(item['title'])
-                        elif 'content' in item and 'title' in item['content']:
-                            headlines.append(item['content']['title'])
+                    for item in news_items[:30]:
+                        if not isinstance(item, dict):
+                            continue
+                        content = item.get("content") if isinstance(item.get("content"), dict) else {}
+                        title = item.get("title") or content.get("title") or ""
+                        description = item.get("description") or item.get("summary") or content.get("description") or content.get("summary") or ""
+                        url = item.get("link") or item.get("url") or content.get("link") or content.get("url") or ""
+                        add_relevant_article(title=title, url=url, description=description)
+                        if len(headlines) >= 15:
+                            break
             except Exception:
                 pass
         
         #  Fallback: Simulation Mode (If internet/API failure)
         if not headlines:
             if ticker == "TSLA":
-                headlines = [
-                    "Tesla recalls 2 million vehicles due to autopilot risk",
-                    "Analysts downgrade stock amid slowing EV demand"
+                simulation_items = [
+                    {"title": "Tesla recalls 2 million vehicles due to autopilot risk", "url": ""},
+                    {"title": "Analysts downgrade Tesla stock amid slowing EV demand", "url": ""},
                 ]
             elif ticker == "NVDA":
-                headlines = [
-                    "Nvidia announces fantastic breakthrough AI chip", 
-                    "Excellent quarterly revenue brilliantly beats expectations by 20%"
+                simulation_items = [
+                    {"title": "Nvidia announces fantastic breakthrough AI chip", "url": ""},
+                    {"title": "Nvidia quarterly revenue brilliantly beats expectations by 20%", "url": ""},
                 ]
             else:
-                headlines = [
-                    f"{ticker} announces date for shareholder meeting",
-                    "Market volatility continues ahead of Fed decision"
+                simulation_items = [
+                    {"title": f"{ticker_symbol} announces date for shareholder meeting", "url": ""},
+                    {"title": f"{ticker_symbol} news flow remains active amid market volatility", "url": ""},
                 ]
+            for entry in simulation_items:
+                add_relevant_article(
+                    title=entry.get("title", ""),
+                    url=entry.get("url", ""),
+                    description="",
+                )
 
         #  Analyze Sentiment using FinBERT
         total_score = 0
         valid_headlines = 0
         
         if self.sentiment_analyzer and headlines:
-            for h in headlines:
+            for headline in headlines:
                 try:
+                    title_text = str(headline.get("title", "")).strip() if isinstance(headline, dict) else str(headline or "").strip()
+                    if not title_text:
+                        continue
                     # FinBERT returns labels like 'positive', 'negative', 'neutral'
-                    result = self.sentiment_analyzer(h)[0]
+                    result = self.sentiment_analyzer(title_text)[0]
                     label = result['label']
                     score = result['score'] # Confidence score 0 to 1
                     
@@ -629,11 +833,13 @@ class IRIS_System:
 
         return label, predicted_price
 
-    def draw_chart(self, symbol: str, history_df, current_price: float, predicted_price: float, trend_label: str, save_dir: str = "data/charts"):
+    def draw_chart(self, symbol: str, history_df, current_price: float, predicted_price: float, trend_label: str, save_dir: str = ""):
         """Draw live price history and prediction trend; save to dated subfolder under data/charts (YYYY-MM-DD)."""
         if not _HAS_MATPLOTLIB or history_df is None or history_df.empty:
             return None
-        base_dir = Path(save_dir)
+        base_dir = Path(save_dir) if str(save_dir or "").strip() else CHARTS_DIR
+        if not base_dir.is_absolute():
+            base_dir = PROJECT_ROOT / base_dir
         date_str = time.strftime("%Y-%m-%d")
         daily_dir = base_dir / date_str
         daily_dir.mkdir(parents=True, exist_ok=True)
@@ -657,9 +863,20 @@ class IRIS_System:
         path = daily_dir / f"{symbol}_trend.png"
         fig.savefig(path, dpi=120)
         plt.close(fig)
-        return str(path)
+        try:
+            return str(path.relative_to(PROJECT_ROOT)).replace("\\", "/")
+        except ValueError:
+            return str(path)
 
-    def run_one_ticker(self, ticker: str, quiet: bool = False, interactive_prompt: bool = False):
+    def run_one_ticker(
+        self,
+        ticker: str,
+        quiet: bool = False,
+        interactive_prompt: bool = False,
+        period: str = "60d",
+        interval: str = "1d",
+        include_chart_history: bool = False,
+    ):
         """Run analysis for a single ticker; returns report dict or None."""
         ticker = self.resolve_user_ticker_input(ticker, interactive_prompt=interactive_prompt, quiet=quiet)
         analyzed_ticker = str(ticker).strip().upper()
@@ -668,7 +885,7 @@ class IRIS_System:
             print(f"... Analyzing {analyzed_ticker} ...")
             if canonical_ticker != analyzed_ticker:
                 print(f"  Note: {analyzed_ticker} will be merged into canonical symbol {canonical_ticker}.")
-        data = self.get_market_data(analyzed_ticker)
+        data = self.get_market_data(analyzed_ticker, period=period, interval=interval)
         if not data:
             if not quiet:
                 print(f"  {analyzed_ticker}: Stock not found or connection error.")
@@ -690,6 +907,19 @@ class IRIS_System:
             except Exception:
                 market_session_date = None
 
+        evidence_headlines = []
+        if isinstance(headlines, list):
+            for entry in headlines:
+                if not isinstance(entry, dict):
+                    continue
+                title_text = str(entry.get("title", "")).strip()
+                if not title_text:
+                    continue
+                evidence_headlines.append({
+                    "title": title_text,
+                    "url": str(entry.get("url", "")).strip(),
+                })
+
         report = {
             "meta": {
                 "symbol": canonical_ticker,
@@ -697,18 +927,19 @@ class IRIS_System:
                 "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                 "market_session_date": market_session_date,
                 "mode": "live" if NEWS_API_KEY else "simulation",
+                "period": period,
+                "interval": interval,
             },
             "market": {
                 "current_price": float(data["current_price"]),
                 "predicted_price_next_session": float(predicted_price),
-                "history": [{"time": ts.strftime('%Y-%m-%d'), "value": float(price)} for ts, price in history_df["Close"].items()] if history_df is not None else [],
             },
             "signals": {
                 "trend_label": trend_label,
                 "sentiment_score": float(sentiment_score),
                 "check_engine_light": light,
             },
-            "evidence": {"headlines_used": headlines if isinstance(headlines, list) else []},
+            "evidence": {"headlines_used": evidence_headlines},
         }
 
         chart_path = self.draw_chart(
@@ -725,6 +956,13 @@ class IRIS_System:
             print(f"  Chart saved: {chart_path}")
         if not quiet:
             print(f"  Report: {canonical_ticker} | {light} | Predicted next: ${predicted_price:.2f} | {saved_path}")
+
+        # Optionally include chart history in API response without storing it in report logs.
+        if include_chart_history:
+            history_points = data.get("history_points", []) if isinstance(data.get("history_points", []), list) else []
+            response = json.loads(json.dumps(report))
+            response.setdefault("market", {})["history"] = history_points
+            return response
         return report
 
     def run_auto(self, tickers: list):

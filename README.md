@@ -32,6 +32,40 @@ IRIS provides decision support flags based on historical data and sentiment anal
 
 ---
 
+## Team Runtime Data (Conflict-Free)
+
+To avoid report/cache merge conflicts across different developer machines:
+
+* By default, runtime outputs now go to `runtime_data/` (or `demo_guests_data/` when `DEMO_MODE=true`).
+* Tracked `data/` files are no longer the default write target.
+* You can override with environment variables:
+  * `IRIS_USE_REPO_DATA=true` to intentionally write into `data/`
+  * `IRIS_DATA_DIR=<path>` to use a custom machine-local folder
+
+This keeps generated reports, sessions, feedback logs, and yfinance caches machine-local by default.
+
+---
+
+## Historical Reports and Trend Accuracy
+
+Use these commands to keep the pipeline reproducible across machines.
+
+* Generate fresh runtime reports/session summary:
+  * `python run_daily.py --once --tickers AAPL,MSFT`
+* Read latest session summary from active runtime dir:
+  * `runtime_data/sessions/latest_session_summary.json` (default)
+  * `demo_guests_data/sessions/latest_session_summary.json` (`DEMO_MODE=true`)
+* Generate trend-accuracy chart using active runtime reports:
+  * `python trend_accuracy_comparison_chart.py`
+* Compare using historical archived reports in tracked `data/`:
+  * `python trend_accuracy_comparison_chart.py --data-dir data --output runtime_data/charts/<YYYY-MM-DD>/trend_accuracy_from_repo_data.png`
+
+Notes:
+* Accuracy requires at least two market sessions per ticker in the selected dataset.
+* The script auto-falls back to `data/LLM reports` for LLM baseline files when runtime dirs do not contain them.
+
+---
+
 ## Current Work Progress
 
 * **Backend & REST API (`app.py`):** * Set up a Flask server with CORS support.

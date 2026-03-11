@@ -20,5 +20,264 @@
         "Market volatility continues ahead of Fed decision"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "GLD",
+      "source_symbol": "GLD",
+      "generated_at": "2026-03-10T10:31:22Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 472.5299987792969,
+      "predicted_price_next_session": 471.1571017456055
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.24975373347600302,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "GLD\u2019s $75 Billion Couldn\u2019t Shield It From the Tariff-Driven Selloff",
+          "url": "https://247wallst.com/investing/2026/03/07/glds-75-billion-couldnt-shield-it-from-the-tariff-driven-selloff/"
+        },
+        {
+          "title": "Gold Is Up 17% This Year but Reddit Just Shifted From Buying GLD to Googling Coins",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_fd0a808b-8705-4ce3-9c1e-443f5fc17077"
+        },
+        {
+          "title": "GLD Offers a Smoother Ride Than SLV Over 10 Years",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_5fdb96ce-620c-4b54-9a42-12d4afa9f96e"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/GLD_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GLD",
+      "source_symbol": "GLD",
+      "generated_at": "2026-03-10T10:31:24Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 472.5299987792969,
+      "predicted_price_next_session": 471.1571017456055
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.24975373347600302,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "GLD\u2019s $75 Billion Couldn\u2019t Shield It From the Tariff-Driven Selloff",
+          "url": "https://247wallst.com/investing/2026/03/07/glds-75-billion-couldnt-shield-it-from-the-tariff-driven-selloff/"
+        },
+        {
+          "title": "Gold Is Up 17% This Year but Reddit Just Shifted From Buying GLD to Googling Coins",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_fd0a808b-8705-4ce3-9c1e-443f5fc17077"
+        },
+        {
+          "title": "GLD Offers a Smoother Ride Than SLV Over 10 Years",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_5fdb96ce-620c-4b54-9a42-12d4afa9f96e"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/GLD_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GLD",
+      "source_symbol": "GLD",
+      "generated_at": "2026-03-10T10:31:32Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "1mo",
+      "interval": "1h"
+    },
+    "market": {
+      "current_price": 472.5299987792969,
+      "predicted_price_next_session": 472.5864111328125
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.24975373347600302,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "GLD\u2019s $75 Billion Couldn\u2019t Shield It From the Tariff-Driven Selloff",
+          "url": "https://247wallst.com/investing/2026/03/07/glds-75-billion-couldnt-shield-it-from-the-tariff-driven-selloff/"
+        },
+        {
+          "title": "Gold Is Up 17% This Year but Reddit Just Shifted From Buying GLD to Googling Coins",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_fd0a808b-8705-4ce3-9c1e-443f5fc17077"
+        },
+        {
+          "title": "GLD Offers a Smoother Ride Than SLV Over 10 Years",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_5fdb96ce-620c-4b54-9a42-12d4afa9f96e"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/GLD_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GLD",
+      "source_symbol": "GLD",
+      "generated_at": "2026-03-10T10:31:40Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "5d",
+      "interval": "15m"
+    },
+    "market": {
+      "current_price": 472.5299987792969,
+      "predicted_price_next_session": 472.2027346801758
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.24975373347600302,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "GLD\u2019s $75 Billion Couldn\u2019t Shield It From the Tariff-Driven Selloff",
+          "url": "https://247wallst.com/investing/2026/03/07/glds-75-billion-couldnt-shield-it-from-the-tariff-driven-selloff/"
+        },
+        {
+          "title": "Gold Is Up 17% This Year but Reddit Just Shifted From Buying GLD to Googling Coins",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_fd0a808b-8705-4ce3-9c1e-443f5fc17077"
+        },
+        {
+          "title": "GLD Offers a Smoother Ride Than SLV Over 10 Years",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_5fdb96ce-620c-4b54-9a42-12d4afa9f96e"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/GLD_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GLD",
+      "source_symbol": "GLD",
+      "generated_at": "2026-03-10T10:31:46Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "1y",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 472.5299987792969,
+      "predicted_price_next_session": 471.89570281982424
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.24975373347600302,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "GLD\u2019s $75 Billion Couldn\u2019t Shield It From the Tariff-Driven Selloff",
+          "url": "https://247wallst.com/investing/2026/03/07/glds-75-billion-couldnt-shield-it-from-the-tariff-driven-selloff/"
+        },
+        {
+          "title": "Gold Is Up 17% This Year but Reddit Just Shifted From Buying GLD to Googling Coins",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_fd0a808b-8705-4ce3-9c1e-443f5fc17077"
+        },
+        {
+          "title": "GLD Offers a Smoother Ride Than SLV Over 10 Years",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_5fdb96ce-620c-4b54-9a42-12d4afa9f96e"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/GLD_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GLD",
+      "source_symbol": "GLD",
+      "generated_at": "2026-03-10T10:31:50Z",
+      "market_session_date": "2026-03-02",
+      "mode": "live",
+      "period": "5y",
+      "interval": "1wk"
+    },
+    "market": {
+      "current_price": 472.5299987792969,
+      "predicted_price_next_session": 472.1083984375
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.24975373347600302,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "GLD\u2019s $75 Billion Couldn\u2019t Shield It From the Tariff-Driven Selloff",
+          "url": "https://247wallst.com/investing/2026/03/07/glds-75-billion-couldnt-shield-it-from-the-tariff-driven-selloff/"
+        },
+        {
+          "title": "Gold Is Up 17% This Year but Reddit Just Shifted From Buying GLD to Googling Coins",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_fd0a808b-8705-4ce3-9c1e-443f5fc17077"
+        },
+        {
+          "title": "GLD Offers a Smoother Ride Than SLV Over 10 Years",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_5fdb96ce-620c-4b54-9a42-12d4afa9f96e"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/GLD_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GLD",
+      "source_symbol": "GLD",
+      "generated_at": "2026-03-10T10:31:55Z",
+      "market_session_date": "2026-03-01",
+      "mode": "live",
+      "period": "max",
+      "interval": "1mo"
+    },
+    "market": {
+      "current_price": 472.5299987792969,
+      "predicted_price_next_session": 432.1294003295898
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.24975373347600302,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "GLD\u2019s $75 Billion Couldn\u2019t Shield It From the Tariff-Driven Selloff",
+          "url": "https://247wallst.com/investing/2026/03/07/glds-75-billion-couldnt-shield-it-from-the-tariff-driven-selloff/"
+        },
+        {
+          "title": "Gold Is Up 17% This Year but Reddit Just Shifted From Buying GLD to Googling Coins",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_fd0a808b-8705-4ce3-9c1e-443f5fc17077"
+        },
+        {
+          "title": "GLD Offers a Smoother Ride Than SLV Over 10 Years",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_5fdb96ce-620c-4b54-9a42-12d4afa9f96e"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/GLD_trend.png"
+    }
   }
 ]

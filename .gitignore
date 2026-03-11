@@ -205,3 +205,15 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Demo-mode runtime fallback data
+demo_guests_data/
+
+# Local runtime outputs (team conflict prevention)
+runtime_data/
+data/demo_guests/
+data/charts/
+data/sessions/
+data/yfinance_tz_cache/
+data/*_report.json
+data/feedback_logs.json

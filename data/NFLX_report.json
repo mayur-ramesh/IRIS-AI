@@ -1,0 +1,59 @@
+[
+  {
+    "meta": {
+      "symbol": "NFLX",
+      "source_symbol": "NFLX",
+      "generated_at": "2026-03-10T10:12:15Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 98.31999969482422,
+      "predicted_price_next_session": 97.83339988708497
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.04989789426326752,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Netflix Stock Closes Higher as Investors Cheer Deal Discipline and Organic Growth Focus",
+          "url": "https://www.ibtimes.com.au/netflix-stock-closes-higher-investors-cheer-deal-discipline-organic-growth-focus-1862763"
+        },
+        {
+          "title": "Netflix Shares Hover Near $99 Amid Relief Rally After Scrapping Warner Bros. Deal",
+          "url": "https://www.ibtimes.com.au/netflix-shares-hover-near-99-amid-relief-rally-after-scrapping-warner-bros-deal-1862686"
+        },
+        {
+          "title": "Jim Cramer Says He \u201cWould Be a Buyer of Netflix Right Here\u201d",
+          "url": "https://finance.yahoo.com/news/jim-cramer-says-buyer-netflix-150856237.html"
+        },
+        {
+          "title": "Netflix Stock Climbs to $97 as Company Walks Away from Warner Bros. Deal, Analysts Turn Bullish",
+          "url": "https://www.ibtimes.com.au/netflix-stock-climbs-97-company-walks-away-warner-bros-deal-analysts-turn-bullish-1862552"
+        },
+        {
+          "title": "Netflix Stock Surges 13.8% to $96.24 After Dropping Warner Bros. Bid, Signaling Relief Rally",
+          "url": "https://www.ibtimes.com.au/netflix-stock-surges-138-9624-after-dropping-warner-bros-bid-signaling-relief-rally-1862444"
+        },
+        {
+          "title": "Netflix Stock Surges 13.8% as Company Walks Away from Warner Bros",
+          "url": "https://www.ibtimes.com.au/netflix-stock-surges-138-company-walks-away-warner-bros-1862346"
+        },
+        {
+          "title": "Netflix (NFLX) Soars 13.7% After Dropping Warner Bros Bid",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_ea2a8d09-d4b1-4762-822f-6e8e8d0466fa"
+        },
+        {
+          "title": "Netflix Shares Jump 9% After-Hours as Company Walks Away From Warner Bros. Discovery Deal",
+          "url": "https://www.ibtimes.com.au/netflix-shares-jump-9-after-hours-company-walks-away-warner-bros-discovery-deal-1862262"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/NFLX_trend.png"
+    }
+  }
+]

@@ -1172,5 +1172,1127 @@
         "Market sentiment remains slightly negative for Tesla"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-09T14:00:52Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 255.97,
+      "predicted_price_next_session": 254.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0636,
+      "check_engine_light": "YELLOW (Caution due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AAPL falls below 5-day SMA, indicating potential weakness",
+        "Negative sentiment weighs on AAPL's short-term outlook"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-09T14:01:19Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 207.49,
+      "predicted_price_next_session": 205.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Neutral sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Amazon stock struggles to maintain support levels",
+        "Neutral sentiment as market awaits new catalysts"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-09T14:01:49Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 295.5,
+      "predicted_price_next_session": 293.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0775,
+      "check_engine_light": "YELLOW (bearish sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "GOOG struggles as market sentiment turns negative",
+        "GOOG price dips below short-term moving average"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-09T14:02:12Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 628.9,
+      "predicted_price_next_session": 625.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Neutral sentiment with price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "META struggles to maintain above SMA levels",
+        "Investor sentiment remains neutral amid market volatility"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-09T14:02:36Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 405.2,
+      "predicted_price_next_session": 406.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0573,
+      "check_engine_light": "YELLOW (Sentiment positive but price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "MSFT trades below 5-day SMA amid positive sentiment",
+        "Investor optimism persists despite slight price dip"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-09T14:03:03Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 55.71,
+      "predicted_price_next_session": 55.2
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0664,
+      "check_engine_light": "YELLOW (Bearish sentiment with price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nike stock under pressure amid broader market sell-off",
+        "Analysts cautious as Nike trades below short-term average"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-09T14:03:26Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 177.51,
+      "predicted_price_next_session": 176.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1109,
+      "check_engine_light": "YELLOW (caution due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "NVIDIA stock under pressure as sentiment turns negative",
+        "NVDA trades below short-term moving average, signaling caution"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-09T14:03:49Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 385.63,
+      "predicted_price_next_session": 390.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.1018,
+      "check_engine_light": "YELLOW (sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Positive sentiment boosts Tesla outlook",
+        "TSLA trades below 5-day moving average"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "generated_at": "2026-03-09T14:13:44Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 99.197,
+      "predicted_price_next_session": 98.9
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.882,
+      "check_engine_light": " RED (Negative sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Market sentiment remains negative as investors react to economic data",
+        "Price struggles to maintain above short-term moving average"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GC=F",
+      "generated_at": "2026-03-09T14:14:08Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5092.1001,
+      "predicted_price_next_session": 5085.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0499,
+      "check_engine_light": "YELLOW (Bearish sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Gold prices dip below short-term average",
+        "Market sentiment remains slightly negative for gold"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "HG=F",
+      "generated_at": "2026-03-09T14:14:32Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5.781,
+      "predicted_price_next_session": 5.785
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0165,
+      "check_engine_light": "GREEN (Positive Sentiment and Near SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Market sentiment remains slightly positive",
+        "Price stabilizes near 5-day moving average"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "generated_at": "2026-03-09T14:14:54Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 84.255,
+      "predicted_price_next_session": 84.6
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Neutral sentiment with slight upward price movement)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Silver prices stabilize amid mixed market signals",
+        "Technical indicators suggest minor upward momentum"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-10T08:05:06Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 259.88,
+      "predicted_price_next_session": 258.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0636,
+      "check_engine_light": "YELLOW (Caution advised due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AAPL struggles to maintain momentum amid tech sector volatility",
+        "Investor sentiment sours as Apple faces supply chain concerns"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-10T08:05:25Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 213.49,
+      "predicted_price_next_session": 214.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0607,
+      "check_engine_light": "YELLOW (Caution advised due to mixed signals)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Amazon's growth prospects remain stable despite market volatility",
+        "Slight dip in short-term moving average suggests caution"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "CL=F",
+      "generated_at": "2026-03-10T08:05:44Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 86.44,
+      "predicted_price_next_session": 87.1
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0354,
+      "check_engine_light": "GREEN (Positive sentiment and price above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Oil prices rise on supply concerns",
+        "Positive market sentiment boosts crude outlook"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "generated_at": "2026-03-10T08:06:02Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 98.546,
+      "predicted_price_next_session": 98.2
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.8679,
+      "check_engine_light": "RED (Negative sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Investor concerns over economic outlook weigh on stocks",
+        "Recent sell-off pressures continue amid market uncertainty"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GC=F",
+      "generated_at": "2026-03-10T08:06:20Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5188.6001,
+      "predicted_price_next_session": 5150.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0499,
+      "check_engine_light": "YELLOW (Caution advised due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Gold prices struggle amid market uncertainty",
+        "Negative sentiment weighs on commodities"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-10T08:06:42Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 306.01,
+      "predicted_price_next_session": 304.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0775,
+      "check_engine_light": "YELLOW (cautious sentiment with slight price dip)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Analysts cautious on tech stocks amid market volatility",
+        "GOOG struggles to maintain momentum above short-term average"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "HG=F",
+      "generated_at": "2026-03-10T08:07:05Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5.9355,
+      "predicted_price_next_session": 5.95
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0165,
+      "check_engine_light": "GREEN (Positive sentiment and price above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Copper prices buoyed by positive market sentiment",
+        "Technical indicators suggest slight upward momentum"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-10T08:07:26Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 647.39,
+      "predicted_price_next_session": 649.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0231,
+      "check_engine_light": "YELLOW (caution due to mixed signals)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "META struggles to maintain recent highs",
+        "Market sentiment remains cautiously optimistic"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-10T08:07:44Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 409.41,
+      "predicted_price_next_session": 411.25
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0573,
+      "check_engine_light": "GREEN (Positive sentiment and price above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Microsoft's cloud business continues to drive growth",
+        "Positive market sentiment boosts tech stocks"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-10T08:08:03Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 56.53,
+      "predicted_price_next_session": 56.1
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0664,
+      "check_engine_light": "YELLOW (Bearish sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nike shares dip below 5-day average, signaling potential weakness",
+        "Negative sentiment weighs on Nike's short-term outlook"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-10T08:08:22Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 182.65,
+      "predicted_price_next_session": 181.9
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1089,
+      "check_engine_light": "YELLOW (Bearish sentiment detected, price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "NVIDIA faces regulatory challenges impacting short-term outlook",
+        "Market sentiment turns bearish on semiconductor sector"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "generated_at": "2026-03-10T08:08:40Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 89.455,
+      "predicted_price_next_session": 88.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0073,
+      "check_engine_light": "YELLOW (Caution advised due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Market sentiment remains slightly negative",
+        "Price above short-term average suggests potential correction"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-10T08:09:00Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 398.68,
+      "predicted_price_next_session": 400.2
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0938,
+      "check_engine_light": "YELLOW (Cautious Optimism)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "TSLA sentiment remains positive despite slight dip",
+        "Market anticipates minor gains for TSLA next session"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-10T14:03:53Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 257.81,
+      "predicted_price_next_session": 256.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.2385,
+      "check_engine_light": "YELLOW (Negative sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Apple faces regulatory challenges in Europe",
+        "Analysts cautious on Apple's supply chain outlook"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-10T14:04:13Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 213.315,
+      "predicted_price_next_session": 214.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0117,
+      "check_engine_light": "YELLOW (Slightly below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AMZN stock slightly below 5-day SMA",
+        "Neutral sentiment with slight positive bias"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "CL=F",
+      "generated_at": "2026-03-10T14:04:39Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 87.81,
+      "predicted_price_next_session": 88.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Neutral sentiment, price above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Oil prices stabilize after recent volatility",
+        "Market sentiment neutral as traders await economic data"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "generated_at": "2026-03-10T14:04:58Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 98.715,
+      "predicted_price_next_session": 98.85
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.3939,
+      "check_engine_light": "YELLOW (Caution advised due to mixed signals)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Market sentiment remains cautiously optimistic",
+        "Price under SMA suggests potential downward pressure"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GC=F",
+      "generated_at": "2026-03-10T14:05:19Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5216.3999,
+      "predicted_price_next_session": 5235.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.9236,
+      "check_engine_light": "GREEN (Positive sentiment and above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Gold prices buoyed by strong investor sentiment",
+        "Market optimism drives gold above short-term average"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-10T14:05:39Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 306.54,
+      "predicted_price_next_session": 304.8
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1937,
+      "check_engine_light": "YELLOW (Negative sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "GOOG sentiment remains negative amid market volatility",
+        "GOOG trading below short-term moving average"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "HG=F",
+      "generated_at": "2026-03-10T14:06:13Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5.933,
+      "predicted_price_next_session": 5.975
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.4047,
+      "check_engine_light": "GREEN (Positive sentiment and price above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Copper prices supported by positive market sentiment",
+        "Short-term moving average indicates potential upward momentum"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-10T14:06:33Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 653.63,
+      "predicted_price_next_session": 655.2
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.3916,
+      "check_engine_light": "GREEN (Positive sentiment and slight price increase)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "META shows resilience with positive market sentiment",
+        "Technical indicators suggest slight upward momentum for META"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-10T14:06:52Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 404.115,
+      "predicted_price_next_session": 405.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.2162,
+      "check_engine_light": "YELLOW (Neutral sentiment with slight negative price pressure)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Microsoft stock slightly below 5-day SMA, indicating weak downtrend",
+        "Positive sentiment persists despite minor price dip"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-10T14:07:12Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 56.02,
+      "predicted_price_next_session": 55.75
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1594,
+      "check_engine_light": "YELLOW (Caution advised due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "NKE stock struggles as sentiment remains negative",
+        "Below average performance compared to short-term moving average"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-10T14:07:34Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 182.9457,
+      "predicted_price_next_session": 183.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0003,
+      "check_engine_light": "YELLOW (Neutral sentiment, slight upward trend)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "NVDA stock slightly above 5-day SMA",
+        "Neutral market sentiment for NVDA"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "generated_at": "2026-03-10T14:08:04Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 89.165,
+      "predicted_price_next_session": 90.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Price momentum above short-term average",
+        "Neutral sentiment maintains stability"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-10T14:08:28Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 403.715,
+      "predicted_price_next_session": 401.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1969,
+      "check_engine_light": "YELLOW (Negative sentiment and price above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "TSLA faces regulatory challenges amid market uncertainty",
+        "Investor sentiment dampened by recent tech sector volatility"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-11T14:06:23Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 261.42,
+      "predicted_price_next_session": 262.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.1006,
+      "check_engine_light": "GREEN (Positive sentiment and price above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Apple's new product launch boosts investor confidence",
+        "Positive market sentiment lifts tech stocks"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-11T14:06:49Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 215.42,
+      "predicted_price_next_session": 216.15
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0453,
+      "check_engine_light": "GREEN (Positive sentiment and slight price increase expected)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Analysts optimistic on Amazon's Q4 performance",
+        "Positive consumer sentiment boosts tech stocks"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "CL=F",
+      "generated_at": "2026-03-11T14:07:11Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 85.15,
+      "predicted_price_next_session": 85.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.2884,
+      "check_engine_light": "YELLOW (Price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Oil prices struggle to maintain momentum amid mixed economic signals",
+        "Market sentiment slightly positive but overshadowed by technical resistance"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "generated_at": "2026-03-11T14:07:33Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 99.12,
+      "predicted_price_next_session": 99.25
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.3939,
+      "check_engine_light": "GREEN (Positive sentiment and price above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Positive sentiment boosts investor confidence",
+        "Price holds above short-term moving average"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GC=F",
+      "generated_at": "2026-03-11T14:07:55Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5180.5,
+      "predicted_price_next_session": 5165.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.5454,
+      "check_engine_light": "YELLOW (Bearish sentiment impacting price)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Gold prices dip as bearish sentiment prevails",
+        "Market sentiment weighs on short-term gold outlook"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-11T14:08:17Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 308.8,
+      "predicted_price_next_session": 307.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1329,
+      "check_engine_light": "YELLOW (caution due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "GOOG struggles as market sentiment turns negative",
+        "Short-term moving average suggests mild downward pressure"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "HG=F",
+      "generated_at": "2026-03-11T14:08:37Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5.8765,
+      "predicted_price_next_session": 5.895
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.4047,
+      "check_engine_light": "GREEN (Positive sentiment and above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Copper prices buoyed by positive market sentiment",
+        "Technical indicators suggest slight upward momentum"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-11T14:09:00Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 656.255,
+      "predicted_price_next_session": 653.75
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.2548,
+      "check_engine_light": "YELLOW (negative sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Analysts express concerns over META's recent strategic shifts",
+        "Market sentiment remains cautious amid tech sector volatility"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-11T14:09:22Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 406.73,
+      "predicted_price_next_session": 407.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.2133,
+      "check_engine_light": "YELLOW (Mixed signals with slight negative trend)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "MSFT stock slightly below 5-day average",
+        "Positive sentiment but price under pressure"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-11T14:09:45Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 56.51,
+      "predicted_price_next_session": 56.3
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1594,
+      "check_engine_light": "YELLOW (Caution due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "NKE struggles to maintain recent gains amid market volatility",
+        "Negative sentiment impacts NKE's short-term outlook"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-11T14:10:10Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 186.97,
+      "predicted_price_next_session": 188.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0883,
+      "check_engine_light": "GREEN (Positive sentiment and above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "NVIDIA stock gains as market sentiment improves",
+        "NVDA trading above 5-day moving average, indicating potential rise"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "generated_at": "2026-03-11T14:10:31Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 85.415,
+      "predicted_price_next_session": 85.75
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.3767,
+      "check_engine_light": "GREEN (Positive sentiment and price above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Positive sentiment boosts silver prices",
+        "Silver price remains above 5-day average"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-11T14:10:53Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 412.11,
+      "predicted_price_next_session": 408.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.3606,
+      "check_engine_light": "YELLOW (Caution due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "TSLA stock faces pressure amid broader market concerns",
+        "Negative sentiment weighs on Tesla despite recent gains"
+      ]
+    }
   }
 ]

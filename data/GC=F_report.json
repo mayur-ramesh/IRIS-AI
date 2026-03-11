@@ -1,0 +1,499 @@
+[
+  {
+    "meta": {
+      "symbol": "GC=F",
+      "source_symbol": "GC=F",
+      "generated_at": "2026-03-09T14:16:31Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 5088.5,
+      "predicted_price_next_session": 5085.793955078125,
+      "history": [
+        {
+          "time": "2025-12-26",
+          "value": 4529.10009765625
+        },
+        {
+          "time": "2025-12-29",
+          "value": 4325.10009765625
+        },
+        {
+          "time": "2025-12-30",
+          "value": 4370.10009765625
+        },
+        {
+          "time": "2025-12-31",
+          "value": 4325.60009765625
+        },
+        {
+          "time": "2026-01-02",
+          "value": 4314.39990234375
+        },
+        {
+          "time": "2026-01-05",
+          "value": 4436.89990234375
+        },
+        {
+          "time": "2026-01-06",
+          "value": 4482.2001953125
+        },
+        {
+          "time": "2026-01-07",
+          "value": 4449.2998046875
+        },
+        {
+          "time": "2026-01-08",
+          "value": 4449.7001953125
+        },
+        {
+          "time": "2026-01-09",
+          "value": 4490.2998046875
+        },
+        {
+          "time": "2026-01-12",
+          "value": 4604.2998046875
+        },
+        {
+          "time": "2026-01-13",
+          "value": 4589.2001953125
+        },
+        {
+          "time": "2026-01-14",
+          "value": 4626.2998046875
+        },
+        {
+          "time": "2026-01-15",
+          "value": 4616.2998046875
+        },
+        {
+          "time": "2026-01-16",
+          "value": 4588.39990234375
+        },
+        {
+          "time": "2026-01-20",
+          "value": 4759.60009765625
+        },
+        {
+          "time": "2026-01-21",
+          "value": 4831.7998046875
+        },
+        {
+          "time": "2026-01-22",
+          "value": 4908.7998046875
+        },
+        {
+          "time": "2026-01-23",
+          "value": 4976.2001953125
+        },
+        {
+          "time": "2026-01-26",
+          "value": 5079.7001953125
+        },
+        {
+          "time": "2026-01-27",
+          "value": 5079.89990234375
+        },
+        {
+          "time": "2026-01-28",
+          "value": 5301.60009765625
+        },
+        {
+          "time": "2026-01-29",
+          "value": 5318.39990234375
+        },
+        {
+          "time": "2026-01-30",
+          "value": 4713.89990234375
+        },
+        {
+          "time": "2026-02-02",
+          "value": 4622.5
+        },
+        {
+          "time": "2026-02-03",
+          "value": 4903.7001953125
+        },
+        {
+          "time": "2026-02-04",
+          "value": 4920.39990234375
+        },
+        {
+          "time": "2026-02-05",
+          "value": 4861.39990234375
+        },
+        {
+          "time": "2026-02-06",
+          "value": 4951.2001953125
+        },
+        {
+          "time": "2026-02-09",
+          "value": 5050.89990234375
+        },
+        {
+          "time": "2026-02-10",
+          "value": 5003.7998046875
+        },
+        {
+          "time": "2026-02-11",
+          "value": 5071.60009765625
+        },
+        {
+          "time": "2026-02-12",
+          "value": 4923.7001953125
+        },
+        {
+          "time": "2026-02-13",
+          "value": 5022.0
+        },
+        {
+          "time": "2026-02-17",
+          "value": 4882.89990234375
+        },
+        {
+          "time": "2026-02-18",
+          "value": 4986.5
+        },
+        {
+          "time": "2026-02-19",
+          "value": 4975.89990234375
+        },
+        {
+          "time": "2026-02-20",
+          "value": 5059.2998046875
+        },
+        {
+          "time": "2026-02-23",
+          "value": 5204.7001953125
+        },
+        {
+          "time": "2026-02-24",
+          "value": 5155.7998046875
+        },
+        {
+          "time": "2026-02-25",
+          "value": 5206.39990234375
+        },
+        {
+          "time": "2026-02-26",
+          "value": 5176.5
+        },
+        {
+          "time": "2026-02-27",
+          "value": 5230.5
+        },
+        {
+          "time": "2026-03-02",
+          "value": 5294.39990234375
+        },
+        {
+          "time": "2026-03-03",
+          "value": 5107.39990234375
+        },
+        {
+          "time": "2026-03-04",
+          "value": 5120.2001953125
+        },
+        {
+          "time": "2026-03-05",
+          "value": 5065.2998046875
+        },
+        {
+          "time": "2026-03-06",
+          "value": 5146.10009765625
+        },
+        {
+          "time": "2026-03-09",
+          "value": 5088.5
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.04988439480463664,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Old/New Testament Reading for Sunday March 8, 2026 (NIV)",
+        "Lyn governs the establishment and maintenance of B cell anergy by suppressing PI3K signaling",
+        "residue-protocol added to PyPI",
+        "From tests to truth: A misclassification-aware machine learning framework for estimating brucellosis seroprevalence in wild canids",
+        "Evaluating how demography and temperature increase might alter the burden of congenital Toxoplasmosis in Africa",
+        "Structural characterization and antifungal properties of sequentially extracted polysaccharides from Algerian Opuntia ficus-indica L. cladodes",
+        "Show HN: DeraineDB \u2013 A 33MB Vector DB in Zig/Go with Sub-Millisecond HNSW",
+        "Rob Rausch Bought Maura Higgins A Birkin After His \u2018Traitors\u2019 Win",
+        "Pandas vs. Polars: A Complete Comparison of Syntax, Speed, and Memory",
+        "Unique ecology of co-occurring functionally and phylogenetically undescribed species in the infant oral microbiome",
+        "DNA-based characterization of rays (Elasmobranchii: Batoidea) from Bangladesh using mitochondrial markers: Implications for conservation and management",
+        "The adaptor protein TASL is required for age-related B cell emergence and lupus-like disease development in mice",
+        "Understanding security challenges in the software supply chain through causal relationships",
+        "David Harbour\u2019s Alleged Partner Kicked Out Of Lily Allen Producer\u2019s Party In Stunning Scene",
+        "HUTCHMED Reports 2025 Full Year Results and Business Updates"
+      ],
+      "chart_path": "data\\charts\\2026-03-09\\GC=F_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GC=F",
+      "source_symbol": "GC=F",
+      "generated_at": "2026-03-10T08:00:37Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 5188.10009765625,
+      "predicted_price_next_session": 5133.866015625,
+      "history": [
+        {
+          "time": "2025-12-29",
+          "value": 4325.10009765625
+        },
+        {
+          "time": "2025-12-30",
+          "value": 4370.10009765625
+        },
+        {
+          "time": "2025-12-31",
+          "value": 4325.60009765625
+        },
+        {
+          "time": "2026-01-02",
+          "value": 4314.39990234375
+        },
+        {
+          "time": "2026-01-05",
+          "value": 4436.89990234375
+        },
+        {
+          "time": "2026-01-06",
+          "value": 4482.2001953125
+        },
+        {
+          "time": "2026-01-07",
+          "value": 4449.2998046875
+        },
+        {
+          "time": "2026-01-08",
+          "value": 4449.7001953125
+        },
+        {
+          "time": "2026-01-09",
+          "value": 4490.2998046875
+        },
+        {
+          "time": "2026-01-12",
+          "value": 4604.2998046875
+        },
+        {
+          "time": "2026-01-13",
+          "value": 4589.2001953125
+        },
+        {
+          "time": "2026-01-14",
+          "value": 4626.2998046875
+        },
+        {
+          "time": "2026-01-15",
+          "value": 4616.2998046875
+        },
+        {
+          "time": "2026-01-16",
+          "value": 4588.39990234375
+        },
+        {
+          "time": "2026-01-20",
+          "value": 4759.60009765625
+        },
+        {
+          "time": "2026-01-21",
+          "value": 4831.7998046875
+        },
+        {
+          "time": "2026-01-22",
+          "value": 4908.7998046875
+        },
+        {
+          "time": "2026-01-23",
+          "value": 4976.2001953125
+        },
+        {
+          "time": "2026-01-26",
+          "value": 5079.7001953125
+        },
+        {
+          "time": "2026-01-27",
+          "value": 5079.89990234375
+        },
+        {
+          "time": "2026-01-28",
+          "value": 5301.60009765625
+        },
+        {
+          "time": "2026-01-29",
+          "value": 5318.39990234375
+        },
+        {
+          "time": "2026-01-30",
+          "value": 4713.89990234375
+        },
+        {
+          "time": "2026-02-02",
+          "value": 4622.5
+        },
+        {
+          "time": "2026-02-03",
+          "value": 4903.7001953125
+        },
+        {
+          "time": "2026-02-04",
+          "value": 4920.39990234375
+        },
+        {
+          "time": "2026-02-05",
+          "value": 4861.39990234375
+        },
+        {
+          "time": "2026-02-06",
+          "value": 4951.2001953125
+        },
+        {
+          "time": "2026-02-09",
+          "value": 5050.89990234375
+        },
+        {
+          "time": "2026-02-10",
+          "value": 5003.7998046875
+        },
+        {
+          "time": "2026-02-11",
+          "value": 5071.60009765625
+        },
+        {
+          "time": "2026-02-12",
+          "value": 4923.7001953125
+        },
+        {
+          "time": "2026-02-13",
+          "value": 5022.0
+        },
+        {
+          "time": "2026-02-17",
+          "value": 4882.89990234375
+        },
+        {
+          "time": "2026-02-18",
+          "value": 4986.5
+        },
+        {
+          "time": "2026-02-19",
+          "value": 4975.89990234375
+        },
+        {
+          "time": "2026-02-20",
+          "value": 5059.2998046875
+        },
+        {
+          "time": "2026-02-23",
+          "value": 5204.7001953125
+        },
+        {
+          "time": "2026-02-24",
+          "value": 5155.7998046875
+        },
+        {
+          "time": "2026-02-25",
+          "value": 5206.39990234375
+        },
+        {
+          "time": "2026-02-26",
+          "value": 5176.5
+        },
+        {
+          "time": "2026-02-27",
+          "value": 5230.5
+        },
+        {
+          "time": "2026-03-02",
+          "value": 5294.39990234375
+        },
+        {
+          "time": "2026-03-03",
+          "value": 5107.39990234375
+        },
+        {
+          "time": "2026-03-04",
+          "value": 5120.2001953125
+        },
+        {
+          "time": "2026-03-05",
+          "value": 5065.2998046875
+        },
+        {
+          "time": "2026-03-06",
+          "value": 5146.10009765625
+        },
+        {
+          "time": "2026-03-10",
+          "value": 5188.10009765625
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.04988439480463664,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Old/New Testament Reading for Sunday March 8, 2026 (NIV)",
+        "Lyn governs the establishment and maintenance of B cell anergy by suppressing PI3K signaling",
+        "residue-protocol added to PyPI",
+        "Evaluating how demography and temperature increase might alter the burden of congenital Toxoplasmosis in Africa",
+        "From tests to truth: A misclassification-aware machine learning framework for estimating brucellosis seroprevalence in wild canids",
+        "Structural characterization and antifungal properties of sequentially extracted polysaccharides from Algerian Opuntia ficus-indica L. cladodes",
+        "Show HN: DeraineDB \u2013 A 33MB Vector DB in Zig/Go with Sub-Millisecond HNSW",
+        "Rob Rausch Bought Maura Higgins A Birkin After His \u2018Traitors\u2019 Win",
+        "Pandas vs. Polars: A Complete Comparison of Syntax, Speed, and Memory",
+        "Unique ecology of co-occurring functionally and phylogenetically undescribed species in the infant oral microbiome",
+        "Understanding security challenges in the software supply chain through causal relationships",
+        "DNA-based characterization of rays (Elasmobranchii: Batoidea) from Bangladesh using mitochondrial markers: Implications for conservation and management",
+        "The adaptor protein TASL is required for age-related B cell emergence and lupus-like disease development in mice",
+        "David Harbour\u2019s Alleged Partner Kicked Out Of Lily Allen Producer\u2019s Party In Stunning Scene",
+        "HUTCHMED Reports 2025 Full Year Results and Business Updates"
+      ],
+      "chart_path": "data\\charts\\2026-03-10\\GC=F_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GC=F",
+      "source_symbol": "GC=F",
+      "generated_at": "2026-03-10T14:02:26Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 5213.2998046875,
+      "predicted_price_next_session": 5119.538989257812
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.9235941171646118,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Gold price today, Tuesday, March 10: Gold rises after President Trump signalled quick end to Iran war",
+          "url": ""
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/GC=F_trend.png"
+    }
+  }
+]

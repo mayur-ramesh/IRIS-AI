@@ -1,0 +1,503 @@
+[
+  {
+    "meta": {
+      "symbol": "HG=F",
+      "source_symbol": "HG=F",
+      "generated_at": "2026-03-09T14:16:35Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 5.76800012588501,
+      "predicted_price_next_session": 5.776970014572144,
+      "history": [
+        {
+          "time": "2025-12-26",
+          "value": 5.766499996185303
+        },
+        {
+          "time": "2025-12-29",
+          "value": 5.490499973297119
+        },
+        {
+          "time": "2025-12-30",
+          "value": 5.727499961853027
+        },
+        {
+          "time": "2025-12-31",
+          "value": 5.630000114440918
+        },
+        {
+          "time": "2026-01-02",
+          "value": 5.639999866485596
+        },
+        {
+          "time": "2026-01-05",
+          "value": 5.924499988555908
+        },
+        {
+          "time": "2026-01-06",
+          "value": 6.010499954223633
+        },
+        {
+          "time": "2026-01-07",
+          "value": 5.809000015258789
+        },
+        {
+          "time": "2026-01-08",
+          "value": 5.746500015258789
+        },
+        {
+          "time": "2026-01-09",
+          "value": 5.855500221252441
+        },
+        {
+          "time": "2026-01-12",
+          "value": 5.985000133514404
+        },
+        {
+          "time": "2026-01-13",
+          "value": 5.96999979019165
+        },
+        {
+          "time": "2026-01-14",
+          "value": 6.008999824523926
+        },
+        {
+          "time": "2026-01-15",
+          "value": 5.947999954223633
+        },
+        {
+          "time": "2026-01-16",
+          "value": 5.78849983215332
+        },
+        {
+          "time": "2026-01-20",
+          "value": 5.7729997634887695
+        },
+        {
+          "time": "2026-01-21",
+          "value": 5.729499816894531
+        },
+        {
+          "time": "2026-01-22",
+          "value": 5.742499828338623
+        },
+        {
+          "time": "2026-01-23",
+          "value": 5.910999774932861
+        },
+        {
+          "time": "2026-01-26",
+          "value": 5.984000205993652
+        },
+        {
+          "time": "2026-01-27",
+          "value": 5.828499794006348
+        },
+        {
+          "time": "2026-01-28",
+          "value": 5.892499923706055
+        },
+        {
+          "time": "2026-01-29",
+          "value": 6.17549991607666
+        },
+        {
+          "time": "2026-01-30",
+          "value": 5.896999835968018
+        },
+        {
+          "time": "2026-02-02",
+          "value": 5.801499843597412
+        },
+        {
+          "time": "2026-02-03",
+          "value": 6.0625
+        },
+        {
+          "time": "2026-02-04",
+          "value": 5.826000213623047
+        },
+        {
+          "time": "2026-02-05",
+          "value": 5.798999786376953
+        },
+        {
+          "time": "2026-02-06",
+          "value": 5.863500118255615
+        },
+        {
+          "time": "2026-02-09",
+          "value": 5.945000171661377
+        },
+        {
+          "time": "2026-02-10",
+          "value": 5.895999908447266
+        },
+        {
+          "time": "2026-02-11",
+          "value": 5.948999881744385
+        },
+        {
+          "time": "2026-02-12",
+          "value": 5.770999908447266
+        },
+        {
+          "time": "2026-02-13",
+          "value": 5.792500019073486
+        },
+        {
+          "time": "2026-02-17",
+          "value": 5.632999897003174
+        },
+        {
+          "time": "2026-02-18",
+          "value": 5.793499946594238
+        },
+        {
+          "time": "2026-02-19",
+          "value": 5.730000019073486
+        },
+        {
+          "time": "2026-02-20",
+          "value": 5.830999851226807
+        },
+        {
+          "time": "2026-02-23",
+          "value": 5.7729997634887695
+        },
+        {
+          "time": "2026-02-24",
+          "value": 5.922999858856201
+        },
+        {
+          "time": "2026-02-25",
+          "value": 5.979499816894531
+        },
+        {
+          "time": "2026-02-26",
+          "value": 5.947000026702881
+        },
+        {
+          "time": "2026-02-27",
+          "value": 6.004499912261963
+        },
+        {
+          "time": "2026-03-02",
+          "value": 5.894499778747559
+        },
+        {
+          "time": "2026-03-03",
+          "value": 5.773499965667725
+        },
+        {
+          "time": "2026-03-04",
+          "value": 5.855000019073486
+        },
+        {
+          "time": "2026-03-05",
+          "value": 5.752999782562256
+        },
+        {
+          "time": "2026-03-06",
+          "value": 5.756999969482422
+        },
+        {
+          "time": "2026-03-09",
+          "value": 5.76800012588501
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.016546384493509928,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Structural characterization and antifungal properties of sequentially extracted polysaccharides from Algerian Opuntia ficus-indica L. cladodes",
+        "Sprawling investigation finds decades of sexual abuse among Catholic priests in Rhode Island",
+        "Comparative outcomes of DSAEK and DMEK in eyes with prior Ahmed glaucoma valve implantation",
+        "Behavior change intervention targeting physical activity and diet improves stress and sleep",
+        "A modular nanoparticle display strategy for varicella-zoster virus gE based on a licensed protein scaffold",
+        "Predicting drainage capillary pressure curves in natural porous media by NMR-T2 relaxometry: implications for CO2 storage",
+        "Co-modulation of clinical courses of hypertension and depression in public health facilities in Ethiopia: A six-month follow-up study protocol",
+        "Enabling low-temperature aqueous zinc/copper-sulfur hybrid batteries through electrolyte design",
+        "Blizzard of '26: Power restored for many in Attleboro area day after historic snowstorm",
+        "Detection and characterization of Hepatitis B virus double-stranded linear DNA-derived covalently closed circular DNA in chronic hepatitis B patients",
+        "Taenia solium neurocysticercosis: Its current epidemiological, diagnostic, therapeutic, and control landscapes",
+        "Targeted near-infrared imaging utilizing a cathepsin-activated fluorophore for the intraoperative detection of canine insulinoma",
+        "The crosstalk between acute hepatopancreatic necrosis disease (AHPND) and the Vibrio quorum sensing (QS) system: A review",
+        "Care practices, popular knowledge, and health promotion among quilombola woman in Brazil",
+        "Genomic characterization of Sabi\u00e1 virus in Brazil, 2019\u20132020: Implications for diagnostics, virus evolution, and receptor binding"
+      ],
+      "chart_path": "data\\charts\\2026-03-09\\HG=F_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "HG=F",
+      "source_symbol": "HG=F",
+      "generated_at": "2026-03-10T08:00:42Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 5.933499813079834,
+      "predicted_price_next_session": 5.7854998636245725,
+      "history": [
+        {
+          "time": "2025-12-29",
+          "value": 5.490499973297119
+        },
+        {
+          "time": "2025-12-30",
+          "value": 5.727499961853027
+        },
+        {
+          "time": "2025-12-31",
+          "value": 5.630000114440918
+        },
+        {
+          "time": "2026-01-02",
+          "value": 5.639999866485596
+        },
+        {
+          "time": "2026-01-05",
+          "value": 5.924499988555908
+        },
+        {
+          "time": "2026-01-06",
+          "value": 6.010499954223633
+        },
+        {
+          "time": "2026-01-07",
+          "value": 5.809000015258789
+        },
+        {
+          "time": "2026-01-08",
+          "value": 5.746500015258789
+        },
+        {
+          "time": "2026-01-09",
+          "value": 5.855500221252441
+        },
+        {
+          "time": "2026-01-12",
+          "value": 5.985000133514404
+        },
+        {
+          "time": "2026-01-13",
+          "value": 5.96999979019165
+        },
+        {
+          "time": "2026-01-14",
+          "value": 6.008999824523926
+        },
+        {
+          "time": "2026-01-15",
+          "value": 5.947999954223633
+        },
+        {
+          "time": "2026-01-16",
+          "value": 5.78849983215332
+        },
+        {
+          "time": "2026-01-20",
+          "value": 5.7729997634887695
+        },
+        {
+          "time": "2026-01-21",
+          "value": 5.729499816894531
+        },
+        {
+          "time": "2026-01-22",
+          "value": 5.742499828338623
+        },
+        {
+          "time": "2026-01-23",
+          "value": 5.910999774932861
+        },
+        {
+          "time": "2026-01-26",
+          "value": 5.984000205993652
+        },
+        {
+          "time": "2026-01-27",
+          "value": 5.828499794006348
+        },
+        {
+          "time": "2026-01-28",
+          "value": 5.892499923706055
+        },
+        {
+          "time": "2026-01-29",
+          "value": 6.17549991607666
+        },
+        {
+          "time": "2026-01-30",
+          "value": 5.896999835968018
+        },
+        {
+          "time": "2026-02-02",
+          "value": 5.801499843597412
+        },
+        {
+          "time": "2026-02-03",
+          "value": 6.0625
+        },
+        {
+          "time": "2026-02-04",
+          "value": 5.826000213623047
+        },
+        {
+          "time": "2026-02-05",
+          "value": 5.798999786376953
+        },
+        {
+          "time": "2026-02-06",
+          "value": 5.863500118255615
+        },
+        {
+          "time": "2026-02-09",
+          "value": 5.945000171661377
+        },
+        {
+          "time": "2026-02-10",
+          "value": 5.895999908447266
+        },
+        {
+          "time": "2026-02-11",
+          "value": 5.948999881744385
+        },
+        {
+          "time": "2026-02-12",
+          "value": 5.770999908447266
+        },
+        {
+          "time": "2026-02-13",
+          "value": 5.792500019073486
+        },
+        {
+          "time": "2026-02-17",
+          "value": 5.632999897003174
+        },
+        {
+          "time": "2026-02-18",
+          "value": 5.793499946594238
+        },
+        {
+          "time": "2026-02-19",
+          "value": 5.730000019073486
+        },
+        {
+          "time": "2026-02-20",
+          "value": 5.830999851226807
+        },
+        {
+          "time": "2026-02-23",
+          "value": 5.7729997634887695
+        },
+        {
+          "time": "2026-02-24",
+          "value": 5.922999858856201
+        },
+        {
+          "time": "2026-02-25",
+          "value": 5.979499816894531
+        },
+        {
+          "time": "2026-02-26",
+          "value": 5.947000026702881
+        },
+        {
+          "time": "2026-02-27",
+          "value": 6.004499912261963
+        },
+        {
+          "time": "2026-03-02",
+          "value": 5.894499778747559
+        },
+        {
+          "time": "2026-03-03",
+          "value": 5.773499965667725
+        },
+        {
+          "time": "2026-03-04",
+          "value": 5.855000019073486
+        },
+        {
+          "time": "2026-03-05",
+          "value": 5.752999782562256
+        },
+        {
+          "time": "2026-03-06",
+          "value": 5.756999969482422
+        },
+        {
+          "time": "2026-03-10",
+          "value": 5.933499813079834
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.016546384493509928,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Structural characterization and antifungal properties of sequentially extracted polysaccharides from Algerian Opuntia ficus-indica L. cladodes",
+        "Sprawling investigation finds decades of sexual abuse among Catholic priests in Rhode Island",
+        "Comparative outcomes of DSAEK and DMEK in eyes with prior Ahmed glaucoma valve implantation",
+        "Behavior change intervention targeting physical activity and diet improves stress and sleep",
+        "A modular nanoparticle display strategy for varicella-zoster virus gE based on a licensed protein scaffold",
+        "Predicting drainage capillary pressure curves in natural porous media by NMR-T2 relaxometry: implications for CO2 storage",
+        "Co-modulation of clinical courses of hypertension and depression in public health facilities in Ethiopia: A six-month follow-up study protocol",
+        "Enabling low-temperature aqueous zinc/copper-sulfur hybrid batteries through electrolyte design",
+        "Blizzard of '26: Power restored for many in Attleboro area day after historic snowstorm",
+        "Detection and characterization of Hepatitis B virus double-stranded linear DNA-derived covalently closed circular DNA in chronic hepatitis B patients",
+        "Taenia solium neurocysticercosis: Its current epidemiological, diagnostic, therapeutic, and control landscapes",
+        "Targeted near-infrared imaging utilizing a cathepsin-activated fluorophore for the intraoperative detection of canine insulinoma",
+        "The crosstalk between acute hepatopancreatic necrosis disease (AHPND) and the Vibrio quorum sensing (QS) system: A review",
+        "Care practices, popular knowledge, and health promotion among quilombola woman in Brazil",
+        "Genomic characterization of Sabi\u00e1 virus in Brazil, 2019\u20132020: Implications for diagnostics, virus evolution, and receptor binding"
+      ],
+      "chart_path": "data\\charts\\2026-03-10\\HG=F_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "HG=F",
+      "source_symbol": "HG=F",
+      "generated_at": "2026-03-10T14:02:31Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 5.926499843597412,
+      "predicted_price_next_session": 5.797269878387451
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.4046784043312073,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "HG=F announces date for shareholder meeting",
+          "url": ""
+        },
+        {
+          "title": "HG=F news flow remains active amid market volatility",
+          "url": ""
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/HG=F_trend.png"
+    }
+  }
+]

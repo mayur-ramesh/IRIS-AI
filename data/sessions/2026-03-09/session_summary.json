@@ -1,0 +1,3658 @@
+{
+  "meta": {
+    "generated_at": "2026-03-09T14:16:48Z",
+    "session_date": "2026-03-09",
+    "symbols": [
+      "AAPL",
+      "AMZN",
+      "CL=F",
+      "DX-Y.NYB",
+      "GC=F",
+      "GOOG",
+      "HG=F",
+      "META",
+      "MSFT",
+      "NKE",
+      "NVDA",
+      "SI=F",
+      "TSLA"
+    ],
+    "report_count": 13
+  },
+  "reports": [
+    {
+      "meta": {
+        "symbol": "AAPL",
+        "source_symbol": "AAPL",
+        "generated_at": "2026-03-09T14:16:24Z",
+        "market_session_date": "2026-03-09",
+        "mode": "live"
+      },
+      "market": {
+        "current_price": 255.6999969482422,
+        "predicted_price_next_session": 257.2026890563965,
+        "history": [
+          {
+            "time": "2025-12-10",
+            "value": 278.5193786621094
+          },
+          {
+            "time": "2025-12-11",
+            "value": 277.77008056640625
+          },
+          {
+            "time": "2025-12-12",
+            "value": 278.0198669433594
+          },
+          {
+            "time": "2025-12-15",
+            "value": 273.8537292480469
+          },
+          {
+            "time": "2025-12-16",
+            "value": 274.353271484375
+          },
+          {
+            "time": "2025-12-17",
+            "value": 271.58587646484375
+          },
+          {
+            "time": "2025-12-18",
+            "value": 271.935546875
+          },
+          {
+            "time": "2025-12-19",
+            "value": 273.4141845703125
+          },
+          {
+            "time": "2025-12-22",
+            "value": 270.7166748046875
+          },
+          {
+            "time": "2025-12-23",
+            "value": 272.1053771972656
+          },
+          {
+            "time": "2025-12-24",
+            "value": 273.55401611328125
+          },
+          {
+            "time": "2025-12-26",
+            "value": 273.1444091796875
+          },
+          {
+            "time": "2025-12-29",
+            "value": 273.50408935546875
+          },
+          {
+            "time": "2025-12-30",
+            "value": 272.82470703125
+          },
+          {
+            "time": "2025-12-31",
+            "value": 271.6058349609375
+          },
+          {
+            "time": "2026-01-02",
+            "value": 270.75665283203125
+          },
+          {
+            "time": "2026-01-05",
+            "value": 267.0101623535156
+          },
+          {
+            "time": "2026-01-06",
+            "value": 262.1147155761719
+          },
+          {
+            "time": "2026-01-07",
+            "value": 260.08660888671875
+          },
+          {
+            "time": "2026-01-08",
+            "value": 258.7978515625
+          },
+          {
+            "time": "2026-01-09",
+            "value": 259.1275329589844
+          },
+          {
+            "time": "2026-01-12",
+            "value": 260.0067138671875
+          },
+          {
+            "time": "2026-01-13",
+            "value": 260.8059387207031
+          },
+          {
+            "time": "2026-01-14",
+            "value": 259.71697998046875
+          },
+          {
+            "time": "2026-01-15",
+            "value": 257.9685974121094
+          },
+          {
+            "time": "2026-01-16",
+            "value": 255.29112243652344
+          },
+          {
+            "time": "2026-01-20",
+            "value": 246.46937561035156
+          },
+          {
+            "time": "2026-01-21",
+            "value": 247.41848754882812
+          },
+          {
+            "time": "2026-01-22",
+            "value": 248.1178436279297
+          },
+          {
+            "time": "2026-01-23",
+            "value": 247.80812072753906
+          },
+          {
+            "time": "2026-01-26",
+            "value": 255.17123413085938
+          },
+          {
+            "time": "2026-01-27",
+            "value": 258.0285339355469
+          },
+          {
+            "time": "2026-01-28",
+            "value": 256.2002868652344
+          },
+          {
+            "time": "2026-01-29",
+            "value": 258.0385437011719
+          },
+          {
+            "time": "2026-01-30",
+            "value": 259.2374267578125
+          },
+          {
+            "time": "2026-02-02",
+            "value": 269.7575988769531
+          },
+          {
+            "time": "2026-02-03",
+            "value": 269.22808837890625
+          },
+          {
+            "time": "2026-02-04",
+            "value": 276.23150634765625
+          },
+          {
+            "time": "2026-02-05",
+            "value": 275.6520690917969
+          },
+          {
+            "time": "2026-02-06",
+            "value": 277.8599853515625
+          },
+          {
+            "time": "2026-02-09",
+            "value": 274.6199951171875
+          },
+          {
+            "time": "2026-02-10",
+            "value": 273.67999267578125
+          },
+          {
+            "time": "2026-02-11",
+            "value": 275.5
+          },
+          {
+            "time": "2026-02-12",
+            "value": 261.7300109863281
+          },
+          {
+            "time": "2026-02-13",
+            "value": 255.77999877929688
+          },
+          {
+            "time": "2026-02-17",
+            "value": 263.8800048828125
+          },
+          {
+            "time": "2026-02-18",
+            "value": 264.3500061035156
+          },
+          {
+            "time": "2026-02-19",
+            "value": 260.5799865722656
+          },
+          {
+            "time": "2026-02-20",
+            "value": 264.5799865722656
+          },
+          {
+            "time": "2026-02-23",
+            "value": 266.17999267578125
+          },
+          {
+            "time": "2026-02-24",
+            "value": 272.1400146484375
+          },
+          {
+            "time": "2026-02-25",
+            "value": 274.2300109863281
+          },
+          {
+            "time": "2026-02-26",
+            "value": 272.95001220703125
+          },
+          {
+            "time": "2026-02-27",
+            "value": 264.17999267578125
+          },
+          {
+            "time": "2026-03-02",
+            "value": 264.7200012207031
+          },
+          {
+            "time": "2026-03-03",
+            "value": 263.75
+          },
+          {
+            "time": "2026-03-04",
+            "value": 262.5199890136719
+          },
+          {
+            "time": "2026-03-05",
+            "value": 260.2900085449219
+          },
+          {
+            "time": "2026-03-06",
+            "value": 257.4599914550781
+          },
+          {
+            "time": "2026-03-09",
+            "value": 255.6999969482422
+          }
+        ]
+      },
+      "signals": {
+        "trend_label": "STRONG UPTREND ",
+        "sentiment_score": -0.06359819968541464,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "Show HN: I logged Gemini's stock predictions for 38 days to study LLM drift",
+          "Apple Stock Slips 1.09% as Geopolitical Jitters Offset Fresh Product Momentum",
+          "Billionaire Peter Thiel Dumps $74,400,000 Stake in Three Assets, Including One Warren Buffett Favorite",
+          "The $200 Billion Question: Is Amazon Finally Ready to Pay a Dividend?",
+          "A $100 Billion and More Reasons to Buy Broadcom Stock Now",
+          "Apple Just Unveiled the New iPhone 17e. Should You Buy, Sell, or Hold AAPL Stock Now?",
+          "OKX is building a social network directly into its trading app after massive $25 billion valuation",
+          "Apple just made it easier for people to become customers",
+          "3 world-class ASX ETFs to buy and hold",
+          "polygon-options-puller added to PyPI",
+          "caracal-trading added to PyPI",
+          "Parallels\u3001Apple A18 Pro\u30c1\u30c3\u30d7\u3092\u642d\u8f09\u3057\u305fMacBook Neo\u306f8GB\u30e1\u30e2\u30ea\u3084\u30d5\u30a1\u30f3\u30ec\u30b9\u4ed5\u69d8\u3068\u3044\u3046\u5236\u9650\u304b\u3089Parallels Desktop\u306b\u3088\u308bWindows\u4eee\u60f3\u30de\u30b7\u30f3\u306e\u69cb\u7bc9\u306b\u306f\u5411\u304b\u305a\u3001\u4eca\u5f8c\u691c\u8a3c\u304c\u5fc5\u8981\u3060\u3068\u767a\u8868\u3002",
+          "The easy way to build a diversified ASX share portfolio",
+          "Apple\u3001\u30d0\u30b0\u306e\u4fee\u6b63\u306b\u52a0\u3048Studio Display (2026)\u3068Studio Display XDR\u306b\u5bfe\u5fdc\u3059\u308b\u300ciOS/iPadOS 26.3.1\u300d\u3092\u30ea\u30ea\u30fc\u30b9\u3002",
+          "Apple\u3001\u30d0\u30b0\u306e\u4fee\u6b63\u306b\u52a0\u3048Studio Display (2026)\u3068Studio Display XDR\u306b\u5bfe\u5fdc\u3059\u308b\u300cmacOS Tahoe 26.3.1\u300d\u3092\u30ea\u30ea\u30fc\u30b9\u3002"
+        ],
+        "chart_path": "data\\charts\\2026-03-09\\AAPL_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "AMZN",
+        "source_symbol": "AMZN",
+        "generated_at": "2026-03-09T14:16:26Z",
+        "market_session_date": "2026-03-06",
+        "mode": "live"
+      },
+      "market": {
+        "current_price": 208.5500030517578,
+        "predicted_price_next_session": 214.0230047607422,
+        "history": [
+          {
+            "time": "2025-12-10",
+            "value": 231.77999877929688
+          },
+          {
+            "time": "2025-12-11",
+            "value": 230.27999877929688
+          },
+          {
+            "time": "2025-12-12",
+            "value": 226.19000244140625
+          },
+          {
+            "time": "2025-12-15",
+            "value": 222.5399932861328
+          },
+          {
+            "time": "2025-12-16",
+            "value": 222.55999755859375
+          },
+          {
+            "time": "2025-12-17",
+            "value": 221.27000427246094
+          },
+          {
+            "time": "2025-12-18",
+            "value": 226.75999450683594
+          },
+          {
+            "time": "2025-12-19",
+            "value": 227.35000610351562
+          },
+          {
+            "time": "2025-12-22",
+            "value": 228.42999267578125
+          },
+          {
+            "time": "2025-12-23",
+            "value": 232.13999938964844
+          },
+          {
+            "time": "2025-12-24",
+            "value": 232.3800048828125
+          },
+          {
+            "time": "2025-12-26",
+            "value": 232.52000427246094
+          },
+          {
+            "time": "2025-12-29",
+            "value": 232.07000732421875
+          },
+          {
+            "time": "2025-12-30",
+            "value": 232.52999877929688
+          },
+          {
+            "time": "2025-12-31",
+            "value": 230.82000732421875
+          },
+          {
+            "time": "2026-01-02",
+            "value": 226.5
+          },
+          {
+            "time": "2026-01-05",
+            "value": 233.05999755859375
+          },
+          {
+            "time": "2026-01-06",
+            "value": 240.92999267578125
+          },
+          {
+            "time": "2026-01-07",
+            "value": 241.55999755859375
+          },
+          {
+            "time": "2026-01-08",
+            "value": 246.2899932861328
+          },
+          {
+            "time": "2026-01-09",
+            "value": 247.3800048828125
+          },
+          {
+            "time": "2026-01-12",
+            "value": 246.47000122070312
+          },
+          {
+            "time": "2026-01-13",
+            "value": 242.60000610351562
+          },
+          {
+            "time": "2026-01-14",
+            "value": 236.64999389648438
+          },
+          {
+            "time": "2026-01-15",
+            "value": 238.17999267578125
+          },
+          {
+            "time": "2026-01-16",
+            "value": 239.1199951171875
+          },
+          {
+            "time": "2026-01-20",
+            "value": 231.0
+          },
+          {
+            "time": "2026-01-21",
+            "value": 231.30999755859375
+          },
+          {
+            "time": "2026-01-22",
+            "value": 234.33999633789062
+          },
+          {
+            "time": "2026-01-23",
+            "value": 239.16000366210938
+          },
+          {
+            "time": "2026-01-26",
+            "value": 238.4199981689453
+          },
+          {
+            "time": "2026-01-27",
+            "value": 244.67999267578125
+          },
+          {
+            "time": "2026-01-28",
+            "value": 243.00999450683594
+          },
+          {
+            "time": "2026-01-29",
+            "value": 241.72999572753906
+          },
+          {
+            "time": "2026-01-30",
+            "value": 239.3000030517578
+          },
+          {
+            "time": "2026-02-02",
+            "value": 242.9600067138672
+          },
+          {
+            "time": "2026-02-03",
+            "value": 238.6199951171875
+          },
+          {
+            "time": "2026-02-04",
+            "value": 232.99000549316406
+          },
+          {
+            "time": "2026-02-05",
+            "value": 222.69000244140625
+          },
+          {
+            "time": "2026-02-06",
+            "value": 210.32000732421875
+          },
+          {
+            "time": "2026-02-09",
+            "value": 208.72000122070312
+          },
+          {
+            "time": "2026-02-10",
+            "value": 206.9600067138672
+          },
+          {
+            "time": "2026-02-11",
+            "value": 204.0800018310547
+          },
+          {
+            "time": "2026-02-12",
+            "value": 199.60000610351562
+          },
+          {
+            "time": "2026-02-13",
+            "value": 198.7899932861328
+          },
+          {
+            "time": "2026-02-17",
+            "value": 201.14999389648438
+          },
+          {
+            "time": "2026-02-18",
+            "value": 204.7899932861328
+          },
+          {
+            "time": "2026-02-19",
+            "value": 204.86000061035156
+          },
+          {
+            "time": "2026-02-20",
+            "value": 210.11000061035156
+          },
+          {
+            "time": "2026-02-23",
+            "value": 205.27000427246094
+          },
+          {
+            "time": "2026-02-24",
+            "value": 208.55999755859375
+          },
+          {
+            "time": "2026-02-25",
+            "value": 210.63999938964844
+          },
+          {
+            "time": "2026-02-26",
+            "value": 207.9199981689453
+          },
+          {
+            "time": "2026-02-27",
+            "value": 210.0
+          },
+          {
+            "time": "2026-03-02",
+            "value": 208.38999938964844
+          },
+          {
+            "time": "2026-03-03",
+            "value": 208.72999572753906
+          },
+          {
+            "time": "2026-03-04",
+            "value": 216.82000732421875
+          },
+          {
+            "time": "2026-03-05",
+            "value": 218.94000244140625
+          },
+          {
+            "time": "2026-03-06",
+            "value": 213.2100067138672
+          }
+        ]
+      },
+      "signals": {
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": 0.0,
+        "check_engine_light": " YELLOW (Neutral / Noise)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "Have I Got News For You US S04E07 720p AMZN WEB-DL H264-RAWR",
+          "The Princess Diaries S02 1080p AMZN WEB-DL H264-RAWR",
+          "Cursed Hearse 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "Gone 2026 S01 720p AMZN WEB-DL H264-RAWR",
+          "Vanished Without A Trace 1999 AMZN WEB-DL H264-TEPES",
+          "All Thats Left Of You 2025 720p AMZN WEB-DL H264-MADSKY",
+          "Sahib Bibi Aur Ghulam 1962 1080p AMZN WEB-DL H264-KHN",
+          "Down To The Felt 2025 1080p AMZN WEB-DL H264-playWEB",
+          "adaptive-simple-text-classifier added to PyPI",
+          "Elizabethtown 2005 1080p AMZN WEB-DL H264-alfaHD",
+          "Deadly Crush 2018 1080p AMZN WEB-DL H264-HypStu",
+          "The Four Gates Of Death 2026 1080p AMZN WEB-DL H264-playWEB",
+          "Stork Of Hope 2025 720p AMZN WEB-DL DD+5 1 H264-playWEB",
+          "Dark Winds S04E04 1080p AMZN WEB-DL H264-RAWR",
+          "Mayday S26E07 1080p AMZN WEB-DL H264-Kitsune"
+        ],
+        "chart_path": "data\\charts\\2026-03-09\\AMZN_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "CL=F",
+        "source_symbol": "CL=F",
+        "generated_at": "2026-03-09T14:16:28Z",
+        "market_session_date": "2026-03-09",
+        "mode": "live"
+      },
+      "market": {
+        "current_price": 102.62000274658203,
+        "predicted_price_next_session": 85.68660072326661,
+        "history": [
+          {
+            "time": "2025-12-26",
+            "value": 56.7400016784668
+          },
+          {
+            "time": "2025-12-29",
+            "value": 58.08000183105469
+          },
+          {
+            "time": "2025-12-30",
+            "value": 57.95000076293945
+          },
+          {
+            "time": "2025-12-31",
+            "value": 57.41999816894531
+          },
+          {
+            "time": "2026-01-02",
+            "value": 57.31999969482422
+          },
+          {
+            "time": "2026-01-05",
+            "value": 58.31999969482422
+          },
+          {
+            "time": "2026-01-06",
+            "value": 57.130001068115234
+          },
+          {
+            "time": "2026-01-07",
+            "value": 55.9900016784668
+          },
+          {
+            "time": "2026-01-08",
+            "value": 57.7599983215332
+          },
+          {
+            "time": "2026-01-09",
+            "value": 59.119998931884766
+          },
+          {
+            "time": "2026-01-12",
+            "value": 59.5
+          },
+          {
+            "time": "2026-01-13",
+            "value": 61.150001525878906
+          },
+          {
+            "time": "2026-01-14",
+            "value": 62.02000045776367
+          },
+          {
+            "time": "2026-01-15",
+            "value": 59.189998626708984
+          },
+          {
+            "time": "2026-01-16",
+            "value": 59.439998626708984
+          },
+          {
+            "time": "2026-01-20",
+            "value": 60.34000015258789
+          },
+          {
+            "time": "2026-01-21",
+            "value": 60.619998931884766
+          },
+          {
+            "time": "2026-01-22",
+            "value": 59.36000061035156
+          },
+          {
+            "time": "2026-01-23",
+            "value": 61.06999969482422
+          },
+          {
+            "time": "2026-01-26",
+            "value": 60.630001068115234
+          },
+          {
+            "time": "2026-01-27",
+            "value": 62.38999938964844
+          },
+          {
+            "time": "2026-01-28",
+            "value": 63.209999084472656
+          },
+          {
+            "time": "2026-01-29",
+            "value": 65.41999816894531
+          },
+          {
+            "time": "2026-01-30",
+            "value": 65.20999908447266
+          },
+          {
+            "time": "2026-02-02",
+            "value": 62.13999938964844
+          },
+          {
+            "time": "2026-02-03",
+            "value": 63.209999084472656
+          },
+          {
+            "time": "2026-02-04",
+            "value": 65.13999938964844
+          },
+          {
+            "time": "2026-02-05",
+            "value": 63.290000915527344
+          },
+          {
+            "time": "2026-02-06",
+            "value": 63.54999923706055
+          },
+          {
+            "time": "2026-02-09",
+            "value": 64.36000061035156
+          },
+          {
+            "time": "2026-02-10",
+            "value": 63.959999084472656
+          },
+          {
+            "time": "2026-02-11",
+            "value": 64.62999725341797
+          },
+          {
+            "time": "2026-02-12",
+            "value": 62.84000015258789
+          },
+          {
+            "time": "2026-02-13",
+            "value": 62.88999938964844
+          },
+          {
+            "time": "2026-02-17",
+            "value": 62.33000183105469
+          },
+          {
+            "time": "2026-02-18",
+            "value": 65.19000244140625
+          },
+          {
+            "time": "2026-02-19",
+            "value": 66.43000030517578
+          },
+          {
+            "time": "2026-02-20",
+            "value": 66.38999938964844
+          },
+          {
+            "time": "2026-02-23",
+            "value": 66.30999755859375
+          },
+          {
+            "time": "2026-02-24",
+            "value": 65.62999725341797
+          },
+          {
+            "time": "2026-02-25",
+            "value": 65.41999816894531
+          },
+          {
+            "time": "2026-02-26",
+            "value": 65.20999908447266
+          },
+          {
+            "time": "2026-02-27",
+            "value": 67.0199966430664
+          },
+          {
+            "time": "2026-03-02",
+            "value": 71.2300033569336
+          },
+          {
+            "time": "2026-03-03",
+            "value": 74.55999755859375
+          },
+          {
+            "time": "2026-03-04",
+            "value": 74.66000366210938
+          },
+          {
+            "time": "2026-03-05",
+            "value": 81.01000213623047
+          },
+          {
+            "time": "2026-03-06",
+            "value": 90.9000015258789
+          },
+          {
+            "time": "2026-03-09",
+            "value": 102.70999908447266
+          }
+        ]
+      },
+      "signals": {
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": 0.03539597193400065,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "Chronological Reading for Sunday March 8, 2026 (NIV)",
+          "Old/New Testament Reading for Sunday March 8, 2026 (NIV)",
+          "Chronological Reading for Saturday March 7, 2026 (NIV)",
+          "opendose-poppk added to PyPI",
+          "Built-in tandem catalysis in hierarchical pores for efficient vinyl chloride production",
+          "US oil prices notch biggest weekly surge since at least 1985 as Iran war disrupts Strait of Hormuz",
+          "Comparative susceptibility of Old World and New World bat cell lines to Zika virus: Insights into viral replication and inflammatory responses",
+          "Perception on blackflies and community ownership of the \u201cSlash-and-Clear\u201d vector control intervention in onchocerciasis-endemic communities along Edo-Ondo border in Southern Nigeria",
+          "Chronological Reading for Friday March 6, 2026 (NIV)",
+          "Cm-p5, a synthetic antimicrobial peptide shows anti-Trypanosoma cruzi activity",
+          "Old/New Testament Reading for Thursday March 5, 2026 (NIV)",
+          "Chronological Reading for Thursday March 5, 2026 (NIV)",
+          "HCl-selective ionization reactions for improved Cl detection robustness in post-inductively coupled plasma chemical ionization",
+          "Enhanced photocatalytic and antibacterial performance of LaMnCeO3/TiO2 composites modified with Ti3C2Tx MXene for efficient methyl red degradation",
+          "Bad Bedfellows: Daylight Savings and Young Adults\u2019 Sleep"
+        ],
+        "chart_path": "data\\charts\\2026-03-09\\CL=F_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "DX-Y.NYB",
+        "source_symbol": "DX-Y.NYB",
+        "generated_at": "2026-03-09T14:16:30Z",
+        "market_session_date": "2026-03-09",
+        "mode": "live"
+      },
+      "market": {
+        "current_price": 99.32099914550781,
+        "predicted_price_next_session": 99.1060195159912,
+        "history": [
+          {
+            "time": "2025-12-26",
+            "value": 98.0199966430664
+          },
+          {
+            "time": "2025-12-29",
+            "value": 98.04000091552734
+          },
+          {
+            "time": "2025-12-30",
+            "value": 98.23999786376953
+          },
+          {
+            "time": "2025-12-31",
+            "value": 98.27999877929688
+          },
+          {
+            "time": "2026-01-02",
+            "value": 98.41999816894531
+          },
+          {
+            "time": "2026-01-05",
+            "value": 98.2699966430664
+          },
+          {
+            "time": "2026-01-06",
+            "value": 98.58000183105469
+          },
+          {
+            "time": "2026-01-07",
+            "value": 98.68000030517578
+          },
+          {
+            "time": "2026-01-08",
+            "value": 98.93000030517578
+          },
+          {
+            "time": "2026-01-09",
+            "value": 99.12999725341797
+          },
+          {
+            "time": "2026-01-12",
+            "value": 98.86000061035156
+          },
+          {
+            "time": "2026-01-13",
+            "value": 99.12999725341797
+          },
+          {
+            "time": "2026-01-14",
+            "value": 99.12999725341797
+          },
+          {
+            "time": "2026-01-15",
+            "value": 99.31999969482422
+          },
+          {
+            "time": "2026-01-16",
+            "value": 99.38999938964844
+          },
+          {
+            "time": "2026-01-20",
+            "value": 98.63999938964844
+          },
+          {
+            "time": "2026-01-21",
+            "value": 98.76000213623047
+          },
+          {
+            "time": "2026-01-22",
+            "value": 98.36000061035156
+          },
+          {
+            "time": "2026-01-23",
+            "value": 97.5999984741211
+          },
+          {
+            "time": "2026-01-26",
+            "value": 97.04000091552734
+          },
+          {
+            "time": "2026-01-27",
+            "value": 96.22000122070312
+          },
+          {
+            "time": "2026-01-28",
+            "value": 96.44999694824219
+          },
+          {
+            "time": "2026-01-29",
+            "value": 96.27999877929688
+          },
+          {
+            "time": "2026-01-30",
+            "value": 96.98999786376953
+          },
+          {
+            "time": "2026-02-02",
+            "value": 97.61000061035156
+          },
+          {
+            "time": "2026-02-03",
+            "value": 97.44000244140625
+          },
+          {
+            "time": "2026-02-04",
+            "value": 97.62000274658203
+          },
+          {
+            "time": "2026-02-05",
+            "value": 97.81999969482422
+          },
+          {
+            "time": "2026-02-06",
+            "value": 97.62999725341797
+          },
+          {
+            "time": "2026-02-09",
+            "value": 96.81999969482422
+          },
+          {
+            "time": "2026-02-10",
+            "value": 96.80000305175781
+          },
+          {
+            "time": "2026-02-11",
+            "value": 96.83000183105469
+          },
+          {
+            "time": "2026-02-12",
+            "value": 96.93000030517578
+          },
+          {
+            "time": "2026-02-13",
+            "value": 96.87999725341797
+          },
+          {
+            "time": "2026-02-17",
+            "value": 97.16000366210938
+          },
+          {
+            "time": "2026-02-18",
+            "value": 97.69999694824219
+          },
+          {
+            "time": "2026-02-19",
+            "value": 97.93000030517578
+          },
+          {
+            "time": "2026-02-20",
+            "value": 97.80000305175781
+          },
+          {
+            "time": "2026-02-23",
+            "value": 97.69999694824219
+          },
+          {
+            "time": "2026-02-24",
+            "value": 97.87999725341797
+          },
+          {
+            "time": "2026-02-25",
+            "value": 97.69999694824219
+          },
+          {
+            "time": "2026-02-26",
+            "value": 97.79000091552734
+          },
+          {
+            "time": "2026-02-27",
+            "value": 97.61000061035156
+          },
+          {
+            "time": "2026-03-02",
+            "value": 98.37999725341797
+          },
+          {
+            "time": "2026-03-03",
+            "value": 99.05000305175781
+          },
+          {
+            "time": "2026-03-04",
+            "value": 98.7699966430664
+          },
+          {
+            "time": "2026-03-05",
+            "value": 99.31999969482422
+          },
+          {
+            "time": "2026-03-06",
+            "value": 98.98999786376953
+          },
+          {
+            "time": "2026-03-09",
+            "value": 99.31600189208984
+          }
+        ]
+      },
+      "signals": {
+        "trend_label": "WEAK DOWNTREND ",
+        "sentiment_score": -0.8820429784911019,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "Gold tumbles amid broader market sell-off as dollar rises",
+          "Stock market today: Dow falls by 700 points, S&P 500 and Nasdaq sink as oil surges amid war worries",
+          "Stock market today: Dow, S&P 500, Nasdaq slide as Trump's latest tariff salvo reverberates through markets",
+          "Stock market today: Dow, S&P 500, Nasdaq rise after Supreme Court strikes down Trump tariffs",
+          "Gold price below $5,000 as investors wait on Fed guidance for clues",
+          "Stock market today: Nasdaq, S&P 500 slide to kick off shortened week with AI fears in focus",
+          "Stock market today: Dow, S&P 500, Nasdaq futures slip after Dow's 50,000 rally as jobs, inflation reports loom"
+        ],
+        "chart_path": "data\\charts\\2026-03-09\\DX-Y.NYB_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "GC=F",
+        "source_symbol": "GC=F",
+        "generated_at": "2026-03-09T14:16:31Z",
+        "market_session_date": "2026-03-09",
+        "mode": "live"
+      },
+      "market": {
+        "current_price": 5088.5,
+        "predicted_price_next_session": 5085.793955078125,
+        "history": [
+          {
+            "time": "2025-12-26",
+            "value": 4529.10009765625
+          },
+          {
+            "time": "2025-12-29",
+            "value": 4325.10009765625
+          },
+          {
+            "time": "2025-12-30",
+            "value": 4370.10009765625
+          },
+          {
+            "time": "2025-12-31",
+            "value": 4325.60009765625
+          },
+          {
+            "time": "2026-01-02",
+            "value": 4314.39990234375
+          },
+          {
+            "time": "2026-01-05",
+            "value": 4436.89990234375
+          },
+          {
+            "time": "2026-01-06",
+            "value": 4482.2001953125
+          },
+          {
+            "time": "2026-01-07",
+            "value": 4449.2998046875
+          },
+          {
+            "time": "2026-01-08",
+            "value": 4449.7001953125
+          },
+          {
+            "time": "2026-01-09",
+            "value": 4490.2998046875
+          },
+          {
+            "time": "2026-01-12",
+            "value": 4604.2998046875
+          },
+          {
+            "time": "2026-01-13",
+            "value": 4589.2001953125
+          },
+          {
+            "time": "2026-01-14",
+            "value": 4626.2998046875
+          },
+          {
+            "time": "2026-01-15",
+            "value": 4616.2998046875
+          },
+          {
+            "time": "2026-01-16",
+            "value": 4588.39990234375
+          },
+          {
+            "time": "2026-01-20",
+            "value": 4759.60009765625
+          },
+          {
+            "time": "2026-01-21",
+            "value": 4831.7998046875
+          },
+          {
+            "time": "2026-01-22",
+            "value": 4908.7998046875
+          },
+          {
+            "time": "2026-01-23",
+            "value": 4976.2001953125
+          },
+          {
+            "time": "2026-01-26",
+            "value": 5079.7001953125
+          },
+          {
+            "time": "2026-01-27",
+            "value": 5079.89990234375
+          },
+          {
+            "time": "2026-01-28",
+            "value": 5301.60009765625
+          },
+          {
+            "time": "2026-01-29",
+            "value": 5318.39990234375
+          },
+          {
+            "time": "2026-01-30",
+            "value": 4713.89990234375
+          },
+          {
+            "time": "2026-02-02",
+            "value": 4622.5
+          },
+          {
+            "time": "2026-02-03",
+            "value": 4903.7001953125
+          },
+          {
+            "time": "2026-02-04",
+            "value": 4920.39990234375
+          },
+          {
+            "time": "2026-02-05",
+            "value": 4861.39990234375
+          },
+          {
+            "time": "2026-02-06",
+            "value": 4951.2001953125
+          },
+          {
+            "time": "2026-02-09",
+            "value": 5050.89990234375
+          },
+          {
+            "time": "2026-02-10",
+            "value": 5003.7998046875
+          },
+          {
+            "time": "2026-02-11",
+            "value": 5071.60009765625
+          },
+          {
+            "time": "2026-02-12",
+            "value": 4923.7001953125
+          },
+          {
+            "time": "2026-02-13",
+            "value": 5022.0
+          },
+          {
+            "time": "2026-02-17",
+            "value": 4882.89990234375
+          },
+          {
+            "time": "2026-02-18",
+            "value": 4986.5
+          },
+          {
+            "time": "2026-02-19",
+            "value": 4975.89990234375
+          },
+          {
+            "time": "2026-02-20",
+            "value": 5059.2998046875
+          },
+          {
+            "time": "2026-02-23",
+            "value": 5204.7001953125
+          },
+          {
+            "time": "2026-02-24",
+            "value": 5155.7998046875
+          },
+          {
+            "time": "2026-02-25",
+            "value": 5206.39990234375
+          },
+          {
+            "time": "2026-02-26",
+            "value": 5176.5
+          },
+          {
+            "time": "2026-02-27",
+            "value": 5230.5
+          },
+          {
+            "time": "2026-03-02",
+            "value": 5294.39990234375
+          },
+          {
+            "time": "2026-03-03",
+            "value": 5107.39990234375
+          },
+          {
+            "time": "2026-03-04",
+            "value": 5120.2001953125
+          },
+          {
+            "time": "2026-03-05",
+            "value": 5065.2998046875
+          },
+          {
+            "time": "2026-03-06",
+            "value": 5146.10009765625
+          },
+          {
+            "time": "2026-03-09",
+            "value": 5088.5
+          }
+        ]
+      },
+      "signals": {
+        "trend_label": "WEAK DOWNTREND ",
+        "sentiment_score": -0.04988439480463664,
+        "check_engine_light": " YELLOW (Neutral / Noise)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "Old/New Testament Reading for Sunday March 8, 2026 (NIV)",
+          "Lyn governs the establishment and maintenance of B cell anergy by suppressing PI3K signaling",
+          "residue-protocol added to PyPI",
+          "From tests to truth: A misclassification-aware machine learning framework for estimating brucellosis seroprevalence in wild canids",
+          "Evaluating how demography and temperature increase might alter the burden of congenital Toxoplasmosis in Africa",
+          "Structural characterization and antifungal properties of sequentially extracted polysaccharides from Algerian Opuntia ficus-indica L. cladodes",
+          "Show HN: DeraineDB \u2013 A 33MB Vector DB in Zig/Go with Sub-Millisecond HNSW",
+          "Rob Rausch Bought Maura Higgins A Birkin After His \u2018Traitors\u2019 Win",
+          "Pandas vs. Polars: A Complete Comparison of Syntax, Speed, and Memory",
+          "Unique ecology of co-occurring functionally and phylogenetically undescribed species in the infant oral microbiome",
+          "DNA-based characterization of rays (Elasmobranchii: Batoidea) from Bangladesh using mitochondrial markers: Implications for conservation and management",
+          "The adaptor protein TASL is required for age-related B cell emergence and lupus-like disease development in mice",
+          "Understanding security challenges in the software supply chain through causal relationships",
+          "David Harbour\u2019s Alleged Partner Kicked Out Of Lily Allen Producer\u2019s Party In Stunning Scene",
+          "HUTCHMED Reports 2025 Full Year Results and Business Updates"
+        ],
+        "chart_path": "data\\charts\\2026-03-09\\GC=F_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "GOOG",
+        "source_symbol": "GOOG",
+        "generated_at": "2026-03-09T14:16:33Z",
+        "market_session_date": "2026-03-06",
+        "mode": "live"
+      },
+      "market": {
+        "current_price": 295.9800109863281,
+        "predicted_price_next_session": 302.3962948608398,
+        "history": [
+          {
+            "time": "2025-12-10",
+            "value": 321.0
+          },
+          {
+            "time": "2025-12-11",
+            "value": 313.70001220703125
+          },
+          {
+            "time": "2025-12-12",
+            "value": 310.5199890136719
+          },
+          {
+            "time": "2025-12-15",
+            "value": 309.32000732421875
+          },
+          {
+            "time": "2025-12-16",
+            "value": 307.7300109863281
+          },
+          {
+            "time": "2025-12-17",
+            "value": 298.05999755859375
+          },
+          {
+            "time": "2025-12-18",
+            "value": 303.75
+          },
+          {
+            "time": "2025-12-19",
+            "value": 308.6099853515625
+          },
+          {
+            "time": "2025-12-22",
+            "value": 311.3299865722656
+          },
+          {
+            "time": "2025-12-23",
+            "value": 315.67999267578125
+          },
+          {
+            "time": "2025-12-24",
+            "value": 315.6700134277344
+          },
+          {
+            "time": "2025-12-26",
+            "value": 314.9599914550781
+          },
+          {
+            "time": "2025-12-29",
+            "value": 314.3900146484375
+          },
+          {
+            "time": "2025-12-30",
+            "value": 314.54998779296875
+          },
+          {
+            "time": "2025-12-31",
+            "value": 313.79998779296875
+          },
+          {
+            "time": "2026-01-02",
+            "value": 315.32000732421875
+          },
+          {
+            "time": "2026-01-05",
+            "value": 317.32000732421875
+          },
+          {
+            "time": "2026-01-06",
+            "value": 314.54998779296875
+          },
+          {
+            "time": "2026-01-07",
+            "value": 322.42999267578125
+          },
+          {
+            "time": "2026-01-08",
+            "value": 326.010009765625
+          },
+          {
+            "time": "2026-01-09",
+            "value": 329.1400146484375
+          },
+          {
+            "time": "2026-01-12",
+            "value": 332.7300109863281
+          },
+          {
+            "time": "2026-01-13",
+            "value": 336.42999267578125
+          },
+          {
+            "time": "2026-01-14",
+            "value": 336.30999755859375
+          },
+          {
+            "time": "2026-01-15",
+            "value": 333.1600036621094
+          },
+          {
+            "time": "2026-01-16",
+            "value": 330.3399963378906
+          },
+          {
+            "time": "2026-01-20",
+            "value": 322.1600036621094
+          },
+          {
+            "time": "2026-01-21",
+            "value": 328.3800048828125
+          },
+          {
+            "time": "2026-01-22",
+            "value": 330.8399963378906
+          },
+          {
+            "time": "2026-01-23",
+            "value": 328.42999267578125
+          },
+          {
+            "time": "2026-01-26",
+            "value": 333.5899963378906
+          },
+          {
+            "time": "2026-01-27",
+            "value": 335.0
+          },
+          {
+            "time": "2026-01-28",
+            "value": 336.2799987792969
+          },
+          {
+            "time": "2026-01-29",
+            "value": 338.6600036621094
+          },
+          {
+            "time": "2026-01-30",
+            "value": 338.5299987792969
+          },
+          {
+            "time": "2026-02-02",
+            "value": 344.8999938964844
+          },
+          {
+            "time": "2026-02-03",
+            "value": 340.70001220703125
+          },
+          {
+            "time": "2026-02-04",
+            "value": 333.3399963378906
+          },
+          {
+            "time": "2026-02-05",
+            "value": 331.3299865722656
+          },
+          {
+            "time": "2026-02-06",
+            "value": 323.1000061035156
+          },
+          {
+            "time": "2026-02-09",
+            "value": 324.3999938964844
+          },
+          {
+            "time": "2026-02-10",
+            "value": 318.6300048828125
+          },
+          {
+            "time": "2026-02-11",
+            "value": 311.3299865722656
+          },
+          {
+            "time": "2026-02-12",
+            "value": 309.3699951171875
+          },
+          {
+            "time": "2026-02-13",
+            "value": 306.0199890136719
+          },
+          {
+            "time": "2026-02-17",
+            "value": 302.82000732421875
+          },
+          {
+            "time": "2026-02-18",
+            "value": 303.94000244140625
+          },
+          {
+            "time": "2026-02-19",
+            "value": 303.55999755859375
+          },
+          {
+            "time": "2026-02-20",
+            "value": 314.8999938964844
+          },
+          {
+            "time": "2026-02-23",
+            "value": 311.69000244140625
+          },
+          {
+            "time": "2026-02-24",
+            "value": 310.9200134277344
+          },
+          {
+            "time": "2026-02-25",
+            "value": 313.0299987792969
+          },
+          {
+            "time": "2026-02-26",
+            "value": 307.1499938964844
+          },
+          {
+            "time": "2026-02-27",
+            "value": 311.42999267578125
+          },
+          {
+            "time": "2026-03-02",
+            "value": 306.3599853515625
+          },
+          {
+            "time": "2026-03-03",
+            "value": 303.55999755859375
+          },
+          {
+            "time": "2026-03-04",
+            "value": 303.45001220703125
+          },
+          {
+            "time": "2026-03-05",
+            "value": 300.9100036621094
+          },
+          {
+            "time": "2026-03-06",
+            "value": 298.29998779296875
+          }
+        ]
+      },
+      "signals": {
+        "trend_label": "STRONG UPTREND ",
+        "sentiment_score": -0.07749665180842082,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "Show HN: I logged Gemini's stock predictions for 38 days to study LLM drift",
+          "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "Alphabet (GOOG) Doubled by the End of the Year. Here\u2019s How",
+          "Want to Invest in AI? Consider These 3 Bank Stocks.",
+          "Ray Dalio: Gold is a better option than Bitcoin, tech stocks because\u2026",
+          "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "Longbridge Securities Launches the World\u2019s First Pre-Market U.S. Options Trading\uff0cEmpowering Investors to Overcome Time Zone Barriers and Stay Ahead of the Market Movement",
+          "New to the share market? Here are 3 ASX ETFs to buy for easy investing",
+          "Claude Code\u306bGoogle\u306eDeveloper Knowledge API & MCP Server\u306e\u8a2d\u5b9a\u3092\u3059\u308b",
+          "Today's news and jokes",
+          "Re: How long AS-PATH policies have you used",
+          "\u2018The Collapse of Everything AI\u2019 Could Hinge on Nvidia\u2019s Earnings. What Wall Street Expects from NVDA Stock.",
+          "IonQ Just Won a Golden Dome Contract. Should You Buy the Quantum Computing Stock Now?"
+        ],
+        "chart_path": "data\\charts\\2026-03-09\\GOOG_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "HG=F",
+        "source_symbol": "HG=F",
+        "generated_at": "2026-03-09T14:16:35Z",
+        "market_session_date": "2026-03-09",
+        "mode": "live"
+      },
+      "market": {
+        "current_price": 5.76800012588501,
+        "predicted_price_next_session": 5.776970014572144,
+        "history": [
+          {
+            "time": "2025-12-26",
+            "value": 5.766499996185303
+          },
+          {
+            "time": "2025-12-29",
+            "value": 5.490499973297119
+          },
+          {
+            "time": "2025-12-30",
+            "value": 5.727499961853027
+          },
+          {
+            "time": "2025-12-31",
+            "value": 5.630000114440918
+          },
+          {
+            "time": "2026-01-02",
+            "value": 5.639999866485596
+          },
+          {
+            "time": "2026-01-05",
+            "value": 5.924499988555908
+          },
+          {
+            "time": "2026-01-06",
+            "value": 6.010499954223633
+          },
+          {
+            "time": "2026-01-07",
+            "value": 5.809000015258789
+          },
+          {
+            "time": "2026-01-08",
+            "value": 5.746500015258789
+          },
+          {
+            "time": "2026-01-09",
+            "value": 5.855500221252441
+          },
+          {
+            "time": "2026-01-12",
+            "value": 5.985000133514404
+          },
+          {
+            "time": "2026-01-13",
+            "value": 5.96999979019165
+          },
+          {
+            "time": "2026-01-14",
+            "value": 6.008999824523926
+          },
+          {
+            "time": "2026-01-15",
+            "value": 5.947999954223633
+          },
+          {
+            "time": "2026-01-16",
+            "value": 5.78849983215332
+          },
+          {
+            "time": "2026-01-20",
+            "value": 5.7729997634887695
+          },
+          {
+            "time": "2026-01-21",
+            "value": 5.729499816894531
+          },
+          {
+            "time": "2026-01-22",
+            "value": 5.742499828338623
+          },
+          {
+            "time": "2026-01-23",
+            "value": 5.910999774932861
+          },
+          {
+            "time": "2026-01-26",
+            "value": 5.984000205993652
+          },
+          {
+            "time": "2026-01-27",
+            "value": 5.828499794006348
+          },
+          {
+            "time": "2026-01-28",
+            "value": 5.892499923706055
+          },
+          {
+            "time": "2026-01-29",
+            "value": 6.17549991607666
+          },
+          {
+            "time": "2026-01-30",
+            "value": 5.896999835968018
+          },
+          {
+            "time": "2026-02-02",
+            "value": 5.801499843597412
+          },
+          {
+            "time": "2026-02-03",
+            "value": 6.0625
+          },
+          {
+            "time": "2026-02-04",
+            "value": 5.826000213623047
+          },
+          {
+            "time": "2026-02-05",
+            "value": 5.798999786376953
+          },
+          {
+            "time": "2026-02-06",
+            "value": 5.863500118255615
+          },
+          {
+            "time": "2026-02-09",
+            "value": 5.945000171661377
+          },
+          {
+            "time": "2026-02-10",
+            "value": 5.895999908447266
+          },
+          {
+            "time": "2026-02-11",
+            "value": 5.948999881744385
+          },
+          {
+            "time": "2026-02-12",
+            "value": 5.770999908447266
+          },
+          {
+            "time": "2026-02-13",
+            "value": 5.792500019073486
+          },
+          {
+            "time": "2026-02-17",
+            "value": 5.632999897003174
+          },
+          {
+            "time": "2026-02-18",
+            "value": 5.793499946594238
+          },
+          {
+            "time": "2026-02-19",
+            "value": 5.730000019073486
+          },
+          {
+            "time": "2026-02-20",
+            "value": 5.830999851226807
+          },
+          {
+            "time": "2026-02-23",
+            "value": 5.7729997634887695
+          },
+          {
+            "time": "2026-02-24",
+            "value": 5.922999858856201
+          },
+          {
+            "time": "2026-02-25",
+            "value": 5.979499816894531
+          },
+          {
+            "time": "2026-02-26",
+            "value": 5.947000026702881
+          },
+          {
+            "time": "2026-02-27",
+            "value": 6.004499912261963
+          },
+          {
+            "time": "2026-03-02",
+            "value": 5.894499778747559
+          },
+          {
+            "time": "2026-03-03",
+            "value": 5.773499965667725
+          },
+          {
+            "time": "2026-03-04",
+            "value": 5.855000019073486
+          },
+          {
+            "time": "2026-03-05",
+            "value": 5.752999782562256
+          },
+          {
+            "time": "2026-03-06",
+            "value": 5.756999969482422
+          },
+          {
+            "time": "2026-03-09",
+            "value": 5.76800012588501
+          }
+        ]
+      },
+      "signals": {
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": 0.016546384493509928,
+        "check_engine_light": " YELLOW (Neutral / Noise)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "Structural characterization and antifungal properties of sequentially extracted polysaccharides from Algerian Opuntia ficus-indica L. cladodes",
+          "Sprawling investigation finds decades of sexual abuse among Catholic priests in Rhode Island",
+          "Comparative outcomes of DSAEK and DMEK in eyes with prior Ahmed glaucoma valve implantation",
+          "Behavior change intervention targeting physical activity and diet improves stress and sleep",
+          "A modular nanoparticle display strategy for varicella-zoster virus gE based on a licensed protein scaffold",
+          "Predicting drainage capillary pressure curves in natural porous media by NMR-T2 relaxometry: implications for CO2 storage",
+          "Co-modulation of clinical courses of hypertension and depression in public health facilities in Ethiopia: A six-month follow-up study protocol",
+          "Enabling low-temperature aqueous zinc/copper-sulfur hybrid batteries through electrolyte design",
+          "Blizzard of '26: Power restored for many in Attleboro area day after historic snowstorm",
+          "Detection and characterization of Hepatitis B virus double-stranded linear DNA-derived covalently closed circular DNA in chronic hepatitis B patients",
+          "Taenia solium neurocysticercosis: Its current epidemiological, diagnostic, therapeutic, and control landscapes",
+          "Targeted near-infrared imaging utilizing a cathepsin-activated fluorophore for the intraoperative detection of canine insulinoma",
+          "The crosstalk between acute hepatopancreatic necrosis disease (AHPND) and the Vibrio quorum sensing (QS) system: A review",
+          "Care practices, popular knowledge, and health promotion among quilombola woman in Brazil",
+          "Genomic characterization of Sabi\u00e1 virus in Brazil, 2019\u20132020: Implications for diagnostics, virus evolution, and receptor binding"
+        ],
+        "chart_path": "data\\charts\\2026-03-09\\HG=F_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "META",
+        "source_symbol": "META",
+        "generated_at": "2026-03-09T14:16:37Z",
+        "market_session_date": "2026-03-06",
+        "mode": "live"
+      },
+      "market": {
+        "current_price": 628.3699951171875,
+        "predicted_price_next_session": 647.7913177490234,
+        "history": [
+          {
+            "time": "2025-12-10",
+            "value": 649.6002197265625
+          },
+          {
+            "time": "2025-12-11",
+            "value": 652.1781005859375
+          },
+          {
+            "time": "2025-12-12",
+            "value": 643.7050170898438
+          },
+          {
+            "time": "2025-12-15",
+            "value": 647.510009765625
+          },
+          {
+            "time": "2025-12-16",
+            "value": 657.1500244140625
+          },
+          {
+            "time": "2025-12-17",
+            "value": 649.5
+          },
+          {
+            "time": "2025-12-18",
+            "value": 664.4500122070312
+          },
+          {
+            "time": "2025-12-19",
+            "value": 658.77001953125
+          },
+          {
+            "time": "2025-12-22",
+            "value": 661.5
+          },
+          {
+            "time": "2025-12-23",
+            "value": 664.9400024414062
+          },
+          {
+            "time": "2025-12-24",
+            "value": 667.5499877929688
+          },
+          {
+            "time": "2025-12-26",
+            "value": 663.2899780273438
+          },
+          {
+            "time": "2025-12-29",
+            "value": 658.6900024414062
+          },
+          {
+            "time": "2025-12-30",
+            "value": 665.9500122070312
+          },
+          {
+            "time": "2025-12-31",
+            "value": 660.0900268554688
+          },
+          {
+            "time": "2026-01-02",
+            "value": 650.4099731445312
+          },
+          {
+            "time": "2026-01-05",
+            "value": 658.7899780273438
+          },
+          {
+            "time": "2026-01-06",
+            "value": 660.6199951171875
+          },
+          {
+            "time": "2026-01-07",
+            "value": 648.6900024414062
+          },
+          {
+            "time": "2026-01-08",
+            "value": 646.0599975585938
+          },
+          {
+            "time": "2026-01-09",
+            "value": 653.0599975585938
+          },
+          {
+            "time": "2026-01-12",
+            "value": 641.969970703125
+          },
+          {
+            "time": "2026-01-13",
+            "value": 631.0900268554688
+          },
+          {
+            "time": "2026-01-14",
+            "value": 615.52001953125
+          },
+          {
+            "time": "2026-01-15",
+            "value": 620.7999877929688
+          },
+          {
+            "time": "2026-01-16",
+            "value": 620.25
+          },
+          {
+            "time": "2026-01-20",
+            "value": 604.1199951171875
+          },
+          {
+            "time": "2026-01-21",
+            "value": 612.9600219726562
+          },
+          {
+            "time": "2026-01-22",
+            "value": 647.6300048828125
+          },
+          {
+            "time": "2026-01-23",
+            "value": 658.760009765625
+          },
+          {
+            "time": "2026-01-26",
+            "value": 672.3599853515625
+          },
+          {
+            "time": "2026-01-27",
+            "value": 672.969970703125
+          },
+          {
+            "time": "2026-01-28",
+            "value": 668.72998046875
+          },
+          {
+            "time": "2026-01-29",
+            "value": 738.3099975585938
+          },
+          {
+            "time": "2026-01-30",
+            "value": 716.5
+          },
+          {
+            "time": "2026-02-02",
+            "value": 706.4099731445312
+          },
+          {
+            "time": "2026-02-03",
+            "value": 691.7000122070312
+          },
+          {
+            "time": "2026-02-04",
+            "value": 668.989990234375
+          },
+          {
+            "time": "2026-02-05",
+            "value": 670.2100219726562
+          },
+          {
+            "time": "2026-02-06",
+            "value": 661.4600219726562
+          },
+          {
+            "time": "2026-02-09",
+            "value": 677.219970703125
+          },
+          {
+            "time": "2026-02-10",
+            "value": 670.719970703125
+          },
+          {
+            "time": "2026-02-11",
+            "value": 668.6900024414062
+          },
+          {
+            "time": "2026-02-12",
+            "value": 649.8099975585938
+          },
+          {
+            "time": "2026-02-13",
+            "value": 639.77001953125
+          },
+          {
+            "time": "2026-02-17",
+            "value": 639.2899780273438
+          },
+          {
+            "time": "2026-02-18",
+            "value": 643.219970703125
+          },
+          {
+            "time": "2026-02-19",
+            "value": 644.780029296875
+          },
+          {
+            "time": "2026-02-20",
+            "value": 655.6599731445312
+          },
+          {
+            "time": "2026-02-23",
+            "value": 637.25
+          },
+          {
+            "time": "2026-02-24",
+            "value": 639.2999877929688
+          },
+          {
+            "time": "2026-02-25",
+            "value": 653.6900024414062
+          },
+          {
+            "time": "2026-02-26",
+            "value": 657.010009765625
+          },
+          {
+            "time": "2026-02-27",
+            "value": 648.1799926757812
+          },
+          {
+            "time": "2026-03-02",
+            "value": 653.5599975585938
+          },
+          {
+            "time": "2026-03-03",
+            "value": 655.0800170898438
+          },
+          {
+            "time": "2026-03-04",
+            "value": 667.72998046875
+          },
+          {
+            "time": "2026-03-05",
+            "value": 660.5700073242188
+          },
+          {
+            "time": "2026-03-06",
+            "value": 644.8599853515625
+          }
+        ]
+      },
+      "signals": {
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": -0.04173119068145752,
+        "check_engine_light": " YELLOW (Neutral / Noise)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "How Generative AI Is Changing The Role Of Instructors And Learning Platforms",
+          "Cathay Pacific: New York \u2013 Colombo, Sri Lanka. $752. Roundtrip, including all Taxes",
+          "Cathay Pacific: Boston \u2013 Kuala Lumpur, Malaysia. $745. Roundtrip, including all Taxes",
+          "Behind Trump\u2019s war fever lies profound weakness",
+          "Show HN: CCP, a CLI proxy that trims terminal output without changing commands",
+          "Copa: Washington D.C. \u2013 Cali, Colombia. $295 (Basic Economy / $425 (Regular Economy). Roundtrip, including all Taxes",
+          "8 Hidden Health Benefits of Green Tea",
+          "uv-bundler added to PyPI",
+          "Apple AirPods Pro 3 review: I didn't think earbuds could pull off immersive ANC like this",
+          "What To Read This Weekend",
+          "Python's Lazy Imports: Why It Took Three Years and Two Attempts",
+          "If It Quacks Like a Package Manager",
+          "Man behind Quran-stepping video likely convicted for similar acts, may be mentally unwell: Shanmugam",
+          "Man behind Quran-stepping video likely convicted for similar acts, may be mentally unwell: Shanmugam",
+          "Show HN: API versioning for Laravel \u2013 one codebase, support old versions forever"
+        ],
+        "chart_path": "data\\charts\\2026-03-09\\META_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "MSFT",
+        "source_symbol": "MSFT",
+        "generated_at": "2026-03-09T14:16:40Z",
+        "market_session_date": "2026-03-06",
+        "mode": "live"
+      },
+      "market": {
+        "current_price": 404.590087890625,
+        "predicted_price_next_session": 407.589885559082,
+        "history": [
+          {
+            "time": "2025-12-10",
+            "value": 477.4701843261719
+          },
+          {
+            "time": "2025-12-11",
+            "value": 482.3690185546875
+          },
+          {
+            "time": "2025-12-12",
+            "value": 477.4402770996094
+          },
+          {
+            "time": "2025-12-15",
+            "value": 473.73870849609375
+          },
+          {
+            "time": "2025-12-16",
+            "value": 475.3051452636719
+          },
+          {
+            "time": "2025-12-17",
+            "value": 475.0357360839844
+          },
+          {
+            "time": "2025-12-18",
+            "value": 482.87786865234375
+          },
+          {
+            "time": "2025-12-19",
+            "value": 484.8134460449219
+          },
+          {
+            "time": "2025-12-22",
+            "value": 483.81573486328125
+          },
+          {
+            "time": "2025-12-23",
+            "value": 485.7413330078125
+          },
+          {
+            "time": "2025-12-24",
+            "value": 486.90863037109375
+          },
+          {
+            "time": "2025-12-26",
+            "value": 486.599365234375
+          },
+          {
+            "time": "2025-12-29",
+            "value": 485.9907531738281
+          },
+          {
+            "time": "2025-12-30",
+            "value": 486.3699035644531
+          },
+          {
+            "time": "2025-12-31",
+            "value": 482.5186767578125
+          },
+          {
+            "time": "2026-01-02",
+            "value": 471.8630065917969
+          },
+          {
+            "time": "2026-01-05",
+            "value": 471.773193359375
+          },
+          {
+            "time": "2026-01-06",
+            "value": 477.4203186035156
+          },
+          {
+            "time": "2026-01-07",
+            "value": 482.3690185546875
+          },
+          {
+            "time": "2026-01-08",
+            "value": 477.0212097167969
+          },
+          {
+            "time": "2026-01-09",
+            "value": 478.1885681152344
+          },
+          {
+            "time": "2026-01-12",
+            "value": 476.09332275390625
+          },
+          {
+            "time": "2026-01-13",
+            "value": 469.5981750488281
+          },
+          {
+            "time": "2026-01-14",
+            "value": 458.3338928222656
+          },
+          {
+            "time": "2026-01-15",
+            "value": 455.6200866699219
+          },
+          {
+            "time": "2026-01-16",
+            "value": 458.8127746582031
+          },
+          {
+            "time": "2026-01-20",
+            "value": 453.48492431640625
+          },
+          {
+            "time": "2026-01-21",
+            "value": 443.0986328125
+          },
+          {
+            "time": "2026-01-22",
+            "value": 450.1126403808594
+          },
+          {
+            "time": "2026-01-23",
+            "value": 464.888916015625
+          },
+          {
+            "time": "2026-01-26",
+            "value": 469.20904541015625
+          },
+          {
+            "time": "2026-01-27",
+            "value": 479.485595703125
+          },
+          {
+            "time": "2026-01-28",
+            "value": 480.533203125
+          },
+          {
+            "time": "2026-01-29",
+            "value": 432.5128173828125
+          },
+          {
+            "time": "2026-01-30",
+            "value": 429.31011962890625
+          },
+          {
+            "time": "2026-02-02",
+            "value": 422.4058837890625
+          },
+          {
+            "time": "2026-02-03",
+            "value": 410.2735595703125
+          },
+          {
+            "time": "2026-02-04",
+            "value": 413.2467956542969
+          },
+          {
+            "time": "2026-02-05",
+            "value": 392.7735290527344
+          },
+          {
+            "time": "2026-02-06",
+            "value": 400.22650146484375
+          },
+          {
+            "time": "2026-02-09",
+            "value": 412.65814208984375
+          },
+          {
+            "time": "2026-02-10",
+            "value": 412.328857421875
+          },
+          {
+            "time": "2026-02-11",
+            "value": 403.4491271972656
+          },
+          {
+            "time": "2026-02-12",
+            "value": 400.9248962402344
+          },
+          {
+            "time": "2026-02-13",
+            "value": 400.4060974121094
+          },
+          {
+            "time": "2026-02-17",
+            "value": 395.95623779296875
+          },
+          {
+            "time": "2026-02-18",
+            "value": 398.69000244140625
+          },
+          {
+            "time": "2026-02-19",
+            "value": 398.4599914550781
+          },
+          {
+            "time": "2026-02-20",
+            "value": 397.2300109863281
+          },
+          {
+            "time": "2026-02-23",
+            "value": 384.4700012207031
+          },
+          {
+            "time": "2026-02-24",
+            "value": 389.0
+          },
+          {
+            "time": "2026-02-25",
+            "value": 400.6000061035156
+          },
+          {
+            "time": "2026-02-26",
+            "value": 401.7200012207031
+          },
+          {
+            "time": "2026-02-27",
+            "value": 392.739990234375
+          },
+          {
+            "time": "2026-03-02",
+            "value": 398.54998779296875
+          },
+          {
+            "time": "2026-03-03",
+            "value": 403.92999267578125
+          },
+          {
+            "time": "2026-03-04",
+            "value": 405.20001220703125
+          },
+          {
+            "time": "2026-03-05",
+            "value": 410.67999267578125
+          },
+          {
+            "time": "2026-03-06",
+            "value": 408.9599914550781
+          }
+        ]
+      },
+      "signals": {
+        "trend_label": "WEAK DOWNTREND ",
+        "sentiment_score": 0.057345902919769286,
+        "check_engine_light": " GREEN (Safe to Proceed)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "The $200 Billion Question: Is Amazon Finally Ready to Pay a Dividend?",
+          "7 stock winners Jefferies says are sitting 'in the discount bin' after the AI-disruption panic",
+          "Microsoft (MSFT) Stock Price Today: Shares Climb to $410.68 on March 5, 2026",
+          "Down 15% in 2026, Should You Buy the Dip in Microsoft Stock?",
+          "3 world-class ASX ETFs to buy and hold",
+          "Here\u2019s what Makes Microsoft Corporation (MSFT) Significantly Resilient",
+          "Microsoft (MSFT) Determined To Keep Leveraging On OpenAI Partnership",
+          "The easy way to build a diversified ASX share portfolio",
+          "OpenAI Funding Gives Microsoft (MSFT) Stock Breathing Space",
+          "Microsoft Corporation\u2019s (MSFT) Strategic Wins Highlight Resilience and Growth Potential",
+          "Melius Research and Stifel Downgrade Microsoft Corporation (MSFT) to Hold",
+          "Ray Dalio: Gold is a better option than Bitcoin, tech stocks because\u2026",
+          "The easy way to invest globally is with these ASX ETFs",
+          "MSFT stock price today: Microsoft shares rise, investors watch AI execution",
+          "Goldman names 3 catalysts that guarantee mega tech stocks revival"
+        ],
+        "chart_path": "data\\charts\\2026-03-09\\MSFT_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "NKE",
+        "source_symbol": "NKE",
+        "generated_at": "2026-03-09T14:16:42Z",
+        "market_session_date": "2026-03-06",
+        "mode": "live"
+      },
+      "market": {
+        "current_price": 55.560001373291016,
+        "predicted_price_next_session": 59.023699264526364,
+        "history": [
+          {
+            "time": "2025-12-10",
+            "value": 65.35619354248047
+          },
+          {
+            "time": "2025-12-11",
+            "value": 67.2933349609375
+          },
+          {
+            "time": "2025-12-12",
+            "value": 67.0251235961914
+          },
+          {
+            "time": "2025-12-15",
+            "value": 67.33307647705078
+          },
+          {
+            "time": "2025-12-16",
+            "value": 66.67742919921875
+          },
+          {
+            "time": "2025-12-17",
+            "value": 65.2568588256836
+          },
+          {
+            "time": "2025-12-18",
+            "value": 65.19725036621094
+          },
+          {
+            "time": "2025-12-19",
+            "value": 58.322879791259766
+          },
+          {
+            "time": "2025-12-22",
+            "value": 56.84270477294922
+          },
+          {
+            "time": "2025-12-23",
+            "value": 56.9619140625
+          },
+          {
+            "time": "2025-12-24",
+            "value": 59.604373931884766
+          },
+          {
+            "time": "2025-12-26",
+            "value": 60.52824401855469
+          },
+          {
+            "time": "2025-12-29",
+            "value": 60.806396484375
+          },
+          {
+            "time": "2025-12-30",
+            "value": 60.78652572631836
+          },
+          {
+            "time": "2025-12-31",
+            "value": 63.28990936279297
+          },
+          {
+            "time": "2026-01-02",
+            "value": 62.86274719238281
+          },
+          {
+            "time": "2026-01-05",
+            "value": 64.10449981689453
+          },
+          {
+            "time": "2026-01-06",
+            "value": 64.91909790039062
+          },
+          {
+            "time": "2026-01-07",
+            "value": 62.80314254760742
+          },
+          {
+            "time": "2026-01-08",
+            "value": 64.82969665527344
+          },
+          {
+            "time": "2026-01-09",
+            "value": 65.48533630371094
+          },
+          {
+            "time": "2026-01-12",
+            "value": 65.20718383789062
+          },
+          {
+            "time": "2026-01-13",
+            "value": 65.86283874511719
+          },
+          {
+            "time": "2026-01-14",
+            "value": 65.13764953613281
+          },
+          {
+            "time": "2026-01-15",
+            "value": 64.16410827636719
+          },
+          {
+            "time": "2026-01-16",
+            "value": 63.95549011230469
+          },
+          {
+            "time": "2026-01-20",
+            "value": 63.21044158935547
+          },
+          {
+            "time": "2026-01-21",
+            "value": 64.97870635986328
+          },
+          {
+            "time": "2026-01-22",
+            "value": 65.02837371826172
+          },
+          {
+            "time": "2026-01-23",
+            "value": 64.61114501953125
+          },
+          {
+            "time": "2026-01-26",
+            "value": 64.56147003173828
+          },
+          {
+            "time": "2026-01-27",
+            "value": 62.67399978637695
+          },
+          {
+            "time": "2026-01-28",
+            "value": 61.82960510253906
+          },
+          {
+            "time": "2026-01-29",
+            "value": 62.18722915649414
+          },
+          {
+            "time": "2026-01-30",
+            "value": 61.40243911743164
+          },
+          {
+            "time": "2026-02-02",
+            "value": 61.77000045776367
+          },
+          {
+            "time": "2026-02-03",
+            "value": 60.52824401855469
+          },
+          {
+            "time": "2026-02-04",
+            "value": 63.79655075073242
+          },
+          {
+            "time": "2026-02-05",
+            "value": 62.28657150268555
+          },
+          {
+            "time": "2026-02-06",
+            "value": 63.4985237121582
+          },
+          {
+            "time": "2026-02-09",
+            "value": 61.99848175048828
+          },
+          {
+            "time": "2026-02-10",
+            "value": 62.62432861328125
+          },
+          {
+            "time": "2026-02-11",
+            "value": 61.93887710571289
+          },
+          {
+            "time": "2026-02-12",
+            "value": 60.697120666503906
+          },
+          {
+            "time": "2026-02-13",
+            "value": 62.71373748779297
+          },
+          {
+            "time": "2026-02-17",
+            "value": 64.39259338378906
+          },
+          {
+            "time": "2026-02-18",
+            "value": 65.11778259277344
+          },
+          {
+            "time": "2026-02-19",
+            "value": 65.17738342285156
+          },
+          {
+            "time": "2026-02-20",
+            "value": 64.9687728881836
+          },
+          {
+            "time": "2026-02-23",
+            "value": 62.67399978637695
+          },
+          {
+            "time": "2026-02-24",
+            "value": 63.66740036010742
+          },
+          {
+            "time": "2026-02-25",
+            "value": 62.981956481933594
+          },
+          {
+            "time": "2026-02-26",
+            "value": 63.52832794189453
+          },
+          {
+            "time": "2026-02-27",
+            "value": 61.77000045776367
+          },
+          {
+            "time": "2026-03-02",
+            "value": 61.0099983215332
+          },
+          {
+            "time": "2026-03-03",
+            "value": 59.38999938964844
+          },
+          {
+            "time": "2026-03-04",
+            "value": 58.63999938964844
+          },
+          {
+            "time": "2026-03-05",
+            "value": 58.02000045776367
+          },
+          {
+            "time": "2026-03-06",
+            "value": 57.0099983215332
+          }
+        ]
+      },
+      "signals": {
+        "trend_label": "STRONG UPTREND ",
+        "sentiment_score": -0.06643453737099965,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "Is NIKE, Inc. (NKE) Stock A Good Buy Right Now?",
+          "The easy way to build a diversified ASX share portfolio",
+          "Where Will Nike (NKE) Stock Be in 3 Years?",
+          "Why are there only 30 stocks in the Dow? The case for (& against) a narrow index",
+          "Nike\u2019s China Challenges Remain in Focus as BNP Paribas Maintains Bearish Outlook",
+          "5 amazing ASX ETFs to buy and hold for 20 years",
+          "Here\u2019s Why Madison Large Cap Fund Chose to Exit Nike (NKE)",
+          "6 Stocks with Dangerous Free Cash Flow Trend \u2013 Should you Sell them or Buy More? [Podcast]",
+          "Dow Jones 101: How many stocks are in the Dow in 2026?",
+          "3 Option Ideas to Consider this Wednesday for Income and Growth",
+          "Hsp90 buffers behavioral variability by regulating Pdf transcription in clock neurons of Drosophila melanogaster",
+          "What Makes Nike (NKE) an Investment Bet?"
+        ],
+        "chart_path": "data\\charts\\2026-03-09\\NKE_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "NVDA",
+        "source_symbol": "NVDA",
+        "generated_at": "2026-03-09T14:16:44Z",
+        "market_session_date": "2026-03-06",
+        "mode": "live"
+      },
+      "market": {
+        "current_price": 177.23989868164062,
+        "predicted_price_next_session": 182.90759887695313,
+        "history": [
+          {
+            "time": "2025-12-10",
+            "value": 183.77999877929688
+          },
+          {
+            "time": "2025-12-11",
+            "value": 180.92999267578125
+          },
+          {
+            "time": "2025-12-12",
+            "value": 175.02000427246094
+          },
+          {
+            "time": "2025-12-15",
+            "value": 176.2899932861328
+          },
+          {
+            "time": "2025-12-16",
+            "value": 177.72000122070312
+          },
+          {
+            "time": "2025-12-17",
+            "value": 170.94000244140625
+          },
+          {
+            "time": "2025-12-18",
+            "value": 174.13999938964844
+          },
+          {
+            "time": "2025-12-19",
+            "value": 180.99000549316406
+          },
+          {
+            "time": "2025-12-22",
+            "value": 183.69000244140625
+          },
+          {
+            "time": "2025-12-23",
+            "value": 189.2100067138672
+          },
+          {
+            "time": "2025-12-24",
+            "value": 188.61000061035156
+          },
+          {
+            "time": "2025-12-26",
+            "value": 190.52999877929688
+          },
+          {
+            "time": "2025-12-29",
+            "value": 188.22000122070312
+          },
+          {
+            "time": "2025-12-30",
+            "value": 187.5399932861328
+          },
+          {
+            "time": "2025-12-31",
+            "value": 186.5
+          },
+          {
+            "time": "2026-01-02",
+            "value": 188.85000610351562
+          },
+          {
+            "time": "2026-01-05",
+            "value": 188.1199951171875
+          },
+          {
+            "time": "2026-01-06",
+            "value": 187.24000549316406
+          },
+          {
+            "time": "2026-01-07",
+            "value": 189.11000061035156
+          },
+          {
+            "time": "2026-01-08",
+            "value": 185.0399932861328
+          },
+          {
+            "time": "2026-01-09",
+            "value": 184.86000061035156
+          },
+          {
+            "time": "2026-01-12",
+            "value": 184.94000244140625
+          },
+          {
+            "time": "2026-01-13",
+            "value": 185.80999755859375
+          },
+          {
+            "time": "2026-01-14",
+            "value": 183.13999938964844
+          },
+          {
+            "time": "2026-01-15",
+            "value": 187.0500030517578
+          },
+          {
+            "time": "2026-01-16",
+            "value": 186.22999572753906
+          },
+          {
+            "time": "2026-01-20",
+            "value": 178.07000732421875
+          },
+          {
+            "time": "2026-01-21",
+            "value": 183.32000732421875
+          },
+          {
+            "time": "2026-01-22",
+            "value": 184.83999633789062
+          },
+          {
+            "time": "2026-01-23",
+            "value": 187.6699981689453
+          },
+          {
+            "time": "2026-01-26",
+            "value": 186.47000122070312
+          },
+          {
+            "time": "2026-01-27",
+            "value": 188.52000427246094
+          },
+          {
+            "time": "2026-01-28",
+            "value": 191.52000427246094
+          },
+          {
+            "time": "2026-01-29",
+            "value": 192.50999450683594
+          },
+          {
+            "time": "2026-01-30",
+            "value": 191.1300048828125
+          },
+          {
+            "time": "2026-02-02",
+            "value": 185.61000061035156
+          },
+          {
+            "time": "2026-02-03",
+            "value": 180.33999633789062
+          },
+          {
+            "time": "2026-02-04",
+            "value": 174.19000244140625
+          },
+          {
+            "time": "2026-02-05",
+            "value": 171.8800048828125
+          },
+          {
+            "time": "2026-02-06",
+            "value": 185.41000366210938
+          },
+          {
+            "time": "2026-02-09",
+            "value": 190.0399932861328
+          },
+          {
+            "time": "2026-02-10",
+            "value": 188.5399932861328
+          },
+          {
+            "time": "2026-02-11",
+            "value": 190.0500030517578
+          },
+          {
+            "time": "2026-02-12",
+            "value": 186.94000244140625
+          },
+          {
+            "time": "2026-02-13",
+            "value": 182.80999755859375
+          },
+          {
+            "time": "2026-02-17",
+            "value": 184.97000122070312
+          },
+          {
+            "time": "2026-02-18",
+            "value": 187.97999572753906
+          },
+          {
+            "time": "2026-02-19",
+            "value": 187.89999389648438
+          },
+          {
+            "time": "2026-02-20",
+            "value": 189.82000732421875
+          },
+          {
+            "time": "2026-02-23",
+            "value": 191.5500030517578
+          },
+          {
+            "time": "2026-02-24",
+            "value": 192.85000610351562
+          },
+          {
+            "time": "2026-02-25",
+            "value": 195.55999755859375
+          },
+          {
+            "time": "2026-02-26",
+            "value": 184.88999938964844
+          },
+          {
+            "time": "2026-02-27",
+            "value": 177.19000244140625
+          },
+          {
+            "time": "2026-03-02",
+            "value": 182.47999572753906
+          },
+          {
+            "time": "2026-03-03",
+            "value": 180.0500030517578
+          },
+          {
+            "time": "2026-03-04",
+            "value": 183.0399932861328
+          },
+          {
+            "time": "2026-03-05",
+            "value": 183.33999633789062
+          },
+          {
+            "time": "2026-03-06",
+            "value": 177.82000732421875
+          }
+        ]
+      },
+      "signals": {
+        "trend_label": "STRONG UPTREND ",
+        "sentiment_score": -0.11086666584014893,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "Top Wall Street analysts are bullish on these 3 stocks despite ongoing volatility",
+          "Dow Jones Industrial Average Falls 453 Points as Oil Surge and Weak Jobs Data Weigh on Markets",
+          "The $200 Billion Question: Is Amazon Finally Ready to Pay a Dividend?",
+          "Nvidia sets $4 million target cash bonus for CEO Huang under fiscal 2027 plan",
+          "NVIDIA Corporation (NVDA) Price Target Increased to $220 at Deutsche Bank",
+          "Nvidia pauses new AI startup bets after backing OpenAI, Anthropic",
+          "Is Nvidia (NVDA) Shifting its Investment Strategy Towards OpenAI and Anthropic?",
+          "Divyangjan staff association airs fears over service continuity, protection in IDBI Bank",
+          "New Export Rules Could Be Coming for AI Chipmakers' Sales",
+          "3 world-class ASX ETFs to buy and hold",
+          "Beware the IVES of March: Why This Rookie ETF May Be a Shakespearean Tragedy in the Making",
+          "US stock market today dow jones crash 800 points: Dow, S&P 500 and Nasdaq all in deep red \u2014 What\u2019s happening to Wall Street today?",
+          "Investors Are Piling Into the 'HALO' Trade. Here's What That Means and What They're Buying",
+          "Dow down 400 points while Nasdaq rises: Why Dow Jones drops over 400 points today while Nasdaq stays in green \u2014 S&P 500 also slips as US stock market shows mixed signals",
+          "GraniteShares Announces Weekly Distributions for its YieldBOOST ETFs: COYY, TSYY, NVYY, XBTY, AMYY, TQQY, AZYY, YSPY, MTYY, PLYY, HOYY, SMYY, BBYY, FBYY, IOYY, MAAY, NUGY, SEMY, QBY, RGYY, HMYY and RTYY"
+        ],
+        "chart_path": "data\\charts\\2026-03-09\\NVDA_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "SI=F",
+        "source_symbol": "SI=F",
+        "generated_at": "2026-03-09T14:16:46Z",
+        "market_session_date": "2026-03-09",
+        "mode": "live"
+      },
+      "market": {
+        "current_price": 84.01000213623047,
+        "predicted_price_next_session": 83.0959806060791,
+        "history": [
+          {
+            "time": "2025-12-26",
+            "value": 76.48600006103516
+          },
+          {
+            "time": "2025-12-29",
+            "value": 69.85600280761719
+          },
+          {
+            "time": "2025-12-30",
+            "value": 77.3740005493164
+          },
+          {
+            "time": "2025-12-31",
+            "value": 70.13400268554688
+          },
+          {
+            "time": "2026-01-02",
+            "value": 70.55599975585938
+          },
+          {
+            "time": "2026-01-05",
+            "value": 76.16400146484375
+          },
+          {
+            "time": "2026-01-06",
+            "value": 80.52999877929688
+          },
+          {
+            "time": "2026-01-07",
+            "value": 77.13500213623047
+          },
+          {
+            "time": "2026-01-08",
+            "value": 74.71600341796875
+          },
+          {
+            "time": "2026-01-09",
+            "value": 78.88400268554688
+          },
+          {
+            "time": "2026-01-12",
+            "value": 84.61000061035156
+          },
+          {
+            "time": "2026-01-13",
+            "value": 85.87699890136719
+          },
+          {
+            "time": "2026-01-14",
+            "value": 90.86900329589844
+          },
+          {
+            "time": "2026-01-15",
+            "value": 91.8759994506836
+          },
+          {
+            "time": "2026-01-16",
+            "value": 88.09100341796875
+          },
+          {
+            "time": "2026-01-20",
+            "value": 94.20600128173828
+          },
+          {
+            "time": "2026-01-21",
+            "value": 92.20999908447266
+          },
+          {
+            "time": "2026-01-22",
+            "value": 95.97599792480469
+          },
+          {
+            "time": "2026-01-23",
+            "value": 100.92500305175781
+          },
+          {
+            "time": "2026-01-26",
+            "value": 115.08000183105469
+          },
+          {
+            "time": "2026-01-27",
+            "value": 105.52300262451172
+          },
+          {
+            "time": "2026-01-28",
+            "value": 113.11100006103516
+          },
+          {
+            "time": "2026-01-29",
+            "value": 114.03700256347656
+          },
+          {
+            "time": "2026-01-30",
+            "value": 78.29000091552734
+          },
+          {
+            "time": "2026-02-02",
+            "value": 76.77799987792969
+          },
+          {
+            "time": "2026-02-03",
+            "value": 83.04199981689453
+          },
+          {
+            "time": "2026-02-04",
+            "value": 84.16500091552734
+          },
+          {
+            "time": "2026-02-05",
+            "value": 76.52899932861328
+          },
+          {
+            "time": "2026-02-06",
+            "value": 76.73500061035156
+          },
+          {
+            "time": "2026-02-09",
+            "value": 82.06500244140625
+          },
+          {
+            "time": "2026-02-10",
+            "value": 80.21800231933594
+          },
+          {
+            "time": "2026-02-11",
+            "value": 83.75399780273438
+          },
+          {
+            "time": "2026-02-12",
+            "value": 75.5459976196289
+          },
+          {
+            "time": "2026-02-13",
+            "value": 77.85099792480469
+          },
+          {
+            "time": "2026-02-17",
+            "value": 73.4469985961914
+          },
+          {
+            "time": "2026-02-18",
+            "value": 77.50900268554688
+          },
+          {
+            "time": "2026-02-19",
+            "value": 77.56500244140625
+          },
+          {
+            "time": "2026-02-20",
+            "value": 82.28299713134766
+          },
+          {
+            "time": "2026-02-23",
+            "value": 86.52300262451172
+          },
+          {
+            "time": "2026-02-24",
+            "value": 87.45700073242188
+          },
+          {
+            "time": "2026-02-25",
+            "value": 90.93900299072266
+          },
+          {
+            "time": "2026-02-26",
+            "value": 86.99800109863281
+          },
+          {
+            "time": "2026-02-27",
+            "value": 92.68199920654297
+          },
+          {
+            "time": "2026-03-02",
+            "value": 88.28399658203125
+          },
+          {
+            "time": "2026-03-03",
+            "value": 82.9229965209961
+          },
+          {
+            "time": "2026-03-04",
+            "value": 82.63300323486328
+          },
+          {
+            "time": "2026-03-05",
+            "value": 81.68699645996094
+          },
+          {
+            "time": "2026-03-06",
+            "value": 83.81600189208984
+          },
+          {
+            "time": "2026-03-09",
+            "value": 84.01000213623047
+          }
+        ]
+      },
+      "signals": {
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": 0.0,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "Show HN: Kula \u2013 Lightweight, self-contained Linux server monitoring tool",
+          "Harnessing fano-like line shape resonance in a rectangular waveguide for filtering applications",
+          "From tests to truth: A misclassification-aware machine learning framework for estimating brucellosis seroprevalence in wild canids",
+          "Motorola Edge 70 Fusion (India) hands-on: Snapdragon 7s Gen 4 SoC and 7,000 mAh battery",
+          "chemsmart 0.3.2",
+          "Cm-p5, a synthetic antimicrobial peptide shows anti-Trypanosoma cruzi activity",
+          "Understanding security challenges in the software supply chain through causal relationships",
+          "Di tutto conosciamo il prezzo. Di niente il valore. F. Nietzsche. AFORISMI-CITAZIONI",
+          "Sub-micron-resolution temperature mapping of Zn negative electrode for flow batteries",
+          "Atomic imaging for hydrogen and boron aggregates in boron-doped diamond by spectro-photoelectron holography",
+          "Boston Celtics Daily Links 3/4/26",
+          "nayan-tqdm added to PyPI",
+          "Topological metrics as evolutionary and dynamical descriptors of conformational landscapes within protein families",
+          "Multimorbidity in the Brazilian adult population: Protocol for a systematic review and meta-analysis of prevalence",
+          "Huanggan decoction ameliorates cholestatic hepatic fibrosis in rats via TGF-\u03b21/Smad3 signaling pathway"
+        ],
+        "chart_path": "data\\charts\\2026-03-09\\SI=F_trend.png"
+      }
+    },
+    {
+      "meta": {
+        "symbol": "TSLA",
+        "source_symbol": "TSLA",
+        "generated_at": "2026-03-09T14:16:48Z",
+        "market_session_date": "2026-03-06",
+        "mode": "live"
+      },
+      "market": {
+        "current_price": 384.0033874511719,
+        "predicted_price_next_session": 404.69749938964844,
+        "history": [
+          {
+            "time": "2025-12-10",
+            "value": 451.45001220703125
+          },
+          {
+            "time": "2025-12-11",
+            "value": 446.8900146484375
+          },
+          {
+            "time": "2025-12-12",
+            "value": 458.9599914550781
+          },
+          {
+            "time": "2025-12-15",
+            "value": 475.30999755859375
+          },
+          {
+            "time": "2025-12-16",
+            "value": 489.8800048828125
+          },
+          {
+            "time": "2025-12-17",
+            "value": 467.260009765625
+          },
+          {
+            "time": "2025-12-18",
+            "value": 483.3699951171875
+          },
+          {
+            "time": "2025-12-19",
+            "value": 481.20001220703125
+          },
+          {
+            "time": "2025-12-22",
+            "value": 488.7300109863281
+          },
+          {
+            "time": "2025-12-23",
+            "value": 485.55999755859375
+          },
+          {
+            "time": "2025-12-24",
+            "value": 485.3999938964844
+          },
+          {
+            "time": "2025-12-26",
+            "value": 475.19000244140625
+          },
+          {
+            "time": "2025-12-29",
+            "value": 459.6400146484375
+          },
+          {
+            "time": "2025-12-30",
+            "value": 454.42999267578125
+          },
+          {
+            "time": "2025-12-31",
+            "value": 449.7200012207031
+          },
+          {
+            "time": "2026-01-02",
+            "value": 438.07000732421875
+          },
+          {
+            "time": "2026-01-05",
+            "value": 451.6700134277344
+          },
+          {
+            "time": "2026-01-06",
+            "value": 432.9599914550781
+          },
+          {
+            "time": "2026-01-07",
+            "value": 431.4100036621094
+          },
+          {
+            "time": "2026-01-08",
+            "value": 435.79998779296875
+          },
+          {
+            "time": "2026-01-09",
+            "value": 445.010009765625
+          },
+          {
+            "time": "2026-01-12",
+            "value": 448.9599914550781
+          },
+          {
+            "time": "2026-01-13",
+            "value": 447.20001220703125
+          },
+          {
+            "time": "2026-01-14",
+            "value": 439.20001220703125
+          },
+          {
+            "time": "2026-01-15",
+            "value": 438.57000732421875
+          },
+          {
+            "time": "2026-01-16",
+            "value": 437.5
+          },
+          {
+            "time": "2026-01-20",
+            "value": 419.25
+          },
+          {
+            "time": "2026-01-21",
+            "value": 431.44000244140625
+          },
+          {
+            "time": "2026-01-22",
+            "value": 449.3599853515625
+          },
+          {
+            "time": "2026-01-23",
+            "value": 449.05999755859375
+          },
+          {
+            "time": "2026-01-26",
+            "value": 435.20001220703125
+          },
+          {
+            "time": "2026-01-27",
+            "value": 430.8999938964844
+          },
+          {
+            "time": "2026-01-28",
+            "value": 431.4599914550781
+          },
+          {
+            "time": "2026-01-29",
+            "value": 416.55999755859375
+          },
+          {
+            "time": "2026-01-30",
+            "value": 430.4100036621094
+          },
+          {
+            "time": "2026-02-02",
+            "value": 421.80999755859375
+          },
+          {
+            "time": "2026-02-03",
+            "value": 421.9599914550781
+          },
+          {
+            "time": "2026-02-04",
+            "value": 406.010009765625
+          },
+          {
+            "time": "2026-02-05",
+            "value": 397.2099914550781
+          },
+          {
+            "time": "2026-02-06",
+            "value": 411.1099853515625
+          },
+          {
+            "time": "2026-02-09",
+            "value": 417.32000732421875
+          },
+          {
+            "time": "2026-02-10",
+            "value": 425.2099914550781
+          },
+          {
+            "time": "2026-02-11",
+            "value": 428.2699890136719
+          },
+          {
+            "time": "2026-02-12",
+            "value": 417.07000732421875
+          },
+          {
+            "time": "2026-02-13",
+            "value": 417.44000244140625
+          },
+          {
+            "time": "2026-02-17",
+            "value": 410.6300048828125
+          },
+          {
+            "time": "2026-02-18",
+            "value": 411.32000732421875
+          },
+          {
+            "time": "2026-02-19",
+            "value": 411.7099914550781
+          },
+          {
+            "time": "2026-02-20",
+            "value": 411.82000732421875
+          },
+          {
+            "time": "2026-02-23",
+            "value": 399.8299865722656
+          },
+          {
+            "time": "2026-02-24",
+            "value": 409.3800048828125
+          },
+          {
+            "time": "2026-02-25",
+            "value": 417.3999938964844
+          },
+          {
+            "time": "2026-02-26",
+            "value": 408.5799865722656
+          },
+          {
+            "time": "2026-02-27",
+            "value": 402.510009765625
+          },
+          {
+            "time": "2026-03-02",
+            "value": 403.32000732421875
+          },
+          {
+            "time": "2026-03-03",
+            "value": 392.42999267578125
+          },
+          {
+            "time": "2026-03-04",
+            "value": 405.94000244140625
+          },
+          {
+            "time": "2026-03-05",
+            "value": 405.54998779296875
+          },
+          {
+            "time": "2026-03-06",
+            "value": 396.7300109863281
+          }
+        ]
+      },
+      "signals": {
+        "trend_label": "STRONG UPTREND ",
+        "sentiment_score": 0.10178745587666829,
+        "check_engine_light": " GREEN (Safe to Proceed)"
+      },
+      "evidence": {
+        "headlines_used": [
+          "Tesla Stock Faces Volatility Ahead of Pivotal NHTSA Deadline as Tesla Pivots to Autonomy and Robotics",
+          "Bank of America Is Bullish on Tesla Again. Is That a Reason to Buy TSLA Stock?",
+          "Bank of America Resumes Coverage on Tesla, Inc. (TSLA), Upgrades to Buy",
+          "The 24/7 Takeover: How Crypto\u2019s $130B TradFi Surge Is Absorbing The Global Commodities Trade",
+          "The $200 Billion Question: Is Amazon Finally Ready to Pay a Dividend?",
+          "OKX is building a social network directly into its trading app after massive $25 billion valuation",
+          "Tesla Stock Dips Slightly in Early Trading Amid Robotaxi Optimism and Analyst Upgrades",
+          "GraniteShares Announces Weekly Distributions for its YieldBOOST ETFs: COYY, TSYY, NVYY, XBTY, AMYY, TQQY, AZYY, YSPY, MTYY, PLYY, HOYY, SMYY, BBYY, FBYY, IOYY, MAAY, NUGY, SEMY, QBY, RGYY, HMYY and RTYY",
+          "polygon-options-puller added to PyPI",
+          "Tesla\u2019s (TSLA) February Sales Figures Show Sales Growth",
+          "How Hyperliquid\u2019s TradFi Edge Could Lift HYPE Price 90% \u2014 New All-Time High Coming?",
+          "I Went $100,000 All-In on This Mega-Yield ETF \u2014 Here\u2019s Exactly What Happened Next",
+          "Ray Dalio: Gold is a better option than Bitcoin, tech stocks because\u2026",
+          "Tesla Shares Dip 2.7% Amid Geopolitical Volatility, But Analyst Upgrades Signal Optimism for Robotaxi",
+          "Interpretable ESG\u2013sentiment hybrid deep learning for asset return forecasting with quantified interactions and latency-aware deployment"
+        ],
+        "chart_path": "data\\charts\\2026-03-09\\TSLA_trend.png"
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "symbol": "AAPL",
+      "current_session_date": "2026-03-09",
+      "previous_session_date": "2026-03-06",
+      "has_previous_session": true,
+      "changes": {
+        "current_price_delta": -1.7599945068359375,
+        "predicted_price_delta": -1.298495025634793,
+        "sentiment_score_delta": -0.24988758166631064,
+        "trend_label_changed": true,
+        "check_engine_light_changed": true
+      },
+      "current_snapshot": {
+        "current_price": 255.6999969482422,
+        "predicted_price_next_session": 257.2026890563965,
+        "trend_label": "STRONG UPTREND ",
+        "sentiment_score": -0.06359819968541464,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "previous_snapshot": {
+        "current_price": 257.4599914550781,
+        "predicted_price_next_session": 258.5011840820313,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": 0.186289381980896,
+        "check_engine_light": " GREEN (Safe to Proceed)"
+      }
+    },
+    {
+      "symbol": "AMZN",
+      "current_session_date": "2026-03-06",
+      "previous_session_date": "2026-03-05",
+      "has_previous_session": true,
+      "changes": {
+        "current_price_delta": -10.389999389648438,
+        "predicted_price_delta": -2.120982172099076,
+        "sentiment_score_delta": -0.02685199975967407,
+        "trend_label_changed": true,
+        "check_engine_light_changed": true
+      },
+      "current_snapshot": {
+        "current_price": 208.5500030517578,
+        "predicted_price_next_session": 214.0230047607422,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": 0.0,
+        "check_engine_light": " YELLOW (Neutral / Noise)"
+      },
+      "previous_snapshot": {
+        "current_price": 218.94000244140625,
+        "predicted_price_next_session": 216.14398693284127,
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": 0.02685199975967407,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      }
+    },
+    {
+      "symbol": "CL=F",
+      "current_session_date": "2026-03-09",
+      "previous_session_date": null,
+      "has_previous_session": false,
+      "changes": {}
+    },
+    {
+      "symbol": "DX-Y.NYB",
+      "current_session_date": "2026-03-09",
+      "previous_session_date": null,
+      "has_previous_session": false,
+      "changes": {}
+    },
+    {
+      "symbol": "GC=F",
+      "current_session_date": "2026-03-09",
+      "previous_session_date": null,
+      "has_previous_session": false,
+      "changes": {}
+    },
+    {
+      "symbol": "GOOG",
+      "current_session_date": "2026-03-06",
+      "previous_session_date": "2026-03-05",
+      "has_previous_session": true,
+      "changes": {
+        "current_price_delta": -4.92999267578125,
+        "predicted_price_delta": 1.2950331503356551,
+        "sentiment_score_delta": -0.25533433953921,
+        "trend_label_changed": true,
+        "check_engine_light_changed": true
+      },
+      "current_snapshot": {
+        "current_price": 295.9800109863281,
+        "predicted_price_next_session": 302.3962948608398,
+        "trend_label": "STRONG UPTREND ",
+        "sentiment_score": -0.07749665180842082,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "previous_snapshot": {
+        "current_price": 300.9100036621094,
+        "predicted_price_next_session": 301.10126171050416,
+        "trend_label": "WEAK DOWNTREND ",
+        "sentiment_score": 0.17783768773078917,
+        "check_engine_light": " GREEN (Safe to Proceed)"
+      }
+    },
+    {
+      "symbol": "HG=F",
+      "current_session_date": "2026-03-09",
+      "previous_session_date": null,
+      "has_previous_session": false,
+      "changes": {}
+    },
+    {
+      "symbol": "META",
+      "current_session_date": "2026-03-06",
+      "previous_session_date": "2026-03-05",
+      "has_previous_session": true,
+      "changes": {
+        "current_price_delta": -32.20001220703125,
+        "predicted_price_delta": -8.670705634117553,
+        "sentiment_score_delta": 0.15094932317733767,
+        "trend_label_changed": false,
+        "check_engine_light_changed": true
+      },
+      "current_snapshot": {
+        "current_price": 628.3699951171875,
+        "predicted_price_next_session": 647.7913177490234,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": -0.04173119068145752,
+        "check_engine_light": " YELLOW (Neutral / Noise)"
+      },
+      "previous_snapshot": {
+        "current_price": 660.5700073242188,
+        "predicted_price_next_session": 656.462023383141,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": -0.19268051385879517,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      }
+    },
+    {
+      "symbol": "MSFT",
+      "current_session_date": "2026-03-06",
+      "previous_session_date": "2026-03-05",
+      "has_previous_session": true,
+      "changes": {
+        "current_price_delta": -6.08990478515625,
+        "predicted_price_delta": 2.7195409593472277,
+        "sentiment_score_delta": 0.6238484740257263,
+        "trend_label_changed": true,
+        "check_engine_light_changed": true
+      },
+      "current_snapshot": {
+        "current_price": 404.590087890625,
+        "predicted_price_next_session": 407.589885559082,
+        "trend_label": "WEAK DOWNTREND ",
+        "sentiment_score": 0.057345902919769286,
+        "check_engine_light": " GREEN (Safe to Proceed)"
+      },
+      "previous_snapshot": {
+        "current_price": 410.67999267578125,
+        "predicted_price_next_session": 404.8703445997348,
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": -0.566502571105957,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      }
+    },
+    {
+      "symbol": "NKE",
+      "current_session_date": "2026-03-06",
+      "previous_session_date": "2026-03-05",
+      "has_previous_session": true,
+      "changes": {
+        "current_price_delta": -2.4599990844726562,
+        "predicted_price_delta": 0.6235160379915143,
+        "sentiment_score_delta": -0.07423612972100575,
+        "trend_label_changed": true,
+        "check_engine_light_changed": false
+      },
+      "current_snapshot": {
+        "current_price": 55.560001373291016,
+        "predicted_price_next_session": 59.023699264526364,
+        "trend_label": "STRONG UPTREND ",
+        "sentiment_score": -0.06643453737099965,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "previous_snapshot": {
+        "current_price": 58.02000045776367,
+        "predicted_price_next_session": 58.40018322653485,
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": 0.0078015923500061035,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      }
+    },
+    {
+      "symbol": "NVDA",
+      "current_session_date": "2026-03-06",
+      "previous_session_date": "2026-03-05",
+      "has_previous_session": true,
+      "changes": {
+        "current_price_delta": -6.10009765625,
+        "predicted_price_delta": 1.7318065200983028,
+        "sentiment_score_delta": -0.35758185386657715,
+        "trend_label_changed": true,
+        "check_engine_light_changed": true
+      },
+      "current_snapshot": {
+        "current_price": 177.23989868164062,
+        "predicted_price_next_session": 182.90759887695313,
+        "trend_label": "STRONG UPTREND ",
+        "sentiment_score": -0.11086666584014893,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      },
+      "previous_snapshot": {
+        "current_price": 183.33999633789062,
+        "predicted_price_next_session": 181.17579235685483,
+        "trend_label": "WEAK UPTREND ",
+        "sentiment_score": 0.24671518802642822,
+        "check_engine_light": " GREEN (Safe to Proceed)"
+      }
+    },
+    {
+      "symbol": "SI=F",
+      "current_session_date": "2026-03-09",
+      "previous_session_date": null,
+      "has_previous_session": false,
+      "changes": {}
+    },
+    {
+      "symbol": "TSLA",
+      "current_session_date": "2026-03-06",
+      "previous_session_date": "2026-03-05",
+      "has_previous_session": true,
+      "changes": {
+        "current_price_delta": -21.546600341796875,
+        "predicted_price_delta": 5.308295623176434,
+        "sentiment_score_delta": 0.11983416875203451,
+        "trend_label_changed": true,
+        "check_engine_light_changed": true
+      },
+      "current_snapshot": {
+        "current_price": 384.0033874511719,
+        "predicted_price_next_session": 404.69749938964844,
+        "trend_label": "STRONG UPTREND ",
+        "sentiment_score": 0.10178745587666829,
+        "check_engine_light": " GREEN (Safe to Proceed)"
+      },
+      "previous_snapshot": {
+        "current_price": 405.54998779296875,
+        "predicted_price_next_session": 399.389203766472,
+        "trend_label": "STRONG DOWNTREND ",
+        "sentiment_score": -0.01804671287536621,
+        "check_engine_light": " RED (Risk Detected - Caution)"
+      }
+    }
+  ]
+}

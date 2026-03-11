@@ -1,0 +1,490 @@
+[
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "source_symbol": "DX-Y.NYB",
+      "generated_at": "2026-03-09T14:16:30Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 99.32099914550781,
+      "predicted_price_next_session": 99.1060195159912,
+      "history": [
+        {
+          "time": "2025-12-26",
+          "value": 98.0199966430664
+        },
+        {
+          "time": "2025-12-29",
+          "value": 98.04000091552734
+        },
+        {
+          "time": "2025-12-30",
+          "value": 98.23999786376953
+        },
+        {
+          "time": "2025-12-31",
+          "value": 98.27999877929688
+        },
+        {
+          "time": "2026-01-02",
+          "value": 98.41999816894531
+        },
+        {
+          "time": "2026-01-05",
+          "value": 98.2699966430664
+        },
+        {
+          "time": "2026-01-06",
+          "value": 98.58000183105469
+        },
+        {
+          "time": "2026-01-07",
+          "value": 98.68000030517578
+        },
+        {
+          "time": "2026-01-08",
+          "value": 98.93000030517578
+        },
+        {
+          "time": "2026-01-09",
+          "value": 99.12999725341797
+        },
+        {
+          "time": "2026-01-12",
+          "value": 98.86000061035156
+        },
+        {
+          "time": "2026-01-13",
+          "value": 99.12999725341797
+        },
+        {
+          "time": "2026-01-14",
+          "value": 99.12999725341797
+        },
+        {
+          "time": "2026-01-15",
+          "value": 99.31999969482422
+        },
+        {
+          "time": "2026-01-16",
+          "value": 99.38999938964844
+        },
+        {
+          "time": "2026-01-20",
+          "value": 98.63999938964844
+        },
+        {
+          "time": "2026-01-21",
+          "value": 98.76000213623047
+        },
+        {
+          "time": "2026-01-22",
+          "value": 98.36000061035156
+        },
+        {
+          "time": "2026-01-23",
+          "value": 97.5999984741211
+        },
+        {
+          "time": "2026-01-26",
+          "value": 97.04000091552734
+        },
+        {
+          "time": "2026-01-27",
+          "value": 96.22000122070312
+        },
+        {
+          "time": "2026-01-28",
+          "value": 96.44999694824219
+        },
+        {
+          "time": "2026-01-29",
+          "value": 96.27999877929688
+        },
+        {
+          "time": "2026-01-30",
+          "value": 96.98999786376953
+        },
+        {
+          "time": "2026-02-02",
+          "value": 97.61000061035156
+        },
+        {
+          "time": "2026-02-03",
+          "value": 97.44000244140625
+        },
+        {
+          "time": "2026-02-04",
+          "value": 97.62000274658203
+        },
+        {
+          "time": "2026-02-05",
+          "value": 97.81999969482422
+        },
+        {
+          "time": "2026-02-06",
+          "value": 97.62999725341797
+        },
+        {
+          "time": "2026-02-09",
+          "value": 96.81999969482422
+        },
+        {
+          "time": "2026-02-10",
+          "value": 96.80000305175781
+        },
+        {
+          "time": "2026-02-11",
+          "value": 96.83000183105469
+        },
+        {
+          "time": "2026-02-12",
+          "value": 96.93000030517578
+        },
+        {
+          "time": "2026-02-13",
+          "value": 96.87999725341797
+        },
+        {
+          "time": "2026-02-17",
+          "value": 97.16000366210938
+        },
+        {
+          "time": "2026-02-18",
+          "value": 97.69999694824219
+        },
+        {
+          "time": "2026-02-19",
+          "value": 97.93000030517578
+        },
+        {
+          "time": "2026-02-20",
+          "value": 97.80000305175781
+        },
+        {
+          "time": "2026-02-23",
+          "value": 97.69999694824219
+        },
+        {
+          "time": "2026-02-24",
+          "value": 97.87999725341797
+        },
+        {
+          "time": "2026-02-25",
+          "value": 97.69999694824219
+        },
+        {
+          "time": "2026-02-26",
+          "value": 97.79000091552734
+        },
+        {
+          "time": "2026-02-27",
+          "value": 97.61000061035156
+        },
+        {
+          "time": "2026-03-02",
+          "value": 98.37999725341797
+        },
+        {
+          "time": "2026-03-03",
+          "value": 99.05000305175781
+        },
+        {
+          "time": "2026-03-04",
+          "value": 98.7699966430664
+        },
+        {
+          "time": "2026-03-05",
+          "value": 99.31999969482422
+        },
+        {
+          "time": "2026-03-06",
+          "value": 98.98999786376953
+        },
+        {
+          "time": "2026-03-09",
+          "value": 99.31600189208984
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.8820429784911019,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Gold tumbles amid broader market sell-off as dollar rises",
+        "Stock market today: Dow falls by 700 points, S&P 500 and Nasdaq sink as oil surges amid war worries",
+        "Stock market today: Dow, S&P 500, Nasdaq slide as Trump's latest tariff salvo reverberates through markets",
+        "Stock market today: Dow, S&P 500, Nasdaq rise after Supreme Court strikes down Trump tariffs",
+        "Gold price below $5,000 as investors wait on Fed guidance for clues",
+        "Stock market today: Nasdaq, S&P 500 slide to kick off shortened week with AI fears in focus",
+        "Stock market today: Dow, S&P 500, Nasdaq futures slip after Dow's 50,000 rally as jobs, inflation reports loom"
+      ],
+      "chart_path": "data\\charts\\2026-03-09\\DX-Y.NYB_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "source_symbol": "DX-Y.NYB",
+      "generated_at": "2026-03-10T08:00:35Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 98.52100372314453,
+      "predicted_price_next_session": 99.08683929443359,
+      "history": [
+        {
+          "time": "2025-12-29",
+          "value": 98.04000091552734
+        },
+        {
+          "time": "2025-12-30",
+          "value": 98.23999786376953
+        },
+        {
+          "time": "2025-12-31",
+          "value": 98.27999877929688
+        },
+        {
+          "time": "2026-01-02",
+          "value": 98.41999816894531
+        },
+        {
+          "time": "2026-01-05",
+          "value": 98.2699966430664
+        },
+        {
+          "time": "2026-01-06",
+          "value": 98.58000183105469
+        },
+        {
+          "time": "2026-01-07",
+          "value": 98.68000030517578
+        },
+        {
+          "time": "2026-01-08",
+          "value": 98.93000030517578
+        },
+        {
+          "time": "2026-01-09",
+          "value": 99.12999725341797
+        },
+        {
+          "time": "2026-01-12",
+          "value": 98.86000061035156
+        },
+        {
+          "time": "2026-01-13",
+          "value": 99.12999725341797
+        },
+        {
+          "time": "2026-01-14",
+          "value": 99.12999725341797
+        },
+        {
+          "time": "2026-01-15",
+          "value": 99.31999969482422
+        },
+        {
+          "time": "2026-01-16",
+          "value": 99.38999938964844
+        },
+        {
+          "time": "2026-01-20",
+          "value": 98.63999938964844
+        },
+        {
+          "time": "2026-01-21",
+          "value": 98.76000213623047
+        },
+        {
+          "time": "2026-01-22",
+          "value": 98.36000061035156
+        },
+        {
+          "time": "2026-01-23",
+          "value": 97.5999984741211
+        },
+        {
+          "time": "2026-01-26",
+          "value": 97.04000091552734
+        },
+        {
+          "time": "2026-01-27",
+          "value": 96.22000122070312
+        },
+        {
+          "time": "2026-01-28",
+          "value": 96.44999694824219
+        },
+        {
+          "time": "2026-01-29",
+          "value": 96.27999877929688
+        },
+        {
+          "time": "2026-01-30",
+          "value": 96.98999786376953
+        },
+        {
+          "time": "2026-02-02",
+          "value": 97.61000061035156
+        },
+        {
+          "time": "2026-02-03",
+          "value": 97.44000244140625
+        },
+        {
+          "time": "2026-02-04",
+          "value": 97.62000274658203
+        },
+        {
+          "time": "2026-02-05",
+          "value": 97.81999969482422
+        },
+        {
+          "time": "2026-02-06",
+          "value": 97.62999725341797
+        },
+        {
+          "time": "2026-02-09",
+          "value": 96.81999969482422
+        },
+        {
+          "time": "2026-02-10",
+          "value": 96.80000305175781
+        },
+        {
+          "time": "2026-02-11",
+          "value": 96.83000183105469
+        },
+        {
+          "time": "2026-02-12",
+          "value": 96.93000030517578
+        },
+        {
+          "time": "2026-02-13",
+          "value": 96.87999725341797
+        },
+        {
+          "time": "2026-02-17",
+          "value": 97.16000366210938
+        },
+        {
+          "time": "2026-02-18",
+          "value": 97.69999694824219
+        },
+        {
+          "time": "2026-02-19",
+          "value": 97.93000030517578
+        },
+        {
+          "time": "2026-02-20",
+          "value": 97.80000305175781
+        },
+        {
+          "time": "2026-02-23",
+          "value": 97.69999694824219
+        },
+        {
+          "time": "2026-02-24",
+          "value": 97.87999725341797
+        },
+        {
+          "time": "2026-02-25",
+          "value": 97.69999694824219
+        },
+        {
+          "time": "2026-02-26",
+          "value": 97.79000091552734
+        },
+        {
+          "time": "2026-02-27",
+          "value": 97.61000061035156
+        },
+        {
+          "time": "2026-03-02",
+          "value": 98.37999725341797
+        },
+        {
+          "time": "2026-03-03",
+          "value": 99.05000305175781
+        },
+        {
+          "time": "2026-03-04",
+          "value": 98.7699966430664
+        },
+        {
+          "time": "2026-03-05",
+          "value": 99.31999969482422
+        },
+        {
+          "time": "2026-03-06",
+          "value": 98.98999786376953
+        },
+        {
+          "time": "2026-03-09",
+          "value": 99.18000030517578
+        },
+        {
+          "time": "2026-03-10",
+          "value": 98.52100372314453
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.8678621252377828,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Gold tumbles amid broader market sell-off as dollar rises",
+        "Stock market today: Dow falls by 700 points, S&P 500 and Nasdaq sink as oil surges amid war worries",
+        "Stock market today: Dow, S&P 500, Nasdaq slide as Trump's latest tariff salvo reverberates through markets",
+        "Stock market today: Dow, S&P 500, Nasdaq rise after Supreme Court strikes down Trump tariffs",
+        "Gold price below $5,000 as investors wait on Fed guidance for clues",
+        "Stock market today: Nasdaq, S&P 500 slide to kick off shortened week with AI fears in focus"
+      ],
+      "chart_path": "data\\charts\\2026-03-10\\DX-Y.NYB_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "source_symbol": "DX-Y.NYB",
+      "generated_at": "2026-03-10T14:02:24Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 98.73200225830078,
+      "predicted_price_next_session": 99.11129951477051
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.3939298689365387,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "DX-Y.NYB announces date for shareholder meeting",
+          "url": ""
+        },
+        {
+          "title": "DX-Y.NYB news flow remains active amid market volatility",
+          "url": ""
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/DX-Y.NYB_trend.png"
+    }
+  }
+]
