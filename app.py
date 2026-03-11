@@ -320,23 +320,42 @@ def submit_feedback():
             json.dump(logs, f, indent=2)
 
     candidate_paths = []
-    for candidate in (data_dir_log_path, preferred_log_path, runtime_fallback_path):
-        # Keep order deterministic and skip duplicates from equivalent paths.
-        if candidate not in candidate_paths:
-            candidate_paths.append(candidate)
+    for candidate in (preferred_log_path, data_dir_log_path, runtime_fallback_path):
+        resolved = candidate.resolve()
+        if resolved not in candidate_paths:
+            candidate_paths.append(resolved)
 
-    last_error = None
+    saved_paths = []
+    errors = []
     for candidate in candidate_paths:
         try:
             append_feedback(candidate)
-            return jsonify({"status": "success", "message": "Feedback logged"})
+            saved_paths.append(candidate)
         except OSError as exc:
-            last_error = exc
+            errors.append((candidate, exc))
 
-    if last_error:
-        print(f"Feedback write failed across all candidate paths: {last_error}")
+    if not saved_paths:
+        if errors:
+            detail = "; ".join(f"{path}: {exc}" for path, exc in errors)
+            print(f"Feedback write failed across all candidate paths: {detail}")
+        return jsonify({"error": "Failed to write feedback log"}), 500
 
-    return jsonify({"error": "Failed to write feedback log"}), 500
+    if errors:
+        detail = "; ".join(f"{path}: {exc}" for path, exc in errors)
+        print(f"Feedback partially saved. Failed paths: {detail}")
+
+    relative_saved = []
+    for path in saved_paths:
+        try:
+            relative_saved.append(str(path.relative_to(PROJECT_ROOT)))
+        except ValueError:
+            relative_saved.append(str(path))
+
+    return jsonify({
+        "status": "success",
+        "message": "Feedback logged",
+        "saved_to": relative_saved,
+    })
 
 @app.route('/api/session-summary/latest')
 def latest_session_summary():
