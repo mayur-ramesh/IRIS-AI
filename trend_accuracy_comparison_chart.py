@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -26,6 +27,7 @@ from typing import Dict, List, Optional, Tuple
 
 import matplotlib
 import numpy as np
+from storage_paths import resolve_data_dir
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -47,6 +49,7 @@ MODEL_COLORS = {
     "deepseek_v3": "#2ca02c",
     "gemini_v3_pro": "#d62728",
 }
+PROJECT_ROOT = Path(__file__).resolve().parent
 
 
 @dataclass
@@ -534,15 +537,48 @@ def resolve_default_output(data_dir: Path) -> Path:
     return data_dir / "charts" / date_str / "trend_accuracy_comparison_chart.png"
 
 
+def resolve_default_data_dir() -> Path:
+    demo_mode = os.environ.get("DEMO_MODE", "false").lower() == "true"
+    return resolve_data_dir(PROJECT_ROOT, demo_mode)
+
+
+def resolve_llm_base_dir(data_dir: Path, llm_data_dir_arg: str) -> Path:
+    explicit = str(llm_data_dir_arg or "").strip()
+    if explicit:
+        base = Path(explicit).expanduser()
+        if not base.is_absolute():
+            base = PROJECT_ROOT / base
+        return base
+
+    runtime_candidate = data_dir / "LLM reports"
+    if runtime_candidate.exists():
+        return data_dir
+
+    repo_candidate = PROJECT_ROOT / "data" / "LLM reports"
+    if repo_candidate.exists():
+        return PROJECT_ROOT / "data"
+
+    return data_dir
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Draw IRIS vs LLM trend prediction accuracy chart from /data JSON reports."
+        description="Draw IRIS vs LLM trend prediction accuracy chart from IRIS JSON reports."
     )
     parser.add_argument(
         "--data-dir",
         type=str,
-        default="data",
-        help="Path to data directory (default: data).",
+        default="",
+        help="Path to IRIS reports directory (default: active runtime dir from environment).",
+    )
+    parser.add_argument(
+        "--llm-data-dir",
+        type=str,
+        default="",
+        help=(
+            "Optional base directory for LLM report files (expects 'LLM reports/*.json'). "
+            "Default auto-fallback: data-dir, then project data/."
+        ),
     )
     parser.add_argument(
         "--tickers",
@@ -570,8 +606,13 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    data_dir = Path(args.data_dir)
+    data_dir = Path(args.data_dir).expanduser() if args.data_dir else resolve_default_data_dir()
+    if not data_dir.is_absolute():
+        data_dir = PROJECT_ROOT / data_dir
+    llm_base_dir = resolve_llm_base_dir(data_dir, args.llm_data_dir)
     output_path = Path(args.output) if args.output else resolve_default_output(data_dir)
+    if not output_path.is_absolute():
+        output_path = PROJECT_ROOT / output_path
     try:
         start_date = _normalize_date_arg(args.start_date, "--start-date")
         end_date = _normalize_date_arg(args.end_date, "--end-date")
@@ -579,6 +620,8 @@ def main() -> int:
         parser.error(str(exc))
     if start_date and end_date and start_date > end_date:
         parser.error("--start-date must be <= --end-date")
+    print(f"IRIS reports dir: {data_dir}")
+    print(f"LLM reports base dir: {llm_base_dir}")
 
     tracked_tickers = resolve_tracked_tickers(data_dir, args.tickers)
     if not tracked_tickers:
@@ -590,6 +633,11 @@ def main() -> int:
     iris_by_ticker = _filter_iris_by_date(iris_by_ticker_all, start_date, end_date)
     actual_directions = build_actual_direction_map(iris_by_ticker)
     actual_dates = _collect_actual_dates(actual_directions, tracked_tickers)
+    if not actual_dates:
+        print(
+            "Note: no completed next-session pairs found in the selected data range. "
+            "Run at least two sessions per ticker or use --data-dir pointing to historical archives."
+        )
 
     stats_by_model = {}
     for model_id, cfg in MODEL_CONFIG.items():
@@ -603,7 +651,7 @@ def main() -> int:
             continue
 
         relative_path = cfg["relative_path"]
-        model_path = (data_dir / relative_path) if relative_path is not None else None
+        model_path = (llm_base_dir / relative_path) if relative_path is not None else None
         if model_path is None:
             stats_by_model[model_id] = evaluate_model_accuracy([], actual_directions, tracked_tickers)
             continue
