@@ -76,6 +76,37 @@ document.addEventListener('DOMContentLoaded', () => {
     let historyRequestId = 0;
     const usdFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
 
+    const headlineDateFormatter = new Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    });
+
+    function formatHeadlineDate(raw) {
+      if (!raw) return '';
+      let d;
+      const num = Number(raw);
+      if (!isNaN(num) && num > 1e9) {
+        d = new Date(num * 1000);   // Unix seconds → ms
+      } else {
+        d = new Date(raw);
+      }
+      if (isNaN(d.getTime())) return '';
+      return headlineDateFormatter.format(d);
+    }
+
+    function extractDomain(url) {
+      if (!url) return '';
+      try {
+        return new URL(url).hostname.replace(/^www\./, '');
+      } catch {
+        return '';
+      }
+    }
+
     const chartTooltip = document.createElement('div');
     chartTooltip.className = 'chart-hover-tooltip';
     chartTooltip.style.position = 'absolute';
@@ -928,47 +959,66 @@ document.addEventListener('DOMContentLoaded', () => {
         // Headlines
         headlinesList.innerHTML = '';
         const headlines = data.evidence.headlines_used;
+
         if (headlines && headlines.length > 0) {
             headlines.forEach((headline) => {
-                let title = '';
-                let url = '';
-                if (headline && typeof headline === 'object') {
-                    title = String(headline.title || '').trim();
-                    url = String(headline.url || '').trim();
-                } else {
-                    title = String(headline || '').trim();
-                }
+                if (!headline || typeof headline !== 'object') return;
+                const title = String(headline.title || '').trim();
                 if (!title) return;
 
+                const url         = String(headline.url || '').trim();
+                const publishedAt = String(headline.published_at || '').trim();
+                const dateLabel   = formatHeadlineDate(publishedAt);
+                const domain      = extractDomain(url);
+                const isLink      = /^https?:\/\//i.test(url);
+
                 const li = document.createElement('li');
-                const isHttpUrl = /^https?:\/\//i.test(url);
-                if (isHttpUrl) {
-                    const link = document.createElement('a');
-                    link.href = url;
-                    link.target = '_blank';
-                    link.rel = 'noopener noreferrer';
-                    link.className = 'headline-link';
-                    link.textContent = title;
-                    li.appendChild(link);
-                } else {
-                    li.textContent = title;
+                li.className = 'headline-item' + (isLink ? '' : ' headline-item--no-url');
+
+                // Title — clickable link or plain span
+                const titleEl = document.createElement(isLink ? 'a' : 'span');
+                titleEl.className = 'headline-title';
+                titleEl.textContent = title;
+                if (isLink) {
+                    titleEl.href = url;
+                    titleEl.target = '_blank';
+                    titleEl.rel = 'noopener noreferrer';
                 }
+
+                // Meta row — date + dot + source domain
+                const metaEl = document.createElement('div');
+                metaEl.className = 'headline-meta';
+
+                if (dateLabel) {
+                    const dateSpan = document.createElement('span');
+                    dateSpan.className = 'headline-date';
+                    dateSpan.textContent = dateLabel;
+                    metaEl.appendChild(dateSpan);
+                }
+
+                if (dateLabel && domain) {
+                    const dot = document.createElement('span');
+                    dot.className = 'headline-dot';
+                    metaEl.appendChild(dot);
+                }
+
+                if (domain) {
+                    const srcSpan = document.createElement('span');
+                    srcSpan.className = 'headline-source' + (isLink ? '' : ' headline-source--none');
+                    srcSpan.textContent = isLink ? domain : 'no source URL';
+                    metaEl.appendChild(srcSpan);
+                }
+
+                li.appendChild(titleEl);
+                if (metaEl.hasChildNodes()) li.appendChild(metaEl);
                 headlinesList.appendChild(li);
             });
-            if (!headlinesList.children.length) {
-                const li = document.createElement('li');
-                li.textContent = "No recent headlines found.";
-                li.style.fontStyle = "italic";
-                li.style.color = "var(--text-muted)";
-                li.style.borderLeftColor = "transparent";
-                headlinesList.appendChild(li);
-            }
-        } else {
+        }
+
+        if (!headlinesList.children.length) {
             const li = document.createElement('li');
-            li.textContent = "No recent headlines found.";
-            li.style.fontStyle = "italic";
-            li.style.color = "var(--text-muted)";
-            li.style.borderLeftColor = "transparent";
+            li.className = 'headline-item headline-item--empty';
+            li.textContent = 'No recent headlines found.';
             headlinesList.appendChild(li);
         }
     }
