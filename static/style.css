@@ -451,70 +451,34 @@ header {
 .dashboard-3col {
   display: grid;
   grid-template-columns: 1fr 1fr 1.45fr;
-  grid-template-rows: 220px 220px;
-  gap: 1.2rem;
-  margin-bottom: 1.2rem;
+  gap: 1.5rem;
+  align-items: stretch;
+  margin-bottom: 2rem;
 }
 
-/* dash-col wrapper divs are removed from HTML; cards are direct grid items */
-.dash-col,
-.dash-col--left,
-.dash-col--mid,
-.dash-col--right {
-  display: contents;
-}
-
-/* All cards fill their grid cell */
-.dashboard-3col .card,
-.dashboard-3col .glass-panel {
+.dash-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   height: 100%;
+  min-height: 0;        /* lets flex children shrink below content size */
+}
+
+/* Left column: two cards share the full column height equally */
+.dash-col--left {
+  height: 100%;
+  min-height: 0;
+}
+
+.dash-col--left .card {
+  flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  box-sizing: border-box;
 }
 
-/* Grid placement for left column */
-.engine-light-card {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.sentiment-card {
-  grid-column: 1;
-  grid-row: 2;
-}
-
-/* Grid placement for mid column */
-.price-card {
-  grid-column: 2;
-  grid-row: 1;
-}
-
-.llm-card {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-/* Right column: headlines card spans both rows */
-.headlines-card {
-  grid-column: 3;
-  grid-row: 1 / span 2;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.headlines-card h3 {
-  flex-shrink: 0;
-}
-
-.headlines-card .headlines-list {
-  padding-right: 0.25rem;
-}
-
-/* Engine indicator fills leftover space inside Risk card */
-.engine-indicator {
+/* Engine indicator fills leftover vertical space inside Risk card */
+.dash-col--left .engine-indicator {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -523,7 +487,7 @@ header {
 }
 
 /* Sentiment body fills leftover space inside Sentiment card */
-.sentiment-meter {
+.dash-col--left .sentiment-meter {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -531,24 +495,51 @@ header {
   justify-content: center;
 }
 
-/* LLM card: info block fills remaining height, items share it equally */
-.llm-card .llm-info {
+/* Middle column */
+.dash-col--mid {
+  height: 100%;
+  min-height: 0;
+}
+
+.dash-col--mid .price-card {
+  flex-shrink: 0;
+}
+
+.dash-col--mid .llm-card {
   flex: 1;
   min-height: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
   overflow: hidden;
 }
 
-.llm-card .llm-report-item,
-.llm-card .llm-item {
+.dash-col--mid .llm-card .llm-info {
   flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* Right column: headlines card fills full height and scrolls internally */
+.dash-col--right {
+  height: 100%;
+  min-height: 0;
+}
+
+.dash-col--right .headlines-card {
+  flex: 1;
+  min-height: 0;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 44px;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.dash-col--right .headlines-card h3 {
   flex-shrink: 0;
+}
+
+.dash-col--right .headlines-card .headlines-list {
+  height: 80%;
+  padding-right: 0.25rem;
 }
 
 /* Predicted price: RED for uptrend, GREEN for downtrend (contrarian risk signal) */
@@ -764,13 +755,18 @@ header {
     display: flex;
     flex-direction: column;
     gap: 0;
-    flex: 1;
-    min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
     scroll-behavior: smooth;
     scrollbar-width: thin;
-    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-color: rgba(209,212,220,0.2) transparent;
+}
+
+.headlines-list::-webkit-scrollbar { width: 4px; }
+.headlines-list::-webkit-scrollbar-track { background: transparent; }
+.headlines-list::-webkit-scrollbar-thumb {
+    background: rgba(209,212,220,0.2);
+    border-radius: 99px;
 }
 
 .headline-item {
@@ -1162,38 +1158,27 @@ footer p {
 
     .dashboard-3col {
         grid-template-columns: 1fr;
-        grid-template-rows: none;
-        height: auto;
+        align-items: start;
     }
 
     .dash-col,
     .dash-col--left,
-    .dash-col--mid,
-    .dash-col--right {
-        display: block;
-    }
-
-    .engine-light-card,
-    .sentiment-card,
-    .price-card,
-    .llm-card {
-        grid-column: auto;
-        grid-row: auto;
-    }
-
-    .headlines-card {
-        grid-column: auto;
-        grid-row: auto;
+    .dash-col--right,
+    .dash-col--mid {
         height: auto;
+        min-height: unset;
     }
 
-    .dashboard-3col .card,
-    .dashboard-3col .glass-panel {
+    .dash-col--left .card {
+        flex: unset;
+    }
+
+    .dash-col--right .headlines-card {
+        max-height: 400px;
+    }
+
+    .dash-col--right .headlines-card .headlines-list {
         height: auto;
-    }
-
-    .headlines-list {
-        max-height: 360px;
-        flex: none;
+        max-height: 320px;
     }
 }
