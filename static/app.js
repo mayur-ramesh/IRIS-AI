@@ -623,6 +623,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 timeVisible: true,
                 secondsVisible: false,
                 rightOffset: 2,
+                tickMarkFormatter: (time, tickMarkType) => {
+                    const d = new Date(time * 1000);
+                    const o = { timeZone: 'UTC' };
+                    // TickMarkType: 0=Year 1=Month 2=DayOfMonth 3=Time 4=TimeWithSeconds
+                    if (tickMarkType === 0)
+                        return d.toLocaleDateString('en-US', { ...o, year: 'numeric' });
+                    if (tickMarkType === 1)
+                        return d.toLocaleDateString('en-US', { ...o, month: 'short' });
+                    if (tickMarkType === 2)
+                        return d.toLocaleDateString('en-US', { ...o, month: 'short', day: 'numeric' });
+                    if (tickMarkType === 3 || tickMarkType === 4)
+                        return d.toLocaleTimeString('en-US', { ...o, hour: '2-digit', minute: '2-digit', hour12: false });
+                    return d.toLocaleDateString('en-US', o);
+                },
             },
             crosshair: {
                 mode: LightweightCharts.CrosshairMode.Normal,
