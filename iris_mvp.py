@@ -57,6 +57,26 @@ COMPANY_NAME_TO_TICKERS = {
     "NIKE": ["NKE"],
 }
 
+TICKER_BRAND_TERMS = {
+    "AAPL":  ["iPhone", "iPad", "MacBook", "Apple Watch", "AirPods",
+              "App Store", "Apple Intelligence", "Vision Pro", "iOS",
+              "macOS", "Tim Cook"],
+    "MSFT":  ["Windows", "Azure", "Copilot", "Office", "Xbox",
+              "Teams", "Satya Nadella", "GitHub"],
+    "NVDA":  ["GeForce", "Blackwell", "Hopper", "Jensen Huang",
+              "CUDA", "DGX", "NIM"],
+    "GOOG":  ["Google", "Gemini", "YouTube", "Waymo", "DeepMind",
+              "Pixel", "Sundar Pichai", "Android", "Chrome"],
+    "AMZN":  ["Amazon", "AWS", "Alexa", "Prime", "Kindle",
+              "Andy Jassy", "Twitch"],
+    "META":  ["Facebook", "Instagram", "WhatsApp", "Threads",
+              "Zuckerberg", "Ray-Ban", "Llama"],
+    "TSLA":  ["Tesla", "Cybertruck", "Model 3", "Model Y",
+              "Autopilot", "FSD", "Elon Musk", "Gigafactory",
+              "Powerwall"],
+    "NKE":   ["Nike", "Jordan", "Air Max", "Swoosh"],
+}
+
 
 def normalize_ticker_symbol(symbol: str):
     token = str(symbol or "").strip().upper()
@@ -614,6 +634,10 @@ class IRIS_System:
             if ticker_symbol in normalized:
                 relevance_terms.add(str(company_name or "").upper())
 
+        # Also include well-known brand/product terms for this ticker
+        for brand_term in TICKER_BRAND_TERMS.get(ticker_symbol, []):
+            relevance_terms.add(str(brand_term or "").upper())
+
         def _normalize_title(t):
             """Lowercase, strip punctuation for fuzzy dedup."""
             return re.sub(r'[^a-z0-9 ]', '', str(t or '').lower().strip())
@@ -624,6 +648,16 @@ class IRIS_System:
             r'fund|ETF|NYSE|NASDAQ|SEC|CEO|CFO|board|dividend|rally|'
             r'downgrade|upgrade|outlook|chip|semiconductor|AI|cloud|'
             r'data.?center|GPU|compute)\b',
+            re.IGNORECASE,
+        )
+        _GEOPOLITICAL_TERMS = re.compile(
+            r'\b(sanction|tariff|trade.?war|export.?control|embargo|geopolit|'
+            r'NATO|pentagon|defense.?budget|military|conflict|war|invasion|'
+            r'Taiwan|China|Russia|Iran|Korea|Middle.?East|OPEC|'
+            r'federal.?reserve|Fed.?rate|interest.?rate|inflation|CPI|GDP|'
+            r'recession|monetary.?policy|fiscal.?policy|treasury|yield.?curve|'
+            r'sovereign|supply.?chain|semiconductor.?policy|chip.?act|'
+            r'macro|global.?economy|central.?bank|IMF|World.?Bank)\b',
             re.IGNORECASE,
         )
         _NOISE_PATTERNS = [
@@ -645,7 +679,10 @@ class IRIS_System:
             clean_description = str(description or "").strip()
 
             combined_text = f"{clean_title} {clean_description}"
+            print(f"[NEWS] evaluating: {clean_title[:80]!r}")
             is_relevant = False
+            _company_name_tokens = {sanitize_company_token(k)
+                                    for k in COMPANY_NAME_TO_TICKERS}
             for term in relevance_terms:
                 term_upper = str(term or "").upper().strip()
                 if not term_upper:
@@ -653,19 +690,31 @@ class IRIS_System:
                 pattern = r'\b' + re.escape(term_upper) + r'\b'
                 if re.search(pattern, combined_text, re.IGNORECASE):
                     is_relevant = True
-                    if not _FINANCIAL_TERMS.search(combined_text):
-                        is_relevant = False
+                    # Only enforce financial/geo guard for raw ticker or plain company
+                    # names. Brand/product term matches are accepted unconditionally.
+                    is_ticker_or_company = (
+                        term_upper == ticker_symbol or
+                        term_upper in _company_name_tokens
+                    )
+                    if is_ticker_or_company:
+                        _has_fin = bool(_FINANCIAL_TERMS.search(combined_text))
+                        _has_geo = bool(_GEOPOLITICAL_TERMS.search(combined_text))
+                        if not (_has_fin or _has_geo):
+                            is_relevant = False
                     break
             if not is_relevant:
+                print(f"[NEWS] DROPPED (no relevance): {clean_title[:60]!r}")
                 return
 
             for _pat in _NOISE_PATTERNS:
                 if re.search(_pat, clean_title, re.IGNORECASE):
+                    print(f"[NEWS] DROPPED (noise pattern): {clean_title[:60]!r}")
                     return
 
             # Deduplicate by exact (title, url) and by normalized title
             norm_title = _normalize_title(clean_title)
             if clean_url in seen or norm_title in seen:
+                print(f"[NEWS] DROPPED (duplicate): {clean_title[:60]!r}")
                 return
             seen.add(clean_url)
             seen.add(norm_title)
@@ -687,21 +736,29 @@ class IRIS_System:
             if clean_url:
                 try:
                     import urllib.request as _urlreq
+                    import urllib.error as _urlerr
                     req = _urlreq.Request(
                         clean_url,
                         headers={'User-Agent': 'Mozilla/5.0 (compatible; IRIS-AI/1.0)'},
                     )
-                    with _urlreq.urlopen(req, timeout=4) as resp:
+                    with _urlreq.urlopen(req, timeout=6) as resp:
                         if resp.status >= 500:
+                            print(f"[NEWS] DROPPED (URL unreachable): {clean_url!r}")
                             return   # server error — drop
                 except Exception as _e:
-                    err_str = str(_e).lower()
-                    # Drop only on DNS/connection failure; keep on HTTP errors (paywall etc.)
-                    if any(k in err_str for k in ('name or service', 'nodename', 'connection refused',
-                                                   'no route', 'network unreachable', 'timed out',
-                                                   'ssl', 'certificate')):
-                        return
+                    if isinstance(_e, _urlerr.HTTPError):
+                        pass   # HTTP errors (paywall, 403, 404) — keep the article
+                    else:
+                        err_str = str(_e).lower()
+                        # Drop only on DNS/connection failure; keep on timeout/read errors
+                        if any(k in err_str for k in ('name or service', 'nodename',
+                                                       'connection refused', 'no route',
+                                                       'network unreachable',
+                                                       'ssl', 'certificate')):
+                            print(f"[NEWS] DROPPED (URL unreachable): {clean_url!r}")
+                            return
 
+            print(f"[NEWS] ACCEPTED [{len(headlines)}]: {clean_title[:60]!r}")
             headlines.append({
                 "title": clean_title,
                 "url": clean_url,
