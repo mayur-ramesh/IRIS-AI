@@ -86,6 +86,35 @@ TIMEFRAME_TO_YFINANCE = {
     "5Y": ("5y", "1wk"),
 }
 
+def get_latest_llm_reports(symbol: str) -> dict:
+    """Read the latest reports for the given symbol from the configured LLM models."""
+    llm_dir = PROJECT_ROOT / "data" / "LLM reports"
+    models = {
+        "chatgpt52": "chatgpt_5.2.json",
+        "deepseek_v3": "deepseek_v3.json",
+        "gemini_v3_pro": "gemini_v3_pro.json"
+    }
+    
+    insights = {}
+    for model_key, filename in models.items():
+        filepath = llm_dir / filename
+        if not filepath.exists():
+            continue
+        try:
+            with open(filepath, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                if not isinstance(data, list):
+                    data = [data]
+                
+                for report in reversed(data):
+                    if str(report.get("meta", {}).get("symbol", "")).upper() == symbol.upper():
+                        insights[model_key] = report
+                        break
+        except Exception as e:
+            print(f"Error reading {filename}: {e}")
+            
+    return insights
+
 @app.route('/')
 def index():
     """Serve the main dashboard."""
@@ -190,13 +219,15 @@ def get_history(ticker):
             })
 
         close_series = pd.to_numeric(hist["Close"], errors="coerce")
+        volume_series = pd.to_numeric(hist["Volume"], errors="coerce").fillna(0) if "Volume" in hist.columns else pd.Series(0, index=hist.index)
         unix_seconds = _index_to_unix_seconds(hist.index)
 
         close_values = np.asarray(close_series, dtype=np.float64)
+        volume_values = np.asarray(volume_series, dtype=np.float64)
         valid_mask = np.isfinite(close_values) & np.isfinite(unix_seconds) & (unix_seconds > 0)
         data = [
-            {"time": int(ts), "value": float(val)}
-            for ts, val in zip(unix_seconds[valid_mask], close_values[valid_mask])
+            {"time": int(ts), "value": float(val), "volume": float(vol)}
+            for ts, val, vol in zip(unix_seconds[valid_mask], close_values[valid_mask], volume_values[valid_mask])
         ]
         return jsonify({
             "symbol": symbol,
@@ -247,6 +278,7 @@ def analyze_ticker():
         )
         
         if report:
+            report["llm_insights"] = get_latest_llm_reports(ticker)
             return jsonify(report)
         else:
              return jsonify({"error": f"Failed to analyze {ticker}. Stock not found or connection error."}), 404

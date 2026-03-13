@@ -11,6 +11,7 @@ from sklearn.ensemble import RandomForestRegressor
 import pandas as pd
 import time
 import json
+import re
 from pathlib import Path
 from storage_paths import resolve_data_dir
 
@@ -595,18 +596,15 @@ class IRIS_System:
             clean_url = str(url or "").strip()
             clean_description = str(description or "").strip()
 
-            combined_text = f"{clean_title} {clean_description}".upper()
-            tokenized_combined = sanitize_company_token(combined_text)
+            combined_text = f"{clean_title} {clean_description}"
             is_relevant = False
             for term in relevance_terms:
                 term_upper = str(term or "").upper().strip()
                 if not term_upper:
                     continue
-                if term_upper in combined_text:
-                    is_relevant = True
-                    break
-                tokenized_term = sanitize_company_token(term_upper)
-                if tokenized_term and tokenized_term in tokenized_combined:
+                # Use regex with word boundaries for strict matching (-P1 News Validation)
+                pattern = r'\b' + re.escape(term_upper) + r'\b'
+                if re.search(pattern, combined_text, re.IGNORECASE):
                     is_relevant = True
                     break
             if not is_relevant:

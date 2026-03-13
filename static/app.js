@@ -482,7 +482,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             if (normalizedTime === null) return;
-            normalized.push({ time: normalizedTime, value: rawValue });
+            const volume = point.volume !== undefined ? Number(point.volume) : 0;
+            normalized.push({ time: normalizedTime, value: rawValue, volume: volume });
         });
 
         // Ensure ascending, unique timestamps for Lightweight Charts stability.
@@ -549,6 +550,8 @@ document.addEventListener('DOMContentLoaded', () => {
             day: '2-digit',
             hour: '2-digit',
             minute: '2-digit',
+            second: '2-digit', // P2: Detailed timestamps
+            timeZoneName: 'short', // P2: Detailed timestamps
             hour12: false,
         }).format(dt);
     }
@@ -655,6 +658,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         areaSeries.setData(history);
+
+        let volumeSeries;
+        if (typeof lwChart.addHistogramSeries === 'function') {
+            volumeSeries = lwChart.addHistogramSeries({
+                color: '#26a69a',
+                priceFormat: { type: 'volume' },
+                priceScaleId: '', // set as an overlay
+                scaleMargins: { top: 0.8, bottom: 0 },
+            });
+        } else {
+            volumeSeries = lwChart.addSeries(LightweightCharts.HistogramSeries, {
+                color: '#26a69a',
+                priceFormat: { type: 'volume' },
+                priceScaleId: '',
+                scaleMargins: { top: 0.8, bottom: 0 },
+            });
+        }
+
+        const volumeData = history.map((p, index) => {
+            let color = '#26a69a'; // green for up
+            if (index > 0 && p.value < history[index - 1].value) {
+                color = '#ef5350'; // red for down
+            }
+            return {
+                time: p.time,
+                value: p.volume || 0,
+                color: color
+            };
+        });
+        volumeSeries.setData(volumeData);
+
         lwChart.subscribeCrosshairMove((param) => {
             if (!param || !param.point || !param.time) {
                 chartTooltip.style.display = 'none';
@@ -799,6 +833,34 @@ document.addEventListener('DOMContentLoaded', () => {
             sentimentScoreEl.classList.add('score-neutral');
             sentimentDescEl.textContent = 'Neutral Sentiment';
         }
+
+        // LLM Insights
+        const llmContainer = document.getElementById('llm-insights-container');
+        if (llmContainer) {
+            llmContainer.innerHTML = '';
+            if (data.llm_insights && Object.keys(data.llm_insights).length > 0) {
+                for (const [key, report] of Object.entries(data.llm_insights)) {
+                    const price = report.market?.predicted_price_next_session;
+                    const trend = report.signals?.trend_label?.trim() || 'UNKNOWN TREND';
+                    const nameMap = {
+                        'chatgpt52': 'ChatGPT 5.2',
+                        'deepseek_v3': 'DeepSeek V3',
+                        'gemini_v3_pro': 'Gemini V3 Pro'
+                    };
+                    const modelName = nameMap[key] || key;
+                    const div = document.createElement('div');
+                    div.className = 'llm-report-item';
+                    div.style.padding = '8px';
+                    div.style.background = 'rgba(255, 255, 255, 0.05)';
+                    div.style.borderRadius = '5px';
+                    div.innerHTML = `<strong>${modelName}</strong>: <span style="font-weight: 600;">${usdFormatter.format(price)}</span> <br><span style="font-size: 0.85em; opacity: 0.8">${trend}</span>`;
+                    llmContainer.appendChild(div);
+                }
+            } else {
+                llmContainer.innerHTML = '<p class="text-muted">No LLM insights available.</p>';
+            }
+        }
+
 
         // Headlines
         headlinesList.innerHTML = '';
