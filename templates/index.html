@@ -67,58 +67,68 @@
                 <div class="time-stamp" id="res-time">Updated: --</div>
             </div>
 
-            <div class="cards-grid">
+            <div class="cards-grid dashboard-3col">
 
-                <!-- Check Engine Light -->
+              <!-- LEFT column: Risk Indicator + Sentiment Analysis -->
+              <div class="dash-col dash-col--left">
+
                 <div class="card glass-panel engine-light-card">
-                    <h3>Risk Indicator</h3>
-                    <div class="engine-indicator" id="engine-light">
-                        <div class="light-bulb" id="light-bulb"></div>
-                        <h4 id="light-status">NEUTRAL</h4>
-                    </div>
+                  <h3>Risk Indicator</h3>
+                  <div class="engine-indicator" id="engine-light">
+                    <div class="light-bulb" id="light-bulb"></div>
+                    <h4 id="light-status">NEUTRAL</h4>
+                  </div>
                 </div>
 
-                <!-- Price Prediction -->
-                <div class="card glass-panel price-card">
-                    <h3>Market Prediction</h3>
-                    <div class="price-info">
-                        <div class="price-row">
-                            <span class="label">Current</span>
-                            <span class="value" id="current-price">$0.00</span>
-                        </div>
-                        <div class="price-row highlight">
-                            <span class="label">Predicted (Next Session)</span>
-                            <span class="value" id="predicted-price">$0.00</span>
-                        </div>
-                    </div>
-                    <div class="trend-badge" id="trend-label">UNKNOWN TREND</div>
-                </div>
-
-                <!-- LLM Insights -->
-                <div class="card glass-panel llm-card">
-                    <h3>LLM Insights</h3>
-                    <div class="llm-info" id="llm-insights-container"
-                        style="display: flex; flex-direction: column; gap: 8px; margin-top: 15px;">
-                        <p class="text-muted">No LLM insights available.</p>
-                    </div>
-                </div>
-
-                <!-- Sentiment Engine -->
                 <div class="card glass-panel sentiment-card">
-                    <h3>Sentiment Analysis</h3>
-                    <div class="sentiment-meter">
-                        <div class="score-display">
-                            <span id="sentiment-score">0.00</span>
-                        </div>
-                        <p class="sentiment-desc" id="sentiment-desc">Neutral Sentiment</p>
+                  <h3>Sentiment Analysis</h3>
+                  <div class="sentiment-meter">
+                    <div class="score-display">
+                      <span id="sentiment-score">0.00</span>
                     </div>
-                    <div class="headlines-section">
-                        <h4>Recent Headlines Analyzed:</h4>
-                        <ul id="headlines-list" class="headlines-list">
-                            <!-- Headlines will be injected here -->
-                        </ul>
-                    </div>
+                    <p class="sentiment-desc" id="sentiment-desc">Neutral Sentiment</p>
+                  </div>
                 </div>
+
+              </div>
+
+              <!-- MIDDLE column: Market Prediction + LLM Insights -->
+              <div class="dash-col dash-col--mid">
+
+                <div class="card glass-panel price-card">
+                  <h3>Market Prediction</h3>
+                  <div class="price-info">
+                    <div class="price-row">
+                      <span class="label">Current</span>
+                      <span class="value" id="current-price">$0.00</span>
+                    </div>
+                    <div class="price-row highlight">
+                      <span class="label">Predicted (Next Session)</span>
+                      <span class="value" id="predicted-price">$0.00</span>
+                    </div>
+                  </div>
+                  <div class="trend-badge" id="trend-label">UNKNOWN TREND</div>
+                </div>
+
+                <div class="card glass-panel llm-card">
+                  <h3>LLM Insights</h3>
+                  <div class="llm-info" id="llm-insights-container"
+                       style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+                    <p class="text-muted">No LLM insights available.</p>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- RIGHT column: Recent Headlines (full height) -->
+              <div class="dash-col dash-col--right">
+
+                <div class="card glass-panel headlines-card">
+                  <h3>Recent Headlines Analyzed</h3>
+                  <ul id="headlines-list" class="headlines-list"></ul>
+                </div>
+
+              </div>
 
             </div>
 
