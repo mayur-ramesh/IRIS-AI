@@ -444,6 +444,102 @@ header {
     margin-bottom: 4rem;
 }
 
+.dashboard-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.45fr;
+  gap: 1.5rem;
+  align-items: stretch;   /* ALL columns grow to the same height */
+  margin-bottom: 2rem;
+}
+
+.dash-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Left column: two cards share the full column height equally */
+.dash-col--left {
+  height: 100%;
+}
+
+.dash-col--left .card {
+  flex: 1;             /* each card takes exactly half the column height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Engine indicator fills leftover vertical space inside Risk card */
+.dash-col--left .engine-indicator {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sentiment body fills leftover space inside Sentiment card */
+.dash-col--left .sentiment-meter {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Middle column: two cards stack, each shrinks to content */
+.dash-col--mid {
+  height: 100%;
+}
+
+.dash-col--mid .price-card {
+  flex-shrink: 0;
+}
+
+.dash-col--mid .llm-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Right column: headlines card fills full height */
+.dash-col--right {
+  height: 100%;
+}
+
+.dash-col--right .headlines-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-col--right .headlines-card .headlines-list {
+  flex: 1;
+  max-height: none;      /* remove old fixed max-height */
+  overflow-y: auto;
+}
+
+/* Predicted price: RED for uptrend, GREEN for downtrend (contrarian risk signal) */
+#predicted-price.price-up {
+  color: var(--status-red);
+  text-shadow: 0 0 14px var(--status-red-glow);
+}
+
+#predicted-price.price-down {
+  color: var(--status-green);
+  text-shadow: 0 0 14px var(--status-green-glow);
+}
+
+/* LLM price colours */
+.llm-price-up   { color: var(--status-red);   font-weight: 600; }
+.llm-price-down { color: var(--status-green); font-weight: 600; }
+.llm-price-flat { color: var(--text-main);    font-weight: 600; }
+
+/* LLM sub-label colours */
+.llm-trend-up   { font-size: 0.82em; color: var(--status-red);   opacity: 0.85; }
+.llm-trend-down { font-size: 0.82em; color: var(--status-green); opacity: 0.85; }
+.llm-trend-flat { font-size: 0.82em; color: var(--text-muted); }
+
 .card {
     padding: 2rem;
     display: flex;
@@ -932,5 +1028,13 @@ footer p {
 
     .feedback-modal {
         padding: 0.9rem;
+    }
+
+    .dashboard-3col {
+        grid-template-columns: 1fr;
+    }
+
+    .dash-col--left .card {
+        flex: unset;
     }
 }
