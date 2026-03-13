@@ -660,21 +660,24 @@ document.addEventListener('DOMContentLoaded', () => {
         areaSeries.setData(history);
 
         let volumeSeries;
+        const volumeOptions = {
+            color: '#26a69a',
+            priceFormat: { type: 'volume' },
+            priceScaleId: '', // set as an overlay
+        };
+
         if (typeof lwChart.addHistogramSeries === 'function') {
-            volumeSeries = lwChart.addHistogramSeries({
-                color: '#26a69a',
-                priceFormat: { type: 'volume' },
-                priceScaleId: '', // set as an overlay
-                scaleMargins: { top: 0.8, bottom: 0 },
-            });
+            volumeSeries = lwChart.addHistogramSeries(volumeOptions);
         } else {
-            volumeSeries = lwChart.addSeries(LightweightCharts.HistogramSeries, {
-                color: '#26a69a',
-                priceFormat: { type: 'volume' },
-                priceScaleId: '',
-                scaleMargins: { top: 0.8, bottom: 0 },
-            });
+            volumeSeries = lwChart.addSeries(LightweightCharts.HistogramSeries, volumeOptions);
         }
+
+        volumeSeries.priceScale().applyOptions({
+            scaleMargins: {
+                top: 0.8, // highest point of the series will be at 80% from the top
+                bottom: 0,
+            },
+        });
 
         const volumeData = history.map((p, index) => {
             let color = '#26a69a'; // green for up
