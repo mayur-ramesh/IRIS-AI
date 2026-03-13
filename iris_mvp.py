@@ -431,10 +431,16 @@ class IRIS_System:
         noise = rng.normal(0.0, 0.01, points)
         close_values = np.maximum(1.0, base_price * (1.0 + trend + noise))
         close_values[-1] = max(1.0, float(base_price))
+        open_values = close_values * (1.0 - rng.normal(0.0, 0.005, points))
+        high_values = np.maximum(close_values, open_values) * (1.0 + Math.abs(rng.normal(0.0, 0.005, points)))
+        low_values = np.minimum(close_values, open_values) * (1.0 - Math.abs(rng.normal(0.0, 0.005, points)))
 
         date_index = pd.date_range(end=pd.Timestamp.utcnow().floor("D"), periods=points, freq="D", tz="UTC")
         df = pd.DataFrame(
             {
+                "Open": open_values.astype(float),
+                "High": high_values.astype(float),
+                "Low": low_values.astype(float),
                 "Close": close_values.astype(float),
                 "Volume": rng.integers(700000, 3500000, size=points).astype(float),
             },
@@ -458,9 +464,9 @@ class IRIS_System:
 
         unix_seconds = np.asarray(date_index.asi8 // 10**9, dtype=np.int64)
         history_points = [
-            {"time": int(ts), "value": float(val)}
-            for ts, val in zip(unix_seconds, close_values)
-            if ts > 0 and np.isfinite(val)
+            {"time": int(ts), "open": float(o), "high": float(h), "low": float(l), "close": float(c), "value": float(c)}
+            for ts, o, h, l, c in zip(unix_seconds, open_values, high_values, low_values, close_values)
+            if ts > 0 and np.isfinite(c)
         ]
         return {
             "current_price": float(close_values[-1]),
@@ -525,12 +531,27 @@ class IRIS_System:
             if close_series is None:
                 return self._simulated_market_data(ticker, price_hint=price)
 
+            open_series = pd.to_numeric(hist.get("Open", close_series), errors="coerce")
+            high_series = pd.to_numeric(hist.get("High", close_series), errors="coerce")
+            low_series = pd.to_numeric(hist.get("Low", close_series), errors="coerce")
+            
             close_values = np.asarray(close_series, dtype=np.float64)
+            open_values = np.asarray(open_series, dtype=np.float64)
+            high_values = np.asarray(high_series, dtype=np.float64)
+            low_values = np.asarray(low_series, dtype=np.float64)
+            
             unix_seconds_all = _infer_unix_seconds_from_index(hist.index)
             valid_chart_mask = np.isfinite(close_values) & np.isfinite(unix_seconds_all) & (unix_seconds_all >= 1e8)
+            
             history_points = [
-                {"time": int(ts), "value": float(val)}
-                for ts, val in zip(unix_seconds_all[valid_chart_mask], close_values[valid_chart_mask])
+                {"time": int(ts), "open": float(o), "high": float(h), "low": float(l), "close": float(c), "value": float(c)}
+                for ts, o, h, l, c in zip(
+                    unix_seconds_all[valid_chart_mask], 
+                    open_values[valid_chart_mask], 
+                    high_values[valid_chart_mask], 
+                    low_values[valid_chart_mask], 
+                    close_values[valid_chart_mask]
+                )
             ]
             history_values = close_values[valid_chart_mask]
             # Build feature-rich DataFrame for better model accuracy

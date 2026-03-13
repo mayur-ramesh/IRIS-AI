@@ -219,15 +219,37 @@ def get_history(ticker):
             })
 
         close_series = pd.to_numeric(hist["Close"], errors="coerce")
+        open_series = pd.to_numeric(hist["Open"], errors="coerce") if "Open" in hist.columns else close_series
+        high_series = pd.to_numeric(hist["High"], errors="coerce") if "High" in hist.columns else close_series
+        low_series = pd.to_numeric(hist["Low"], errors="coerce") if "Low" in hist.columns else close_series
         volume_series = pd.to_numeric(hist["Volume"], errors="coerce").fillna(0) if "Volume" in hist.columns else pd.Series(0, index=hist.index)
         unix_seconds = _index_to_unix_seconds(hist.index)
 
         close_values = np.asarray(close_series, dtype=np.float64)
+        open_values = np.asarray(open_series, dtype=np.float64)
+        high_values = np.asarray(high_series, dtype=np.float64)
+        low_values = np.asarray(low_series, dtype=np.float64)
         volume_values = np.asarray(volume_series, dtype=np.float64)
-        valid_mask = np.isfinite(close_values) & np.isfinite(unix_seconds) & (unix_seconds > 0)
+        
+        valid_mask = np.isfinite(close_values) & np.isfinite(open_values) & np.isfinite(high_values) & np.isfinite(low_values) & np.isfinite(unix_seconds) & (unix_seconds > 0)
         data = [
-            {"time": int(ts), "value": float(val), "volume": float(vol)}
-            for ts, val, vol in zip(unix_seconds[valid_mask], close_values[valid_mask], volume_values[valid_mask])
+            {
+                "time": int(ts), 
+                "open": float(o), 
+                "high": float(h), 
+                "low": float(l), 
+                "close": float(c), 
+                "value": float(c), 
+                "volume": float(vol)
+            }
+            for ts, o, h, l, c, vol in zip(
+                unix_seconds[valid_mask], 
+                open_values[valid_mask], 
+                high_values[valid_mask], 
+                low_values[valid_mask], 
+                close_values[valid_mask], 
+                volume_values[valid_mask]
+            )
         ]
         return jsonify({
             "symbol": symbol,

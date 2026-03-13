@@ -483,7 +483,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (normalizedTime === null) return;
             const volume = point.volume !== undefined ? Number(point.volume) : 0;
-            normalized.push({ time: normalizedTime, value: rawValue, volume: volume });
+            const openVal = point.open !== undefined ? Number(point.open) : rawValue;
+            const highVal = point.high !== undefined ? Number(point.high) : rawValue;
+            const lowVal = point.low !== undefined ? Number(point.low) : rawValue;
+            const closeVal = point.close !== undefined ? Number(point.close) : rawValue;
+            normalized.push({
+                time: normalizedTime,
+                value: rawValue,
+                volume: volume,
+                open: openVal,
+                high: highVal,
+                low: lowVal,
+                close: closeVal
+            });
         });
 
         // Ensure ascending, unique timestamps for Lightweight Charts stability.
@@ -629,13 +641,14 @@ document.addEventListener('DOMContentLoaded', () => {
             },
         });
 
-        let areaSeries;
-        if (typeof lwChart.addAreaSeries === 'function') {
-            areaSeries = lwChart.addAreaSeries({
-                lineColor: lineColor,
-                topColor: topColor,
-                bottomColor: bottomColor,
-                lineWidth: 2,
+        let mainSeries;
+        if (typeof lwChart.addCandlestickSeries === 'function') {
+            mainSeries = lwChart.addCandlestickSeries({
+                upColor: '#26a69a',
+                downColor: '#ef5350',
+                borderVisible: false,
+                wickUpColor: '#26a69a',
+                wickDownColor: '#ef5350',
                 priceFormat: {
                     type: 'price',
                     precision: 2,
@@ -644,11 +657,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         } else {
             // Version 5+ syntax
-            areaSeries = lwChart.addSeries(LightweightCharts.AreaSeries, {
-                lineColor: lineColor,
-                topColor: topColor,
-                bottomColor: bottomColor,
-                lineWidth: 2,
+            mainSeries = lwChart.addSeries(LightweightCharts.CandlestickSeries, {
+                upColor: '#26a69a',
+                downColor: '#ef5350',
+                borderVisible: false,
+                wickUpColor: '#26a69a',
+                wickDownColor: '#ef5350',
                 priceFormat: {
                     type: 'price',
                     precision: 2,
@@ -657,7 +671,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        areaSeries.setData(history);
+        mainSeries.setData(history);
 
         let volumeSeries;
         const volumeOptions = {
@@ -702,7 +716,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const priceAtCursor = readCrosshairPrice(param, areaSeries);
+            const priceAtCursor = readCrosshairPrice(param, mainSeries);
             if (!Number.isFinite(priceAtCursor)) {
                 chartTooltip.style.display = 'none';
                 return;
