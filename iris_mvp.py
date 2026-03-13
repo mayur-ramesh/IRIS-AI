@@ -608,7 +608,7 @@ class IRIS_System:
             if ticker_symbol in normalized:
                 relevance_terms.add(str(company_name or "").upper())
 
-        def add_relevant_article(title, url="", description=""):
+        def add_relevant_article(title, url="", description="", published_at=""):
             if len(headlines) >= 15:
                 return
             clean_title = str(title or "").strip()
@@ -679,7 +679,11 @@ class IRIS_System:
                 except Exception:
                     return   # any network/DNS/timeout error — drop silently
 
-            headlines.append({"title": clean_title, "url": clean_url})
+            headlines.append({
+                "title": clean_title,
+                "url": clean_url,
+                "published_at": str(published_at or "").strip(),
+            })
 
         # Preferred source: NewsAPI (if configured) for a larger headline baseline.
         if self.news_api:
@@ -697,7 +701,12 @@ class IRIS_System:
                         title = str(article.get("title", "")).strip()
                         url = article.get("url", "")
                         description = article.get("description", "")
-                        add_relevant_article(title=title, url=url, description=description)
+                        add_relevant_article(
+                            title=title,
+                            url=url,
+                            description=description,
+                            published_at=article.get("publishedAt", ""),
+                        )
                         if len(headlines) >= 15:
                             break
             except Exception:
@@ -717,7 +726,14 @@ class IRIS_System:
                         title = item.get("title") or content.get("title") or ""
                         description = item.get("description") or item.get("summary") or content.get("description") or content.get("summary") or ""
                         url = item.get("link") or item.get("url") or content.get("link") or content.get("url") or ""
-                        add_relevant_article(title=title, url=url, description=description)
+                        _pub = item.get("providerPublishTime") or \
+                               (item.get("content") or {}).get("pubDate", "")
+                        add_relevant_article(
+                            title=title,
+                            url=url,
+                            description=description,
+                            published_at=_pub,
+                        )
                         if len(headlines) >= 15:
                             break
             except Exception:
@@ -981,6 +997,7 @@ class IRIS_System:
                 evidence_headlines.append({
                     "title": title_text,
                     "url": str(entry.get("url", "")).strip(),
+                    "published_at": str(entry.get("published_at", "")).strip(),
                 })
 
         report = {
