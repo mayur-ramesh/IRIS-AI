@@ -32,6 +32,7 @@ try:
 except ImportError:
     pass
 NEWS_API_KEY = os.environ.get("NEWS_API_KEY") or None
+WEBZ_API_KEY = os.environ.get("WEBZ_API_KEY") or None
 DEMO_MODE = os.environ.get("DEMO_MODE", "false").lower() == "true"
 PROJECT_ROOT = Path(__file__).resolve().parent
 DATA_DIR = resolve_data_dir(PROJECT_ROOT, DEMO_MODE)
@@ -151,6 +152,11 @@ class IRIS_System:
             print("   -> NewsAPI Connection: ESTABLISHED")
         else:
             print("   -> NewsAPI Connection: SIMULATION MODE (No Key Found)")
+        self.webz_api_key = WEBZ_API_KEY
+        if self.webz_api_key:
+            print("   -> Webz.io News API: ESTABLISHED")
+        else:
+            print("   -> Webz.io News API: NOT CONFIGURED")
         self.merge_alias_reports()
 
     def _read_report_file(self, path: Path):
@@ -608,6 +614,27 @@ class IRIS_System:
             if ticker_symbol in normalized:
                 relevance_terms.add(str(company_name or "").upper())
 
+        def _normalize_title(t):
+            """Lowercase, strip punctuation for fuzzy dedup."""
+            return re.sub(r'[^a-z0-9 ]', '', str(t or '').lower().strip())
+
+        _FINANCIAL_TERMS = re.compile(
+            r'\b(stock|share|price|market|earn|revenue|profit|loss|invest|'
+            r'analyst|quarter|fiscal|IPO|valuat|forecast|guidance|trade|'
+            r'fund|ETF|NYSE|NASDAQ|SEC|CEO|CFO|board|dividend|rally|'
+            r'downgrade|upgrade|outlook|chip|semiconductor|AI|cloud|'
+            r'data.?center|GPU|compute)\b',
+            re.IGNORECASE,
+        )
+        _NOISE_PATTERNS = [
+            r'\b(1080p|720p|480p|2160p|4K|BluRay|WEB-?DL|WEBRip|HDTV|DVDRip|BRRip)\b',
+            r'\b(x264|x265|H\.?264|H\.?265|HEVC|AVC|AAC|AC3|DTS|FLAC|MP4|MKV|AVI)\b',
+            r'\b(S\d{2}E\d{2}|S\d{2}-S\d{2})\b',
+            r'\b(YIFY|RARBG|EZTV|BobDobbs|playWEB|Kitsune|TEPES|RAWR|MiXED|SPARKS)\b',
+            r'\b(torrent|magnet|repack|proper|extended\.cut|theatrical)\b',
+            r'(?i)\.\s*(mkv|mp4|avi|mov|wmv|flv)\b',
+        ]
+
         def add_relevant_article(title, url="", description="", published_at=""):
             if len(headlines) >= 15:
                 return
@@ -623,61 +650,57 @@ class IRIS_System:
                 term_upper = str(term or "").upper().strip()
                 if not term_upper:
                     continue
-                # Use regex with word boundaries for strict matching (-P1 News Validation)
                 pattern = r'\b' + re.escape(term_upper) + r'\b'
                 if re.search(pattern, combined_text, re.IGNORECASE):
                     is_relevant = True
-                    # Additionally require at least one financial keyword in the
-                    # combined text so a ticker name embedded in a movie title
-                    # (e.g. "META" in a film description) does not pass the filter.
-                    _FINANCIAL_TERMS = re.compile(
-                        r'\b(stock|share|price|market|earn|revenue|profit|loss|invest|'
-                        r'analyst|quarter|fiscal|IPO|valuat|forecast|guidance|trade|'
-                        r'fund|ETF|NYSE|NASDAQ|SEC|CEO|CFO|board|dividend|rally|'
-                        r'downgrade|upgrade|outlook|chip|semiconductor|AI|cloud|'
-                        r'data.?center|GPU|compute)\b',
-                        re.IGNORECASE,
-                    )
                     if not _FINANCIAL_TERMS.search(combined_text):
-                        is_relevant = False   # ticker name present but zero financial context
+                        is_relevant = False
                     break
             if not is_relevant:
                 return
 
-            # --- NON-FINANCIAL CONTENT FILTER ---
-            # Reject headlines that match patterns typical of non-financial noise
-            # (torrent filenames, video metadata, piracy site leakage, etc.)
-            _NOISE_PATTERNS = [
-                r'\b(1080p|720p|480p|2160p|4K|BluRay|WEB-?DL|WEBRip|HDTV|DVDRip|BRRip)\b',
-                r'\b(x264|x265|H\.?264|H\.?265|HEVC|AVC|AAC|AC3|DTS|FLAC|MP4|MKV|AVI)\b',
-                r'\b(S\d{2}E\d{2}|S\d{2}-S\d{2})\b',   # episode codes like S01E03
-                r'\b(YIFY|RARBG|EZTV|BobDobbs|playWEB|Kitsune|TEPES|RAWR|MiXED|SPARKS)\b',
-                r'\b(torrent|magnet|repack|proper|extended\.cut|theatrical)\b',
-                r'(?i)\.\s*(mkv|mp4|avi|mov|wmv|flv)\b',
-            ]
             for _pat in _NOISE_PATTERNS:
                 if re.search(_pat, clean_title, re.IGNORECASE):
-                    return   # silently drop non-financial noise
+                    return
 
-            dedupe_key = (clean_title, clean_url)
-            if dedupe_key in seen:
+            # Deduplicate by exact (title, url) and by normalized title
+            norm_title = _normalize_title(clean_title)
+            if clean_url in seen or norm_title in seen:
                 return
-            seen.add(dedupe_key)
+            seen.add(clean_url)
+            seen.add(norm_title)
 
-            # Validate URL is reachable before accepting the headline
+            # Reject known non-article URL patterns (consent pages, trackers, etc.)
+            if clean_url:
+                _bad_url_patterns = [
+                    r'consent\.(yahoo|google|msn)\.',
+                    r'/v2/collectConsent',
+                    r'accounts\.google\.com',
+                    r'login\.|signin\.',
+                    r'\btracking\b',
+                ]
+                if any(re.search(p, clean_url, re.IGNORECASE) for p in _bad_url_patterns):
+                    return
+
+            # Validate URL: only reject connection/DNS failures and 5xx errors.
+            # 4xx (including paywalls) are kept — users can still open those links.
             if clean_url:
                 try:
                     import urllib.request as _urlreq
-                    import urllib.error as _urlerr
                     req = _urlreq.Request(
                         clean_url,
-                        headers={'User-Agent': 'Mozilla/5.0 (IRIS-AI headline validator)'},
+                        headers={'User-Agent': 'Mozilla/5.0 (compatible; IRIS-AI/1.0)'},
                     )
-                    with _urlreq.urlopen(req, timeout=3) as resp:
-                        if resp.status not in (200, 201, 202, 301, 302, 303):
-                            return   # inaccessible — drop silently
-                except Exception:
-                    return   # any network/DNS/timeout error — drop silently
+                    with _urlreq.urlopen(req, timeout=4) as resp:
+                        if resp.status >= 500:
+                            return   # server error — drop
+                except Exception as _e:
+                    err_str = str(_e).lower()
+                    # Drop only on DNS/connection failure; keep on HTTP errors (paywall etc.)
+                    if any(k in err_str for k in ('name or service', 'nodename', 'connection refused',
+                                                   'no route', 'network unreachable', 'timed out',
+                                                   'ssl', 'certificate')):
+                        return
 
             headlines.append({
                 "title": clean_title,
@@ -712,6 +735,36 @@ class IRIS_System:
             except Exception:
                 headlines = []
                 seen = set()
+
+        # Second source: Webz.io News API (supplements NewsAPI or runs standalone).
+        if self.webz_api_key and len(headlines) < 15:
+            try:
+                import urllib.request as _urlreq, urllib.parse as _urlparse
+                _params = _urlparse.urlencode({
+                    "token": self.webz_api_key,
+                    "q": f'"{ticker}" language:english',
+                    "sort": "published",
+                    "order": "desc",
+                    "size": 20,
+                    "format": "json",
+                })
+                _webz_url = f"https://api.webz.io/newsApiLite?{_params}"
+                _req = _urlreq.Request(_webz_url, headers={"Accept": "application/json"})
+                with _urlreq.urlopen(_req, timeout=8) as _resp:
+                    _webz_data = json.loads(_resp.read().decode("utf-8"))
+                for _post in _webz_data.get("posts", []) or []:
+                    if not isinstance(_post, dict):
+                        continue
+                    add_relevant_article(
+                        title=_post.get("title", ""),
+                        url=_post.get("url", ""),
+                        description=_post.get("text", "")[:300],
+                        published_at=_post.get("published", ""),
+                    )
+                    if len(headlines) >= 15:
+                        break
+            except Exception:
+                pass
 
         # Fallback: existing yfinance extraction when NewsAPI is unavailable/failed/empty.
         if not headlines:
