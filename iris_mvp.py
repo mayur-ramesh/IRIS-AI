@@ -432,8 +432,8 @@ class IRIS_System:
         close_values = np.maximum(1.0, base_price * (1.0 + trend + noise))
         close_values[-1] = max(1.0, float(base_price))
         open_values = close_values * (1.0 - rng.normal(0.0, 0.005, points))
-        high_values = np.maximum(close_values, open_values) * (1.0 + Math.abs(rng.normal(0.0, 0.005, points)))
-        low_values = np.minimum(close_values, open_values) * (1.0 - Math.abs(rng.normal(0.0, 0.005, points)))
+        high_values = np.maximum(close_values, open_values) * (1.0 + np.abs(rng.normal(0.0, 0.005, points)))
+        low_values = np.minimum(close_values, open_values) * (1.0 - np.abs(rng.normal(0.0, 0.005, points)))
 
         date_index = pd.date_range(end=pd.Timestamp.utcnow().floor("D"), periods=points, freq="D", tz="UTC")
         df = pd.DataFrame(
