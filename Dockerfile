@@ -5,7 +5,8 @@ RUN useradd -m -u 1000 user
 USER user
 ENV HOME=/home/user \
     PATH=/home/user/.local/bin:$PATH \
-    DEMO_MODE=true
+    DEMO_MODE=true \
+    OPENAI_MODEL_FILTER=gpt-4o-mini
 
 WORKDIR $HOME/app
 
