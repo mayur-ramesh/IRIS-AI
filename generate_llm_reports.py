@@ -200,8 +200,8 @@ Respond with a single JSON object with this exact structure and field names:
   }},
   "evidence": {{
     "headlines_used": [
-      "<short headline 1>",
-      "<short headline 2>"
+      {{"title": "<short headline 1>", "url": ""}},
+      {{"title": "<short headline 2>", "url": ""}}
     ]
   }}
 }}
@@ -212,7 +212,7 @@ Rules:
 - Set market.current_price to current_price_usd exactly.
 - Set signals.sentiment_score to sentiment_score exactly.
 - Use sma_5_usd relative to current_price_usd and sentiment_score for trend reasoning.
-- Headlines should be short, plausible summaries of the rationale."""
+- headlines_used items must be JSON objects with "title" (string) and "url" (empty string ""). Never output raw strings in that array."""
 
 
 def get_chatgpt52_forecast(
