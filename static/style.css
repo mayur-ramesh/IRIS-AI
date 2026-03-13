@@ -750,35 +750,89 @@ header {
 
 .headlines-list {
     list-style: none;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    max-height: 350px;
-    overflow-y: auto;
-    padding-right: 0.35rem;
+    gap: 0;
     scrollbar-width: thin;
     scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
-.headlines-list li {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    padding: 0.75rem;
+.headline-item {
+    padding: 10px 12px;
     background: var(--headline-bg);
-    border-radius: 8px;
-    border-left: 3px solid var(--accent-blue);
+    border-left: 2px solid var(--accent-blue);
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 7px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: background 0.15s ease;
 }
 
-.headline-link {
+.headline-item:hover {
+    background: rgba(107, 138, 176, 0.08);
+}
+
+.headline-item--no-url {
+    border-left-color: rgba(107, 138, 176, 0.3);
+    opacity: 0.72;
+}
+
+.headline-item--empty {
+    font-style: italic;
+    color: var(--text-muted);
+    border-left-color: transparent;
+    opacity: 0.7;
+}
+
+.headline-title {
+    font-size: 0.925rem;
+    font-weight: 500;
+    line-height: 1.45;
     color: var(--text-main);
     text-decoration: none;
-    border-bottom: 1px dotted transparent;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    display: block;
 }
 
-.headline-link:hover {
+a.headline-title:hover {
     color: var(--accent-blue);
-    border-color: var(--accent-blue);
+}
+
+.headline-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.headline-date {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.headline-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    opacity: 0.5;
+    flex-shrink: 0;
+}
+
+.headline-source {
+    font-size: 0.78rem;
+    color: var(--accent-blue);
+    opacity: 0.8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.headline-source--none {
+    color: var(--text-muted);
+    font-style: italic;
 }
 
 .headlines-list::-webkit-scrollbar {
