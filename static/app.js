@@ -821,6 +821,15 @@ document.addEventListener('DOMContentLoaded', () => {
             trendLabelEl.style.border = '1px solid var(--panel-border)';
         }
 
+        // Apply contrarian colour to predicted price:
+        // uptrend → red (overbought risk), downtrend → green (opportunity signal)
+        predictedPriceEl.classList.remove('price-up', 'price-down');
+        if (trend.includes('UPTREND')) {
+            predictedPriceEl.classList.add('price-up');
+        } else if (trend.includes('DOWNTREND')) {
+            predictedPriceEl.classList.add('price-down');
+        }
+
         // Check Engine Light
         engineIndicator.className = 'engine-indicator'; // Reset classes
         const lightString = data.signals.check_engine_light;
@@ -857,8 +866,6 @@ document.addEventListener('DOMContentLoaded', () => {
             llmContainer.innerHTML = '';
             if (data.llm_insights && Object.keys(data.llm_insights).length > 0) {
                 for (const [key, report] of Object.entries(data.llm_insights)) {
-                    const price = report.market?.predicted_price_next_session;
-                    const trend = report.signals?.trend_label?.trim() || 'UNKNOWN TREND';
                     const nameMap = {
                         'chatgpt52': 'ChatGPT 5.2',
                         'deepseek_v3': 'DeepSeek V3',
@@ -870,7 +877,32 @@ document.addEventListener('DOMContentLoaded', () => {
                     div.style.padding = '8px';
                     div.style.background = 'rgba(255, 255, 255, 0.05)';
                     div.style.borderRadius = '5px';
-                    div.innerHTML = `<strong>${modelName}</strong>: <span style="font-weight: 600;">${usdFormatter.format(price)}</span> <br><span style="font-size: 0.85em; opacity: 0.8">${trend}</span>`;
+
+                    const llmTrend = String(report?.signals?.trend_label || '').toUpperCase().trim();
+                    const llmPrice = Number(report?.market?.predicted_price_next_session);
+
+                    let priceClass = 'llm-price-flat';
+                    let trendClass = 'llm-trend-flat';
+                    let arrow = '';
+                    if (llmTrend.includes('UPTREND')) {
+                        priceClass = 'llm-price-up';
+                        trendClass = 'llm-trend-up';
+                        arrow = '↑ ';
+                    } else if (llmTrend.includes('DOWNTREND')) {
+                        priceClass = 'llm-price-down';
+                        trendClass = 'llm-trend-down';
+                        arrow = '↓ ';
+                    }
+
+                    div.style.display = 'flex';
+                    div.style.justifyContent = 'space-between';
+                    div.style.alignItems = 'center';
+                    div.innerHTML = `
+                        <span style="font-weight:600;font-size:0.95em;">${modelName}</span>
+                        <div style="text-align:right;">
+                          <div class="${priceClass}">${usdFormatter.format(llmPrice)}</div>
+                          <div class="${trendClass}">${arrow}${llmTrend}</div>
+                        </div>`;
                     llmContainer.appendChild(div);
                 }
             } else {
