@@ -627,14 +627,58 @@ class IRIS_System:
                 pattern = r'\b' + re.escape(term_upper) + r'\b'
                 if re.search(pattern, combined_text, re.IGNORECASE):
                     is_relevant = True
+                    # Additionally require at least one financial keyword in the
+                    # combined text so a ticker name embedded in a movie title
+                    # (e.g. "META" in a film description) does not pass the filter.
+                    _FINANCIAL_TERMS = re.compile(
+                        r'\b(stock|share|price|market|earn|revenue|profit|loss|invest|'
+                        r'analyst|quarter|fiscal|IPO|valuat|forecast|guidance|trade|'
+                        r'fund|ETF|NYSE|NASDAQ|SEC|CEO|CFO|board|dividend|rally|'
+                        r'downgrade|upgrade|outlook|chip|semiconductor|AI|cloud|'
+                        r'data.?center|GPU|compute)\b',
+                        re.IGNORECASE,
+                    )
+                    if not _FINANCIAL_TERMS.search(combined_text):
+                        is_relevant = False   # ticker name present but zero financial context
                     break
             if not is_relevant:
                 return
+
+            # --- NON-FINANCIAL CONTENT FILTER ---
+            # Reject headlines that match patterns typical of non-financial noise
+            # (torrent filenames, video metadata, piracy site leakage, etc.)
+            _NOISE_PATTERNS = [
+                r'\b(1080p|720p|480p|2160p|4K|BluRay|WEB-?DL|WEBRip|HDTV|DVDRip|BRRip)\b',
+                r'\b(x264|x265|H\.?264|H\.?265|HEVC|AVC|AAC|AC3|DTS|FLAC|MP4|MKV|AVI)\b',
+                r'\b(S\d{2}E\d{2}|S\d{2}-S\d{2})\b',   # episode codes like S01E03
+                r'\b(YIFY|RARBG|EZTV|BobDobbs|playWEB|Kitsune|TEPES|RAWR|MiXED|SPARKS)\b',
+                r'\b(torrent|magnet|repack|proper|extended\.cut|theatrical)\b',
+                r'(?i)\.\s*(mkv|mp4|avi|mov|wmv|flv)\b',
+            ]
+            for _pat in _NOISE_PATTERNS:
+                if re.search(_pat, clean_title, re.IGNORECASE):
+                    return   # silently drop non-financial noise
 
             dedupe_key = (clean_title, clean_url)
             if dedupe_key in seen:
                 return
             seen.add(dedupe_key)
+
+            # Validate URL is reachable before accepting the headline
+            if clean_url:
+                try:
+                    import urllib.request as _urlreq
+                    import urllib.error as _urlerr
+                    req = _urlreq.Request(
+                        clean_url,
+                        headers={'User-Agent': 'Mozilla/5.0 (IRIS-AI headline validator)'},
+                    )
+                    with _urlreq.urlopen(req, timeout=3) as resp:
+                        if resp.status not in (200, 201, 202, 301, 302, 303):
+                            return   # inaccessible — drop silently
+                except Exception:
+                    return   # any network/DNS/timeout error — drop silently
+
             headlines.append({"title": clean_title, "url": clean_url})
 
         # Preferred source: NewsAPI (if configured) for a larger headline baseline.
