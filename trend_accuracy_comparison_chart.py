@@ -1,7 +1,7 @@
 """
 Draw a trend-direction accuracy comparison chart for IRIS and three LLMs.
 
-Data sources:
+Data sources (default dir: runtime_data/):
 - <data-dir>/<TICKER>_report.json (IRIS reports)
 - <data-dir>/LLM reports/chatgpt_5.2.json
 - <data-dir>/LLM reports/deepseek_v3.json
@@ -477,6 +477,59 @@ def draw_accuracy_chart(
     plt.close(fig)
 
 
+def draw_overall_accuracy_chart(
+    stats_by_model: dict,
+    output_path: Path,
+    date_range_label: str,
+) -> None:
+    model_ids = list(MODEL_CONFIG.keys())
+    labels = [MODEL_CONFIG[m]["label"] for m in model_ids]
+    colors = [MODEL_COLORS.get(m, "#777777") for m in model_ids]
+
+    acc_values = []
+    raw_accs = []
+    counts = []
+    for model_id in model_ids:
+        overall = stats_by_model[model_id]["overall"]
+        acc = overall["accuracy"]
+        raw_accs.append(acc)
+        acc_values.append(acc * 100 if acc is not None else 0.0)
+        counts.append((overall["correct"], overall["total"]))
+
+    x = np.arange(len(model_ids), dtype=float)
+    width = 0.45
+
+    fig, ax = plt.subplots(figsize=(7, 5))
+    bars = ax.bar(x, acc_values, width=width, color=colors, alpha=0.9)
+
+    for bar, acc, (correct, total) in zip(bars, raw_accs, counts):
+        x_pos = bar.get_x() + bar.get_width() / 2.0
+        if acc is None:
+            ax.text(x_pos, 1.5, "N/A", ha="center", va="bottom", fontsize=10)
+        else:
+            ax.text(
+                x_pos, bar.get_height() + 1.5,
+                f"{acc * 100:.1f}%\n({correct}/{total})",
+                ha="center", va="bottom", fontsize=9, linespacing=1.4,
+            )
+
+    ax.axhline(50, color="grey", linewidth=1, linestyle="--", alpha=0.6, label="50% baseline")
+    ax.set_ylim(0, 100)
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, fontsize=11)
+    ax.set_ylabel("Trend Direction Accuracy (%)")
+    ax.set_title(
+        f"Overall Trend Prediction Accuracy: IRIS vs LLMs\nSession range: {date_range_label}"
+    )
+    ax.grid(axis="y", linestyle="--", linewidth=0.7, alpha=0.35)
+    ax.legend(loc="upper right", fontsize=9)
+    fig.tight_layout()
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(output_path, dpi=180)
+    plt.close(fig)
+
+
 def save_summary_json(
     stats_by_model: dict,
     output_png: Path,
@@ -538,8 +591,7 @@ def resolve_default_output(data_dir: Path) -> Path:
 
 
 def resolve_default_data_dir() -> Path:
-    demo_mode = os.environ.get("DEMO_MODE", "false").lower() == "true"
-    return resolve_data_dir(PROJECT_ROOT, demo_mode)
+    return PROJECT_ROOT / "runtime_data"
 
 
 def resolve_llm_base_dir(data_dir: Path, llm_data_dir_arg: str) -> Path:
@@ -662,6 +714,10 @@ def main() -> int:
         )
 
     draw_accuracy_chart(stats_by_model, output_path, selected_range_label, tracked_tickers)
+    overall_output_path = output_path.with_name(
+        output_path.stem.replace("trend_accuracy_comparison_chart", "overall_accuracy_chart") + output_path.suffix
+    )
+    draw_overall_accuracy_chart(stats_by_model, overall_output_path, selected_range_label)
     summary_path = save_summary_json(
         stats_by_model,
         output_path,
@@ -673,6 +729,7 @@ def main() -> int:
     print_summary(stats_by_model, tracked_tickers)
     print(f"Date range: {selected_range_label}")
     print(f"\nChart saved: {output_path}")
+    print(f"Overall chart saved: {overall_output_path}")
     print(f"Summary JSON saved: {summary_path}")
     return 0
 
