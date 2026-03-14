@@ -22,6 +22,10 @@
     --status-red-glow: rgba(182, 78, 90, 0.24);
     --status-yellow: #b48c3a;
     --status-yellow-glow: rgba(180, 140, 58, 0.22);
+    --status-amber: #ba7517;
+    --status-amber-glow: rgba(186, 117, 23, 0.25);
+
+    --headlines-max-height: 310px;
 
     --logo-grad-start: #1f2838;
     --logo-grad-end: #71839c;
@@ -534,10 +538,7 @@ header {
 }
 
 .dash-col--right .headlines-card .headlines-list {
-  flex: 1;
-  min-height: 0;        /* essential for overflow:auto inside flex */
-  max-height: none;
-  overflow-y: auto;
+  height: 80%;
   padding-right: 0.25rem;
 }
 
@@ -754,8 +755,18 @@ header {
     display: flex;
     flex-direction: column;
     gap: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
     scrollbar-width: thin;
-    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-color: rgba(209,212,220,0.2) transparent;
+}
+
+.headlines-list::-webkit-scrollbar { width: 4px; }
+.headlines-list::-webkit-scrollbar-track { background: transparent; }
+.headlines-list::-webkit-scrollbar-thumb {
+    background: rgba(209,212,220,0.2);
+    border-radius: 99px;
 }
 
 .headline-item {
@@ -777,6 +788,45 @@ header {
 .headline-item--no-url {
     border-left-color: rgba(107, 138, 176, 0.3);
     opacity: 0.72;
+}
+
+.headline-item--geo {
+    border-left-color: var(--status-amber, #ba7517);
+}
+
+.headline-item--macro {
+    border-left-color: var(--status-amber, #ba7517);
+    opacity: 0.92;
+}
+
+.headline-tag {
+    display: inline-block;
+    font-size: 9px;
+    line-height: 1;
+    padding: 2px 5px;
+    border-radius: 3px;
+    background: rgba(186, 117, 23, 0.18);
+    color: #ba7517;
+    white-space: nowrap;
+    margin-left: auto;
+    flex-shrink: 0;
+    align-self: center;
+}
+
+.headlines-scroll-hint {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-align: center;
+    padding-top: 6px;
+    border-top: 1px solid rgba(209,212,220,0.08);
+    margin-top: 4px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+
+.headlines-scroll-hint.visible {
+    opacity: 1;
 }
 
 .headline-item--empty {
@@ -1125,5 +1175,10 @@ footer p {
 
     .dash-col--right .headlines-card {
         max-height: 400px;
+    }
+
+    .dash-col--right .headlines-card .headlines-list {
+        height: auto;
+        max-height: 320px;
     }
 }

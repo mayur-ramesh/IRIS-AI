@@ -57,6 +57,157 @@ COMPANY_NAME_TO_TICKERS = {
     "NIKE": ["NKE"],
 }
 
+TICKER_BRAND_TERMS = {
+    "AAPL":  ["iPhone", "iPad", "MacBook", "Apple Watch", "AirPods",
+              "App Store", "Apple Intelligence", "Vision Pro", "iOS",
+              "macOS", "Tim Cook"],
+    "MSFT":  ["Windows", "Azure", "Copilot", "Office", "Xbox",
+              "Teams", "Satya Nadella", "GitHub"],
+    "NVDA":  ["GeForce", "Blackwell", "Hopper", "Jensen Huang",
+              "CUDA", "DGX", "NIM"],
+    "GOOG":  ["Google", "Gemini", "YouTube", "Waymo", "DeepMind",
+              "Pixel", "Sundar Pichai", "Android", "Chrome"],
+    "AMZN":  ["Amazon", "AWS", "Alexa", "Prime", "Kindle",
+              "Andy Jassy", "Twitch"],
+    "META":  ["Facebook", "Instagram", "WhatsApp", "Threads",
+              "Zuckerberg", "Ray-Ban", "Llama"],
+    "TSLA":  ["Tesla", "Cybertruck", "Model 3", "Model Y",
+              "Autopilot", "FSD", "Elon Musk", "Gigafactory",
+              "Powerwall"],
+    "NKE":   ["Nike", "Jordan", "Air Max", "Swoosh"],
+}
+
+
+def llm_filter_headlines(
+    ticker: str,
+    candidates: list,
+    *,
+    max_keep: int = 12,
+    model=None,
+) -> list:
+    """
+    Use an LLM to decide which raw headline candidates are worth
+    showing on the IRIS dashboard for the given ticker.
+
+    Each candidate dict has keys: title, url, published_at.
+
+    Returns a filtered + ordered list (most relevant first),
+    capped at max_keep entries.
+
+    Falls back to a simple keyword allowlist if:
+      - OPENAI_API_KEY is not set
+      - the openai package is not installed
+      - the API call fails for any reason
+    """
+    if not candidates:
+        return []
+
+    api_key = os.environ.get("OPENAI_API_KEY", "").strip()
+    _model = model or os.environ.get("OPENAI_MODEL_FILTER", "gpt-4o-mini")
+
+    # ── LLM path ────────────────────────────────────────────────────
+    if api_key:
+        try:
+            from openai import OpenAI as _OAI
+            _client = _OAI(api_key=api_key)
+
+            # Build a compact numbered list for the prompt
+            lines = []
+            for i, h in enumerate(candidates):
+                title = str(h.get("title", "")).strip()
+                lines.append(f"{i}: {title}")
+            numbered = "\n".join(lines)
+
+            prompt = f"""You are a financial news relevance classifier for the stock ticker "{ticker}".
+
+Below is a numbered list of raw news headline candidates. Your job is to select which ones belong on a stock market dashboard for "{ticker}".
+
+INCLUDE a headline if it is about ANY of:
+- The company, its products, services, executives, or earnings
+- Analyst ratings, price targets, or institutional activity for the stock
+- Direct competitors that affect the stock's valuation
+- Macroeconomic events that move the sector (interest rates, inflation, GDP)
+- Geopolitical events that affect the supply chain, regulation, or demand for this company
+- Industry trends directly relevant to this company's business
+
+EXCLUDE a headline if:
+- It is about a completely unrelated company that happens to share a word with the ticker
+- It is entertainment, sports, lifestyle, or celebrity content
+- It is a video/torrent/piracy listing
+- It has no conceivable link to the stock's price or business
+
+Respond with ONLY a JSON object in this exact format — no markdown, no explanation:
+{{"keep": [list of integer indices to include], "reason": "one sentence summary of what you filtered"}}
+
+Headlines:
+{numbered}"""
+
+            resp = _client.chat.completions.create(
+                model=_model,
+                messages=[
+                    {"role": "system", "content": "You are a precise financial news classifier. Output only valid JSON."},
+                    {"role": "user",   "content": prompt},
+                ],
+                temperature=0.0,
+                max_tokens=300,
+            )
+            raw = (resp.choices[0].message.content or "").strip()
+            # Strip accidental markdown fences
+            if raw.startswith("```"):
+                raw = raw.split("\n", 1)[-1]
+                raw = raw.rsplit("```", 1)[0].strip()
+
+            parsed = json.loads(raw)
+            keep_indices = [int(i) for i in parsed.get("keep", [])]
+            reason = parsed.get("reason", "")
+            print(f"[LLM FILTER] {ticker}: keeping {len(keep_indices)}/{len(candidates)} "
+                  f"headlines via {_model}. Reason: {reason}")
+
+            kept = [candidates[i] for i in keep_indices
+                    if 0 <= i < len(candidates)]
+            return kept[:max_keep]
+
+        except Exception as _llm_err:
+            print(f"[LLM FILTER] API call failed ({type(_llm_err).__name__}: {_llm_err}), "
+                  f"falling back to keyword filter.")
+            # Fall through to keyword fallback below
+
+    # ── Keyword fallback (no API key or API failure) ─────────────────
+    print(f"[LLM FILTER] Using keyword fallback for {ticker}.")
+    ticker_upper = ticker.upper()
+
+    # Build a broad set of terms: ticker + company names + brand terms
+    allow_terms = {ticker_upper}
+    for company_name, tickers in COMPANY_NAME_TO_TICKERS.items():
+        if ticker_upper in normalize_ticker_list(tickers):
+            allow_terms.add(company_name.upper())
+
+    # TICKER_BRAND_TERMS may not exist if previous prompt wasn't applied —
+    # guard with getattr on the module globals
+    brand_map = globals().get("TICKER_BRAND_TERMS", {})
+    for brand in brand_map.get(ticker_upper, []):
+        allow_terms.add(str(brand).upper())
+
+    _NOISE = re.compile(
+        r'\b(1080p|720p|BluRay|WEB-?DL|x264|x265|HEVC|S\d{2}E\d{2}|'
+        r'torrent|YIFY|RARBG|EZTV|mkv|mp4)\b',
+        re.IGNORECASE,
+    )
+
+    kept = []
+    for h in candidates:
+        title = str(h.get("title", "")).strip()
+        if not title:
+            continue
+        if _NOISE.search(title):
+            continue
+        title_up = title.upper()
+        if any(term in title_up for term in allow_terms):
+            kept.append(h)
+        if len(kept) >= max_keep:
+            break
+    return kept
+
 
 def normalize_ticker_symbol(symbol: str):
     token = str(symbol or "").strip().upper()
@@ -602,248 +753,184 @@ class IRIS_System:
             return self._simulated_market_data(ticker)
 
     def analyze_news(self, ticker):
-        """Fetches headlines and calculates a Sentiment Score (-1.0 to +1.0)."""
+        """
+        Fetches raw headlines from all available sources, then uses
+        llm_filter_headlines() to select those relevant to the ticker.
+        Returns (sentiment_score: float, headlines: list[dict]).
+        """
         ticker_symbol = normalize_ticker_symbol(ticker).upper()
-        headlines = []
-        seen = set()
+        raw_candidates = []
+        seen_urls = set()
+        seen_titles = set()
 
-        # Build strict relevance terms: ticker + known company names mapped to this ticker.
-        relevance_terms = {ticker_symbol}
-        for company_name, tickers in COMPANY_NAME_TO_TICKERS.items():
-            normalized = normalize_ticker_list(tickers)
-            if ticker_symbol in normalized:
-                relevance_terms.add(str(company_name or "").upper())
+        def _norm_title(t):
+            return re.sub(r'[^a-z0-9 ]', '', t.lower().strip())
 
-        def _normalize_title(t):
-            """Lowercase, strip punctuation for fuzzy dedup."""
-            return re.sub(r'[^a-z0-9 ]', '', str(t or '').lower().strip())
+        def _bad_url(url):
+            _BAD = re.compile(
+                r'consent\.(yahoo|google|msn)\.|/v2/collectConsent|'
+                r'accounts\.google\.com|login\.|signin\.|tracking',
+                re.IGNORECASE,
+            )
+            return bool(_BAD.search(url))
 
-        _FINANCIAL_TERMS = re.compile(
-            r'\b(stock|share|price|market|earn|revenue|profit|loss|invest|'
-            r'analyst|quarter|fiscal|IPO|valuat|forecast|guidance|trade|'
-            r'fund|ETF|NYSE|NASDAQ|SEC|CEO|CFO|board|dividend|rally|'
-            r'downgrade|upgrade|outlook|chip|semiconductor|AI|cloud|'
-            r'data.?center|GPU|compute)\b',
+        _NOISE = re.compile(
+            r'\b(1080p|720p|480p|4K|BluRay|WEB-?DL|WEBRip|HDTV|DVDRip|'
+            r'x264|x265|H\.?264|H\.?265|HEVC|AAC|AC3|DTS|MKV|AVI|'
+            r'S\d{2}E\d{2}|torrent|magnet|repack|'
+            r'YIFY|RARBG|EZTV|BobDobbs|playWEB|SPARKS)\b',
             re.IGNORECASE,
         )
-        _NOISE_PATTERNS = [
-            r'\b(1080p|720p|480p|2160p|4K|BluRay|WEB-?DL|WEBRip|HDTV|DVDRip|BRRip)\b',
-            r'\b(x264|x265|H\.?264|H\.?265|HEVC|AVC|AAC|AC3|DTS|FLAC|MP4|MKV|AVI)\b',
-            r'\b(S\d{2}E\d{2}|S\d{2}-S\d{2})\b',
-            r'\b(YIFY|RARBG|EZTV|BobDobbs|playWEB|Kitsune|TEPES|RAWR|MiXED|SPARKS)\b',
-            r'\b(torrent|magnet|repack|proper|extended\.cut|theatrical)\b',
-            r'(?i)\.\s*(mkv|mp4|avi|mov|wmv|flv)\b',
-        ]
 
-        def add_relevant_article(title, url="", description="", published_at=""):
-            if len(headlines) >= 15:
+        def collect(title, url="", published_at=""):
+            """Add a raw candidate after only dedup + piracy checks."""
+            title = str(title or "").strip()
+            if not title or len(raw_candidates) >= 40:
                 return
-            clean_title = str(title or "").strip()
-            if not clean_title:
+            if _NOISE.search(title):
                 return
-            clean_url = str(url or "").strip()
-            clean_description = str(description or "").strip()
-
-            combined_text = f"{clean_title} {clean_description}"
-            is_relevant = False
-            for term in relevance_terms:
-                term_upper = str(term or "").upper().strip()
-                if not term_upper:
-                    continue
-                pattern = r'\b' + re.escape(term_upper) + r'\b'
-                if re.search(pattern, combined_text, re.IGNORECASE):
-                    is_relevant = True
-                    if not _FINANCIAL_TERMS.search(combined_text):
-                        is_relevant = False
-                    break
-            if not is_relevant:
+            url = str(url or "").strip()
+            if url and _bad_url(url):
                 return
-
-            for _pat in _NOISE_PATTERNS:
-                if re.search(_pat, clean_title, re.IGNORECASE):
-                    return
-
-            # Deduplicate by exact (title, url) and by normalized title
-            norm_title = _normalize_title(clean_title)
-            if clean_url in seen or norm_title in seen:
+            norm = _norm_title(title)
+            if norm in seen_titles:
                 return
-            seen.add(clean_url)
-            seen.add(norm_title)
-
-            # Reject known non-article URL patterns (consent pages, trackers, etc.)
-            if clean_url:
-                _bad_url_patterns = [
-                    r'consent\.(yahoo|google|msn)\.',
-                    r'/v2/collectConsent',
-                    r'accounts\.google\.com',
-                    r'login\.|signin\.',
-                    r'\btracking\b',
-                ]
-                if any(re.search(p, clean_url, re.IGNORECASE) for p in _bad_url_patterns):
-                    return
-
-            # Validate URL: only reject connection/DNS failures and 5xx errors.
-            # 4xx (including paywalls) are kept — users can still open those links.
-            if clean_url:
-                try:
-                    import urllib.request as _urlreq
-                    req = _urlreq.Request(
-                        clean_url,
-                        headers={'User-Agent': 'Mozilla/5.0 (compatible; IRIS-AI/1.0)'},
-                    )
-                    with _urlreq.urlopen(req, timeout=4) as resp:
-                        if resp.status >= 500:
-                            return   # server error — drop
-                except Exception as _e:
-                    err_str = str(_e).lower()
-                    # Drop only on DNS/connection failure; keep on HTTP errors (paywall etc.)
-                    if any(k in err_str for k in ('name or service', 'nodename', 'connection refused',
-                                                   'no route', 'network unreachable', 'timed out',
-                                                   'ssl', 'certificate')):
-                        return
-
-            headlines.append({
-                "title": clean_title,
-                "url": clean_url,
+            if url and url in seen_urls:
+                return
+            seen_titles.add(norm)
+            if url:
+                seen_urls.add(url)
+            raw_candidates.append({
+                "title": title,
+                "url": url,
                 "published_at": str(published_at or "").strip(),
             })
 
-        # Preferred source: NewsAPI (if configured) for a larger headline baseline.
+        # ── Source 1: NewsAPI ────────────────────────────────────────────
         if self.news_api:
             try:
                 response = self.news_api.get_everything(
-                    q=ticker,
+                    q=ticker_symbol,
                     language="en",
                     sort_by="publishedAt",
-                    page_size=15,
+                    page_size=30,
                 )
-                if isinstance(response, dict):
-                    for article in response.get("articles", []) or []:
-                        if not isinstance(article, dict):
-                            continue
-                        title = str(article.get("title", "")).strip()
-                        url = article.get("url", "")
-                        description = article.get("description", "")
-                        add_relevant_article(
-                            title=title,
-                            url=url,
-                            description=description,
-                            published_at=article.get("publishedAt", ""),
-                        )
-                        if len(headlines) >= 15:
-                            break
-            except Exception:
-                headlines = []
-                seen = set()
+                for article in (response.get("articles") or []):
+                    if not isinstance(article, dict):
+                        continue
+                    collect(
+                        title=article.get("title", ""),
+                        url=article.get("url", ""),
+                        published_at=article.get("publishedAt", ""),
+                    )
+            except Exception as _e:
+                print(f"[NEWS] NewsAPI error: {_e}")
 
-        # Second source: Webz.io News API (supplements NewsAPI or runs standalone).
-        if self.webz_api_key and len(headlines) < 15:
+        # ── Source 2: Webz.io ────────────────────────────────────────────
+        if self.webz_api_key and len(raw_candidates) < 30:
             try:
                 import urllib.request as _urlreq, urllib.parse as _urlparse
                 _params = _urlparse.urlencode({
                     "token": self.webz_api_key,
-                    "q": f'"{ticker}" language:english',
+                    "q": f'"{ticker_symbol}" language:english',
                     "sort": "published",
                     "order": "desc",
-                    "size": 20,
+                    "size": 25,
                     "format": "json",
                 })
-                _webz_url = f"https://api.webz.io/newsApiLite?{_params}"
-                _req = _urlreq.Request(_webz_url, headers={"Accept": "application/json"})
+                _req = _urlreq.Request(
+                    f"https://api.webz.io/newsApiLite?{_params}",
+                    headers={"Accept": "application/json"},
+                )
                 with _urlreq.urlopen(_req, timeout=8) as _resp:
-                    _webz_data = json.loads(_resp.read().decode("utf-8"))
-                for _post in _webz_data.get("posts", []) or []:
-                    if not isinstance(_post, dict):
+                    _data = json.loads(_resp.read().decode("utf-8"))
+                for post in (_data.get("posts") or []):
+                    if not isinstance(post, dict):
                         continue
-                    add_relevant_article(
-                        title=_post.get("title", ""),
-                        url=_post.get("url", ""),
-                        description=_post.get("text", "")[:300],
-                        published_at=_post.get("published", ""),
+                    collect(
+                        title=post.get("title", ""),
+                        url=post.get("url", ""),
+                        published_at=post.get("published", ""),
                     )
-                    if len(headlines) >= 15:
-                        break
-            except Exception:
-                pass
+            except Exception as _e:
+                print(f"[NEWS] Webz.io error: {_e}")
 
-        # Fallback: existing yfinance extraction when NewsAPI is unavailable/failed/empty.
-        if not headlines:
+        # ── Source 3: yfinance fallback ──────────────────────────────────
+        if not raw_candidates:
             try:
                 stock = yf.Ticker(ticker)
-                news_items = stock.news
-                if news_items:
-                    for item in news_items[:30]:
-                        if not isinstance(item, dict):
-                            continue
-                        content = item.get("content") if isinstance(item.get("content"), dict) else {}
-                        title = item.get("title") or content.get("title") or ""
-                        description = item.get("description") or item.get("summary") or content.get("description") or content.get("summary") or ""
-                        url = item.get("link") or item.get("url") or content.get("link") or content.get("url") or ""
-                        _pub = item.get("providerPublishTime") or \
-                               (item.get("content") or {}).get("pubDate", "")
-                        add_relevant_article(
-                            title=title,
-                            url=url,
-                            description=description,
-                            published_at=_pub,
-                        )
-                        if len(headlines) >= 15:
-                            break
-            except Exception:
-                pass
-        
-        #  Fallback: Simulation Mode (If internet/API failure)
-        if not headlines:
-            if ticker == "TSLA":
-                simulation_items = [
+                for item in (stock.news or [])[:40]:
+                    if not isinstance(item, dict):
+                        continue
+                    content = item.get("content") or {}
+                    if not isinstance(content, dict):
+                        content = {}
+                    title = (item.get("title") or content.get("title") or "")
+                    url   = (item.get("link")  or item.get("url") or
+                             content.get("link") or content.get("url") or "")
+                    pub   = (item.get("providerPublishTime") or
+                             content.get("pubDate", ""))
+                    collect(title=title, url=url, published_at=pub)
+            except Exception as _e:
+                print(f"[NEWS] yfinance error: {_e}")
+
+        # ── Source 4: simulation fallback ────────────────────────────────
+        if not raw_candidates:
+            _sim = {
+                "TSLA": [
                     {"title": "Tesla recalls 2 million vehicles due to autopilot risk", "url": ""},
                     {"title": "Analysts downgrade Tesla stock amid slowing EV demand", "url": ""},
-                ]
-            elif ticker == "NVDA":
-                simulation_items = [
-                    {"title": "Nvidia announces fantastic breakthrough AI chip", "url": ""},
-                    {"title": "Nvidia quarterly revenue brilliantly beats expectations by 20%", "url": ""},
-                ]
-            else:
-                simulation_items = [
-                    {"title": f"{ticker_symbol} announces date for shareholder meeting", "url": ""},
-                    {"title": f"{ticker_symbol} news flow remains active amid market volatility", "url": ""},
-                ]
-            for entry in simulation_items:
-                add_relevant_article(
-                    title=entry.get("title", ""),
-                    url=entry.get("url", ""),
-                    description="",
-                )
+                ],
+                "NVDA": [
+                    {"title": "Nvidia announces breakthrough AI chip", "url": ""},
+                    {"title": "Nvidia quarterly revenue beats expectations by 20%", "url": ""},
+                ],
+            }
+            for entry in _sim.get(ticker_symbol, [
+                {"title": f"{ticker_symbol} announces date for shareholder meeting", "url": ""},
+                {"title": f"{ticker_symbol} news flow active amid market volatility", "url": ""},
+            ]):
+                collect(title=entry["title"], url=entry.get("url", ""))
 
-        #  Analyze Sentiment using FinBERT
-        total_score = 0
-        valid_headlines = 0
-        
+        print(f"[NEWS] {ticker_symbol}: {len(raw_candidates)} raw candidates collected.")
+
+        # ── Phase 2: LLM filter ──────────────────────────────────────────
+        headlines = llm_filter_headlines(
+            ticker_symbol,
+            raw_candidates,
+            max_keep=12,
+        )
+        print(f"[NEWS] {ticker_symbol}: {len(headlines)} headlines after LLM filter.")
+
+        # Ensure every headline has a category key for the frontend tag logic
+        for h in headlines:
+            if "category" not in h:
+                h["category"] = "financial"
+
+        # ── Sentiment scoring ────────────────────────────────────────────
+        total_score = 0.0
+        valid_count = 0
         if self.sentiment_analyzer and headlines:
-            for headline in headlines:
+            for h in headlines:
+                title_text = str(h.get("title", "")).strip()
+                if not title_text:
+                    continue
                 try:
-                    title_text = str(headline.get("title", "")).strip() if isinstance(headline, dict) else str(headline or "").strip()
-                    if not title_text:
-                        continue
-                    # FinBERT returns labels like 'positive', 'negative', 'neutral'
                     result = self.sentiment_analyzer(title_text)[0]
-                    label = result['label']
-                    score = result['score'] # Confidence score 0 to 1
-                    
-                    if label == 'positive':
+                    label  = result["label"]
+                    score  = result["score"]
+                    if label == "positive":
                         total_score += score
-                        valid_headlines += 1
-                    elif label == 'negative':
+                        valid_count += 1
+                    elif label == "negative":
                         total_score -= score
-                        valid_headlines += 1
-                    else: # neutral
-                        valid_headlines += 1
-                        # neutral adds 0 to total score
+                        valid_count += 1
+                    else:
+                        valid_count += 1
                 except Exception:
                     pass
-        
-        avg_score = total_score / valid_headlines if valid_headlines > 0 else 0
+
+        avg_score = total_score / valid_count if valid_count > 0 else 0.0
         return avg_score, headlines
 
     def predict_trend(self, data, sentiment_score):
