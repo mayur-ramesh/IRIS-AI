@@ -925,6 +925,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const llmTrend = String(report?.signals?.trend_label || '').toUpperCase().trim();
                     const llmPrice = Number(report?.market?.predicted_price_next_session);
+                    if (!llmPrice && !llmTrend) {
+                        console.warn('[IRIS] LLM panel: missing data for model', key, report);
+                    }
 
                     let priceClass = 'llm-price-flat';
                     let trendClass = 'llm-trend-flat';
@@ -962,18 +965,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (headlines && headlines.length > 0) {
             headlines.forEach((headline) => {
-                if (!headline || typeof headline !== 'object') return;
-                const title = String(headline.title || '').trim();
+                const title = typeof headline === 'string'
+                    ? headline.trim()
+                    : String(headline?.title || headline?.text || '').trim();
                 if (!title) return;
 
-                const url         = String(headline.url || '').trim();
-                const publishedAt = String(headline.published_at || '').trim();
+                const url         = typeof headline === 'string' ? '' : String(headline?.url || '').trim();
+                const publishedAt = typeof headline === 'string' ? '' : String(headline?.published_at || '').trim();
                 const dateLabel   = formatHeadlineDate(publishedAt);
                 const domain      = extractDomain(url);
                 const isLink      = /^https?:\/\//i.test(url);
 
                 const li = document.createElement('li');
-                li.className = 'headline-item' + (isLink ? '' : ' headline-item--no-url');
+                const category = String(typeof headline === 'string' ? 'financial' : (headline?.category || 'financial')).trim().toLowerCase();
+                const catClass  = category === 'geopolitical' ? ' headline-item--geo'
+                                : category === 'macro'         ? ' headline-item--macro'
+                                : '';
+                li.className = 'headline-item' + catClass + (isLink ? '' : ' headline-item--no-url');
 
                 // Title — clickable link or plain span
                 const titleEl = document.createElement(isLink ? 'a' : 'span');
@@ -1009,10 +1017,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     metaEl.appendChild(srcSpan);
                 }
 
+                if (category === 'geopolitical' || category === 'macro') {
+                    const tagEl = document.createElement('span');
+                    tagEl.className = 'headline-tag';
+                    tagEl.textContent = category === 'macro' ? 'Macro' : 'Geopolitical';
+                    metaEl.appendChild(tagEl);
+                }
+
                 li.appendChild(titleEl);
                 if (metaEl.hasChildNodes()) li.appendChild(metaEl);
                 headlinesList.appendChild(li);
             });
+        }
+
+        // Show scroll hint if list overflows its capped height
+        const hintEl = headlinesList.parentElement?.querySelector('.headlines-scroll-hint');
+        if (hintEl) {
+            const overflows = headlinesList.scrollHeight > headlinesList.clientHeight;
+            hintEl.classList.toggle('visible', overflows);
         }
 
         if (!headlinesList.children.length) {
