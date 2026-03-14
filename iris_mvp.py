@@ -892,6 +892,10 @@ class IRIS_System:
         """
         ticker_symbol = normalize_ticker_symbol(ticker).upper()
         search_terms = _get_search_terms(ticker_symbol)
+        from datetime import datetime, timedelta, timezone
+        _now = datetime.now(timezone.utc)
+        _news_from_date = (_now - timedelta(days=14)).strftime("%Y-%m-%d")
+        _webz_ts = int((_now - timedelta(days=14)).timestamp()) * 1000
         raw_candidates = []
         seen_urls = set()
         seen_titles = set()
@@ -954,7 +958,8 @@ class IRIS_System:
                     q=newsapi_query,
                     language="en",
                     sort_by="publishedAt",
-                    page_size=30,
+                    from_param=_news_from_date,
+                    page_size=50,
                 )
                 for article in (response.get("articles") or []):
                     if not isinstance(article, dict):
@@ -976,9 +981,10 @@ class IRIS_System:
                 _params = _urlparse.urlencode({
                     "token": self.webz_api_key,
                     "q": _webz_q,
-                    "sort": "published",
+                    "ts": _webz_ts,
+                    "sort": "relevancy",
                     "order": "desc",
-                    "size": 30,
+                    "size": 40,
                     "format": "json",
                 })
                 _req = _urlreq.Request(
@@ -999,7 +1005,7 @@ class IRIS_System:
                 print(f"[NEWS] Webz.io error: {_e}")
 
         # ── Source 3: yfinance supplement ────────────────────────────────
-        if len(raw_candidates) < 10:
+        if len(raw_candidates) < 15:
             try:
                 stock = yf.Ticker(ticker)
                 for item in (stock.news or [])[:40]:
@@ -1043,7 +1049,7 @@ class IRIS_System:
         headlines = llm_filter_headlines(
             ticker_symbol,
             raw_candidates,
-            max_keep=12,
+            max_keep=25,
         )
         print(f"[NEWS] {ticker_symbol}: {len(headlines)} headlines after LLM filter.")
 
