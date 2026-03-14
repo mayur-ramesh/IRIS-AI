@@ -77,6 +77,106 @@ TICKER_BRAND_TERMS = {
     "NKE":   ["Nike", "Jordan", "Air Max", "Swoosh"],
 }
 
+# Expanded search terms: company names, CEOs, products, sector keywords.
+# Used to build broader API queries so news isn't missed when articles
+# don't mention the ticker symbol directly.
+TICKER_SEARCH_TERMS = {
+    "AAPL": {
+        "names": ["Apple", "Apple Inc"],
+        "people": ["Tim Cook"],
+        "products": ["iPhone", "iPad", "MacBook", "Apple Watch", "Vision Pro", "AirPods", "App Store"],
+        "sector": ["consumer electronics", "big tech"],
+    },
+    "MSFT": {
+        "names": ["Microsoft", "Microsoft Corp"],
+        "people": ["Satya Nadella"],
+        "products": ["Windows", "Azure", "Copilot", "Office 365", "Xbox", "Teams", "GitHub"],
+        "sector": ["enterprise software", "cloud computing"],
+    },
+    "GOOG": {
+        "names": ["Google", "Alphabet", "Alphabet Inc"],
+        "people": ["Sundar Pichai"],
+        "products": ["Google Search", "YouTube", "Waymo", "DeepMind", "Gemini", "Pixel", "Android", "Chrome"],
+        "sector": ["search engine", "digital advertising", "big tech"],
+    },
+    "GOOGL": {
+        "names": ["Google", "Alphabet"],
+        "people": ["Sundar Pichai"],
+        "products": ["YouTube", "Waymo", "DeepMind", "Gemini"],
+        "sector": ["digital advertising", "big tech"],
+    },
+    "AMZN": {
+        "names": ["Amazon", "Amazon.com"],
+        "people": ["Andy Jassy", "Jeff Bezos"],
+        "products": ["AWS", "Alexa", "Prime", "Kindle", "Twitch", "Ring"],
+        "sector": ["e-commerce", "cloud computing", "logistics"],
+    },
+    "NVDA": {
+        "names": ["Nvidia", "NVIDIA Corp"],
+        "people": ["Jensen Huang"],
+        "products": ["GeForce", "Blackwell", "Hopper", "CUDA", "DGX", "RTX", "A100", "H100"],
+        "sector": ["semiconductor", "GPU", "AI chip", "data center", "high-tech"],
+    },
+    "META": {
+        "names": ["Meta", "Meta Platforms", "Facebook"],
+        "people": ["Mark Zuckerberg"],
+        "products": ["Instagram", "WhatsApp", "Threads", "Llama", "Ray-Ban Meta", "Oculus", "Quest"],
+        "sector": ["social media", "metaverse", "digital advertising"],
+    },
+    "TSLA": {
+        "names": ["Tesla", "Tesla Inc"],
+        "people": ["Elon Musk"],
+        "products": ["Model 3", "Model Y", "Model S", "Model X", "Cybertruck", "Powerwall",
+                     "Megapack", "Autopilot", "FSD", "Gigafactory", "Supercharger"],
+        "sector": ["electric vehicle", "EV", "autonomous driving", "battery", "clean energy"],
+    },
+    "NKE": {
+        "names": ["Nike", "Nike Inc"],
+        "people": ["Elliott Hill"],
+        "products": ["Air Jordan", "Air Max", "Nike Dunk", "Swoosh", "SNKRS"],
+        "sector": ["sportswear", "athletic footwear", "retail"],
+    },
+    "NFLX": {
+        "names": ["Netflix", "Netflix Inc"],
+        "people": ["Ted Sarandos", "Greg Peters"],
+        "products": ["Netflix Games", "Netflix Ads"],
+        "sector": ["streaming", "entertainment", "media"],
+    },
+    "AMD": {
+        "names": ["AMD", "Advanced Micro Devices"],
+        "people": ["Lisa Su"],
+        "products": ["Ryzen", "EPYC", "Radeon", "Instinct", "Xilinx"],
+        "sector": ["semiconductor", "CPU", "GPU", "data center", "high-tech"],
+    },
+    "INTC": {
+        "names": ["Intel", "Intel Corp"],
+        "people": ["Pat Gelsinger", "Lip-Bu Tan"],
+        "products": ["Core Ultra", "Xeon", "Arc", "Gaudi", "Intel Foundry"],
+        "sector": ["semiconductor", "CPU", "chip manufacturing", "foundry"],
+    },
+}
+
+
+def _get_search_terms(ticker_symbol: str) -> dict:
+    """Return names, people, products, sector lists for a ticker. Falls back to ticker-only."""
+    ts = ticker_symbol.upper()
+    entry = TICKER_SEARCH_TERMS.get(ts, {})
+    names = list(entry.get("names", []))
+    for company_name, tickers in COMPANY_NAME_TO_TICKERS.items():
+        if ts in normalize_ticker_list(tickers):
+            readable = company_name.capitalize()
+            if readable not in names:
+                names.append(readable)
+    if not names:
+        names = [ts]
+    return {
+        "names": names,
+        "people": entry.get("people", []),
+        "products": entry.get("products", []),
+        "sector": entry.get("sector", []),
+        "ticker": ts,
+    }
+
 
 def llm_filter_headlines(
     ticker: str,
@@ -176,21 +276,41 @@ Headlines:
     print(f"[LLM FILTER] Using keyword fallback for {ticker}.")
     ticker_upper = ticker.upper()
 
-    # Build a broad set of terms: ticker + company names + brand terms
-    allow_terms = {ticker_upper}
+    # Build comprehensive term sets from TICKER_SEARCH_TERMS
+    _fb_terms = _get_search_terms(ticker_upper)
+    direct_terms = {ticker_upper}
+    sector_terms = set()
+    for name in _fb_terms.get("names", []):
+        direct_terms.add(name.upper())
+    for person in _fb_terms.get("people", []):
+        direct_terms.add(person.upper())
+    for product in _fb_terms.get("products", []):
+        if len(product) >= 4:
+            direct_terms.add(product.upper())
+    for sector in _fb_terms.get("sector", []):
+        sector_terms.add(sector.upper())
+    # Also add from legacy COMPANY_NAME_TO_TICKERS
     for company_name, tickers in COMPANY_NAME_TO_TICKERS.items():
         if ticker_upper in normalize_ticker_list(tickers):
-            allow_terms.add(company_name.upper())
+            direct_terms.add(company_name.upper())
 
-    # TICKER_BRAND_TERMS may not exist if previous prompt wasn't applied —
-    # guard with getattr on the module globals
-    brand_map = globals().get("TICKER_BRAND_TERMS", {})
-    for brand in brand_map.get(ticker_upper, []):
-        allow_terms.add(str(brand).upper())
-
-    _NOISE = re.compile(
-        r'\b(1080p|720p|BluRay|WEB-?DL|x264|x265|HEVC|S\d{2}E\d{2}|'
-        r'torrent|YIFY|RARBG|EZTV|mkv|mp4)\b',
+    _BROAD_FINANCIAL = re.compile(
+        r'\b(stock|share|price|market|earn|revenue|profit|loss|invest|'
+        r'analyst|quarter|fiscal|IPO|valuat|forecast|guidance|trade|fund|ETF|'
+        r'NYSE|NASDAQ|SEC|CEO|CFO|CTO|board|dividend|rally|downgrade|upgrade|outlook|'
+        r'chip|semiconductor|AI|cloud|data.?center|GPU|compute|'
+        r'announce|launch|release|unveil|partner|acqui|merger|deal|'
+        r'contract|supply|deliver|expand|restructur|layoff|hire|appoint|'
+        r'margin|growth|decline|beat|miss|target|consensus|'
+        r'buyback|repurchase|offering|debt|bond|credit|'
+        r'sanction|tariff|trade.?war|export.?control|NATO|conflict|war|'
+        r'regulat|antitrust|FTC|DOJ|ban|restrict|patent|lawsuit|settle|fine|'
+        r'Fed.?rate|inflation|CPI|GDP|recession|supply.?chain|chip.?act|'
+        r'interest.?rate|treasury|yield|employment|PMI|manufacturing|'
+        r'factory|production|recall|safety|'
+        r'electric.?vehicle|EV|battery|autonomous|self.?driving|'
+        r'5G|robot|quantum|biotech|pharma|drug|FDA|'
+        r'options?.?flow|short.?interest|rebalanc|index.?inclusion)\b',
         re.IGNORECASE,
     )
 
@@ -199,13 +319,25 @@ Headlines:
         title = str(h.get("title", "")).strip()
         if not title:
             continue
-        if _NOISE.search(title):
-            continue
-        title_up = title.upper()
-        if any(term in title_up for term in allow_terms):
+        # Tier 1: direct mention of ticker, company name, CEO, or major product → always relevant
+        tier1_match = any(
+            re.search(r'\b' + re.escape(t) + r'\b', title, re.IGNORECASE)
+            for t in direct_terms
+        )
+        if tier1_match:
             kept.append(h)
-        if len(kept) >= max_keep:
-            break
+            if len(kept) >= max_keep:
+                break
+            continue
+        # Tier 2: sector/industry term + financial context
+        tier2_match = any(
+            re.search(r'\b' + re.escape(s) + r'\b', title, re.IGNORECASE)
+            for s in sector_terms
+        )
+        if tier2_match and _BROAD_FINANCIAL.search(title):
+            kept.append(h)
+            if len(kept) >= max_keep:
+                break
     return kept
 
 
@@ -759,6 +891,7 @@ class IRIS_System:
         Returns (sentiment_score: float, headlines: list[dict]).
         """
         ticker_symbol = normalize_ticker_symbol(ticker).upper()
+        search_terms = _get_search_terms(ticker_symbol)
         raw_candidates = []
         seen_urls = set()
         seen_titles = set()
@@ -809,8 +942,16 @@ class IRIS_System:
         # ── Source 1: NewsAPI ────────────────────────────────────────────
         if self.news_api:
             try:
+                # Build broad OR query: "TSLA" OR "Tesla" OR "Elon Musk"
+                _query_parts = [f'"{ticker_symbol}"']
+                for _name in search_terms["names"][:3]:
+                    _query_parts.append(f'"{_name}"')
+                for _person in search_terms["people"][:1]:
+                    _query_parts.append(f'"{_person}"')
+                newsapi_query = " OR ".join(_query_parts)
+
                 response = self.news_api.get_everything(
-                    q=ticker_symbol,
+                    q=newsapi_query,
                     language="en",
                     sort_by="publishedAt",
                     page_size=30,
@@ -830,12 +971,14 @@ class IRIS_System:
         if self.webz_api_key and len(raw_candidates) < 30:
             try:
                 import urllib.request as _urlreq, urllib.parse as _urlparse
+                _primary_name = search_terms["names"][0] if search_terms["names"] else ticker_symbol
+                _webz_q = f'("{ticker_symbol}" OR "{_primary_name}") language:english'
                 _params = _urlparse.urlencode({
                     "token": self.webz_api_key,
-                    "q": f'"{ticker_symbol}" language:english',
+                    "q": _webz_q,
                     "sort": "published",
                     "order": "desc",
-                    "size": 25,
+                    "size": 30,
                     "format": "json",
                 })
                 _req = _urlreq.Request(
@@ -855,8 +998,8 @@ class IRIS_System:
             except Exception as _e:
                 print(f"[NEWS] Webz.io error: {_e}")
 
-        # ── Source 3: yfinance fallback ──────────────────────────────────
-        if not raw_candidates:
+        # ── Source 3: yfinance supplement ────────────────────────────────
+        if len(raw_candidates) < 10:
             try:
                 stock = yf.Ticker(ticker)
                 for item in (stock.news or [])[:40]:
@@ -886,9 +1029,11 @@ class IRIS_System:
                     {"title": "Nvidia quarterly revenue beats expectations by 20%", "url": ""},
                 ],
             }
+            _primary_name = search_terms["names"][0] if search_terms.get("names") else ticker_symbol
             for entry in _sim.get(ticker_symbol, [
-                {"title": f"{ticker_symbol} announces date for shareholder meeting", "url": ""},
-                {"title": f"{ticker_symbol} news flow active amid market volatility", "url": ""},
+                {"title": f"{_primary_name} shares trade actively amid broad market movements", "url": ""},
+                {"title": f"Analysts review {_primary_name} outlook for current quarter", "url": ""},
+                {"title": f"{_primary_name} scheduled to report earnings this season", "url": ""},
             ]):
                 collect(title=entry["title"], url=entry.get("url", ""))
 
