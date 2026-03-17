@@ -1,0 +1,2712 @@
+[
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-02-09T03:39:06Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 323.1000061035156,
+      "predicted_price_next_session": 340.3557917452406
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "GOOG announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-02-11T02:24:16Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 318.5799865722656,
+      "predicted_price_next_session": 319.3740889610718
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "GOOGL announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-02-12T13:25:12Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 311.3299865722656,
+      "predicted_price_next_session": 312.63754947237237
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "GOOG announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-02-23T01:15:39Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 314.8999938964844,
+      "predicted_price_next_session": 317.0593168273786
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "GOOG announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-02-27T14:01:34Z",
+      "market_session_date": "2026-02-26",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 307.1499938964844,
+      "predicted_price_next_session": 307.8415083942282
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.05972137451171875,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
+        "CoreWeave shares slump as doubling capital expenditure\u00a0sparks margin concerns",
+        "'Michael Saylor Should Be In Jail' And 'Bitcoin Is For Boomers' Says Ex-Fidelity Star, Who Also Has A Contrarian Take On Tesla",
+        "Meta Expands Its AI Bet Beyond Nvidia",
+        "Google Wins Approval to Export 1:5,000 Map Data in South Korea"
+      ],
+      "chart_path": "data\\charts\\2026-02-27\\GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-02-28T00:30:14Z",
+      "market_session_date": "2026-02-27",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 311.42999267578125,
+      "predicted_price_next_session": 315.8812613570071
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.1750251293182373,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Alphabet Inc. (GOOG) Increases Despite Market Slip: Here's What You Need to Know",
+        "Alphabet (GOOGL) Ascends While Market Falls: Some Facts to Note",
+        "Why Google Stock Is Still An Undisputed IPO Benchmark To Learn From",
+        "Alphabet (GOOGL) Secures Power Deals with AES, Xcel for Data Centers",
+        "On The Road To A Breakout: Sector Leader Paves AI-Enabled Path"
+      ],
+      "chart_path": "data\\charts\\2026-02-28\\GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-03T01:18:51Z",
+      "market_session_date": "2026-03-02",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 306.3599853515625,
+      "predicted_price_next_session": 305.8359139797262
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.020976555347442628,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "'A stark contrast': Wall Street weighs winners and losers amid AI-driven tech sell-off",
+        "Michael Saylor Once Said You Should Master This Technology To Get Wealthy: Bitcoin Billionaire Wants People To Set Their Egos Aside To Achieve Success",
+        "Nvidia Stock, Biotech Put This Line In Focus Amid U.S.-Iran Attacks",
+        "Are the Magnificent Seven Stocks Losing Steam? Should You Buy, Hold, or Sell?",
+        "Anthropic\u2019s Claude Holds Top Spot in App Store Following U.S. Government Ban"
+      ],
+      "chart_path": "data\\charts\\2026-03-03\\GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-03T17:09:33Z",
+      "market_session_date": "2026-03-03",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 300.9100036621094,
+      "predicted_price_next_session": 301.86828929642746,
+      "history": [
+        {
+          "time": "2025-12-05",
+          "value": 321.8799743652344
+        },
+        {
+          "time": "2025-12-08",
+          "value": 314.45001220703125
+        },
+        {
+          "time": "2025-12-09",
+          "value": 317.75
+        },
+        {
+          "time": "2025-12-10",
+          "value": 321.0
+        },
+        {
+          "time": "2025-12-11",
+          "value": 313.70001220703125
+        },
+        {
+          "time": "2025-12-12",
+          "value": 310.5199890136719
+        },
+        {
+          "time": "2025-12-15",
+          "value": 309.32000732421875
+        },
+        {
+          "time": "2025-12-16",
+          "value": 307.7300109863281
+        },
+        {
+          "time": "2025-12-17",
+          "value": 298.05999755859375
+        },
+        {
+          "time": "2025-12-18",
+          "value": 303.75
+        },
+        {
+          "time": "2025-12-19",
+          "value": 308.6099853515625
+        },
+        {
+          "time": "2025-12-22",
+          "value": 311.3299865722656
+        },
+        {
+          "time": "2025-12-23",
+          "value": 315.67999267578125
+        },
+        {
+          "time": "2025-12-24",
+          "value": 315.6700134277344
+        },
+        {
+          "time": "2025-12-26",
+          "value": 314.9599914550781
+        },
+        {
+          "time": "2025-12-29",
+          "value": 314.3900146484375
+        },
+        {
+          "time": "2025-12-30",
+          "value": 314.54998779296875
+        },
+        {
+          "time": "2025-12-31",
+          "value": 313.79998779296875
+        },
+        {
+          "time": "2026-01-02",
+          "value": 315.32000732421875
+        },
+        {
+          "time": "2026-01-05",
+          "value": 317.32000732421875
+        },
+        {
+          "time": "2026-01-06",
+          "value": 314.54998779296875
+        },
+        {
+          "time": "2026-01-07",
+          "value": 322.42999267578125
+        },
+        {
+          "time": "2026-01-08",
+          "value": 326.010009765625
+        },
+        {
+          "time": "2026-01-09",
+          "value": 329.1400146484375
+        },
+        {
+          "time": "2026-01-12",
+          "value": 332.7300109863281
+        },
+        {
+          "time": "2026-01-13",
+          "value": 336.42999267578125
+        },
+        {
+          "time": "2026-01-14",
+          "value": 336.30999755859375
+        },
+        {
+          "time": "2026-01-15",
+          "value": 333.1600036621094
+        },
+        {
+          "time": "2026-01-16",
+          "value": 330.3399963378906
+        },
+        {
+          "time": "2026-01-20",
+          "value": 322.1600036621094
+        },
+        {
+          "time": "2026-01-21",
+          "value": 328.3800048828125
+        },
+        {
+          "time": "2026-01-22",
+          "value": 330.8399963378906
+        },
+        {
+          "time": "2026-01-23",
+          "value": 328.42999267578125
+        },
+        {
+          "time": "2026-01-26",
+          "value": 333.5899963378906
+        },
+        {
+          "time": "2026-01-27",
+          "value": 335.0
+        },
+        {
+          "time": "2026-01-28",
+          "value": 336.2799987792969
+        },
+        {
+          "time": "2026-01-29",
+          "value": 338.6600036621094
+        },
+        {
+          "time": "2026-01-30",
+          "value": 338.5299987792969
+        },
+        {
+          "time": "2026-02-02",
+          "value": 344.8999938964844
+        },
+        {
+          "time": "2026-02-03",
+          "value": 340.70001220703125
+        },
+        {
+          "time": "2026-02-04",
+          "value": 333.3399963378906
+        },
+        {
+          "time": "2026-02-05",
+          "value": 331.3299865722656
+        },
+        {
+          "time": "2026-02-06",
+          "value": 323.1000061035156
+        },
+        {
+          "time": "2026-02-09",
+          "value": 324.3999938964844
+        },
+        {
+          "time": "2026-02-10",
+          "value": 318.6300048828125
+        },
+        {
+          "time": "2026-02-11",
+          "value": 311.3299865722656
+        },
+        {
+          "time": "2026-02-12",
+          "value": 309.3699951171875
+        },
+        {
+          "time": "2026-02-13",
+          "value": 306.0199890136719
+        },
+        {
+          "time": "2026-02-17",
+          "value": 302.82000732421875
+        },
+        {
+          "time": "2026-02-18",
+          "value": 303.94000244140625
+        },
+        {
+          "time": "2026-02-19",
+          "value": 303.55999755859375
+        },
+        {
+          "time": "2026-02-20",
+          "value": 314.8999938964844
+        },
+        {
+          "time": "2026-02-23",
+          "value": 311.69000244140625
+        },
+        {
+          "time": "2026-02-24",
+          "value": 310.9200134277344
+        },
+        {
+          "time": "2026-02-25",
+          "value": 313.0299987792969
+        },
+        {
+          "time": "2026-02-26",
+          "value": 307.1499938964844
+        },
+        {
+          "time": "2026-02-27",
+          "value": 311.42999267578125
+        },
+        {
+          "time": "2026-03-02",
+          "value": 306.3599853515625
+        },
+        {
+          "time": "2026-03-03",
+          "value": 300.9100036621094
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.12925224304199218,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Agentic AI leveraged to upend cloud rivals",
+        "Getting Your Sector Weights Right is Key -- and Hard",
+        "Alphabet\u2019s Cloud And AI Buildout Puts Long Term Investment Case In Focus",
+        "Alphabet Inc. (GOOGL) is Attracting Investor Attention: Here is What You Should Know",
+        "Alphabet Inc. (GOOG) is Attracting Investor Attention: Here is What You Should Know"
+      ],
+      "chart_path": "data\\charts\\2026-03-04\\GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-05T14:03:10Z",
+      "market_session_date": "2026-03-04",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 303.45001220703125,
+      "predicted_price_next_session": 305.22910330691076,
+      "history": [
+        {
+          "time": "2025-12-08",
+          "value": 314.45001220703125
+        },
+        {
+          "time": "2025-12-09",
+          "value": 317.75
+        },
+        {
+          "time": "2025-12-10",
+          "value": 321.0
+        },
+        {
+          "time": "2025-12-11",
+          "value": 313.70001220703125
+        },
+        {
+          "time": "2025-12-12",
+          "value": 310.5199890136719
+        },
+        {
+          "time": "2025-12-15",
+          "value": 309.32000732421875
+        },
+        {
+          "time": "2025-12-16",
+          "value": 307.7300109863281
+        },
+        {
+          "time": "2025-12-17",
+          "value": 298.05999755859375
+        },
+        {
+          "time": "2025-12-18",
+          "value": 303.75
+        },
+        {
+          "time": "2025-12-19",
+          "value": 308.6099853515625
+        },
+        {
+          "time": "2025-12-22",
+          "value": 311.3299865722656
+        },
+        {
+          "time": "2025-12-23",
+          "value": 315.67999267578125
+        },
+        {
+          "time": "2025-12-24",
+          "value": 315.6700134277344
+        },
+        {
+          "time": "2025-12-26",
+          "value": 314.9599914550781
+        },
+        {
+          "time": "2025-12-29",
+          "value": 314.3900146484375
+        },
+        {
+          "time": "2025-12-30",
+          "value": 314.54998779296875
+        },
+        {
+          "time": "2025-12-31",
+          "value": 313.79998779296875
+        },
+        {
+          "time": "2026-01-02",
+          "value": 315.32000732421875
+        },
+        {
+          "time": "2026-01-05",
+          "value": 317.32000732421875
+        },
+        {
+          "time": "2026-01-06",
+          "value": 314.54998779296875
+        },
+        {
+          "time": "2026-01-07",
+          "value": 322.42999267578125
+        },
+        {
+          "time": "2026-01-08",
+          "value": 326.010009765625
+        },
+        {
+          "time": "2026-01-09",
+          "value": 329.1400146484375
+        },
+        {
+          "time": "2026-01-12",
+          "value": 332.7300109863281
+        },
+        {
+          "time": "2026-01-13",
+          "value": 336.42999267578125
+        },
+        {
+          "time": "2026-01-14",
+          "value": 336.30999755859375
+        },
+        {
+          "time": "2026-01-15",
+          "value": 333.1600036621094
+        },
+        {
+          "time": "2026-01-16",
+          "value": 330.3399963378906
+        },
+        {
+          "time": "2026-01-20",
+          "value": 322.1600036621094
+        },
+        {
+          "time": "2026-01-21",
+          "value": 328.3800048828125
+        },
+        {
+          "time": "2026-01-22",
+          "value": 330.8399963378906
+        },
+        {
+          "time": "2026-01-23",
+          "value": 328.42999267578125
+        },
+        {
+          "time": "2026-01-26",
+          "value": 333.5899963378906
+        },
+        {
+          "time": "2026-01-27",
+          "value": 335.0
+        },
+        {
+          "time": "2026-01-28",
+          "value": 336.2799987792969
+        },
+        {
+          "time": "2026-01-29",
+          "value": 338.6600036621094
+        },
+        {
+          "time": "2026-01-30",
+          "value": 338.5299987792969
+        },
+        {
+          "time": "2026-02-02",
+          "value": 344.8999938964844
+        },
+        {
+          "time": "2026-02-03",
+          "value": 340.70001220703125
+        },
+        {
+          "time": "2026-02-04",
+          "value": 333.3399963378906
+        },
+        {
+          "time": "2026-02-05",
+          "value": 331.3299865722656
+        },
+        {
+          "time": "2026-02-06",
+          "value": 323.1000061035156
+        },
+        {
+          "time": "2026-02-09",
+          "value": 324.3999938964844
+        },
+        {
+          "time": "2026-02-10",
+          "value": 318.6300048828125
+        },
+        {
+          "time": "2026-02-11",
+          "value": 311.3299865722656
+        },
+        {
+          "time": "2026-02-12",
+          "value": 309.3699951171875
+        },
+        {
+          "time": "2026-02-13",
+          "value": 306.0199890136719
+        },
+        {
+          "time": "2026-02-17",
+          "value": 302.82000732421875
+        },
+        {
+          "time": "2026-02-18",
+          "value": 303.94000244140625
+        },
+        {
+          "time": "2026-02-19",
+          "value": 303.55999755859375
+        },
+        {
+          "time": "2026-02-20",
+          "value": 314.8999938964844
+        },
+        {
+          "time": "2026-02-23",
+          "value": 311.69000244140625
+        },
+        {
+          "time": "2026-02-24",
+          "value": 310.9200134277344
+        },
+        {
+          "time": "2026-02-25",
+          "value": 313.0299987792969
+        },
+        {
+          "time": "2026-02-26",
+          "value": 307.1499938964844
+        },
+        {
+          "time": "2026-02-27",
+          "value": 311.42999267578125
+        },
+        {
+          "time": "2026-03-02",
+          "value": 306.3599853515625
+        },
+        {
+          "time": "2026-03-03",
+          "value": 303.55999755859375
+        },
+        {
+          "time": "2026-03-04",
+          "value": 303.45001220703125
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.49068838357925415,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Big Tech signs Trump's AI energy cost pledge",
+        "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+        "OpenAI Revenue Tops $25B on Strong AI Demand",
+        "Alphabet (GOOG) Doubled by the End of the Year. Here\u2019s How",
+        "Broadcom Stock Pops. Why Its Earnings Got a Better Response Than Nvidia\u2019s."
+      ],
+      "chart_path": "data\\charts\\2026-03-05\\GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-06T01:16:15Z",
+      "market_session_date": "2026-03-05",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 300.9100036621094,
+      "predicted_price_next_session": 301.10126171050416,
+      "history": [
+        {
+          "time": "2025-12-09",
+          "value": 317.75
+        },
+        {
+          "time": "2025-12-10",
+          "value": 321.0
+        },
+        {
+          "time": "2025-12-11",
+          "value": 313.70001220703125
+        },
+        {
+          "time": "2025-12-12",
+          "value": 310.5199890136719
+        },
+        {
+          "time": "2025-12-15",
+          "value": 309.32000732421875
+        },
+        {
+          "time": "2025-12-16",
+          "value": 307.7300109863281
+        },
+        {
+          "time": "2025-12-17",
+          "value": 298.05999755859375
+        },
+        {
+          "time": "2025-12-18",
+          "value": 303.75
+        },
+        {
+          "time": "2025-12-19",
+          "value": 308.6099853515625
+        },
+        {
+          "time": "2025-12-22",
+          "value": 311.3299865722656
+        },
+        {
+          "time": "2025-12-23",
+          "value": 315.67999267578125
+        },
+        {
+          "time": "2025-12-24",
+          "value": 315.6700134277344
+        },
+        {
+          "time": "2025-12-26",
+          "value": 314.9599914550781
+        },
+        {
+          "time": "2025-12-29",
+          "value": 314.3900146484375
+        },
+        {
+          "time": "2025-12-30",
+          "value": 314.54998779296875
+        },
+        {
+          "time": "2025-12-31",
+          "value": 313.79998779296875
+        },
+        {
+          "time": "2026-01-02",
+          "value": 315.32000732421875
+        },
+        {
+          "time": "2026-01-05",
+          "value": 317.32000732421875
+        },
+        {
+          "time": "2026-01-06",
+          "value": 314.54998779296875
+        },
+        {
+          "time": "2026-01-07",
+          "value": 322.42999267578125
+        },
+        {
+          "time": "2026-01-08",
+          "value": 326.010009765625
+        },
+        {
+          "time": "2026-01-09",
+          "value": 329.1400146484375
+        },
+        {
+          "time": "2026-01-12",
+          "value": 332.7300109863281
+        },
+        {
+          "time": "2026-01-13",
+          "value": 336.42999267578125
+        },
+        {
+          "time": "2026-01-14",
+          "value": 336.30999755859375
+        },
+        {
+          "time": "2026-01-15",
+          "value": 333.1600036621094
+        },
+        {
+          "time": "2026-01-16",
+          "value": 330.3399963378906
+        },
+        {
+          "time": "2026-01-20",
+          "value": 322.1600036621094
+        },
+        {
+          "time": "2026-01-21",
+          "value": 328.3800048828125
+        },
+        {
+          "time": "2026-01-22",
+          "value": 330.8399963378906
+        },
+        {
+          "time": "2026-01-23",
+          "value": 328.42999267578125
+        },
+        {
+          "time": "2026-01-26",
+          "value": 333.5899963378906
+        },
+        {
+          "time": "2026-01-27",
+          "value": 335.0
+        },
+        {
+          "time": "2026-01-28",
+          "value": 336.2799987792969
+        },
+        {
+          "time": "2026-01-29",
+          "value": 338.6600036621094
+        },
+        {
+          "time": "2026-01-30",
+          "value": 338.5299987792969
+        },
+        {
+          "time": "2026-02-02",
+          "value": 344.8999938964844
+        },
+        {
+          "time": "2026-02-03",
+          "value": 340.70001220703125
+        },
+        {
+          "time": "2026-02-04",
+          "value": 333.3399963378906
+        },
+        {
+          "time": "2026-02-05",
+          "value": 331.3299865722656
+        },
+        {
+          "time": "2026-02-06",
+          "value": 323.1000061035156
+        },
+        {
+          "time": "2026-02-09",
+          "value": 324.3999938964844
+        },
+        {
+          "time": "2026-02-10",
+          "value": 318.6300048828125
+        },
+        {
+          "time": "2026-02-11",
+          "value": 311.3299865722656
+        },
+        {
+          "time": "2026-02-12",
+          "value": 309.3699951171875
+        },
+        {
+          "time": "2026-02-13",
+          "value": 306.0199890136719
+        },
+        {
+          "time": "2026-02-17",
+          "value": 302.82000732421875
+        },
+        {
+          "time": "2026-02-18",
+          "value": 303.94000244140625
+        },
+        {
+          "time": "2026-02-19",
+          "value": 303.55999755859375
+        },
+        {
+          "time": "2026-02-20",
+          "value": 314.8999938964844
+        },
+        {
+          "time": "2026-02-23",
+          "value": 311.69000244140625
+        },
+        {
+          "time": "2026-02-24",
+          "value": 310.9200134277344
+        },
+        {
+          "time": "2026-02-25",
+          "value": 313.0299987792969
+        },
+        {
+          "time": "2026-02-26",
+          "value": 307.1499938964844
+        },
+        {
+          "time": "2026-02-27",
+          "value": 311.42999267578125
+        },
+        {
+          "time": "2026-03-02",
+          "value": 306.3599853515625
+        },
+        {
+          "time": "2026-03-03",
+          "value": 303.55999755859375
+        },
+        {
+          "time": "2026-03-04",
+          "value": 303.45001220703125
+        },
+        {
+          "time": "2026-03-05",
+          "value": 300.9100036621094
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.17783768773078917,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Middle East War Hits Stocks. But AI \u2018Is Still the Most Important Dynamic in the Market.\u2019",
+        "Why Telecoms Like AT&T And Verizon Are Trouncing Tech Giants",
+        "Marvell Earnings Beat Estimates on \u2018Robust\u2019 AI Demand. The Stock Jumps.",
+        "Berkshire Is Sitting On $819 Million Or More in Google Gains \u2014 So Why Won't The New Boss Talk About It?",
+        "Trade Desk Stock Jumps Nearly 20%. Why the Shares Are Getting a Big Boost."
+      ],
+      "chart_path": "data\\charts\\2026-03-06\\GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-09T14:16:33Z",
+      "market_session_date": "2026-03-06",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 295.9800109863281,
+      "predicted_price_next_session": 302.3962948608398,
+      "history": [
+        {
+          "time": "2025-12-10",
+          "value": 321.0
+        },
+        {
+          "time": "2025-12-11",
+          "value": 313.70001220703125
+        },
+        {
+          "time": "2025-12-12",
+          "value": 310.5199890136719
+        },
+        {
+          "time": "2025-12-15",
+          "value": 309.32000732421875
+        },
+        {
+          "time": "2025-12-16",
+          "value": 307.7300109863281
+        },
+        {
+          "time": "2025-12-17",
+          "value": 298.05999755859375
+        },
+        {
+          "time": "2025-12-18",
+          "value": 303.75
+        },
+        {
+          "time": "2025-12-19",
+          "value": 308.6099853515625
+        },
+        {
+          "time": "2025-12-22",
+          "value": 311.3299865722656
+        },
+        {
+          "time": "2025-12-23",
+          "value": 315.67999267578125
+        },
+        {
+          "time": "2025-12-24",
+          "value": 315.6700134277344
+        },
+        {
+          "time": "2025-12-26",
+          "value": 314.9599914550781
+        },
+        {
+          "time": "2025-12-29",
+          "value": 314.3900146484375
+        },
+        {
+          "time": "2025-12-30",
+          "value": 314.54998779296875
+        },
+        {
+          "time": "2025-12-31",
+          "value": 313.79998779296875
+        },
+        {
+          "time": "2026-01-02",
+          "value": 315.32000732421875
+        },
+        {
+          "time": "2026-01-05",
+          "value": 317.32000732421875
+        },
+        {
+          "time": "2026-01-06",
+          "value": 314.54998779296875
+        },
+        {
+          "time": "2026-01-07",
+          "value": 322.42999267578125
+        },
+        {
+          "time": "2026-01-08",
+          "value": 326.010009765625
+        },
+        {
+          "time": "2026-01-09",
+          "value": 329.1400146484375
+        },
+        {
+          "time": "2026-01-12",
+          "value": 332.7300109863281
+        },
+        {
+          "time": "2026-01-13",
+          "value": 336.42999267578125
+        },
+        {
+          "time": "2026-01-14",
+          "value": 336.30999755859375
+        },
+        {
+          "time": "2026-01-15",
+          "value": 333.1600036621094
+        },
+        {
+          "time": "2026-01-16",
+          "value": 330.3399963378906
+        },
+        {
+          "time": "2026-01-20",
+          "value": 322.1600036621094
+        },
+        {
+          "time": "2026-01-21",
+          "value": 328.3800048828125
+        },
+        {
+          "time": "2026-01-22",
+          "value": 330.8399963378906
+        },
+        {
+          "time": "2026-01-23",
+          "value": 328.42999267578125
+        },
+        {
+          "time": "2026-01-26",
+          "value": 333.5899963378906
+        },
+        {
+          "time": "2026-01-27",
+          "value": 335.0
+        },
+        {
+          "time": "2026-01-28",
+          "value": 336.2799987792969
+        },
+        {
+          "time": "2026-01-29",
+          "value": 338.6600036621094
+        },
+        {
+          "time": "2026-01-30",
+          "value": 338.5299987792969
+        },
+        {
+          "time": "2026-02-02",
+          "value": 344.8999938964844
+        },
+        {
+          "time": "2026-02-03",
+          "value": 340.70001220703125
+        },
+        {
+          "time": "2026-02-04",
+          "value": 333.3399963378906
+        },
+        {
+          "time": "2026-02-05",
+          "value": 331.3299865722656
+        },
+        {
+          "time": "2026-02-06",
+          "value": 323.1000061035156
+        },
+        {
+          "time": "2026-02-09",
+          "value": 324.3999938964844
+        },
+        {
+          "time": "2026-02-10",
+          "value": 318.6300048828125
+        },
+        {
+          "time": "2026-02-11",
+          "value": 311.3299865722656
+        },
+        {
+          "time": "2026-02-12",
+          "value": 309.3699951171875
+        },
+        {
+          "time": "2026-02-13",
+          "value": 306.0199890136719
+        },
+        {
+          "time": "2026-02-17",
+          "value": 302.82000732421875
+        },
+        {
+          "time": "2026-02-18",
+          "value": 303.94000244140625
+        },
+        {
+          "time": "2026-02-19",
+          "value": 303.55999755859375
+        },
+        {
+          "time": "2026-02-20",
+          "value": 314.8999938964844
+        },
+        {
+          "time": "2026-02-23",
+          "value": 311.69000244140625
+        },
+        {
+          "time": "2026-02-24",
+          "value": 310.9200134277344
+        },
+        {
+          "time": "2026-02-25",
+          "value": 313.0299987792969
+        },
+        {
+          "time": "2026-02-26",
+          "value": 307.1499938964844
+        },
+        {
+          "time": "2026-02-27",
+          "value": 311.42999267578125
+        },
+        {
+          "time": "2026-03-02",
+          "value": 306.3599853515625
+        },
+        {
+          "time": "2026-03-03",
+          "value": 303.55999755859375
+        },
+        {
+          "time": "2026-03-04",
+          "value": 303.45001220703125
+        },
+        {
+          "time": "2026-03-05",
+          "value": 300.9100036621094
+        },
+        {
+          "time": "2026-03-06",
+          "value": 298.29998779296875
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.07749665180842082,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Show HN: I logged Gemini's stock predictions for 38 days to study LLM drift",
+        "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+        "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+        "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+        "Alphabet (GOOG) Doubled by the End of the Year. Here\u2019s How",
+        "Want to Invest in AI? Consider These 3 Bank Stocks.",
+        "Ray Dalio: Gold is a better option than Bitcoin, tech stocks because\u2026",
+        "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+        "Longbridge Securities Launches the World\u2019s First Pre-Market U.S. Options Trading\uff0cEmpowering Investors to Overcome Time Zone Barriers and Stay Ahead of the Market Movement",
+        "New to the share market? Here are 3 ASX ETFs to buy for easy investing",
+        "Claude Code\u306bGoogle\u306eDeveloper Knowledge API & MCP Server\u306e\u8a2d\u5b9a\u3092\u3059\u308b",
+        "Today's news and jokes",
+        "Re: How long AS-PATH policies have you used",
+        "\u2018The Collapse of Everything AI\u2019 Could Hinge on Nvidia\u2019s Earnings. What Wall Street Expects from NVDA Stock.",
+        "IonQ Just Won a Golden Dome Contract. Should You Buy the Quantum Computing Stock Now?"
+      ],
+      "chart_path": "data\\charts\\2026-03-09\\GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-10T08:00:39Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 306.010009765625,
+      "predicted_price_next_session": 303.9187908935547,
+      "history": [
+        {
+          "time": "2025-12-10",
+          "value": 320.7740173339844
+        },
+        {
+          "time": "2025-12-11",
+          "value": 313.4791564941406
+        },
+        {
+          "time": "2025-12-12",
+          "value": 310.3013916015625
+        },
+        {
+          "time": "2025-12-15",
+          "value": 309.10223388671875
+        },
+        {
+          "time": "2025-12-16",
+          "value": 307.51336669921875
+        },
+        {
+          "time": "2025-12-17",
+          "value": 297.85015869140625
+        },
+        {
+          "time": "2025-12-18",
+          "value": 303.5361633300781
+        },
+        {
+          "time": "2025-12-19",
+          "value": 308.3927307128906
+        },
+        {
+          "time": "2025-12-22",
+          "value": 311.1108093261719
+        },
+        {
+          "time": "2025-12-23",
+          "value": 315.457763671875
+        },
+        {
+          "time": "2025-12-24",
+          "value": 315.4477844238281
+        },
+        {
+          "time": "2025-12-26",
+          "value": 314.7382507324219
+        },
+        {
+          "time": "2025-12-29",
+          "value": 314.168701171875
+        },
+        {
+          "time": "2025-12-30",
+          "value": 314.32855224609375
+        },
+        {
+          "time": "2025-12-31",
+          "value": 313.5790710449219
+        },
+        {
+          "time": "2026-01-02",
+          "value": 315.0980224609375
+        },
+        {
+          "time": "2026-01-05",
+          "value": 317.09661865234375
+        },
+        {
+          "time": "2026-01-06",
+          "value": 314.32855224609375
+        },
+        {
+          "time": "2026-01-07",
+          "value": 322.2030029296875
+        },
+        {
+          "time": "2026-01-08",
+          "value": 325.7804870605469
+        },
+        {
+          "time": "2026-01-09",
+          "value": 328.9082946777344
+        },
+        {
+          "time": "2026-01-12",
+          "value": 332.4957580566406
+        },
+        {
+          "time": "2026-01-13",
+          "value": 336.1931457519531
+        },
+        {
+          "time": "2026-01-14",
+          "value": 336.0732421875
+        },
+        {
+          "time": "2026-01-15",
+          "value": 332.92547607421875
+        },
+        {
+          "time": "2026-01-16",
+          "value": 330.1074523925781
+        },
+        {
+          "time": "2026-01-20",
+          "value": 321.9331970214844
+        },
+        {
+          "time": "2026-01-21",
+          "value": 328.1488342285156
+        },
+        {
+          "time": "2026-01-22",
+          "value": 330.6070861816406
+        },
+        {
+          "time": "2026-01-23",
+          "value": 328.19879150390625
+        },
+        {
+          "time": "2026-01-26",
+          "value": 333.35516357421875
+        },
+        {
+          "time": "2026-01-27",
+          "value": 334.76416015625
+        },
+        {
+          "time": "2026-01-28",
+          "value": 336.04327392578125
+        },
+        {
+          "time": "2026-01-29",
+          "value": 338.4216003417969
+        },
+        {
+          "time": "2026-01-30",
+          "value": 338.29168701171875
+        },
+        {
+          "time": "2026-02-02",
+          "value": 344.6571960449219
+        },
+        {
+          "time": "2026-02-03",
+          "value": 340.4601745605469
+        },
+        {
+          "time": "2026-02-04",
+          "value": 333.1053161621094
+        },
+        {
+          "time": "2026-02-05",
+          "value": 331.09674072265625
+        },
+        {
+          "time": "2026-02-06",
+          "value": 322.87255859375
+        },
+        {
+          "time": "2026-02-09",
+          "value": 324.171630859375
+        },
+        {
+          "time": "2026-02-10",
+          "value": 318.40570068359375
+        },
+        {
+          "time": "2026-02-11",
+          "value": 311.1108093261719
+        },
+        {
+          "time": "2026-02-12",
+          "value": 309.1521911621094
+        },
+        {
+          "time": "2026-02-13",
+          "value": 305.8045654296875
+        },
+        {
+          "time": "2026-02-17",
+          "value": 302.6068115234375
+        },
+        {
+          "time": "2026-02-18",
+          "value": 303.7260437011719
+        },
+        {
+          "time": "2026-02-19",
+          "value": 303.3462829589844
+        },
+        {
+          "time": "2026-02-20",
+          "value": 314.6783142089844
+        },
+        {
+          "time": "2026-02-23",
+          "value": 311.4705810546875
+        },
+        {
+          "time": "2026-02-24",
+          "value": 310.7011413574219
+        },
+        {
+          "time": "2026-02-25",
+          "value": 312.80963134765625
+        },
+        {
+          "time": "2026-02-26",
+          "value": 306.93377685546875
+        },
+        {
+          "time": "2026-02-27",
+          "value": 311.21075439453125
+        },
+        {
+          "time": "2026-03-02",
+          "value": 306.1443176269531
+        },
+        {
+          "time": "2026-03-03",
+          "value": 303.3462829589844
+        },
+        {
+          "time": "2026-03-04",
+          "value": 303.23638916015625
+        },
+        {
+          "time": "2026-03-05",
+          "value": 300.6981506347656
+        },
+        {
+          "time": "2026-03-06",
+          "value": 298.0899963378906
+        },
+        {
+          "time": "2026-03-09",
+          "value": 306.010009765625
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.07749665180842082,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Show HN: I logged Gemini's stock predictions for 38 days to study LLM drift",
+        "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+        "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+        "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+        "Alphabet (GOOG) Doubled by the End of the Year. Here\u2019s How",
+        "Want to Invest in AI? Consider These 3 Bank Stocks.",
+        "Ray Dalio: Gold is a better option than Bitcoin, tech stocks because\u2026",
+        "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+        "Longbridge Securities Launches the World\u2019s First Pre-Market U.S. Options Trading\uff0cEmpowering Investors to Overcome Time Zone Barriers and Stay Ahead of the Market Movement",
+        "New to the share market? Here are 3 ASX ETFs to buy for easy investing",
+        "Claude Code\u306bGoogle\u306eDeveloper Knowledge API & MCP Server\u306e\u8a2d\u5b9a\u3092\u3059\u308b",
+        "Today's news and jokes",
+        "Re: How long AS-PATH policies have you used",
+        "\u2018The Collapse of Everything AI\u2019 Could Hinge on Nvidia\u2019s Earnings. What Wall Street Expects from NVDA Stock.",
+        "IonQ Just Won a Golden Dome Contract. Should You Buy the Quantum Computing Stock Now?"
+      ],
+      "chart_path": "data\\charts\\2026-03-10\\GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-10T09:16:38Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 306.010009765625,
+      "predicted_price_next_session": 303.9187908935547,
+      "history": [
+        {
+          "time": 1,
+          "value": 320.7740173339844
+        },
+        {
+          "time": 1,
+          "value": 313.4791564941406
+        },
+        {
+          "time": 1,
+          "value": 310.3013916015625
+        },
+        {
+          "time": 1,
+          "value": 309.10223388671875
+        },
+        {
+          "time": 1,
+          "value": 307.51336669921875
+        },
+        {
+          "time": 1,
+          "value": 297.85015869140625
+        },
+        {
+          "time": 1,
+          "value": 303.5361633300781
+        },
+        {
+          "time": 1,
+          "value": 308.3927307128906
+        },
+        {
+          "time": 1,
+          "value": 311.1108093261719
+        },
+        {
+          "time": 1,
+          "value": 315.457763671875
+        },
+        {
+          "time": 1,
+          "value": 315.4477844238281
+        },
+        {
+          "time": 1,
+          "value": 314.7382507324219
+        },
+        {
+          "time": 1,
+          "value": 314.168701171875
+        },
+        {
+          "time": 1,
+          "value": 314.32855224609375
+        },
+        {
+          "time": 1,
+          "value": 313.5790710449219
+        },
+        {
+          "time": 1,
+          "value": 315.0980224609375
+        },
+        {
+          "time": 1,
+          "value": 317.09661865234375
+        },
+        {
+          "time": 1,
+          "value": 314.32855224609375
+        },
+        {
+          "time": 1,
+          "value": 322.2030029296875
+        },
+        {
+          "time": 1,
+          "value": 325.7804870605469
+        },
+        {
+          "time": 1,
+          "value": 328.9082946777344
+        },
+        {
+          "time": 1,
+          "value": 332.4957580566406
+        },
+        {
+          "time": 1,
+          "value": 336.1931457519531
+        },
+        {
+          "time": 1,
+          "value": 336.0732421875
+        },
+        {
+          "time": 1,
+          "value": 332.92547607421875
+        },
+        {
+          "time": 1,
+          "value": 330.1074523925781
+        },
+        {
+          "time": 1,
+          "value": 321.9331970214844
+        },
+        {
+          "time": 1,
+          "value": 328.1488342285156
+        },
+        {
+          "time": 1,
+          "value": 330.6070861816406
+        },
+        {
+          "time": 1,
+          "value": 328.19879150390625
+        },
+        {
+          "time": 1,
+          "value": 333.35516357421875
+        },
+        {
+          "time": 1,
+          "value": 334.76416015625
+        },
+        {
+          "time": 1,
+          "value": 336.04327392578125
+        },
+        {
+          "time": 1,
+          "value": 338.4216003417969
+        },
+        {
+          "time": 1,
+          "value": 338.29168701171875
+        },
+        {
+          "time": 1,
+          "value": 344.6571960449219
+        },
+        {
+          "time": 1,
+          "value": 340.4601745605469
+        },
+        {
+          "time": 1,
+          "value": 333.1053161621094
+        },
+        {
+          "time": 1,
+          "value": 331.09674072265625
+        },
+        {
+          "time": 1,
+          "value": 322.87255859375
+        },
+        {
+          "time": 1,
+          "value": 324.171630859375
+        },
+        {
+          "time": 1,
+          "value": 318.40570068359375
+        },
+        {
+          "time": 1,
+          "value": 311.1108093261719
+        },
+        {
+          "time": 1,
+          "value": 309.1521911621094
+        },
+        {
+          "time": 1,
+          "value": 305.8045654296875
+        },
+        {
+          "time": 1,
+          "value": 302.6068115234375
+        },
+        {
+          "time": 1,
+          "value": 303.7260437011719
+        },
+        {
+          "time": 1,
+          "value": 303.3462829589844
+        },
+        {
+          "time": 1,
+          "value": 314.6783142089844
+        },
+        {
+          "time": 1,
+          "value": 311.4705810546875
+        },
+        {
+          "time": 1,
+          "value": 310.7011413574219
+        },
+        {
+          "time": 1,
+          "value": 312.80963134765625
+        },
+        {
+          "time": 1,
+          "value": 306.93377685546875
+        },
+        {
+          "time": 1,
+          "value": 311.21075439453125
+        },
+        {
+          "time": 1,
+          "value": 306.1443176269531
+        },
+        {
+          "time": 1,
+          "value": 303.3462829589844
+        },
+        {
+          "time": 1,
+          "value": 303.23638916015625
+        },
+        {
+          "time": 1,
+          "value": 300.6981506347656
+        },
+        {
+          "time": 1,
+          "value": 298.0899963378906
+        },
+        {
+          "time": 1,
+          "value": 306.010009765625
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.19374162952105203,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092"
+        },
+        {
+          "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701"
+        },
+        {
+          "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html"
+        },
+        {
+          "title": "Alphabet (GOOG) Doubled by the End of the Year. Here\u2019s How",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_3ec46630-08c4-434c-bab4-9cd0819f2621"
+        },
+        {
+          "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560"
+        },
+        {
+          "title": "Claude Code\u306bGoogle\u306eDeveloper Knowledge API & MCP Server\u306e\u8a2d\u5b9a\u3092\u3059\u308b",
+          "url": "https://dev.classmethod.jp/articles/setup-google-developer-knowledge-api-mcp-server-claude-code/"
+        }
+      ],
+      "chart_path": "data\\charts\\2026-03-10\\GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-10T14:02:28Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 306.19989013671875,
+      "predicted_price_next_session": 303.02708435058594
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.19374162952105203,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092"
+        },
+        {
+          "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701"
+        },
+        {
+          "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html"
+        },
+        {
+          "title": "Alphabet (GOOG) Doubled by the End of the Year. Here\u2019s How",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_3ec46630-08c4-434c-bab4-9cd0819f2621"
+        },
+        {
+          "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560"
+        },
+        {
+          "title": "Claude Code\u306bGoogle\u306eDeveloper Knowledge API & MCP Server\u306e\u8a2d\u5b9a\u3092\u3059\u308b",
+          "url": "https://dev.classmethod.jp/articles/setup-google-developer-knowledge-api-mcp-server-claude-code/"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-11T14:03:10Z",
+      "market_session_date": "2026-03-11",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 308.635009765625,
+      "predicted_price_next_session": 304.2080502319336
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.13288477063179016,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Alphabet Inc. (GOOG) Announced Expanded Partnership Between Waystar and Google Cloud",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_b305f3bb-e4b2-4eea-88d5-7e3388049d12"
+        },
+        {
+          "title": "It's Too Early To Buy the Dip in GOOG Stock Even As It Falls to Near $300",
+          "url": "https://www.barchart.com/story/news/646191/it-s-too-early-to-buy-the-dip-in-goog-stock-even-as-it-falls-to-near-300"
+        },
+        {
+          "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092"
+        },
+        {
+          "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701"
+        },
+        {
+          "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html"
+        },
+        {
+          "title": "Alphabet (GOOG) Doubled by the End of the Year. Here\u2019s How",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_3ec46630-08c4-434c-bab4-9cd0819f2621"
+        },
+        {
+          "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560"
+        },
+        {
+          "title": "Claude Code\u306bGoogle\u306eDeveloper Knowledge API & MCP Server\u306e\u8a2d\u5b9a\u3092\u3059\u308b",
+          "url": "https://dev.classmethod.jp/articles/setup-google-developer-knowledge-api-mcp-server-claude-code/"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-11/GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-13T01:40:26Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 303.2099914550781,
+      "predicted_price_next_session": 306.0552505493164
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.15186830929347447,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Alphabet Inc. (GOOG) Announced Expanded Partnership Between Waystar and Google Cloud",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_b305f3bb-e4b2-4eea-88d5-7e3388049d12"
+        },
+        {
+          "title": "It's Too Early To Buy the Dip in GOOG Stock Even As It Falls to Near $300",
+          "url": "https://www.barchart.com/story/news/646191/it-s-too-early-to-buy-the-dip-in-goog-stock-even-as-it-falls-to-near-300"
+        },
+        {
+          "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092"
+        },
+        {
+          "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701"
+        },
+        {
+          "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html"
+        },
+        {
+          "title": "Alphabet (GOOG) Doubled by the End of the Year. Here\u2019s How",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_3ec46630-08c4-434c-bab4-9cd0819f2621"
+        },
+        {
+          "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-13T01:40:29Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 303.2099914550781,
+      "predicted_price_next_session": 306.0552505493164
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.15186830929347447,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Alphabet Inc. (GOOG) Announced Expanded Partnership Between Waystar and Google Cloud",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_b305f3bb-e4b2-4eea-88d5-7e3388049d12"
+        },
+        {
+          "title": "It's Too Early To Buy the Dip in GOOG Stock Even As It Falls to Near $300",
+          "url": "https://www.barchart.com/story/news/646191/it-s-too-early-to-buy-the-dip-in-goog-stock-even-as-it-falls-to-near-300"
+        },
+        {
+          "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092"
+        },
+        {
+          "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701"
+        },
+        {
+          "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html"
+        },
+        {
+          "title": "Alphabet (GOOG) Doubled by the End of the Year. Here\u2019s How",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_3ec46630-08c4-434c-bab4-9cd0819f2621"
+        },
+        {
+          "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-13T07:24:24Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 303.2099914550781,
+      "predicted_price_next_session": 306.0552505493164
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.15186830929347447,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Alphabet Inc. (GOOG) Announced Expanded Partnership Between Waystar and Google Cloud",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_b305f3bb-e4b2-4eea-88d5-7e3388049d12"
+        },
+        {
+          "title": "It's Too Early To Buy the Dip in GOOG Stock Even As It Falls to Near $300",
+          "url": "https://www.barchart.com/story/news/646191/it-s-too-early-to-buy-the-dip-in-goog-stock-even-as-it-falls-to-near-300"
+        },
+        {
+          "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092"
+        },
+        {
+          "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701"
+        },
+        {
+          "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html"
+        },
+        {
+          "title": "Alphabet (GOOG) Doubled by the End of the Year. Here\u2019s How",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_3ec46630-08c4-434c-bab4-9cd0819f2621"
+        },
+        {
+          "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-13T07:24:28Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 303.2099914550781,
+      "predicted_price_next_session": 306.0552505493164
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.15186830929347447,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Alphabet Inc. (GOOG) Announced Expanded Partnership Between Waystar and Google Cloud",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_b305f3bb-e4b2-4eea-88d5-7e3388049d12"
+        },
+        {
+          "title": "It's Too Early To Buy the Dip in GOOG Stock Even As It Falls to Near $300",
+          "url": "https://www.barchart.com/story/news/646191/it-s-too-early-to-buy-the-dip-in-goog-stock-even-as-it-falls-to-near-300"
+        },
+        {
+          "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092"
+        },
+        {
+          "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701"
+        },
+        {
+          "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html"
+        },
+        {
+          "title": "Alphabet (GOOG) Doubled by the End of the Year. Here\u2019s How",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_3ec46630-08c4-434c-bab4-9cd0819f2621"
+        },
+        {
+          "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-13T08:34:02Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 303.2099914550781,
+      "predicted_price_next_session": 305.98033905029297
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.39904524087905885,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "It's Too Early To Buy the Dip in GOOG Stock Even As It Falls to Near $300",
+          "url": "https://www.barchart.com/story/news/646191/it-s-too-early-to-buy-the-dip-in-goog-stock-even-as-it-falls-to-near-300",
+          "published_at": "2026-03-09T17:16:25Z"
+        },
+        {
+          "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092",
+          "published_at": "2026-03-07T19:52:42Z"
+        },
+        {
+          "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701",
+          "published_at": "2026-03-05T15:53:23Z"
+        },
+        {
+          "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html",
+          "published_at": "2026-03-05T13:38:34Z"
+        },
+        {
+          "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560",
+          "published_at": "2026-03-03T15:07:42Z"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-13T08:34:09Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 303.2099914550781,
+      "predicted_price_next_session": 305.98033905029297
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.39904524087905885,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "It's Too Early To Buy the Dip in GOOG Stock Even As It Falls to Near $300",
+          "url": "https://www.barchart.com/story/news/646191/it-s-too-early-to-buy-the-dip-in-goog-stock-even-as-it-falls-to-near-300",
+          "published_at": "2026-03-09T17:16:25Z"
+        },
+        {
+          "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092",
+          "published_at": "2026-03-07T19:52:42Z"
+        },
+        {
+          "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701",
+          "published_at": "2026-03-05T15:53:23Z"
+        },
+        {
+          "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html",
+          "published_at": "2026-03-05T13:38:34Z"
+        },
+        {
+          "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560",
+          "published_at": "2026-03-03T15:07:42Z"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-13T08:36:20Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "5d",
+      "interval": "15m"
+    },
+    "market": {
+      "current_price": 303.2099914550781,
+      "predicted_price_next_session": 303.7019955444336
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.39904524087905885,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "It's Too Early To Buy the Dip in GOOG Stock Even As It Falls to Near $300",
+          "url": "https://www.barchart.com/story/news/646191/it-s-too-early-to-buy-the-dip-in-goog-stock-even-as-it-falls-to-near-300",
+          "published_at": "2026-03-09T17:16:25Z"
+        },
+        {
+          "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092",
+          "published_at": "2026-03-07T19:52:42Z"
+        },
+        {
+          "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701",
+          "published_at": "2026-03-05T15:53:23Z"
+        },
+        {
+          "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html",
+          "published_at": "2026-03-05T13:38:34Z"
+        },
+        {
+          "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560",
+          "published_at": "2026-03-03T15:07:42Z"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-13T09:38:27Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 303.2099914550781,
+      "predicted_price_next_session": 305.98033905029297
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.39904524087905885,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "It's Too Early To Buy the Dip in GOOG Stock Even As It Falls to Near $300",
+          "url": "https://www.barchart.com/story/news/646191/it-s-too-early-to-buy-the-dip-in-goog-stock-even-as-it-falls-to-near-300",
+          "published_at": "2026-03-09T17:16:25Z"
+        },
+        {
+          "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092",
+          "published_at": "2026-03-07T19:52:42Z"
+        },
+        {
+          "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701",
+          "published_at": "2026-03-05T15:53:23Z"
+        },
+        {
+          "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html",
+          "published_at": "2026-03-05T13:38:34Z"
+        },
+        {
+          "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560",
+          "published_at": "2026-03-03T15:07:42Z"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-13T09:38:35Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 303.2099914550781,
+      "predicted_price_next_session": 305.98033905029297
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.39904524087905885,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "It's Too Early To Buy the Dip in GOOG Stock Even As It Falls to Near $300",
+          "url": "https://www.barchart.com/story/news/646191/it-s-too-early-to-buy-the-dip-in-goog-stock-even-as-it-falls-to-near-300",
+          "published_at": "2026-03-09T17:16:25Z"
+        },
+        {
+          "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092",
+          "published_at": "2026-03-07T19:52:42Z"
+        },
+        {
+          "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701",
+          "published_at": "2026-03-05T15:53:23Z"
+        },
+        {
+          "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html",
+          "published_at": "2026-03-05T13:38:34Z"
+        },
+        {
+          "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560",
+          "published_at": "2026-03-03T15:07:42Z"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-13T14:01:09Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "5d",
+      "interval": "15m"
+    },
+    "market": {
+      "current_price": 305.7200012207031,
+      "predicted_price_next_session": 305.57578704833986
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.304871572388543,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "It's Too Early To Buy the Dip in GOOG Stock Even As It Falls to Near $300",
+          "url": "https://www.barchart.com/story/news/646191/it-s-too-early-to-buy-the-dip-in-goog-stock-even-as-it-falls-to-near-300",
+          "published_at": "2026-03-09T17:16:25Z"
+        },
+        {
+          "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092",
+          "published_at": "2026-03-07T19:52:42Z"
+        },
+        {
+          "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701",
+          "published_at": "2026-03-05T15:53:23Z"
+        },
+        {
+          "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html",
+          "published_at": "2026-03-05T13:38:34Z"
+        },
+        {
+          "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560",
+          "published_at": "2026-03-03T15:07:42Z"
+        },
+        {
+          "title": "Alphabet (NASDAQ:GOOG) AI Push Gains Momentum In Nasdaq Composite",
+          "url": "https://kalkinemedia.com/us/stocks/communication/alphabet-nasdaqgoog-ai-push-gains-momentum-in-nasdaq-composite",
+          "published_at": "2026-03-12T09:00:00.000+02:00"
+        },
+        {
+          "title": "Alphabet (NASDAQ:GOOG) Trading Down 1.7% - Here's Why - Ticker Report",
+          "url": "https://www.tickerreport.com/banking-finance/13376980/alphabet-nasdaqgoog-trading-down-1-7-heres-why.html",
+          "published_at": "2026-03-12T19:25:00.000+02:00"
+        },
+        {
+          "title": "Nvidia Stock Faces New Threat -- Google, Amazon, Meta Build Rival AI Chips",
+          "url": "https://finance.yahoo.com/news/nvidia-stock-faces-threat-google-123241502.html",
+          "published_at": "2026-03-13T14:32:00.000+02:00"
+        },
+        {
+          "title": "Alphabet Stock (GOOG) Opinions on Gemini AI Advancements",
+          "url": "https://www.quiverquant.com/news/Alphabet+Stock+%28GOOG%29+Opinions+on+Gemini+AI+Advancements",
+          "published_at": "2026-03-12T16:06:00.000+02:00"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-13T14:01:23Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "5d",
+      "interval": "15m"
+    },
+    "market": {
+      "current_price": 305.6050109863281,
+      "predicted_price_next_session": 305.4803765869141
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.304871572388543,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "It's Too Early To Buy the Dip in GOOG Stock Even As It Falls to Near $300",
+          "url": "https://www.barchart.com/story/news/646191/it-s-too-early-to-buy-the-dip-in-goog-stock-even-as-it-falls-to-near-300",
+          "published_at": "2026-03-09T17:16:25Z"
+        },
+        {
+          "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092",
+          "published_at": "2026-03-07T19:52:42Z"
+        },
+        {
+          "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701",
+          "published_at": "2026-03-05T15:53:23Z"
+        },
+        {
+          "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html",
+          "published_at": "2026-03-05T13:38:34Z"
+        },
+        {
+          "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560",
+          "published_at": "2026-03-03T15:07:42Z"
+        },
+        {
+          "title": "Alphabet (NASDAQ:GOOG) AI Push Gains Momentum In Nasdaq Composite",
+          "url": "https://kalkinemedia.com/us/stocks/communication/alphabet-nasdaqgoog-ai-push-gains-momentum-in-nasdaq-composite",
+          "published_at": "2026-03-12T09:00:00.000+02:00"
+        },
+        {
+          "title": "Alphabet (NASDAQ:GOOG) Trading Down 1.7% - Here's Why - Ticker Report",
+          "url": "https://www.tickerreport.com/banking-finance/13376980/alphabet-nasdaqgoog-trading-down-1-7-heres-why.html",
+          "published_at": "2026-03-12T19:25:00.000+02:00"
+        },
+        {
+          "title": "Nvidia Stock Faces New Threat -- Google, Amazon, Meta Build Rival AI Chips",
+          "url": "https://finance.yahoo.com/news/nvidia-stock-faces-threat-google-123241502.html",
+          "published_at": "2026-03-13T14:32:00.000+02:00"
+        },
+        {
+          "title": "Alphabet Stock (GOOG) Opinions on Gemini AI Advancements",
+          "url": "https://www.quiverquant.com/news/Alphabet+Stock+%28GOOG%29+Opinions+on+Gemini+AI+Advancements",
+          "published_at": "2026-03-12T16:06:00.000+02:00"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-13T14:05:18Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 305.3999938964844,
+      "predicted_price_next_session": 307.04526092529295
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.304871572388543,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "It's Too Early To Buy the Dip in GOOG Stock Even As It Falls to Near $300",
+          "url": "https://www.barchart.com/story/news/646191/it-s-too-early-to-buy-the-dip-in-goog-stock-even-as-it-falls-to-near-300",
+          "published_at": "2026-03-09T17:16:25Z"
+        },
+        {
+          "title": "Alphabet: Apple AI Deal Is The Biggest Blind Spot - Seeking Alpha",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180925092",
+          "published_at": "2026-03-07T19:52:42Z"
+        },
+        {
+          "title": "Alphabet Stock Edges Lower in Early Trading as AI Capex Concerns Weigh Amid Geopolitical Volatility",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-edges-lower-early-trading-ai-capex-concerns-weigh-amid-geopolitical-volatility-1862701",
+          "published_at": "2026-03-05T15:53:23Z"
+        },
+        {
+          "title": "Alphabet (GOOGL) is Continuing Its Developments in Strong AI Launches",
+          "url": "https://finance.yahoo.com/news/alphabet-googl-continuing-developments-strong-133834868.html",
+          "published_at": "2026-03-05T13:38:34Z"
+        },
+        {
+          "title": "Alphabet Stock Dips to $306 Amid Geopolitical Volatility and Heavy AI CapEx Outlook",
+          "url": "https://www.ibtimes.com.au/alphabet-stock-dips-306-amid-geopolitical-volatility-heavy-ai-capex-outlook-1862560",
+          "published_at": "2026-03-03T15:07:42Z"
+        },
+        {
+          "title": "Alphabet (NASDAQ:GOOG) AI Push Gains Momentum In Nasdaq Composite",
+          "url": "https://kalkinemedia.com/us/stocks/communication/alphabet-nasdaqgoog-ai-push-gains-momentum-in-nasdaq-composite",
+          "published_at": "2026-03-12T09:00:00.000+02:00"
+        },
+        {
+          "title": "Alphabet (NASDAQ:GOOG) Trading Down 1.7% - Here's Why - Ticker Report",
+          "url": "https://www.tickerreport.com/banking-finance/13376980/alphabet-nasdaqgoog-trading-down-1-7-heres-why.html",
+          "published_at": "2026-03-12T19:25:00.000+02:00"
+        },
+        {
+          "title": "Nvidia Stock Faces New Threat -- Google, Amazon, Meta Build Rival AI Chips",
+          "url": "https://finance.yahoo.com/news/nvidia-stock-faces-threat-google-123241502.html",
+          "published_at": "2026-03-13T14:32:00.000+02:00"
+        },
+        {
+          "title": "Alphabet Stock (GOOG) Opinions on Gemini AI Advancements",
+          "url": "https://www.quiverquant.com/news/Alphabet+Stock+%28GOOG%29+Opinions+on+Gemini+AI+Advancements",
+          "published_at": "2026-03-12T16:06:00.000+02:00"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-14T14:03:35Z",
+      "market_session_date": "2026-03-14",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 100.0,
+      "predicted_price_next_session": 101.37941486396834
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "GOOG announces date for shareholder meeting",
+          "url": "",
+          "published_at": ""
+        },
+        {
+          "title": "GOOG news flow active amid market volatility",
+          "url": "",
+          "published_at": ""
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-14/GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-16T14:29:50Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 304.42498779296875,
+      "predicted_price_next_session": 305.18858337402344
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Chrome quietly added one of its best Android features yet, and hardly anyone noticed",
+          "url": "https://www.makeuseof.com/chrome-notebook-lm-ai-features/",
+          "published_at": "2026-03-15T14:01:17Z"
+        },
+        {
+          "title": "Deals: Galaxy S26 series launches, S25 Ultra, vivo X300 and X300 Pro, Pixel 10 phones pose a challenge",
+          "url": "https://www.gsmarena.com/deals_galaxy_s26_series_launches_s25_ultra_vivo_x300_and_x300_pro_pixel_10_phones_pose_a_challenge-news-71945.php",
+          "published_at": "2026-03-15T14:01:02Z"
+        },
+        {
+          "title": "Google Spends $1 Million On AI-Generated Kids Videos While Slop Floods YouTube",
+          "url": "https://kotaku.com/google-spends-1-million-on-ai-generated-kids-videos-while-slop-floods-youtube-2000678951",
+          "published_at": "2026-03-15T13:25:12Z"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-16/GOOG_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "source_symbol": "GOOG",
+      "generated_at": "2026-03-17T02:56:42Z",
+      "market_session_date": "2026-03-17",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 100.0,
+      "predicted_price_next_session": 101.37941486396834
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.2707420190175374,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Google shares trade actively amid broad market movements",
+          "url": "",
+          "published_at": ""
+        },
+        {
+          "title": "Analysts review Google outlook for current quarter",
+          "url": "",
+          "published_at": ""
+        },
+        {
+          "title": "Google scheduled to report earnings this season",
+          "url": "",
+          "published_at": ""
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-17/GOOG_trend.png"
+    }
+  }
+]

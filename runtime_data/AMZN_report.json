@@ -1,0 +1,3214 @@
+[
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-09T03:39:25Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 210.32000732421875,
+      "predicted_price_next_session": 235.13790742720678
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AMZN announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-11T01:54:57Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 206.9600067138672,
+      "predicted_price_next_session": 227.13717360222475
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AMZN announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-11T02:24:16Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 206.9600067138672,
+      "predicted_price_next_session": 206.5015277127253
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AMZN announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-12T13:18:03Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 204.0800018310547,
+      "predicted_price_next_session": 200.24918076886564
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AMZN announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-12T13:25:08Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 204.0800018310547,
+      "predicted_price_next_session": 200.24918076886564
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AMZN announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-23T05:33:55Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 210.11000061035156,
+      "predicted_price_next_session": 211.38115866043768
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AMZN announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-23T05:36:59Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 210.11000061035156,
+      "predicted_price_next_session": 211.38115866043768
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AMZN announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-23T05:39:45Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 210.11000061035156,
+      "predicted_price_next_session": 211.38115866043768
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "AMZN announces date for shareholder meeting",
+        "Market volatility continues ahead of Fed decision"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-02-27T14:01:33Z",
+      "market_session_date": "2026-02-26",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 207.9199981689453,
+      "predicted_price_next_session": 206.7820578124479
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.3865353584289551,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
+        "OpenAI's $110 billion funding round draws investment from Amazon , Nvidia, SoftBank",
+        "CoreWeave shares slump as doubling capital expenditure\u00a0sparks margin concerns",
+        "'Michael Saylor Should Be In Jail' And 'Bitcoin Is For Boomers' Says Ex-Fidelity Star, Who Also Has A Contrarian Take On Tesla",
+        "Anthropic CEO Refuses to Allow Pentagon Use AI Tech for Mass Surveillance, Autonomous Weapons"
+      ],
+      "chart_path": "data\\charts\\2026-02-27\\AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-02-28T00:30:13Z",
+      "market_session_date": "2026-02-27",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 210.0,
+      "predicted_price_next_session": 211.61983565991252
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.19343634843826293,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Coinbase exec says crypto 'corrections' are simple math, not a catastrophe",
+        "A look at Warren Buffett's final moves as Berkshire CEO",
+        "Before Retiring, Warren Buffett Sold These 3 Stocks and Piled Into This High-Yield Investment",
+        "Nasdaq, S&P 500 Fall After Hot PPI Report; Both Indexes Log Monthly Declines",
+        "With Trump\u2019s apparent blessing, the Ellisons are amassing a media empire"
+      ],
+      "chart_path": "data\\charts\\2026-02-28\\AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-02-27T02:42:35Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 207.9199981689453,
+      "predicted_price_next_session": 206.7820578124479
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.7330503106117249,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia stock falls as Q4 beat, guidance fail to satisfy Wall Street",
+        "Trump lays out a new ground rule for Big Tech's AI build-out: Bring your own power",
+        "Bitcoin Headed For Worst Month In 4 Years: 'Either It's Dead Or Dollar Cost Average From Here,' Analyst Says",
+        "Amazon\u2019s OpenAI Bet, Antitrust Pressure And AI Turnover Weigh On Valuation",
+        "What a $75 Million Exit From MDU Might Signal Amid a 24% One-Year Rally"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-03T01:18:51Z",
+      "market_session_date": "2026-03-02",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 208.38999938964844,
+      "predicted_price_next_session": 207.77391593629747
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.009344732761383057,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "'A stark contrast': Wall Street weighs winners and losers amid AI-driven tech sell-off",
+        "Stock Market Today, March 2: Netflix Advances After Dropping Pursuit of Warner Bros. Deal",
+        "Amazon data center unit acquires George Washington University Virginia campus",
+        "Should You Buy Amazon Stock If It Falls Under $200?",
+        "Michael Saylor Once Said You Should Master This Technology To Get Wealthy: Bitcoin Billionaire Wants People To Set Their Egos Aside To Achieve Success"
+      ],
+      "chart_path": "data\\charts\\2026-03-03\\AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-03T17:09:32Z",
+      "market_session_date": "2026-03-03",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 205.92999267578125,
+      "predicted_price_next_session": 205.6077568466716,
+      "history": [
+        {
+          "time": "2025-12-05",
+          "value": 229.52999877929688
+        },
+        {
+          "time": "2025-12-08",
+          "value": 226.88999938964844
+        },
+        {
+          "time": "2025-12-09",
+          "value": 227.9199981689453
+        },
+        {
+          "time": "2025-12-10",
+          "value": 231.77999877929688
+        },
+        {
+          "time": "2025-12-11",
+          "value": 230.27999877929688
+        },
+        {
+          "time": "2025-12-12",
+          "value": 226.19000244140625
+        },
+        {
+          "time": "2025-12-15",
+          "value": 222.5399932861328
+        },
+        {
+          "time": "2025-12-16",
+          "value": 222.55999755859375
+        },
+        {
+          "time": "2025-12-17",
+          "value": 221.27000427246094
+        },
+        {
+          "time": "2025-12-18",
+          "value": 226.75999450683594
+        },
+        {
+          "time": "2025-12-19",
+          "value": 227.35000610351562
+        },
+        {
+          "time": "2025-12-22",
+          "value": 228.42999267578125
+        },
+        {
+          "time": "2025-12-23",
+          "value": 232.13999938964844
+        },
+        {
+          "time": "2025-12-24",
+          "value": 232.3800048828125
+        },
+        {
+          "time": "2025-12-26",
+          "value": 232.52000427246094
+        },
+        {
+          "time": "2025-12-29",
+          "value": 232.07000732421875
+        },
+        {
+          "time": "2025-12-30",
+          "value": 232.52999877929688
+        },
+        {
+          "time": "2025-12-31",
+          "value": 230.82000732421875
+        },
+        {
+          "time": "2026-01-02",
+          "value": 226.5
+        },
+        {
+          "time": "2026-01-05",
+          "value": 233.05999755859375
+        },
+        {
+          "time": "2026-01-06",
+          "value": 240.92999267578125
+        },
+        {
+          "time": "2026-01-07",
+          "value": 241.55999755859375
+        },
+        {
+          "time": "2026-01-08",
+          "value": 246.2899932861328
+        },
+        {
+          "time": "2026-01-09",
+          "value": 247.3800048828125
+        },
+        {
+          "time": "2026-01-12",
+          "value": 246.47000122070312
+        },
+        {
+          "time": "2026-01-13",
+          "value": 242.60000610351562
+        },
+        {
+          "time": "2026-01-14",
+          "value": 236.64999389648438
+        },
+        {
+          "time": "2026-01-15",
+          "value": 238.17999267578125
+        },
+        {
+          "time": "2026-01-16",
+          "value": 239.1199951171875
+        },
+        {
+          "time": "2026-01-20",
+          "value": 231.0
+        },
+        {
+          "time": "2026-01-21",
+          "value": 231.30999755859375
+        },
+        {
+          "time": "2026-01-22",
+          "value": 234.33999633789062
+        },
+        {
+          "time": "2026-01-23",
+          "value": 239.16000366210938
+        },
+        {
+          "time": "2026-01-26",
+          "value": 238.4199981689453
+        },
+        {
+          "time": "2026-01-27",
+          "value": 244.67999267578125
+        },
+        {
+          "time": "2026-01-28",
+          "value": 243.00999450683594
+        },
+        {
+          "time": "2026-01-29",
+          "value": 241.72999572753906
+        },
+        {
+          "time": "2026-01-30",
+          "value": 239.3000030517578
+        },
+        {
+          "time": "2026-02-02",
+          "value": 242.9600067138672
+        },
+        {
+          "time": "2026-02-03",
+          "value": 238.6199951171875
+        },
+        {
+          "time": "2026-02-04",
+          "value": 232.99000549316406
+        },
+        {
+          "time": "2026-02-05",
+          "value": 222.69000244140625
+        },
+        {
+          "time": "2026-02-06",
+          "value": 210.32000732421875
+        },
+        {
+          "time": "2026-02-09",
+          "value": 208.72000122070312
+        },
+        {
+          "time": "2026-02-10",
+          "value": 206.9600067138672
+        },
+        {
+          "time": "2026-02-11",
+          "value": 204.0800018310547
+        },
+        {
+          "time": "2026-02-12",
+          "value": 199.60000610351562
+        },
+        {
+          "time": "2026-02-13",
+          "value": 198.7899932861328
+        },
+        {
+          "time": "2026-02-17",
+          "value": 201.14999389648438
+        },
+        {
+          "time": "2026-02-18",
+          "value": 204.7899932861328
+        },
+        {
+          "time": "2026-02-19",
+          "value": 204.86000061035156
+        },
+        {
+          "time": "2026-02-20",
+          "value": 210.11000061035156
+        },
+        {
+          "time": "2026-02-23",
+          "value": 205.27000427246094
+        },
+        {
+          "time": "2026-02-24",
+          "value": 208.55999755859375
+        },
+        {
+          "time": "2026-02-25",
+          "value": 210.63999938964844
+        },
+        {
+          "time": "2026-02-26",
+          "value": 207.9199981689453
+        },
+        {
+          "time": "2026-02-27",
+          "value": 210.0
+        },
+        {
+          "time": "2026-03-02",
+          "value": 208.38999938964844
+        },
+        {
+          "time": "2026-03-03",
+          "value": 205.92999267578125
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.021728336811065674,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tech stocks today: OpenAI makes changes to military contract, Amazon data centers struck in Middle East warfare",
+        "Iran Strikes Shatter the Gulf\u2019s Post-Oil Pivot",
+        "Goldman names 3 catalysts that guarantee mega tech stocks revival",
+        "Agentic AI leveraged to upend cloud rivals",
+        "Amazon Strikes $427M Deal for Virginia Tech Campus"
+      ],
+      "chart_path": "data\\charts\\2026-03-04\\AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-05T14:03:09Z",
+      "market_session_date": "2026-03-04",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 216.82000732421875,
+      "predicted_price_next_session": 219.73223177369184,
+      "history": [
+        {
+          "time": "2025-12-08",
+          "value": 226.88999938964844
+        },
+        {
+          "time": "2025-12-09",
+          "value": 227.9199981689453
+        },
+        {
+          "time": "2025-12-10",
+          "value": 231.77999877929688
+        },
+        {
+          "time": "2025-12-11",
+          "value": 230.27999877929688
+        },
+        {
+          "time": "2025-12-12",
+          "value": 226.19000244140625
+        },
+        {
+          "time": "2025-12-15",
+          "value": 222.5399932861328
+        },
+        {
+          "time": "2025-12-16",
+          "value": 222.55999755859375
+        },
+        {
+          "time": "2025-12-17",
+          "value": 221.27000427246094
+        },
+        {
+          "time": "2025-12-18",
+          "value": 226.75999450683594
+        },
+        {
+          "time": "2025-12-19",
+          "value": 227.35000610351562
+        },
+        {
+          "time": "2025-12-22",
+          "value": 228.42999267578125
+        },
+        {
+          "time": "2025-12-23",
+          "value": 232.13999938964844
+        },
+        {
+          "time": "2025-12-24",
+          "value": 232.3800048828125
+        },
+        {
+          "time": "2025-12-26",
+          "value": 232.52000427246094
+        },
+        {
+          "time": "2025-12-29",
+          "value": 232.07000732421875
+        },
+        {
+          "time": "2025-12-30",
+          "value": 232.52999877929688
+        },
+        {
+          "time": "2025-12-31",
+          "value": 230.82000732421875
+        },
+        {
+          "time": "2026-01-02",
+          "value": 226.5
+        },
+        {
+          "time": "2026-01-05",
+          "value": 233.05999755859375
+        },
+        {
+          "time": "2026-01-06",
+          "value": 240.92999267578125
+        },
+        {
+          "time": "2026-01-07",
+          "value": 241.55999755859375
+        },
+        {
+          "time": "2026-01-08",
+          "value": 246.2899932861328
+        },
+        {
+          "time": "2026-01-09",
+          "value": 247.3800048828125
+        },
+        {
+          "time": "2026-01-12",
+          "value": 246.47000122070312
+        },
+        {
+          "time": "2026-01-13",
+          "value": 242.60000610351562
+        },
+        {
+          "time": "2026-01-14",
+          "value": 236.64999389648438
+        },
+        {
+          "time": "2026-01-15",
+          "value": 238.17999267578125
+        },
+        {
+          "time": "2026-01-16",
+          "value": 239.1199951171875
+        },
+        {
+          "time": "2026-01-20",
+          "value": 231.0
+        },
+        {
+          "time": "2026-01-21",
+          "value": 231.30999755859375
+        },
+        {
+          "time": "2026-01-22",
+          "value": 234.33999633789062
+        },
+        {
+          "time": "2026-01-23",
+          "value": 239.16000366210938
+        },
+        {
+          "time": "2026-01-26",
+          "value": 238.4199981689453
+        },
+        {
+          "time": "2026-01-27",
+          "value": 244.67999267578125
+        },
+        {
+          "time": "2026-01-28",
+          "value": 243.00999450683594
+        },
+        {
+          "time": "2026-01-29",
+          "value": 241.72999572753906
+        },
+        {
+          "time": "2026-01-30",
+          "value": 239.3000030517578
+        },
+        {
+          "time": "2026-02-02",
+          "value": 242.9600067138672
+        },
+        {
+          "time": "2026-02-03",
+          "value": 238.6199951171875
+        },
+        {
+          "time": "2026-02-04",
+          "value": 232.99000549316406
+        },
+        {
+          "time": "2026-02-05",
+          "value": 222.69000244140625
+        },
+        {
+          "time": "2026-02-06",
+          "value": 210.32000732421875
+        },
+        {
+          "time": "2026-02-09",
+          "value": 208.72000122070312
+        },
+        {
+          "time": "2026-02-10",
+          "value": 206.9600067138672
+        },
+        {
+          "time": "2026-02-11",
+          "value": 204.0800018310547
+        },
+        {
+          "time": "2026-02-12",
+          "value": 199.60000610351562
+        },
+        {
+          "time": "2026-02-13",
+          "value": 198.7899932861328
+        },
+        {
+          "time": "2026-02-17",
+          "value": 201.14999389648438
+        },
+        {
+          "time": "2026-02-18",
+          "value": 204.7899932861328
+        },
+        {
+          "time": "2026-02-19",
+          "value": 204.86000061035156
+        },
+        {
+          "time": "2026-02-20",
+          "value": 210.11000061035156
+        },
+        {
+          "time": "2026-02-23",
+          "value": 205.27000427246094
+        },
+        {
+          "time": "2026-02-24",
+          "value": 208.55999755859375
+        },
+        {
+          "time": "2026-02-25",
+          "value": 210.63999938964844
+        },
+        {
+          "time": "2026-02-26",
+          "value": 207.9199981689453
+        },
+        {
+          "time": "2026-02-27",
+          "value": 210.0
+        },
+        {
+          "time": "2026-03-02",
+          "value": 208.38999938964844
+        },
+        {
+          "time": "2026-03-03",
+          "value": 208.72999572753906
+        },
+        {
+          "time": "2026-03-04",
+          "value": 216.82000732421875
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.08424612283706664,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "In 'nice reprieve,' job cut announcements declined last month",
+        "Big Tech signs Trump's AI energy cost pledge",
+        "Amazon launches AI-enabled platform to automate healthcare administrative tasks",
+        "Nvidia CEO Jensen Huang: $100B OpenAI Deal \u2018Probably Not in the Cards\u2019",
+        "Trade Desk Stock Jumps. Why the Beaten Down Shares Are Getting a Big Boost."
+      ],
+      "chart_path": "data\\charts\\2026-03-05\\AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-06T01:16:14Z",
+      "market_session_date": "2026-03-05",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 218.94000244140625,
+      "predicted_price_next_session": 216.14398693284127,
+      "history": [
+        {
+          "time": "2025-12-09",
+          "value": 227.9199981689453
+        },
+        {
+          "time": "2025-12-10",
+          "value": 231.77999877929688
+        },
+        {
+          "time": "2025-12-11",
+          "value": 230.27999877929688
+        },
+        {
+          "time": "2025-12-12",
+          "value": 226.19000244140625
+        },
+        {
+          "time": "2025-12-15",
+          "value": 222.5399932861328
+        },
+        {
+          "time": "2025-12-16",
+          "value": 222.55999755859375
+        },
+        {
+          "time": "2025-12-17",
+          "value": 221.27000427246094
+        },
+        {
+          "time": "2025-12-18",
+          "value": 226.75999450683594
+        },
+        {
+          "time": "2025-12-19",
+          "value": 227.35000610351562
+        },
+        {
+          "time": "2025-12-22",
+          "value": 228.42999267578125
+        },
+        {
+          "time": "2025-12-23",
+          "value": 232.13999938964844
+        },
+        {
+          "time": "2025-12-24",
+          "value": 232.3800048828125
+        },
+        {
+          "time": "2025-12-26",
+          "value": 232.52000427246094
+        },
+        {
+          "time": "2025-12-29",
+          "value": 232.07000732421875
+        },
+        {
+          "time": "2025-12-30",
+          "value": 232.52999877929688
+        },
+        {
+          "time": "2025-12-31",
+          "value": 230.82000732421875
+        },
+        {
+          "time": "2026-01-02",
+          "value": 226.5
+        },
+        {
+          "time": "2026-01-05",
+          "value": 233.05999755859375
+        },
+        {
+          "time": "2026-01-06",
+          "value": 240.92999267578125
+        },
+        {
+          "time": "2026-01-07",
+          "value": 241.55999755859375
+        },
+        {
+          "time": "2026-01-08",
+          "value": 246.2899932861328
+        },
+        {
+          "time": "2026-01-09",
+          "value": 247.3800048828125
+        },
+        {
+          "time": "2026-01-12",
+          "value": 246.47000122070312
+        },
+        {
+          "time": "2026-01-13",
+          "value": 242.60000610351562
+        },
+        {
+          "time": "2026-01-14",
+          "value": 236.64999389648438
+        },
+        {
+          "time": "2026-01-15",
+          "value": 238.17999267578125
+        },
+        {
+          "time": "2026-01-16",
+          "value": 239.1199951171875
+        },
+        {
+          "time": "2026-01-20",
+          "value": 231.0
+        },
+        {
+          "time": "2026-01-21",
+          "value": 231.30999755859375
+        },
+        {
+          "time": "2026-01-22",
+          "value": 234.33999633789062
+        },
+        {
+          "time": "2026-01-23",
+          "value": 239.16000366210938
+        },
+        {
+          "time": "2026-01-26",
+          "value": 238.4199981689453
+        },
+        {
+          "time": "2026-01-27",
+          "value": 244.67999267578125
+        },
+        {
+          "time": "2026-01-28",
+          "value": 243.00999450683594
+        },
+        {
+          "time": "2026-01-29",
+          "value": 241.72999572753906
+        },
+        {
+          "time": "2026-01-30",
+          "value": 239.3000030517578
+        },
+        {
+          "time": "2026-02-02",
+          "value": 242.9600067138672
+        },
+        {
+          "time": "2026-02-03",
+          "value": 238.6199951171875
+        },
+        {
+          "time": "2026-02-04",
+          "value": 232.99000549316406
+        },
+        {
+          "time": "2026-02-05",
+          "value": 222.69000244140625
+        },
+        {
+          "time": "2026-02-06",
+          "value": 210.32000732421875
+        },
+        {
+          "time": "2026-02-09",
+          "value": 208.72000122070312
+        },
+        {
+          "time": "2026-02-10",
+          "value": 206.9600067138672
+        },
+        {
+          "time": "2026-02-11",
+          "value": 204.0800018310547
+        },
+        {
+          "time": "2026-02-12",
+          "value": 199.60000610351562
+        },
+        {
+          "time": "2026-02-13",
+          "value": 198.7899932861328
+        },
+        {
+          "time": "2026-02-17",
+          "value": 201.14999389648438
+        },
+        {
+          "time": "2026-02-18",
+          "value": 204.7899932861328
+        },
+        {
+          "time": "2026-02-19",
+          "value": 204.86000061035156
+        },
+        {
+          "time": "2026-02-20",
+          "value": 210.11000061035156
+        },
+        {
+          "time": "2026-02-23",
+          "value": 205.27000427246094
+        },
+        {
+          "time": "2026-02-24",
+          "value": 208.55999755859375
+        },
+        {
+          "time": "2026-02-25",
+          "value": 210.63999938964844
+        },
+        {
+          "time": "2026-02-26",
+          "value": 207.9199981689453
+        },
+        {
+          "time": "2026-02-27",
+          "value": 210.0
+        },
+        {
+          "time": "2026-03-02",
+          "value": 208.38999938964844
+        },
+        {
+          "time": "2026-03-03",
+          "value": 208.72999572753906
+        },
+        {
+          "time": "2026-03-04",
+          "value": 216.82000732421875
+        },
+        {
+          "time": "2026-03-05",
+          "value": 218.94000244140625
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.02685199975967407,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Robinhood launches premium credit card to rival top rewards cards",
+        "In 'nice reprieve,' job cut announcements declined last month",
+        "Elon Musk's Starlink Escalates The 5G War In Space As Amazon Locks In Vodafone",
+        "AWS Drone Strikes Test Amazon Cloud Resilience And Investor Risk Views",
+        "Marvell Technology Tops Quarterly Views Amid Data Center Revenue Surge"
+      ],
+      "chart_path": "data\\charts\\2026-03-06\\AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-09T14:16:26Z",
+      "market_session_date": "2026-03-06",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 208.5500030517578,
+      "predicted_price_next_session": 214.0230047607422,
+      "history": [
+        {
+          "time": "2025-12-10",
+          "value": 231.77999877929688
+        },
+        {
+          "time": "2025-12-11",
+          "value": 230.27999877929688
+        },
+        {
+          "time": "2025-12-12",
+          "value": 226.19000244140625
+        },
+        {
+          "time": "2025-12-15",
+          "value": 222.5399932861328
+        },
+        {
+          "time": "2025-12-16",
+          "value": 222.55999755859375
+        },
+        {
+          "time": "2025-12-17",
+          "value": 221.27000427246094
+        },
+        {
+          "time": "2025-12-18",
+          "value": 226.75999450683594
+        },
+        {
+          "time": "2025-12-19",
+          "value": 227.35000610351562
+        },
+        {
+          "time": "2025-12-22",
+          "value": 228.42999267578125
+        },
+        {
+          "time": "2025-12-23",
+          "value": 232.13999938964844
+        },
+        {
+          "time": "2025-12-24",
+          "value": 232.3800048828125
+        },
+        {
+          "time": "2025-12-26",
+          "value": 232.52000427246094
+        },
+        {
+          "time": "2025-12-29",
+          "value": 232.07000732421875
+        },
+        {
+          "time": "2025-12-30",
+          "value": 232.52999877929688
+        },
+        {
+          "time": "2025-12-31",
+          "value": 230.82000732421875
+        },
+        {
+          "time": "2026-01-02",
+          "value": 226.5
+        },
+        {
+          "time": "2026-01-05",
+          "value": 233.05999755859375
+        },
+        {
+          "time": "2026-01-06",
+          "value": 240.92999267578125
+        },
+        {
+          "time": "2026-01-07",
+          "value": 241.55999755859375
+        },
+        {
+          "time": "2026-01-08",
+          "value": 246.2899932861328
+        },
+        {
+          "time": "2026-01-09",
+          "value": 247.3800048828125
+        },
+        {
+          "time": "2026-01-12",
+          "value": 246.47000122070312
+        },
+        {
+          "time": "2026-01-13",
+          "value": 242.60000610351562
+        },
+        {
+          "time": "2026-01-14",
+          "value": 236.64999389648438
+        },
+        {
+          "time": "2026-01-15",
+          "value": 238.17999267578125
+        },
+        {
+          "time": "2026-01-16",
+          "value": 239.1199951171875
+        },
+        {
+          "time": "2026-01-20",
+          "value": 231.0
+        },
+        {
+          "time": "2026-01-21",
+          "value": 231.30999755859375
+        },
+        {
+          "time": "2026-01-22",
+          "value": 234.33999633789062
+        },
+        {
+          "time": "2026-01-23",
+          "value": 239.16000366210938
+        },
+        {
+          "time": "2026-01-26",
+          "value": 238.4199981689453
+        },
+        {
+          "time": "2026-01-27",
+          "value": 244.67999267578125
+        },
+        {
+          "time": "2026-01-28",
+          "value": 243.00999450683594
+        },
+        {
+          "time": "2026-01-29",
+          "value": 241.72999572753906
+        },
+        {
+          "time": "2026-01-30",
+          "value": 239.3000030517578
+        },
+        {
+          "time": "2026-02-02",
+          "value": 242.9600067138672
+        },
+        {
+          "time": "2026-02-03",
+          "value": 238.6199951171875
+        },
+        {
+          "time": "2026-02-04",
+          "value": 232.99000549316406
+        },
+        {
+          "time": "2026-02-05",
+          "value": 222.69000244140625
+        },
+        {
+          "time": "2026-02-06",
+          "value": 210.32000732421875
+        },
+        {
+          "time": "2026-02-09",
+          "value": 208.72000122070312
+        },
+        {
+          "time": "2026-02-10",
+          "value": 206.9600067138672
+        },
+        {
+          "time": "2026-02-11",
+          "value": 204.0800018310547
+        },
+        {
+          "time": "2026-02-12",
+          "value": 199.60000610351562
+        },
+        {
+          "time": "2026-02-13",
+          "value": 198.7899932861328
+        },
+        {
+          "time": "2026-02-17",
+          "value": 201.14999389648438
+        },
+        {
+          "time": "2026-02-18",
+          "value": 204.7899932861328
+        },
+        {
+          "time": "2026-02-19",
+          "value": 204.86000061035156
+        },
+        {
+          "time": "2026-02-20",
+          "value": 210.11000061035156
+        },
+        {
+          "time": "2026-02-23",
+          "value": 205.27000427246094
+        },
+        {
+          "time": "2026-02-24",
+          "value": 208.55999755859375
+        },
+        {
+          "time": "2026-02-25",
+          "value": 210.63999938964844
+        },
+        {
+          "time": "2026-02-26",
+          "value": 207.9199981689453
+        },
+        {
+          "time": "2026-02-27",
+          "value": 210.0
+        },
+        {
+          "time": "2026-03-02",
+          "value": 208.38999938964844
+        },
+        {
+          "time": "2026-03-03",
+          "value": 208.72999572753906
+        },
+        {
+          "time": "2026-03-04",
+          "value": 216.82000732421875
+        },
+        {
+          "time": "2026-03-05",
+          "value": 218.94000244140625
+        },
+        {
+          "time": "2026-03-06",
+          "value": 213.2100067138672
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Have I Got News For You US S04E07 720p AMZN WEB-DL H264-RAWR",
+        "The Princess Diaries S02 1080p AMZN WEB-DL H264-RAWR",
+        "Cursed Hearse 2026 1080p AMZN WEB-DL H264-BobDobbs",
+        "Gone 2026 S01 720p AMZN WEB-DL H264-RAWR",
+        "Vanished Without A Trace 1999 AMZN WEB-DL H264-TEPES",
+        "All Thats Left Of You 2025 720p AMZN WEB-DL H264-MADSKY",
+        "Sahib Bibi Aur Ghulam 1962 1080p AMZN WEB-DL H264-KHN",
+        "Down To The Felt 2025 1080p AMZN WEB-DL H264-playWEB",
+        "adaptive-simple-text-classifier added to PyPI",
+        "Elizabethtown 2005 1080p AMZN WEB-DL H264-alfaHD",
+        "Deadly Crush 2018 1080p AMZN WEB-DL H264-HypStu",
+        "The Four Gates Of Death 2026 1080p AMZN WEB-DL H264-playWEB",
+        "Stork Of Hope 2025 720p AMZN WEB-DL DD+5 1 H264-playWEB",
+        "Dark Winds S04E04 1080p AMZN WEB-DL H264-RAWR",
+        "Mayday S26E07 1080p AMZN WEB-DL H264-Kitsune"
+      ],
+      "chart_path": "data\\charts\\2026-03-09\\AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-10T08:00:31Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 213.49000549316406,
+      "predicted_price_next_session": 213.99550537109374,
+      "history": [
+        {
+          "time": "2025-12-10",
+          "value": 231.77999877929688
+        },
+        {
+          "time": "2025-12-11",
+          "value": 230.27999877929688
+        },
+        {
+          "time": "2025-12-12",
+          "value": 226.19000244140625
+        },
+        {
+          "time": "2025-12-15",
+          "value": 222.5399932861328
+        },
+        {
+          "time": "2025-12-16",
+          "value": 222.55999755859375
+        },
+        {
+          "time": "2025-12-17",
+          "value": 221.27000427246094
+        },
+        {
+          "time": "2025-12-18",
+          "value": 226.75999450683594
+        },
+        {
+          "time": "2025-12-19",
+          "value": 227.35000610351562
+        },
+        {
+          "time": "2025-12-22",
+          "value": 228.42999267578125
+        },
+        {
+          "time": "2025-12-23",
+          "value": 232.13999938964844
+        },
+        {
+          "time": "2025-12-24",
+          "value": 232.3800048828125
+        },
+        {
+          "time": "2025-12-26",
+          "value": 232.52000427246094
+        },
+        {
+          "time": "2025-12-29",
+          "value": 232.07000732421875
+        },
+        {
+          "time": "2025-12-30",
+          "value": 232.52999877929688
+        },
+        {
+          "time": "2025-12-31",
+          "value": 230.82000732421875
+        },
+        {
+          "time": "2026-01-02",
+          "value": 226.5
+        },
+        {
+          "time": "2026-01-05",
+          "value": 233.05999755859375
+        },
+        {
+          "time": "2026-01-06",
+          "value": 240.92999267578125
+        },
+        {
+          "time": "2026-01-07",
+          "value": 241.55999755859375
+        },
+        {
+          "time": "2026-01-08",
+          "value": 246.2899932861328
+        },
+        {
+          "time": "2026-01-09",
+          "value": 247.3800048828125
+        },
+        {
+          "time": "2026-01-12",
+          "value": 246.47000122070312
+        },
+        {
+          "time": "2026-01-13",
+          "value": 242.60000610351562
+        },
+        {
+          "time": "2026-01-14",
+          "value": 236.64999389648438
+        },
+        {
+          "time": "2026-01-15",
+          "value": 238.17999267578125
+        },
+        {
+          "time": "2026-01-16",
+          "value": 239.1199951171875
+        },
+        {
+          "time": "2026-01-20",
+          "value": 231.0
+        },
+        {
+          "time": "2026-01-21",
+          "value": 231.30999755859375
+        },
+        {
+          "time": "2026-01-22",
+          "value": 234.33999633789062
+        },
+        {
+          "time": "2026-01-23",
+          "value": 239.16000366210938
+        },
+        {
+          "time": "2026-01-26",
+          "value": 238.4199981689453
+        },
+        {
+          "time": "2026-01-27",
+          "value": 244.67999267578125
+        },
+        {
+          "time": "2026-01-28",
+          "value": 243.00999450683594
+        },
+        {
+          "time": "2026-01-29",
+          "value": 241.72999572753906
+        },
+        {
+          "time": "2026-01-30",
+          "value": 239.3000030517578
+        },
+        {
+          "time": "2026-02-02",
+          "value": 242.9600067138672
+        },
+        {
+          "time": "2026-02-03",
+          "value": 238.6199951171875
+        },
+        {
+          "time": "2026-02-04",
+          "value": 232.99000549316406
+        },
+        {
+          "time": "2026-02-05",
+          "value": 222.69000244140625
+        },
+        {
+          "time": "2026-02-06",
+          "value": 210.32000732421875
+        },
+        {
+          "time": "2026-02-09",
+          "value": 208.72000122070312
+        },
+        {
+          "time": "2026-02-10",
+          "value": 206.9600067138672
+        },
+        {
+          "time": "2026-02-11",
+          "value": 204.0800018310547
+        },
+        {
+          "time": "2026-02-12",
+          "value": 199.60000610351562
+        },
+        {
+          "time": "2026-02-13",
+          "value": 198.7899932861328
+        },
+        {
+          "time": "2026-02-17",
+          "value": 201.14999389648438
+        },
+        {
+          "time": "2026-02-18",
+          "value": 204.7899932861328
+        },
+        {
+          "time": "2026-02-19",
+          "value": 204.86000061035156
+        },
+        {
+          "time": "2026-02-20",
+          "value": 210.11000061035156
+        },
+        {
+          "time": "2026-02-23",
+          "value": 205.27000427246094
+        },
+        {
+          "time": "2026-02-24",
+          "value": 208.55999755859375
+        },
+        {
+          "time": "2026-02-25",
+          "value": 210.63999938964844
+        },
+        {
+          "time": "2026-02-26",
+          "value": 207.9199981689453
+        },
+        {
+          "time": "2026-02-27",
+          "value": 210.0
+        },
+        {
+          "time": "2026-03-02",
+          "value": 208.38999938964844
+        },
+        {
+          "time": "2026-03-03",
+          "value": 208.72999572753906
+        },
+        {
+          "time": "2026-03-04",
+          "value": 216.82000732421875
+        },
+        {
+          "time": "2026-03-05",
+          "value": 218.94000244140625
+        },
+        {
+          "time": "2026-03-06",
+          "value": 213.2100067138672
+        },
+        {
+          "time": "2026-03-09",
+          "value": 213.49000549316406
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.060727047920227054,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Amazon.com, Inc. (AMZN) Among Bill Ackman\u2019s Top Picks Amid Strong Secular Growth Trends",
+        "Pledge This 2006 1080p AMZN WEB-DL x264-FLUX",
+        "Mock The Week S22E06 720p AMZN WEB-DL H264-RAWR",
+        "Eminem AKA 2004 AMZN WEB-DL H264-Kitsune",
+        "The Last Drive-in With Joe Bob Briggs S33E24 720p AMZN WEB-DL H264-BFM",
+        "The Last Drive-in With Joe Bob Briggs S33E23 720p AMZN WEB-DL H264-BFM",
+        "Have I Got News For You US S04E07 720p AMZN WEB-DL H264-RAWR",
+        "Compute Capacity Offering Support to Amazon (AMZN)",
+        "The Princess Diaries S02 1080p AMZN WEB-DL H264-RAWR",
+        "Cursed Hearse 2026 1080p AMZN WEB-DL H264-BobDobbs",
+        "Gone 2026 S01 720p AMZN WEB-DL H264-RAWR",
+        "Vanished Without A Trace 1999 AMZN WEB-DL H264-TEPES",
+        "All Thats Left Of You 2025 720p AMZN WEB-DL H264-MADSKY",
+        "Sahib Bibi Aur Ghulam 1962 1080p AMZN WEB-DL H264-KHN",
+        "Down To The Felt 2025 1080p AMZN WEB-DL H264-playWEB"
+      ],
+      "chart_path": "data\\charts\\2026-03-10\\AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-10T09:45:16Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 213.49000549316406,
+      "predicted_price_next_session": 214.77220474243165,
+      "history": [
+        {
+          "time": 1,
+          "value": 230.3300018310547
+        },
+        {
+          "time": 1,
+          "value": 229.9499969482422
+        },
+        {
+          "time": 1,
+          "value": 228.14999389648438
+        },
+        {
+          "time": 1,
+          "value": 231.42999267578125
+        },
+        {
+          "time": 1,
+          "value": 234.0500030517578
+        },
+        {
+          "time": 1,
+          "value": 231.6199951171875
+        },
+        {
+          "time": 1,
+          "value": 231.22999572753906
+        },
+        {
+          "time": 1,
+          "value": 231.47999572753906
+        },
+        {
+          "time": 1,
+          "value": 227.6300048828125
+        },
+        {
+          "time": 1,
+          "value": 220.7100067138672
+        },
+        {
+          "time": 1,
+          "value": 220.2100067138672
+        },
+        {
+          "time": 1,
+          "value": 218.14999389648438
+        },
+        {
+          "time": 1,
+          "value": 219.77999877929688
+        },
+        {
+          "time": 1,
+          "value": 222.1699981689453
+        },
+        {
+          "time": 1,
+          "value": 219.57000732421875
+        },
+        {
+          "time": 1,
+          "value": 220.6300048828125
+        },
+        {
+          "time": 1,
+          "value": 222.41000366210938
+        },
+        {
+          "time": 1,
+          "value": 219.50999450683594
+        },
+        {
+          "time": 1,
+          "value": 220.89999389648438
+        },
+        {
+          "time": 1,
+          "value": 221.77999877929688
+        },
+        {
+          "time": 1,
+          "value": 225.22000122070312
+        },
+        {
+          "time": 1,
+          "value": 227.74000549316406
+        },
+        {
+          "time": 1,
+          "value": 216.3699951171875
+        },
+        {
+          "time": 1,
+          "value": 220.07000732421875
+        },
+        {
+          "time": 1,
+          "value": 216.38999938964844
+        },
+        {
+          "time": 1,
+          "value": 215.57000732421875
+        },
+        {
+          "time": 1,
+          "value": 214.47000122070312
+        },
+        {
+          "time": 1,
+          "value": 213.0399932861328
+        },
+        {
+          "time": 1,
+          "value": 216.47999572753906
+        },
+        {
+          "time": 1,
+          "value": 222.02999877929688
+        },
+        {
+          "time": 1,
+          "value": 217.9499969482422
+        },
+        {
+          "time": 1,
+          "value": 221.08999633789062
+        },
+        {
+          "time": 1,
+          "value": 224.2100067138672
+        },
+        {
+          "time": 1,
+          "value": 226.97000122070312
+        },
+        {
+          "time": 1,
+          "value": 229.25
+        },
+        {
+          "time": 1,
+          "value": 230.3000030517578
+        },
+        {
+          "time": 1,
+          "value": 222.86000061035156
+        },
+        {
+          "time": 1,
+          "value": 244.22000122070312
+        },
+        {
+          "time": 1,
+          "value": 254.0
+        },
+        {
+          "time": 1,
+          "value": 249.32000732421875
+        },
+        {
+          "time": 1,
+          "value": 250.1999969482422
+        },
+        {
+          "time": 1,
+          "value": 243.0399932861328
+        },
+        {
+          "time": 1,
+          "value": 244.41000366210938
+        },
+        {
+          "time": 1,
+          "value": 248.39999389648438
+        },
+        {
+          "time": 1,
+          "value": 249.10000610351562
+        },
+        {
+          "time": 1,
+          "value": 244.1999969482422
+        },
+        {
+          "time": 1,
+          "value": 237.5800018310547
+        },
+        {
+          "time": 1,
+          "value": 234.69000244140625
+        },
+        {
+          "time": 1,
+          "value": 232.8699951171875
+        },
+        {
+          "time": 1,
+          "value": 222.5500030517578
+        },
+        {
+          "time": 1,
+          "value": 222.69000244140625
+        },
+        {
+          "time": 1,
+          "value": 217.13999938964844
+        },
+        {
+          "time": 1,
+          "value": 220.69000244140625
+        },
+        {
+          "time": 1,
+          "value": 226.27999877929688
+        },
+        {
+          "time": 1,
+          "value": 229.6699981689453
+        },
+        {
+          "time": 1,
+          "value": 229.16000366210938
+        },
+        {
+          "time": 1,
+          "value": 233.22000122070312
+        },
+        {
+          "time": 1,
+          "value": 233.8800048828125
+        },
+        {
+          "time": 1,
+          "value": 234.4199981689453
+        },
+        {
+          "time": 1,
+          "value": 232.3800048828125
+        },
+        {
+          "time": 1,
+          "value": 229.11000061035156
+        },
+        {
+          "time": 1,
+          "value": 229.52999877929688
+        },
+        {
+          "time": 1,
+          "value": 226.88999938964844
+        },
+        {
+          "time": 1,
+          "value": 227.9199981689453
+        },
+        {
+          "time": 1,
+          "value": 231.77999877929688
+        },
+        {
+          "time": 1,
+          "value": 230.27999877929688
+        },
+        {
+          "time": 1,
+          "value": 226.19000244140625
+        },
+        {
+          "time": 1,
+          "value": 222.5399932861328
+        },
+        {
+          "time": 1,
+          "value": 222.55999755859375
+        },
+        {
+          "time": 1,
+          "value": 221.27000427246094
+        },
+        {
+          "time": 1,
+          "value": 226.75999450683594
+        },
+        {
+          "time": 1,
+          "value": 227.35000610351562
+        },
+        {
+          "time": 1,
+          "value": 228.42999267578125
+        },
+        {
+          "time": 1,
+          "value": 232.13999938964844
+        },
+        {
+          "time": 1,
+          "value": 232.3800048828125
+        },
+        {
+          "time": 1,
+          "value": 232.52000427246094
+        },
+        {
+          "time": 1,
+          "value": 232.07000732421875
+        },
+        {
+          "time": 1,
+          "value": 232.52999877929688
+        },
+        {
+          "time": 1,
+          "value": 230.82000732421875
+        },
+        {
+          "time": 1,
+          "value": 226.5
+        },
+        {
+          "time": 1,
+          "value": 233.05999755859375
+        },
+        {
+          "time": 1,
+          "value": 240.92999267578125
+        },
+        {
+          "time": 1,
+          "value": 241.55999755859375
+        },
+        {
+          "time": 1,
+          "value": 246.2899932861328
+        },
+        {
+          "time": 1,
+          "value": 247.3800048828125
+        },
+        {
+          "time": 1,
+          "value": 246.47000122070312
+        },
+        {
+          "time": 1,
+          "value": 242.60000610351562
+        },
+        {
+          "time": 1,
+          "value": 236.64999389648438
+        },
+        {
+          "time": 1,
+          "value": 238.17999267578125
+        },
+        {
+          "time": 1,
+          "value": 239.1199951171875
+        },
+        {
+          "time": 1,
+          "value": 231.0
+        },
+        {
+          "time": 1,
+          "value": 231.30999755859375
+        },
+        {
+          "time": 1,
+          "value": 234.33999633789062
+        },
+        {
+          "time": 1,
+          "value": 239.16000366210938
+        },
+        {
+          "time": 1,
+          "value": 238.4199981689453
+        },
+        {
+          "time": 1,
+          "value": 244.67999267578125
+        },
+        {
+          "time": 1,
+          "value": 243.00999450683594
+        },
+        {
+          "time": 1,
+          "value": 241.72999572753906
+        },
+        {
+          "time": 1,
+          "value": 239.3000030517578
+        },
+        {
+          "time": 1,
+          "value": 242.9600067138672
+        },
+        {
+          "time": 1,
+          "value": 238.6199951171875
+        },
+        {
+          "time": 1,
+          "value": 232.99000549316406
+        },
+        {
+          "time": 1,
+          "value": 222.69000244140625
+        },
+        {
+          "time": 1,
+          "value": 210.32000732421875
+        },
+        {
+          "time": 1,
+          "value": 208.72000122070312
+        },
+        {
+          "time": 1,
+          "value": 206.9600067138672
+        },
+        {
+          "time": 1,
+          "value": 204.0800018310547
+        },
+        {
+          "time": 1,
+          "value": 199.60000610351562
+        },
+        {
+          "time": 1,
+          "value": 198.7899932861328
+        },
+        {
+          "time": 1,
+          "value": 201.14999389648438
+        },
+        {
+          "time": 1,
+          "value": 204.7899932861328
+        },
+        {
+          "time": 1,
+          "value": 204.86000061035156
+        },
+        {
+          "time": 1,
+          "value": 210.11000061035156
+        },
+        {
+          "time": 1,
+          "value": 205.27000427246094
+        },
+        {
+          "time": 1,
+          "value": 208.55999755859375
+        },
+        {
+          "time": 1,
+          "value": 210.63999938964844
+        },
+        {
+          "time": 1,
+          "value": 207.9199981689453
+        },
+        {
+          "time": 1,
+          "value": 210.0
+        },
+        {
+          "time": 1,
+          "value": 208.38999938964844
+        },
+        {
+          "time": 1,
+          "value": 208.72999572753906
+        },
+        {
+          "time": 1,
+          "value": 216.82000732421875
+        },
+        {
+          "time": 1,
+          "value": 218.94000244140625
+        },
+        {
+          "time": 1,
+          "value": 213.2100067138672
+        },
+        {
+          "time": 1,
+          "value": 213.49000549316406
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.060727047920227054,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Amazon.com, Inc. (AMZN) Among Bill Ackman\u2019s Top Picks Amid Strong Secular Growth Trends",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_9e5833a7-6ba2-4217-b45b-c72bab903d3e"
+        },
+        {
+          "title": "Pledge This 2006 1080p AMZN WEB-DL x264-FLUX",
+          "url": "https://post.rlsbb.to/pledge-this-2006-1080p-amzn-web-dl-x264-flux/"
+        },
+        {
+          "title": "Mock The Week S22E06 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/mock-the-week-s22e06-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Eminem AKA 2004 AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/eminem-aka-2004-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "The Last Drive-in With Joe Bob Briggs S33E24 720p AMZN WEB-DL H264-BFM",
+          "url": "https://post.rlsbb.to/the-last-drive-in-with-joe-bob-briggs-s33e24-720p-amzn-web-dl-h264-bfm/"
+        },
+        {
+          "title": "The Last Drive-in With Joe Bob Briggs S33E23 720p AMZN WEB-DL H264-BFM",
+          "url": "https://post.rlsbb.to/the-last-drive-in-with-joe-bob-briggs-s33e23-720p-amzn-web-dl-h264-bfm/"
+        },
+        {
+          "title": "Have I Got News For You US S04E07 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/have-i-got-news-for-you-us-s04e07-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Compute Capacity Offering Support to Amazon (AMZN)",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_ac1a020e-b380-473a-842e-d678e786536e"
+        },
+        {
+          "title": "The Princess Diaries S02 1080p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/the-princess-diaries-s02-1080p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Cursed Hearse 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/cursed-hearse-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        },
+        {
+          "title": "Gone 2026 S01 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/gone-2026-s01-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Vanished Without A Trace 1999 AMZN WEB-DL H264-TEPES",
+          "url": "https://post.rlsbb.to/vanished-without-a-trace-1999-amzn-web-dl-h264-tepes/"
+        },
+        {
+          "title": "All Thats Left Of You 2025 720p AMZN WEB-DL H264-MADSKY",
+          "url": "https://post.rlsbb.to/all-thats-left-of-you-2025-720p-amzn-web-dl-h264-madsky/"
+        },
+        {
+          "title": "Sahib Bibi Aur Ghulam 1962 1080p AMZN WEB-DL H264-KHN",
+          "url": "https://post.rlsbb.to/sahib-bibi-aur-ghulam-1962-1080p-amzn-web-dl-h264-khn/"
+        },
+        {
+          "title": "Down To The Felt 2025 1080p AMZN WEB-DL H264-playWEB",
+          "url": "https://post.rlsbb.to/down-to-the-felt-2025-1080p-amzn-web-dl-h264-playweb/"
+        }
+      ],
+      "chart_path": "data\\charts\\2026-03-10\\AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-10T14:02:18Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 213.3300018310547,
+      "predicted_price_next_session": 214.64630401611328
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.011747149626413982,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Clairtone 2025 720p AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/clairtone-2025-720p-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "Stripped Down S01E01 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/stripped-down-s01e01-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Amazon.com, Inc. (AMZN) Among Bill Ackman\u2019s Top Picks Amid Strong Secular Growth Trends",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_9e5833a7-6ba2-4217-b45b-c72bab903d3e"
+        },
+        {
+          "title": "Pledge This 2006 1080p AMZN WEB-DL x264-FLUX",
+          "url": "https://post.rlsbb.to/pledge-this-2006-1080p-amzn-web-dl-x264-flux/"
+        },
+        {
+          "title": "Mock The Week S22E06 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/mock-the-week-s22e06-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Eminem AKA 2004 AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/eminem-aka-2004-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "The Last Drive-in With Joe Bob Briggs S33E24 720p AMZN WEB-DL H264-BFM",
+          "url": "https://post.rlsbb.to/the-last-drive-in-with-joe-bob-briggs-s33e24-720p-amzn-web-dl-h264-bfm/"
+        },
+        {
+          "title": "The Last Drive-in With Joe Bob Briggs S33E23 720p AMZN WEB-DL H264-BFM",
+          "url": "https://post.rlsbb.to/the-last-drive-in-with-joe-bob-briggs-s33e23-720p-amzn-web-dl-h264-bfm/"
+        },
+        {
+          "title": "Have I Got News For You US S04E07 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/have-i-got-news-for-you-us-s04e07-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Compute Capacity Offering Support to Amazon (AMZN)",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_ac1a020e-b380-473a-842e-d678e786536e"
+        },
+        {
+          "title": "The Princess Diaries S02 1080p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/the-princess-diaries-s02-1080p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Cursed Hearse 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/cursed-hearse-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        },
+        {
+          "title": "Gone 2026 S01 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/gone-2026-s01-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Vanished Without A Trace 1999 AMZN WEB-DL H264-TEPES",
+          "url": "https://post.rlsbb.to/vanished-without-a-trace-1999-amzn-web-dl-h264-tepes/"
+        },
+        {
+          "title": "All Thats Left Of You 2025 720p AMZN WEB-DL H264-MADSKY",
+          "url": "https://post.rlsbb.to/all-thats-left-of-you-2025-720p-amzn-web-dl-h264-madsky/"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-11T14:03:03Z",
+      "market_session_date": "2026-03-11",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 216.1300048828125,
+      "predicted_price_next_session": 215.53360427856444
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.0452725609143575,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "The Bride 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/the-bride-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        },
+        {
+          "title": "Amazon.com, Inc.\u2019s (AMZN) AWS Announces Launch of AI-Enabled Platform for Automation of Healthcare Administrative Tasks, Reuters Reports",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_a693c37b-7a6f-4122-b46c-d3f4f5183507"
+        },
+        {
+          "title": "Midwinter Break 2026 1080p AMZN WEB-DL H264-The1000th",
+          "url": "https://post.rlsbb.to/midwinter-break-2026-1080p-amzn-web-dl-h264-the1000th/"
+        },
+        {
+          "title": "120 Hours Behind Bars S01E08 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/120-hours-behind-bars-s01e08-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "120 Hours Behind Bars S01E07 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/120-hours-behind-bars-s01e07-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "The Ultimate Baking Championship S01E01 1080p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/the-ultimate-baking-championship-s01e01-1080p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Wild Vacation Rentals S01E03 1080p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/wild-vacation-rentals-s01e03-1080p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Wild Vacation Rentals S01E02 1080p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/wild-vacation-rentals-s01e02-1080p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Neighborhood Watch 2026 S01E14 1080p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/neighborhood-watch-2026-s01e14-1080p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Unexpected S07E04 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/unexpected-s07e04-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Neighborhood Watch 2026 S01E13 1080p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/neighborhood-watch-2026-s01e13-1080p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "The Curious Case of S02E08 1080p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/the-curious-case-of-s02e08-1080p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "D Squad-Tooth And Claw 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/d-squad-tooth-and-claw-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        },
+        {
+          "title": "Stray Kids The DominATE Experience 2026 1080p AMZN WEB-DL H264-SCOPE",
+          "url": "https://post.rlsbb.to/stray-kids-the-dominate-experience-2026-1080p-amzn-web-dl-h264-scope/"
+        },
+        {
+          "title": "Solo Mio 2026 1080p AMZN WEB-DL H264-WDYM",
+          "url": "https://post.rlsbb.to/solo-mio-2026-1080p-amzn-web-dl-h264-wdym/"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-11/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-13T07:26:11Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 209.52999877929688,
+      "predicted_price_next_session": 211.56720001220702
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Insidious Tales 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/insidious-tales-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        },
+        {
+          "title": "This Is England 86 S01 1080p AMZN WEB-DL H264-playWEB",
+          "url": "https://post.rlsbb.to/this-is-england-86-s01-1080p-amzn-web-dl-h264-playweb/"
+        },
+        {
+          "title": "Soldiers Girl 2003 1080p AMZN WEB-DL H264-TEPES",
+          "url": "https://post.rlsbb.to/soldiers-girl-2003-1080p-amzn-web-dl-h264-tepes/"
+        },
+        {
+          "title": "Shutter Island 2010 1080p AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/shutter-island-2010-1080p-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "Mayday S26E08 1080p AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/mayday-s26e08-1080p-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "Highway Thru Hell S14E08 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/highway-thru-hell-s14e08-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Moonshiners S15E10 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/moonshiners-s15e10-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "The Summit UK S01E07 1080p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/the-summit-uk-s01e07-1080p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "The Expanse S01-S06 1080p AMZN WEB-DL H264-MiXED",
+          "url": "https://post.rlsbb.to/the-expanse-s01-s06-1080p-amzn-web-dl-h264-mixed/"
+        },
+        {
+          "title": "The Bride 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/the-bride-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-13T07:26:14Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 209.52999877929688,
+      "predicted_price_next_session": 211.56720001220702
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Insidious Tales 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/insidious-tales-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        },
+        {
+          "title": "This Is England 86 S01 1080p AMZN WEB-DL H264-playWEB",
+          "url": "https://post.rlsbb.to/this-is-england-86-s01-1080p-amzn-web-dl-h264-playweb/"
+        },
+        {
+          "title": "Soldiers Girl 2003 1080p AMZN WEB-DL H264-TEPES",
+          "url": "https://post.rlsbb.to/soldiers-girl-2003-1080p-amzn-web-dl-h264-tepes/"
+        },
+        {
+          "title": "Shutter Island 2010 1080p AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/shutter-island-2010-1080p-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "Mayday S26E08 1080p AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/mayday-s26e08-1080p-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "Highway Thru Hell S14E08 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/highway-thru-hell-s14e08-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Moonshiners S15E10 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/moonshiners-s15e10-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "The Summit UK S01E07 1080p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/the-summit-uk-s01e07-1080p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "The Expanse S01-S06 1080p AMZN WEB-DL H264-MiXED",
+          "url": "https://post.rlsbb.to/the-expanse-s01-s06-1080p-amzn-web-dl-h264-mixed/"
+        },
+        {
+          "title": "The Bride 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/the-bride-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-13T07:27:39Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 209.52999877929688,
+      "predicted_price_next_session": 211.56720001220702
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Insidious Tales 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/insidious-tales-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        },
+        {
+          "title": "This Is England 86 S01 1080p AMZN WEB-DL H264-playWEB",
+          "url": "https://post.rlsbb.to/this-is-england-86-s01-1080p-amzn-web-dl-h264-playweb/"
+        },
+        {
+          "title": "Soldiers Girl 2003 1080p AMZN WEB-DL H264-TEPES",
+          "url": "https://post.rlsbb.to/soldiers-girl-2003-1080p-amzn-web-dl-h264-tepes/"
+        },
+        {
+          "title": "Shutter Island 2010 1080p AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/shutter-island-2010-1080p-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "Mayday S26E08 1080p AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/mayday-s26e08-1080p-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "Highway Thru Hell S14E08 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/highway-thru-hell-s14e08-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Moonshiners S15E10 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/moonshiners-s15e10-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "The Summit UK S01E07 1080p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/the-summit-uk-s01e07-1080p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "The Expanse S01-S06 1080p AMZN WEB-DL H264-MiXED",
+          "url": "https://post.rlsbb.to/the-expanse-s01-s06-1080p-amzn-web-dl-h264-mixed/"
+        },
+        {
+          "title": "The Bride 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/the-bride-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-13T07:27:41Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 209.52999877929688,
+      "predicted_price_next_session": 211.56720001220702
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Insidious Tales 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/insidious-tales-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        },
+        {
+          "title": "This Is England 86 S01 1080p AMZN WEB-DL H264-playWEB",
+          "url": "https://post.rlsbb.to/this-is-england-86-s01-1080p-amzn-web-dl-h264-playweb/"
+        },
+        {
+          "title": "Soldiers Girl 2003 1080p AMZN WEB-DL H264-TEPES",
+          "url": "https://post.rlsbb.to/soldiers-girl-2003-1080p-amzn-web-dl-h264-tepes/"
+        },
+        {
+          "title": "Shutter Island 2010 1080p AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/shutter-island-2010-1080p-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "Mayday S26E08 1080p AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/mayday-s26e08-1080p-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "Highway Thru Hell S14E08 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/highway-thru-hell-s14e08-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Moonshiners S15E10 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/moonshiners-s15e10-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "The Summit UK S01E07 1080p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/the-summit-uk-s01e07-1080p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "The Expanse S01-S06 1080p AMZN WEB-DL H264-MiXED",
+          "url": "https://post.rlsbb.to/the-expanse-s01-s06-1080p-amzn-web-dl-h264-mixed/"
+        },
+        {
+          "title": "The Bride 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/the-bride-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-13T07:31:00Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 209.52999877929688,
+      "predicted_price_next_session": 211.56720001220702
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Insidious Tales 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/insidious-tales-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        },
+        {
+          "title": "This Is England 86 S01 1080p AMZN WEB-DL H264-playWEB",
+          "url": "https://post.rlsbb.to/this-is-england-86-s01-1080p-amzn-web-dl-h264-playweb/"
+        },
+        {
+          "title": "Soldiers Girl 2003 1080p AMZN WEB-DL H264-TEPES",
+          "url": "https://post.rlsbb.to/soldiers-girl-2003-1080p-amzn-web-dl-h264-tepes/"
+        },
+        {
+          "title": "Shutter Island 2010 1080p AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/shutter-island-2010-1080p-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "Mayday S26E08 1080p AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/mayday-s26e08-1080p-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "Highway Thru Hell S14E08 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/highway-thru-hell-s14e08-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Moonshiners S15E10 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/moonshiners-s15e10-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "The Summit UK S01E07 1080p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/the-summit-uk-s01e07-1080p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "The Expanse S01-S06 1080p AMZN WEB-DL H264-MiXED",
+          "url": "https://post.rlsbb.to/the-expanse-s01-s06-1080p-amzn-web-dl-h264-mixed/"
+        },
+        {
+          "title": "The Bride 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/the-bride-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-13T07:31:01Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 209.52999877929688,
+      "predicted_price_next_session": 211.56720001220702
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Insidious Tales 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/insidious-tales-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        },
+        {
+          "title": "This Is England 86 S01 1080p AMZN WEB-DL H264-playWEB",
+          "url": "https://post.rlsbb.to/this-is-england-86-s01-1080p-amzn-web-dl-h264-playweb/"
+        },
+        {
+          "title": "Soldiers Girl 2003 1080p AMZN WEB-DL H264-TEPES",
+          "url": "https://post.rlsbb.to/soldiers-girl-2003-1080p-amzn-web-dl-h264-tepes/"
+        },
+        {
+          "title": "Shutter Island 2010 1080p AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/shutter-island-2010-1080p-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "Mayday S26E08 1080p AMZN WEB-DL H264-Kitsune",
+          "url": "https://post.rlsbb.to/mayday-s26e08-1080p-amzn-web-dl-h264-kitsune/"
+        },
+        {
+          "title": "Highway Thru Hell S14E08 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/highway-thru-hell-s14e08-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "Moonshiners S15E10 720p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/moonshiners-s15e10-720p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "The Summit UK S01E07 1080p AMZN WEB-DL H264-RAWR",
+          "url": "https://post.rlsbb.to/the-summit-uk-s01e07-1080p-amzn-web-dl-h264-rawr/"
+        },
+        {
+          "title": "The Expanse S01-S06 1080p AMZN WEB-DL H264-MiXED",
+          "url": "https://post.rlsbb.to/the-expanse-s01-s06-1080p-amzn-web-dl-h264-mixed/"
+        },
+        {
+          "title": "The Bride 2026 1080p AMZN WEB-DL H264-BobDobbs",
+          "url": "https://post.rlsbb.to/the-bride-2026-1080p-amzn-web-dl-h264-bobdobbs/"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-13T14:04:54Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 209.5399932861328,
+      "predicted_price_next_session": 209.94849609375
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.09568572044372559,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Amazon.com (AMZN) to Expand Healthcare AI for Customers",
+          "url": "https://finance.yahoo.com/news/amazon-com-amzn-expand-healthcare-175046041.html",
+          "published_at": "2026-03-12T19:50:00.000+02:00"
+        },
+        {
+          "title": "Amazon.com Inc. (AMZN) ... GOOGL/AMZN/META AI Capex Update: AWS adds more GWs than GCP but GOOGL tops AMZN",
+          "url": "https://app.researchpool.com/provider/new-street-research/amazoncom-inc-amzn-googlamznmeta-ai-capex-update-aws-adds-more-gws-than-gcp-but-googl-top-q6ALDmsGie",
+          "published_at": "2026-03-12T03:42:00.000+02:00"
+        },
+        {
+          "title": "Amazon.com (NASDAQ:AMZN) Trading Down 1.5% - Here's What Happened - Markets Daily",
+          "url": "https://www.themarketsdaily.com/2026/03/12/amazon-com-nasdaqamzn-trading-down-1-5-heres-what-happened.html",
+          "published_at": "2026-03-12T23:56:00.000+02:00"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-13T14:22:26Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 209.83999633789062,
+      "predicted_price_next_session": 211.13289794921874
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.09568572044372559,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Amazon.com (AMZN) to Expand Healthcare AI for Customers",
+          "url": "https://finance.yahoo.com/news/amazon-com-amzn-expand-healthcare-175046041.html",
+          "published_at": "2026-03-12T19:50:00.000+02:00"
+        },
+        {
+          "title": "Amazon.com Inc. (AMZN) ... GOOGL/AMZN/META AI Capex Update: AWS adds more GWs than GCP but GOOGL tops AMZN",
+          "url": "https://app.researchpool.com/provider/new-street-research/amazoncom-inc-amzn-googlamznmeta-ai-capex-update-aws-adds-more-gws-than-gcp-but-googl-top-q6ALDmsGie",
+          "published_at": "2026-03-12T03:42:00.000+02:00"
+        },
+        {
+          "title": "Amazon.com (NASDAQ:AMZN) Trading Down 1.5% - Here's What Happened - Markets Daily",
+          "url": "https://www.themarketsdaily.com/2026/03/12/amazon-com-nasdaqamzn-trading-down-1-5-heres-what-happened.html",
+          "published_at": "2026-03-12T23:56:00.000+02:00"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-13T14:22:33Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 209.77000427246094,
+      "predicted_price_next_session": 210.44400131225586
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.09568572044372559,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Amazon.com (AMZN) to Expand Healthcare AI for Customers",
+          "url": "https://finance.yahoo.com/news/amazon-com-amzn-expand-healthcare-175046041.html",
+          "published_at": "2026-03-12T19:50:00.000+02:00"
+        },
+        {
+          "title": "Amazon.com Inc. (AMZN) ... GOOGL/AMZN/META AI Capex Update: AWS adds more GWs than GCP but GOOGL tops AMZN",
+          "url": "https://app.researchpool.com/provider/new-street-research/amazoncom-inc-amzn-googlamznmeta-ai-capex-update-aws-adds-more-gws-than-gcp-but-googl-top-q6ALDmsGie",
+          "published_at": "2026-03-12T03:42:00.000+02:00"
+        },
+        {
+          "title": "Amazon.com (NASDAQ:AMZN) Trading Down 1.5% - Here's What Happened - Markets Daily",
+          "url": "https://www.themarketsdaily.com/2026/03/12/amazon-com-nasdaqamzn-trading-down-1-5-heres-what-happened.html",
+          "published_at": "2026-03-12T23:56:00.000+02:00"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-14T14:03:25Z",
+      "market_session_date": "2026-03-14",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 151.0,
+      "predicted_price_next_session": 154.6148527220781
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "AMZN announces date for shareholder meeting",
+          "url": "",
+          "published_at": ""
+        },
+        {
+          "title": "AMZN news flow active amid market volatility",
+          "url": "",
+          "published_at": ""
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-14/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-14T15:57:49Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 207.6699981689453,
+      "predicted_price_next_session": 210.070099029541
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.21636250615119934,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Apple 2025 MacBook Air 15.3\u2033 Laptop With M4 Chip, 16GB RAM, And 512GB SSD For $1,079 Shipped From Amazon",
+          "url": "https://www.dansdeals.com/shopping-deals/amazon/apple-2025-macbook-air-15-3-laptop-with-m4-chip-16gb-ram-and-512gb-ssd-for-1079-shipped-from-amazon/",
+          "published_at": "2026-03-13T15:57:25Z"
+        },
+        {
+          "title": "Amazon expands March 2026 giveaway lineup with four free games on Luna",
+          "url": "https://www.notebookcheck.net/Amazon-expands-March-2026-giveaway-lineup-with-four-free-games-on-Luna.1249859.0.html",
+          "published_at": "2026-03-13T15:53:00Z"
+        },
+        {
+          "title": "Amazon just quietly dropped prices even further on Razer gaming peripherals \u2014 here are 9 unmissable deals with 40% or more off",
+          "url": "https://www.techradar.com/gaming/gaming-accessories/amazon-just-quietly-dropped-prices-even-further-on-razer-gaming-peripherals-here-are-9-unmissable-deals-with-40-percent-or-more-off",
+          "published_at": "2026-03-13T15:48:00Z"
+        },
+        {
+          "title": "Twenty years after pioneering the cloud, Amazon Web Services chases the AI prize",
+          "url": "https://siliconangle.com/2026/03/13/twenty-years-pioneering-cloud-amazon-web-services-chases-ai-prize/",
+          "published_at": "2026-03-13T15:27:02Z"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-14/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-14T15:57:53Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 207.6699981689453,
+      "predicted_price_next_session": 210.070099029541
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.21636250615119934,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Apple 2025 MacBook Air 15.3\u2033 Laptop With M4 Chip, 16GB RAM, And 512GB SSD For $1,079 Shipped From Amazon",
+          "url": "https://www.dansdeals.com/shopping-deals/amazon/apple-2025-macbook-air-15-3-laptop-with-m4-chip-16gb-ram-and-512gb-ssd-for-1079-shipped-from-amazon/",
+          "published_at": "2026-03-13T15:57:25Z"
+        },
+        {
+          "title": "Amazon expands March 2026 giveaway lineup with four free games on Luna",
+          "url": "https://www.notebookcheck.net/Amazon-expands-March-2026-giveaway-lineup-with-four-free-games-on-Luna.1249859.0.html",
+          "published_at": "2026-03-13T15:53:00Z"
+        },
+        {
+          "title": "Amazon just quietly dropped prices even further on Razer gaming peripherals \u2014 here are 9 unmissable deals with 40% or more off",
+          "url": "https://www.techradar.com/gaming/gaming-accessories/amazon-just-quietly-dropped-prices-even-further-on-razer-gaming-peripherals-here-are-9-unmissable-deals-with-40-percent-or-more-off",
+          "published_at": "2026-03-13T15:48:00Z"
+        },
+        {
+          "title": "Twenty years after pioneering the cloud, Amazon Web Services chases the AI prize",
+          "url": "https://siliconangle.com/2026/03/13/twenty-years-pioneering-cloud-amazon-web-services-chases-ai-prize/",
+          "published_at": "2026-03-13T15:27:02Z"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-14/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-14T15:58:11Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 207.6699981689453,
+      "predicted_price_next_session": 210.070099029541
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.21636250615119934,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Apple 2025 MacBook Air 15.3\u2033 Laptop With M4 Chip, 16GB RAM, And 512GB SSD For $1,079 Shipped From Amazon",
+          "url": "https://www.dansdeals.com/shopping-deals/amazon/apple-2025-macbook-air-15-3-laptop-with-m4-chip-16gb-ram-and-512gb-ssd-for-1079-shipped-from-amazon/",
+          "published_at": "2026-03-13T15:57:25Z"
+        },
+        {
+          "title": "Amazon expands March 2026 giveaway lineup with four free games on Luna",
+          "url": "https://www.notebookcheck.net/Amazon-expands-March-2026-giveaway-lineup-with-four-free-games-on-Luna.1249859.0.html",
+          "published_at": "2026-03-13T15:53:00Z"
+        },
+        {
+          "title": "Amazon just quietly dropped prices even further on Razer gaming peripherals \u2014 here are 9 unmissable deals with 40% or more off",
+          "url": "https://www.techradar.com/gaming/gaming-accessories/amazon-just-quietly-dropped-prices-even-further-on-razer-gaming-peripherals-here-are-9-unmissable-deals-with-40-percent-or-more-off",
+          "published_at": "2026-03-13T15:48:00Z"
+        },
+        {
+          "title": "Twenty years after pioneering the cloud, Amazon Web Services chases the AI prize",
+          "url": "https://siliconangle.com/2026/03/13/twenty-years-pioneering-cloud-amazon-web-services-chases-ai-prize/",
+          "published_at": "2026-03-13T15:27:02Z"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-14/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-14T15:58:16Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 207.6699981689453,
+      "predicted_price_next_session": 210.070099029541
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.21636250615119934,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Apple 2025 MacBook Air 15.3\u2033 Laptop With M4 Chip, 16GB RAM, And 512GB SSD For $1,079 Shipped From Amazon",
+          "url": "https://www.dansdeals.com/shopping-deals/amazon/apple-2025-macbook-air-15-3-laptop-with-m4-chip-16gb-ram-and-512gb-ssd-for-1079-shipped-from-amazon/",
+          "published_at": "2026-03-13T15:57:25Z"
+        },
+        {
+          "title": "Amazon expands March 2026 giveaway lineup with four free games on Luna",
+          "url": "https://www.notebookcheck.net/Amazon-expands-March-2026-giveaway-lineup-with-four-free-games-on-Luna.1249859.0.html",
+          "published_at": "2026-03-13T15:53:00Z"
+        },
+        {
+          "title": "Amazon just quietly dropped prices even further on Razer gaming peripherals \u2014 here are 9 unmissable deals with 40% or more off",
+          "url": "https://www.techradar.com/gaming/gaming-accessories/amazon-just-quietly-dropped-prices-even-further-on-razer-gaming-peripherals-here-are-9-unmissable-deals-with-40-percent-or-more-off",
+          "published_at": "2026-03-13T15:48:00Z"
+        },
+        {
+          "title": "Twenty years after pioneering the cloud, Amazon Web Services chases the AI prize",
+          "url": "https://siliconangle.com/2026/03/13/twenty-years-pioneering-cloud-amazon-web-services-chases-ai-prize/",
+          "published_at": "2026-03-13T15:27:02Z"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-14/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-16T14:29:23Z",
+      "market_session_date": "2026-03-16",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 209.80999755859375,
+      "predicted_price_next_session": 209.47069610595702
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.11851799488067627,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "$9.98*:2-Pack 15.7\" QEEIG Bathroom Floating Shelves (Rustic Brown) at Amazon",
+          "url": "https://slickdeals.net/f/19308180-9-98-2-pack-15-7-qeeig-bathroom-floating-shelves-rustic-brown-at-amazon",
+          "published_at": "2026-03-15T14:25:46Z"
+        },
+        {
+          "title": "Zone Dex-Cool Pre-Diluted 1 Gallon Antifreeze + Coolant for $6.70 + free shipping w/ Prime",
+          "url": "https://www.dealnews.com/Zone-Dex-Cool-Pre-Diluted-1-Gallon-Antifreeze-Coolant-for-6-70-free-shipping-w-Prime/21816255.html",
+          "published_at": "2026-03-15T14:17:57Z"
+        },
+        {
+          "title": "Lowest Price In 7 Years! Breville Juicer Fountain Plus For $99.95 Shipped From Amazon",
+          "url": "https://www.dansdeals.com/shopping-deals/amazon/lowest-price-in-7-years-breville-juicer-fountain-plus-for-99-95-shipped-from-amazon/",
+          "published_at": "2026-03-15T14:05:45Z"
+        },
+        {
+          "title": "Amazon Outlet Clothing Overstock : Up to 70% off + free shipping w/ Prime",
+          "url": "https://www.dealnews.com/Amazon-Outlet-Clothing-Overstock-Up-to-70-off-free-shipping-w-Prime/21816253.html",
+          "published_at": "2026-03-15T13:37:22Z"
+        },
+        {
+          "title": "Amazon Outlet Last Chance Savings Deals: Up to 75% off + Extra %-off many + free shipping w/ Prime",
+          "url": "https://www.dealnews.com/Amazon-Outlet-Last-Chance-Savings-Deals-Up-to-75-off-Extra-off-many-free-shipping-w-Prime/21816252.html",
+          "published_at": "2026-03-15T13:13:35Z"
+        },
+        {
+          "title": "Amazon Outlet Automotive Deals: Up to 75% off + free shipping w/ Prime",
+          "url": "https://www.dealnews.com/Amazon-Outlet-Automotive-Deals-Up-to-75-off-free-shipping-w-Prime/21816250.html",
+          "published_at": "2026-03-15T12:52:39Z"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-16/AMZN_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "source_symbol": "AMZN",
+      "generated_at": "2026-03-17T02:56:33Z",
+      "market_session_date": "2026-03-17",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 151.0,
+      "predicted_price_next_session": 154.6148527220781
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.2691011627515157,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Amazon shares trade actively amid broad market movements",
+          "url": "",
+          "published_at": ""
+        },
+        {
+          "title": "Analysts review Amazon outlook for current quarter",
+          "url": "",
+          "published_at": ""
+        },
+        {
+          "title": "Amazon scheduled to report earnings this season",
+          "url": "",
+          "published_at": ""
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-17/AMZN_trend.png"
+    }
+  }
+]

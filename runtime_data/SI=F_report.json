@@ -1,0 +1,661 @@
+[
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "source_symbol": "SI=F",
+      "generated_at": "2026-03-09T14:16:46Z",
+      "market_session_date": "2026-03-09",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 84.01000213623047,
+      "predicted_price_next_session": 83.0959806060791,
+      "history": [
+        {
+          "time": "2025-12-26",
+          "value": 76.48600006103516
+        },
+        {
+          "time": "2025-12-29",
+          "value": 69.85600280761719
+        },
+        {
+          "time": "2025-12-30",
+          "value": 77.3740005493164
+        },
+        {
+          "time": "2025-12-31",
+          "value": 70.13400268554688
+        },
+        {
+          "time": "2026-01-02",
+          "value": 70.55599975585938
+        },
+        {
+          "time": "2026-01-05",
+          "value": 76.16400146484375
+        },
+        {
+          "time": "2026-01-06",
+          "value": 80.52999877929688
+        },
+        {
+          "time": "2026-01-07",
+          "value": 77.13500213623047
+        },
+        {
+          "time": "2026-01-08",
+          "value": 74.71600341796875
+        },
+        {
+          "time": "2026-01-09",
+          "value": 78.88400268554688
+        },
+        {
+          "time": "2026-01-12",
+          "value": 84.61000061035156
+        },
+        {
+          "time": "2026-01-13",
+          "value": 85.87699890136719
+        },
+        {
+          "time": "2026-01-14",
+          "value": 90.86900329589844
+        },
+        {
+          "time": "2026-01-15",
+          "value": 91.8759994506836
+        },
+        {
+          "time": "2026-01-16",
+          "value": 88.09100341796875
+        },
+        {
+          "time": "2026-01-20",
+          "value": 94.20600128173828
+        },
+        {
+          "time": "2026-01-21",
+          "value": 92.20999908447266
+        },
+        {
+          "time": "2026-01-22",
+          "value": 95.97599792480469
+        },
+        {
+          "time": "2026-01-23",
+          "value": 100.92500305175781
+        },
+        {
+          "time": "2026-01-26",
+          "value": 115.08000183105469
+        },
+        {
+          "time": "2026-01-27",
+          "value": 105.52300262451172
+        },
+        {
+          "time": "2026-01-28",
+          "value": 113.11100006103516
+        },
+        {
+          "time": "2026-01-29",
+          "value": 114.03700256347656
+        },
+        {
+          "time": "2026-01-30",
+          "value": 78.29000091552734
+        },
+        {
+          "time": "2026-02-02",
+          "value": 76.77799987792969
+        },
+        {
+          "time": "2026-02-03",
+          "value": 83.04199981689453
+        },
+        {
+          "time": "2026-02-04",
+          "value": 84.16500091552734
+        },
+        {
+          "time": "2026-02-05",
+          "value": 76.52899932861328
+        },
+        {
+          "time": "2026-02-06",
+          "value": 76.73500061035156
+        },
+        {
+          "time": "2026-02-09",
+          "value": 82.06500244140625
+        },
+        {
+          "time": "2026-02-10",
+          "value": 80.21800231933594
+        },
+        {
+          "time": "2026-02-11",
+          "value": 83.75399780273438
+        },
+        {
+          "time": "2026-02-12",
+          "value": 75.5459976196289
+        },
+        {
+          "time": "2026-02-13",
+          "value": 77.85099792480469
+        },
+        {
+          "time": "2026-02-17",
+          "value": 73.4469985961914
+        },
+        {
+          "time": "2026-02-18",
+          "value": 77.50900268554688
+        },
+        {
+          "time": "2026-02-19",
+          "value": 77.56500244140625
+        },
+        {
+          "time": "2026-02-20",
+          "value": 82.28299713134766
+        },
+        {
+          "time": "2026-02-23",
+          "value": 86.52300262451172
+        },
+        {
+          "time": "2026-02-24",
+          "value": 87.45700073242188
+        },
+        {
+          "time": "2026-02-25",
+          "value": 90.93900299072266
+        },
+        {
+          "time": "2026-02-26",
+          "value": 86.99800109863281
+        },
+        {
+          "time": "2026-02-27",
+          "value": 92.68199920654297
+        },
+        {
+          "time": "2026-03-02",
+          "value": 88.28399658203125
+        },
+        {
+          "time": "2026-03-03",
+          "value": 82.9229965209961
+        },
+        {
+          "time": "2026-03-04",
+          "value": 82.63300323486328
+        },
+        {
+          "time": "2026-03-05",
+          "value": 81.68699645996094
+        },
+        {
+          "time": "2026-03-06",
+          "value": 83.81600189208984
+        },
+        {
+          "time": "2026-03-09",
+          "value": 84.01000213623047
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Show HN: Kula \u2013 Lightweight, self-contained Linux server monitoring tool",
+        "Harnessing fano-like line shape resonance in a rectangular waveguide for filtering applications",
+        "From tests to truth: A misclassification-aware machine learning framework for estimating brucellosis seroprevalence in wild canids",
+        "Motorola Edge 70 Fusion (India) hands-on: Snapdragon 7s Gen 4 SoC and 7,000 mAh battery",
+        "chemsmart 0.3.2",
+        "Cm-p5, a synthetic antimicrobial peptide shows anti-Trypanosoma cruzi activity",
+        "Understanding security challenges in the software supply chain through causal relationships",
+        "Di tutto conosciamo il prezzo. Di niente il valore. F. Nietzsche. AFORISMI-CITAZIONI",
+        "Sub-micron-resolution temperature mapping of Zn negative electrode for flow batteries",
+        "Atomic imaging for hydrogen and boron aggregates in boron-doped diamond by spectro-photoelectron holography",
+        "Boston Celtics Daily Links 3/4/26",
+        "nayan-tqdm added to PyPI",
+        "Topological metrics as evolutionary and dynamical descriptors of conformational landscapes within protein families",
+        "Multimorbidity in the Brazilian adult population: Protocol for a systematic review and meta-analysis of prevalence",
+        "Huanggan decoction ameliorates cholestatic hepatic fibrosis in rats via TGF-\u03b21/Smad3 signaling pathway"
+      ],
+      "chart_path": "data\\charts\\2026-03-09\\SI=F_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "source_symbol": "SI=F",
+      "generated_at": "2026-03-10T08:00:52Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 89.46499633789062,
+      "predicted_price_next_session": 83.48544960021972,
+      "history": [
+        {
+          "time": "2025-12-29",
+          "value": 69.85600280761719
+        },
+        {
+          "time": "2025-12-30",
+          "value": 77.3740005493164
+        },
+        {
+          "time": "2025-12-31",
+          "value": 70.13400268554688
+        },
+        {
+          "time": "2026-01-02",
+          "value": 70.55599975585938
+        },
+        {
+          "time": "2026-01-05",
+          "value": 76.16400146484375
+        },
+        {
+          "time": "2026-01-06",
+          "value": 80.52999877929688
+        },
+        {
+          "time": "2026-01-07",
+          "value": 77.13500213623047
+        },
+        {
+          "time": "2026-01-08",
+          "value": 74.71600341796875
+        },
+        {
+          "time": "2026-01-09",
+          "value": 78.88400268554688
+        },
+        {
+          "time": "2026-01-12",
+          "value": 84.61000061035156
+        },
+        {
+          "time": "2026-01-13",
+          "value": 85.87699890136719
+        },
+        {
+          "time": "2026-01-14",
+          "value": 90.86900329589844
+        },
+        {
+          "time": "2026-01-15",
+          "value": 91.8759994506836
+        },
+        {
+          "time": "2026-01-16",
+          "value": 88.09100341796875
+        },
+        {
+          "time": "2026-01-20",
+          "value": 94.20600128173828
+        },
+        {
+          "time": "2026-01-21",
+          "value": 92.20999908447266
+        },
+        {
+          "time": "2026-01-22",
+          "value": 95.97599792480469
+        },
+        {
+          "time": "2026-01-23",
+          "value": 100.92500305175781
+        },
+        {
+          "time": "2026-01-26",
+          "value": 115.08000183105469
+        },
+        {
+          "time": "2026-01-27",
+          "value": 105.52300262451172
+        },
+        {
+          "time": "2026-01-28",
+          "value": 113.11100006103516
+        },
+        {
+          "time": "2026-01-29",
+          "value": 114.03700256347656
+        },
+        {
+          "time": "2026-01-30",
+          "value": 78.29000091552734
+        },
+        {
+          "time": "2026-02-02",
+          "value": 76.77799987792969
+        },
+        {
+          "time": "2026-02-03",
+          "value": 83.04199981689453
+        },
+        {
+          "time": "2026-02-04",
+          "value": 84.16500091552734
+        },
+        {
+          "time": "2026-02-05",
+          "value": 76.52899932861328
+        },
+        {
+          "time": "2026-02-06",
+          "value": 76.73500061035156
+        },
+        {
+          "time": "2026-02-09",
+          "value": 82.06500244140625
+        },
+        {
+          "time": "2026-02-10",
+          "value": 80.21800231933594
+        },
+        {
+          "time": "2026-02-11",
+          "value": 83.75399780273438
+        },
+        {
+          "time": "2026-02-12",
+          "value": 75.5459976196289
+        },
+        {
+          "time": "2026-02-13",
+          "value": 77.85099792480469
+        },
+        {
+          "time": "2026-02-17",
+          "value": 73.4469985961914
+        },
+        {
+          "time": "2026-02-18",
+          "value": 77.50900268554688
+        },
+        {
+          "time": "2026-02-19",
+          "value": 77.56500244140625
+        },
+        {
+          "time": "2026-02-20",
+          "value": 82.28299713134766
+        },
+        {
+          "time": "2026-02-23",
+          "value": 86.52300262451172
+        },
+        {
+          "time": "2026-02-24",
+          "value": 87.45700073242188
+        },
+        {
+          "time": "2026-02-25",
+          "value": 90.93900299072266
+        },
+        {
+          "time": "2026-02-26",
+          "value": 86.99800109863281
+        },
+        {
+          "time": "2026-02-27",
+          "value": 92.68199920654297
+        },
+        {
+          "time": "2026-03-02",
+          "value": 88.28399658203125
+        },
+        {
+          "time": "2026-03-03",
+          "value": 82.9229965209961
+        },
+        {
+          "time": "2026-03-04",
+          "value": 82.63300323486328
+        },
+        {
+          "time": "2026-03-05",
+          "value": 81.68699645996094
+        },
+        {
+          "time": "2026-03-06",
+          "value": 83.81600189208984
+        },
+        {
+          "time": "2026-03-10",
+          "value": 89.46499633789062
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": -0.007300841808319092,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Regenerating end-of-life membranes for enhanced sustainability and unexpected performance",
+        "Engineering fibrous-interconnected potassium bis(dioxovanadium) phosphate frameworks for fast-charging and high-rate sodium-ion supercapacitors",
+        "Room-temperature two-dimensional multiferroic metal with voltage-controllable magnetic order",
+        "Development of a sustained anticancer drug delivery system based on hybridization between diatomite and nanostructured lipid carriers",
+        "Correction: In situ investigation of Li permeation through grain boundaries in garnet-based solid electrolytes",
+        "Geometric origin of particle and dislocation dynamics during grain boundary migration",
+        "Illicit Trading, Using BTS As Collateral, Connection To A Fugitive \u2014 Whistleblower\u2019s Bomshell Press Conference Against Bang Si Hyuk Stirs Uproar",
+        "Show HN: Kula \u2013 Lightweight, self-contained Linux server monitoring tool",
+        "Harnessing fano-like line shape resonance in a rectangular waveguide for filtering applications",
+        "From tests to truth: A misclassification-aware machine learning framework for estimating brucellosis seroprevalence in wild canids",
+        "Motorola Edge 70 Fusion (India) hands-on: Snapdragon 7s Gen 4 SoC and 7,000 mAh battery",
+        "chemsmart 0.3.2",
+        "Cm-p5, a synthetic antimicrobial peptide shows anti-Trypanosoma cruzi activity",
+        "Understanding security challenges in the software supply chain through causal relationships",
+        "Di tutto conosciamo il prezzo. Di niente il valore. F. Nietzsche. AFORISMI-CITAZIONI"
+      ],
+      "chart_path": "data\\charts\\2026-03-10\\SI=F_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "source_symbol": "SI=F",
+      "generated_at": "2026-03-10T14:02:42Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 89.0,
+      "predicted_price_next_session": 83.56905876159668
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "From tests to truth: A misclassification-aware machine learning framework for estimating brucellosis seroprevalence in wild canids",
+          "url": "https://journals.plos.org/plosntds/article?id=10.1371/journal.pntd.0014029"
+        }
+      ],
+      "chart_path": "data/charts/2026-03-10/SI=F_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "source_symbol": "SI=F",
+      "generated_at": "2026-03-11T14:03:21Z",
+      "market_session_date": "2026-03-11",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 85.13999938964844,
+      "predicted_price_next_session": 84.51887924194335
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND ",
+      "sentiment_score": 0.3767326772212982,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "SI=F announces date for shareholder meeting",
+          "url": ""
+        },
+        {
+          "title": "SI=F news flow remains active amid market volatility",
+          "url": ""
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-11/SI=F_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "source_symbol": "SI=F",
+      "generated_at": "2026-03-13T14:06:01Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 83.81999969482422,
+      "predicted_price_next_session": 86.32757011413574
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.7534653544425964,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "SI=F news flow remains active amid market volatility",
+          "url": "",
+          "published_at": ""
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/SI=F_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "source_symbol": "SI=F",
+      "generated_at": "2026-03-14T14:03:48Z",
+      "market_session_date": "2026-03-14",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 392.0,
+      "predicted_price_next_session": 398.09887846401483
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "SI=F announces date for shareholder meeting",
+          "url": "",
+          "published_at": ""
+        },
+        {
+          "title": "SI=F news flow active amid market volatility",
+          "url": "",
+          "published_at": ""
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-14/SI=F_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "source_symbol": "SI=F",
+      "generated_at": "2026-03-16T14:30:19Z",
+      "market_session_date": "2026-03-16",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 81.45999908447266,
+      "predicted_price_next_session": 85.18792015075684
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [],
+      "chart_path": "runtime_data/charts/2026-03-16/SI=F_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "source_symbol": "SI=F",
+      "generated_at": "2026-03-17T02:56:54Z",
+      "market_session_date": "2026-03-17",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 392.0,
+      "predicted_price_next_session": 398.09887846401483
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.2873889009157817,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "SI=F shares trade actively amid broad market movements",
+          "url": "",
+          "published_at": ""
+        },
+        {
+          "title": "Analysts review SI=F outlook for current quarter",
+          "url": "",
+          "published_at": ""
+        },
+        {
+          "title": "SI=F scheduled to report earnings this season",
+          "url": "",
+          "published_at": ""
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-17/SI=F_trend.png"
+    }
+  }
+]

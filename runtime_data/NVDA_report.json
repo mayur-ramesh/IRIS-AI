@@ -1,0 +1,2192 @@
+[
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-09T03:38:55Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 185.41000366210938,
+      "predicted_price_next_session": 182.5168068019823
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia announces breakthrough AI chip",
+        "Quarterly revenue beats expectations by 20%"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-11T01:55:36Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 188.5399932861328,
+      "predicted_price_next_session": 184.00234497771868
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia announces breakthrough AI chip",
+        "Quarterly revenue beats expectations by 20%"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-11T02:24:16Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 188.5399932861328,
+      "predicted_price_next_session": 182.24317822654046
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia announces breakthrough AI chip",
+        "Quarterly revenue beats expectations by 20%"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-12T13:23:15Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 190.0500030517578,
+      "predicted_price_next_session": 188.15822542067735
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia announces breakthrough AI chip",
+        "Quarterly revenue beats expectations by 20%"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-12T13:25:29Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 190.0500030517578,
+      "predicted_price_next_session": 188.15822542067735
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia announces breakthrough AI chip",
+        "Quarterly revenue beats expectations by 20%"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-22T11:34:26Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 189.82000732421875,
+      "predicted_price_next_session": 188.65907741431752
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia announces breakthrough AI chip",
+        "Quarterly revenue beats expectations by 20%"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-23T05:48:59Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 189.82000732421875,
+      "predicted_price_next_session": 188.65907741431752
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.0,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Nvidia announces breakthrough AI chip",
+        "Quarterly revenue beats expectations by 20%"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-02-24T18:37:38Z",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 192.92010498046875,
+      "predicted_price_next_session": 191.9294845184434
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.2476778507232666,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tech news today: Countdown to Nvidia earnings begins as AI fears weigh on stocks",
+        "Earnings live: Home Depot stock climbs after earnings beat, Hims & Hers slides, Constellation Energy rises",
+        "Billionaire Investor Philippe Laffont's Hedge Fund Sold Its Entire Stake in The Trade Desk and Increased Its Position in This Streaming Giant by 17x",
+        "Why Clarivate Stock Is Skyrocketing Today",
+        "40% of Enterprise Apps Will Embed AI Agents by End of 2026, According to Gartner. Here's How to Profit."
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-03T01:18:55Z",
+      "market_session_date": "2026-03-02",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 182.47999572753906,
+      "predicted_price_next_session": 189.3204481306397
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.022123563289642333,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Stock market today: Dow, S&P 500, Nasdaq futures slide as Wall Street weighs Iran war impact",
+        "Tech stocks today: Nvidia invests $4B in photonics makers, Apple announces low-cost iPhone, OpenAI strikes deal with Pentagon",
+        "'A stark contrast': Wall Street weighs winners and losers amid AI-driven tech sell-off",
+        "This Incredibly Simple IRA Move Could Lead to Much More Savings",
+        "Why Bitmine Immersion Technologies Stock Soared Nearly 8% Higher Today"
+      ],
+      "chart_path": "data\\charts\\2026-03-03\\NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-04T03:34:29Z",
+      "market_session_date": "2026-03-03",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 180.0500030517578,
+      "predicted_price_next_session": 180.31265655941334,
+      "history": [
+        {
+          "time": "2025-12-05",
+          "value": 182.41000366210938
+        },
+        {
+          "time": "2025-12-08",
+          "value": 185.5500030517578
+        },
+        {
+          "time": "2025-12-09",
+          "value": 184.97000122070312
+        },
+        {
+          "time": "2025-12-10",
+          "value": 183.77999877929688
+        },
+        {
+          "time": "2025-12-11",
+          "value": 180.92999267578125
+        },
+        {
+          "time": "2025-12-12",
+          "value": 175.02000427246094
+        },
+        {
+          "time": "2025-12-15",
+          "value": 176.2899932861328
+        },
+        {
+          "time": "2025-12-16",
+          "value": 177.72000122070312
+        },
+        {
+          "time": "2025-12-17",
+          "value": 170.94000244140625
+        },
+        {
+          "time": "2025-12-18",
+          "value": 174.13999938964844
+        },
+        {
+          "time": "2025-12-19",
+          "value": 180.99000549316406
+        },
+        {
+          "time": "2025-12-22",
+          "value": 183.69000244140625
+        },
+        {
+          "time": "2025-12-23",
+          "value": 189.2100067138672
+        },
+        {
+          "time": "2025-12-24",
+          "value": 188.61000061035156
+        },
+        {
+          "time": "2025-12-26",
+          "value": 190.52999877929688
+        },
+        {
+          "time": "2025-12-29",
+          "value": 188.22000122070312
+        },
+        {
+          "time": "2025-12-30",
+          "value": 187.5399932861328
+        },
+        {
+          "time": "2025-12-31",
+          "value": 186.5
+        },
+        {
+          "time": "2026-01-02",
+          "value": 188.85000610351562
+        },
+        {
+          "time": "2026-01-05",
+          "value": 188.1199951171875
+        },
+        {
+          "time": "2026-01-06",
+          "value": 187.24000549316406
+        },
+        {
+          "time": "2026-01-07",
+          "value": 189.11000061035156
+        },
+        {
+          "time": "2026-01-08",
+          "value": 185.0399932861328
+        },
+        {
+          "time": "2026-01-09",
+          "value": 184.86000061035156
+        },
+        {
+          "time": "2026-01-12",
+          "value": 184.94000244140625
+        },
+        {
+          "time": "2026-01-13",
+          "value": 185.80999755859375
+        },
+        {
+          "time": "2026-01-14",
+          "value": 183.13999938964844
+        },
+        {
+          "time": "2026-01-15",
+          "value": 187.0500030517578
+        },
+        {
+          "time": "2026-01-16",
+          "value": 186.22999572753906
+        },
+        {
+          "time": "2026-01-20",
+          "value": 178.07000732421875
+        },
+        {
+          "time": "2026-01-21",
+          "value": 183.32000732421875
+        },
+        {
+          "time": "2026-01-22",
+          "value": 184.83999633789062
+        },
+        {
+          "time": "2026-01-23",
+          "value": 187.6699981689453
+        },
+        {
+          "time": "2026-01-26",
+          "value": 186.47000122070312
+        },
+        {
+          "time": "2026-01-27",
+          "value": 188.52000427246094
+        },
+        {
+          "time": "2026-01-28",
+          "value": 191.52000427246094
+        },
+        {
+          "time": "2026-01-29",
+          "value": 192.50999450683594
+        },
+        {
+          "time": "2026-01-30",
+          "value": 191.1300048828125
+        },
+        {
+          "time": "2026-02-02",
+          "value": 185.61000061035156
+        },
+        {
+          "time": "2026-02-03",
+          "value": 180.33999633789062
+        },
+        {
+          "time": "2026-02-04",
+          "value": 174.19000244140625
+        },
+        {
+          "time": "2026-02-05",
+          "value": 171.8800048828125
+        },
+        {
+          "time": "2026-02-06",
+          "value": 185.41000366210938
+        },
+        {
+          "time": "2026-02-09",
+          "value": 190.0399932861328
+        },
+        {
+          "time": "2026-02-10",
+          "value": 188.5399932861328
+        },
+        {
+          "time": "2026-02-11",
+          "value": 190.0500030517578
+        },
+        {
+          "time": "2026-02-12",
+          "value": 186.94000244140625
+        },
+        {
+          "time": "2026-02-13",
+          "value": 182.80999755859375
+        },
+        {
+          "time": "2026-02-17",
+          "value": 184.97000122070312
+        },
+        {
+          "time": "2026-02-18",
+          "value": 187.97999572753906
+        },
+        {
+          "time": "2026-02-19",
+          "value": 187.89999389648438
+        },
+        {
+          "time": "2026-02-20",
+          "value": 189.82000732421875
+        },
+        {
+          "time": "2026-02-23",
+          "value": 191.5500030517578
+        },
+        {
+          "time": "2026-02-24",
+          "value": 192.85000610351562
+        },
+        {
+          "time": "2026-02-25",
+          "value": 195.55999755859375
+        },
+        {
+          "time": "2026-02-26",
+          "value": 184.88999938964844
+        },
+        {
+          "time": "2026-02-27",
+          "value": 177.19000244140625
+        },
+        {
+          "time": "2026-03-02",
+          "value": 182.47999572753906
+        },
+        {
+          "time": "2026-03-03",
+          "value": 180.0500030517578
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": -0.0023630499839782716,
+      "check_engine_light": " YELLOW (Neutral / Noise)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tech stocks today: OpenAI makes changes to military contract, Amazon data centers struck in Middle East warfare",
+        "Earnings live: Ross Stores stock jumps on upbeat results, CrowdStrike posts slight top- and bottom-line beats",
+        "Dow Jones Futures Fall As Korean Stocks Dive Again; Trump Makes This Pledge",
+        "Tesla vs. Amazon: Which AI Stock Is the Better Buy Now?",
+        "3 Red-Hot Growth Stocks to Buy in 2026"
+      ],
+      "chart_path": "data\\charts\\2026-03-04\\NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-05T14:03:18Z",
+      "market_session_date": "2026-03-04",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 183.0399932861328,
+      "predicted_price_next_session": 183.01298882323474,
+      "history": [
+        {
+          "time": "2025-12-08",
+          "value": 185.5500030517578
+        },
+        {
+          "time": "2025-12-09",
+          "value": 184.97000122070312
+        },
+        {
+          "time": "2025-12-10",
+          "value": 183.77999877929688
+        },
+        {
+          "time": "2025-12-11",
+          "value": 180.92999267578125
+        },
+        {
+          "time": "2025-12-12",
+          "value": 175.02000427246094
+        },
+        {
+          "time": "2025-12-15",
+          "value": 176.2899932861328
+        },
+        {
+          "time": "2025-12-16",
+          "value": 177.72000122070312
+        },
+        {
+          "time": "2025-12-17",
+          "value": 170.94000244140625
+        },
+        {
+          "time": "2025-12-18",
+          "value": 174.13999938964844
+        },
+        {
+          "time": "2025-12-19",
+          "value": 180.99000549316406
+        },
+        {
+          "time": "2025-12-22",
+          "value": 183.69000244140625
+        },
+        {
+          "time": "2025-12-23",
+          "value": 189.2100067138672
+        },
+        {
+          "time": "2025-12-24",
+          "value": 188.61000061035156
+        },
+        {
+          "time": "2025-12-26",
+          "value": 190.52999877929688
+        },
+        {
+          "time": "2025-12-29",
+          "value": 188.22000122070312
+        },
+        {
+          "time": "2025-12-30",
+          "value": 187.5399932861328
+        },
+        {
+          "time": "2025-12-31",
+          "value": 186.5
+        },
+        {
+          "time": "2026-01-02",
+          "value": 188.85000610351562
+        },
+        {
+          "time": "2026-01-05",
+          "value": 188.1199951171875
+        },
+        {
+          "time": "2026-01-06",
+          "value": 187.24000549316406
+        },
+        {
+          "time": "2026-01-07",
+          "value": 189.11000061035156
+        },
+        {
+          "time": "2026-01-08",
+          "value": 185.0399932861328
+        },
+        {
+          "time": "2026-01-09",
+          "value": 184.86000061035156
+        },
+        {
+          "time": "2026-01-12",
+          "value": 184.94000244140625
+        },
+        {
+          "time": "2026-01-13",
+          "value": 185.80999755859375
+        },
+        {
+          "time": "2026-01-14",
+          "value": 183.13999938964844
+        },
+        {
+          "time": "2026-01-15",
+          "value": 187.0500030517578
+        },
+        {
+          "time": "2026-01-16",
+          "value": 186.22999572753906
+        },
+        {
+          "time": "2026-01-20",
+          "value": 178.07000732421875
+        },
+        {
+          "time": "2026-01-21",
+          "value": 183.32000732421875
+        },
+        {
+          "time": "2026-01-22",
+          "value": 184.83999633789062
+        },
+        {
+          "time": "2026-01-23",
+          "value": 187.6699981689453
+        },
+        {
+          "time": "2026-01-26",
+          "value": 186.47000122070312
+        },
+        {
+          "time": "2026-01-27",
+          "value": 188.52000427246094
+        },
+        {
+          "time": "2026-01-28",
+          "value": 191.52000427246094
+        },
+        {
+          "time": "2026-01-29",
+          "value": 192.50999450683594
+        },
+        {
+          "time": "2026-01-30",
+          "value": 191.1300048828125
+        },
+        {
+          "time": "2026-02-02",
+          "value": 185.61000061035156
+        },
+        {
+          "time": "2026-02-03",
+          "value": 180.33999633789062
+        },
+        {
+          "time": "2026-02-04",
+          "value": 174.19000244140625
+        },
+        {
+          "time": "2026-02-05",
+          "value": 171.8800048828125
+        },
+        {
+          "time": "2026-02-06",
+          "value": 185.41000366210938
+        },
+        {
+          "time": "2026-02-09",
+          "value": 190.0399932861328
+        },
+        {
+          "time": "2026-02-10",
+          "value": 188.5399932861328
+        },
+        {
+          "time": "2026-02-11",
+          "value": 190.0500030517578
+        },
+        {
+          "time": "2026-02-12",
+          "value": 186.94000244140625
+        },
+        {
+          "time": "2026-02-13",
+          "value": 182.80999755859375
+        },
+        {
+          "time": "2026-02-17",
+          "value": 184.97000122070312
+        },
+        {
+          "time": "2026-02-18",
+          "value": 187.97999572753906
+        },
+        {
+          "time": "2026-02-19",
+          "value": 187.89999389648438
+        },
+        {
+          "time": "2026-02-20",
+          "value": 189.82000732421875
+        },
+        {
+          "time": "2026-02-23",
+          "value": 191.5500030517578
+        },
+        {
+          "time": "2026-02-24",
+          "value": 192.85000610351562
+        },
+        {
+          "time": "2026-02-25",
+          "value": 195.55999755859375
+        },
+        {
+          "time": "2026-02-26",
+          "value": 184.88999938964844
+        },
+        {
+          "time": "2026-02-27",
+          "value": 177.19000244140625
+        },
+        {
+          "time": "2026-03-02",
+          "value": 182.47999572753906
+        },
+        {
+          "time": "2026-03-03",
+          "value": 180.0500030517578
+        },
+        {
+          "time": "2026-03-04",
+          "value": 183.0399932861328
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.16647613048553467,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Tech stocks today: Nvidia stops H200 chip production, Anthropic restarts talks with Pentagon",
+        "This Highly-Underrated Investment Pro is Quietly Beating the Market By a Landslide",
+        "Is Palantir Stock a Best Buy in March?",
+        "Why Constellation Energy Stock Surged 17.5% in February",
+        "The S&P 500 Just Hit a 3-Month Low, But Oil Stocks Are Surging. Should Investors Join the Crude Oil Rally?"
+      ],
+      "chart_path": "data\\charts\\2026-03-05\\NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-06T01:16:21Z",
+      "market_session_date": "2026-03-05",
+      "mode": "live"
+    },
+    "market": {
+      "current_price": 183.33999633789062,
+      "predicted_price_next_session": 181.17579235685483,
+      "history": [
+        {
+          "time": "2025-12-09",
+          "value": 184.97000122070312
+        },
+        {
+          "time": "2025-12-10",
+          "value": 183.77999877929688
+        },
+        {
+          "time": "2025-12-11",
+          "value": 180.92999267578125
+        },
+        {
+          "time": "2025-12-12",
+          "value": 175.02000427246094
+        },
+        {
+          "time": "2025-12-15",
+          "value": 176.2899932861328
+        },
+        {
+          "time": "2025-12-16",
+          "value": 177.72000122070312
+        },
+        {
+          "time": "2025-12-17",
+          "value": 170.94000244140625
+        },
+        {
+          "time": "2025-12-18",
+          "value": 174.13999938964844
+        },
+        {
+          "time": "2025-12-19",
+          "value": 180.99000549316406
+        },
+        {
+          "time": "2025-12-22",
+          "value": 183.69000244140625
+        },
+        {
+          "time": "2025-12-23",
+          "value": 189.2100067138672
+        },
+        {
+          "time": "2025-12-24",
+          "value": 188.61000061035156
+        },
+        {
+          "time": "2025-12-26",
+          "value": 190.52999877929688
+        },
+        {
+          "time": "2025-12-29",
+          "value": 188.22000122070312
+        },
+        {
+          "time": "2025-12-30",
+          "value": 187.5399932861328
+        },
+        {
+          "time": "2025-12-31",
+          "value": 186.5
+        },
+        {
+          "time": "2026-01-02",
+          "value": 188.85000610351562
+        },
+        {
+          "time": "2026-01-05",
+          "value": 188.1199951171875
+        },
+        {
+          "time": "2026-01-06",
+          "value": 187.24000549316406
+        },
+        {
+          "time": "2026-01-07",
+          "value": 189.11000061035156
+        },
+        {
+          "time": "2026-01-08",
+          "value": 185.0399932861328
+        },
+        {
+          "time": "2026-01-09",
+          "value": 184.86000061035156
+        },
+        {
+          "time": "2026-01-12",
+          "value": 184.94000244140625
+        },
+        {
+          "time": "2026-01-13",
+          "value": 185.80999755859375
+        },
+        {
+          "time": "2026-01-14",
+          "value": 183.13999938964844
+        },
+        {
+          "time": "2026-01-15",
+          "value": 187.0500030517578
+        },
+        {
+          "time": "2026-01-16",
+          "value": 186.22999572753906
+        },
+        {
+          "time": "2026-01-20",
+          "value": 178.07000732421875
+        },
+        {
+          "time": "2026-01-21",
+          "value": 183.32000732421875
+        },
+        {
+          "time": "2026-01-22",
+          "value": 184.83999633789062
+        },
+        {
+          "time": "2026-01-23",
+          "value": 187.6699981689453
+        },
+        {
+          "time": "2026-01-26",
+          "value": 186.47000122070312
+        },
+        {
+          "time": "2026-01-27",
+          "value": 188.52000427246094
+        },
+        {
+          "time": "2026-01-28",
+          "value": 191.52000427246094
+        },
+        {
+          "time": "2026-01-29",
+          "value": 192.50999450683594
+        },
+        {
+          "time": "2026-01-30",
+          "value": 191.1300048828125
+        },
+        {
+          "time": "2026-02-02",
+          "value": 185.61000061035156
+        },
+        {
+          "time": "2026-02-03",
+          "value": 180.33999633789062
+        },
+        {
+          "time": "2026-02-04",
+          "value": 174.19000244140625
+        },
+        {
+          "time": "2026-02-05",
+          "value": 171.8800048828125
+        },
+        {
+          "time": "2026-02-06",
+          "value": 185.41000366210938
+        },
+        {
+          "time": "2026-02-09",
+          "value": 190.0399932861328
+        },
+        {
+          "time": "2026-02-10",
+          "value": 188.5399932861328
+        },
+        {
+          "time": "2026-02-11",
+          "value": 190.0500030517578
+        },
+        {
+          "time": "2026-02-12",
+          "value": 186.94000244140625
+        },
+        {
+          "time": "2026-02-13",
+          "value": 182.80999755859375
+        },
+        {
+          "time": "2026-02-17",
+          "value": 184.97000122070312
+        },
+        {
+          "time": "2026-02-18",
+          "value": 187.97999572753906
+        },
+        {
+          "time": "2026-02-19",
+          "value": 187.89999389648438
+        },
+        {
+          "time": "2026-02-20",
+          "value": 189.82000732421875
+        },
+        {
+          "time": "2026-02-23",
+          "value": 191.5500030517578
+        },
+        {
+          "time": "2026-02-24",
+          "value": 192.85000610351562
+        },
+        {
+          "time": "2026-02-25",
+          "value": 195.55999755859375
+        },
+        {
+          "time": "2026-02-26",
+          "value": 184.88999938964844
+        },
+        {
+          "time": "2026-02-27",
+          "value": 177.19000244140625
+        },
+        {
+          "time": "2026-03-02",
+          "value": 182.47999572753906
+        },
+        {
+          "time": "2026-03-03",
+          "value": 180.0500030517578
+        },
+        {
+          "time": "2026-03-04",
+          "value": 183.0399932861328
+        },
+        {
+          "time": "2026-03-05",
+          "value": 183.33999633789062
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.24671518802642822,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Earnings live: Marvell stock surges after hours, Costco sinks after earnings beat",
+        "Tech stocks today: Nvidia stops H200 chip production, Anthropic restarts talks with Pentagon",
+        "Dow Jones Futures Rise After Oil Spike Hits Stock Market; Broadcom, Nvidia Rise",
+        "1 Cryptocurrency Set to Rebound in 2026",
+        "A Look At Aeluma (ALMU) Valuation After Renewed Analyst Optimism Linked To Optical AI Investments"
+      ],
+      "chart_path": "data\\charts\\2026-03-06\\NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-07T14:40:16Z",
+      "market_session_date": "2026-03-06",
+      "mode": "simulation"
+    },
+    "market": {
+      "current_price": 177.23989868164062,
+      "predicted_price_next_session": 182.90759887695313,
+      "history": [
+        {
+          "time": "2025-12-10",
+          "value": 183.77999877929688
+        },
+        {
+          "time": "2025-12-11",
+          "value": 180.92999267578125
+        },
+        {
+          "time": "2025-12-12",
+          "value": 175.02000427246094
+        },
+        {
+          "time": "2025-12-15",
+          "value": 176.2899932861328
+        },
+        {
+          "time": "2025-12-16",
+          "value": 177.72000122070312
+        },
+        {
+          "time": "2025-12-17",
+          "value": 170.94000244140625
+        },
+        {
+          "time": "2025-12-18",
+          "value": 174.13999938964844
+        },
+        {
+          "time": "2025-12-19",
+          "value": 180.99000549316406
+        },
+        {
+          "time": "2025-12-22",
+          "value": 183.69000244140625
+        },
+        {
+          "time": "2025-12-23",
+          "value": 189.2100067138672
+        },
+        {
+          "time": "2025-12-24",
+          "value": 188.61000061035156
+        },
+        {
+          "time": "2025-12-26",
+          "value": 190.52999877929688
+        },
+        {
+          "time": "2025-12-29",
+          "value": 188.22000122070312
+        },
+        {
+          "time": "2025-12-30",
+          "value": 187.5399932861328
+        },
+        {
+          "time": "2025-12-31",
+          "value": 186.5
+        },
+        {
+          "time": "2026-01-02",
+          "value": 188.85000610351562
+        },
+        {
+          "time": "2026-01-05",
+          "value": 188.1199951171875
+        },
+        {
+          "time": "2026-01-06",
+          "value": 187.24000549316406
+        },
+        {
+          "time": "2026-01-07",
+          "value": 189.11000061035156
+        },
+        {
+          "time": "2026-01-08",
+          "value": 185.0399932861328
+        },
+        {
+          "time": "2026-01-09",
+          "value": 184.86000061035156
+        },
+        {
+          "time": "2026-01-12",
+          "value": 184.94000244140625
+        },
+        {
+          "time": "2026-01-13",
+          "value": 185.80999755859375
+        },
+        {
+          "time": "2026-01-14",
+          "value": 183.13999938964844
+        },
+        {
+          "time": "2026-01-15",
+          "value": 187.0500030517578
+        },
+        {
+          "time": "2026-01-16",
+          "value": 186.22999572753906
+        },
+        {
+          "time": "2026-01-20",
+          "value": 178.07000732421875
+        },
+        {
+          "time": "2026-01-21",
+          "value": 183.32000732421875
+        },
+        {
+          "time": "2026-01-22",
+          "value": 184.83999633789062
+        },
+        {
+          "time": "2026-01-23",
+          "value": 187.6699981689453
+        },
+        {
+          "time": "2026-01-26",
+          "value": 186.47000122070312
+        },
+        {
+          "time": "2026-01-27",
+          "value": 188.52000427246094
+        },
+        {
+          "time": "2026-01-28",
+          "value": 191.52000427246094
+        },
+        {
+          "time": "2026-01-29",
+          "value": 192.50999450683594
+        },
+        {
+          "time": "2026-01-30",
+          "value": 191.1300048828125
+        },
+        {
+          "time": "2026-02-02",
+          "value": 185.61000061035156
+        },
+        {
+          "time": "2026-02-03",
+          "value": 180.33999633789062
+        },
+        {
+          "time": "2026-02-04",
+          "value": 174.19000244140625
+        },
+        {
+          "time": "2026-02-05",
+          "value": 171.8800048828125
+        },
+        {
+          "time": "2026-02-06",
+          "value": 185.41000366210938
+        },
+        {
+          "time": "2026-02-09",
+          "value": 190.0399932861328
+        },
+        {
+          "time": "2026-02-10",
+          "value": 188.5399932861328
+        },
+        {
+          "time": "2026-02-11",
+          "value": 190.0500030517578
+        },
+        {
+          "time": "2026-02-12",
+          "value": 186.94000244140625
+        },
+        {
+          "time": "2026-02-13",
+          "value": 182.80999755859375
+        },
+        {
+          "time": "2026-02-17",
+          "value": 184.97000122070312
+        },
+        {
+          "time": "2026-02-18",
+          "value": 187.97999572753906
+        },
+        {
+          "time": "2026-02-19",
+          "value": 187.89999389648438
+        },
+        {
+          "time": "2026-02-20",
+          "value": 189.82000732421875
+        },
+        {
+          "time": "2026-02-23",
+          "value": 191.5500030517578
+        },
+        {
+          "time": "2026-02-24",
+          "value": 192.85000610351562
+        },
+        {
+          "time": "2026-02-25",
+          "value": 195.55999755859375
+        },
+        {
+          "time": "2026-02-26",
+          "value": 184.88999938964844
+        },
+        {
+          "time": "2026-02-27",
+          "value": 177.19000244140625
+        },
+        {
+          "time": "2026-03-02",
+          "value": 182.47999572753906
+        },
+        {
+          "time": "2026-03-03",
+          "value": 180.0500030517578
+        },
+        {
+          "time": "2026-03-04",
+          "value": 183.0399932861328
+        },
+        {
+          "time": "2026-03-05",
+          "value": 183.33999633789062
+        },
+        {
+          "time": "2026-03-06",
+          "value": 177.82000732421875
+        }
+      ]
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": -0.11384588877360026,
+      "check_engine_light": " RED (Risk Detected - Caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        "Is Nvidia (NVDA) Shifting its Investment Strategy Towards OpenAI and Anthropic?",
+        "Divyangjan staff association airs fears over service continuity, protection in IDBI Bank",
+        "New Export Rules Could Be Coming for AI Chipmakers' Sales",
+        "3 world-class ASX ETFs to buy and hold",
+        "Beware the IVES of March: Why This Rookie ETF May Be a Shakespearean Tragedy in the Making",
+        "US stock market today dow jones crash 800 points: Dow, S&P 500 and Nasdaq all in deep red \u2014 What\u2019s happening to Wall Street today?",
+        "Investors Are Piling Into the 'HALO' Trade. Here's What That Means and What They're Buying",
+        "Dow down 400 points while Nasdaq rises: Why Dow Jones drops over 400 points today while Nasdaq stays in green \u2014 S&P 500 also slips as US stock market shows mixed signals",
+        "GraniteShares Announces Weekly Distributions for its YieldBOOST ETFs: COYY, TSYY, NVYY, XBTY, AMYY, TQQY, AZYY, YSPY, MTYY, PLYY, HOYY, SMYY, BBYY, FBYY, IOYY, MAAY, NUGY, SEMY, QBY, RGYY, HMYY and RTYY",
+        "IREN to expand processing capacity by 50%, prepares at-the-market offering",
+        "Everything you never wanted to know about visually-hidden",
+        "Baird Raises Price Target on Nvidia (NVDA)",
+        "NVIDIA CEO \u30b8\u30a7\u30f3\u30b9\u30f3 \u30d5\u30a2\u30f3\u3068\u4e16\u754c\u306e\u30c6\u30af\u30ce\u30ed\u30b8 \u30ea\u30fc\u30c0\u30fc\u304c GTC 2026 \u3067 AI \u306e\u6642\u4ee3\u3092\u62ab\u9732",
+        "The easy way to build a diversified ASX share portfolio",
+        "Buy Nvidia Shares Ahead of GTC, Says Wells Fargo - TipRanks"
+      ],
+      "chart_path": "data\\charts\\2026-03-07\\NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-11T14:03:19Z",
+      "market_session_date": "2026-03-10",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 187.00010681152344,
+      "predicted_price_next_session": 184.43840042114257
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.08830615878105164,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "NVIDIA Corporation (NVDA) Adopts New Variable Compensation \u200bPlan for Fiscal 2027 Setting Target Cash Bonus of $4 Million for CEO Huang, Reuters Reports",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_05d5eaef-6c01-47b0-b906-de4c035498e4"
+        },
+        {
+          "title": "NVDL Surges 5.5% On Monday as NVIDIA and Semiconductor Stocks Rebound",
+          "url": "https://247wallst.com/investing/2026/03/09/nvdl-surges-5-5-on-monday-as-nvidia-and-semiconductor-stocks-rebound/"
+        },
+        {
+          "title": "NVIDIA Corporation (NVDA) is Investing $2 billion in Lumentum and Coherent, Reports WSJ",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_0f509865-9611-45ec-8ea8-32e9364dfbfb"
+        },
+        {
+          "title": "These Two Nvidia-Backed Companies Are Joining the S&P 500 Later This Month",
+          "url": "https://www.investopedia.com/these-two-nvidia-backed-companies-are-joining-the-s-and-p-500-later-this-month-cohr-lite-stock-11921996"
+        },
+        {
+          "title": "Tesla billionaire doubles Nvidia stake; says convinced AI not a bubble, hopes contribution \u2018calms nervous market\u2019",
+          "url": "https://www.livemint.com/companies/news/tesla-billionaire-koguan-le-buys-additional-million-nvidia-shares-hopeful-little-contribution-can-calm-nervous-market-11773059338262.html"
+        },
+        {
+          "title": "NVIDIA Corporation (NVDA) Halts China-bound H200 Output, Reuters Reports",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_5ec118d0-26eb-427b-893a-643f8553d7ad"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-11/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-13T06:27:08Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 183.13999938964844,
+      "predicted_price_next_session": 183.42883041381836
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.35458935300509137,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Here\u2019s What Bernstein Think About Nvidia (NVDA)",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_3e6eedda-cb8d-44ee-b0a3-193a33782909"
+        },
+        {
+          "title": "NVIDIA and Nebius Partner to Scale Full-Stack AI Cloud",
+          "url": "http://nvidianews.nvidia.com/news/nvidia-and-nebius-partner-to-scale-full-stack-ai-cloud"
+        },
+        {
+          "title": "Nvidia's Huang: AI will boost jobs as it needs trillions in infrastructure",
+          "url": "https://cointelegraph.com/news/ai-boost-jobs-trillions-dollars-infrastructure-needed-nvidia-huang"
+        },
+        {
+          "title": "This Billionaire Tesla Bull Just Backed Up the Truck on Nvidia Stock",
+          "url": "https://247wallst.com/investing/2026/03/10/this-billionaire-tesla-bull-just-backed-up-the-truck-on-nvidia-stock/"
+        },
+        {
+          "title": "What Wall Street Is Saying About Semiconductor Names Qualcomm (QCOM), Nvidia (NVDA) and SolarEdge (SEDG) Today",
+          "url": "https://247wallst.com/investing/2026/03/10/what-wall-street-is-saying-about-semiconductor-names-qualcomm-qcom-nvidia-nvda-and-solaredge-sedg-today/"
+        },
+        {
+          "title": "NVIDIA Corporation (NVDA) Adopts New Variable Compensation \u200bPlan for Fiscal 2027 Setting Target Cash Bonus of $4 Million for CEO Huang, Reuters Reports",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_05d5eaef-6c01-47b0-b906-de4c035498e4"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-13T06:27:09Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 183.13999938964844,
+      "predicted_price_next_session": 183.42883041381836
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.35458935300509137,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Here\u2019s What Bernstein Think About Nvidia (NVDA)",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_3e6eedda-cb8d-44ee-b0a3-193a33782909"
+        },
+        {
+          "title": "NVIDIA and Nebius Partner to Scale Full-Stack AI Cloud",
+          "url": "http://nvidianews.nvidia.com/news/nvidia-and-nebius-partner-to-scale-full-stack-ai-cloud"
+        },
+        {
+          "title": "Nvidia's Huang: AI will boost jobs as it needs trillions in infrastructure",
+          "url": "https://cointelegraph.com/news/ai-boost-jobs-trillions-dollars-infrastructure-needed-nvidia-huang"
+        },
+        {
+          "title": "This Billionaire Tesla Bull Just Backed Up the Truck on Nvidia Stock",
+          "url": "https://247wallst.com/investing/2026/03/10/this-billionaire-tesla-bull-just-backed-up-the-truck-on-nvidia-stock/"
+        },
+        {
+          "title": "What Wall Street Is Saying About Semiconductor Names Qualcomm (QCOM), Nvidia (NVDA) and SolarEdge (SEDG) Today",
+          "url": "https://247wallst.com/investing/2026/03/10/what-wall-street-is-saying-about-semiconductor-names-qualcomm-qcom-nvidia-nvda-and-solaredge-sedg-today/"
+        },
+        {
+          "title": "NVIDIA Corporation (NVDA) Adopts New Variable Compensation \u200bPlan for Fiscal 2027 Setting Target Cash Bonus of $4 Million for CEO Huang, Reuters Reports",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_05d5eaef-6c01-47b0-b906-de4c035498e4"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-13T06:30:00Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "1mo",
+      "interval": "1h"
+    },
+    "market": {
+      "current_price": 183.13999938964844,
+      "predicted_price_next_session": 182.8596513366699
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.35458935300509137,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Here\u2019s What Bernstein Think About Nvidia (NVDA)",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_3e6eedda-cb8d-44ee-b0a3-193a33782909"
+        },
+        {
+          "title": "NVIDIA and Nebius Partner to Scale Full-Stack AI Cloud",
+          "url": "http://nvidianews.nvidia.com/news/nvidia-and-nebius-partner-to-scale-full-stack-ai-cloud"
+        },
+        {
+          "title": "Nvidia's Huang: AI will boost jobs as it needs trillions in infrastructure",
+          "url": "https://cointelegraph.com/news/ai-boost-jobs-trillions-dollars-infrastructure-needed-nvidia-huang"
+        },
+        {
+          "title": "This Billionaire Tesla Bull Just Backed Up the Truck on Nvidia Stock",
+          "url": "https://247wallst.com/investing/2026/03/10/this-billionaire-tesla-bull-just-backed-up-the-truck-on-nvidia-stock/"
+        },
+        {
+          "title": "What Wall Street Is Saying About Semiconductor Names Qualcomm (QCOM), Nvidia (NVDA) and SolarEdge (SEDG) Today",
+          "url": "https://247wallst.com/investing/2026/03/10/what-wall-street-is-saying-about-semiconductor-names-qualcomm-qcom-nvidia-nvda-and-solaredge-sedg-today/"
+        },
+        {
+          "title": "NVIDIA Corporation (NVDA) Adopts New Variable Compensation \u200bPlan for Fiscal 2027 Setting Target Cash Bonus of $4 Million for CEO Huang, Reuters Reports",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_05d5eaef-6c01-47b0-b906-de4c035498e4"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-13T07:15:20Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 183.13999938964844,
+      "predicted_price_next_session": 183.42883056640625
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.35458935300509137,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Here\u2019s What Bernstein Think About Nvidia (NVDA)",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_3e6eedda-cb8d-44ee-b0a3-193a33782909"
+        },
+        {
+          "title": "NVIDIA and Nebius Partner to Scale Full-Stack AI Cloud",
+          "url": "http://nvidianews.nvidia.com/news/nvidia-and-nebius-partner-to-scale-full-stack-ai-cloud"
+        },
+        {
+          "title": "Nvidia's Huang: AI will boost jobs as it needs trillions in infrastructure",
+          "url": "https://cointelegraph.com/news/ai-boost-jobs-trillions-dollars-infrastructure-needed-nvidia-huang"
+        },
+        {
+          "title": "This Billionaire Tesla Bull Just Backed Up the Truck on Nvidia Stock",
+          "url": "https://247wallst.com/investing/2026/03/10/this-billionaire-tesla-bull-just-backed-up-the-truck-on-nvidia-stock/"
+        },
+        {
+          "title": "What Wall Street Is Saying About Semiconductor Names Qualcomm (QCOM), Nvidia (NVDA) and SolarEdge (SEDG) Today",
+          "url": "https://247wallst.com/investing/2026/03/10/what-wall-street-is-saying-about-semiconductor-names-qualcomm-qcom-nvidia-nvda-and-solaredge-sedg-today/"
+        },
+        {
+          "title": "NVIDIA Corporation (NVDA) Adopts New Variable Compensation \u200bPlan for Fiscal 2027 Setting Target Cash Bonus of $4 Million for CEO Huang, Reuters Reports",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_05d5eaef-6c01-47b0-b906-de4c035498e4"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-13T07:15:22Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 183.13999938964844,
+      "predicted_price_next_session": 183.42883041381836
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.35458935300509137,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Here\u2019s What Bernstein Think About Nvidia (NVDA)",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_3e6eedda-cb8d-44ee-b0a3-193a33782909"
+        },
+        {
+          "title": "NVIDIA and Nebius Partner to Scale Full-Stack AI Cloud",
+          "url": "http://nvidianews.nvidia.com/news/nvidia-and-nebius-partner-to-scale-full-stack-ai-cloud"
+        },
+        {
+          "title": "Nvidia's Huang: AI will boost jobs as it needs trillions in infrastructure",
+          "url": "https://cointelegraph.com/news/ai-boost-jobs-trillions-dollars-infrastructure-needed-nvidia-huang"
+        },
+        {
+          "title": "This Billionaire Tesla Bull Just Backed Up the Truck on Nvidia Stock",
+          "url": "https://247wallst.com/investing/2026/03/10/this-billionaire-tesla-bull-just-backed-up-the-truck-on-nvidia-stock/"
+        },
+        {
+          "title": "What Wall Street Is Saying About Semiconductor Names Qualcomm (QCOM), Nvidia (NVDA) and SolarEdge (SEDG) Today",
+          "url": "https://247wallst.com/investing/2026/03/10/what-wall-street-is-saying-about-semiconductor-names-qualcomm-qcom-nvidia-nvda-and-solaredge-sedg-today/"
+        },
+        {
+          "title": "NVIDIA Corporation (NVDA) Adopts New Variable Compensation \u200bPlan for Fiscal 2027 Setting Target Cash Bonus of $4 Million for CEO Huang, Reuters Reports",
+          "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_05d5eaef-6c01-47b0-b906-de4c035498e4"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-13T07:52:19Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 183.13999938964844,
+      "predicted_price_next_session": 183.42883056640625
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.7900012135505676,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "NVIDIA and Nebius Partner to Scale Full-Stack AI Cloud",
+          "url": "http://nvidianews.nvidia.com/news/nvidia-and-nebius-partner-to-scale-full-stack-ai-cloud",
+          "published_at": "2026-03-11T12:00:00Z"
+        },
+        {
+          "title": "Nvidia's Huang: AI will boost jobs as it needs trillions in infrastructure",
+          "url": "https://cointelegraph.com/news/ai-boost-jobs-trillions-dollars-infrastructure-needed-nvidia-huang",
+          "published_at": "2026-03-11T03:28:30Z"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-13T07:52:22Z",
+      "market_session_date": "2026-03-12",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 183.13999938964844,
+      "predicted_price_next_session": 183.42883056640625
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.7900012135505676,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "NVIDIA and Nebius Partner to Scale Full-Stack AI Cloud",
+          "url": "http://nvidianews.nvidia.com/news/nvidia-and-nebius-partner-to-scale-full-stack-ai-cloud",
+          "published_at": "2026-03-11T12:00:00Z"
+        },
+        {
+          "title": "Nvidia's Huang: AI will boost jobs as it needs trillions in infrastructure",
+          "url": "https://cointelegraph.com/news/ai-boost-jobs-trillions-dollars-infrastructure-needed-nvidia-huang",
+          "published_at": "2026-03-11T03:28:30Z"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-13T14:05:58Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 184.27999877929688,
+      "predicted_price_next_session": 185.14086868286134
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.554549440741539,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "NVIDIA and Nebius Partner to Scale Full-Stack AI Cloud",
+          "url": "http://nvidianews.nvidia.com/news/nvidia-and-nebius-partner-to-scale-full-stack-ai-cloud",
+          "published_at": "2026-03-11T12:00:00Z"
+        },
+        {
+          "title": "Nvidia's Huang: AI will boost jobs as it needs trillions in infrastructure",
+          "url": "https://cointelegraph.com/news/ai-boost-jobs-trillions-dollars-infrastructure-needed-nvidia-huang",
+          "published_at": "2026-03-11T03:28:30Z"
+        },
+        {
+          "title": "US Mulling Rule Requiring Permits for NVIDIA (NVDA) Global AI Chip Sales",
+          "url": "https://finance.yahoo.com/news/us-mulling-rule-requiring-permits-182434896.html",
+          "published_at": "2026-03-12T20:24:00.000+02:00"
+        },
+        {
+          "title": "Nvidia (NVDA) Stock Climbs Ahead of Major GTC Conference This Monday",
+          "url": "https://blockonomi.com/nvidia-nvda-stock-climbs-ahead-of-major-gtc-conference-this-monday/",
+          "published_at": "2026-03-11T16:16:00.000+02:00"
+        },
+        {
+          "title": "NVDA Stock Rises After Nvidia's $2B Nebius Investment",
+          "url": "https://blockonomi.com/nvda-stock-rises-after-nvidias-2b-nebius-investment/",
+          "published_at": "2026-03-11T19:30:00.000+02:00"
+        },
+        {
+          "title": "NVDA Stock Forecast: Rises as Nvidia Backs Nebius With $2B",
+          "url": "https://coinpaper.com/15359/nvda-stock-forecast-rises-as-nvidia-backs-nebius-with-2-b",
+          "published_at": "2026-03-11T18:41:00.000+02:00"
+        },
+        {
+          "title": "Will Nvidia (NVDA) Ever Break Out? - NVIDIA (NASDAQ:NVDA) - Benzinga",
+          "url": "https://www.benzinga.com/trading-ideas/technicals/26/03/51213043/stock-of-the-day-will-nvidia-ever-break-out",
+          "published_at": "2026-03-12T15:50:00.000+02:00"
+        },
+        {
+          "title": "Nvidia Set to Enter Next Phase as It Plans to Launch New AI Processing Chip, WSJ Reports",
+          "url": "https://finance.yahoo.com/news/nvidia-set-enter-next-phase-054624576.html",
+          "published_at": "2026-03-13T07:46:00.000+02:00"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-13T14:17:56Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "5d",
+      "interval": "15m"
+    },
+    "market": {
+      "current_price": 183.72000122070312,
+      "predicted_price_next_session": 184.05934661865234
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.554549440741539,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "NVIDIA and Nebius Partner to Scale Full-Stack AI Cloud",
+          "url": "http://nvidianews.nvidia.com/news/nvidia-and-nebius-partner-to-scale-full-stack-ai-cloud",
+          "published_at": "2026-03-11T12:00:00Z"
+        },
+        {
+          "title": "Nvidia's Huang: AI will boost jobs as it needs trillions in infrastructure",
+          "url": "https://cointelegraph.com/news/ai-boost-jobs-trillions-dollars-infrastructure-needed-nvidia-huang",
+          "published_at": "2026-03-11T03:28:30Z"
+        },
+        {
+          "title": "US Mulling Rule Requiring Permits for NVIDIA (NVDA) Global AI Chip Sales",
+          "url": "https://finance.yahoo.com/news/us-mulling-rule-requiring-permits-182434896.html",
+          "published_at": "2026-03-12T20:24:00.000+02:00"
+        },
+        {
+          "title": "Nvidia (NVDA) Stock Climbs Ahead of Major GTC Conference This Monday",
+          "url": "https://blockonomi.com/nvidia-nvda-stock-climbs-ahead-of-major-gtc-conference-this-monday/",
+          "published_at": "2026-03-11T16:16:00.000+02:00"
+        },
+        {
+          "title": "NVDA Stock Forecast: Rises as Nvidia Backs Nebius With $2B",
+          "url": "https://coinpaper.com/15359/nvda-stock-forecast-rises-as-nvidia-backs-nebius-with-2-b",
+          "published_at": "2026-03-11T18:41:00.000+02:00"
+        },
+        {
+          "title": "NVDA Stock Rises After Nvidia's $2B Nebius Investment",
+          "url": "https://blockonomi.com/nvda-stock-rises-after-nvidias-2b-nebius-investment/",
+          "published_at": "2026-03-11T19:30:00.000+02:00"
+        },
+        {
+          "title": "Will Nvidia (NVDA) Ever Break Out? - NVIDIA (NASDAQ:NVDA) - Benzinga",
+          "url": "https://www.benzinga.com/trading-ideas/technicals/26/03/51213043/stock-of-the-day-will-nvidia-ever-break-out",
+          "published_at": "2026-03-12T15:50:00.000+02:00"
+        },
+        {
+          "title": "Nvidia Set to Enter Next Phase as It Plans to Launch New AI Processing Chip, WSJ Reports",
+          "url": "https://finance.yahoo.com/news/nvidia-set-enter-next-phase-054624576.html",
+          "published_at": "2026-03-13T07:46:00.000+02:00"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-13T14:18:05Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "5d",
+      "interval": "15m"
+    },
+    "market": {
+      "current_price": 183.67999267578125,
+      "predicted_price_next_session": 184.05386199951172
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.554549440741539,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "NVIDIA and Nebius Partner to Scale Full-Stack AI Cloud",
+          "url": "http://nvidianews.nvidia.com/news/nvidia-and-nebius-partner-to-scale-full-stack-ai-cloud",
+          "published_at": "2026-03-11T12:00:00Z"
+        },
+        {
+          "title": "Nvidia's Huang: AI will boost jobs as it needs trillions in infrastructure",
+          "url": "https://cointelegraph.com/news/ai-boost-jobs-trillions-dollars-infrastructure-needed-nvidia-huang",
+          "published_at": "2026-03-11T03:28:30Z"
+        },
+        {
+          "title": "US Mulling Rule Requiring Permits for NVIDIA (NVDA) Global AI Chip Sales",
+          "url": "https://finance.yahoo.com/news/us-mulling-rule-requiring-permits-182434896.html",
+          "published_at": "2026-03-12T20:24:00.000+02:00"
+        },
+        {
+          "title": "Nvidia (NVDA) Stock Climbs Ahead of Major GTC Conference This Monday",
+          "url": "https://blockonomi.com/nvidia-nvda-stock-climbs-ahead-of-major-gtc-conference-this-monday/",
+          "published_at": "2026-03-11T16:16:00.000+02:00"
+        },
+        {
+          "title": "NVDA Stock Rises After Nvidia's $2B Nebius Investment",
+          "url": "https://blockonomi.com/nvda-stock-rises-after-nvidias-2b-nebius-investment/",
+          "published_at": "2026-03-11T19:30:00.000+02:00"
+        },
+        {
+          "title": "NVDA Stock Forecast: Rises as Nvidia Backs Nebius With $2B",
+          "url": "https://coinpaper.com/15359/nvda-stock-forecast-rises-as-nvidia-backs-nebius-with-2-b",
+          "published_at": "2026-03-11T18:41:00.000+02:00"
+        },
+        {
+          "title": "Will Nvidia (NVDA) Ever Break Out? - NVIDIA (NASDAQ:NVDA) - Benzinga",
+          "url": "https://www.benzinga.com/trading-ideas/technicals/26/03/51213043/stock-of-the-day-will-nvidia-ever-break-out",
+          "published_at": "2026-03-12T15:50:00.000+02:00"
+        },
+        {
+          "title": "Nvidia Set to Enter Next Phase as It Plans to Launch New AI Processing Chip, WSJ Reports",
+          "url": "https://finance.yahoo.com/news/nvidia-set-enter-next-phase-054624576.html",
+          "published_at": "2026-03-13T07:46:00.000+02:00"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-13T14:34:02Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 183.9499969482422,
+      "predicted_price_next_session": 184.42898162841797
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.21555984020233154,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "US Mulling Rule Requiring Permits for NVIDIA (NVDA) Global AI Chip Sales",
+          "url": "https://finance.yahoo.com/news/us-mulling-rule-requiring-permits-182434896.html",
+          "published_at": "2026-03-12T20:24:00.000+02:00"
+        },
+        {
+          "title": "NVDA Stock Rises After Nvidia's $2B Nebius Investment",
+          "url": "https://blockonomi.com/nvda-stock-rises-after-nvidias-2b-nebius-investment/",
+          "published_at": "2026-03-11T19:30:00.000+02:00"
+        },
+        {
+          "title": "NVDA Stock Forecast: Rises as Nvidia Backs Nebius With $2B",
+          "url": "https://coinpaper.com/15359/nvda-stock-forecast-rises-as-nvidia-backs-nebius-with-2-b",
+          "published_at": "2026-03-11T18:41:00.000+02:00"
+        },
+        {
+          "title": "Will Nvidia (NVDA) Ever Break Out? - NVIDIA (NASDAQ:NVDA) - Benzinga",
+          "url": "https://www.benzinga.com/trading-ideas/technicals/26/03/51213043/stock-of-the-day-will-nvidia-ever-break-out",
+          "published_at": "2026-03-12T15:50:00.000+02:00"
+        },
+        {
+          "title": "Nvidia Set to Enter Next Phase as It Plans to Launch New AI Processing Chip, WSJ Reports",
+          "url": "https://finance.yahoo.com/news/nvidia-set-enter-next-phase-054624576.html",
+          "published_at": "2026-03-13T07:46:00.000+02:00"
+        },
+        {
+          "title": "NVIDIA (NASDAQ:NVDA) Stock Price Down 1.5% After Insider Selling - The Lincolnian Online",
+          "url": "https://www.thelincolnianonline.com/2026/03/12/nvidia-nasdaqnvda-stock-price-down-1-5-after-insider-selling.html",
+          "published_at": "2026-03-12T18:56:00.000+02:00"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-13T14:34:10Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 183.89280700683594,
+      "predicted_price_next_session": 184.46883193969725
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.21555984020233154,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "US Mulling Rule Requiring Permits for NVIDIA (NVDA) Global AI Chip Sales",
+          "url": "https://finance.yahoo.com/news/us-mulling-rule-requiring-permits-182434896.html",
+          "published_at": "2026-03-12T20:24:00.000+02:00"
+        },
+        {
+          "title": "NVDA Stock Rises After Nvidia's $2B Nebius Investment",
+          "url": "https://blockonomi.com/nvda-stock-rises-after-nvidias-2b-nebius-investment/",
+          "published_at": "2026-03-11T19:30:00.000+02:00"
+        },
+        {
+          "title": "NVDA Stock Forecast: Rises as Nvidia Backs Nebius With $2B",
+          "url": "https://coinpaper.com/15359/nvda-stock-forecast-rises-as-nvidia-backs-nebius-with-2-b",
+          "published_at": "2026-03-11T18:41:00.000+02:00"
+        },
+        {
+          "title": "Will Nvidia (NVDA) Ever Break Out? - NVIDIA (NASDAQ:NVDA) - Benzinga",
+          "url": "https://www.benzinga.com/trading-ideas/technicals/26/03/51213043/stock-of-the-day-will-nvidia-ever-break-out",
+          "published_at": "2026-03-12T15:50:00.000+02:00"
+        },
+        {
+          "title": "Nvidia Set to Enter Next Phase as It Plans to Launch New AI Processing Chip, WSJ Reports",
+          "url": "https://finance.yahoo.com/news/nvidia-set-enter-next-phase-054624576.html",
+          "published_at": "2026-03-13T07:46:00.000+02:00"
+        },
+        {
+          "title": "NVIDIA (NASDAQ:NVDA) Stock Price Down 1.5% After Insider Selling - The Lincolnian Online",
+          "url": "https://www.thelincolnianonline.com/2026/03/12/nvidia-nasdaqnvda-stock-price-down-1-5-after-insider-selling.html",
+          "published_at": "2026-03-12T18:56:00.000+02:00"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-13T14:50:47Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 182.53790283203125,
+      "predicted_price_next_session": 183.10829986572264
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.35917018353939056,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "NVIDIA and Nebius Partner to Scale Full-Stack AI Cloud",
+          "url": "http://nvidianews.nvidia.com/news/nvidia-and-nebius-partner-to-scale-full-stack-ai-cloud",
+          "published_at": "2026-03-11T12:00:00Z"
+        },
+        {
+          "title": "Nvidia's Huang: AI will boost jobs as it needs trillions in infrastructure",
+          "url": "https://cointelegraph.com/news/ai-boost-jobs-trillions-dollars-infrastructure-needed-nvidia-huang",
+          "published_at": "2026-03-11T03:28:30Z"
+        },
+        {
+          "title": "US Mulling Rule Requiring Permits for NVIDIA (NVDA) Global AI Chip Sales",
+          "url": "https://finance.yahoo.com/news/us-mulling-rule-requiring-permits-182434896.html",
+          "published_at": "2026-03-12T20:24:00.000+02:00"
+        },
+        {
+          "title": "NVDA Stock Forecast: Rises as Nvidia Backs Nebius With $2B",
+          "url": "https://coinpaper.com/15359/nvda-stock-forecast-rises-as-nvidia-backs-nebius-with-2-b",
+          "published_at": "2026-03-11T18:41:00.000+02:00"
+        },
+        {
+          "title": "NVDA Stock Rises After Nvidia's $2B Nebius Investment",
+          "url": "https://blockonomi.com/nvda-stock-rises-after-nvidias-2b-nebius-investment/",
+          "published_at": "2026-03-11T19:30:00.000+02:00"
+        },
+        {
+          "title": "Will Nvidia (NVDA) Ever Break Out? - NVIDIA (NASDAQ:NVDA) - Benzinga",
+          "url": "https://www.benzinga.com/trading-ideas/technicals/26/03/51213043/stock-of-the-day-will-nvidia-ever-break-out",
+          "published_at": "2026-03-12T15:50:00.000+02:00"
+        },
+        {
+          "title": "Nvidia Set to Enter Next Phase as It Plans to Launch New AI Processing Chip, WSJ Reports",
+          "url": "https://finance.yahoo.com/news/nvidia-set-enter-next-phase-054624576.html",
+          "published_at": "2026-03-13T07:46:00.000+02:00"
+        },
+        {
+          "title": "NVIDIA (NASDAQ:NVDA) Stock Price Down 1.5% After Insider Selling - The Lincolnian Online",
+          "url": "https://www.thelincolnianonline.com/2026/03/12/nvidia-nasdaqnvda-stock-price-down-1-5-after-insider-selling.html",
+          "published_at": "2026-03-12T18:56:00.000+02:00"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-13T14:50:55Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "6mo",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 182.52499389648438,
+      "predicted_price_next_session": 183.10507263183592
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": 0.35917018353939056,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "NVIDIA and Nebius Partner to Scale Full-Stack AI Cloud",
+          "url": "http://nvidianews.nvidia.com/news/nvidia-and-nebius-partner-to-scale-full-stack-ai-cloud",
+          "published_at": "2026-03-11T12:00:00Z"
+        },
+        {
+          "title": "Nvidia's Huang: AI will boost jobs as it needs trillions in infrastructure",
+          "url": "https://cointelegraph.com/news/ai-boost-jobs-trillions-dollars-infrastructure-needed-nvidia-huang",
+          "published_at": "2026-03-11T03:28:30Z"
+        },
+        {
+          "title": "US Mulling Rule Requiring Permits for NVIDIA (NVDA) Global AI Chip Sales",
+          "url": "https://finance.yahoo.com/news/us-mulling-rule-requiring-permits-182434896.html",
+          "published_at": "2026-03-12T20:24:00.000+02:00"
+        },
+        {
+          "title": "NVDA Stock Rises After Nvidia's $2B Nebius Investment",
+          "url": "https://blockonomi.com/nvda-stock-rises-after-nvidias-2b-nebius-investment/",
+          "published_at": "2026-03-11T19:30:00.000+02:00"
+        },
+        {
+          "title": "NVDA Stock Forecast: Rises as Nvidia Backs Nebius With $2B",
+          "url": "https://coinpaper.com/15359/nvda-stock-forecast-rises-as-nvidia-backs-nebius-with-2-b",
+          "published_at": "2026-03-11T18:41:00.000+02:00"
+        },
+        {
+          "title": "Will Nvidia (NVDA) Ever Break Out? - NVIDIA (NASDAQ:NVDA) - Benzinga",
+          "url": "https://www.benzinga.com/trading-ideas/technicals/26/03/51213043/stock-of-the-day-will-nvidia-ever-break-out",
+          "published_at": "2026-03-12T15:50:00.000+02:00"
+        },
+        {
+          "title": "Nvidia Set to Enter Next Phase as It Plans to Launch New AI Processing Chip, WSJ Reports",
+          "url": "https://finance.yahoo.com/news/nvidia-set-enter-next-phase-054624576.html",
+          "published_at": "2026-03-13T07:46:00.000+02:00"
+        },
+        {
+          "title": "NVIDIA (NASDAQ:NVDA) Stock Price Down 1.5% After Insider Selling - The Lincolnian Online",
+          "url": "https://www.thelincolnianonline.com/2026/03/12/nvidia-nasdaqnvda-stock-price-down-1-5-after-insider-selling.html",
+          "published_at": "2026-03-12T18:56:00.000+02:00"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-13/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-14T14:03:46Z",
+      "market_session_date": "2026-03-14",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 64.0,
+      "predicted_price_next_session": 64.75322128761995
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.7175057828426361,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Nvidia announces breakthrough AI chip",
+          "url": "",
+          "published_at": ""
+        },
+        {
+          "title": "Nvidia quarterly revenue beats expectations by 20%",
+          "url": "",
+          "published_at": ""
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-14/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-16T14:30:12Z",
+      "market_session_date": "2026-03-13",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 183.9600067138672,
+      "predicted_price_next_session": 183.33652038574218
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.17054003477096558,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Intel To Show Up at NVIDIA\u2019s GTC at the Perfect Time, as Agentic AI Turns CPUs Into the New Bottleneck",
+          "url": "https://wccftech.com/intel-to-show-up-at-nvidia-gtc-at-the-perfect-time/",
+          "published_at": "2026-03-15T11:00:56Z"
+        },
+        {
+          "title": "Nvidia's major update to Multi Frame Generation is almost here \u2014 but rival Intel's MFG still has one significant advantage",
+          "url": "https://www.techradar.com/computing/gpu/nvidias-major-update-to-multi-frame-generation-is-almost-here-but-rival-intels-mfg-still-has-one-significant-advantage",
+          "published_at": "2026-03-15T10:00:00Z"
+        },
+        {
+          "title": "Prediction: This Artificial Intelligence (AI) Chip Stock Will Become the Next Nvidia by 2030 - The Motley Fool",
+          "url": "https://slashdot.org/firehose.pl?op=view&amp;id=180991836",
+          "published_at": "2026-03-15T08:12:49Z"
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-16/NVDA_trend.png"
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "source_symbol": "NVDA",
+      "generated_at": "2026-03-17T02:56:52Z",
+      "market_session_date": "2026-03-17",
+      "mode": "live",
+      "period": "60d",
+      "interval": "1d"
+    },
+    "market": {
+      "current_price": 64.0,
+      "predicted_price_next_session": 64.75322128761995
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND ",
+      "sentiment_score": 0.7175057828426361,
+      "check_engine_light": " GREEN (Safe to Proceed)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Nvidia announces breakthrough AI chip",
+          "url": "",
+          "published_at": ""
+        },
+        {
+          "title": "Nvidia quarterly revenue beats expectations by 20%",
+          "url": "",
+          "published_at": ""
+        }
+      ],
+      "chart_path": "runtime_data/charts/2026-03-17/NVDA_trend.png"
+    }
+  }
+]
