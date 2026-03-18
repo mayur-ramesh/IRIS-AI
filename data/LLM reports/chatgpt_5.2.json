@@ -3750,5 +3750,369 @@
         }
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-18T14:19:19Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 253.38,
+      "predicted_price_next_session": 252.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0091,
+      "check_engine_light": "YELLOW (caution due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Apple faces supply chain challenges",
+          "url": ""
+        },
+        {
+          "title": "Analysts remain cautious on tech stocks",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-18T14:19:43Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 213.38,
+      "predicted_price_next_session": 215.0
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.2435,
+      "check_engine_light": "GREEN (Positive sentiment and price above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Amazon's new product launch boosts investor confidence",
+          "url": ""
+        },
+        {
+          "title": "Analysts predict strong Q4 for Amazon",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "CL=F",
+      "generated_at": "2026-03-18T14:20:09Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 97.62,
+      "predicted_price_next_session": 97.2
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0377,
+      "check_engine_light": "YELLOW (cautious outlook due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Oil prices dip as demand concerns weigh",
+          "url": ""
+        },
+        {
+          "title": "Market sentiment remains cautious amid economic uncertainties",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "generated_at": "2026-03-18T14:20:38Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 184.0,
+      "predicted_price_next_session": 182.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.4833,
+      "check_engine_light": "YELLOW (Negative sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Market Reacts to Economic Uncertainty",
+          "url": ""
+        },
+        {
+          "title": "Investor Sentiment Turns Negative Amidst Volatility",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GC=F",
+      "generated_at": "2026-03-18T14:21:06Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 4888.3999,
+      "predicted_price_next_session": 4865.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.2976,
+      "check_engine_light": "YELLOW (Negative sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Gold prices dip as dollar strengthens",
+          "url": ""
+        },
+        {
+          "title": "Market sentiment turns bearish amid economic concerns",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-18T14:21:30Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 308.35,
+      "predicted_price_next_session": 309.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.2018,
+      "check_engine_light": "GREEN (Positive sentiment and price above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Google's AI advancements boost investor confidence",
+          "url": ""
+        },
+        {
+          "title": "Alphabet's revenue growth continues to impress",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "HG=F",
+      "generated_at": "2026-03-18T14:21:59Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5.594,
+      "predicted_price_next_session": 5.55
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1585,
+      "check_engine_light": "YELLOW (caution advised due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Copper prices dip as demand concerns persist",
+          "url": ""
+        },
+        {
+          "title": "Market sentiment weakens amid economic uncertainty",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-18T14:22:20Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 618.48,
+      "predicted_price_next_session": 622.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.3028,
+      "check_engine_light": "YELLOW (caution advised due to mixed signals)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Meta Platforms sees increased user engagement",
+          "url": ""
+        },
+        {
+          "title": "Regulatory challenges continue for Meta",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-18T14:22:39Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 396.2,
+      "predicted_price_next_session": 395.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1448,
+      "check_engine_light": "YELLOW (Caution due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Microsoft faces challenges in AI integration",
+          "url": ""
+        },
+        {
+          "title": "Tech sector experiences mixed investor sentiment",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-18T14:23:03Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 54.185,
+      "predicted_price_next_session": 54.3
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.1126,
+      "check_engine_light": "YELLOW (Caution advised due to mixed signals)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Nike sees steady growth in Q3",
+          "url": ""
+        },
+        {
+          "title": "Analysts remain cautious on Nike's short-term outlook",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-18T14:23:27Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 182.7851,
+      "predicted_price_next_session": 183.2
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0558,
+      "check_engine_light": " GREEN (Positive sentiment and price near SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "NVIDIA's AI advancements continue to drive growth",
+          "url": ""
+        },
+        {
+          "title": "Tech stocks rally as market sentiment improves",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "generated_at": "2026-03-18T14:23:52Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 77.57,
+      "predicted_price_next_session": 76.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.6739,
+      "check_engine_light": "RED (Negative sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Silver prices fall amid stronger dollar",
+          "url": ""
+        },
+        {
+          "title": "Market sentiment turns bearish on commodities",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-18T14:24:12Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 399.625,
+      "predicted_price_next_session": 402.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.2719,
+      "check_engine_light": "GREEN (Positive sentiment and price above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Tesla's latest innovation boosts investor confidence",
+          "url": ""
+        },
+        {
+          "title": "Analysts predict strong quarter for Tesla",
+          "url": ""
+        }
+      ]
+    }
   }
 ]
