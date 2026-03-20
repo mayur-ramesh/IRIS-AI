@@ -68,6 +68,8 @@ Notes:
 
 ## Current Work Progress
 
+* **Live Demo (Hugging Face Space):**
+  * https://huggingface.co/spaces/Brajmovech/IRIS-AI_DEMO
 * **Backend & REST API (`app.py`):**
   * Set up a Flask server with CORS support.
   * Implemented core API endpoints (`/api/analyze`, `/api/chart`, `/api/session-summary/latest`) to securely interface the frontend dashboard with the backend AI engines.

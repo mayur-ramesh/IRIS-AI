@@ -78,137 +78,6 @@ TICKER_BRAND_TERMS = {
 }
 
 
-def llm_filter_headlines(
-    ticker: str,
-    candidates: list,
-    *,
-    max_keep: int = 12,
-    model=None,
-) -> list:
-    """
-    Use an LLM to decide which raw headline candidates are worth
-    showing on the IRIS dashboard for the given ticker.
-
-    Each candidate dict has keys: title, url, published_at.
-
-    Returns a filtered + ordered list (most relevant first),
-    capped at max_keep entries.
-
-    Falls back to a simple keyword allowlist if:
-      - OPENAI_API_KEY is not set
-      - the openai package is not installed
-      - the API call fails for any reason
-    """
-    if not candidates:
-        return []
-
-    api_key = os.environ.get("OPENAI_API_KEY", "").strip()
-    _model = model or os.environ.get("OPENAI_MODEL_FILTER", "gpt-4o-mini")
-
-    # ── LLM path ────────────────────────────────────────────────────
-    if api_key:
-        try:
-            from openai import OpenAI as _OAI
-            _client = _OAI(api_key=api_key)
-
-            # Build a compact numbered list for the prompt
-            lines = []
-            for i, h in enumerate(candidates):
-                title = str(h.get("title", "")).strip()
-                lines.append(f"{i}: {title}")
-            numbered = "\n".join(lines)
-
-            prompt = f"""You are a financial news relevance classifier for the stock ticker "{ticker}".
-
-Below is a numbered list of raw news headline candidates. Your job is to select which ones belong on a stock market dashboard for "{ticker}".
-
-INCLUDE a headline if it is about ANY of:
-- The company, its products, services, executives, or earnings
-- Analyst ratings, price targets, or institutional activity for the stock
-- Direct competitors that affect the stock's valuation
-- Macroeconomic events that move the sector (interest rates, inflation, GDP)
-- Geopolitical events that affect the supply chain, regulation, or demand for this company
-- Industry trends directly relevant to this company's business
-
-EXCLUDE a headline if:
-- It is about a completely unrelated company that happens to share a word with the ticker
-- It is entertainment, sports, lifestyle, or celebrity content
-- It is a video/torrent/piracy listing
-- It has no conceivable link to the stock's price or business
-
-Respond with ONLY a JSON object in this exact format — no markdown, no explanation:
-{{"keep": [list of integer indices to include], "reason": "one sentence summary of what you filtered"}}
-
-Headlines:
-{numbered}"""
-
-            resp = _client.chat.completions.create(
-                model=_model,
-                messages=[
-                    {"role": "system", "content": "You are a precise financial news classifier. Output only valid JSON."},
-                    {"role": "user",   "content": prompt},
-                ],
-                temperature=0.0,
-                max_tokens=300,
-            )
-            raw = (resp.choices[0].message.content or "").strip()
-            # Strip accidental markdown fences
-            if raw.startswith("```"):
-                raw = raw.split("\n", 1)[-1]
-                raw = raw.rsplit("```", 1)[0].strip()
-
-            parsed = json.loads(raw)
-            keep_indices = [int(i) for i in parsed.get("keep", [])]
-            reason = parsed.get("reason", "")
-            print(f"[LLM FILTER] {ticker}: keeping {len(keep_indices)}/{len(candidates)} "
-                  f"headlines via {_model}. Reason: {reason}")
-
-            kept = [candidates[i] for i in keep_indices
-                    if 0 <= i < len(candidates)]
-            return kept[:max_keep]
-
-        except Exception as _llm_err:
-            print(f"[LLM FILTER] API call failed ({type(_llm_err).__name__}: {_llm_err}), "
-                  f"falling back to keyword filter.")
-            # Fall through to keyword fallback below
-
-    # ── Keyword fallback (no API key or API failure) ─────────────────
-    print(f"[LLM FILTER] Using keyword fallback for {ticker}.")
-    ticker_upper = ticker.upper()
-
-    # Build a broad set of terms: ticker + company names + brand terms
-    allow_terms = {ticker_upper}
-    for company_name, tickers in COMPANY_NAME_TO_TICKERS.items():
-        if ticker_upper in normalize_ticker_list(tickers):
-            allow_terms.add(company_name.upper())
-
-    # TICKER_BRAND_TERMS may not exist if previous prompt wasn't applied —
-    # guard with getattr on the module globals
-    brand_map = globals().get("TICKER_BRAND_TERMS", {})
-    for brand in brand_map.get(ticker_upper, []):
-        allow_terms.add(str(brand).upper())
-
-    _NOISE = re.compile(
-        r'\b(1080p|720p|BluRay|WEB-?DL|x264|x265|HEVC|S\d{2}E\d{2}|'
-        r'torrent|YIFY|RARBG|EZTV|mkv|mp4)\b',
-        re.IGNORECASE,
-    )
-
-    kept = []
-    for h in candidates:
-        title = str(h.get("title", "")).strip()
-        if not title:
-            continue
-        if _NOISE.search(title):
-            continue
-        title_up = title.upper()
-        if any(term in title_up for term in allow_terms):
-            kept.append(h)
-        if len(kept) >= max_keep:
-            break
-    return kept
-
-
 def normalize_ticker_symbol(symbol: str):
     token = str(symbol or "").strip().upper()
     if not token:
@@ -759,26 +628,40 @@ class IRIS_System:
         Returns (sentiment_score: float, headlines: list[dict]).
         """
         ticker_symbol = normalize_ticker_symbol(ticker).upper()
-        raw_candidates = []
-        seen_urls = set()
-        seen_titles = set()
+        headlines = []
+        seen = set()
 
-        def _norm_title(t):
-            return re.sub(r'[^a-z0-9 ]', '', t.lower().strip())
+        # Build strict relevance terms: ticker + known company names mapped to this ticker.
+        relevance_terms = {ticker_symbol}
+        for company_name, tickers in COMPANY_NAME_TO_TICKERS.items():
+            normalized = normalize_ticker_list(tickers)
+            if ticker_symbol in normalized:
+                relevance_terms.add(str(company_name or "").upper())
 
-        def _bad_url(url):
-            _BAD = re.compile(
-                r'consent\.(yahoo|google|msn)\.|/v2/collectConsent|'
-                r'accounts\.google\.com|login\.|signin\.|tracking',
-                re.IGNORECASE,
-            )
-            return bool(_BAD.search(url))
+        # Also include well-known brand/product terms for this ticker
+        for brand_term in TICKER_BRAND_TERMS.get(ticker_symbol, []):
+            relevance_terms.add(str(brand_term or "").upper())
 
-        _NOISE = re.compile(
-            r'\b(1080p|720p|480p|4K|BluRay|WEB-?DL|WEBRip|HDTV|DVDRip|'
-            r'x264|x265|H\.?264|H\.?265|HEVC|AAC|AC3|DTS|MKV|AVI|'
-            r'S\d{2}E\d{2}|torrent|magnet|repack|'
-            r'YIFY|RARBG|EZTV|BobDobbs|playWEB|SPARKS)\b',
+        def _normalize_title(t):
+            """Lowercase, strip punctuation for fuzzy dedup."""
+            return re.sub(r'[^a-z0-9 ]', '', str(t or '').lower().strip())
+
+        _FINANCIAL_TERMS = re.compile(
+            r'\b(stock|share|price|market|earn|revenue|profit|loss|invest|'
+            r'analyst|quarter|fiscal|IPO|valuat|forecast|guidance|trade|'
+            r'fund|ETF|NYSE|NASDAQ|SEC|CEO|CFO|board|dividend|rally|'
+            r'downgrade|upgrade|outlook|chip|semiconductor|AI|cloud|'
+            r'data.?center|GPU|compute)\b',
+            re.IGNORECASE,
+        )
+        _GEOPOLITICAL_TERMS = re.compile(
+            r'\b(sanction|tariff|trade.?war|export.?control|embargo|geopolit|'
+            r'NATO|pentagon|defense.?budget|military|conflict|war|invasion|'
+            r'Taiwan|China|Russia|Iran|Korea|Middle.?East|OPEC|'
+            r'federal.?reserve|Fed.?rate|interest.?rate|inflation|CPI|GDP|'
+            r'recession|monetary.?policy|fiscal.?policy|treasury|yield.?curve|'
+            r'sovereign|supply.?chain|semiconductor.?policy|chip.?act|'
+            r'macro|global.?economy|central.?bank|IMF|World.?Bank)\b',
             re.IGNORECASE,
         )
 
@@ -809,11 +692,19 @@ class IRIS_System:
         # ── Source 1: NewsAPI ────────────────────────────────────────────
         if self.news_api:
             try:
+                # Build broad OR query: "TSLA" OR "Tesla" OR "Elon Musk"
+                _query_parts = [f'"{ticker_symbol}"']
+                for _name in search_terms["names"][:3]:
+                    _query_parts.append(f'"{_name}"')
+                for _person in search_terms["people"][:1]:
+                    _query_parts.append(f'"{_person}"')
+                newsapi_query = " OR ".join(_query_parts)
+
                 response = self.news_api.get_everything(
-                    q=ticker_symbol,
+                    q=ticker,
                     language="en",
                     sort_by="publishedAt",
-                    page_size=30,
+                    page_size=15,
                 )
                 for article in (response.get("articles") or []):
                     if not isinstance(article, dict):
@@ -830,12 +721,14 @@ class IRIS_System:
         if self.webz_api_key and len(raw_candidates) < 30:
             try:
                 import urllib.request as _urlreq, urllib.parse as _urlparse
+                _primary_name = search_terms["names"][0] if search_terms["names"] else ticker_symbol
+                _webz_q = f'("{ticker_symbol}" OR "{_primary_name}") language:english'
                 _params = _urlparse.urlencode({
                     "token": self.webz_api_key,
-                    "q": f'"{ticker_symbol}" language:english',
+                    "q": f'"{ticker}" language:english',
                     "sort": "published",
                     "order": "desc",
-                    "size": 25,
+                    "size": 20,
                     "format": "json",
                 })
                 _req = _urlreq.Request(
@@ -855,8 +748,8 @@ class IRIS_System:
             except Exception as _e:
                 print(f"[NEWS] Webz.io error: {_e}")
 
-        # ── Source 3: yfinance fallback ──────────────────────────────────
-        if not raw_candidates:
+        # Fallback: existing yfinance extraction when NewsAPI is unavailable/failed/empty.
+        if not headlines:
             try:
                 stock = yf.Ticker(ticker)
                 for item in (stock.news or [])[:40]:
@@ -880,36 +773,28 @@ class IRIS_System:
                 "TSLA": [
                     {"title": "Tesla recalls 2 million vehicles due to autopilot risk", "url": ""},
                     {"title": "Analysts downgrade Tesla stock amid slowing EV demand", "url": ""},
-                ],
-                "NVDA": [
-                    {"title": "Nvidia announces breakthrough AI chip", "url": ""},
-                    {"title": "Nvidia quarterly revenue beats expectations by 20%", "url": ""},
-                ],
-            }
-            for entry in _sim.get(ticker_symbol, [
-                {"title": f"{ticker_symbol} announces date for shareholder meeting", "url": ""},
-                {"title": f"{ticker_symbol} news flow active amid market volatility", "url": ""},
-            ]):
-                collect(title=entry["title"], url=entry.get("url", ""))
+                ]
+            elif ticker == "NVDA":
+                simulation_items = [
+                    {"title": "Nvidia announces fantastic breakthrough AI chip", "url": ""},
+                    {"title": "Nvidia quarterly revenue brilliantly beats expectations by 20%", "url": ""},
+                ]
+            else:
+                simulation_items = [
+                    {"title": f"{ticker_symbol} announces date for shareholder meeting", "url": ""},
+                    {"title": f"{ticker_symbol} news flow remains active amid market volatility", "url": ""},
+                ]
+            for entry in simulation_items:
+                add_relevant_article(
+                    title=entry.get("title", ""),
+                    url=entry.get("url", ""),
+                    description="",
+                )
 
-        print(f"[NEWS] {ticker_symbol}: {len(raw_candidates)} raw candidates collected.")
-
-        # ── Phase 2: LLM filter ──────────────────────────────────────────
-        headlines = llm_filter_headlines(
-            ticker_symbol,
-            raw_candidates,
-            max_keep=12,
-        )
-        print(f"[NEWS] {ticker_symbol}: {len(headlines)} headlines after LLM filter.")
-
-        # Ensure every headline has a category key for the frontend tag logic
-        for h in headlines:
-            if "category" not in h:
-                h["category"] = "financial"
-
-        # ── Sentiment scoring ────────────────────────────────────────────
-        total_score = 0.0
-        valid_count = 0
+        #  Analyze Sentiment using FinBERT
+        total_score = 0
+        valid_headlines = 0
+        
         if self.sentiment_analyzer and headlines:
             for h in headlines:
                 title_text = str(h.get("title", "")).strip()

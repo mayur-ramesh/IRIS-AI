@@ -1121,64 +1121,89 @@ footer p {
     border-color: var(--accent-blue-hover);
 }
 
+/* --- ENHANCED MOBILE RESPONSIVE DESIGN --- */
 @media (max-width: 768px) {
+    /* Navbar adjustments */
     .top-nav {
         padding: 0.7rem 0.8rem 0.4rem;
     }
-
     .top-nav-inner {
         flex-direction: column;
         align-items: stretch;
         gap: 0.75rem;
     }
-
     .nav-actions {
-        justify-content: flex-start;
+        justify-content: space-between; /* Spread evenly on mobile */
         flex-wrap: wrap;
     }
 
-    .search-box {
-        flex-direction: column;
+    /* Typography & Header scaling */
+    header {
+        padding: 1.5rem 1rem; /* Reduce vertical padding */
     }
-
+    .logo {
+        font-size: 2.5rem; /* Scale down from 3.5rem */
+    }
     .dashboard-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .dashboard-header h2 {
+        font-size: 2rem; /* Scale down ticker text */
     }
 
-    .feedback-fab {
-        right: 0.85rem;
-        bottom: 0.85rem;
+    /* Search Box */
+    .search-section {
+        padding: 1.5rem 1rem;
+    }
+    .search-box {
+        flex-direction: column;
+    }
+    .search-box button {
+        width: 100%; /* Full width tap-target for thumbs */
     }
 
-    .feedback-modal {
-        padding: 0.9rem;
-    }
-
+    /* Layout Grid */
     .dashboard-3col {
         grid-template-columns: 1fr;
-        align-items: start;
+        grid-template-rows: none;
+        height: auto;
     }
 
+    /* Dashboard columns reset */
     .dash-col,
     .dash-col--left,
-    .dash-col--right,
-    .dash-col--mid {
+    .dash-col--mid,
+    .dash-col--right {
+        display: block;
+    }
+
+    .engine-light-card,
+    .sentiment-card,
+    .price-card,
+    .llm-card {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .headlines-card {
+        grid-column: auto;
+        grid-row: auto;
         height: auto;
-        min-height: unset;
     }
 
-    .dash-col--left .card {
-        flex: unset;
-    }
-
-    .dash-col--right .headlines-card {
-        max-height: 400px;
-    }
-
-    .dash-col--right .headlines-card .headlines-list {
+    .dashboard-3col .card,
+    .dashboard-3col .glass-panel {
         height: auto;
-        max-height: 320px;
+    }
+
+    .headlines-list {
+        max-height: 360px;
+        flex: none;
+    }
+    .search-box button {
+        padding: 0.8rem 1.5rem;
     }
 }
