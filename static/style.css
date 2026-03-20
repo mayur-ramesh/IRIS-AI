@@ -1121,64 +1121,130 @@ footer p {
     border-color: var(--accent-blue-hover);
 }
 
+/* --- ENHANCED MOBILE RESPONSIVE DESIGN --- */
 @media (max-width: 768px) {
+    /* Navbar adjustments */
     .top-nav {
         padding: 0.7rem 0.8rem 0.4rem;
     }
-
     .top-nav-inner {
         flex-direction: column;
         align-items: stretch;
         gap: 0.75rem;
     }
-
     .nav-actions {
-        justify-content: flex-start;
+        justify-content: space-between; /* Spread evenly on mobile */
         flex-wrap: wrap;
     }
 
-    .search-box {
-        flex-direction: column;
+    /* Typography & Header scaling */
+    header {
+        padding: 1.5rem 1rem; /* Reduce vertical padding */
     }
-
+    .logo {
+        font-size: 2.5rem; /* Scale down from 3.5rem */
+    }
     .dashboard-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .dashboard-header h2 {
+        font-size: 2rem; /* Scale down ticker text */
     }
 
-    .feedback-fab {
-        right: 0.85rem;
-        bottom: 0.85rem;
+    /* Search Box */
+    .search-section {
+        padding: 1.5rem 1rem;
+    }
+    .search-box {
+        flex-direction: column;
+    }
+    .search-box button {
+        width: 100%; /* Full width tap-target for thumbs */
     }
 
-    .feedback-modal {
-        padding: 0.9rem;
-    }
-
+    /* Layout Grid */
     .dashboard-3col {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Stack into a single column */
         align-items: start;
+        gap: 1rem;
     }
 
+    /* Reduce card padding to save screen estate */
+    .card {
+        padding: 1.25rem;
+    }
+
+    /* Dashboard columns reset */
     .dash-col,
     .dash-col--left,
     .dash-col--right,
     .dash-col--mid {
         height: auto;
         min-height: unset;
+        gap: 1rem;
     }
-
+    
     .dash-col--left .card {
         flex: unset;
     }
 
+    /* Scaling internal card elements */
+    .light-bulb {
+        width: 80px;  /* Slightly smaller engine light */
+        height: 80px;
+    }
+    .score-display {
+        font-size: 2.2rem; /* Scale down sentiment score */
+    }
+    .price-row.highlight .value {
+        font-size: 1.8rem; /* Scale down price text */
+    }
+
+    /* Headlines constraint for mobile */
     .dash-col--right .headlines-card {
         max-height: 400px;
     }
-
     .dash-col--right .headlines-card .headlines-list {
         height: auto;
         max-height: 320px;
+    }
+
+    /* Chart timeframe buttons */
+    .chart-timeframes {
+        justify-content: center; /* Center buttons on mobile */
+        gap: 0.25rem;
+    }
+    .timeframe-btn {
+        padding: 0.35rem 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    /* Modals and floating action buttons */
+    .feedback-fab {
+        right: 0.85rem;
+        bottom: 0.85rem;
+    }
+    .feedback-modal {
+        padding: 0.9rem;
+    }
+}
+
+/* Extra small devices (Phones smaller than 480px) */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 2rem;
+    }
+    .dashboard-header h2 {
+        font-size: 1.75rem;
+    }
+    .search-box input {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+    }
+    .search-box button {
+        padding: 0.8rem 1.5rem;
     }
 }
