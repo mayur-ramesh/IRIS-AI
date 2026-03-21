@@ -314,6 +314,8 @@ header {
 }
 
 .search-section {
+    position: relative;  /* establish positioned stacking context */
+    z-index: 2;          /* sit above dashboard card stacking contexts */
     padding: 2rem;
     text-align: center;
     max-width: 600px;
@@ -1527,18 +1529,41 @@ footer p {
     top: calc(100% + 4px);
     left: 0;
     right: 0;
-    z-index: 200;
+    z-index: 1000;
     list-style: none;
     margin: 0;
     padding: 4px 0;
-    background: var(--panel-bg);
+
+    /* Glass effect — matches the app's dark theme */
+    background: color-mix(in srgb, var(--panel-bg) 92%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--panel-border);
     border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.45),
+        0 2px 8px rgba(0, 0, 0, 0.25);
+
     max-height: 280px;
     overflow-y: auto;
+
+    /* Fade-in when dropdown opens */
+    animation: dropdownFadeIn 0.15s ease-out;
 }
 .ticker-dropdown.hidden { display: none; }
+
+@keyframes dropdownFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* Scrollbar styling */
+.ticker-dropdown::-webkit-scrollbar        { width: 6px; }
+.ticker-dropdown::-webkit-scrollbar-track  { background: transparent; }
+.ticker-dropdown::-webkit-scrollbar-thumb  {
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 3px;
+}
 
 .ticker-dropdown-item {
     display: flex;
@@ -1546,11 +1571,14 @@ footer p {
     gap: 0.5rem;
     padding: 0.55rem 0.9rem;
     cursor: pointer;
-    transition: background 0.1s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    transition: background 0.12s ease;
 }
+.ticker-dropdown-item:last-child { border-bottom: none; }
+
 .ticker-dropdown-item:hover,
 .ticker-dropdown-item[aria-selected="true"] {
-    background: var(--bg-subtle);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .ticker-dropdown-ticker {
