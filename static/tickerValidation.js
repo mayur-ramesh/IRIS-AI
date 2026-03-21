@@ -1,6 +1,8 @@
 /**
  * Ticker validation utilities — usable in browser (sets window.TickerValidation)
  * and in Node.js (module.exports) for unit testing.
+ *
+ * All rejection objects carry a ``code`` field for structured error handling.
  */
 (function (root, factory) {
     if (typeof module !== 'undefined' && module.exports) {
@@ -11,47 +13,113 @@
 }(typeof self !== 'undefined' ? self : this, function () {
     'use strict';
 
+    // -----------------------------------------------------------------------
+    // Error codes (mirror the Python ErrorCode class)
+    // -----------------------------------------------------------------------
+    const ErrorCodes = {
+        EMPTY_INPUT:       'EMPTY_INPUT',
+        INVALID_FORMAT:    'INVALID_FORMAT',
+        RESERVED_WORD:     'RESERVED_WORD',
+        TICKER_NOT_FOUND:  'TICKER_NOT_FOUND',
+        TICKER_DELISTED:   'TICKER_DELISTED',
+        API_TIMEOUT:       'API_TIMEOUT',
+        API_ERROR:         'API_ERROR',
+        RATE_LIMITED:      'RATE_LIMITED',
+        DATA_FETCH_FAILED: 'DATA_FETCH_FAILED',
+        INTERNAL_ERROR:    'INTERNAL_ERROR',
+    };
+
+    // -----------------------------------------------------------------------
+    // Known non-stock inputs (must be uppercase)
+    // -----------------------------------------------------------------------
     const _RESERVED = new Set(['TEST', 'NULL', 'NONE', 'HELP', 'NA']);
+
+    const _CRYPTO = new Set([
+        'BTC', 'ETH', 'XRP', 'LTC', 'BNB', 'SOL', 'ADA', 'DOT',
+        'AVAX', 'DOGE', 'MATIC', 'SHIB', 'TRX', 'LINK', 'ATOM', 'USDT', 'USDC',
+    ]);
+
+    const _CRYPTO_MESSAGE =
+        'IRIS-AI analyzes stocks and ETFs. ' +
+        'For cryptocurrency analysis, please use a crypto-specific platform.';
+
+    const _MAX_RAW_LENGTH = 20;   // chars before any processing
+
+    // -----------------------------------------------------------------------
+    // Layer 0 – input sanitisation
+    // -----------------------------------------------------------------------
+
+    /**
+     * Clean arbitrary user input into a normalised ticker string.
+     * Mirrors the Python ``sanitize_ticker_input`` function.
+     *
+     * @param {string} raw
+     * @returns {string} uppercase, cleaned ticker (may still be invalid format)
+     */
+    function sanitizeTicker(raw) {
+        let s = String(raw == null ? '' : raw).trim();
+        if (s.length > _MAX_RAW_LENGTH) s = s.slice(0, _MAX_RAW_LENGTH);
+        s = s.replace(/^[\$#]+/, '');                           // $ / # prefix
+        s = s.replace(/^ticker:/i, '');                         // "ticker:" prefix
+        s = s.replace(/\s+(stock|etf|shares)$/i, '');          // trailing words
+        s = s.replace(/\s+/g, '');                             // internal spaces
+        return s.toUpperCase();
+    }
+
+    // -----------------------------------------------------------------------
+    // Layer 1 – format check (client-side, instant)
+    // -----------------------------------------------------------------------
+
+    // 1-5 letters optionally followed by ONE dot and 1-2 letters (e.g. BRK.B)
+    const _TICKER_RE = /^[A-Z]{1,5}(\.[A-Z]{1,2})?$/;
 
     /**
      * Instant client-side format check — no network call.
+     * Sanitises *input* before checking.
+     *
      * @param {string} input
-     * @returns {{ valid: boolean, error?: string, cleaned?: string }}
+     * @returns {{ valid: boolean, code?: string, error?: string, cleaned?: string }}
      */
     function validateTickerFormat(input) {
-        const cleaned = String(input == null ? '' : input).trim().toUpperCase();
+        const cleaned = sanitizeTicker(input);
 
         if (!cleaned) {
-            return { valid: false, error: 'Please enter a stock ticker symbol.' };
+            return { valid: false, code: ErrorCodes.EMPTY_INPUT,
+                     error: 'Please enter a stock ticker symbol.' };
         }
-        if (!/^[A-Z]+$/.test(cleaned)) {
-            return { valid: false, error: 'Tickers contain only letters (e.g., AAPL, MSFT).' };
+        if (_CRYPTO.has(cleaned)) {
+            return { valid: false, code: ErrorCodes.RESERVED_WORD,
+                     error: _CRYPTO_MESSAGE };
         }
-        if (cleaned.length > 5) {
-            return { valid: false, error: 'US stock tickers are 1-5 letters long.' };
+        if (!_TICKER_RE.test(cleaned)) {
+            return { valid: false, code: ErrorCodes.INVALID_FORMAT,
+                     error: 'Tickers are 1-5 letters, optionally with a class suffix (e.g., BRK.B).' };
         }
         if (_RESERVED.has(cleaned)) {
-            return { valid: false, error: `"${cleaned}" is not a stock ticker.` };
+            return { valid: false, code: ErrorCodes.RESERVED_WORD,
+                     error: `"${cleaned}" is not a stock ticker.` };
         }
         return { valid: true, cleaned };
     }
+
+    // -----------------------------------------------------------------------
+    // Layer 2 – server-side verification
+    // -----------------------------------------------------------------------
 
     /**
      * Server-side ticker verification via POST /api/validate-ticker.
      * Accepts an optional AbortSignal for external cancellation.
      * A 5-second internal timeout is always applied.
      *
-     * @param {string} ticker  — already-normalised uppercase ticker
+     * @param {string} ticker  — sanitised uppercase ticker
      * @param {AbortSignal|null} [externalSignal]
-     * @returns {Promise<{valid: boolean, ticker?: string, company_name?: string,
-     *                    error?: string, suggestions?: string[]} | null>}
-     *   Returns null when cancelled via externalSignal (caller should ignore the result).
+     * @returns {Promise<object|null>}
+     *   Returns null when cancelled via externalSignal (caller should ignore).
      */
     async function validateTickerRemote(ticker, externalSignal) {
         const timeoutController = new AbortController();
         const timeoutId = setTimeout(() => timeoutController.abort(), 5000);
 
-        // Forward external cancellation to our timeout controller
         let onExternalAbort = null;
         if (externalSignal) {
             if (externalSignal.aborted) {
@@ -81,13 +149,15 @@
             }
             if (err.name === 'AbortError') {
                 if (externalSignal && externalSignal.aborted) {
-                    return null; // cancelled externally — caller should ignore
+                    return null;   // cancelled externally — caller ignores
                 }
-                return { valid: false, error: 'Validation timed out. Please try again.' };
+                return { valid: false, code: ErrorCodes.API_TIMEOUT,
+                         error: 'Validation timed out. Please try again.' };
             }
-            return { valid: false, error: 'Network error. Please check your connection.' };
+            return { valid: false, code: ErrorCodes.API_ERROR,
+                     error: 'Network error. Please check your connection.' };
         }
     }
 
-    return { validateTickerFormat, validateTickerRemote };
+    return { validateTickerFormat, validateTickerRemote, sanitizeTicker, ErrorCodes };
 }));

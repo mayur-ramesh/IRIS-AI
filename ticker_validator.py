@@ -1,13 +1,8 @@
 """
-Multi-layer ticker validation: format check → local DB → live yfinance API.
+Multi-layer ticker validation: sanitise → format → local DB → live yfinance API.
 
-Usage:
-    from ticker_validator import validate_ticker
-    result = validate_ticker("AAPL")
-    if result.valid:
-        print(result.company_name)
-    else:
-        print(result.error, result.suggestions)
+All error responses carry a structured error code in the ``code`` field.
+Implements a graceful fallback chain when external services are degraded.
 """
 
 import logging
@@ -21,8 +16,49 @@ from ticker_db import find_similar_tickers, is_known_ticker
 
 logger = logging.getLogger(__name__)
 
+
+# ---------------------------------------------------------------------------
+# Structured error codes
+# ---------------------------------------------------------------------------
+
+class ErrorCode:
+    EMPTY_INPUT       = "EMPTY_INPUT"
+    INVALID_FORMAT    = "INVALID_FORMAT"
+    RESERVED_WORD     = "RESERVED_WORD"
+    TICKER_NOT_FOUND  = "TICKER_NOT_FOUND"
+    TICKER_DELISTED   = "TICKER_DELISTED"
+    API_TIMEOUT       = "API_TIMEOUT"
+    API_ERROR         = "API_ERROR"
+    RATE_LIMITED      = "RATE_LIMITED"
+    DATA_FETCH_FAILED = "DATA_FETCH_FAILED"
+    INTERNAL_ERROR    = "INTERNAL_ERROR"
+
+
+# ---------------------------------------------------------------------------
+# Known non-stock inputs
+# ---------------------------------------------------------------------------
+
 _RESERVED_WORDS = {"HELP", "TEST", "NULL", "NONE", "NA", "N/A"}
 
+_CRYPTO_TICKERS = {
+    "BTC", "ETH", "XRP", "LTC", "BNB", "SOL", "ADA", "DOT",
+    "AVAX", "DOGE", "MATIC", "SHIB", "TRX", "LINK", "ATOM", "USDT", "USDC",
+}
+
+_CRYPTO_MESSAGE = (
+    "IRIS-AI analyzes stocks and ETFs. "
+    "For cryptocurrency analysis, please use a crypto-specific platform."
+)
+
+# OTC exchange identifiers returned by yfinance
+_OTC_EXCHANGES = {"PNK", "OTC", "OTCQB", "OTCQX", "PINK", "GREY", "EXPERT"}
+
+_MAX_RAW_LENGTH = 20   # chars before any processing
+
+
+# ---------------------------------------------------------------------------
+# Result dataclass
+# ---------------------------------------------------------------------------
 
 @dataclass
 class TickerValidationResult:
@@ -30,39 +66,74 @@ class TickerValidationResult:
     ticker: str
     company_name: str = ""
     error: str = ""
+    code: str = ""          # structured error code (empty on success)
+    warning: str = ""       # non-fatal advisory (e.g. OTC market)
     suggestions: list[str] = field(default_factory=list)
-    source: str = ""  # "cache" | "local_db" | "api" | ""
+    source: str = ""        # "cache" | "local_db" | "api" | ""
 
 
 # ---------------------------------------------------------------------------
-# Layer 1 – format
+# Layer 0 – input sanitisation
 # ---------------------------------------------------------------------------
+
+def sanitize_ticker_input(raw: str) -> str:
+    """Return a cleaned, uppercase ticker string from arbitrary user input.
+
+    Steps applied in order:
+    1. Enforce a 20-character hard cap before any further processing.
+    2. Remove leading ``$`` or ``#`` characters.
+    3. Remove ``ticker:`` prefix (case-insensitive).
+    4. Remove common trailing words: ``stock``, ``etf``, ``shares``.
+    5. Collapse all internal whitespace so "A A P L" becomes "AAPL".
+    6. Uppercase.
+    """
+    s = str(raw or "").strip()
+    if len(s) > _MAX_RAW_LENGTH:
+        s = s[:_MAX_RAW_LENGTH]
+    s = re.sub(r"^[\$#]+", "", s)
+    s = re.sub(r"^ticker:", "", s, flags=re.IGNORECASE)
+    s = re.sub(r"\s+(stock|etf|shares)$", "", s, flags=re.IGNORECASE)
+    s = re.sub(r"\s+", "", s)
+    return s.upper()
+
+
+# ---------------------------------------------------------------------------
+# Layer 1 – format validation
+# ---------------------------------------------------------------------------
+
+# Standard US tickers: 1-5 letters, optionally ONE dot + 1-2 letters
+# Covers BRK.B, BRK.A, class shares, etc.
+_TICKER_RE = re.compile(r"^[A-Z]{1,5}(\.[A-Z]{1,2})?$")
+
 
 def validate_ticker_format(ticker: str) -> TickerValidationResult:
-    """Check that *ticker* has a valid format before any DB or API call."""
-    normalized = ticker.strip().upper()
+    """Check that *ticker* has a valid format (sanitises input first)."""
+    normalized = sanitize_ticker_input(ticker)
 
     if not normalized:
         return TickerValidationResult(
-            valid=False,
-            ticker=normalized,
+            valid=False, ticker=normalized, code=ErrorCode.EMPTY_INPUT,
             error="Please enter a stock ticker symbol.",
         )
 
-    if not re.fullmatch(r"[A-Z]{1,5}", normalized):
+    if normalized in _CRYPTO_TICKERS:
         return TickerValidationResult(
-            valid=False,
-            ticker=normalized,
+            valid=False, ticker=normalized, code=ErrorCode.RESERVED_WORD,
+            error=_CRYPTO_MESSAGE,
+        )
+
+    if not _TICKER_RE.fullmatch(normalized):
+        return TickerValidationResult(
+            valid=False, ticker=normalized, code=ErrorCode.INVALID_FORMAT,
             error=(
-                f'"{ticker.strip()}" is not a valid ticker format. '
-                "US stock tickers are 1-5 letters (e.g., AAPL, MSFT, TSLA)."
+                f'"{normalized}" is not a valid ticker format. '
+                "Tickers are 1-5 letters, with an optional class suffix (e.g., BRK.B)."
             ),
         )
 
     if normalized in _RESERVED_WORDS:
         return TickerValidationResult(
-            valid=False,
-            ticker=normalized,
+            valid=False, ticker=normalized, code=ErrorCode.RESERVED_WORD,
             error=f'"{normalized}" is a reserved word, not a stock ticker.',
         )
 
@@ -70,90 +141,129 @@ def validate_ticker_format(ticker: str) -> TickerValidationResult:
 
 
 # ---------------------------------------------------------------------------
-# Layer 2 + 3 – local DB then live API (cached)
+# Layers 2 + 3 – local DB then live yfinance API (cached)
 # ---------------------------------------------------------------------------
 
 @lru_cache(maxsize=512)
 def _cached_api_lookup(ticker: str) -> TickerValidationResult:
-    """
-    Inner function that hits yfinance; result is cached per ticker string.
-    Only successful (non-network-error) results are stored by lru_cache because
-    callers re-raise network exceptions before this function returns normally.
-    ticker must already be normalised uppercase.
+    """Hit yfinance for *ticker* (already normalised uppercase).
+
+    lru_cache stores only successful returns; raised exceptions are never cached,
+    so transient network failures do not permanently poison the cache.
     """
     in_local_db = is_known_ticker(ticker)
 
-    try:
-        info = yf.Ticker(ticker).info
-        company_name = info.get("shortName") or info.get("longName") or ""
+    # info call — may raise on network error; let it propagate so the caller
+    # can apply the graceful-degradation fallback chain.
+    info = yf.Ticker(ticker).info
+    company_name = info.get("shortName") or info.get("longName") or ""
 
-        if not company_name and not in_local_db:
-            return TickerValidationResult(
-                valid=False,
-                ticker=ticker,
-                error=f'Ticker "{ticker}" was not found. Please check the symbol and try again.',
-                suggestions=find_similar_tickers(ticker),
-            )
-
-        # Valid so far – check for recent trading activity
-        history = yf.Ticker(ticker).history(period="5d")
-        if history.empty and company_name:
-            return TickerValidationResult(
-                valid=False,
-                ticker=ticker,
-                company_name=company_name,
-                error=(
-                    f'"{ticker}" ({company_name}) appears to be delisted '
-                    "or has no recent trading data."
-                ),
-            )
-
-        source = "local_db" if in_local_db else "api"
+    if not company_name and not in_local_db:
         return TickerValidationResult(
-            valid=True,
-            ticker=ticker,
-            company_name=company_name or "(verified offline)",
-            source=source,
+            valid=False, ticker=ticker, code=ErrorCode.TICKER_NOT_FOUND,
+            error=f'Ticker "{ticker}" was not found. Please check the symbol and try again.',
+            suggestions=find_similar_tickers(ticker),
         )
 
-    except Exception as exc:
-        # Network / timeout – bubble up so the caller decides what to return
-        # (we must NOT return from here so lru_cache doesn't store the failure)
-        logger.warning("yfinance lookup failed for %s: %s", ticker, exc)
-        raise
+    # history call — a network failure here doesn't mean the ticker is bad
+    history_empty = False
+    try:
+        hist = yf.Ticker(ticker).history(period="5d")
+        history_empty = hist is None or (hasattr(hist, "empty") and hist.empty)
+    except Exception:
+        history_empty = False   # service hiccup; don't penalise the ticker
+
+    if history_empty and company_name:
+        return TickerValidationResult(
+            valid=False, ticker=ticker, company_name=company_name,
+            code=ErrorCode.TICKER_DELISTED,
+            error=(
+                f'"{ticker}" ({company_name}) appears to be delisted '
+                "or has no recent trading data."
+            ),
+        )
+
+    # OTC / pink-sheet advisory
+    exchange = (info.get("exchange") or info.get("market") or "").upper()
+    warning = ""
+    if exchange in _OTC_EXCHANGES:
+        warning = f"Note: {ticker} trades on the OTC market. Data may be limited."
+
+    source = "local_db" if in_local_db else "api"
+    return TickerValidationResult(
+        valid=True, ticker=ticker,
+        company_name=company_name or "(verified offline)",
+        warning=warning,
+        source=source,
+    )
 
 
 def validate_ticker_exists(ticker: str) -> TickerValidationResult:
-    """
-    Full existence check: format → local DB → yfinance API.
-    Handles network failures gracefully.
+    """Full existence check with graceful-degradation fallback chain.
+
+    Fallback behaviour when services are degraded:
+    - API down + ticker in local DB  → valid with warning
+    - API down + ticker NOT in DB    → rejection with API_TIMEOUT / API_ERROR
+    - DB corrupted/missing + API up  → rely on API only
+    - Both services down             → rejection explaining both are unavailable
     """
     fmt = validate_ticker_format(ticker)
     if not fmt.valid:
         return fmt
 
     normalized = fmt.ticker
-    in_local_db = is_known_ticker(normalized)
+
+    # Probe local DB (may fail if DB file is corrupted or missing)
+    in_local_db = False
+    local_db_available = True
+    try:
+        in_local_db = is_known_ticker(normalized)
+    except Exception:
+        local_db_available = False
+        logger.warning("Local ticker DB unavailable when checking %s", normalized)
 
     try:
-        result = _cached_api_lookup(normalized)
-        # Upgrade source to "cache" on a cache hit (lru_cache doesn't tell us,
-        # but we can detect it via cache_info between calls if needed; for now
-        # we keep whatever _cached_api_lookup set and let the caller know it
-        # came from our process cache by checking cache_info externally).
-        return result
-    except Exception:
+        return _cached_api_lookup(normalized)
+
+    except Exception as exc:
+        exc_str = str(exc).lower()
+        is_timeout = (
+            "timeout" in exc_str
+            or "timed out" in exc_str
+            or isinstance(exc, TimeoutError)
+        )
+        api_code = ErrorCode.API_TIMEOUT if is_timeout else ErrorCode.API_ERROR
+        logger.warning("yfinance lookup failed for %s: %s", normalized, exc)
+
+        # Both services unavailable
+        if not local_db_available:
+            return TickerValidationResult(
+                valid=False, ticker=normalized, code=ErrorCode.API_ERROR,
+                error=(
+                    "Validation services are temporarily unavailable. "
+                    "Please try again shortly."
+                ),
+            )
+
+        # API down but ticker confirmed in local DB — degrade gracefully
         if in_local_db:
             return TickerValidationResult(
-                valid=True,
-                ticker=normalized,
+                valid=True, ticker=normalized,
                 company_name="(verified offline)",
                 source="local_db",
+                warning=(
+                    "Ticker verified from local database. "
+                    "Real-time data verification is temporarily unavailable."
+                ),
             )
+
+        # API down, ticker not in local DB — cannot verify
         return TickerValidationResult(
-            valid=False,
-            ticker=normalized,
-            error=f'Could not verify "{normalized}". Please check your connection and try again.',
+            valid=False, ticker=normalized, code=api_code,
+            error=(
+                "Cannot verify this ticker right now. "
+                "Please try again in a few minutes or use a well-known ticker."
+            ),
         )
 
 

@@ -1405,6 +1405,36 @@ footer p {
 }
 .error-banner-dismiss:hover { opacity: 1; }
 
+/* Yellow / amber — service degradation warnings */
+.error-banner[data-banner-type="warning"] {
+    background: rgba(245, 158, 11, 0.10);
+    border-color: var(--status-yellow, #f59e0b);
+    color: var(--status-yellow, #f59e0b);
+}
+.error-banner[data-banner-type="warning"] .error-banner-retry {
+    border-color: var(--status-yellow, #f59e0b);
+    color: var(--status-yellow, #f59e0b);
+}
+.error-banner[data-banner-type="warning"] .error-banner-retry:hover {
+    background: var(--status-yellow, #f59e0b);
+    color: var(--text-inverse, #fff);
+}
+.error-banner[data-banner-type="warning"] .error-banner-dismiss {
+    color: var(--status-yellow, #f59e0b);
+}
+
+/* Gray / muted — rate-limit notices */
+.error-banner[data-banner-type="muted"] {
+    background: rgba(120, 120, 140, 0.10);
+    border-color: var(--text-muted);
+    color: var(--text-muted);
+}
+.error-banner[data-banner-type="muted"] .error-banner-retry,
+.error-banner[data-banner-type="muted"] .error-banner-dismiss {
+    border-color: var(--text-muted);
+    color: var(--text-muted);
+}
+
 /* ============================================================
    Analysis progress steps
    ============================================================ */

@@ -372,6 +372,7 @@ def analyze_ticker():
         if not val_result.valid:
             return jsonify({
                 "error": val_result.error,
+                "code": val_result.code,
                 "suggestions": val_result.suggestions,
                 "valid": False,
             }), 422
@@ -446,7 +447,7 @@ def analyze_ticker():
              
     except Exception:
         print(f"Error during analysis: {traceback.format_exc()}")
-        return jsonify({"error": "An internal error occurred during analysis."}), 500
+        return jsonify({"error": "An internal error occurred during analysis.", "code": "INTERNAL_ERROR"}), 500
 
 @app.route('/api/chart')
 def get_chart():
@@ -587,7 +588,7 @@ def validate_ticker_endpoint():
     """Real-time ticker validation for the frontend (always returns HTTP 200)."""
     ip = request.remote_addr or "unknown"
     if not _check_rate_limit(ip):
-        return jsonify({"error": "Too many requests. Please wait before trying again."}), 429
+        return jsonify({"error": "Too many requests. Please wait before trying again.", "code": "RATE_LIMITED"}), 429
 
     body = request.get_json(silent=True) or {}
     raw = body.get("ticker", "")
@@ -600,10 +601,18 @@ def validate_ticker_endpoint():
     _log_validation(raw, result)
 
     if result.valid:
-        return jsonify({"valid": True, "ticker": result.ticker,
-                        "company_name": result.company_name}), 200
-    return jsonify({"valid": False, "error": result.error,
-                    "suggestions": result.suggestions}), 200
+        return jsonify({
+            "valid": True,
+            "ticker": result.ticker,
+            "company_name": result.company_name,
+            "warning": result.warning,
+        }), 200
+    return jsonify({
+        "valid": False,
+        "error": result.error,
+        "code": result.code,
+        "suggestions": result.suggestions,
+    }), 200
 
 
 @app.route('/api/health', methods=['GET'])

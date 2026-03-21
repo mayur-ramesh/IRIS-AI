@@ -86,8 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let _progressTimers   = [];
     let _rateLimitTimer   = null;
 
-    function _showErrorBanner(message, suggestions, showRetry) {
+    function _showErrorBanner(message, suggestions, showRetry, bannerType) {
         if (!errorBanner) return;
+        // Apply visual variant: 'error' (red, default) | 'warning' (yellow) | 'muted' (gray)
+        errorBanner.dataset.bannerType = bannerType || 'error';
         if (errorBannerMsg) errorBannerMsg.textContent = message;
         if (errorBannerChips) {
             errorBannerChips.innerHTML = '';
@@ -233,8 +235,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Route a failed remote-validation result to the right visual treatment
+    function _routeValidationError(result, val) {
+        const code = result.code || '';
+        const err = result.error || 'Validation failed.';
+        if (code) console.debug('[IRIS-AI] Validation rejected — code:', code, '— ticker:', val);
+
+        if (code === 'API_TIMEOUT' || code === 'API_ERROR') {
+            // Service degraded: yellow warning banner with retry option
+            _setInputState('warn');
+            _clearValidationHint();
+            _showErrorBanner(err, [], true, 'warning');
+        } else if (code === 'TICKER_NOT_FOUND' || code === 'TICKER_DELISTED') {
+            // Not found / delisted: error banner with suggestions
+            _setInputState('error');
+            _clearValidationHint();
+            _showErrorBanner(err, result.suggestions || [], false);
+        } else if (code === 'RATE_LIMITED') {
+            // Rate limited: gray countdown banner
+            _setInputState('');
+            _clearValidationHint();
+            const match = err.match(/(\d+)/);
+            _startRateLimitCountdown(match ? parseInt(match[1], 10) : 30);
+        } else {
+            // Format / reserved-word / unknown: inline hint below input
+            _setInputState('error');
+            _showValidationHint(err, 'error');
+            _renderSuggestions(result.suggestions || []);
+        }
+    }
+
     async function _triggerValidation(rawValue) {
-        const val = String(rawValue || '').trim().toUpperCase();
+        // Sanitise input first (mirrors Python sanitize_ticker_input)
+        const sanitize = (window.TickerValidation || {}).sanitizeTicker;
+        const val = sanitize ? sanitize(rawValue) : String(rawValue || '').trim().toUpperCase();
+
+        // Sync input field to sanitised form
+        if (input && input.value !== val && val) input.value = val;
 
         // Cancel previous in-flight remote request
         if (_abortController) _abortController.abort();
@@ -247,6 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!fmtResult.valid) {
             _validatedTicker = null;
             analyzeBtn.disabled = true;
+            if (fmtResult.code) console.debug('[IRIS-AI] Format check failed — code:', fmtResult.code, '— input:', val);
             _setInputState('error');
             _showValidationHint(fmtResult.error, 'error');
             _renderSuggestions([]);
@@ -271,21 +309,28 @@ document.addEventListener('DOMContentLoaded', () => {
         if (result.valid) {
             _validatedTicker = val;
             analyzeBtn.disabled = false;
-            _setInputState('valid');
-            _showValidationHint(`✓ ${result.company_name || val}`, 'success');
+            const hasWarning = !!(result.warning);
+            _setInputState(hasWarning ? 'warn' : 'valid');
+            _showValidationHint(
+                hasWarning ? `\u26A0 ${result.warning}` : `\u2713 ${result.company_name || val}`,
+                hasWarning ? 'warn' : 'success'
+            );
             _renderSuggestions([]);
         } else {
-            _setInputState('error');
-            _showValidationHint(result.error || 'Ticker not found.', 'error');
-            _renderSuggestions(result.suggestions);
+            _routeValidationError(result, val);
         }
     }
 
     if (input) {
         input.addEventListener('input', () => {
-            // Auto-uppercase as user types
-            const pos = input.selectionStart;
-            input.value = input.value.toUpperCase();
+            // Auto-uppercase + strip leading $ / # as user types
+            let pos = input.selectionStart || 0;
+            let v = input.value.toUpperCase().replace(/^[\$#]+/, '');
+            if (v !== input.value) {
+                const removed = input.value.length - v.length;
+                input.value = v;
+                pos = Math.max(0, pos - removed);
+            }
             try { input.setSelectionRange(pos, pos); } catch (_) {}
 
             if (clearBtn) clearBtn.classList.toggle('hidden', !input.value);
