@@ -78,6 +78,273 @@ TICKER_BRAND_TERMS = {
 }
 
 
+# Expanded search terms: company names, CEOs, products, sector keywords.
+# Used to build broader API queries so news isn't missed when articles
+# don't mention the ticker symbol directly.
+TICKER_SEARCH_TERMS = {
+    "AAPL": {
+        "names": ["Apple", "Apple Inc"],
+        "people": ["Tim Cook"],
+        "products": ["iPhone", "iPad", "MacBook", "Apple Watch", "Vision Pro", "AirPods", "App Store"],
+        "sector": ["consumer electronics", "big tech"],
+    },
+    "MSFT": {
+        "names": ["Microsoft", "Microsoft Corp"],
+        "people": ["Satya Nadella"],
+        "products": ["Windows", "Azure", "Copilot", "Office 365", "Xbox", "Teams", "GitHub"],
+        "sector": ["enterprise software", "cloud computing"],
+    },
+    "GOOG": {
+        "names": ["Google", "Alphabet", "Alphabet Inc"],
+        "people": ["Sundar Pichai"],
+        "products": ["Google Search", "YouTube", "Waymo", "DeepMind", "Gemini", "Pixel", "Android", "Chrome"],
+        "sector": ["search engine", "digital advertising", "big tech"],
+    },
+    "GOOGL": {
+        "names": ["Google", "Alphabet"],
+        "people": ["Sundar Pichai"],
+        "products": ["YouTube", "Waymo", "DeepMind", "Gemini"],
+        "sector": ["digital advertising", "big tech"],
+    },
+    "AMZN": {
+        "names": ["Amazon", "Amazon.com"],
+        "people": ["Andy Jassy", "Jeff Bezos"],
+        "products": ["AWS", "Alexa", "Prime", "Kindle", "Twitch", "Ring"],
+        "sector": ["e-commerce", "cloud computing", "logistics"],
+    },
+    "NVDA": {
+        "names": ["Nvidia", "NVIDIA Corp"],
+        "people": ["Jensen Huang"],
+        "products": ["GeForce", "Blackwell", "Hopper", "CUDA", "DGX", "RTX", "A100", "H100"],
+        "sector": ["semiconductor", "GPU", "AI chip", "data center", "high-tech"],
+    },
+    "META": {
+        "names": ["Meta", "Meta Platforms", "Facebook"],
+        "people": ["Mark Zuckerberg"],
+        "products": ["Instagram", "WhatsApp", "Threads", "Llama", "Ray-Ban Meta", "Oculus", "Quest"],
+        "sector": ["social media", "metaverse", "digital advertising"],
+    },
+    "TSLA": {
+        "names": ["Tesla", "Tesla Inc"],
+        "people": ["Elon Musk"],
+        "products": ["Model 3", "Model Y", "Model S", "Model X", "Cybertruck", "Powerwall",
+                     "Megapack", "Autopilot", "FSD", "Gigafactory", "Supercharger"],
+        "sector": ["electric vehicle", "EV", "autonomous driving", "battery", "clean energy"],
+    },
+    "NKE": {
+        "names": ["Nike", "Nike Inc"],
+        "people": ["Elliott Hill"],
+        "products": ["Air Jordan", "Air Max", "Nike Dunk", "Swoosh", "SNKRS"],
+        "sector": ["sportswear", "athletic footwear", "retail"],
+    },
+    "NFLX": {
+        "names": ["Netflix", "Netflix Inc"],
+        "people": ["Ted Sarandos", "Greg Peters"],
+        "products": ["Netflix Games", "Netflix Ads"],
+        "sector": ["streaming", "entertainment", "media"],
+    },
+    "AMD": {
+        "names": ["AMD", "Advanced Micro Devices"],
+        "people": ["Lisa Su"],
+        "products": ["Ryzen", "EPYC", "Radeon", "Instinct", "Xilinx"],
+        "sector": ["semiconductor", "CPU", "GPU", "data center", "high-tech"],
+    },
+    "INTC": {
+        "names": ["Intel", "Intel Corp"],
+        "people": ["Pat Gelsinger", "Lip-Bu Tan"],
+        "products": ["Core Ultra", "Xeon", "Arc", "Gaudi", "Intel Foundry"],
+        "sector": ["semiconductor", "CPU", "chip manufacturing", "foundry"],
+    },
+}
+
+
+def _get_search_terms(ticker_symbol: str) -> dict:
+    """Return names, people, products, sector lists for a ticker. Falls back to ticker-only."""
+    ts = ticker_symbol.upper()
+    entry = TICKER_SEARCH_TERMS.get(ts, {})
+    names = list(entry.get("names", []))
+    for company_name, tickers in COMPANY_NAME_TO_TICKERS.items():
+        if ts in normalize_ticker_list(tickers):
+            readable = company_name.capitalize()
+            if readable not in names:
+                names.append(readable)
+    if not names:
+        names = [ts]
+    return {
+        "names": names,
+        "people": entry.get("people", []),
+        "products": entry.get("products", []),
+        "sector": entry.get("sector", []),
+        "ticker": ts,
+    }
+
+
+def llm_filter_headlines(
+    ticker: str,
+    candidates: list,
+    *,
+    max_keep: int = 12,
+    model=None,
+) -> list:
+    """
+    Use an LLM to decide which raw headline candidates are worth
+    showing on the IRIS dashboard for the given ticker.
+
+    Each candidate dict has keys: title, url, published_at.
+
+    Returns a filtered + ordered list (most relevant first),
+    capped at max_keep entries.
+
+    Falls back to a simple keyword allowlist if:
+      - OPENAI_API_KEY is not set
+      - the openai package is not installed
+      - the API call fails for any reason
+    """
+    if not candidates:
+        return []
+
+    api_key = os.environ.get("OPENAI_API_KEY", "").strip()
+    _model = model or os.environ.get("OPENAI_MODEL_FILTER", "gpt-4o-mini")
+
+    # -- LLM path ---------------------------------------------------------
+    if api_key:
+        try:
+            from openai import OpenAI as _OAI
+            _client = _OAI(api_key=api_key)
+
+            # Build a compact numbered list for the prompt
+            lines = []
+            for i, h in enumerate(candidates):
+                title = str(h.get("title", "")).strip()
+                lines.append(f"{i}: {title}")
+            numbered = "\n".join(lines)
+
+            prompt = f"""You are a financial news relevance classifier for the stock ticker "{ticker}".
+
+Below is a numbered list of raw news headline candidates. Your job is to select which ones belong on a stock market dashboard for "{ticker}".
+
+INCLUDE a headline if it is about ANY of:
+- The company, its products, services, executives, or earnings
+- Analyst ratings, price targets, or institutional activity for the stock
+- Direct competitors that affect the stock's valuation
+- Macroeconomic events that move the sector (interest rates, inflation, GDP)
+- Geopolitical events that affect the supply chain, regulation, or demand for this company
+- Industry trends directly relevant to this company's business
+
+EXCLUDE a headline if:
+- It is about a completely unrelated company that happens to share a word with the ticker
+- It is entertainment, sports, lifestyle, or celebrity content
+- It is a video/torrent/piracy listing
+- It has no conceivable link to the stock's price or business
+
+Respond with ONLY a JSON object in this exact format - no markdown, no explanation:
+{{"keep": [list of integer indices to include], "reason": "one sentence summary of what you filtered"}}
+
+Headlines:
+{numbered}"""
+
+            resp = _client.chat.completions.create(
+                model=_model,
+                messages=[
+                    {"role": "system", "content": "You are a precise financial news classifier. Output only valid JSON."},
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=0.0,
+                max_tokens=300,
+            )
+            raw = (resp.choices[0].message.content or "").strip()
+            # Strip accidental markdown fences
+            if raw.startswith("```"):
+                raw = raw.split("\n", 1)[-1]
+                raw = raw.rsplit("```", 1)[0].strip()
+
+            parsed = json.loads(raw)
+            keep_indices = [int(i) for i in parsed.get("keep", [])]
+            reason = parsed.get("reason", "")
+            print(
+                f"[LLM FILTER] {ticker}: keeping {len(keep_indices)}/{len(candidates)} "
+                f"headlines via {_model}. Reason: {reason}"
+            )
+
+            kept = [candidates[i] for i in keep_indices if 0 <= i < len(candidates)]
+            return kept[:max_keep]
+
+        except Exception as _llm_err:
+            print(
+                f"[LLM FILTER] API call failed ({type(_llm_err).__name__}: {_llm_err}), "
+                "falling back to keyword filter."
+            )
+            # Fall through to keyword fallback below
+
+    # -- Keyword fallback (no API key or API failure) --------------------
+    print(f"[LLM FILTER] Using keyword fallback for {ticker}.")
+    ticker_upper = ticker.upper()
+
+    # Build comprehensive term sets from TICKER_SEARCH_TERMS
+    _fb_terms = _get_search_terms(ticker_upper)
+    direct_terms = {ticker_upper}
+    sector_terms = set()
+    for name in _fb_terms.get("names", []):
+        direct_terms.add(name.upper())
+    for person in _fb_terms.get("people", []):
+        direct_terms.add(person.upper())
+    for product in _fb_terms.get("products", []):
+        if len(product) >= 4:
+            direct_terms.add(product.upper())
+    for sector in _fb_terms.get("sector", []):
+        sector_terms.add(sector.upper())
+    # Also add from legacy COMPANY_NAME_TO_TICKERS
+    for company_name, tickers in COMPANY_NAME_TO_TICKERS.items():
+        if ticker_upper in normalize_ticker_list(tickers):
+            direct_terms.add(company_name.upper())
+
+    _BROAD_FINANCIAL = re.compile(
+        r'\b(stock|share|price|market|earn|revenue|profit|loss|invest|'
+        r'analyst|quarter|fiscal|IPO|valuat|forecast|guidance|trade|fund|ETF|'
+        r'NYSE|NASDAQ|SEC|CEO|CFO|CTO|board|dividend|rally|downgrade|upgrade|outlook|'
+        r'chip|semiconductor|AI|cloud|data.?center|GPU|compute|'
+        r'announce|launch|release|unveil|partner|acqui|merger|deal|'
+        r'contract|supply|deliver|expand|restructur|layoff|hire|appoint|'
+        r'margin|growth|decline|beat|miss|target|consensus|'
+        r'buyback|repurchase|offering|debt|bond|credit|'
+        r'sanction|tariff|trade.?war|export.?control|NATO|conflict|war|'
+        r'regulat|antitrust|FTC|DOJ|ban|restrict|patent|lawsuit|settle|fine|'
+        r'Fed.?rate|inflation|CPI|GDP|recession|supply.?chain|chip.?act|'
+        r'interest.?rate|treasury|yield|employment|PMI|manufacturing|'
+        r'factory|production|recall|safety|'
+        r'electric.?vehicle|EV|battery|autonomous|self.?driving|'
+        r'5G|robot|quantum|biotech|pharma|drug|FDA|'
+        r'options?.?flow|short.?interest|rebalanc|index.?inclusion)\b',
+        re.IGNORECASE,
+    )
+
+    kept = []
+    for h in candidates:
+        title = str(h.get("title", "")).strip()
+        if not title:
+            continue
+        # Tier 1: direct mention of ticker, company name, CEO, or major product -> always relevant
+        tier1_match = any(
+            re.search(r'\b' + re.escape(t) + r'\b', title, re.IGNORECASE)
+            for t in direct_terms
+        )
+        if tier1_match:
+            kept.append(h)
+            if len(kept) >= max_keep:
+                break
+            continue
+        # Tier 2: sector/industry term + financial context
+        tier2_match = any(
+            re.search(r'\b' + re.escape(s) + r'\b', title, re.IGNORECASE)
+            for s in sector_terms
+        )
+        if tier2_match and _BROAD_FINANCIAL.search(title):
+            kept.append(h)
+            if len(kept) >= max_keep:
+                break
+    return kept
+
+
 def normalize_ticker_symbol(symbol: str):
     token = str(symbol or "").strip().upper()
     if not token:
@@ -628,40 +895,31 @@ class IRIS_System:
         Returns (sentiment_score: float, headlines: list[dict]).
         """
         ticker_symbol = normalize_ticker_symbol(ticker).upper()
-        headlines = []
-        seen = set()
+        search_terms = _get_search_terms(ticker_symbol)
+        from datetime import datetime, timedelta, timezone
+        _now = datetime.now(timezone.utc)
+        _news_from_date = (_now - timedelta(days=14)).strftime("%Y-%m-%d")
+        _webz_ts = int((_now - timedelta(days=14)).timestamp()) * 1000
+        raw_candidates = []
+        seen_urls = set()
+        seen_titles = set()
 
-        # Build strict relevance terms: ticker + known company names mapped to this ticker.
-        relevance_terms = {ticker_symbol}
-        for company_name, tickers in COMPANY_NAME_TO_TICKERS.items():
-            normalized = normalize_ticker_list(tickers)
-            if ticker_symbol in normalized:
-                relevance_terms.add(str(company_name or "").upper())
+        def _norm_title(t):
+            return re.sub(r'[^a-z0-9 ]', '', t.lower().strip())
 
-        # Also include well-known brand/product terms for this ticker
-        for brand_term in TICKER_BRAND_TERMS.get(ticker_symbol, []):
-            relevance_terms.add(str(brand_term or "").upper())
+        def _bad_url(url):
+            _BAD = re.compile(
+                r'consent\.(yahoo|google|msn)\.|/v2/collectConsent|'
+                r'accounts\.google\.com|login\.|signin\.|tracking',
+                re.IGNORECASE,
+            )
+            return bool(_BAD.search(url))
 
-        def _normalize_title(t):
-            """Lowercase, strip punctuation for fuzzy dedup."""
-            return re.sub(r'[^a-z0-9 ]', '', str(t or '').lower().strip())
-
-        _FINANCIAL_TERMS = re.compile(
-            r'\b(stock|share|price|market|earn|revenue|profit|loss|invest|'
-            r'analyst|quarter|fiscal|IPO|valuat|forecast|guidance|trade|'
-            r'fund|ETF|NYSE|NASDAQ|SEC|CEO|CFO|board|dividend|rally|'
-            r'downgrade|upgrade|outlook|chip|semiconductor|AI|cloud|'
-            r'data.?center|GPU|compute)\b',
-            re.IGNORECASE,
-        )
-        _GEOPOLITICAL_TERMS = re.compile(
-            r'\b(sanction|tariff|trade.?war|export.?control|embargo|geopolit|'
-            r'NATO|pentagon|defense.?budget|military|conflict|war|invasion|'
-            r'Taiwan|China|Russia|Iran|Korea|Middle.?East|OPEC|'
-            r'federal.?reserve|Fed.?rate|interest.?rate|inflation|CPI|GDP|'
-            r'recession|monetary.?policy|fiscal.?policy|treasury|yield.?curve|'
-            r'sovereign|supply.?chain|semiconductor.?policy|chip.?act|'
-            r'macro|global.?economy|central.?bank|IMF|World.?Bank)\b',
+        _NOISE = re.compile(
+            r'\b(1080p|720p|480p|4K|BluRay|WEB-?DL|WEBRip|HDTV|DVDRip|'
+            r'x264|x265|H\.?264|H\.?265|HEVC|AAC|AC3|DTS|MKV|AVI|'
+            r'S\d{2}E\d{2}|torrent|magnet|repack|'
+            r'YIFY|RARBG|EZTV|BobDobbs|playWEB|SPARKS)\b',
             re.IGNORECASE,
         )
 
@@ -689,7 +947,7 @@ class IRIS_System:
                 "published_at": str(published_at or "").strip(),
             })
 
-        # ── Source 1: NewsAPI ────────────────────────────────────────────
+        # -- Source 1: NewsAPI ---------------------------------------------
         if self.news_api:
             try:
                 # Build broad OR query: "TSLA" OR "Tesla" OR "Elon Musk"
@@ -701,10 +959,11 @@ class IRIS_System:
                 newsapi_query = " OR ".join(_query_parts)
 
                 response = self.news_api.get_everything(
-                    q=ticker,
+                    q=newsapi_query,
                     language="en",
                     sort_by="publishedAt",
-                    page_size=15,
+                    from_param=_news_from_date,
+                    page_size=50,
                 )
                 for article in (response.get("articles") or []):
                     if not isinstance(article, dict):
@@ -717,7 +976,7 @@ class IRIS_System:
             except Exception as _e:
                 print(f"[NEWS] NewsAPI error: {_e}")
 
-        # ── Source 2: Webz.io ────────────────────────────────────────────
+        # -- Source 2: Webz.io ---------------------------------------------
         if self.webz_api_key and len(raw_candidates) < 30:
             try:
                 import urllib.request as _urlreq, urllib.parse as _urlparse
@@ -725,10 +984,11 @@ class IRIS_System:
                 _webz_q = f'("{ticker_symbol}" OR "{_primary_name}") language:english'
                 _params = _urlparse.urlencode({
                     "token": self.webz_api_key,
-                    "q": f'"{ticker}" language:english',
-                    "sort": "published",
+                    "q": _webz_q,
+                    "ts": _webz_ts,
+                    "sort": "relevancy",
                     "order": "desc",
-                    "size": 20,
+                    "size": 40,
                     "format": "json",
                 })
                 _req = _urlreq.Request(
@@ -748,8 +1008,8 @@ class IRIS_System:
             except Exception as _e:
                 print(f"[NEWS] Webz.io error: {_e}")
 
-        # Fallback: existing yfinance extraction when NewsAPI is unavailable/failed/empty.
-        if not headlines:
+        # -- Source 3: yfinance supplement --------------------------------
+        if len(raw_candidates) < 15:
             try:
                 stock = yf.Ticker(ticker)
                 for item in (stock.news or [])[:40]:
@@ -759,42 +1019,52 @@ class IRIS_System:
                     if not isinstance(content, dict):
                         content = {}
                     title = (item.get("title") or content.get("title") or "")
-                    url   = (item.get("link")  or item.get("url") or
-                             content.get("link") or content.get("url") or "")
-                    pub   = (item.get("providerPublishTime") or
-                             content.get("pubDate", ""))
+                    url = (item.get("link") or item.get("url") or
+                           content.get("link") or content.get("url") or "")
+                    pub = (item.get("providerPublishTime") or
+                           content.get("pubDate", ""))
                     collect(title=title, url=url, published_at=pub)
             except Exception as _e:
                 print(f"[NEWS] yfinance error: {_e}")
 
-        # ── Source 4: simulation fallback ────────────────────────────────
+        # -- Source 4: simulation fallback --------------------------------
         if not raw_candidates:
             _sim = {
                 "TSLA": [
                     {"title": "Tesla recalls 2 million vehicles due to autopilot risk", "url": ""},
                     {"title": "Analysts downgrade Tesla stock amid slowing EV demand", "url": ""},
-                ]
-            elif ticker == "NVDA":
-                simulation_items = [
-                    {"title": "Nvidia announces fantastic breakthrough AI chip", "url": ""},
-                    {"title": "Nvidia quarterly revenue brilliantly beats expectations by 20%", "url": ""},
-                ]
-            else:
-                simulation_items = [
-                    {"title": f"{ticker_symbol} announces date for shareholder meeting", "url": ""},
-                    {"title": f"{ticker_symbol} news flow remains active amid market volatility", "url": ""},
-                ]
-            for entry in simulation_items:
-                add_relevant_article(
-                    title=entry.get("title", ""),
-                    url=entry.get("url", ""),
-                    description="",
-                )
+                ],
+                "NVDA": [
+                    {"title": "Nvidia announces breakthrough AI chip", "url": ""},
+                    {"title": "Nvidia quarterly revenue beats expectations by 20%", "url": ""},
+                ],
+            }
+            _primary_name = search_terms["names"][0] if search_terms.get("names") else ticker_symbol
+            for entry in _sim.get(ticker_symbol, [
+                {"title": f"{_primary_name} shares trade actively amid broad market movements", "url": ""},
+                {"title": f"Analysts review {_primary_name} outlook for current quarter", "url": ""},
+                {"title": f"{_primary_name} scheduled to report earnings this season", "url": ""},
+            ]):
+                collect(title=entry["title"], url=entry.get("url", ""))
 
-        #  Analyze Sentiment using FinBERT
-        total_score = 0
-        valid_headlines = 0
-        
+        print(f"[NEWS] {ticker_symbol}: {len(raw_candidates)} raw candidates collected.")
+
+        # -- Phase 2: LLM filter -------------------------------------------
+        headlines = llm_filter_headlines(
+            ticker_symbol,
+            raw_candidates,
+            max_keep=25,
+        )
+        print(f"[NEWS] {ticker_symbol}: {len(headlines)} headlines after LLM filter.")
+
+        # Ensure every headline has a category key for the frontend tag logic
+        for h in headlines:
+            if "category" not in h:
+                h["category"] = "financial"
+
+        # -- Sentiment scoring ---------------------------------------------
+        total_score = 0.0
+        valid_count = 0
         if self.sentiment_analyzer and headlines:
             for h in headlines:
                 title_text = str(h.get("title", "")).strip()
@@ -802,8 +1072,8 @@ class IRIS_System:
                     continue
                 try:
                     result = self.sentiment_analyzer(title_text)[0]
-                    label  = result["label"]
-                    score  = result["score"]
+                    label = result["label"]
+                    score = result["score"]
                     if label == "positive":
                         total_score += score
                         valid_count += 1
@@ -1133,4 +1403,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
