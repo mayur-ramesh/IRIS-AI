@@ -250,7 +250,7 @@ Headlines:
                     {"role": "user", "content": prompt},
                 ],
                 temperature=0.0,
-                max_tokens=300,
+                max_tokens=600,
             )
             raw = (resp.choices[0].message.content or "").strip()
             # Strip accidental markdown fences
@@ -898,8 +898,8 @@ class IRIS_System:
         search_terms = _get_search_terms(ticker_symbol)
         from datetime import datetime, timedelta, timezone
         _now = datetime.now(timezone.utc)
-        _news_from_date = (_now - timedelta(days=14)).strftime("%Y-%m-%d")
-        _webz_ts = int((_now - timedelta(days=14)).timestamp()) * 1000
+        _news_from_date = (_now - timedelta(days=21)).strftime("%Y-%m-%d")
+        _webz_ts = int((_now - timedelta(days=21)).timestamp()) * 1000
         raw_candidates = []
         seen_urls = set()
         seen_titles = set()
@@ -926,7 +926,7 @@ class IRIS_System:
         def collect(title, url="", published_at=""):
             """Add a raw candidate after only dedup + piracy checks."""
             title = str(title or "").strip()
-            if not title or len(raw_candidates) >= 40:
+            if not title or len(raw_candidates) >= 100:
                 return
             if _NOISE.search(title):
                 return
@@ -963,7 +963,7 @@ class IRIS_System:
                     language="en",
                     sort_by="publishedAt",
                     from_param=_news_from_date,
-                    page_size=50,
+                    page_size=100,
                 )
                 for article in (response.get("articles") or []):
                     if not isinstance(article, dict):
@@ -977,7 +977,7 @@ class IRIS_System:
                 print(f"[NEWS] NewsAPI error: {_e}")
 
         # -- Source 2: Webz.io ---------------------------------------------
-        if self.webz_api_key and len(raw_candidates) < 30:
+        if self.webz_api_key:
             try:
                 import urllib.request as _urlreq, urllib.parse as _urlparse
                 _primary_name = search_terms["names"][0] if search_terms["names"] else ticker_symbol
@@ -988,7 +988,7 @@ class IRIS_System:
                     "ts": _webz_ts,
                     "sort": "relevancy",
                     "order": "desc",
-                    "size": 40,
+                    "size": 60,
                     "format": "json",
                 })
                 _req = _urlreq.Request(
@@ -1008,24 +1008,23 @@ class IRIS_System:
             except Exception as _e:
                 print(f"[NEWS] Webz.io error: {_e}")
 
-        # -- Source 3: yfinance supplement --------------------------------
-        if len(raw_candidates) < 15:
-            try:
-                stock = yf.Ticker(ticker)
-                for item in (stock.news or [])[:40]:
-                    if not isinstance(item, dict):
-                        continue
-                    content = item.get("content") or {}
-                    if not isinstance(content, dict):
-                        content = {}
-                    title = (item.get("title") or content.get("title") or "")
-                    url = (item.get("link") or item.get("url") or
-                           content.get("link") or content.get("url") or "")
-                    pub = (item.get("providerPublishTime") or
-                           content.get("pubDate", ""))
-                    collect(title=title, url=url, published_at=pub)
-            except Exception as _e:
-                print(f"[NEWS] yfinance error: {_e}")
+        # -- Source 3: yfinance supplement (always run for maximum coverage) --
+        try:
+            stock = yf.Ticker(ticker)
+            for item in (stock.news or [])[:60]:
+                if not isinstance(item, dict):
+                    continue
+                content = item.get("content") or {}
+                if not isinstance(content, dict):
+                    content = {}
+                title = (item.get("title") or content.get("title") or "")
+                url = (item.get("link") or item.get("url") or
+                       content.get("link") or content.get("url") or "")
+                pub = (item.get("providerPublishTime") or
+                       content.get("pubDate", ""))
+                collect(title=title, url=url, published_at=pub)
+        except Exception as _e:
+            print(f"[NEWS] yfinance error: {_e}")
 
         # -- Source 4: simulation fallback --------------------------------
         if not raw_candidates:
@@ -1053,7 +1052,7 @@ class IRIS_System:
         headlines = llm_filter_headlines(
             ticker_symbol,
             raw_candidates,
-            max_keep=25,
+            max_keep=40,
         )
         print(f"[NEWS] {ticker_symbol}: {len(headlines)} headlines after LLM filter.")
 
@@ -1293,6 +1292,7 @@ class IRIS_System:
                     "title": title_text,
                     "url": str(entry.get("url", "")).strip(),
                     "published_at": str(entry.get("published_at", "")).strip(),
+                    "category": str(entry.get("category", "financial")).strip(),
                 })
 
         report = {
