@@ -95,12 +95,30 @@ TIMEFRAME_TO_YFINANCE = {
 
 try:
     from ticker_validator import validate_ticker as _validate_ticker
-    from ticker_db import load_ticker_db as _load_ticker_db, search_tickers as _search_tickers
+    from ticker_db import (
+        load_ticker_db as _load_ticker_db,
+        search_tickers as _search_tickers,
+        refresh_ticker_db as _refresh_ticker_db,
+        run_startup_checks as _run_startup_checks,
+        get_db_file_age_hours as _get_db_file_age_hours,
+        is_db_stale as _is_db_stale,
+    )
     _VALIDATOR_AVAILABLE = True
 except ImportError:
     _VALIDATOR_AVAILABLE = False
     _load_ticker_db = None
     _search_tickers = None
+    _refresh_ticker_db = None
+    _run_startup_checks = None
+    _get_db_file_age_hours = None
+    _is_db_stale = None
+
+try:
+    from ticker_scheduler import start_scheduler as _start_scheduler
+    _SCHEDULER_AVAILABLE = True
+except ImportError:
+    _SCHEDULER_AVAILABLE = False
+    _start_scheduler = None
 
 try:
     from data_fetcher import fetch_market_data as _fetch_market_data
@@ -116,6 +134,22 @@ except ImportError:
     _validate_llm_output = None
 
 _validation_logger = logging.getLogger("iris.ticker_validation")
+
+# ---------------------------------------------------------------------------
+# Startup integrity checks + background scheduler
+# ---------------------------------------------------------------------------
+if _VALIDATOR_AVAILABLE and _run_startup_checks is not None:
+    try:
+        _run_startup_checks()
+    except Exception as _startup_exc:
+        logging.getLogger(__name__).warning("Startup checks failed: %s", _startup_exc)
+
+if _SCHEDULER_AVAILABLE and _start_scheduler is not None:
+    try:
+        _start_scheduler()
+    except Exception as _sched_exc:
+        logging.getLogger(__name__).warning("Could not start ticker scheduler: %s", _sched_exc)
+# ---------------------------------------------------------------------------
 
 # Simple in-memory rate limiter: {ip: [unix_timestamp, ...]}
 _rate_limit_store: dict[str, list[float]] = defaultdict(list)
@@ -410,7 +444,7 @@ def analyze_ticker():
         else:
              return jsonify({"error": f"Failed to analyze {ticker}. Stock not found or connection error."}), 404
              
-    except Exception as e:
+    except Exception:
         print(f"Error during analysis: {traceback.format_exc()}")
         return jsonify({"error": "An internal error occurred during analysis."}), 500
 
@@ -577,6 +611,9 @@ def health_check():
     """Report service health and ticker database status."""
     ticker_db_loaded = False
     ticker_count = 0
+    ticker_db_age_hours = None
+    ticker_db_stale = False
+
     if _VALIDATOR_AVAILABLE and _load_ticker_db is not None:
         try:
             db = _load_ticker_db()
@@ -584,8 +621,41 @@ def health_check():
             ticker_count = len(db)
         except Exception:
             pass
-    return jsonify({"status": "ok", "ticker_db_loaded": ticker_db_loaded,
-                    "ticker_count": ticker_count}), 200
+
+    if _get_db_file_age_hours is not None:
+        try:
+            ticker_db_age_hours = _get_db_file_age_hours()
+            ticker_db_age_hours = round(ticker_db_age_hours, 2) if ticker_db_age_hours is not None else None
+        except Exception:
+            pass
+
+    if _is_db_stale is not None:
+        try:
+            ticker_db_stale = _is_db_stale(threshold_hours=48.0)
+        except Exception:
+            pass
+
+    return jsonify({
+        "status": "ok",
+        "ticker_db_loaded": ticker_db_loaded,
+        "ticker_count": ticker_count,
+        "ticker_db_age_hours": ticker_db_age_hours,
+        "ticker_db_stale": ticker_db_stale,
+    }), 200
+
+
+@app.route('/api/admin/refresh-ticker-db', methods=['POST'])
+def refresh_ticker_db_endpoint():
+    """Manually trigger a ticker database refresh from the SEC source."""
+    if not _VALIDATOR_AVAILABLE or _refresh_ticker_db is None:
+        return jsonify({"error": "Ticker database module not available."}), 503
+    try:
+        result = _refresh_ticker_db()
+        status_code = 200 if result.get("status") == "ok" else 502
+        return jsonify(result), status_code
+    except Exception as exc:
+        logging.getLogger(__name__).error("Manual ticker DB refresh failed: %s", exc)
+        return jsonify({"status": "error", "error": "Refresh failed unexpectedly."}), 500
 
 
 if __name__ == '__main__':

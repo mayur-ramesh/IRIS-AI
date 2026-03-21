@@ -13,3 +13,5 @@ transformers
 torch
 gunicorn
 openai
+filelock
+apscheduler
