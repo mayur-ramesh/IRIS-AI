@@ -113,66 +113,56 @@
 
             <div class="cards-grid dashboard-3col">
 
-              <!-- LEFT column: Risk Indicator + Sentiment Analysis -->
-              <div class="dash-col dash-col--left">
-
-                <div class="card glass-panel engine-light-card">
-                  <h3>Risk Indicator</h3>
-                  <div class="engine-indicator" id="engine-light">
-                    <div class="light-bulb" id="light-bulb"></div>
-                    <h4 id="light-status">NEUTRAL</h4>
-                  </div>
+              <!-- Row 1, Col 1: Risk Indicator -->
+              <div class="card glass-panel engine-light-card">
+                <h3>Risk Indicator</h3>
+                <div class="engine-indicator" id="engine-light">
+                  <div class="light-bulb" id="light-bulb"></div>
+                  <h4 id="light-status">NEUTRAL</h4>
                 </div>
-
-                <div class="card glass-panel sentiment-card">
-                  <h3>Sentiment Analysis</h3>
-                  <div class="sentiment-meter">
-                    <div class="score-display">
-                      <span id="sentiment-score">0.00</span>
-                    </div>
-                    <p class="sentiment-desc" id="sentiment-desc">Neutral Sentiment</p>
-                  </div>
-                </div>
-
               </div>
 
-              <!-- MIDDLE column: Market Prediction + LLM Insights -->
-              <div class="dash-col dash-col--mid">
-
-                <div class="card glass-panel price-card">
-                  <h3>Market Prediction</h3>
-                  <div class="price-info">
-                    <div class="price-row">
-                      <span class="label">Current</span>
-                      <span class="value" id="current-price">$0.00</span>
-                    </div>
-                    <div class="price-row highlight">
-                      <span class="label">Predicted (Next Session)</span>
-                      <span class="value" id="predicted-price">$0.00</span>
-                    </div>
+              <!-- Row 1, Col 2: Market Prediction -->
+              <div class="card glass-panel price-card">
+                <h3>Market Prediction</h3>
+                <div class="price-info">
+                  <div class="price-row">
+                    <span class="label">Current</span>
+                    <span class="value" id="current-price">$0.00</span>
                   </div>
-                  <div class="trend-badge" id="trend-label">UNKNOWN TREND</div>
-                </div>
-
-                <div class="card glass-panel llm-card">
-                  <h3>LLM Insights</h3>
-                  <div class="llm-info" id="llm-insights-container"
-                       style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
-                    <p class="text-muted">No LLM insights available.</p>
+                  <div class="price-row highlight">
+                    <span class="label">Predicted (Next Session)</span>
+                    <span class="value" id="predicted-price">$0.00</span>
                   </div>
                 </div>
-
+                <div class="trend-badge" id="trend-label">UNKNOWN TREND</div>
               </div>
 
-              <!-- RIGHT column: Recent Headlines (full height) -->
-              <div class="dash-col dash-col--right">
+              <!-- Col 3, spans rows 1–2: Recent Headlines -->
+              <div class="card glass-panel headlines-card">
+                <h3>Recent Headlines Analyzed</h3>
+                <ul id="headlines-list" class="headlines-list"></ul>
+                <div class="headlines-scroll-hint">scroll for more</div>
+              </div>
 
-                <div class="card glass-panel headlines-card">
-                  <h3>Recent Headlines Analyzed</h3>
-                  <ul id="headlines-list" class="headlines-list"></ul>
-                  <div class="headlines-scroll-hint">scroll for more</div>
+              <!-- Row 2, Col 1: Sentiment Analysis -->
+              <div class="card glass-panel sentiment-card">
+                <h3>Sentiment Analysis</h3>
+                <div class="sentiment-meter">
+                  <div class="score-display">
+                    <span id="sentiment-score">0.00</span>
+                  </div>
+                  <p class="sentiment-desc" id="sentiment-desc">Neutral Sentiment</p>
                 </div>
+              </div>
 
+              <!-- Row 2, Col 2: LLM Insights -->
+              <div class="card glass-panel llm-card">
+                <h3>LLM Insights</h3>
+                <div class="llm-info" id="llm-insights-container"
+                     style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+                  <p class="text-muted">No LLM insights available.</p>
+                </div>
               </div>
 
             </div>

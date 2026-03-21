@@ -450,96 +450,85 @@ header {
 
 .dashboard-3col {
   display: grid;
-  grid-template-columns: 1fr 1fr 1.45fr;
-  gap: 1.5rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.25rem;
   align-items: stretch;
   margin-bottom: 2rem;
 }
 
-.dash-col {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  height: 100%;
-  min-height: 0;        /* lets flex children shrink below content size */
-}
-
-/* Left column: two cards share the full column height equally */
-.dash-col--left {
-  height: 100%;
-  min-height: 0;
-}
-
-.dash-col--left .card {
-  flex: 1;
-  min-height: 0;
+/* ── Explicit grid placement for each dashboard card ── */
+.engine-light-card {
+  grid-column: 1;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
 }
 
-/* Engine indicator fills leftover vertical space inside Risk card */
-.dash-col--left .engine-indicator {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.price-card {
+  grid-column: 2;
+  grid-row: 1;
 }
 
-/* Sentiment body fills leftover space inside Sentiment card */
-.dash-col--left .sentiment-meter {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Middle column */
-.dash-col--mid {
-  height: 100%;
-  min-height: 0;
-}
-
-.dash-col--mid .price-card {
-  flex-shrink: 0;
-}
-
-.dash-col--mid .llm-card {
-  flex: 1;
-  min-height: 0;
+/* Headlines spans both rows in the third column */
+.headlines-card {
+  grid-column: 3;
+  grid-row: 1 / span 2;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-.dash-col--mid .llm-card .llm-info {
+.sentiment-card {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.llm-card {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Engine indicator centred vertically inside Risk card */
+.engine-light-card .engine-indicator {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sentiment meter centred vertically inside Sentiment card */
+.sentiment-card .sentiment-meter {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* LLM Insights: scrollable content area */
+.llm-card .llm-info {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
 }
 
-/* Right column: headlines card fills full height and scrolls internally */
-.dash-col--right {
-  height: 100%;
-  min-height: 0;
-}
-
-.dash-col--right .headlines-card {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.dash-col--right .headlines-card h3 {
+/* Headlines: fixed title, scrollable list */
+.headlines-card h3 {
   flex-shrink: 0;
 }
 
-.dash-col--right .headlines-card .headlines-list {
-  height: 80%;
+.headlines-card .headlines-list {
+  flex: 1;
+  overflow-y: auto;
   padding-right: 0.25rem;
+  max-height: 460px;
 }
 
 /* Predicted price: RED for uptrend, GREEN for downtrend (contrarian risk signal) */
@@ -1165,38 +1154,25 @@ footer p {
         width: 100%; /* Full width tap-target for thumbs */
     }
 
-    /* Layout Grid */
+    /* Layout Grid — single column on mobile */
     .dashboard-3col {
         grid-template-columns: 1fr;
         grid-template-rows: none;
-        height: auto;
     }
 
-    /* Dashboard columns reset */
-    .dash-col,
-    .dash-col--left,
-    .dash-col--mid,
-    .dash-col--right {
-        display: block;
-    }
-
+    /* Reset explicit placements so cards stack naturally */
     .engine-light-card,
-    .sentiment-card,
     .price-card,
+    .headlines-card,
+    .sentiment-card,
     .llm-card {
         grid-column: auto;
         grid-row: auto;
     }
 
     .headlines-card {
-        grid-column: auto;
-        grid-row: auto;
-        height: auto;
-    }
-
-    .dashboard-3col .card,
-    .dashboard-3col .glass-panel {
-        height: auto;
+        max-height: none;
+        overflow: visible;
     }
 
     .headlines-list {
