@@ -14,7 +14,7 @@
         })();
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/style.css?v=6">
+    <link rel="stylesheet" href="/static/style.css?v=7">
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%233b82f6%22>IA</text></svg>">
 </head>
@@ -52,7 +52,11 @@
                     <div class="input-wrapper" id="ticker-input-wrapper">
                         <input type="text" id="ticker-input"
                             placeholder="Enter stock ticker (e.g., AAPL)"
-                            autocomplete="off" spellcheck="false" maxlength="10">
+                            autocomplete="off" spellcheck="false" maxlength="10"
+                            role="combobox" aria-expanded="false" aria-haspopup="listbox"
+                            aria-autocomplete="list" aria-controls="ticker-dropdown">
+                        <ul id="ticker-dropdown" role="listbox" class="ticker-dropdown hidden"
+                            aria-label="Ticker suggestions"></ul>
                         <button type="button" id="ticker-clear" class="ticker-clear hidden"
                             aria-label="Clear input" tabindex="-1">×</button>
                         <span id="ticker-val-indicator" class="ticker-val-indicator hidden"
@@ -70,6 +74,7 @@
             </div>
             <div id="error-message" class="error-msg hidden"></div>
         </section>
+        <div id="ticker-ac-live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
         <!-- Error Banner (shown on 422 / 429 / 500 / timeout) -->
         <div id="error-banner" class="error-banner hidden" role="alert" aria-live="assertive">
@@ -219,7 +224,7 @@
     <script
         src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js?v=4"></script>
     <script src="/static/tickerValidation.js?v=1"></script>
-    <script src="/static/app.js?v=18"></script>
+    <script src="/static/app.js?v=19"></script>
 </body>
 
 </html>

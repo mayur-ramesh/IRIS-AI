@@ -95,11 +95,12 @@ TIMEFRAME_TO_YFINANCE = {
 
 try:
     from ticker_validator import validate_ticker as _validate_ticker
-    from ticker_db import load_ticker_db as _load_ticker_db
+    from ticker_db import load_ticker_db as _load_ticker_db, search_tickers as _search_tickers
     _VALIDATOR_AVAILABLE = True
 except ImportError:
     _VALIDATOR_AVAILABLE = False
     _load_ticker_db = None
+    _search_tickers = None
 
 _validation_logger = logging.getLogger("iris.ticker_validation")
 
@@ -484,6 +485,26 @@ def latest_session_summary():
     if not path.exists():
         return jsonify({"error": "No session summary found yet."}), 404
     return send_file(str(path), mimetype="application/json")
+
+@app.route('/api/tickers/search', methods=['GET'])
+def search_tickers_endpoint():
+    """Prefix search over the local ticker database for autocomplete."""
+    q = str(request.args.get('q', '') or '').strip()
+    if not q:
+        return jsonify({"results": []}), 200
+    try:
+        limit = max(1, min(int(request.args.get('limit', 8)), 50))
+    except (ValueError, TypeError):
+        limit = 8
+    if _VALIDATOR_AVAILABLE and _search_tickers is not None:
+        try:
+            results = _search_tickers(q, limit)
+        except Exception:
+            results = []
+    else:
+        results = []
+    return jsonify({"results": results}), 200
+
 
 @app.route('/api/validate-ticker', methods=['POST'])
 def validate_ticker_endpoint():

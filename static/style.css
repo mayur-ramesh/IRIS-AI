@@ -1497,3 +1497,69 @@ footer p {
 }
 .skeleton-line  { height: 14px; width: 55%; }
 .skeleton-block { height: 48px; }
+
+/* ============================================================
+   Screen-reader only utility
+   ============================================================ */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ============================================================
+   Ticker autocomplete dropdown
+   ============================================================ */
+.ticker-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    z-index: 200;
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    max-height: 280px;
+    overflow-y: auto;
+}
+.ticker-dropdown.hidden { display: none; }
+
+.ticker-dropdown-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.55rem 0.9rem;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+.ticker-dropdown-item:hover,
+.ticker-dropdown-item[aria-selected="true"] {
+    background: var(--bg-subtle);
+}
+
+.ticker-dropdown-ticker {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    min-width: 3.5rem;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+}
+
+.ticker-dropdown-name {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
