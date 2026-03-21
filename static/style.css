@@ -1327,3 +1327,173 @@ footer p {
     color: var(--text-inverse);
     box-shadow: 0 0 0 2px var(--accent-blue-glow);
 }
+
+/* ============================================================
+   Error banner
+   ============================================================ */
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(-10px); }
+}
+
+.error-banner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 700px;
+    margin: 0 auto 1.25rem;
+    padding: 0.9rem 1.2rem;
+    border-radius: 12px;
+    background: rgba(182, 78, 90, 0.12);
+    border: 1px solid var(--status-red);
+    color: var(--status-red);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.28s ease, transform 0.28s ease;
+}
+.error-banner.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.error-banner-body {
+    flex: 1;
+    min-width: 0;
+}
+.error-banner-text {
+    display: block;
+    font-size: 0.93rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+}
+.error-banner-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+.error-banner-retry {
+    padding: 0.3rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid var(--status-red);
+    background: transparent;
+    color: var(--status-red);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.error-banner-retry:hover {
+    background: var(--status-red);
+    color: var(--text-inverse);
+}
+.error-banner-dismiss {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--status-red);
+    font-size: 1.3rem;
+    line-height: 1;
+    padding: 0.1rem 0.2rem;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+.error-banner-dismiss:hover { opacity: 1; }
+
+/* ============================================================
+   Analysis progress steps
+   ============================================================ */
+
+.analysis-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0 0.5rem;
+    max-width: 700px;
+    margin: 0 auto 1.25rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    background: var(--bg-subtle);
+    border: 1px solid var(--panel-border);
+}
+
+.progress-step {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+.progress-step + .progress-step::before {
+    content: '→';
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    margin-right: 0.5rem;
+}
+.progress-step.is-done {
+    color: var(--status-green);
+}
+.progress-step.is-active {
+    color: var(--accent-blue);
+    font-weight: 700;
+}
+.prog-icon {
+    font-size: 0.8rem;
+}
+
+/* ============================================================
+   Skeleton loader
+   ============================================================ */
+
+@keyframes shimmer {
+    0%   { background-position: -400px 0; }
+    100% { background-position:  400px 0; }
+}
+
+.skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+}
+@media (max-width: 640px) {
+    .skeleton-grid { grid-template-columns: 1fr; }
+}
+
+.skeleton-card {
+    border-radius: 12px;
+    border: 1px solid var(--panel-border);
+    background: var(--card-bg);
+    padding: 1.2rem;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.skeleton-card--tall { min-height: 180px; }
+
+.skeleton-line,
+.skeleton-block {
+    border-radius: 6px;
+    background: linear-gradient(
+        90deg,
+        var(--bg-subtle) 25%,
+        var(--panel-border) 50%,
+        var(--bg-subtle) 75%
+    );
+    background-size: 400px 100%;
+    animation: shimmer 1.4s ease-in-out infinite;
+}
+.skeleton-line  { height: 14px; width: 55%; }
+.skeleton-block { height: 48px; }

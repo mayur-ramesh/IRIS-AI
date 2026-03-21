@@ -73,6 +73,114 @@ document.addEventListener('DOMContentLoaded', () => {
     let latestPredictedPrice = null;
     let latestAnalyzeHistory = [];
     let latestAnalyzeTimeframe = '6M';
+    // --- Analysis state / flow elements ---
+    const errorBanner       = document.getElementById('error-banner');
+    const errorBannerMsg    = document.getElementById('error-banner-msg');
+    const errorBannerChips  = document.getElementById('error-banner-chips');
+    const errorBannerRetry  = document.getElementById('error-banner-retry');
+    const errorBannerDismiss= document.getElementById('error-banner-dismiss');
+    const analysisProgress  = document.getElementById('analysis-progress');
+    const analysisSkeleton  = document.getElementById('analysis-skeleton');
+
+    let _retryTicker      = null;
+    let _progressTimers   = [];
+    let _rateLimitTimer   = null;
+
+    function _showErrorBanner(message, suggestions, showRetry) {
+        if (!errorBanner) return;
+        if (errorBannerMsg) errorBannerMsg.textContent = message;
+        if (errorBannerChips) {
+            errorBannerChips.innerHTML = '';
+            if (Array.isArray(suggestions) && suggestions.length) {
+                suggestions.forEach((s) => {
+                    const chip = document.createElement('button');
+                    chip.type = 'button';
+                    chip.className = 'suggestion-chip';
+                    chip.textContent = s;
+                    chip.addEventListener('click', () => {
+                        _hideErrorBanner();
+                        input.value = s;
+                        _triggerValidation(s);
+                    });
+                    errorBannerChips.appendChild(chip);
+                });
+            }
+        }
+        if (errorBannerRetry) errorBannerRetry.classList.toggle('hidden', !showRetry);
+        errorBanner.classList.remove('hidden');
+        requestAnimationFrame(() => errorBanner.classList.add('is-visible'));
+    }
+
+    function _hideErrorBanner() {
+        if (!errorBanner) return;
+        errorBanner.classList.remove('is-visible');
+        setTimeout(() => errorBanner.classList.add('hidden'), 300);
+    }
+
+    function _clearProgressTimers() {
+        _progressTimers.forEach((t) => clearTimeout(t));
+        _progressTimers = [];
+    }
+
+    function _advanceProgress(step) {
+        if (!analysisProgress) return;
+        analysisProgress.querySelectorAll('.progress-step').forEach((el, i) => {
+            const n = i + 1;
+            el.className = n < step ? 'progress-step is-done'
+                         : n === step ? 'progress-step is-active'
+                         : 'progress-step';
+        });
+    }
+
+    function _showProgress() {
+        if (!analysisProgress) return;
+        _advanceProgress(1);
+        analysisProgress.classList.remove('hidden');
+        _progressTimers.push(setTimeout(() => _advanceProgress(2), 1000));
+        _progressTimers.push(setTimeout(() => _advanceProgress(3), 3000));
+        _progressTimers.push(setTimeout(() => _advanceProgress(4), 5000));
+    }
+
+    function _hideProgress() {
+        _clearProgressTimers();
+        if (!analysisProgress) return;
+        analysisProgress.classList.add('hidden');
+        analysisProgress.querySelectorAll('.progress-step').forEach((el) => {
+            el.className = 'progress-step';
+        });
+    }
+
+    function _showSkeleton() { if (analysisSkeleton) analysisSkeleton.classList.remove('hidden'); }
+    function _hideSkeleton()  { if (analysisSkeleton) analysisSkeleton.classList.add('hidden');  }
+
+    function _startRateLimitCountdown(seconds) {
+        const endTime = Date.now() + seconds * 1000;
+        analyzeBtn.disabled = true;
+        function tick() {
+            const remaining = Math.ceil((endTime - Date.now()) / 1000);
+            if (remaining <= 0) {
+                if (btnText) btnText.textContent = 'Analyze Risk';
+                analyzeBtn.disabled = !_validatedTicker;
+                return;
+            }
+            if (btnText) btnText.textContent = `Wait ${remaining}s…`;
+            _rateLimitTimer = setTimeout(tick, 500);
+        }
+        tick();
+    }
+
+    if (errorBannerDismiss) {
+        errorBannerDismiss.addEventListener('click', _hideErrorBanner);
+    }
+    if (errorBannerRetry) {
+        errorBannerRetry.addEventListener('click', () => {
+            if (_retryTicker) {
+                _hideErrorBanner();
+                loadTickerData(_retryTicker, false);
+            }
+        });
+    }
+
     // --- Validation UI elements ---
     const inputWrapper    = document.getElementById('ticker-input-wrapper');
     const clearBtn        = document.getElementById('ticker-clear');
@@ -464,36 +572,93 @@ document.addEventListener('DOMContentLoaded', () => {
         params.set('period', mapped.period);
         params.set('interval', mapped.interval);
 
+        _retryTicker = normalizedTicker;
+
+        // 30-second hard timeout on the entire analysis
+        const timeoutCtrl = new AbortController();
+        const timeoutId = setTimeout(() => timeoutCtrl.abort(), 30000);
+
         setLoading(true);
+        _hideErrorBanner();
         errorMsg.classList.add('hidden');
+        _showProgress();
+        _showSkeleton();
         if (!keepDashboardVisible) {
             dashboard.classList.add('hidden');
         }
 
         try {
-            const response = await fetch(`/api/analyze?${params.toString()}`);
-            const data = await response.json();
-            if (!response.ok) {
-                throw new Error(data.error || 'Failed to fetch data');
+            const response = await fetch(`/api/analyze?${params.toString()}`, {
+                signal: timeoutCtrl.signal,
+            });
+            clearTimeout(timeoutId);
+
+            if (response.status === 422) {
+                const body = await response.json().catch(() => ({}));
+                _showErrorBanner(
+                    body.error || 'Invalid ticker. Please check the symbol.',
+                    body.suggestions || [],
+                    false
+                );
+                _setInputState('error');
+                _validatedTicker = null;
+                analyzeBtn.disabled = true;
+                return;
             }
 
+            if (response.status === 429) {
+                _showErrorBanner(
+                    "You're sending requests too quickly. Please wait a moment and try again.",
+                    [],
+                    false
+                );
+                _startRateLimitCountdown(10);
+                return;
+            }
+
+            const data = await response.json();
+            if (!response.ok) {
+                _showErrorBanner(
+                    data.error || 'Something went wrong on our end. Please try again in a few seconds.',
+                    [],
+                    true
+                );
+                return;
+            }
+
+            // Success
             dashboard.classList.remove('hidden');
             currentTicker = String(data?.meta?.symbol || normalizedTicker).toUpperCase();
             input.value = currentTicker;
-            _validatedTicker = currentTicker; // keep in sync after successful analysis
+            _validatedTicker = currentTicker;
             latestPredictedPrice = Number(data?.market?.predicted_price_next_session);
             latestAnalyzeHistory = normalizeHistoryPoints(data?.market?.history);
             latestAnalyzeTimeframe = getActiveTimeframe();
             updateDashboard(data);
             await refreshChartForTimeframe(currentTicker, getActiveTimeframe(), false);
+
         } catch (error) {
+            clearTimeout(timeoutId);
             console.error(error);
-            errorMsg.textContent = error.message || 'Failed to fetch data';
-            errorMsg.classList.remove('hidden');
             if (!keepDashboardVisible) {
                 dashboard.classList.add('hidden');
             }
+            if (error.name === 'AbortError') {
+                _showErrorBanner(
+                    'The analysis is taking longer than expected. Please try again.',
+                    [],
+                    true
+                );
+            } else {
+                _showErrorBanner(
+                    'Something went wrong on our end. Please try again in a few seconds.',
+                    [],
+                    true
+                );
+            }
         } finally {
+            _hideSkeleton();
+            _hideProgress();
             setLoading(false);
         }
     }

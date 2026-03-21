@@ -71,6 +71,34 @@
             <div id="error-message" class="error-msg hidden"></div>
         </section>
 
+        <!-- Error Banner (shown on 422 / 429 / 500 / timeout) -->
+        <div id="error-banner" class="error-banner hidden" role="alert" aria-live="assertive">
+            <div class="error-banner-body">
+                <span id="error-banner-msg" class="error-banner-text"></span>
+                <div id="error-banner-chips" class="suggestion-chips"></div>
+            </div>
+            <div class="error-banner-actions">
+                <button id="error-banner-retry" class="error-banner-retry hidden" type="button">↺ Retry</button>
+                <button id="error-banner-dismiss" class="error-banner-dismiss" type="button" aria-label="Dismiss">×</button>
+            </div>
+        </div>
+
+        <!-- Analysis progress + skeleton (shown while loading) -->
+        <div id="analysis-progress" class="analysis-progress hidden" aria-live="polite">
+            <div class="progress-step" id="prog-step-1"><span class="prog-icon">✓</span><span class="prog-label">Ticker validated</span></div>
+            <div class="progress-step" id="prog-step-2"><span class="prog-icon">●</span><span class="prog-label">Fetching market data…</span></div>
+            <div class="progress-step" id="prog-step-3"><span class="prog-icon">○</span><span class="prog-label">Running risk analysis</span></div>
+            <div class="progress-step" id="prog-step-4"><span class="prog-icon">○</span><span class="prog-label">Generating report</span></div>
+        </div>
+
+        <div id="analysis-skeleton" class="analysis-skeleton hidden" aria-hidden="true">
+            <div class="skeleton-grid">
+                <div class="skeleton-card"><div class="skeleton-line"></div><div class="skeleton-block"></div></div>
+                <div class="skeleton-card skeleton-card--tall"><div class="skeleton-line"></div><div class="skeleton-block"></div><div class="skeleton-block"></div></div>
+                <div class="skeleton-card"><div class="skeleton-line"></div><div class="skeleton-block"></div></div>
+            </div>
+        </div>
+
         <!-- Dashboard Results (Hidden by default) -->
         <section id="results-dashboard" class="dashboard hidden">
             <div class="dashboard-header">
