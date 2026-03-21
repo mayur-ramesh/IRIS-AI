@@ -1202,24 +1202,47 @@ footer p {
     padding-right: 3rem; /* room for clear btn */
 }
 
-/* -- Clear button (× inside the field) -- */
-.ticker-clear {
+/* -- Clear button (× inside the field) --
+   Use .search-box .ticker-clear (specificity 0,2,0) to beat
+   .search-box button (0,1,1) which would otherwise apply the
+   "Analyze Risk" button's padding/background/min-width. */
+.search-box .ticker-clear {
+    /* Positioning: float inside the input, right edge */
     position: absolute;
-    right: 0.75rem;
+    right: 0.625rem;
     top: 50%;
     transform: translateY(-50%);
-    background: none;
+
+    /* Size: 20px circle */
+    width: 20px;
+    height: 20px;
+    min-width: 0;
+    padding: 0;
+    flex: none;
+
+    /* Appearance: subtle semi-transparent circle */
+    background: rgba(255, 255, 255, 0.12);
     border: none;
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.55);
     cursor: pointer;
-    color: var(--text-muted);
-    font-size: 1.2rem;
-    line-height: 1;
-    padding: 0.2rem 0.3rem;
-    border-radius: 4px;
-    transition: color 0.2s ease;
+
+    /* Layout: centre the SVG icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    box-shadow: none;
 }
-.ticker-clear:hover {
-    color: var(--text-main);
+.search-box .ticker-clear:hover {
+    background: rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: none;
+}
+.search-box .ticker-clear:active {
+    transform: translateY(-50%) scale(0.9);
 }
 
 /* -- Small inline validation indicator (spinner / checkmark) -- */
