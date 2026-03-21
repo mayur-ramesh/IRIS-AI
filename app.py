@@ -3,6 +3,9 @@ from flask_cors import CORS
 import traceback
 import os
 import json
+import logging
+import time
+from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 import numpy as np
@@ -85,6 +88,49 @@ TIMEFRAME_TO_YFINANCE = {
     "1Y": ("1y", "1d"),
     "5Y": ("5y", "1wk"),
 }
+
+# ---------------------------------------------------------------------------
+# Ticker validation setup
+# ---------------------------------------------------------------------------
+
+try:
+    from ticker_validator import validate_ticker as _validate_ticker
+    from ticker_db import load_ticker_db as _load_ticker_db
+    _VALIDATOR_AVAILABLE = True
+except ImportError:
+    _VALIDATOR_AVAILABLE = False
+    _load_ticker_db = None
+
+_validation_logger = logging.getLogger("iris.ticker_validation")
+
+# Simple in-memory rate limiter: {ip: [unix_timestamp, ...]}
+_rate_limit_store: dict[str, list[float]] = defaultdict(list)
+_RATE_LIMIT_MAX = 30
+_RATE_LIMIT_WINDOW = 60  # seconds
+
+
+def _check_rate_limit(ip: str) -> bool:
+    """Return True if request is allowed, False if rate limit exceeded."""
+    now = time.time()
+    cutoff = now - _RATE_LIMIT_WINDOW
+    _rate_limit_store[ip] = [t for t in _rate_limit_store[ip] if t > cutoff]
+    if len(_rate_limit_store[ip]) >= _RATE_LIMIT_MAX:
+        return False
+    _rate_limit_store[ip].append(now)
+    return True
+
+
+def _log_validation(raw_input: str, result) -> None:
+    _validation_logger.info(
+        "TICKER_VALIDATION | input=%s | valid=%s | source=%s | error=%s",
+        raw_input,
+        result.valid if result else False,
+        result.source if result else "",
+        result.error if result else "validator_unavailable",
+    )
+
+
+# ---------------------------------------------------------------------------
 
 def get_latest_llm_reports(symbol: str) -> dict:
     """Read the latest reports for the given symbol from the configured LLM models."""
@@ -267,11 +313,27 @@ def analyze_ticker():
     if not iris_app:
         return jsonify({"error": "IRIS System failed to initialize on the server."}), 500
 
-    ticker = request.args.get('ticker')
-    if not ticker:
+    raw_ticker = request.args.get('ticker')
+    if not raw_ticker:
         return jsonify({"error": "Ticker parameter is required"}), 400
 
-    ticker = str(ticker).strip().upper()
+    # --- Validation gate (Layer 1-3) before any LLM / heavy computation -----
+    if _VALIDATOR_AVAILABLE:
+        val_result = _validate_ticker(str(raw_ticker))
+        _log_validation(raw_ticker, val_result)
+        if not val_result.valid:
+            return jsonify({
+                "error": val_result.error,
+                "suggestions": val_result.suggestions,
+                "valid": False,
+            }), 422
+        ticker = val_result.ticker
+        company_name = val_result.company_name  # confirmed context for LLM
+    else:
+        ticker = str(raw_ticker).strip().upper()
+        company_name = ""
+    # -------------------------------------------------------------------------
+
     timeframe = str(request.args.get('timeframe', '') or '').strip().upper()
 
     if timeframe:
@@ -287,8 +349,8 @@ def analyze_ticker():
 
     try:
         print(
-            f"API Request for Analysis: {ticker} | timeframe={timeframe or 'custom'} | "
-            f"period={period} interval={interval}"
+            f"API Request for Analysis: {ticker} ({company_name or 'unknown'}) | "
+            f"timeframe={timeframe or 'custom'} | period={period} interval={interval}"
         )
         # Run the analysis for the single ticker quietly
         report = iris_app.run_one_ticker(
@@ -422,6 +484,46 @@ def latest_session_summary():
     if not path.exists():
         return jsonify({"error": "No session summary found yet."}), 404
     return send_file(str(path), mimetype="application/json")
+
+@app.route('/api/validate-ticker', methods=['POST'])
+def validate_ticker_endpoint():
+    """Real-time ticker validation for the frontend (always returns HTTP 200)."""
+    ip = request.remote_addr or "unknown"
+    if not _check_rate_limit(ip):
+        return jsonify({"error": "Too many requests. Please wait before trying again."}), 429
+
+    body = request.get_json(silent=True) or {}
+    raw = body.get("ticker", "")
+
+    if not _VALIDATOR_AVAILABLE:
+        return jsonify({"valid": True, "ticker": str(raw).strip().upper(),
+                        "company_name": ""}), 200
+
+    result = _validate_ticker(str(raw))
+    _log_validation(raw, result)
+
+    if result.valid:
+        return jsonify({"valid": True, "ticker": result.ticker,
+                        "company_name": result.company_name}), 200
+    return jsonify({"valid": False, "error": result.error,
+                    "suggestions": result.suggestions}), 200
+
+
+@app.route('/api/health', methods=['GET'])
+def health_check():
+    """Report service health and ticker database status."""
+    ticker_db_loaded = False
+    ticker_count = 0
+    if _VALIDATOR_AVAILABLE and _load_ticker_db is not None:
+        try:
+            db = _load_ticker_db()
+            ticker_db_loaded = True
+            ticker_count = len(db)
+        except Exception:
+            pass
+    return jsonify({"status": "ok", "ticker_db_loaded": ticker_db_loaded,
+                    "ticker_count": ticker_count}), 200
+
 
 if __name__ == '__main__':
     # Run the Flask app
