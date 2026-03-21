@@ -102,6 +102,19 @@ except ImportError:
     _load_ticker_db = None
     _search_tickers = None
 
+try:
+    from data_fetcher import fetch_market_data as _fetch_market_data
+    from prompt_builder import (
+        build_risk_analysis_prompt as _build_risk_prompt,
+        validate_llm_output as _validate_llm_output,
+    )
+    _GUARDRAILS_AVAILABLE = True
+except ImportError:
+    _GUARDRAILS_AVAILABLE = False
+    _fetch_market_data = None
+    _build_risk_prompt = None
+    _validate_llm_output = None
+
 _validation_logger = logging.getLogger("iris.ticker_validation")
 
 # Simple in-memory rate limiter: {ip: [unix_timestamp, ...]}
@@ -335,6 +348,18 @@ def analyze_ticker():
         company_name = ""
     # -------------------------------------------------------------------------
 
+    # --- Data guardrail layer: fetch real market data before any LLM call ---
+    market_data = None
+    grounded_prompt = None
+    if _GUARDRAILS_AVAILABLE:
+        market_data = _fetch_market_data(ticker)
+        if "error" in market_data:
+            return jsonify({
+                "error": f"Could not retrieve market data for {ticker}. Please try again later."
+            }), 502
+        grounded_prompt = _build_risk_prompt(ticker, company_name, market_data)
+    # -------------------------------------------------------------------------
+
     timeframe = str(request.args.get('timeframe', '') or '').strip().upper()
 
     if timeframe:
@@ -364,6 +389,23 @@ def analyze_ticker():
         
         if report:
             report["llm_insights"] = get_latest_llm_reports(ticker)
+
+            # Attach guardrail data so the frontend renders real numbers
+            if market_data is not None:
+                report["market_data"] = market_data
+            if grounded_prompt is not None:
+                report["grounded_prompt"] = grounded_prompt
+
+            # Post-processing sanity check on any pre-built LLM insight text
+            if _GUARDRAILS_AVAILABLE and market_data is not None:
+                for insight in report["llm_insights"].values():
+                    if isinstance(insight, dict):
+                        for text_key in ("summary", "analysis", "text", "content"):
+                            if isinstance(insight.get(text_key), str):
+                                insight[text_key] = _validate_llm_output(
+                                    insight[text_key], market_data
+                                )
+
             return jsonify(report)
         else:
              return jsonify({"error": f"Failed to analyze {ticker}. Stock not found or connection error."}), 404
