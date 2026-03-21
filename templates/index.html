@@ -49,14 +49,25 @@
             <h2>Enter Ticker to Analyze</h2>
             <form id="analyze-form">
                 <div class="search-box">
-                    <input type="text" id="ticker-input" placeholder="e.g. AAPL, TSLA, NVDA" required
-                        autocomplete="off">
-                    <button type="submit" id="analyze-btn">
+                    <div class="input-wrapper" id="ticker-input-wrapper">
+                        <input type="text" id="ticker-input"
+                            placeholder="Enter stock ticker (e.g., AAPL)"
+                            autocomplete="off" spellcheck="false" maxlength="10">
+                        <button type="button" id="ticker-clear" class="ticker-clear hidden"
+                            aria-label="Clear input" tabindex="-1">×</button>
+                        <span id="ticker-val-indicator" class="ticker-val-indicator hidden"
+                            aria-hidden="true"></span>
+                    </div>
+                    <button type="submit" id="analyze-btn" disabled>
                         <span class="btn-text">Analyze Risk</span>
                         <div class="spinner hidden" id="loading-spinner"></div>
                     </button>
                 </div>
             </form>
+            <div id="validation-hint" class="validation-hint hidden">
+                <span id="validation-msg" class="validation-msg"></span>
+                <div id="suggestion-chips" class="suggestion-chips"></div>
+            </div>
             <div id="error-message" class="error-msg hidden"></div>
         </section>
 
@@ -179,7 +190,8 @@
     <!-- TradingView Lightweight Charts -->
     <script
         src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js?v=4"></script>
-    <script src="/static/app.js?v=17"></script>
+    <script src="/static/tickerValidation.js?v=1"></script>
+    <script src="/static/app.js?v=18"></script>
 </body>
 
 </html>

@@ -73,6 +73,162 @@ document.addEventListener('DOMContentLoaded', () => {
     let latestPredictedPrice = null;
     let latestAnalyzeHistory = [];
     let latestAnalyzeTimeframe = '6M';
+    // --- Validation UI elements ---
+    const inputWrapper    = document.getElementById('ticker-input-wrapper');
+    const clearBtn        = document.getElementById('ticker-clear');
+    const valIndicator    = document.getElementById('ticker-val-indicator');
+    const validationHint  = document.getElementById('validation-hint');
+    const validationMsgEl = document.getElementById('validation-msg');
+    const suggestionChips = document.getElementById('suggestion-chips');
+
+    // --- Validation state ---
+    let _validatedTicker  = null;   // non-null only when remote validation passed
+    let _debounceTimer    = null;
+    let _abortController  = null;
+
+    function _setInputState(state) {
+        // state: '' | 'error' | 'validating' | 'valid' | 'warn'
+        input.className = state ? `ticker-input--${state}` : '';
+        if (valIndicator) {
+            valIndicator.classList.toggle('is-spinning', state === 'validating');
+            valIndicator.classList.toggle('hidden', state !== 'validating');
+        }
+    }
+
+    function _showValidationHint(text, type) {
+        if (!validationMsgEl || !validationHint) return;
+        validationMsgEl.textContent = text;
+        validationMsgEl.className = `validation-msg validation-msg--${type}`;
+        validationHint.classList.remove('hidden');
+    }
+
+    function _clearValidationHint() {
+        if (validationHint) validationHint.classList.add('hidden');
+        if (validationMsgEl) validationMsgEl.textContent = '';
+        if (suggestionChips) suggestionChips.innerHTML = '';
+    }
+
+    function _renderSuggestions(suggestions) {
+        if (!suggestionChips) return;
+        suggestionChips.innerHTML = '';
+        if (!Array.isArray(suggestions) || !suggestions.length) return;
+        suggestions.forEach((s) => {
+            const chip = document.createElement('button');
+            chip.type = 'button';
+            chip.className = 'suggestion-chip';
+            chip.textContent = s;
+            chip.addEventListener('click', () => {
+                input.value = s;
+                _triggerValidation(s);
+            });
+            suggestionChips.appendChild(chip);
+        });
+    }
+
+    async function _triggerValidation(rawValue) {
+        const val = String(rawValue || '').trim().toUpperCase();
+
+        // Cancel previous in-flight remote request
+        if (_abortController) _abortController.abort();
+        _abortController = new AbortController();
+
+        // Instant format check
+        const fmt = (window.TickerValidation || {}).validateTickerFormat;
+        if (!fmt) return;
+        const fmtResult = fmt(val);
+        if (!fmtResult.valid) {
+            _validatedTicker = null;
+            analyzeBtn.disabled = true;
+            _setInputState('error');
+            _showValidationHint(fmtResult.error, 'error');
+            _renderSuggestions([]);
+            if (clearBtn) clearBtn.classList.toggle('hidden', !val);
+            return;
+        }
+
+        // Format OK → remote check
+        _validatedTicker = null;
+        analyzeBtn.disabled = true;
+        _setInputState('validating');
+        _clearValidationHint();
+        if (clearBtn) clearBtn.classList.remove('hidden');
+
+        const { signal } = _abortController;
+        const remoteCheck = (window.TickerValidation || {}).validateTickerRemote;
+        if (!remoteCheck) return;
+
+        const result = await remoteCheck(val, signal);
+        if (!result) return; // cancelled by a newer keystroke
+
+        if (result.valid) {
+            _validatedTicker = val;
+            analyzeBtn.disabled = false;
+            _setInputState('valid');
+            _showValidationHint(`✓ ${result.company_name || val}`, 'success');
+            _renderSuggestions([]);
+        } else {
+            _setInputState('error');
+            _showValidationHint(result.error || 'Ticker not found.', 'error');
+            _renderSuggestions(result.suggestions);
+        }
+    }
+
+    if (input) {
+        input.addEventListener('input', () => {
+            // Auto-uppercase as user types
+            const pos = input.selectionStart;
+            input.value = input.value.toUpperCase();
+            try { input.setSelectionRange(pos, pos); } catch (_) {}
+
+            if (clearBtn) clearBtn.classList.toggle('hidden', !input.value);
+
+            const val = input.value.trim();
+            clearTimeout(_debounceTimer);
+
+            // Instant format check for immediate feedback
+            const fmt = (window.TickerValidation || {}).validateTickerFormat;
+            if (fmt) {
+                const fmtResult = fmt(val);
+                if (!fmtResult.valid) {
+                    if (_abortController) _abortController.abort();
+                    _validatedTicker = null;
+                    analyzeBtn.disabled = true;
+                    _setInputState(val ? 'error' : '');
+                    if (val) {
+                        _showValidationHint(fmtResult.error, 'error');
+                    } else {
+                        _clearValidationHint();
+                        _setInputState('');
+                    }
+                    _renderSuggestions([]);
+                    return;
+                }
+            }
+
+            // Format OK — debounce the remote call
+            _validatedTicker = null;
+            analyzeBtn.disabled = true;
+            _setInputState('validating');
+            _clearValidationHint();
+            _debounceTimer = setTimeout(() => _triggerValidation(val), 500);
+        });
+    }
+
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            input.value = '';
+            _validatedTicker = null;
+            analyzeBtn.disabled = true;
+            clearTimeout(_debounceTimer);
+            if (_abortController) _abortController.abort();
+            _setInputState('');
+            _clearValidationHint();
+            clearBtn.classList.add('hidden');
+            input.focus();
+        });
+    }
+    // --- End ticker validation ---
+
     let historyRequestId = 0;
     const usdFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
 
@@ -324,6 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dashboard.classList.remove('hidden');
             currentTicker = String(data?.meta?.symbol || normalizedTicker).toUpperCase();
             input.value = currentTicker;
+            _validatedTicker = currentTicker; // keep in sync after successful analysis
             latestPredictedPrice = Number(data?.market?.predicted_price_next_session);
             latestAnalyzeHistory = normalizeHistoryPoints(data?.market?.history);
             latestAnalyzeTimeframe = getActiveTimeframe();
@@ -343,9 +500,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const ticker = input.value.trim().toUpperCase();
-        if (!ticker) return;
-        await loadTickerData(ticker, false);
+        if (!_validatedTicker) return;
+        await loadTickerData(_validatedTicker, false);
     });
 
     timeframeButtons.forEach((btn) => {
@@ -471,7 +627,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             btnText.classList.remove('hidden');
             spinner.classList.add('hidden');
-            analyzeBtn.disabled = false;
+            // Only re-enable if the current input is still validated
+            analyzeBtn.disabled = !_validatedTicker;
             timeframeButtons.forEach((btn) => { btn.disabled = false; });
         }
     }

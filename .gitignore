@@ -221,4 +221,5 @@ data/yfinance_tz_cache/
 data/*_report.json
 data/feedback_logs.json
 data/valid_tickers.json
+node_modules/
 /.agents
