@@ -766,6 +766,8 @@ document.addEventListener('DOMContentLoaded', () => {
         _showSkeleton();
         if (!keepDashboardVisible) {
             dashboard.classList.add('hidden');
+            var recSec = document.getElementById('recommended-section');
+            if (recSec) recSec.classList.add('hidden');
         }
 
         try {
@@ -817,6 +819,7 @@ document.addEventListener('DOMContentLoaded', () => {
             latestAnalyzeTimeframe = getActiveTimeframe();
             updateDashboard(data);
             await refreshChartForTimeframe(currentTicker, getActiveTimeframe(), false);
+            if (typeof window._irisLoadRecommendations === 'function') { window._irisLoadRecommendations(currentTicker); }
 
         } catch (error) {
             clearTimeout(timeoutId);
@@ -1548,3 +1551,202 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+/* ─────────────────────────────────────────────────────
+   Recommended For You – Stock Recommendations
+   ───────────────────────────────────────────────────── */
+
+(function initRecommendations() {
+  'use strict';
+
+  const recSection   = document.getElementById('recommended-section');
+  const recScroll    = document.getElementById('rec-scroll');
+  const recSubtitle  = document.getElementById('rec-subtitle');
+  const recPrevBtn   = document.getElementById('rec-prev');
+  const recNextBtn   = document.getElementById('rec-next');
+
+  if (!recSection || !recScroll) return;
+
+  // ── Sparkline drawing (lightweight canvas, no library) ──
+  function drawSparkline(canvas, dataPoints, isPositive) {
+    if (!canvas || !dataPoints || dataPoints.length < 2) return;
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
+
+    canvas.width  = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    canvas.style.width  = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+    ctx.scale(dpr, dpr);
+
+    const w = rect.width;
+    const h = rect.height;
+    const min = Math.min(...dataPoints);
+    const max = Math.max(...dataPoints);
+    const range = max - min || 1;
+    const pad = 2;
+
+    const color = isPositive ? '#22c55e' : '#ef4444';
+
+    // Area fill
+    ctx.beginPath();
+    dataPoints.forEach(function (v, i) {
+      var x = (i / (dataPoints.length - 1)) * w;
+      var y = pad + ((max - v) / range) * (h - pad * 2);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.lineTo(w, h);
+    ctx.lineTo(0, h);
+    ctx.closePath();
+    var grad = ctx.createLinearGradient(0, 0, 0, h);
+    grad.addColorStop(0, isPositive ? 'rgba(34,197,94,0.15)' : 'rgba(239,68,68,0.15)');
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Line stroke
+    ctx.beginPath();
+    dataPoints.forEach(function (v, i) {
+      var x = (i / (dataPoints.length - 1)) * w;
+      var y = pad + ((max - v) / range) * (h - pad * 2);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.strokeStyle = color;
+    ctx.lineWidth   = 1.5;
+    ctx.lineJoin    = 'round';
+    ctx.lineCap     = 'round';
+    ctx.stroke();
+  }
+
+  // ── Show loading skeleton ──
+  function showRecSkeleton() {
+    recScroll.innerHTML = '';
+    for (var i = 0; i < 5; i++) {
+      var skel = document.createElement('div');
+      skel.className = 'rec-card-skeleton';
+      skel.innerHTML =
+        '<div class="rec-skel-line w60"></div>' +
+        '<div class="rec-skel-line w40"></div>' +
+        '<div class="rec-skel-block"></div>' +
+        '<div class="rec-skel-price"></div>';
+      recScroll.appendChild(skel);
+    }
+    recSection.classList.remove('hidden');
+  }
+
+  // ── Build one recommendation card ──
+  function buildRecCard(item) {
+    var pctVal   = item.price_change_pct || 0;
+    var isPos    = pctVal > 0;
+    var isNeg    = pctVal < 0;
+    var dirClass = isPos ? 'rec-positive' : isNeg ? 'rec-negative' : '';
+    var badgeCls = isPos ? 'rec-badge-positive' : isNeg ? 'rec-badge-negative' : 'rec-badge-neutral';
+    var chCls    = isPos ? 'rec-ch-positive' : isNeg ? 'rec-ch-negative' : 'rec-ch-neutral';
+    var sign     = isPos ? '+' : '';
+
+    var card = document.createElement('div');
+    card.className = 'rec-card ' + dirClass;
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', 'Analyze ' + item.symbol);
+
+    card.innerHTML =
+      '<div class="rec-card-top">' +
+        '<span class="rec-ticker">' + item.symbol + '</span>' +
+        '<span class="rec-change-badge ' + badgeCls + '">' + sign + pctVal.toFixed(2) + '%</span>' +
+      '</div>' +
+      '<div class="rec-name">' + (item.name || item.symbol) + '</div>' +
+      '<div class="rec-sparkline"><canvas></canvas></div>' +
+      '<div class="rec-price-row">' +
+        '<span class="rec-price">$' + (item.current_price || 0).toFixed(2) + '</span>' +
+        '<span class="rec-price-change ' + chCls + '">' + sign + (item.price_change || 0).toFixed(2) + '</span>' +
+      '</div>';
+
+    // Click -> run analysis for this ticker
+    function triggerAnalysis() {
+      var tickerInput = document.getElementById('ticker-input');
+      var form        = document.getElementById('analyze-form');
+      if (tickerInput && form) {
+        tickerInput.value = item.symbol;
+        tickerInput.dispatchEvent(new Event('input', { bubbles: true }));
+        setTimeout(function () {
+          form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+        }, 150);
+      }
+    }
+    card.addEventListener('click', triggerAnalysis);
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); triggerAnalysis(); }
+    });
+
+    return card;
+  }
+
+  // ── Fetch and render recommendations ──
+  function fetchRecommendations(ticker) {
+    if (!ticker) return;
+    showRecSkeleton();
+    recSubtitle.textContent = 'Related stocks based on ' + ticker + '\'s sector';
+
+    fetch('/api/related/' + encodeURIComponent(ticker))
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        if (!data.related || data.related.length === 0) {
+          recSection.classList.add('hidden');
+          return;
+        }
+
+        recScroll.innerHTML = '';
+
+        data.related.forEach(function (item) {
+          var card = buildRecCard(item);
+          recScroll.appendChild(card);
+
+          // Draw sparkline after card is in DOM (needs layout dimensions)
+          setTimeout(function () {
+            var canvas = card.querySelector('.rec-sparkline canvas');
+            if (canvas && item.sparkline && item.sparkline.length >= 2) {
+              drawSparkline(canvas, item.sparkline, (item.price_change_pct || 0) >= 0);
+            }
+          }, 50);
+        });
+
+        recSection.classList.remove('hidden');
+        updateRecNav();
+      })
+      .catch(function (err) {
+        console.warn('Recommendations fetch failed:', err);
+        recSection.classList.add('hidden');
+      });
+  }
+
+  // ── Scroll navigation ──
+  function updateRecNav() {
+    if (!recPrevBtn || !recNextBtn) return;
+    recPrevBtn.disabled = recScroll.scrollLeft <= 5;
+    recNextBtn.disabled = recScroll.scrollLeft + recScroll.clientWidth >= recScroll.scrollWidth - 5;
+  }
+
+  if (recPrevBtn) {
+    recPrevBtn.addEventListener('click', function () {
+      recScroll.scrollBy({ left: -200, behavior: 'smooth' });
+      setTimeout(updateRecNav, 400);
+    });
+  }
+  if (recNextBtn) {
+    recNextBtn.addEventListener('click', function () {
+      recScroll.scrollBy({ left: 200, behavior: 'smooth' });
+      setTimeout(updateRecNav, 400);
+    });
+  }
+  recScroll.addEventListener('scroll', updateRecNav);
+
+  // ── Expose globally so the main analysis callback can trigger it ──
+  window._irisLoadRecommendations = fetchRecommendations;
+
+})();

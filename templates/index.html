@@ -14,7 +14,7 @@
         })();
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/style.css?v=7">
+    <link rel="stylesheet" href="/static/style.css?v=8">
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%233b82f6%22>IA</text></svg>">
 </head>
@@ -191,6 +191,23 @@
                     <div id="chart-placeholder" class="chart-placeholder">Loading chart...</div>
                 </div>
             </div>
+
+        <!-- Recommended For You -->
+        <div id="recommended-section" class="recommended-section hidden">
+          <div class="recommended-header">
+            <div>
+              <h3 class="rec-title">Recommended for you</h3>
+              <span class="rec-subtitle" id="rec-subtitle">Related stocks in the same sector</span>
+            </div>
+            <div class="rec-nav">
+              <button type="button" class="rec-nav-btn" id="rec-prev" disabled aria-label="Scroll left">&#8249;</button>
+              <button type="button" class="rec-nav-btn" id="rec-next" aria-label="Scroll right">&#8250;</button>
+            </div>
+          </div>
+          <div class="rec-scroll-wrapper">
+            <div class="rec-scroll" id="rec-scroll"></div>
+          </div>
+        </div>
         </section>
     </main>
 
@@ -221,7 +238,7 @@
     <script
         src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js?v=4"></script>
     <script src="/static/tickerValidation.js?v=1"></script>
-    <script src="/static/app.js?v=19"></script>
+    <script src="/static/app.js?v=20"></script>
 </body>
 
 </html>

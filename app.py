@@ -89,6 +89,33 @@ TIMEFRAME_TO_YFINANCE = {
     "5Y": ("5y", "1wk"),
 }
 
+SECTOR_PEERS = {
+    "Technology": ["AAPL", "MSFT", "GOOG", "NVDA", "META", "AMZN", "CRM", "ADBE", "INTC", "AMD", "AVGO", "ORCL", "CSCO", "IBM", "TSLA"],
+    "Financial Services": ["JPM", "BAC", "WFC", "GS", "MS", "BLK", "SCHW", "AXP", "V", "MA"],
+    "Healthcare": ["JNJ", "UNH", "PFE", "ABBV", "MRK", "LLY", "TMO", "ABT", "BMY", "AMGN"],
+    "Consumer Cyclical": ["AMZN", "TSLA", "HD", "NKE", "MCD", "SBUX", "TGT", "LOW", "BKNG", "CMG"],
+    "Communication Services": ["GOOG", "META", "NFLX", "DIS", "CMCSA", "T", "VZ", "TMUS", "SNAP", "PINS"],
+    "Energy": ["XOM", "CVX", "COP", "SLB", "EOG", "MPC", "PSX", "VLO", "OXY", "DVN"],
+    "Consumer Defensive": ["PG", "KO", "PEP", "WMT", "COST", "PM", "MO", "CL", "MDLZ", "GIS"],
+    "Industrials": ["CAT", "BA", "HON", "UPS", "RTX", "DE", "LMT", "GE", "MMM", "UNP"],
+    "Real Estate": ["AMT", "PLD", "CCI", "EQIX", "SPG", "PSA", "O", "WELL", "DLR", "AVB"],
+    "Utilities": ["NEE", "DUK", "SO", "D", "AEP", "SRE", "EXC", "XEL", "ED", "WEC"],
+    "Basic Materials": ["LIN", "APD", "SHW", "ECL", "FCX", "NEM", "DOW", "NUE", "VMC", "MLM"],
+}
+
+
+def _get_related_tickers(ticker, count=7):
+    """Return a list of related tickers based on the sector of the given ticker."""
+    fallback = ["AAPL", "MSFT", "GOOG", "AMZN", "NVDA", "META", "TSLA"]
+    try:
+        info = yf.Ticker(ticker).info
+        sector = info.get("sector", "")
+        peers = SECTOR_PEERS.get(sector, fallback)
+        related = [s for s in peers if s != ticker]
+        return related[:count]
+    except Exception:
+        return [s for s in fallback if s != ticker][:count]
+
 # ---------------------------------------------------------------------------
 # Ticker validation setup
 # ---------------------------------------------------------------------------
@@ -354,6 +381,73 @@ def get_history(ticker):
     except Exception:
         print(f"Error fetching chart history for {symbol}: {traceback.format_exc()}")
         return jsonify({"error": "An internal error occurred while fetching chart history."}), 500
+
+@app.route('/api/related/<ticker>', methods=['GET'])
+def get_related(ticker):
+    """Return related stock tickers with mini price data for a Recommended for you section."""
+    symbol = str(ticker or "").strip().upper()
+    if not symbol:
+        return jsonify({"error": "Ticker parameter is required"}), 400
+
+    print(f"API Request for Related Tickers: {symbol}")
+
+    def _normalize_related_frame(frame, sym):
+        if frame is None or frame.empty:
+            return frame
+        if isinstance(frame.columns, pd.MultiIndex):
+            try:
+                if sym in frame.columns.get_level_values(-1):
+                    frame = frame.xs(sym, axis=1, level=-1, drop_level=True)
+                else:
+                    frame.columns = [str(col[0]) for col in frame.columns]
+            except Exception:
+                frame.columns = [str(col[0]) if isinstance(col, tuple) else str(col) for col in frame.columns]
+        return frame
+
+    try:
+        related_symbols = _get_related_tickers(symbol)
+        results = []
+        for sym in related_symbols:
+            try:
+                frame = yf.download(
+                    sym,
+                    period="5d",
+                    interval="1d",
+                    progress=False,
+                    auto_adjust=False,
+                    actions=False,
+                    threads=False,
+                )
+                frame = _normalize_related_frame(frame, sym)
+                if frame is None or frame.empty or "Close" not in frame.columns:
+                    continue
+                close_series = pd.to_numeric(frame["Close"], errors="coerce")
+                closes = [float(x) for x in close_series if np.isfinite(x)]
+                if len(closes) < 2:
+                    continue
+                current_price = closes[-1]
+                previous_close = closes[-2]
+                price_change = current_price - previous_close
+                price_change_pct = (price_change / previous_close * 100) if previous_close else 0.0
+                try:
+                    name = yf.Ticker(sym).info.get("shortName", sym)
+                except Exception:
+                    name = sym
+                results.append({
+                    "symbol": sym,
+                    "name": name,
+                    "current_price": round(current_price, 2),
+                    "price_change": round(price_change, 2),
+                    "price_change_pct": round(price_change_pct, 4),
+                    "sparkline": closes,
+                })
+            except Exception:
+                continue
+        return jsonify({"ticker": symbol, "related": results})
+    except Exception:
+        print(f"Error in /api/related/{symbol}: {traceback.format_exc()}")
+        return jsonify({"error": "An internal error occurred"}), 500
+
 
 @app.route('/api/analyze', methods=['GET'])
 def analyze_ticker():
