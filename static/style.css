@@ -1909,6 +1909,61 @@ footer p {
   background: rgba(0, 0, 0, 0.06);
 }
 
+[data-theme="light"] .rec-title {
+  color: #1a1a2e;
+}
+
+[data-theme="light"] .rec-subtitle {
+  color: #6b7280;
+}
+
+[data-theme="light"] .rec-ticker {
+  color: #111827;
+}
+
+[data-theme="light"] .rec-name {
+  color: #6b7280;
+}
+
+[data-theme="light"] .rec-price {
+  color: #111827;
+}
+
+[data-theme="light"] .rec-price-change.rec-ch-positive {
+  color: #16a34a;
+}
+
+[data-theme="light"] .rec-price-change.rec-ch-negative {
+  color: #dc2626;
+}
+
+[data-theme="light"] .rec-price-change.rec-ch-neutral {
+  color: #d97706;
+}
+
+[data-theme="light"] .rec-change-badge.rec-badge-positive {
+  background: rgba(22, 163, 74, 0.1);
+  color: #16a34a;
+}
+
+[data-theme="light"] .rec-change-badge.rec-badge-negative {
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+}
+
+[data-theme="light"] .rec-change-badge.rec-badge-neutral {
+  background: rgba(217, 119, 6, 0.1);
+  color: #d97706;
+}
+
+[data-theme="light"] .rec-nav-btn {
+  color: #4b5563;
+}
+
+[data-theme="light"] .rec-nav-btn:hover:not(:disabled) {
+  color: #111827;
+}
+
 [data-theme="light"] .rec-card-skeleton {
   background: rgba(0, 0, 0, 0.02);
   border-color: rgba(0, 0, 0, 0.08);
