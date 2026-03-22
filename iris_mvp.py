@@ -931,7 +931,10 @@ class IRIS_System:
             if _NOISE.search(title):
                 return
             url = str(url or "").strip()
-            if url and _bad_url(url):
+            # Enforce: every headline MUST have a clickable URL
+            if not url or not url.startswith(('http://', 'https://')):
+                return
+            if _bad_url(url):
                 return
             norm = _norm_title(title)
             if norm in seen_titles:
@@ -1020,6 +1023,18 @@ class IRIS_System:
                 title = (item.get("title") or content.get("title") or "")
                 url = (item.get("link") or item.get("url") or
                        content.get("link") or content.get("url") or "")
+                if not url:
+                    click_through = content.get("clickThroughUrl")
+                    if isinstance(click_through, dict):
+                        url = click_through.get("url", "")
+                    elif isinstance(click_through, str):
+                        url = click_through
+                if not url:
+                    canonical = content.get("canonicalUrl")
+                    if isinstance(canonical, dict):
+                        url = canonical.get("url", "")
+                    elif isinstance(canonical, str):
+                        url = canonical
                 pub = (item.get("providerPublishTime") or
                        content.get("pubDate", ""))
                 collect(title=title, url=url, published_at=pub)
@@ -1028,23 +1043,35 @@ class IRIS_System:
 
         # -- Source 4: simulation fallback --------------------------------
         if not raw_candidates:
-            _sim = {
-                "TSLA": [
-                    {"title": "Tesla recalls 2 million vehicles due to autopilot risk", "url": ""},
-                    {"title": "Analysts downgrade Tesla stock amid slowing EV demand", "url": ""},
-                ],
-                "NVDA": [
-                    {"title": "Nvidia announces breakthrough AI chip", "url": ""},
-                    {"title": "Nvidia quarterly revenue beats expectations by 20%", "url": ""},
-                ],
-            }
+            # Simulation mode: generate Google News search links so every headline is clickable
+            import urllib.parse as _sim_urlparse
+            _search_base = "https://news.google.com/search?q="
             _primary_name = search_terms["names"][0] if search_terms.get("names") else ticker_symbol
-            for entry in _sim.get(ticker_symbol, [
-                {"title": f"{_primary_name} shares trade actively amid broad market movements", "url": ""},
-                {"title": f"Analysts review {_primary_name} outlook for current quarter", "url": ""},
-                {"title": f"{_primary_name} scheduled to report earnings this season", "url": ""},
-            ]):
-                collect(title=entry["title"], url=entry.get("url", ""))
+            if ticker_symbol == "TSLA":
+                _sim_items = [
+                    {"title": "Tesla recalls 2 million vehicles due to autopilot risk",
+                     "url": _search_base + _sim_urlparse.quote("Tesla recalls autopilot")},
+                    {"title": "Analysts downgrade Tesla stock amid slowing EV demand",
+                     "url": _search_base + _sim_urlparse.quote("Tesla stock downgrade EV demand")},
+                ]
+            elif ticker_symbol == "NVDA":
+                _sim_items = [
+                    {"title": "Nvidia announces breakthrough AI chip",
+                     "url": _search_base + _sim_urlparse.quote("Nvidia AI chip breakthrough")},
+                    {"title": "Nvidia quarterly revenue beats expectations by 20%",
+                     "url": _search_base + _sim_urlparse.quote("Nvidia quarterly revenue beats expectations")},
+                ]
+            else:
+                _sim_items = [
+                    {"title": f"{_primary_name} shares trade actively amid broad market movements",
+                     "url": _search_base + _sim_urlparse.quote(f"{ticker_symbol} market news")},
+                    {"title": f"Analysts review {_primary_name} outlook for current quarter",
+                     "url": _search_base + _sim_urlparse.quote(f"{ticker_symbol} analyst outlook")},
+                    {"title": f"{_primary_name} scheduled to report earnings this season",
+                     "url": _search_base + _sim_urlparse.quote(f"{ticker_symbol} earnings")},
+                ]
+            for entry in _sim_items:
+                collect(title=entry["title"], url=entry["url"])
 
         print(f"[NEWS] {ticker_symbol}: {len(raw_candidates)} raw candidates collected.")
 

@@ -853,6 +853,14 @@ document.addEventListener('DOMContentLoaded', () => {
         await loadTickerData(_validatedTicker, false);
     });
 
+    // Expose analysis function so recommendation cards can invoke it directly
+    window._irisAnalyzeTicker = function (ticker) {
+        const sym = String(ticker || '').trim().toUpperCase();
+        if (!sym) return;
+        _validatedTicker = sym;
+        loadTickerData(sym, false);
+    };
+
     timeframeButtons.forEach((btn) => {
         btn.addEventListener('click', async () => {
             const timeframeKey = String(btn.dataset.timeframe || '').toUpperCase();
@@ -1479,28 +1487,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     : String(headline?.title || headline?.text || '').trim();
                 if (!title) return;
 
-                const url         = typeof headline === 'string' ? '' : String(headline?.url || '').trim();
+                // Enforce: only display headlines with a valid clickable URL
+                const url = typeof headline === 'string' ? '' : String(headline?.url || '').trim();
+                if (!url || (!url.startsWith('http://') && !url.startsWith('https://'))) return;
+
                 const publishedAt = typeof headline === 'string' ? '' : String(headline?.published_at || '').trim();
                 const dateLabel   = formatHeadlineDate(publishedAt);
                 const domain      = extractDomain(url);
-                const isLink      = /^https?:\/\//i.test(url);
 
                 const li = document.createElement('li');
                 const category = String(typeof headline === 'string' ? 'financial' : (headline?.category || 'financial')).trim().toLowerCase();
                 const catClass  = category === 'geopolitical' ? ' headline-item--geo'
                                 : category === 'macro'         ? ' headline-item--macro'
                                 : '';
-                li.className = 'headline-item' + catClass + (isLink ? '' : ' headline-item--no-url');
+                li.className = 'headline-item' + catClass;
 
-                // Title — clickable link or plain span
-                const titleEl = document.createElement(isLink ? 'a' : 'span');
+                // Title — always a clickable link
+                const titleEl = document.createElement('a');
                 titleEl.className = 'headline-title';
                 titleEl.textContent = title;
-                if (isLink) {
-                    titleEl.href = url;
-                    titleEl.target = '_blank';
-                    titleEl.rel = 'noopener noreferrer';
-                }
+                titleEl.href = url;
+                titleEl.target = '_blank';
+                titleEl.rel = 'noopener noreferrer';
 
                 // Meta row — date + dot + source domain
                 const metaEl = document.createElement('div');
@@ -1521,8 +1529,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (domain) {
                     const srcSpan = document.createElement('span');
-                    srcSpan.className = 'headline-source' + (isLink ? '' : ' headline-source--none');
-                    srcSpan.textContent = isLink ? domain : 'no source URL';
+                    srcSpan.className = 'headline-source';
+                    srcSpan.textContent = domain;
                     metaEl.appendChild(srcSpan);
                 }
 
@@ -1549,7 +1557,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!headlinesList.children.length) {
             const li = document.createElement('li');
             li.className = 'headline-item headline-item--empty';
-            li.textContent = 'No recent headlines found.';
+            li.textContent = 'No linked headlines available for this ticker.';
             headlinesList.appendChild(li);
         }
     }
@@ -1670,13 +1678,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Click -> run analysis for this ticker
     function triggerAnalysis() {
       var tickerInput = document.getElementById('ticker-input');
-      var form        = document.getElementById('analyze-form');
-      if (tickerInput && form) {
-        tickerInput.value = item.symbol;
-        tickerInput.dispatchEvent(new Event('input', { bubbles: true }));
-        setTimeout(function () {
-          form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
-        }, 150);
+      if (tickerInput) tickerInput.value = item.symbol;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (typeof window._irisAnalyzeTicker === 'function') {
+        window._irisAnalyzeTicker(item.symbol);
       }
     }
     card.addEventListener('click', triggerAnalysis);
