@@ -817,7 +817,7 @@ document.addEventListener('DOMContentLoaded', () => {
             latestPredictedPrice = Number(data?.market?.predicted_price_next_session);
             latestAnalyzeHistory = normalizeHistoryPoints(data?.market?.history);
             latestAnalyzeTimeframe = getActiveTimeframe();
-            updateDashboard(data);
+            try { updateDashboard(data); } catch (renderErr) { console.error('[IRIS] updateDashboard error:', renderErr); }
             await refreshChartForTimeframe(currentTicker, getActiveTimeframe(), false);
             if (typeof window._irisLoadRecommendations === 'function') { window._irisLoadRecommendations(currentTicker); }
 
@@ -1349,18 +1349,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateDashboard(data) {
         // Meta
-        resTicker.textContent = data.meta.symbol;
-        const date = new Date(data.meta.generated_at);
-        resTime.textContent = `Updated: ${date.toLocaleString()} (${data.meta.mode.toUpperCase()} MODE)`;
-        setActiveTimeframe(resolveTimeframeFromMeta(data.meta));
+        resTicker.textContent = data?.meta?.symbol || '??';
+        const date = new Date(data?.meta?.generated_at);
+        const modeStr = (data?.meta?.mode || 'live').toUpperCase();
+        resTime.textContent = `Updated: ${date.toLocaleString()} (${modeStr} MODE)`;
+        setActiveTimeframe(resolveTimeframeFromMeta(data?.meta || {}));
 
         // Prices
-        currentPriceEl.textContent = usdFormatter.format(data.market.current_price);
-        predictedPriceEl.textContent = usdFormatter.format(data.market.predicted_price_next_session);
+        const currentPrice = Number(data?.market?.current_price);
+        const predictedPrice = Number(data?.market?.predicted_price_next_session);
+        currentPriceEl.textContent = isFinite(currentPrice) ? usdFormatter.format(currentPrice) : 'N/A';
+        predictedPriceEl.textContent = isFinite(predictedPrice) ? usdFormatter.format(predictedPrice) : 'N/A';
 
         // Trend
-        const trend = data.signals.trend_label.trim();
-        trendLabelEl.textContent = trend;
+        const trend = (data?.signals?.trend_label || '').trim();
+        trendLabelEl.textContent = trend || 'UNKNOWN';
         if (trend.includes('UPTREND')) {
             trendLabelEl.style.color = 'var(--status-green)';
             trendLabelEl.style.border = '1px solid var(--status-green-glow)';
@@ -1383,7 +1386,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Check Engine Light
         engineIndicator.className = 'engine-indicator'; // Reset classes
-        const lightString = data.signals.check_engine_light;
+        const lightString = data?.signals?.check_engine_light || '';
         if (lightString.includes('GREEN')) {
             engineIndicator.classList.add('status-green');
             lightStatusText.textContent = "SAFE TO PROCEED";
@@ -1396,8 +1399,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Sentiment
-        const sentiment = data.signals.sentiment_score;
-        sentimentScoreEl.textContent = sentiment.toFixed(2);
+        const sentiment = Number(data?.signals?.sentiment_score ?? 0);
+        sentimentScoreEl.textContent = isFinite(sentiment) ? sentiment.toFixed(2) : '0.00';
 
         sentimentScoreEl.className = '';
         if (sentiment > 0.05) {
@@ -1431,7 +1434,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const llmTrend = String(report?.signals?.trend_label || '').toUpperCase().trim();
                     const llmPrice = Number(report?.market?.predicted_price_next_session);
-                    if (!llmPrice && !llmTrend) {
+                    if (!isFinite(llmPrice) && !llmTrend) {
                         console.warn('[IRIS] LLM panel: missing data for model', key, report);
                     }
 
@@ -1454,7 +1457,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     div.innerHTML = `
                         <span style="font-weight:600;font-size:0.95em;">${modelName}</span>
                         <div style="text-align:right;">
-                          <div class="${priceClass}">${usdFormatter.format(llmPrice)}</div>
+                          <div class="${priceClass}">${isFinite(llmPrice) ? usdFormatter.format(llmPrice) : 'N/A'}</div>
                           <div class="${trendClass}">${arrow}${llmTrend}</div>
                         </div>`;
                     llmContainer.appendChild(div);
@@ -1467,7 +1470,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Headlines
         headlinesList.innerHTML = '';
-        const headlines = data.evidence.headlines_used;
+        const headlines = data?.evidence?.headlines_used || [];
 
         if (headlines && headlines.length > 0) {
             headlines.forEach((headline) => {
@@ -1688,7 +1691,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function fetchRecommendations(ticker) {
     if (!ticker) return;
     showRecSkeleton();
-    recSubtitle.textContent = 'Related stocks based on ' + ticker + '\'s sector';
+    if (recSubtitle) recSubtitle.textContent = 'Related stocks based on ' + ticker + '\'s sector';
 
     fetch('/api/related/' + encodeURIComponent(ticker))
       .then(function (res) {

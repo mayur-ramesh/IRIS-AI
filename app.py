@@ -90,7 +90,7 @@ TIMEFRAME_TO_YFINANCE = {
 }
 
 SECTOR_PEERS = {
-    "Technology": ["AAPL", "MSFT", "GOOG", "NVDA", "META", "AMZN", "CRM", "ADBE", "INTC", "AMD", "AVGO", "ORCL", "CSCO", "IBM", "TSLA"],
+    "Technology": ["AAPL", "MSFT", "GOOG", "NVDA", "META", "CRM", "ADBE", "INTC", "AMD", "AVGO", "ORCL", "CSCO", "IBM", "QCOM", "NOW"],
     "Financial Services": ["JPM", "BAC", "WFC", "GS", "MS", "BLK", "SCHW", "AXP", "V", "MA"],
     "Healthcare": ["JNJ", "UNH", "PFE", "ABBV", "MRK", "LLY", "TMO", "ABT", "BMY", "AMGN"],
     "Consumer Cyclical": ["AMZN", "TSLA", "HD", "NKE", "MCD", "SBUX", "TGT", "LOW", "BKNG", "CMG"],
