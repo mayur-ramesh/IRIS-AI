@@ -2660,5 +2660,369 @@
         "Macro-economic concerns and bearish sentiment signals short-term cooling"
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-23T02:01:26Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 247.99,
+      "predicted_price_next_session": 246.85
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0926,
+      "check_engine_light": "YELLOW (Price trading below 5-day SMA; neutral-positive sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Analysts weigh iPhone demand cycles against macro headwinds",
+          "url": ""
+        },
+        {
+          "title": "Tech sector volatility persists as yield expectations shift",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-23T02:01:42Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 205.37,
+      "predicted_price_next_session": 206.85
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.1144,
+      "check_engine_light": "YELLOW (PRICE BELOW 5-DAY SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "AWS continues cloud dominance as AI workloads drive demand",
+          "url": ""
+        },
+        {
+          "title": "Consumer spending shifts impact short-term retail margin expectations",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "CL=F",
+      "generated_at": "2026-03-23T02:01:58Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 98.55,
+      "predicted_price_next_session": 97.85
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND ",
+      "sentiment_score": -0.5283,
+      "check_engine_light": " YELLOW (High bearish sentiment vs bullish momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "OPEC production targets remain in focus as demand outlook softens",
+          "url": ""
+        },
+        {
+          "title": "Crude inventories rise unexpectedly amid refining constraints",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "generated_at": "2026-03-23T02:02:12Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 99.586,
+      "predicted_price_next_session": 99.495
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.5776,
+      "check_engine_light": "RED (Price below SMA and negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Dollar Index edges lower as bearish sentiment persists",
+          "url": ""
+        },
+        {
+          "title": "Market participants cautious on USD amid cooling technical signals",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GC=F",
+      "generated_at": "2026-03-23T02:02:27Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 4409.7998,
+      "predicted_price_next_session": 4385.25
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND",
+      "sentiment_score": -0.3549,
+      "check_engine_light": "RED (Significant price gap below SMA-5 and negative sentiment score)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Gold futures face selling pressure amid rising treasury yields",
+          "url": ""
+        },
+        {
+          "title": "Bearish sentiment dominates precious metal markets in recent trading",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-23T02:02:47Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 298.79,
+      "predicted_price_next_session": 296.45
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.039,
+      "check_engine_light": "YELLOW (Price below 5-day SMA with slight negative sentiment bias)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Alphabet faces short-term technical resistance as price stays below 5-day SMA",
+          "url": ""
+        },
+        {
+          "title": "Mixed sentiment observed in tech sector following latest economic data",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "HG=F",
+      "generated_at": "2026-03-23T02:03:02Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5.329,
+      "predicted_price_next_session": 5.215
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND",
+      "sentiment_score": -0.7694,
+      "check_engine_light": "RED (Price significantly below SMA with high negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Copper futures struggle as industrial demand outlook weakens.",
+          "url": ""
+        },
+        {
+          "title": "Metals market hit by bearish sentiment amid rising inventories.",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-23T02:03:17Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 593.66,
+      "predicted_price_next_session": 590.45
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0067,
+      "check_engine_light": "YELLOW (Price trading 3.19% below 5-day SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Meta intensifies AI infrastructure spending amid mixed advertising outlook",
+          "url": ""
+        },
+        {
+          "title": "Analyst sentiment neutral as Meta approaches critical technical support levels",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-23T02:03:34Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 381.85,
+      "predicted_price_next_session": 382.42
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND ",
+      "sentiment_score": 0.3478,
+      "check_engine_light": "YELLOW (Price trading below 5-day SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Microsoft continues cloud infrastructure expansion",
+          "url": ""
+        },
+        {
+          "title": "Market weighs tech valuations amid shifting rate expectations",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-23T02:03:49Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 52.37,
+      "predicted_price_next_session": 51.85
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1066,
+      "check_engine_light": "YELLOW (Trading below 5-day SMA and negative sentiment signals downward pressure)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Nike shares remain under pressure amid shifting consumer preferences",
+          "url": ""
+        },
+        {
+          "title": "Analysts adjust expectations for athletic footwear demand",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-23T02:04:04Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 172.93,
+      "predicted_price_next_session": 171.15
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0558,
+      "check_engine_light": "YELLOW (Price below SMA_5; sentiment skewing slightly negative)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Semiconductor sector faces short-term consolidation pressure",
+          "url": ""
+        },
+        {
+          "title": "NVDA price action remains below key 5-day moving average",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "generated_at": "2026-03-23T02:04:17Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 66.89,
+      "predicted_price_next_session": 66.15
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "RED (Price trading 8.1% below 5-day SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Silver futures face technical resistance following recent pullback",
+          "url": ""
+        },
+        {
+          "title": "Market participants monitor metal inventory levels amid flat sentiment",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-23T02:04:35Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 367.96,
+      "predicted_price_next_session": 364.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.2453,
+      "check_engine_light": "YELLOW (Price below 5-day SMA indicates technical weakness despite positive sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Tesla shares consolidate after falling below key short-term moving average",
+          "url": ""
+        },
+        {
+          "title": "Retail sentiment remains resilient amid broader electric vehicle volatility",
+          "url": ""
+        }
+      ]
+    }
   }
 ]
