@@ -1176,6 +1176,7 @@ class IRIS_System:
             cur_volume = float(recent_vol.mean()) if len(recent_vol) else float(last.get("Volume", 0.0) or 0.0)
 
             predicted_price = cur_close
+            trajectory = []
             for step in range(horizon_days):
                 next_sma5 = (predicted_price + cur_sma5 * 4) / 5
                 next_sma10 = (predicted_price + cur_sma10 * 9) / 10
@@ -1194,6 +1195,7 @@ class IRIS_System:
                     sentiment_value,
                 ]])
                 predicted_price = float(model.predict(next_row)[0])
+                trajectory.append(predicted_price)
                 # Feed predictions forward for next iteration
                 cur_sma5 = next_sma5
                 cur_sma10 = next_sma10
@@ -1241,6 +1243,7 @@ class IRIS_System:
             cur_rsi = float(rsi_14.iloc[-1]) if n else 50.0
 
             predicted_price = cur_close
+            trajectory = []
             for step in range(horizon_days):
                 next_sma5 = (predicted_price + cur_sma5 * 4) / 5
                 next_sma10 = (predicted_price + cur_sma10 * 9) / 10
@@ -1259,6 +1262,7 @@ class IRIS_System:
                     sentiment_value,
                 ]])
                 predicted_price = float(model.predict(next_row)[0])
+                trajectory.append(predicted_price)
                 cur_sma5 = next_sma5
                 cur_sma10 = next_sma10
                 cur_sma20 = next_sma20
@@ -1279,7 +1283,14 @@ class IRIS_System:
         else:
             label = "WEAK DOWNTREND "
 
-        return label, predicted_price
+        # Sample trajectory to max 50 points for chart rendering
+        if len(trajectory) > 50:
+            step_size = len(trajectory) / 50
+            sampled = [trajectory[int(i * step_size)] for i in range(49)]
+            sampled.append(trajectory[-1])  # always include final point
+            trajectory = sampled
+
+        return label, predicted_price, trajectory
 
     def draw_chart(self, symbol: str, history_df, current_price: float, predicted_price: float, trend_label: str, save_dir: str = ""):
         """Draw live price history and prediction trend; save to dated subfolder under data/charts (YYYY-MM-DD)."""
@@ -1346,7 +1357,7 @@ class IRIS_System:
         horizon_label = RISK_HORIZON_LABELS.get(horizon_key, "Next Session")
 
         sentiment_score, headlines = self.analyze_news(analyzed_ticker)
-        trend_label, predicted_price = self.predict_trend(data, sentiment_score, horizon_days=horizon_days)
+        trend_label, predicted_price, prediction_trajectory = self.predict_trend(data, sentiment_score, horizon_days=horizon_days)
         light = " GREEN (Safe to Proceed)"
         if sentiment_score < -0.05 or "STRONG DOWNTREND" in trend_label:
             light = " RED (Risk Detected - Caution)"
@@ -1393,6 +1404,7 @@ class IRIS_System:
                 "current_price": float(data["current_price"]),
                 "predicted_price_next_session": float(predicted_price),
                 "predicted_price_horizon": float(predicted_price),
+                "prediction_trajectory": [float(p) for p in prediction_trajectory],
             },
             "signals": {
                 "trend_label": trend_label,

@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let latestAnalyzeHistory = [];
     let latestAnalyzeTimeframe = '6M';
     let currentHorizon = 'next_session';
+    let latestTrajectory = [];
 
     const HORIZON_LABELS = {
         'next_session': 'Next Session',
@@ -716,7 +717,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (requestId !== historyRequestId) return;
             latestAnalyzeHistory = history;
             latestAnalyzeTimeframe = requestedTimeframe;
-            renderChart(history, latestPredictedPrice);
+            renderChart(history, latestPredictedPrice, latestTrajectory);
         } catch (error) {
             if (requestId !== historyRequestId) return;
             console.error(error);
@@ -728,7 +729,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (Number.isFinite(fallback.predicted)) {
                     latestPredictedPrice = fallback.predicted;
                 }
-                renderChart(fallback.history, latestPredictedPrice);
+                renderChart(fallback.history, latestPredictedPrice, latestTrajectory);
                 errorMsg.classList.add('hidden');
                 return;
             } catch (fallbackError) {
@@ -737,7 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (Array.isArray(latestAnalyzeHistory) && latestAnalyzeHistory.length > 0) {
-                renderChart(latestAnalyzeHistory, latestPredictedPrice);
+                renderChart(latestAnalyzeHistory, latestPredictedPrice, latestTrajectory);
                 errorMsg.classList.add('hidden');
                 return;
             }
@@ -828,7 +829,8 @@ document.addEventListener('DOMContentLoaded', () => {
             currentTicker = String(data?.meta?.symbol || normalizedTicker).toUpperCase();
             input.value = currentTicker;
             _validatedTicker = currentTicker;
-            latestPredictedPrice = Number(data?.market?.predicted_price_next_session);
+            latestPredictedPrice = Number(data?.market?.predicted_price_horizon ?? data?.market?.predicted_price_next_session);
+            latestTrajectory = Array.isArray(data?.market?.prediction_trajectory) ? data.market.prediction_trajectory : [];
             latestAnalyzeHistory = normalizeHistoryPoints(data?.market?.history);
             latestAnalyzeTimeframe = getActiveTimeframe();
             try { updateDashboard(data); } catch (renderErr) { console.error('[IRIS] updateDashboard error:', renderErr); }
@@ -1152,7 +1154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }).format(dt);
     }
 
-    function renderChart(history, predictedPrice) {
+    function renderChart(history, predictedPrice, trajectory) {
         if (lwChart) {
             lwChart.remove();
             lwChart = null;
@@ -1341,55 +1343,108 @@ document.addEventListener('DOMContentLoaded', () => {
         const lastDataPoint = history[history.length - 1];
         if (Number.isFinite(predictedPrice) && lastDataPoint) {
             const lastTime = lastDataPoint.time;
-            let predTime = null;
+            const isUpForecast = predictedPrice >= lastDataPoint.value;
+            const forecastColor = isUpForecast ? '#10b981' : '#ef4444';
+            const forecastTopColor = isUpForecast ? 'rgba(16, 185, 129, 0.35)' : 'rgba(239, 68, 68, 0.35)';
+            const forecastBottomColor = isUpForecast ? 'rgba(16, 185, 129, 0.0)' : 'rgba(239, 68, 68, 0.0)';
+
+            // Build forecast data points from trajectory
+            const trajPoints = Array.isArray(trajectory) && trajectory.length > 0 ? trajectory : [predictedPrice];
+            const forecastData = [];
+
+            // Calculate step size based on the actual time intervals in the chart data
+            let stepSeconds = 24 * 60 * 60; // default 1 day
             if (typeof lastTime === 'number' && Number.isFinite(lastTime)) {
-                let stepSeconds = 24 * 60 * 60;
                 if (history.length >= 2) {
                     const prevTime = history[history.length - 2].time;
                     if (typeof prevTime === 'number' && Number.isFinite(prevTime) && lastTime > prevTime) {
                         stepSeconds = Math.max(60, Math.round(lastTime - prevTime));
                     }
                 }
-                predTime = lastTime + stepSeconds;
-            } else {
-                const predictedDate = new Date(lastTime);
-                predictedDate.setDate(predictedDate.getDate() + 1);
-                if (predictedDate.getDay() === 6) predictedDate.setDate(predictedDate.getDate() + 2);
-                if (predictedDate.getDay() === 0) predictedDate.setDate(predictedDate.getDate() + 1);
-                const y = predictedDate.getFullYear();
-                const m = String(predictedDate.getMonth() + 1).padStart(2, '0');
-                const d = String(predictedDate.getDate()).padStart(2, '0');
-                predTime = `${y}-${m}-${d}`;
             }
 
-            let lineSeries;
-            const lineOptions = {
-                color: '#f59e0b',
-                lineWidth: 2,
-                lineStyle: LightweightCharts.LineStyle.Dashed,
+            // Start forecast from the last real data point
+            forecastData.push({ time: lastDataPoint.time, value: lastDataPoint.value });
+
+            // Calculate the total horizon days and spacing
+            const HORIZON_DAYS = {
+                'next_session': 1, '1W': 5, '1M': 21, '3M': 63, '6M': 126, '1Y': 252,
             };
-            if (typeof lwChart.addLineSeries === 'function') {
-                lineSeries = lwChart.addLineSeries(lineOptions);
-            } else {
-                lineSeries = lwChart.addSeries(LightweightCharts.LineSeries, lineOptions);
-            }
-            lineSeries.setData([
-                { time: lastDataPoint.time, value: lastDataPoint.value },
-                { time: predTime, value: predictedPrice },
-            ]);
+            const totalDays = HORIZON_DAYS[currentHorizon] || 1;
 
-            if (typeof lineSeries.setMarkers === 'function') {
-                lineSeries.setMarkers([
+            // Map trajectory points to future dates
+            for (let i = 0; i < trajPoints.length; i++) {
+                // Distribute trajectory points across the horizon
+                const dayOffset = trajPoints.length === 1
+                    ? totalDays
+                    : Math.round(((i + 1) / trajPoints.length) * totalDays);
+
+                if (typeof lastTime === 'number' && Number.isFinite(lastTime)) {
+                    forecastData.push({
+                        time: lastTime + (dayOffset * stepSeconds),
+                        value: trajPoints[i],
+                    });
+                } else {
+                    // String-based date: add days skipping weekends
+                    const d = new Date(lastTime);
+                    let added = 0;
+                    while (added < dayOffset) {
+                        d.setDate(d.getDate() + 1);
+                        if (d.getDay() !== 0 && d.getDay() !== 6) added++;
+                    }
+                    const y = d.getFullYear();
+                    const m = String(d.getMonth() + 1).padStart(2, '0');
+                    const dd = String(d.getDate()).padStart(2, '0');
+                    forecastData.push({ time: `${y}-${m}-${dd}`, value: trajPoints[i] });
+                }
+            }
+
+            // Draw forecast area series — prominent, visually distinct from historical data
+            let forecastSeries;
+            const forecastOpts = {
+                lineColor: forecastColor,
+                topColor: forecastTopColor,
+                bottomColor: forecastBottomColor,
+                lineWidth: 3,
+                lineStyle: LightweightCharts.LineStyle.Dashed,
+                crosshairMarkerVisible: true,
+                crosshairMarkerRadius: 5,
+                priceLineVisible: true,
+                priceLineColor: forecastColor,
+                priceLineWidth: 1,
+                priceLineStyle: LightweightCharts.LineStyle.Dotted,
+                lastValueVisible: true,
+            };
+            if (typeof lwChart.addAreaSeries === 'function') {
+                forecastSeries = lwChart.addAreaSeries(forecastOpts);
+            } else {
+                forecastSeries = lwChart.addSeries(LightweightCharts.AreaSeries, forecastOpts);
+            }
+            forecastSeries.setData(forecastData);
+
+            // Add marker at the final predicted point
+            const lastForecast = forecastData[forecastData.length - 1];
+            if (lastForecast && typeof forecastSeries.setMarkers === 'function') {
+                const horizonText = HORIZON_LABELS[currentHorizon] || 'Predicted';
+                forecastSeries.setMarkers([
                     {
-                        time: predTime,
-                        position: 'aboveBar',
-                        color: '#f59e0b',
+                        time: lastForecast.time,
+                        position: isUpForecast ? 'aboveBar' : 'belowBar',
+                        color: forecastColor,
                         shape: 'circle',
-                        text: 'Predicted',
+                        text: `${horizonText}: $${predictedPrice.toFixed(2)}`,
                     },
                 ]);
             }
         }
+
+        // Extend right offset to give space for the forecast
+        const HORIZON_OFFSET = {
+            'next_session': 2, '1W': 4, '1M': 6, '3M': 8, '6M': 10, '1Y': 12,
+        };
+        lwChart.applyOptions({
+            timeScale: { rightOffset: HORIZON_OFFSET[currentHorizon] || 2 },
+        });
 
         lwChart.timeScale().fitContent();
     }
