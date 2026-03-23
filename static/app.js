@@ -73,6 +73,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let latestPredictedPrice = null;
     let latestAnalyzeHistory = [];
     let latestAnalyzeTimeframe = '6M';
+    let currentHorizon = 'next_session';
+
+    const HORIZON_LABELS = {
+        'next_session': 'Next Session',
+        '1W': '1 Week',
+        '1M': '1 Month',
+        '3M': '3 Months',
+        '6M': '6 Months',
+        '1Y': '1 Year',
+    };
+
+    const horizonButtons = Array.from(document.querySelectorAll('.horizon-btn'));
+    const predictedPriceLabelEl = document.getElementById('predicted-price-label');
     // --- Analysis state / flow elements ---
     const errorBanner       = document.getElementById('error-banner');
     const errorBannerMsg    = document.getElementById('error-banner-msg');
@@ -752,6 +765,7 @@ document.addEventListener('DOMContentLoaded', () => {
         params.set('timeframe', activeTimeframe);
         params.set('period', mapped.period);
         params.set('interval', mapped.interval);
+        params.set('horizon', currentHorizon);
 
         _retryTicker = normalizedTicker;
 
@@ -860,6 +874,31 @@ document.addEventListener('DOMContentLoaded', () => {
         _validatedTicker = sym;
         loadTickerData(sym, false);
     };
+
+    // --- Horizon button handlers ---
+    function setActiveHorizon(horizonKey) {
+        currentHorizon = horizonKey || 'next_session';
+        horizonButtons.forEach((btn) => {
+            const btnKey = String(btn.dataset.horizon || '').trim();
+            btn.classList.toggle('active', btnKey === currentHorizon);
+        });
+        const label = HORIZON_LABELS[currentHorizon] || 'Next Session';
+        if (predictedPriceLabelEl) {
+            predictedPriceLabelEl.textContent = `Predicted (${label})`;
+        }
+    }
+
+    horizonButtons.forEach((btn) => {
+        btn.addEventListener('click', async () => {
+            const horizonKey = String(btn.dataset.horizon || '').trim();
+            if (!horizonKey || horizonKey === currentHorizon) return;
+            setActiveHorizon(horizonKey);
+            const ticker = currentTicker || input.value.trim().toUpperCase();
+            if (!ticker) return;
+            // Re-run analysis with the new horizon
+            await loadTickerData(ticker, true);
+        });
+    });
 
     timeframeButtons.forEach((btn) => {
         btn.addEventListener('click', async () => {
@@ -1363,9 +1402,13 @@ document.addEventListener('DOMContentLoaded', () => {
         resTime.textContent = `Updated: ${date.toLocaleString()} (${modeStr} MODE)`;
         setActiveTimeframe(resolveTimeframeFromMeta(data?.meta || {}));
 
+        // Sync horizon state from response
+        const respHorizon = data?.meta?.risk_horizon || currentHorizon;
+        setActiveHorizon(respHorizon);
+
         // Prices
         const currentPrice = Number(data?.market?.current_price);
-        const predictedPrice = Number(data?.market?.predicted_price_next_session);
+        const predictedPrice = Number(data?.market?.predicted_price_horizon ?? data?.market?.predicted_price_next_session);
         currentPriceEl.textContent = isFinite(currentPrice) ? usdFormatter.format(currentPrice) : 'N/A';
         predictedPriceEl.textContent = isFinite(predictedPrice) ? usdFormatter.format(predictedPrice) : 'N/A';
 

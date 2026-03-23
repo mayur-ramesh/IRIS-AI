@@ -42,6 +42,25 @@ YF_CACHE_DIR = DATA_DIR / "yfinance_tz_cache"
 TICKER_ALIASES = {
     "GOOGL": "GOOG",
 }
+
+# Mapping from user-facing horizon labels to number of trading days.
+RISK_HORIZON_MAP = {
+    "next_session": 1,
+    "1W": 5,
+    "1M": 21,
+    "3M": 63,
+    "6M": 126,
+    "1Y": 252,
+}
+
+RISK_HORIZON_LABELS = {
+    "next_session": "Next Session",
+    "1W": "1 Week",
+    "1M": "1 Month",
+    "3M": "3 Months",
+    "6M": "6 Months",
+    "1Y": "1 Year",
+}
 COMPANY_NAME_TO_TICKERS = {
     "GOOGLE": ["GOOG", "GOOGL"],
     "ALPHABET": ["GOOG", "GOOGL"],
@@ -1114,10 +1133,11 @@ class IRIS_System:
         avg_score = total_score / valid_count if valid_count > 0 else 0.0
         return avg_score, headlines
 
-    def predict_trend(self, data, sentiment_score):
+    def predict_trend(self, data, sentiment_score, horizon_days=1):
         """
         The 'Crystal Ball': Uses Random Forest with technical and sentiment features.
         data: dict with 'history' (array) and optionally 'history_df' (DataFrame with features).
+        horizon_days: number of trading days to predict forward (1 = next session).
         """
         history_prices = data.get("history") if isinstance(data, dict) else data
         history_df = data.get("history_df") if isinstance(data, dict) else None
@@ -1128,6 +1148,8 @@ class IRIS_System:
 
         if history_prices is None or len(history_prices) < 5:
             return "INSUFFICIENT DATA", 0.0
+
+        horizon_days = max(1, int(horizon_days))
 
         # Feature matrix: day index + technical features + sentiment.
         required_cols = ["sma_5", "sma_10", "sma_20", "returns_1d", "rsi_14", "Volume"]
@@ -1140,35 +1162,43 @@ class IRIS_System:
                 np.full((n, 1), sentiment_value),
             ])
             y = history_df["Close"].values
-            last = history_df.iloc[-1]
-            last_close = float(last["Close"])
-            next_sma5 = (float(last["Close"]) + float(last["sma_5"]) * 4) / 5
-            next_sma10 = (float(last["Close"]) + float(last["sma_10"]) * 9) / 10
-            next_sma20 = (float(last["Close"]) + float(last["sma_20"]) * 19) / 20
-
-            # Use next SMA(5) implied close drift for next-day return estimate.
-            implied_next_close = float(next_sma5)
-            next_ret = ((implied_next_close - last_close) / last_close) if last_close else float(last.get("returns_1d", 0) or 0.0)
-
-            recent_vol = pd.to_numeric(history_df["Volume"].tail(5), errors="coerce").dropna()
-            next_volume = float(recent_vol.mean()) if len(recent_vol) else float(last.get("Volume", 0.0) or 0.0)
-
-            last_rsi = float(last.get("rsi_14", 50.0) or 50.0)
-            next_rsi14 = float(np.clip(last_rsi + (next_ret * 100.0), 0.0, 100.0))
-
-            next_row = np.array([[
-                n,
-                next_sma5,
-                next_sma10,
-                next_sma20,
-                next_ret,
-                next_rsi14,
-                next_volume,
-                sentiment_value,
-            ]])
             model = RandomForestRegressor(n_estimators=100, random_state=42)
             model.fit(X, y)
-            predicted_price = float(model.predict(next_row)[0])
+
+            # Iterative multi-step prediction
+            last = history_df.iloc[-1]
+            cur_close = float(last["Close"])
+            cur_sma5 = float(last["sma_5"])
+            cur_sma10 = float(last["sma_10"])
+            cur_sma20 = float(last["sma_20"])
+            cur_rsi = float(last.get("rsi_14", 50.0) or 50.0)
+            recent_vol = pd.to_numeric(history_df["Volume"].tail(5), errors="coerce").dropna()
+            cur_volume = float(recent_vol.mean()) if len(recent_vol) else float(last.get("Volume", 0.0) or 0.0)
+
+            predicted_price = cur_close
+            for step in range(horizon_days):
+                next_sma5 = (predicted_price + cur_sma5 * 4) / 5
+                next_sma10 = (predicted_price + cur_sma10 * 9) / 10
+                next_sma20 = (predicted_price + cur_sma20 * 19) / 20
+                next_ret = ((next_sma5 - predicted_price) / predicted_price) if predicted_price else 0.0
+                next_rsi = float(np.clip(cur_rsi + (next_ret * 100.0), 0.0, 100.0))
+
+                next_row = np.array([[
+                    n + step,
+                    next_sma5,
+                    next_sma10,
+                    next_sma20,
+                    next_ret,
+                    next_rsi,
+                    cur_volume,
+                    sentiment_value,
+                ]])
+                predicted_price = float(model.predict(next_row)[0])
+                # Feed predictions forward for next iteration
+                cur_sma5 = next_sma5
+                cur_sma10 = next_sma10
+                cur_sma20 = next_sma20
+                cur_rsi = next_rsi
         else:
             n = len(history_prices)
             days = np.arange(n).reshape(-1, 1)
@@ -1200,33 +1230,51 @@ class IRIS_System:
                 np.full(n, sentiment_value),
             ])
             y = close_series.values
-            last_close = float(close_series.iloc[-1]) if n else 0.0
-            next_sma5 = (last_close + float(sma_5.iloc[-1]) * 4) / 5 if n else 0.0
-            next_sma10 = (last_close + float(sma_10.iloc[-1]) * 9) / 10 if n else 0.0
-            next_sma20 = (last_close + float(sma_20.iloc[-1]) * 19) / 20 if n else 0.0
-            next_ret = ((next_sma5 - last_close) / last_close) if last_close else 0.0
-            next_rsi14 = float(np.clip(float(rsi_14.iloc[-1]) + (next_ret * 100.0), 0.0, 100.0)) if n else 50.0
             model = RandomForestRegressor(n_estimators=100, random_state=42)
             model.fit(X, y)
-            predicted_price = float(model.predict(np.array([[
-                n,
-                next_sma5,
-                next_sma10,
-                next_sma20,
-                next_ret,
-                next_rsi14,
-                0.0,
-                sentiment_value,
-            ]]))[0])
+
+            # Iterative multi-step prediction (fallback path)
+            cur_close = float(close_series.iloc[-1]) if n else 0.0
+            cur_sma5 = float(sma_5.iloc[-1]) if n else 0.0
+            cur_sma10 = float(sma_10.iloc[-1]) if n else 0.0
+            cur_sma20 = float(sma_20.iloc[-1]) if n else 0.0
+            cur_rsi = float(rsi_14.iloc[-1]) if n else 50.0
+
+            predicted_price = cur_close
+            for step in range(horizon_days):
+                next_sma5 = (predicted_price + cur_sma5 * 4) / 5
+                next_sma10 = (predicted_price + cur_sma10 * 9) / 10
+                next_sma20 = (predicted_price + cur_sma20 * 19) / 20
+                next_ret = ((next_sma5 - predicted_price) / predicted_price) if predicted_price else 0.0
+                next_rsi = float(np.clip(cur_rsi + (next_ret * 100.0), 0.0, 100.0))
+
+                next_row = np.array([[
+                    n + step,
+                    next_sma5,
+                    next_sma10,
+                    next_sma20,
+                    next_ret,
+                    next_rsi,
+                    0.0,
+                    sentiment_value,
+                ]])
+                predicted_price = float(model.predict(next_row)[0])
+                cur_sma5 = next_sma5
+                cur_sma10 = next_sma10
+                cur_sma20 = next_sma20
+                cur_rsi = next_rsi
 
         current_price = float(history_prices[-1]) if len(history_prices) else 0.0
         pct_change = ((predicted_price - current_price) / current_price * 100) if current_price else 0.0
 
-        if pct_change > 0.5:
+        # Adjust trend thresholds for longer horizons
+        threshold = 0.5 * horizon_days
+
+        if pct_change > threshold:
             label = "STRONG UPTREND "
         elif pct_change > 0:
             label = "WEAK UPTREND "
-        elif pct_change < -0.5:
+        elif pct_change < -threshold:
             label = "STRONG DOWNTREND "
         else:
             label = "WEAK DOWNTREND "
@@ -1276,6 +1324,7 @@ class IRIS_System:
         period: str = "60d",
         interval: str = "1d",
         include_chart_history: bool = False,
+        risk_horizon: str = "next_session",
     ):
         """Run analysis for a single ticker; returns report dict or None."""
         ticker = self.resolve_user_ticker_input(ticker, interactive_prompt=interactive_prompt, quiet=quiet)
@@ -1291,8 +1340,13 @@ class IRIS_System:
                 print(f"  {analyzed_ticker}: Stock not found or connection error.")
             return None
 
+        # Resolve risk horizon
+        horizon_key = str(risk_horizon or "next_session").strip()
+        horizon_days = RISK_HORIZON_MAP.get(horizon_key, 1)
+        horizon_label = RISK_HORIZON_LABELS.get(horizon_key, "Next Session")
+
         sentiment_score, headlines = self.analyze_news(analyzed_ticker)
-        trend_label, predicted_price = self.predict_trend(data, sentiment_score)
+        trend_label, predicted_price = self.predict_trend(data, sentiment_score, horizon_days=horizon_days)
         light = " GREEN (Safe to Proceed)"
         if sentiment_score < -0.05 or "STRONG DOWNTREND" in trend_label:
             light = " RED (Risk Detected - Caution)"
@@ -1331,10 +1385,14 @@ class IRIS_System:
                 "mode": "live" if NEWS_API_KEY else "simulation",
                 "period": period,
                 "interval": interval,
+                "risk_horizon": horizon_key,
+                "horizon_days": horizon_days,
+                "horizon_label": horizon_label,
             },
             "market": {
                 "current_price": float(data["current_price"]),
                 "predicted_price_next_session": float(predicted_price),
+                "predicted_price_horizon": float(predicted_price),
             },
             "signals": {
                 "trend_label": trend_label,
@@ -1357,7 +1415,7 @@ class IRIS_System:
         if chart_path and not quiet:
             print(f"  Chart saved: {chart_path}")
         if not quiet:
-            print(f"  Report: {canonical_ticker} | {light} | Predicted next: ${predicted_price:.2f} | {saved_path}")
+            print(f"  Report: {canonical_ticker} | {light} | Predicted ({horizon_label}): ${predicted_price:.2f} | {saved_path}")
 
         # Optionally include chart history in API response without storing it in report logs.
         if include_chart_history:

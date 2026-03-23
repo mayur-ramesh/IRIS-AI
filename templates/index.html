@@ -132,13 +132,24 @@
               <!-- Row 1, Col 2: Market Prediction -->
               <div class="card glass-panel price-card">
                 <h3>Market Prediction</h3>
+                <div class="risk-horizon-selector" id="risk-horizon-selector">
+                    <span class="horizon-label">Analysis Horizon:</span>
+                    <div class="horizon-buttons" role="tablist" aria-label="Risk analysis horizon">
+                        <button type="button" class="horizon-btn active" data-horizon="next_session">Next Session</button>
+                        <button type="button" class="horizon-btn" data-horizon="1W">1 Week</button>
+                        <button type="button" class="horizon-btn" data-horizon="1M">1 Month</button>
+                        <button type="button" class="horizon-btn" data-horizon="3M">3 Months</button>
+                        <button type="button" class="horizon-btn" data-horizon="6M">6 Months</button>
+                        <button type="button" class="horizon-btn" data-horizon="1Y">1 Year</button>
+                    </div>
+                </div>
                 <div class="price-info">
                   <div class="price-row">
                     <span class="label">Current</span>
                     <span class="value" id="current-price">$0.00</span>
                   </div>
                   <div class="price-row highlight">
-                    <span class="label">Predicted (Next Session)</span>
+                    <span class="label" id="predicted-price-label">Predicted (Next Session)</span>
                     <span class="value" id="predicted-price">$0.00</span>
                   </div>
                 </div>

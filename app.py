@@ -490,6 +490,7 @@ def analyze_ticker():
     # -------------------------------------------------------------------------
 
     timeframe = str(request.args.get('timeframe', '') or '').strip().upper()
+    horizon = str(request.args.get('horizon', 'next_session') or 'next_session').strip()
 
     if timeframe:
         mapped = TIMEFRAME_TO_YFINANCE.get(timeframe)
@@ -505,7 +506,7 @@ def analyze_ticker():
     try:
         print(
             f"API Request for Analysis: {ticker} ({company_name or 'unknown'}) | "
-            f"timeframe={timeframe or 'custom'} | period={period} interval={interval}"
+            f"timeframe={timeframe or 'custom'} | period={period} interval={interval} | horizon={horizon}"
         )
         # Run the analysis for the single ticker quietly
         report = iris_app.run_one_ticker(
@@ -514,6 +515,7 @@ def analyze_ticker():
             period=period,
             interval=interval,
             include_chart_history=True,
+            risk_horizon=horizon,
         )
         
         if report:

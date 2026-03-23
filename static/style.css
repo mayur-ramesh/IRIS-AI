@@ -952,6 +952,71 @@ footer p {
     background: var(--timeframe-active-bg);
 }
 
+/* ── Risk Horizon Selector (inside Market Prediction card) ── */
+.risk-horizon-selector {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.horizon-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.horizon-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.horizon-btn {
+    border: 1px solid var(--panel-border);
+    background: transparent;
+    color: var(--text-muted);
+    border-radius: 999px;
+    padding: 0.28rem 0.6rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.horizon-btn:hover {
+    color: var(--timeframe-active-text);
+    background: var(--timeframe-hover-bg);
+    border-color: var(--timeframe-active-text);
+}
+
+.horizon-btn.active {
+    color: var(--timeframe-active-text);
+    background: var(--timeframe-active-bg);
+    border-color: var(--timeframe-active-text);
+}
+
+.horizon-btn:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
+
+.horizon-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+    .horizon-btn {
+        padding: 0.22rem 0.44rem;
+        font-size: 0.7rem;
+    }
+}
+
 #advanced-chart {
     width: 100%;
     box-sizing: border-box;
