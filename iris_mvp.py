@@ -1071,7 +1071,7 @@ class IRIS_System:
         def collect(title, url="", published_at=""):
             """Add a raw candidate after only dedup + piracy checks."""
             title = str(title or "").strip()
-            if not title or len(raw_candidates) >= 100:
+            if not title or len(raw_candidates) >= 200:
                 return
             if _NOISE.search(title):
                 return
@@ -1121,6 +1121,29 @@ class IRIS_System:
                         url=article.get("url", ""),
                         published_at=article.get("publishedAt", ""),
                     )
+                # Second pass: broader sector-level query if direct results are sparse.
+                if len(raw_candidates) < 20 and search_terms.get("sector"):
+                    try:
+                        sector_query = " OR ".join(
+                            f'"{s}"' for s in search_terms["sector"][:3]
+                        )
+                        sector_resp = self.news_api.get_everything(
+                            q=sector_query,
+                            language="en",
+                            sort_by="relevancy",
+                            from_param=_news_from_date,
+                            page_size=50,
+                        )
+                        for article in (sector_resp.get("articles") or []):
+                            if not isinstance(article, dict):
+                                continue
+                            collect(
+                                title=article.get("title", ""),
+                                url=article.get("url", ""),
+                                published_at=article.get("publishedAt", ""),
+                            )
+                    except Exception as _e:
+                        print(f"[NEWS] Sector query error: {_e}")
             except Exception as _e:
                 print(f"[NEWS] NewsAPI error: {_e}")
 
@@ -1214,6 +1237,10 @@ class IRIS_System:
                      "url": _search_base + _sim_urlparse.quote(f"{ticker_symbol} analyst outlook")},
                     {"title": f"{_primary_name} scheduled to report earnings this season",
                      "url": _search_base + _sim_urlparse.quote(f"{ticker_symbol} earnings")},
+                    {"title": f"Sector trends may impact {_primary_name} performance this quarter",
+                     "url": _search_base + _sim_urlparse.quote(f"{ticker_symbol} sector trends")},
+                    {"title": f"Institutional investors adjust positions in {_primary_name}",
+                     "url": _search_base + _sim_urlparse.quote(f"{ticker_symbol} institutional activity")},
                 ]
             for entry in _sim_items:
                 collect(title=entry["title"], url=entry["url"])
@@ -1224,7 +1251,7 @@ class IRIS_System:
         headlines = llm_filter_headlines(
             ticker_symbol,
             raw_candidates,
-            max_keep=20 if fast_mode else 40,
+            max_keep=40,
             long_horizon=bool(long_horizon),
             use_llm=not fast_mode,
         )
@@ -1235,12 +1262,19 @@ class IRIS_System:
             if "category" not in h:
                 h["category"] = "financial"
 
-        # -- Sentiment scoring ---------------------------------------------
-        total_score = 0.0
-        valid_count = 0
+        # -- Sentiment scoring (confidence-weighted + recency-aware) -------
+        weighted_sum = 0.0
+        weight_total = 0.0
         if self.sentiment_analyzer and headlines:
-            title_texts = [str(h.get("title", "")).strip() for h in headlines]
-            title_texts = [t for t in title_texts if t]
+            title_texts = []
+            headline_indices = []
+            for idx, h in enumerate(headlines):
+                title_text = str(h.get("title", "")).strip()
+                if not title_text:
+                    continue
+                title_texts.append(title_text)
+                headline_indices.append(idx)
+
             batch_results = []
             try:
                 batch_results = self.sentiment_analyzer(title_texts, truncation=True, batch_size=16)
@@ -1249,30 +1283,40 @@ class IRIS_System:
             except Exception:
                 batch_results = []
 
-            if not batch_results:
-                for title_text in title_texts:
+            scored_results = []
+            if batch_results:
+                for i, result in enumerate(batch_results):
+                    idx = headline_indices[i] if i < len(headline_indices) else i
+                    scored_results.append((idx, result))
+            else:
+                for i, title_text in enumerate(title_texts):
+                    idx = headline_indices[i] if i < len(headline_indices) else i
                     try:
                         result = self.sentiment_analyzer(title_text)[0]
-                        batch_results.append(result)
+                        scored_results.append((idx, result))
                     except Exception:
                         continue
 
-            for result in batch_results:
+            for idx, result in scored_results:
                 try:
                     label = str(result.get("label", "")).lower()
-                    score = float(result.get("score", 0.0))
+                    confidence = float(result.get("score", 0.0))
+                    recency_weight = 1.0 + max(0.0, (1.0 - idx / max(len(headlines), 1)) * 0.5)
+                    w = confidence * recency_weight
+
                     if label == "positive":
-                        total_score += score
-                        valid_count += 1
+                        weighted_sum += confidence * recency_weight
+                        weight_total += w
                     elif label == "negative":
-                        total_score -= score
-                        valid_count += 1
+                        weighted_sum -= confidence * recency_weight
+                        weight_total += w
                     else:
-                        valid_count += 1
+                        weight_total += 0.3 * recency_weight
                 except Exception:
                     continue
 
-        avg_score = total_score / valid_count if valid_count > 0 else 0.0
+        avg_score = weighted_sum / weight_total if weight_total > 0 else 0.0
+        avg_score = max(-1.0, min(1.0, avg_score))
         return avg_score, headlines
 
     def predict_trend(self, data, sentiment_score, horizon_days=1, sample_to_max_points=True, max_points=50):
