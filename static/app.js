@@ -79,8 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let latestTrajectory = [];
     let latestTrajectoryUpper = [];
     let latestTrajectoryLower = [];
-    let latestLlmPredictions = null;
     let cachedHorizons = {};
+    let cachedLlmByHorizon = {};
 
     const HORIZON_LABELS = {
         '1D': '1 Day',
@@ -921,25 +921,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function renderLlmInsights(llmData) {
+    function _renderLlmInsights(llmInsights, horizonKey) {
         const llmContainer = document.getElementById('llm-insights-container');
         if (!llmContainer) return;
 
         llmContainer.innerHTML = '';
-        if (!llmData || Object.keys(llmData).length === 0) {
+        if (!llmInsights || Object.keys(llmInsights).length === 0) {
             llmContainer.innerHTML = '<p class="text-muted">No LLM insights available.</p>';
             return;
         }
 
-        for (const [key, report] of Object.entries(llmData)) {
+        const horizonLabel = HORIZON_LABELS[horizonKey] || '';
+
+        for (const [key, report] of Object.entries(llmInsights)) {
             const nameMap = {
                 chatgpt52: 'ChatGPT 5.2',
                 deepseek_v3: 'DeepSeek V3',
                 gemini_v3_pro: 'Gemini V3 Pro',
             };
             const modelName = nameMap[key] || key;
+
+            if (report?.status === 'unavailable' || report?.error) {
+                const errDiv = document.createElement('div');
+                errDiv.className = 'llm-report-item';
+                errDiv.style.cssText = 'padding:8px;background:rgba(255,255,255,0.05);border-radius:5px;opacity:0.5;';
+                errDiv.innerHTML = `<span style="font-weight:600;font-size:0.95em;">${modelName}</span>
+                    <span class="text-muted" style="font-size:0.82em;">Unavailable</span>`;
+                llmContainer.appendChild(errDiv);
+                continue;
+            }
+
             const div = document.createElement('div');
-            div.className = 'llm-report-item prediction-result';
+            div.className = 'llm-report-item';
             div.style.padding = '8px';
             div.style.background = 'rgba(255, 255, 255, 0.05)';
             div.style.borderRadius = '5px';
@@ -983,32 +996,53 @@ document.addEventListener('DOMContentLoaded', () => {
                   ${signalHtml}
                 </div>`;
 
-            div.addEventListener('mouseenter', () => {
-                const priceStr = isFinite(llmPrice) ? usdFormatter.format(llmPrice) : 'N/A';
-                showReasoningTooltip(div, modelName, priceStr, llmSignal, reasoning);
-            });
-            div.addEventListener('mouseleave', hideReasoningTooltip);
+            if (reasoning) {
+                div.classList.add('prediction-result');
+                div.addEventListener('mouseenter', () => {
+                    const priceStr = isFinite(llmPrice) ? usdFormatter.format(llmPrice) : 'N/A';
+                    const tooltipModel = horizonLabel ? `${modelName} (${horizonLabel})` : modelName;
+                    showReasoningTooltip(div, tooltipModel, priceStr, llmSignal, reasoning);
+                });
+                div.addEventListener('mouseleave', hideReasoningTooltip);
+            }
             llmContainer.appendChild(div);
         }
     }
 
-    async function refreshLlmPredictions(ticker, horizon) {
+    function updateLlmForHorizon(ticker, horizonKey) {
         const normalizedTicker = String(ticker || '').trim().toUpperCase();
-        const normalizedHorizon = String(horizon || '').trim().toUpperCase() || '1D';
+        const normalizedHorizon = String(horizonKey || '').trim().toUpperCase() || '1D';
         if (!normalizedTicker) return;
-        try {
-            const resp = await fetch(
-                `/api/llm-predict?ticker=${encodeURIComponent(normalizedTicker)}&horizon=${encodeURIComponent(normalizedHorizon)}`
-            );
-            if (!resp.ok) return;
-            const body = await resp.json();
-            latestLlmPredictions = body?.models || null;
-            if (latestLlmPredictions) {
-                renderLlmInsights(latestLlmPredictions);
-            }
-        } catch (err) {
-            console.warn('LLM prediction update failed:', err);
+
+        const cachedLlm = cachedLlmByHorizon[normalizedHorizon];
+        const llmContainer = document.getElementById('llm-insights-container');
+        if (cachedLlm) {
+            _renderLlmInsights(cachedLlm, normalizedHorizon);
+            return;
         }
+
+        if (llmContainer) {
+            const label = HORIZON_LABELS[normalizedHorizon] || normalizedHorizon;
+            llmContainer.innerHTML = `<p class="text-muted" style="text-align:center;padding:16px 0;">Updating LLM insights for ${label}...</p>`;
+        }
+
+        fetch(`/api/llm-predict?ticker=${encodeURIComponent(normalizedTicker)}&horizon=${encodeURIComponent(normalizedHorizon)}`)
+            .then((resp) => (resp.ok ? resp.json() : null))
+            .then((llmData) => {
+                if (llmData && llmData.models) {
+                    cachedLlmByHorizon[normalizedHorizon] = llmData.models;
+                    if (currentHorizon === normalizedHorizon) {
+                        _renderLlmInsights(llmData.models, normalizedHorizon);
+                    }
+                } else if (currentHorizon === normalizedHorizon && llmContainer) {
+                    llmContainer.innerHTML = '<p class="text-muted">LLM insights unavailable for this timeframe.</p>';
+                }
+            })
+            .catch(() => {
+                if (currentHorizon === normalizedHorizon && llmContainer) {
+                    llmContainer.innerHTML = '<p class="text-muted">Failed to load LLM insights.</p>';
+                }
+            });
     }
 
     async function loadTickerData(ticker, keepDashboardVisible = false) {
@@ -1084,7 +1118,12 @@ document.addEventListener('DOMContentLoaded', () => {
             currentTicker = String(data?.meta?.symbol || normalizedTicker).toUpperCase();
             input.value = currentTicker;
             _validatedTicker = currentTicker;
-            latestLlmPredictions = null;
+            cachedLlmByHorizon = {};
+            const initialLlm = data?.llm_insights;
+            const initialHorizon = String(data?.meta?.risk_horizon || currentHorizon || '1D').trim().toUpperCase();
+            if (initialLlm && typeof initialLlm === 'object' && Object.keys(initialLlm).length > 0) {
+                cachedLlmByHorizon[initialHorizon] = initialLlm;
+            }
             latestPredictedPrice = Number(data?.market?.predicted_price_horizon ?? data?.market?.predicted_price_next_session);
             latestTrajectory = Array.isArray(data?.market?.prediction_trajectory) ? data.market.prediction_trajectory : [];
             latestTrajectoryUpper = Array.isArray(data?.market?.prediction_trajectory_upper) ? data.market.prediction_trajectory_upper : [];
@@ -1094,7 +1133,6 @@ document.addEventListener('DOMContentLoaded', () => {
             latestAnalyzeTimeframe = getActiveTimeframe();
             try { updateDashboard(data); } catch (renderErr) { console.error('[IRIS] updateDashboard error:', renderErr); }
             await refreshChartForTimeframe(currentTicker, getActiveTimeframe(), false);
-            await refreshLlmPredictions(currentTicker, currentHorizon);
             if (typeof window._irisLoadRecommendations === 'function') { window._irisLoadRecommendations(currentTicker); }
 
         } catch (error) {
@@ -1244,7 +1282,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 }
-                await refreshLlmPredictions(currentTicker, currentHorizon);
+                updateLlmForHorizon(currentTicker, currentHorizon);
             }
 
             // Step 2: chart history refresh (network).
@@ -2016,11 +2054,16 @@ document.addEventListener('DOMContentLoaded', () => {
             sentCard.onmouseleave = hideReasoningTooltip;
         }
 
-        // LLM Insights (prefer live /api/llm-predict results when available)
-        const llmData = latestLlmPredictions && Object.keys(latestLlmPredictions).length
-            ? latestLlmPredictions
-            : data.llm_insights;
-        renderLlmInsights(llmData);
+        // LLM Insights
+        const llmHorizon = String(data?.meta?.risk_horizon || currentHorizon || '1D').trim().toUpperCase();
+        const llmData = data?.llm_insights;
+        if (llmData && typeof llmData === 'object' && Object.keys(llmData).length > 0) {
+            cachedLlmByHorizon[llmHorizon] = llmData;
+            _renderLlmInsights(llmData, llmHorizon);
+        } else {
+            const cachedLlm = cachedLlmByHorizon[llmHorizon] || cachedLlmByHorizon[currentHorizon];
+            _renderLlmInsights(cachedLlm || {}, llmHorizon);
+        }
 
 
         // Headlines
