@@ -100,9 +100,13 @@ document.addEventListener('DOMContentLoaded', () => {
         hideReasoningTooltip();
         const tooltip = document.createElement('div');
         const safeSignal = String(signal || '').trim();
-        const signalHtml = safeSignal
-            ? `<span class="signal-badge signal-${safeSignal.toLowerCase().replace(/\s+/g, '-')}" style="font-size:0.72em;padding:2px 6px;">${safeSignal}</span>`
-            : '';
+        const VALID_SIGNALS = ['STRONG BUY', 'BUY', 'HOLD', 'SELL', 'STRONG SELL'];
+        const isGradedSignal = safeSignal && VALID_SIGNALS.includes(safeSignal.toUpperCase());
+        const signalHtml = !safeSignal
+            ? ''
+            : isGradedSignal
+                ? `<span class="signal-badge signal-${safeSignal.toLowerCase().replace(/\s+/g, '-')}" style="font-size:0.72em;padding:2px 6px;">${safeSignal}</span>`
+                : `<span style="font-size:0.82em;color:var(--text-muted);">${safeSignal}</span>`;
         tooltip.className = 'prediction-tooltip';
         tooltip.innerHTML = `
             <div class="tooltip-model">${modelName}</div>
@@ -1917,6 +1921,41 @@ document.addEventListener('DOMContentLoaded', () => {
             lightStatusText.textContent = "NEUTRAL (NOISE)";
         }
 
+        // Risk Indicator hover explanation.
+        const riskCard = document.querySelector('.engine-light-card');
+        if (riskCard) {
+            const lightStr = String(data?.signals?.check_engine_light || '');
+            const sentVal = Number(data?.signals?.sentiment_score ?? 0);
+            const trendStr = String(data?.signals?.trend_label || '').replace(/[^\x20-\x7E]/g, '').trim();
+
+            let riskExplanation = '';
+            if (lightStr.includes('GREEN')) {
+                riskExplanation =
+                    'GREEN indicates low immediate risk. ' +
+                    `Sentiment is ${sentVal >= 0 ? 'positive or neutral' : 'slightly negative but still within a safe band'} (${sentVal.toFixed(2)}), ` +
+                    `and the trend model shows ${trendStr.toLowerCase() || 'stable movement'}. ` +
+                    'No major red flags were detected in recent news or price action.';
+            } else if (lightStr.includes('RED')) {
+                riskExplanation =
+                    'RED indicates elevated risk. ' +
+                    `${sentVal < -0.05 ? `Negative news sentiment (${sentVal.toFixed(2)}) is reducing confidence. ` : ''}` +
+                    `${trendStr.includes('DOWNTREND') ? 'The trend model is projecting downside movement. ' : ''}` +
+                    'Review position size and risk controls. This is a caution signal, not an automatic sell instruction.';
+            } else {
+                riskExplanation =
+                    'YELLOW indicates mixed or neutral risk. ' +
+                    `Sentiment is close to neutral (${sentVal.toFixed(2)}), and trend direction is ${trendStr.toLowerCase() || 'unclear'}. ` +
+                    'The model does not currently detect a strong bullish or bearish setup.';
+            }
+
+            riskCard.classList.add('prediction-result');
+            riskCard.onmouseenter = () => {
+                const statusText = lightStatusText?.textContent || 'UNKNOWN';
+                showReasoningTooltip(riskCard, 'Risk Indicator', statusText, '', riskExplanation);
+            };
+            riskCard.onmouseleave = hideReasoningTooltip;
+        }
+
         // Sentiment
         const sentiment = Number(data?.signals?.sentiment_score ?? 0);
         sentimentScoreEl.textContent = isFinite(sentiment) ? sentiment.toFixed(2) : '0.00';
@@ -1931,6 +1970,50 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             sentimentScoreEl.classList.add('score-neutral');
             sentimentDescEl.textContent = 'Neutral Sentiment';
+        }
+
+        // Sentiment card hover explanation.
+        const sentCard = document.querySelector('.sentiment-card');
+        if (sentCard) {
+            const sentVal = Number(data?.signals?.sentiment_score ?? 0);
+            const headlineCount = Array.isArray(data?.evidence?.headlines_used) ? data.evidence.headlines_used.length : 0;
+            const horizonLabel = HORIZON_LABELS[currentHorizon] || '1 Day';
+
+            let sentExplanation = '';
+            if (sentVal > 0.15) {
+                sentExplanation =
+                    `Strongly positive sentiment (${sentVal.toFixed(2)}). ` +
+                    `Analyzed ${headlineCount} recent headline${headlineCount !== 1 ? 's' : ''} over the ${horizonLabel.toLowerCase()} lookback window. ` +
+                    'Coverage is mostly favorable, such as strong results, upgrades, or positive product and industry developments.';
+            } else if (sentVal > 0.05) {
+                sentExplanation =
+                    `Mildly positive sentiment (${sentVal.toFixed(2)}). ` +
+                    `Based on ${headlineCount} headline${headlineCount !== 1 ? 's' : ''} analyzed with FinBERT. ` +
+                    'News flow leans positive, but conviction is not strong.';
+            } else if (sentVal > -0.05) {
+                sentExplanation =
+                    `Neutral sentiment (${sentVal.toFixed(2)}). ` +
+                    `FinBERT analyzed ${headlineCount} headline${headlineCount !== 1 ? 's' : ''}. ` +
+                    'Positive and negative signals are roughly balanced, or current headlines are mostly factual.';
+            } else if (sentVal > -0.15) {
+                sentExplanation =
+                    `Mildly negative sentiment (${sentVal.toFixed(2)}). ` +
+                    `Based on ${headlineCount} headline${headlineCount !== 1 ? 's' : ''} over the ${horizonLabel.toLowerCase()} window. ` +
+                    'Some cautionary developments are present in the recent news cycle.';
+            } else {
+                sentExplanation =
+                    `Strongly negative sentiment (${sentVal.toFixed(2)}). ` +
+                    `Analyzed ${headlineCount} headline${headlineCount !== 1 ? 's' : ''}. ` +
+                    'A large share of recent coverage is bearish and may materially increase near-term risk.';
+            }
+
+            sentCard.classList.add('prediction-result');
+            sentCard.onmouseenter = () => {
+                const scoreText = sentimentScoreEl?.textContent || '0.00';
+                const descText = sentimentDescEl?.textContent || 'Sentiment';
+                showReasoningTooltip(sentCard, 'Sentiment Analysis', scoreText, descText, sentExplanation);
+            };
+            sentCard.onmouseleave = hideReasoningTooltip;
         }
 
         // LLM Insights (prefer live /api/llm-predict results when available)
