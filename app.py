@@ -485,10 +485,11 @@ def analyze_ticker():
         company_name = ""
     # -------------------------------------------------------------------------
 
-    # --- Data guardrail layer: fetch real market data before any LLM call ---
+    # --- Optional data guardrail layer (disabled by default for faster UI analysis) ---
     market_data = None
     grounded_prompt = None
-    if _GUARDRAILS_AVAILABLE:
+    guardrails_requested = str(request.args.get('guardrails', '0') or '0').strip().lower() in {"1", "true", "yes", "on"}
+    if _GUARDRAILS_AVAILABLE and guardrails_requested:
         market_data = _fetch_market_data(ticker)
         if "error" in market_data:
             return jsonify({
@@ -524,6 +525,9 @@ def analyze_ticker():
             interval=interval,
             include_chart_history=True,
             risk_horizon=horizon,
+            fast_mode=True,
+            persist_report=False,
+            generate_chart_artifact=False,
         )
         
         if report:

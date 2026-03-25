@@ -72,6 +72,11 @@ HORIZON_NEWS_LOOKBACK_DAYS = {
     "5Y": 365,
 }
 
+try:
+    RF_TREE_COUNT = max(20, int(os.environ.get("IRIS_RF_TREES", "40")))
+except (TypeError, ValueError):
+    RF_TREE_COUNT = 40
+
 
 def derive_investment_signal(pct_change, sentiment_score, rsi, horizon_days):
     """Derive a five-grade investment signal from model outputs."""
@@ -296,6 +301,7 @@ def llm_filter_headlines(
     max_keep: int = 12,
     model=None,
     long_horizon: bool = False,
+    use_llm: bool = True,
 ) -> list:
     """
     Use an LLM to decide which raw headline candidates are worth
@@ -318,7 +324,7 @@ def llm_filter_headlines(
     _model = model or os.environ.get("OPENAI_MODEL_FILTER", "gpt-4o-mini")
 
     # -- LLM path ---------------------------------------------------------
-    if api_key:
+    if use_llm and api_key:
         try:
             from openai import OpenAI as _OAI
             _client = _OAI(api_key=api_key)
@@ -370,6 +376,7 @@ Headlines:
                 ],
                 temperature=0.0,
                 max_tokens=600,
+                timeout=8,
             )
             raw = (resp.choices[0].message.content or "").strip()
             # Strip accidental markdown fences
@@ -893,12 +900,14 @@ class IRIS_System:
         """Fetches market history/features and chart points using the requested yfinance period/interval."""
         try:
             stock = yf.Ticker(ticker)
-            price = getattr(stock.fast_info, "last_price", None) or getattr(stock.fast_info, "previous_close", None)
-            if price is None:
-                return self._simulated_market_data(ticker)
-            hist = stock.history(period=period, interval=interval)
+            hist = stock.history(period=period, interval=interval, timeout=8)
             if hist is None or hist.empty:
-                return self._simulated_market_data(ticker, price_hint=price)
+                price_hint = None
+                try:
+                    price_hint = getattr(stock.fast_info, "last_price", None) or getattr(stock.fast_info, "previous_close", None)
+                except Exception:
+                    price_hint = None
+                return self._simulated_market_data(ticker, price_hint=price_hint)
 
             def _infer_unix_seconds_from_index(index_values):
                 raw_index = pd.Index(index_values)
@@ -942,7 +951,11 @@ class IRIS_System:
 
             close_series = pd.to_numeric(hist.get("Close"), errors="coerce") if "Close" in hist.columns else None
             if close_series is None:
-                return self._simulated_market_data(ticker, price_hint=price)
+                return self._simulated_market_data(ticker)
+            valid_closes = close_series.dropna()
+            if valid_closes.empty:
+                return self._simulated_market_data(ticker)
+            price = float(valid_closes.iloc[-1])
 
             open_series = pd.to_numeric(hist.get("Open", close_series), errors="coerce")
             high_series = pd.to_numeric(hist.get("High", close_series), errors="coerce")
@@ -1016,7 +1029,7 @@ class IRIS_System:
         except Exception:
             return self._simulated_market_data(ticker)
 
-    def analyze_news(self, ticker, lookback_days=21, long_horizon=False):
+    def analyze_news(self, ticker, lookback_days=21, long_horizon=False, fast_mode=False):
         """
         Fetches raw headlines from all available sources, then uses
         llm_filter_headlines() to select those relevant to the ticker.
@@ -1083,7 +1096,7 @@ class IRIS_System:
             })
 
         # -- Source 1: NewsAPI ---------------------------------------------
-        if self.news_api:
+        if (not fast_mode) and self.news_api:
             try:
                 # Build broad OR query: "TSLA" OR "Tesla" OR "Elon Musk"
                 _query_parts = [f'"{ticker_symbol}"']
@@ -1112,7 +1125,7 @@ class IRIS_System:
                 print(f"[NEWS] NewsAPI error: {_e}")
 
         # -- Source 2: Webz.io ---------------------------------------------
-        if self.webz_api_key:
+        if (not fast_mode) and self.webz_api_key:
             try:
                 import urllib.request as _urlreq, urllib.parse as _urlparse
                 _primary_name = search_terms["names"][0] if search_terms["names"] else ticker_symbol
@@ -1211,8 +1224,9 @@ class IRIS_System:
         headlines = llm_filter_headlines(
             ticker_symbol,
             raw_candidates,
-            max_keep=40,
+            max_keep=20 if fast_mode else 40,
             long_horizon=bool(long_horizon),
+            use_llm=not fast_mode,
         )
         print(f"[NEWS] {ticker_symbol}: {len(headlines)} headlines after LLM filter.")
 
@@ -1225,14 +1239,28 @@ class IRIS_System:
         total_score = 0.0
         valid_count = 0
         if self.sentiment_analyzer and headlines:
-            for h in headlines:
-                title_text = str(h.get("title", "")).strip()
-                if not title_text:
-                    continue
+            title_texts = [str(h.get("title", "")).strip() for h in headlines]
+            title_texts = [t for t in title_texts if t]
+            batch_results = []
+            try:
+                batch_results = self.sentiment_analyzer(title_texts, truncation=True, batch_size=16)
+                if isinstance(batch_results, dict):
+                    batch_results = [batch_results]
+            except Exception:
+                batch_results = []
+
+            if not batch_results:
+                for title_text in title_texts:
+                    try:
+                        result = self.sentiment_analyzer(title_text)[0]
+                        batch_results.append(result)
+                    except Exception:
+                        continue
+
+            for result in batch_results:
                 try:
-                    result = self.sentiment_analyzer(title_text)[0]
-                    label = result["label"]
-                    score = result["score"]
+                    label = str(result.get("label", "")).lower()
+                    score = float(result.get("score", 0.0))
                     if label == "positive":
                         total_score += score
                         valid_count += 1
@@ -1242,12 +1270,12 @@ class IRIS_System:
                     else:
                         valid_count += 1
                 except Exception:
-                    pass
+                    continue
 
         avg_score = total_score / valid_count if valid_count > 0 else 0.0
         return avg_score, headlines
 
-    def predict_trend(self, data, sentiment_score, horizon_days=1):
+    def predict_trend(self, data, sentiment_score, horizon_days=1, sample_to_max_points=True, max_points=50):
         """
         The 'Crystal Ball': Uses Random Forest with technical and sentiment features.
         data: dict with 'history' (array) and optionally 'history_df' (DataFrame with features).
@@ -1276,7 +1304,7 @@ class IRIS_System:
                 np.full((n, 1), sentiment_value),
             ])
             y = history_df["Close"].values
-            model = RandomForestRegressor(n_estimators=100, random_state=42)
+            model = RandomForestRegressor(n_estimators=RF_TREE_COUNT, random_state=42)
             model.fit(X, y)
 
             # Iterative multi-step prediction
@@ -1346,7 +1374,7 @@ class IRIS_System:
                 np.full(n, sentiment_value),
             ])
             y = close_series.values
-            model = RandomForestRegressor(n_estimators=100, random_state=42)
+            model = RandomForestRegressor(n_estimators=RF_TREE_COUNT, random_state=42)
             model.fit(X, y)
 
             # Iterative multi-step prediction (fallback path)
@@ -1397,10 +1425,11 @@ class IRIS_System:
         else:
             label = "WEAK DOWNTREND"
 
-        # Sample trajectory to max 50 points for chart rendering
-        if len(trajectory) > 50:
-            step_size = len(trajectory) / 50
-            sampled = [trajectory[int(i * step_size)] for i in range(49)]
+        # Sample trajectory to a bounded number of points for chart rendering.
+        max_points = max(2, int(max_points))
+        if sample_to_max_points and len(trajectory) > max_points:
+            step_size = len(trajectory) / max_points
+            sampled = [trajectory[int(i * step_size)] for i in range(max_points - 1)]
             sampled.append(trajectory[-1])  # always include final point
             trajectory = sampled
 
@@ -1420,8 +1449,8 @@ class IRIS_System:
 
         return label, predicted_price, trajectory, trajectory_upper, trajectory_lower, model
 
-    def predict_all_horizons(self, data, sentiment_score):
-        """Run predictions for all supported horizons using the same market snapshot."""
+    def predict_all_horizons(self, data, sentiment_score, max_horizon_days=None):
+        """Run all horizon predictions using one long-horizon model pass."""
         results = {}
         current_price = float(data.get("current_price", 0.0) or 0.0) if isinstance(data, dict) else 0.0
         history_df = data.get("history_df") if isinstance(data, dict) else None
@@ -1433,42 +1462,73 @@ class IRIS_System:
             except Exception:
                 last_rsi = 50.0
 
+        def _sample_series(series, max_points=50):
+            if len(series) <= max_points:
+                return [float(v) for v in series]
+            step_size = len(series) / max_points
+            sampled = [series[int(i * step_size)] for i in range(max_points - 1)]
+            sampled.append(series[-1])
+            return [float(v) for v in sampled]
+
+        def _build_bands(series):
+            upper = []
+            lower = []
+            if not series:
+                return upper, lower
+            for i, price in enumerate(series):
+                step_frac = (i + 1) / len(series)
+                band_width = float(price) * 0.02 * (1 + step_frac)
+                upper.append(float(price) + band_width)
+                lower.append(float(price) - band_width)
+            return upper, lower
+
+        max_horizon_from_map = max(int(v) for v in RISK_HORIZON_MAP.values()) if RISK_HORIZON_MAP else 1
+        if max_horizon_days is None:
+            effective_max_horizon = max_horizon_from_map
+        else:
+            effective_max_horizon = max(1, min(int(max_horizon_days), max_horizon_from_map))
+        full_trajectory = []
+        rf_model = None
+        try:
+            _, predicted_long, trajectory_long, _, _, rf_model = self.predict_trend(
+                data,
+                sentiment_score,
+                horizon_days=effective_max_horizon,
+                sample_to_max_points=False,
+            )
+            if isinstance(trajectory_long, list):
+                full_trajectory = [float(p) for p in trajectory_long]
+            if not full_trajectory and np.isfinite(predicted_long):
+                full_trajectory = [float(predicted_long)]
+        except Exception as exc:
+            print(f"  predict_all_horizons bootstrap failed: {exc}")
+
         for horizon_key, horizon_days in RISK_HORIZON_MAP.items():
             horizon_label = RISK_HORIZON_LABELS.get(horizon_key, horizon_key)
             try:
-                prediction = self.predict_trend(data, sentiment_score, horizon_days=horizon_days)
-
-                label = "INSUFFICIENT DATA"
-                predicted_price = current_price
-                trajectory = []
-                trajectory_upper = []
-                trajectory_lower = []
-                model = None
-
-                if isinstance(prediction, (tuple, list)):
-                    if len(prediction) >= 2:
-                        label = prediction[0]
-                        predicted_price = float(prediction[1])
-                    if len(prediction) >= 3 and isinstance(prediction[2], list):
-                        trajectory = prediction[2]
-                    if len(prediction) >= 5:
-                        trajectory_upper = prediction[3] if isinstance(prediction[3], list) else []
-                        trajectory_lower = prediction[4] if isinstance(prediction[4], list) else []
-                    if len(prediction) >= 6:
-                        model = prediction[5]
-
-                if trajectory and (not trajectory_upper or not trajectory_lower):
-                    trajectory_upper = [float(p) * 1.02 for p in trajectory]
-                    trajectory_lower = [float(p) * 0.98 for p in trajectory]
+                horizon_len = min(max(1, int(horizon_days)), len(full_trajectory)) if full_trajectory else 0
+                raw_traj = full_trajectory[:horizon_len] if horizon_len else []
+                predicted_price = float(raw_traj[-1]) if raw_traj else float(current_price)
+                trajectory = _sample_series(raw_traj, max_points=50)
+                trajectory_upper, trajectory_lower = _build_bands(trajectory)
 
                 pct_change = ((predicted_price - current_price) / current_price * 100) if current_price else 0.0
-                signal = derive_investment_signal(pct_change, sentiment_score, last_rsi, horizon_days)
+                threshold = 0.5 * math.log2(int(horizon_days) + 1)
+                if pct_change > threshold:
+                    trend_label = "STRONG UPTREND"
+                elif pct_change > 0:
+                    trend_label = "WEAK UPTREND"
+                elif pct_change < -threshold:
+                    trend_label = "STRONG DOWNTREND"
+                else:
+                    trend_label = "WEAK DOWNTREND"
 
+                signal = derive_investment_signal(pct_change, sentiment_score, last_rsi, int(horizon_days))
                 reasoning = {}
-                if model is not None:
+                if rf_model is not None:
                     try:
                         reasoning = generate_rf_reasoning(
-                            model,
+                            rf_model,
                             None,
                             current_price,
                             predicted_price,
@@ -1479,7 +1539,7 @@ class IRIS_System:
 
                 results[horizon_key] = {
                     "predicted_price": float(predicted_price),
-                    "trend_label": str(label),
+                    "trend_label": trend_label,
                     "prediction_trajectory": [float(p) for p in trajectory],
                     "prediction_trajectory_upper": [float(p) for p in trajectory_upper],
                     "prediction_trajectory_lower": [float(p) for p in trajectory_lower],
@@ -1547,6 +1607,9 @@ class IRIS_System:
         interval: str = "1d",
         include_chart_history: bool = False,
         risk_horizon: str = "1D",
+        fast_mode: bool = False,
+        persist_report: bool = True,
+        generate_chart_artifact: bool = True,
     ):
         """Run analysis for a single ticker; returns report dict or None."""
         ticker = self.resolve_user_ticker_input(ticker, interactive_prompt=interactive_prompt, quiet=quiet)
@@ -1573,6 +1636,7 @@ class IRIS_System:
             analyzed_ticker,
             lookback_days=news_lookback,
             long_horizon=is_long_horizon,
+            fast_mode=fast_mode,
         )
         trend_label, predicted_price, prediction_trajectory, traj_upper, traj_lower, rf_model = self.predict_trend(
             data,
@@ -1608,7 +1672,12 @@ class IRIS_System:
                 iris_reasoning = {"summary": "Reasoning generation failed."}
 
         # Precompute all horizons for instant frontend switching.
-        all_horizon_predictions = self.predict_all_horizons(data, sentiment_score)
+        precompute_cap_days = 252 if fast_mode else None
+        all_horizon_predictions = self.predict_all_horizons(
+            data,
+            sentiment_score,
+            max_horizon_days=precompute_cap_days,
+        )
 
         if history_df is not None and len(history_df):
             try:
@@ -1663,20 +1732,27 @@ class IRIS_System:
             "all_horizons": all_horizon_predictions,
         }
 
-        chart_path = self.draw_chart(
-            canonical_ticker,
-            data.get("history_df"),
-            data["current_price"],
-            predicted_price,
-            trend_label,
-        )
+        chart_path = None
+        if generate_chart_artifact:
+            chart_path = self.draw_chart(
+                canonical_ticker,
+                data.get("history_df"),
+                data["current_price"],
+                predicted_price,
+                trend_label,
+            )
         report["evidence"]["chart_path"] = chart_path
-        saved_path = self.save_report(report, f"{canonical_ticker}_report.json")
+        saved_path = None
+        if persist_report:
+            saved_path = self.save_report(report, f"{canonical_ticker}_report.json")
 
         if chart_path and not quiet:
             print(f"  Chart saved: {chart_path}")
         if not quiet:
-            print(f"  Report: {canonical_ticker} | {light} | Predicted ({horizon_label}): ${predicted_price:.2f} | {saved_path}")
+            if saved_path:
+                print(f"  Report: {canonical_ticker} | {light} | Predicted ({horizon_label}): ${predicted_price:.2f} | {saved_path}")
+            else:
+                print(f"  Report: {canonical_ticker} | {light} | Predicted ({horizon_label}): ${predicted_price:.2f}")
 
         # Optionally include chart history in API response without storing it in report logs.
         if include_chart_history:

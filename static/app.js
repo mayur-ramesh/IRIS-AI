@@ -1024,9 +1024,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         _retryTicker = normalizedTicker;
 
-        // 30-second hard timeout on the entire analysis
+        // Allow slower networks while backend work stays bounded.
         const timeoutCtrl = new AbortController();
-        const timeoutId = setTimeout(() => timeoutCtrl.abort(), 30000);
+        const timeoutId = setTimeout(() => timeoutCtrl.abort(), 60000);
 
         setLoading(true);
         _hideErrorBanner();
