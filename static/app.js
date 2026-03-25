@@ -1463,7 +1463,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 autoScale: true,
                 borderVisible: false,
                 minimumWidth: 68,
-                scaleMargins: { top: 0.08, bottom: 0.08 },
+                scaleMargins: { top: 0.05, bottom: 0.15 },
             },
             timeScale: {
                 borderVisible: false,
@@ -1686,15 +1686,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let forecastSeries;
             const forecastOpts = {
-                lineColor: forecastColor,
-                lineWidth: 3,
+                color: forecastColor,
+                lineWidth: 2,
                 lineStyle: LightweightCharts.LineStyle.LargeDashed,
                 crosshairMarkerVisible: true,
                 crosshairMarkerRadius: 5,
-                priceLineVisible: true,
-                priceLineColor: forecastColor,
-                priceLineWidth: 1,
-                priceLineStyle: LightweightCharts.LineStyle.Dotted,
+                priceLineVisible: false,
                 lastValueVisible: true,
             };
             if (typeof lwChart.addLineSeries === 'function') {
@@ -1705,31 +1702,29 @@ document.addEventListener('DOMContentLoaded', () => {
             forecastSeries.setData(forecastData);
 
             const upperBandOpts = {
-                lineColor: 'rgba(6, 182, 212, 0.12)',
-                topColor: 'rgba(6, 182, 212, 0.10)',
-                bottomColor: 'rgba(6, 182, 212, 0.02)',
+                color: isUpForecast ? 'rgba(6, 182, 212, 0.25)' : 'rgba(249, 115, 22, 0.25)',
                 lineWidth: 1,
+                lineStyle: LightweightCharts.LineStyle.Dotted,
                 priceLineVisible: false,
                 lastValueVisible: false,
                 crosshairMarkerVisible: false,
             };
             const lowerBandOpts = {
-                lineColor: 'rgba(6, 182, 212, 0.10)',
-                topColor: 'rgba(6, 182, 212, 0.02)',
-                bottomColor: 'rgba(6, 182, 212, 0.10)',
+                color: isUpForecast ? 'rgba(6, 182, 212, 0.25)' : 'rgba(249, 115, 22, 0.25)',
                 lineWidth: 1,
+                lineStyle: LightweightCharts.LineStyle.Dotted,
                 priceLineVisible: false,
                 lastValueVisible: false,
                 crosshairMarkerVisible: false,
             };
             let upperBandSeries;
             let lowerBandSeries;
-            if (typeof lwChart.addAreaSeries === 'function') {
-                upperBandSeries = lwChart.addAreaSeries(upperBandOpts);
-                lowerBandSeries = lwChart.addAreaSeries(lowerBandOpts);
+            if (typeof lwChart.addLineSeries === 'function') {
+                upperBandSeries = lwChart.addLineSeries(upperBandOpts);
+                lowerBandSeries = lwChart.addLineSeries(lowerBandOpts);
             } else {
-                upperBandSeries = lwChart.addSeries(LightweightCharts.AreaSeries, upperBandOpts);
-                lowerBandSeries = lwChart.addSeries(LightweightCharts.AreaSeries, lowerBandOpts);
+                upperBandSeries = lwChart.addSeries(LightweightCharts.LineSeries, upperBandOpts);
+                lowerBandSeries = lwChart.addSeries(LightweightCharts.LineSeries, lowerBandOpts);
             }
             upperBandSeries.setData(upperData);
             lowerBandSeries.setData(lowerData);
