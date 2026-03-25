@@ -215,6 +215,10 @@ _RATE_LIMIT_WINDOW = 60  # seconds
 _llm_predict_cache: dict[str, dict] = {}
 _LLM_CACHE_TTL = 600  # 10 minutes
 
+# Shared headline cache: {ticker: {headlines: [...], sentiment: float, ts: float}}
+_headline_cache: dict[str, dict] = {}
+_HEADLINE_CACHE_TTL = 600  # 10 minutes
+
 
 def _check_rate_limit(ip: str) -> bool:
     """Return True if request is allowed, False if rate limit exceeded."""
@@ -555,6 +559,16 @@ def analyze_ticker():
         )
         
         if report:
+            # Cache analyzed headlines for /api/llm-predict to avoid re-running news pipeline.
+            evidence_headlines = report.get("evidence", {}).get("headlines_used", [])
+            report_sentiment = report.get("signals", {}).get("sentiment_score", 0.0)
+            cache_symbol = str(report.get("meta", {}).get("symbol", ticker) or ticker).strip().upper()
+            _headline_cache[cache_symbol] = {
+                "headlines": evidence_headlines if isinstance(evidence_headlines, list) else [],
+                "sentiment": float(report_sentiment or 0.0),
+                "ts": time.time(),
+            }
+
             report["llm_insights"] = get_latest_llm_reports(ticker)
 
             # Attach guardrail data so the frontend renders real numbers
@@ -634,15 +648,18 @@ def predict_only():
 
 @app.route('/api/llm-predict', methods=['GET'])
 def llm_predict_endpoint():
-    """Parallel LLM prediction hardened to always return 3 model results."""
+    """Parallel LLM prediction using cached headlines (no full news pipeline rerun)."""
     ticker = str(request.args.get('ticker', '') or '').strip().upper()
     horizon = str(request.args.get('horizon', '1D') or '1D').strip().upper()
     if not ticker:
         return jsonify({"error": "Ticker parameter required"}), 400
+    _start_ts = time.time()
+    print(f"[LLM-PREDICT] START ticker={ticker} horizon={horizon}")
 
     cache_key = f"{ticker}:{horizon}"
     cached = _llm_predict_cache.get(cache_key)
     if cached and (time.time() - cached["ts"]) < _LLM_CACHE_TTL:
+        print(f"[LLM-PREDICT] CACHE HIT ticker={ticker} horizon={horizon}")
         return jsonify(cached["data"])
 
     try:
@@ -656,7 +673,7 @@ def llm_predict_endpoint():
         sma_5 = current_price
         rsi_14 = 50.0
         sentiment_score = 0.0
-        headlines_summary = "No market data available."
+        headlines_summary = "No recent headlines available."
 
         try:
             data = iris_app.get_market_data(ticker) if iris_app else None
@@ -671,21 +688,36 @@ def llm_predict_endpoint():
                         rsi_14 = float(history_df["rsi_14"].iloc[-1])
         except Exception as e:
             print(f"[LLM-PREDICT] Market data failed for {ticker}: {e}")
+        print(f"[LLM-PREDICT] Market data: {time.time() - _start_ts:.1f}s")
 
-        try:
-            if iris_app:
-                lookback = min(30, horizon_days) if horizon_days > 0 else 21
-                sent, headlines = iris_app.analyze_news(
-                    ticker,
-                    lookback_days=lookback,
-                    long_horizon=horizon_days >= 126,
-                )
-                sentiment_score = float(sent)
-                headlines_summary = "; ".join(
-                    h.get("title", "")[:80] for h in (headlines or [])[:5]
-                ) or "No recent headlines available."
-        except Exception as e:
-            print(f"[LLM-PREDICT] News fetch failed for {ticker}: {e}")
+        # Headlines: use cached /api/analyze headlines; never rerun full analyze_news here.
+        hcache = _headline_cache.get(ticker)
+        if hcache and (time.time() - float(hcache.get("ts", 0.0))) < _HEADLINE_CACHE_TTL:
+            sentiment_score = float(hcache.get("sentiment", 0.0) or 0.0)
+            cached_headlines = hcache.get("headlines", [])
+            headlines_summary = "; ".join(
+                str(h.get("title", ""))[:80]
+                for h in (cached_headlines or [])[:7]
+                if isinstance(h, dict)
+            ) or "No recent headlines available."
+        else:
+            # Minimal fallback without FinBERT/LLM filtering.
+            try:
+                stock_news = yf.Ticker(ticker).news or []
+                quick_titles = []
+                for item in stock_news[:10]:
+                    title = ""
+                    if isinstance(item, dict):
+                        title = item.get("title") or ""
+                        if not title:
+                            content = item.get("content")
+                            if isinstance(content, dict):
+                                title = content.get("title", "")
+                    if title:
+                        quick_titles.append(str(title)[:80])
+                headlines_summary = "; ".join(quick_titles[:7]) or "No recent headlines available."
+            except Exception:
+                pass
 
         results = predict_with_llms(
             symbol=ticker,
@@ -698,6 +730,7 @@ def llm_predict_endpoint():
             horizon_label=horizon_label,
             headlines_summary=headlines_summary,
         )
+        print(f"[LLM-PREDICT] LLM calls done: {time.time() - _start_ts:.1f}s")
 
         for key in results:
             results[key] = _normalize_llm_result(results[key])
@@ -710,6 +743,7 @@ def llm_predict_endpoint():
         }
 
         _llm_predict_cache[cache_key] = {"data": response_data, "ts": time.time()}
+        print(f"[LLM-PREDICT] DONE ticker={ticker} horizon={horizon} total={time.time() - _start_ts:.1f}s")
         return jsonify(response_data)
     except Exception:
         print(f"[LLM-PREDICT] Unhandled error: {traceback.format_exc()}")
