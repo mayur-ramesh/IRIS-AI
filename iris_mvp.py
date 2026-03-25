@@ -13,6 +13,7 @@ import pandas as pd
 import time
 import json
 import re
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from storage_paths import resolve_data_dir
 
@@ -1663,25 +1664,65 @@ class IRIS_System:
             print(f"... Analyzing {analyzed_ticker} ...")
             if canonical_ticker != analyzed_ticker:
                 print(f"  Note: {analyzed_ticker} will be merged into canonical symbol {canonical_ticker}.")
-        data = self.get_market_data(analyzed_ticker, period=period, interval=interval)
-        if not data:
-            if not quiet:
-                print(f"  {analyzed_ticker}: Stock not found or connection error.")
-            return None
-
         # Resolve risk horizon
         horizon_key = str(risk_horizon or "1D").strip().upper()
         horizon_days = RISK_HORIZON_MAP.get(horizon_key, 1)
         horizon_label = RISK_HORIZON_LABELS.get(horizon_key, "1 Day")
-
         news_lookback = HORIZON_NEWS_LOOKBACK_DAYS.get(horizon_key, 21)
         is_long_horizon = horizon_days >= 126
-        sentiment_score, headlines = self.analyze_news(
-            analyzed_ticker,
-            lookback_days=news_lookback,
-            long_horizon=is_long_horizon,
-            fast_mode=fast_mode,
-        )
+
+        # Fetch market data + news in parallel to reduce end-to-end latency.
+        data = None
+        sentiment_score, headlines = 0.0, []
+        executor = ThreadPoolExecutor(max_workers=2)
+        cancel_pending = False
+        future_market = None
+        future_news = None
+        try:
+            future_market = executor.submit(
+                self.get_market_data,
+                analyzed_ticker,
+                period,
+                interval,
+            )
+            future_news = executor.submit(
+                self.analyze_news,
+                analyzed_ticker,
+                news_lookback,
+                is_long_horizon,
+                fast_mode,
+            )
+
+            try:
+                data = future_market.result(timeout=30)
+            except Exception as exc:
+                if not quiet:
+                    print(f"  {analyzed_ticker}: Market data fetch failed: {exc}")
+                data = None
+
+            if not data:
+                if not quiet:
+                    print(f"  {analyzed_ticker}: Stock not found or connection error.")
+                if future_news is not None:
+                    future_news.cancel()
+                cancel_pending = True
+                return None
+
+            try:
+                sentiment_score, headlines = future_news.result(timeout=30)
+            except Exception as exc:
+                if not quiet:
+                    print(f"  {analyzed_ticker}: News fetch failed: {exc}")
+                if future_news is not None:
+                    future_news.cancel()
+                cancel_pending = True
+                sentiment_score, headlines = 0.0, []
+        finally:
+            try:
+                executor.shutdown(wait=not cancel_pending, cancel_futures=cancel_pending)
+            except TypeError:
+                executor.shutdown(wait=not cancel_pending)
+
         trend_label, predicted_price, prediction_trajectory, traj_upper, traj_lower, rf_model = self.predict_trend(
             data,
             sentiment_score,
@@ -1777,6 +1818,7 @@ class IRIS_System:
         }
 
         chart_path = None
+        # Skip matplotlib chart generation for API requests (web UI uses LightweightCharts).
         if generate_chart_artifact:
             chart_path = self.draw_chart(
                 canonical_ticker,

@@ -108,17 +108,41 @@ SECTOR_PEERS = {
 }
 
 
+_yf_info_cache = {}
+_YF_INFO_TTL = 300  # seconds
+
+
+def _get_cached_yf_info(ticker):
+    """Cache yfinance Ticker.info payloads to reduce repeated network calls."""
+    symbol = str(ticker or "").strip().upper()
+    if not symbol:
+        return {}
+
+    now_ts = time.time()
+    cached = _yf_info_cache.get(symbol)
+    if cached and (now_ts - cached.get("ts", 0)) < _YF_INFO_TTL:
+        return cached.get("info") or {}
+
+    try:
+        info = yf.Ticker(symbol).info or {}
+    except Exception:
+        info = {}
+    _yf_info_cache[symbol] = {"info": info, "ts": now_ts}
+    return info
+
+
 def _get_related_tickers(ticker, count=7):
     """Return a list of related tickers based on the sector of the given ticker."""
     fallback = ["AAPL", "MSFT", "GOOG", "AMZN", "NVDA", "META", "TSLA"]
+    symbol = str(ticker or "").strip().upper()
     try:
-        info = yf.Ticker(ticker).info
+        info = _get_cached_yf_info(symbol)
         sector = info.get("sector", "")
         peers = SECTOR_PEERS.get(sector, fallback)
-        related = [s for s in peers if s != ticker]
+        related = [s for s in peers if s != symbol]
         return related[:count]
     except Exception:
-        return [s for s in fallback if s != ticker][:count]
+        return [s for s in fallback if s != symbol][:count]
 
 # ---------------------------------------------------------------------------
 # Ticker validation setup
