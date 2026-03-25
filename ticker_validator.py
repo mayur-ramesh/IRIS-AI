@@ -69,7 +69,7 @@ class TickerValidationResult:
     code: str = ""          # structured error code (empty on success)
     warning: str = ""       # non-fatal advisory (e.g. OTC market)
     suggestions: list[str] = field(default_factory=list)
-    source: str = ""        # "cache" | "local_db" | "api" | ""
+    source: str = ""        # "cache" | "local_db" | "api" | "special_symbol" | ""
 
 
 # ---------------------------------------------------------------------------
@@ -101,9 +101,24 @@ def sanitize_ticker_input(raw: str) -> str:
 # Layer 1 – format validation
 # ---------------------------------------------------------------------------
 
-# Standard US tickers: 1-5 letters, optionally ONE dot + 1-2 letters
+# Standard US tickers: 1-5 letters, optionally ONE dot + 1-2 letters.
 # Covers BRK.B, BRK.A, class shares, etc.
-_TICKER_RE = re.compile(r"^[A-Z]{1,5}(\.[A-Z]{1,2})?$")
+_STANDARD_TICKER_RE = re.compile(r"^[A-Z]{1,5}(\.[A-Z]{1,2})?$")
+# Yahoo special symbols:
+# - Indices: ^GSPC, ^IXIC, ^DJI
+# - Futures: CL=F, GC=F, SI=F, HG=F
+# - Composite symbols: DX-Y.NYB
+_INDEX_TICKER_RE = re.compile(r"^\^[A-Z0-9.\-]{1,14}$")
+_FUTURES_TICKER_RE = re.compile(r"^[A-Z0-9]{1,8}=F$")
+_COMPOSITE_TICKER_RE = re.compile(r"^[A-Z0-9]{1,8}-[A-Z0-9]{1,8}\.[A-Z]{1,6}$")
+
+
+def _is_special_market_symbol(ticker: str) -> bool:
+    return bool(
+        _INDEX_TICKER_RE.fullmatch(ticker)
+        or _FUTURES_TICKER_RE.fullmatch(ticker)
+        or _COMPOSITE_TICKER_RE.fullmatch(ticker)
+    )
 
 
 def validate_ticker_format(ticker: str) -> TickerValidationResult:
@@ -122,12 +137,14 @@ def validate_ticker_format(ticker: str) -> TickerValidationResult:
             error=_CRYPTO_MESSAGE,
         )
 
-    if not _TICKER_RE.fullmatch(normalized):
+    is_standard = bool(_STANDARD_TICKER_RE.fullmatch(normalized))
+    is_special = _is_special_market_symbol(normalized)
+    if not (is_standard or is_special):
         return TickerValidationResult(
             valid=False, ticker=normalized, code=ErrorCode.INVALID_FORMAT,
             error=(
                 f'"{normalized}" is not a valid ticker format. '
-                "Tickers are 1-5 letters, with an optional class suffix (e.g., BRK.B)."
+                "Use stock format (e.g., AAPL, BRK.B) or special market symbols (e.g., ^GSPC, CL=F)."
             ),
         )
 
@@ -158,7 +175,8 @@ def _cached_api_lookup(ticker: str) -> TickerValidationResult:
     info = yf.Ticker(ticker).info
     company_name = info.get("shortName") or info.get("longName") or ""
 
-    if not company_name and not in_local_db:
+    is_special_symbol = _is_special_market_symbol(ticker)
+    if not company_name and not in_local_db and not is_special_symbol:
         return TickerValidationResult(
             valid=False, ticker=ticker, code=ErrorCode.TICKER_NOT_FOUND,
             error=f'Ticker "{ticker}" was not found. Please check the symbol and try again.',
@@ -189,10 +207,10 @@ def _cached_api_lookup(ticker: str) -> TickerValidationResult:
     if exchange in _OTC_EXCHANGES:
         warning = f"Note: {ticker} trades on the OTC market. Data may be limited."
 
-    source = "local_db" if in_local_db else "api"
+    source = "special_symbol" if is_special_symbol and not in_local_db else ("local_db" if in_local_db else "api")
     return TickerValidationResult(
         valid=True, ticker=ticker,
-        company_name=company_name or "(verified offline)",
+        company_name=company_name or ("(special market symbol)" if is_special_symbol else "(verified offline)"),
         warning=warning,
         source=source,
     )
@@ -212,6 +230,7 @@ def validate_ticker_exists(ticker: str) -> TickerValidationResult:
         return fmt
 
     normalized = fmt.ticker
+    is_special_symbol = _is_special_market_symbol(normalized)
 
     # Probe local DB (may fail if DB file is corrupted or missing)
     in_local_db = False
@@ -257,7 +276,17 @@ def validate_ticker_exists(ticker: str) -> TickerValidationResult:
                 ),
             )
 
-        # API down, ticker not in local DB — cannot verify
+        # API down for special symbols: allow format-validated pass-through.
+        if is_special_symbol:
+            return TickerValidationResult(
+                valid=True,
+                ticker=normalized,
+                company_name="(special market symbol)",
+                source="special_symbol",
+                warning="Special market symbol accepted while live validation is temporarily unavailable.",
+            )
+
+        # API down, ticker not in local DB - cannot verify
         return TickerValidationResult(
             valid=False, ticker=normalized, code=api_code,
             error=(
