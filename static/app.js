@@ -660,6 +660,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Chart loading overlay.
+    let chartLoadingOverlay = null;
+    if (chartContainer) {
+        chartLoadingOverlay = document.createElement('div');
+        chartLoadingOverlay.className = 'chart-loading-overlay';
+        chartLoadingOverlay.innerHTML = `
+            <div class="chart-loading-spinner"></div>
+            <div class="chart-loading-text">Loading chart data\u2026</div>
+        `;
+        chartContainer.appendChild(chartLoadingOverlay);
+    }
+
+    function showChartLoading(message) {
+        if (!chartLoadingOverlay) return;
+        const textEl = chartLoadingOverlay.querySelector('.chart-loading-text');
+        if (textEl) textEl.textContent = message || 'Loading chart data\u2026';
+        chartLoadingOverlay.classList.add('is-active');
+    }
+
+    function hideChartLoading() {
+        if (chartLoadingOverlay) {
+            chartLoadingOverlay.classList.remove('is-active');
+        }
+    }
+
     function getChartDimensions() {
         if (!chartContainer) {
             return { width: 0, height: 300 };
@@ -994,6 +1019,7 @@ document.addEventListener('DOMContentLoaded', () => {
         errorMsg.classList.add('hidden');
         _showProgress();
         _showSkeleton();
+        showChartLoading('Analyzing ticker\u2026');
         if (!keepDashboardVisible) {
             dashboard.classList.add('hidden');
             var recSec = document.getElementById('recommended-section');
@@ -1078,6 +1104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } finally {
             _hideSkeleton();
             _hideProgress();
+            hideChartLoading();
             setLoading(false);
         }
     }
@@ -1110,7 +1137,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const timeframeKey = String(btn.dataset.timeframe || '').toUpperCase();
             if (!TIMEFRAME_TO_QUERY[timeframeKey]) return;
 
-            setActiveTimeframe(timeframeKey);
             const ticker = currentTicker || input.value.trim().toUpperCase();
             if (!ticker) {
                 errorMsg.textContent = 'Enter a ticker first.';
@@ -1118,17 +1144,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             currentTicker = ticker;
-            setLoading(true);
+
+            // Show loading states.
+            setActiveTimeframe(timeframeKey);
+            btn.classList.add('is-loading');
+            showChartLoading('Updating chart\u2026');
+            timeframeButtons.forEach((b) => { b.disabled = true; });
+
+            const priceCard = document.querySelector('.price-card');
             try {
-                // 1) Refresh chart history (fast and lightweight)
+                // 1) Refresh chart history (lightweight)
                 await refreshChartForTimeframe(currentTicker, timeframeKey, false);
 
-                // 2) Sync horizon and update prediction if needed
+                // 2) If horizon changed, run prediction
                 const newHorizon = timeframeKey;
                 if (HORIZON_LABELS[newHorizon]) {
                     const horizonChanged = newHorizon !== currentHorizon;
                     setActiveHorizon(newHorizon);
                     if (horizonChanged) {
+                        showChartLoading('Running prediction model\u2026');
+                        if (priceCard) priceCard.classList.add('prediction-updating');
                         try {
                             const predResp = await fetch(
                                 `/api/predict?ticker=${encodeURIComponent(ticker)}&horizon=${encodeURIComponent(newHorizon)}`
@@ -1158,11 +1193,18 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         } catch (err) {
                             console.warn('Prediction update failed:', err);
+                        } finally {
+                            if (priceCard) priceCard.classList.remove('prediction-updating');
                         }
                     }
                 }
+            } catch (error) {
+                console.error('Timeframe switch error:', error);
             } finally {
-                setLoading(false);
+                btn.classList.remove('is-loading');
+                hideChartLoading();
+                if (priceCard) priceCard.classList.remove('prediction-updating');
+                timeframeButtons.forEach((b) => { b.disabled = false; });
             }
         });
     });
