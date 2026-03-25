@@ -1011,7 +1011,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function updateLlmForHorizon(ticker, horizonKey) {
+    function updateLlmForHorizon(ticker, horizonKey, forceRefresh = false) {
         const normalizedTicker = String(ticker || '').trim().toUpperCase();
         const normalizedHorizon = String(horizonKey || '').trim().toUpperCase() || '1D';
         if (!normalizedTicker) return;
@@ -1020,10 +1020,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const llmContainer = document.getElementById('llm-insights-container');
         if (cachedLlm) {
             _renderLlmInsights(cachedLlm, normalizedHorizon);
-            return;
+            if (!forceRefresh) {
+                return;
+            }
         }
 
-        if (llmContainer) {
+        const renderLlmSkeletons = () => {
+            if (!llmContainer) return;
             const skeletonRows = ['ChatGPT 5.2', 'DeepSeek V3', 'Gemini V3 Pro'].map((name) => `
                 <div class="llm-report-item" style="padding:8px;background:rgba(255,255,255,0.03);border-radius:5px;display:flex;justify-content:space-between;align-items:center;min-height:44px;">
                     <span style="font-weight:600;font-size:0.95em;opacity:0.4;">${name}</span>
@@ -1031,37 +1034,69 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `).join('');
             llmContainer.innerHTML = skeletonRows;
+        };
+
+        if (llmContainer && !cachedLlm) {
+            renderLlmSkeletons();
         }
 
-        const llmAbort = new AbortController();
-        const llmTimeout = setTimeout(() => llmAbort.abort(), 30000);
+        const runLlmFetch = (isRetry = false) => {
+            const llmAbort = new AbortController();
+            const llmTimeout = setTimeout(() => llmAbort.abort(), 60000);
 
-        fetch(`/api/llm-predict?ticker=${encodeURIComponent(normalizedTicker)}&horizon=${encodeURIComponent(normalizedHorizon)}`, {
-            signal: llmAbort.signal,
-        })
-            .then((resp) => {
-                clearTimeout(llmTimeout);
-                return resp.ok ? resp.json() : null;
+            fetch(`/api/llm-predict?ticker=${encodeURIComponent(normalizedTicker)}&horizon=${encodeURIComponent(normalizedHorizon)}`, {
+                signal: llmAbort.signal,
             })
-            .then((llmData) => {
-                if (llmData && llmData.models) {
-                    cachedLlmByHorizon[normalizedHorizon] = llmData.models;
-                    if (currentHorizon === normalizedHorizon) {
-                        _renderLlmInsights(llmData.models, normalizedHorizon);
+                .then((resp) => {
+                    clearTimeout(llmTimeout);
+                    return resp.ok ? resp.json() : null;
+                })
+                .then((llmData) => {
+                    if (llmData && llmData.models) {
+                        cachedLlmByHorizon[normalizedHorizon] = llmData.models;
+                        if (currentHorizon === normalizedHorizon) {
+                            _renderLlmInsights(llmData.models, normalizedHorizon);
+                        }
+                    } else if (currentHorizon === normalizedHorizon && llmContainer) {
+                        llmContainer.innerHTML = '<p class="text-muted">LLM insights unavailable for this timeframe.</p>';
                     }
-                } else if (currentHorizon === normalizedHorizon && llmContainer) {
-                    llmContainer.innerHTML = '<p class="text-muted">LLM insights unavailable for this timeframe.</p>';
-                }
-            })
-            .catch((err) => {
-                clearTimeout(llmTimeout);
-                if (currentHorizon === normalizedHorizon && llmContainer) {
-                    const msg = err && err.name === 'AbortError'
-                        ? 'LLM request timed out. Try again later.'
-                        : 'Failed to load LLM insights.';
-                    llmContainer.innerHTML = `<p class="text-muted">${msg}</p>`;
-                }
-            });
+                })
+                .catch((err) => {
+                    clearTimeout(llmTimeout);
+                    if (currentHorizon !== normalizedHorizon || !llmContainer) return;
+
+                    if (isRetry) {
+                        llmContainer.innerHTML = '<p class="text-muted" style="text-align:center;padding:16px 0;">LLM predictions still unavailable.</p>';
+                        return;
+                    }
+
+                    const isTimeout = err && err.name === 'AbortError';
+                    const msg = isTimeout
+                        ? 'LLM predictions took too long.'
+                        : 'Failed to load LLM predictions.';
+                    llmContainer.innerHTML = `
+                        <div style="text-align:center;padding:16px 0;">
+                            <p class="text-muted" style="margin-bottom:10px;">${msg}</p>
+                            <button type="button" class="llm-retry-btn"
+                                style="padding:6px 16px;border-radius:8px;border:1px solid var(--accent-blue);
+                                       background:transparent;color:var(--accent-blue);font-size:0.85rem;
+                                       font-weight:600;cursor:pointer;transition:background 0.2s;">
+                                Retry
+                            </button>
+                        </div>`;
+
+                    const retryBtn = llmContainer.querySelector('.llm-retry-btn');
+                    if (retryBtn) {
+                        retryBtn.addEventListener('click', () => {
+                            renderLlmSkeletons();
+                            delete cachedLlmByHorizon[normalizedHorizon];
+                            runLlmFetch(true);
+                        });
+                    }
+                });
+        };
+
+        runLlmFetch(false);
     }
 
     async function loadTickerData(ticker, keepDashboardVisible = false) {
@@ -1151,6 +1186,9 @@ document.addEventListener('DOMContentLoaded', () => {
             latestAnalyzeHistory = normalizeHistoryPoints(data?.market?.history);
             latestAnalyzeTimeframe = getActiveTimeframe();
             try { updateDashboard(data); } catch (renderErr) { console.error('[IRIS] updateDashboard error:', renderErr); }
+            if (currentHorizon && currentTicker) {
+                updateLlmForHorizon(currentTicker, currentHorizon, true);
+            }
             await refreshChartForTimeframe(currentTicker, getActiveTimeframe(), false);
             if (typeof window._irisLoadRecommendations === 'function') { window._irisLoadRecommendations(currentTicker); }
 
