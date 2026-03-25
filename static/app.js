@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let latestTrajectoryUpper = [];
     let latestTrajectoryLower = [];
     let latestLlmPredictions = null;
+    let cachedHorizons = {};
 
     const HORIZON_LABELS = {
         '1D': '1 Day',
@@ -1084,6 +1085,7 @@ document.addEventListener('DOMContentLoaded', () => {
             latestTrajectory = Array.isArray(data?.market?.prediction_trajectory) ? data.market.prediction_trajectory : [];
             latestTrajectoryUpper = Array.isArray(data?.market?.prediction_trajectory_upper) ? data.market.prediction_trajectory_upper : [];
             latestTrajectoryLower = Array.isArray(data?.market?.prediction_trajectory_lower) ? data.market.prediction_trajectory_lower : [];
+            cachedHorizons = data?.all_horizons && typeof data.all_horizons === 'object' ? data.all_horizons : {};
             latestAnalyzeHistory = normalizeHistoryPoints(data?.market?.history);
             latestAnalyzeTimeframe = getActiveTimeframe();
             try { updateDashboard(data); } catch (renderErr) { console.error('[IRIS] updateDashboard error:', renderErr); }
@@ -1154,65 +1156,114 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             currentTicker = ticker;
 
-            // Show loading states.
             setActiveTimeframe(timeframeKey);
+            const priceCard = document.querySelector('.price-card');
+            const newHorizon = timeframeKey;
+            const horizonChanged = Boolean(HORIZON_LABELS[newHorizon] && newHorizon !== currentHorizon);
+
+            // Step 1: instant prediction panel update from precomputed cache.
+            if (horizonChanged) {
+                setActiveHorizon(newHorizon);
+                const cached = cachedHorizons[newHorizon];
+                if (cached && typeof cached === 'object') {
+                    latestPredictedPrice = Number(cached.predicted_price);
+                    latestTrajectory = Array.isArray(cached.prediction_trajectory) ? cached.prediction_trajectory : [];
+                    latestTrajectoryUpper = Array.isArray(cached.prediction_trajectory_upper) ? cached.prediction_trajectory_upper : [];
+                    latestTrajectoryLower = Array.isArray(cached.prediction_trajectory_lower) ? cached.prediction_trajectory_lower : [];
+
+                    if (predictedPriceEl && Number.isFinite(latestPredictedPrice)) {
+                        predictedPriceEl.textContent = usdFormatter.format(latestPredictedPrice);
+                    }
+
+                    const trend = String(cached.trend_label || '').replace(/[^\x20-\x7E]/g, '').trim();
+                    applyTrendBadge(trend);
+                    predictedPriceEl.classList.remove('price-up', 'price-down');
+                    if (trend.includes('UPTREND')) {
+                        predictedPriceEl.classList.add('price-up');
+                    } else if (trend.includes('DOWNTREND')) {
+                        predictedPriceEl.classList.add('price-down');
+                    }
+
+                    renderInvestmentSignalBadge(cached.investment_signal || '');
+                    if (priceCard) {
+                        priceCard._irisReasoning = String(cached?.iris_reasoning?.summary || '');
+                    }
+                } else {
+                    // Fallback for older reports without all_horizons.
+                    if (priceCard) {
+                        priceCard.classList.add('prediction-updating');
+                    }
+                    try {
+                        const predResp = await fetch(
+                            `/api/predict?ticker=${encodeURIComponent(ticker)}&horizon=${encodeURIComponent(newHorizon)}`
+                        );
+                        if (predResp.ok) {
+                            const pred = await predResp.json();
+                            latestPredictedPrice = Number(pred?.predicted_price);
+                            latestTrajectory = Array.isArray(pred?.prediction_trajectory) ? pred.prediction_trajectory : [];
+                            latestTrajectoryUpper = Array.isArray(pred?.prediction_trajectory_upper) ? pred.prediction_trajectory_upper : [];
+                            latestTrajectoryLower = Array.isArray(pred?.prediction_trajectory_lower) ? pred.prediction_trajectory_lower : [];
+
+                            if (predictedPriceEl && Number.isFinite(latestPredictedPrice)) {
+                                predictedPriceEl.textContent = usdFormatter.format(latestPredictedPrice);
+                            }
+
+                            const trend = String(pred?.trend_label || '').replace(/[^\x20-\x7E]/g, '').trim();
+                            applyTrendBadge(trend);
+                            predictedPriceEl.classList.remove('price-up', 'price-down');
+                            if (trend.includes('UPTREND')) {
+                                predictedPriceEl.classList.add('price-up');
+                            } else if (trend.includes('DOWNTREND')) {
+                                predictedPriceEl.classList.add('price-down');
+                            }
+                            renderInvestmentSignalBadge(pred?.investment_signal || '');
+
+                            if (priceCard) {
+                                priceCard._irisReasoning = String(pred?.iris_reasoning?.summary || '');
+                            }
+
+                            cachedHorizons[newHorizon] = {
+                                predicted_price: Number.isFinite(latestPredictedPrice) ? latestPredictedPrice : null,
+                                trend_label: trend,
+                                prediction_trajectory: latestTrajectory,
+                                prediction_trajectory_upper: latestTrajectoryUpper,
+                                prediction_trajectory_lower: latestTrajectoryLower,
+                                investment_signal: String(pred?.investment_signal || ''),
+                                iris_reasoning: pred?.iris_reasoning || {},
+                            };
+                        }
+                    } catch (err) {
+                        console.warn('Prediction update failed:', err);
+                    } finally {
+                        if (priceCard) {
+                            priceCard.classList.remove('prediction-updating');
+                        }
+                    }
+                }
+                await refreshLlmPredictions(currentTicker, currentHorizon);
+            }
+
+            // Step 2: chart history refresh (network).
             btn.classList.add('is-loading');
             showChartLoading('Updating chart\u2026');
             timeframeButtons.forEach((b) => { b.disabled = true; });
 
-            const priceCard = document.querySelector('.price-card');
             try {
-                // 1) Refresh chart history (lightweight)
                 await refreshChartForTimeframe(currentTicker, timeframeKey, false);
-
-                // 2) If horizon changed, run prediction
-                const newHorizon = timeframeKey;
-                if (HORIZON_LABELS[newHorizon]) {
-                    const horizonChanged = newHorizon !== currentHorizon;
-                    setActiveHorizon(newHorizon);
-                    if (horizonChanged) {
-                        showChartLoading('Running prediction model\u2026');
-                        if (priceCard) priceCard.classList.add('prediction-updating');
-                        try {
-                            const predResp = await fetch(
-                                `/api/predict?ticker=${encodeURIComponent(ticker)}&horizon=${encodeURIComponent(newHorizon)}`
-                            );
-                            if (predResp.ok) {
-                                const pred = await predResp.json();
-                                latestPredictedPrice = Number(pred?.predicted_price);
-                                latestTrajectory = Array.isArray(pred?.prediction_trajectory) ? pred.prediction_trajectory : [];
-                                latestTrajectoryUpper = Array.isArray(pred?.prediction_trajectory_upper) ? pred.prediction_trajectory_upper : [];
-                                latestTrajectoryLower = Array.isArray(pred?.prediction_trajectory_lower) ? pred.prediction_trajectory_lower : [];
-
-                                if (predictedPriceEl && Number.isFinite(latestPredictedPrice)) {
-                                    predictedPriceEl.textContent = usdFormatter.format(latestPredictedPrice);
-                                }
-
-                                const trend = String(pred?.trend_label || '').replace(/[^\x20-\x7E]/g, '').trim();
-                                applyTrendBadge(trend);
-                                renderInvestmentSignalBadge(pred?.investment_signal || '');
-                                renderChart(
-                                    latestAnalyzeHistory,
-                                    latestPredictedPrice,
-                                    latestTrajectory,
-                                    latestTrajectoryUpper,
-                                    latestTrajectoryLower,
-                                );
-                                await refreshLlmPredictions(currentTicker, currentHorizon);
-                            }
-                        } catch (err) {
-                            console.warn('Prediction update failed:', err);
-                        } finally {
-                            if (priceCard) priceCard.classList.remove('prediction-updating');
-                        }
-                    }
+                if (Array.isArray(latestAnalyzeHistory) && latestAnalyzeHistory.length > 0) {
+                    renderChart(
+                        latestAnalyzeHistory,
+                        latestPredictedPrice,
+                        latestTrajectory,
+                        latestTrajectoryUpper,
+                        latestTrajectoryLower,
+                    );
                 }
             } catch (error) {
                 console.error('Timeframe switch error:', error);
             } finally {
                 btn.classList.remove('is-loading');
                 hideChartLoading();
-                if (priceCard) priceCard.classList.remove('prediction-updating');
                 timeframeButtons.forEach((b) => { b.disabled = false; });
             }
         });
@@ -1842,12 +1893,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Make IRIS prediction card hoverable for reasoning.
         const priceCard = document.querySelector('.price-card');
         if (priceCard) {
-            const irisReasoning = data?.signals?.iris_reasoning?.summary || '';
+            priceCard._irisReasoning = data?.signals?.iris_reasoning?.summary || '';
             priceCard.classList.add('prediction-result');
             priceCard.onmouseenter = () => {
                 const priceStr = predictedPriceEl.textContent;
-                const signal = data?.signals?.investment_signal || '';
-                showReasoningTooltip(priceCard, 'IRIS Model', priceStr, signal, irisReasoning);
+                const signal = document.getElementById('investment-signal-badge')?.textContent || '';
+                showReasoningTooltip(priceCard, 'IRIS Model', priceStr, signal, priceCard._irisReasoning);
             };
             priceCard.onmouseleave = hideReasoningTooltip;
         }

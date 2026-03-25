@@ -1420,6 +1420,89 @@ class IRIS_System:
 
         return label, predicted_price, trajectory, trajectory_upper, trajectory_lower, model
 
+    def predict_all_horizons(self, data, sentiment_score):
+        """Run predictions for all supported horizons using the same market snapshot."""
+        results = {}
+        current_price = float(data.get("current_price", 0.0) or 0.0) if isinstance(data, dict) else 0.0
+        history_df = data.get("history_df") if isinstance(data, dict) else None
+
+        last_rsi = 50.0
+        if history_df is not None and "rsi_14" in history_df.columns and len(history_df):
+            try:
+                last_rsi = float(history_df["rsi_14"].iloc[-1])
+            except Exception:
+                last_rsi = 50.0
+
+        for horizon_key, horizon_days in RISK_HORIZON_MAP.items():
+            horizon_label = RISK_HORIZON_LABELS.get(horizon_key, horizon_key)
+            try:
+                prediction = self.predict_trend(data, sentiment_score, horizon_days=horizon_days)
+
+                label = "INSUFFICIENT DATA"
+                predicted_price = current_price
+                trajectory = []
+                trajectory_upper = []
+                trajectory_lower = []
+                model = None
+
+                if isinstance(prediction, (tuple, list)):
+                    if len(prediction) >= 2:
+                        label = prediction[0]
+                        predicted_price = float(prediction[1])
+                    if len(prediction) >= 3 and isinstance(prediction[2], list):
+                        trajectory = prediction[2]
+                    if len(prediction) >= 5:
+                        trajectory_upper = prediction[3] if isinstance(prediction[3], list) else []
+                        trajectory_lower = prediction[4] if isinstance(prediction[4], list) else []
+                    if len(prediction) >= 6:
+                        model = prediction[5]
+
+                if trajectory and (not trajectory_upper or not trajectory_lower):
+                    trajectory_upper = [float(p) * 1.02 for p in trajectory]
+                    trajectory_lower = [float(p) * 0.98 for p in trajectory]
+
+                pct_change = ((predicted_price - current_price) / current_price * 100) if current_price else 0.0
+                signal = derive_investment_signal(pct_change, sentiment_score, last_rsi, horizon_days)
+
+                reasoning = {}
+                if model is not None:
+                    try:
+                        reasoning = generate_rf_reasoning(
+                            model,
+                            None,
+                            current_price,
+                            predicted_price,
+                            horizon_label,
+                        )
+                    except Exception:
+                        reasoning = {"summary": "Reasoning unavailable."}
+
+                results[horizon_key] = {
+                    "predicted_price": float(predicted_price),
+                    "trend_label": str(label),
+                    "prediction_trajectory": [float(p) for p in trajectory],
+                    "prediction_trajectory_upper": [float(p) for p in trajectory_upper],
+                    "prediction_trajectory_lower": [float(p) for p in trajectory_lower],
+                    "investment_signal": str(signal),
+                    "iris_reasoning": reasoning,
+                    "horizon_days": int(horizon_days),
+                    "horizon_label": horizon_label,
+                }
+            except Exception as exc:
+                print(f"  predict_all_horizons: {horizon_key} failed: {exc}")
+                results[horizon_key] = {
+                    "predicted_price": float(current_price),
+                    "trend_label": "INSUFFICIENT DATA",
+                    "prediction_trajectory": [],
+                    "prediction_trajectory_upper": [],
+                    "prediction_trajectory_lower": [],
+                    "investment_signal": "HOLD",
+                    "iris_reasoning": {"summary": "Prediction failed for this horizon."},
+                    "horizon_days": int(RISK_HORIZON_MAP.get(horizon_key, 1)),
+                    "horizon_label": horizon_label,
+                }
+        return results
+
     def draw_chart(self, symbol: str, history_df, current_price: float, predicted_price: float, trend_label: str, save_dir: str = ""):
         """Draw live price history and prediction trend; save to dated subfolder under data/charts (YYYY-MM-DD)."""
         if not _HAS_MATPLOTLIB or history_df is None or history_df.empty:
@@ -1524,6 +1607,9 @@ class IRIS_System:
             except Exception:
                 iris_reasoning = {"summary": "Reasoning generation failed."}
 
+        # Precompute all horizons for instant frontend switching.
+        all_horizon_predictions = self.predict_all_horizons(data, sentiment_score)
+
         if history_df is not None and len(history_df):
             try:
                 market_session_date = str(pd.Timestamp(history_df.index[-1]).date())
@@ -1574,6 +1660,7 @@ class IRIS_System:
                 "iris_reasoning": iris_reasoning,
             },
             "evidence": {"headlines_used": evidence_headlines},
+            "all_horizons": all_horizon_predictions,
         }
 
         chart_path = self.draw_chart(
