@@ -410,6 +410,7 @@ header {
 }
 
 .dashboard {
+    position: relative;
     animation: fadeIn 0.5s ease-out;
 }
 
@@ -494,7 +495,7 @@ header {
   grid-row: 2;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Engine indicator centred vertically inside Risk card */
@@ -604,7 +605,7 @@ header {
 
 .prediction-tooltip {
     position: absolute;
-    z-index: 100;
+    z-index: 200;
     background: var(--card-bg);
     border: 1px solid var(--panel-border);
     border-radius: 12px;

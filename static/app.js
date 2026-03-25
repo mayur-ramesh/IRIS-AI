@@ -93,16 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const predictedPriceLabelEl = document.getElementById('predicted-price-label');
     // --- Prediction reasoning tooltip ---
     let activeTooltip = null;
-    function hideReasoningTooltip() {
-        if (!activeTooltip) return;
-        const tooltip = activeTooltip;
-        activeTooltip = null;
-        tooltip.classList.remove('is-visible');
-        setTimeout(() => tooltip.remove(), 200);
-    }
+    let activeTooltipTarget = null;
 
     function showReasoningTooltip(targetEl, modelName, price, signal, reasoning) {
-        if (!targetEl) return;
         hideReasoningTooltip();
         const tooltip = document.createElement('div');
         const safeSignal = String(signal || '').trim();
@@ -118,10 +111,54 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="tooltip-reasoning">${reasoning || 'No reasoning available.'}</div>
         `;
-        targetEl.style.position = 'relative';
-        targetEl.appendChild(tooltip);
-        requestAnimationFrame(() => tooltip.classList.add('is-visible'));
+
+        // Append to dashboard (not the card) to avoid overflow clipping.
+        const anchor = document.getElementById('results-dashboard') || document.body;
+        anchor.style.position = 'relative';
+        anchor.appendChild(tooltip);
+
+        requestAnimationFrame(() => {
+            const tRect = targetEl.getBoundingClientRect();
+            const aRect = anchor.getBoundingClientRect();
+            const tipW = tooltip.offsetWidth;
+            const tipH = tooltip.offsetHeight;
+
+            // Try left first.
+            let left = tRect.left - aRect.left - tipW - 12;
+            let top = tRect.top - aRect.top + (tRect.height / 2) - (tipH / 2);
+
+            // Fallback above.
+            if (left < 0) {
+                left = tRect.left - aRect.left + (tRect.width / 2) - (tipW / 2);
+                top = tRect.top - aRect.top - tipH - 8;
+            }
+
+            // Fallback below.
+            if (top < 0) {
+                left = tRect.left - aRect.left + (tRect.width / 2) - (tipW / 2);
+                top = tRect.bottom - aRect.top + 8;
+            }
+
+            left = Math.max(4, Math.min(left, aRect.width - tipW - 4));
+            top = Math.max(4, top);
+
+            tooltip.style.left = `${left}px`;
+            tooltip.style.top = `${top}px`;
+            tooltip.classList.add('is-visible');
+        });
+
         activeTooltip = tooltip;
+        activeTooltipTarget = targetEl;
+    }
+
+    function hideReasoningTooltip() {
+        if (activeTooltip) {
+            activeTooltip.classList.remove('is-visible');
+            const el = activeTooltip;
+            setTimeout(() => el.remove(), 200);
+            activeTooltip = null;
+            activeTooltipTarget = null;
+        }
     }
     // --- Analysis state / flow elements ---
     const errorBanner       = document.getElementById('error-banner');
@@ -1139,7 +1176,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hideReasoningTooltip();
             return;
         }
-        if (activeTooltip && activeTooltip.parentElement === target) {
+        if (activeTooltip && activeTooltipTarget === target) {
             hideReasoningTooltip();
         }
     });
