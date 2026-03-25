@@ -23,7 +23,12 @@ YF_CACHE_DIR = DATA_DIR / "yfinance_tz_cache"
 
 # Import the IRIS_System from the existing MVP script
 try:
-    from iris_mvp import IRIS_System
+    from iris_mvp import (
+        IRIS_System,
+        RISK_HORIZON_MAP,
+        RISK_HORIZON_LABELS,
+        derive_investment_signal,
+    )
     iris_app = IRIS_System()
 except ImportError as e:
     print(f"Error importing iris_mvp: {e}")
@@ -84,7 +89,6 @@ TIMEFRAME_TO_YFINANCE = {
     "5D": ("5d", "15m"),
     "1M": ("1mo", "1h"),
     "6M": ("6mo", "1d"),
-    "YTD": ("ytd", "1d"),
     "1Y": ("1y", "1d"),
     "5Y": ("5y", "1wk"),
 }
@@ -182,6 +186,10 @@ if _SCHEDULER_AVAILABLE and _start_scheduler is not None:
 _rate_limit_store: dict[str, list[float]] = defaultdict(list)
 _RATE_LIMIT_MAX = 30
 _RATE_LIMIT_WINDOW = 60  # seconds
+
+# In-memory cache for /api/llm-predict.
+_llm_predict_cache: dict[str, dict] = {}
+_LLM_CACHE_TTL = 600  # 10 minutes
 
 
 def _check_rate_limit(ip: str) -> bool:
@@ -490,13 +498,13 @@ def analyze_ticker():
     # -------------------------------------------------------------------------
 
     timeframe = str(request.args.get('timeframe', '') or '').strip().upper()
-    horizon = str(request.args.get('horizon', 'next_session') or 'next_session').strip()
+    horizon = str(request.args.get('horizon', '1D') or '1D').strip()
 
     if timeframe:
         mapped = TIMEFRAME_TO_YFINANCE.get(timeframe)
         if not mapped:
             return jsonify({
-                "error": "Invalid timeframe. Supported values: 1D, 5D, 1M, 6M, YTD, 1Y, 5Y."
+                "error": "Invalid timeframe. Supported values: 1D, 5D, 1M, 6M, 1Y, 5Y."
             }), 400
         period, interval = mapped
     else:
@@ -544,6 +552,131 @@ def analyze_ticker():
     except Exception:
         print(f"Error during analysis: {traceback.format_exc()}")
         return jsonify({"error": "An internal error occurred during analysis.", "code": "INTERNAL_ERROR"}), 500
+
+
+@app.route('/api/predict', methods=['GET'])
+def predict_only():
+    """Lightweight prediction endpoint: RF model only, no news re-fetch."""
+    if not iris_app:
+        return jsonify({"error": "IRIS System not initialized"}), 500
+
+    ticker = str(request.args.get('ticker', '') or '').strip().upper()
+    horizon = str(request.args.get('horizon', '1D') or '1D').strip().upper()
+    if not ticker:
+        return jsonify({"error": "Ticker parameter required"}), 400
+
+    horizon_days = RISK_HORIZON_MAP.get(horizon, 1)
+    horizon_label = RISK_HORIZON_LABELS.get(horizon, '1 Day')
+
+    try:
+        data = iris_app.get_market_data(ticker)
+        if not data:
+            return jsonify({"error": f"No market data for {ticker}"}), 404
+
+        trend_label, predicted_price, trajectory, traj_upper, traj_lower, _ = iris_app.predict_trend(
+            data,
+            sentiment_score=0.0,
+            horizon_days=horizon_days,
+        )
+
+        current_price = float(data["current_price"])
+        pct_change = ((predicted_price - current_price) / current_price * 100) if current_price else 0.0
+        last_rsi = 50.0
+        history_df = data.get("history_df")
+        if history_df is not None and "rsi_14" in history_df.columns and len(history_df):
+            last_rsi = float(history_df["rsi_14"].iloc[-1])
+        investment_signal = derive_investment_signal(pct_change, 0.0, last_rsi, horizon_days)
+
+        return jsonify({
+            "ticker": ticker,
+            "horizon": horizon,
+            "horizon_days": horizon_days,
+            "horizon_label": horizon_label,
+            "predicted_price": float(predicted_price),
+            "prediction_trajectory": [float(p) for p in trajectory],
+            "prediction_trajectory_upper": [float(p) for p in traj_upper],
+            "prediction_trajectory_lower": [float(p) for p in traj_lower],
+            "trend_label": trend_label,
+            "investment_signal": investment_signal,
+        })
+    except Exception:
+        print(f"Error in /api/predict: {traceback.format_exc()}")
+        return jsonify({"error": "Prediction failed"}), 500
+
+
+@app.route('/api/llm-predict', methods=['GET'])
+def llm_predict_endpoint():
+    """Parallel LLM prediction endpoint with horizon context."""
+    if not iris_app:
+        return jsonify({"error": "IRIS System not initialized"}), 500
+
+    ticker = str(request.args.get('ticker', '') or '').strip().upper()
+    horizon = str(request.args.get('horizon', '1D') or '1D').strip().upper()
+    if not ticker:
+        return jsonify({"error": "Ticker parameter required"}), 400
+
+    cache_key = f"{ticker}:{horizon}"
+    cached = _llm_predict_cache.get(cache_key)
+    if cached and (time.time() - cached["ts"]) < _LLM_CACHE_TTL:
+        return jsonify(cached["data"])
+
+    try:
+        from generate_llm_reports import predict_with_llms, _normalize_llm_result
+
+        horizon_days = RISK_HORIZON_MAP.get(horizon, 1)
+        horizon_label = RISK_HORIZON_LABELS.get(horizon, "1 Day")
+
+        data = iris_app.get_market_data(ticker)
+        if not data:
+            return jsonify({"error": f"No market data for {ticker}"}), 404
+
+        current_price = float(data["current_price"])
+        history_df = data.get("history_df")
+        sma_5 = current_price
+        rsi_14 = 50.0
+        if history_df is not None and len(history_df):
+            if "sma_5" in history_df.columns:
+                sma_5 = float(history_df["sma_5"].iloc[-1])
+            if "rsi_14" in history_df.columns:
+                rsi_14 = float(history_df["rsi_14"].iloc[-1])
+
+        sentiment_score, headlines = iris_app.analyze_news(
+            ticker,
+            lookback_days=min(30, horizon_days),
+            long_horizon=horizon_days >= 126,
+        )
+        headlines_summary = "; ".join(
+            h.get("title", "")[:80] for h in (headlines or [])[:5]
+        ) or "No recent headlines available."
+
+        results = predict_with_llms(
+            symbol=ticker,
+            current_price=current_price,
+            sma_5=sma_5,
+            rsi_14=rsi_14,
+            sentiment_score=float(sentiment_score),
+            horizon=horizon,
+            horizon_days=horizon_days,
+            horizon_label=horizon_label,
+            headlines_summary=headlines_summary,
+        )
+
+        for key in results:
+            results[key] = _normalize_llm_result(results[key])
+
+        response_data = {
+            "ticker": ticker,
+            "horizon": horizon,
+            "horizon_label": horizon_label,
+            "models": results,
+        }
+
+        _llm_predict_cache[cache_key] = {"data": response_data, "ts": time.time()}
+        return jsonify(response_data)
+    except Exception:
+        print(f"Error in /api/llm-predict: {traceback.format_exc()}")
+        return jsonify({"error": "LLM prediction failed"}), 500
+
 
 @app.route('/api/chart')
 def get_chart():

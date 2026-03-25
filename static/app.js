@@ -1,4 +1,4 @@
-const THEME_STORAGE_KEY = 'iris-theme';
+﻿const THEME_STORAGE_KEY = 'iris-theme';
 
 function getPreferredTheme() {
     let savedTheme = null;
@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
         '5D': { period: '5d', interval: '15m' },
         '1M': { period: '1mo', interval: '60m' },
         '6M': { period: '6mo', interval: '1d' },
-        'YTD': { period: 'ytd', interval: '1d' },
         '1Y': { period: '1y', interval: '1d' },
         '5Y': { period: '5y', interval: '1wk' },
     };
@@ -73,20 +72,54 @@ document.addEventListener('DOMContentLoaded', () => {
     let latestPredictedPrice = null;
     let latestAnalyzeHistory = [];
     let latestAnalyzeTimeframe = '6M';
-    let currentHorizon = 'next_session';
+    let currentHorizon = '1D';
     let latestTrajectory = [];
+    let latestTrajectoryUpper = [];
+    let latestTrajectoryLower = [];
+    let latestLlmPredictions = null;
 
     const HORIZON_LABELS = {
-        'next_session': 'Next Session',
-        '1W': '1 Week',
+        '1D': '1 Day',
+        '5D': '5 Days',
         '1M': '1 Month',
-        '3M': '3 Months',
         '6M': '6 Months',
         '1Y': '1 Year',
+        '5Y': '5 Years',
     };
 
-    const horizonButtons = Array.from(document.querySelectorAll('.horizon-btn'));
     const predictedPriceLabelEl = document.getElementById('predicted-price-label');
+    // --- Prediction reasoning tooltip ---
+    let activeTooltip = null;
+    function hideReasoningTooltip() {
+        if (!activeTooltip) return;
+        const tooltip = activeTooltip;
+        activeTooltip = null;
+        tooltip.classList.remove('is-visible');
+        setTimeout(() => tooltip.remove(), 200);
+    }
+
+    function showReasoningTooltip(targetEl, modelName, price, signal, reasoning) {
+        if (!targetEl) return;
+        hideReasoningTooltip();
+        const tooltip = document.createElement('div');
+        const safeSignal = String(signal || '').trim();
+        const signalHtml = safeSignal
+            ? `<span class="signal-badge signal-${safeSignal.toLowerCase().replace(/\s+/g, '-')}" style="font-size:0.72em;padding:2px 6px;">${safeSignal}</span>`
+            : '';
+        tooltip.className = 'prediction-tooltip';
+        tooltip.innerHTML = `
+            <div class="tooltip-model">${modelName}</div>
+            <div class="tooltip-details">
+                <span>${price || 'N/A'}</span>
+                ${signalHtml}
+            </div>
+            <div class="tooltip-reasoning">${reasoning || 'No reasoning available.'}</div>
+        `;
+        targetEl.style.position = 'relative';
+        targetEl.appendChild(tooltip);
+        requestAnimationFrame(() => tooltip.classList.add('is-visible'));
+        activeTooltip = tooltip;
+    }
     // --- Analysis state / flow elements ---
     const errorBanner       = document.getElementById('error-banner');
     const errorBannerMsg    = document.getElementById('error-banner-msg');
@@ -179,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 analyzeBtn.disabled = !_validatedTicker;
                 return;
             }
-            if (btnText) btnText.textContent = `Wait ${remaining}s…`;
+            if (btnText) btnText.textContent = `Wait ${remaining}s...`;
             _rateLimitTimer = setTimeout(tick, 500);
         }
         tick();
@@ -253,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function _routeValidationError(result, val) {
         const code = result.code || '';
         const err = result.error || 'Validation failed.';
-        if (code) console.debug('[IRIS-AI] Validation rejected — code:', code, '— ticker:', val);
+        if (code) console.debug('[IRIS-AI] Validation rejected 鈥?code:', code, '鈥?ticker:', val);
 
         if (code === 'API_TIMEOUT' || code === 'API_ERROR') {
             // Service degraded: yellow warning banner with retry option
@@ -298,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!fmtResult.valid) {
             _validatedTicker = null;
             analyzeBtn.disabled = true;
-            if (fmtResult.code) console.debug('[IRIS-AI] Format check failed — code:', fmtResult.code, '— input:', val);
+            if (fmtResult.code) console.debug('[IRIS-AI] Format check failed 鈥?code:', fmtResult.code, '鈥?input:', val);
             _setInputState('error');
             _showValidationHint(fmtResult.error, 'error');
             _renderSuggestions([]);
@@ -306,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Format OK → remote check
+        // Format OK 鈫?remote check
         _validatedTicker = null;
         analyzeBtn.disabled = true;
         _setInputState('validating');
@@ -372,7 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Format OK — debounce the remote call
+            // Format OK 鈥?debounce the remote call
             _validatedTicker = null;
             analyzeBtn.disabled = true;
             _setInputState('validating');
@@ -492,7 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (input) {
-        // Autocomplete on input — 200 ms debounce
+        // Autocomplete on input 鈥?200 ms debounce
         input.addEventListener('input', () => {
             clearTimeout(_acDebounceTimer);
             const q = input.value.trim();
@@ -549,7 +582,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let d;
       const num = Number(raw);
       if (!isNaN(num) && num > 1e9) {
-        d = new Date(num * 1000);   // Unix seconds → ms
+        d = new Date(num * 1000);   // Unix seconds 鈫?ms
       } else {
         d = new Date(raw);
       }
@@ -717,7 +750,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (requestId !== historyRequestId) return;
             latestAnalyzeHistory = history;
             latestAnalyzeTimeframe = requestedTimeframe;
-            renderChart(history, latestPredictedPrice, latestTrajectory);
+            renderChart(
+                history,
+                latestPredictedPrice,
+                latestTrajectory,
+                latestTrajectoryUpper,
+                latestTrajectoryLower,
+            );
         } catch (error) {
             if (requestId !== historyRequestId) return;
             console.error(error);
@@ -729,7 +768,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (Number.isFinite(fallback.predicted)) {
                     latestPredictedPrice = fallback.predicted;
                 }
-                renderChart(fallback.history, latestPredictedPrice, latestTrajectory);
+                renderChart(
+                    fallback.history,
+                    latestPredictedPrice,
+                    latestTrajectory,
+                    latestTrajectoryUpper,
+                    latestTrajectoryLower,
+                );
                 errorMsg.classList.add('hidden');
                 return;
             } catch (fallbackError) {
@@ -738,7 +783,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (Array.isArray(latestAnalyzeHistory) && latestAnalyzeHistory.length > 0) {
-                renderChart(latestAnalyzeHistory, latestPredictedPrice, latestTrajectory);
+                renderChart(
+                    latestAnalyzeHistory,
+                    latestPredictedPrice,
+                    latestTrajectory,
+                    latestTrajectoryUpper,
+                    latestTrajectoryLower,
+                );
                 errorMsg.classList.add('hidden');
                 return;
             }
@@ -754,6 +805,128 @@ document.addEventListener('DOMContentLoaded', () => {
             if (useLoadingState) {
                 setLoading(false);
             }
+        }
+    }
+
+    function applyTrendBadge(trend) {
+        const normalizedTrend = String(trend || '').trim();
+        trendLabelEl.textContent = normalizedTrend || 'UNKNOWN';
+        if (normalizedTrend.includes('UPTREND')) {
+            trendLabelEl.style.color = 'var(--status-green)';
+            trendLabelEl.style.border = '1px solid var(--status-green-glow)';
+        } else if (normalizedTrend.includes('DOWNTREND')) {
+            trendLabelEl.style.color = 'var(--status-red)';
+            trendLabelEl.style.border = '1px solid var(--status-red-glow)';
+        } else {
+            trendLabelEl.style.color = 'var(--text-main)';
+            trendLabelEl.style.border = '1px solid var(--panel-border)';
+        }
+    }
+
+    function renderInvestmentSignalBadge(signalValue) {
+        const signalStr = String(signalValue || '').trim();
+        let existingSignalBadge = document.getElementById('investment-signal-badge');
+        if (!existingSignalBadge && trendLabelEl?.parentElement) {
+            existingSignalBadge = document.createElement('div');
+            existingSignalBadge.id = 'investment-signal-badge';
+            trendLabelEl.parentElement.appendChild(existingSignalBadge);
+        }
+        if (!existingSignalBadge) return;
+        if (signalStr) {
+            const signalClass = 'signal-' + signalStr.toLowerCase().replace(/\s+/g, '-');
+            existingSignalBadge.className = 'signal-badge ' + signalClass;
+            existingSignalBadge.textContent = signalStr;
+        } else {
+            existingSignalBadge.className = 'signal-badge signal-hold';
+            existingSignalBadge.textContent = 'HOLD';
+        }
+    }
+
+    function renderLlmInsights(llmData) {
+        const llmContainer = document.getElementById('llm-insights-container');
+        if (!llmContainer) return;
+
+        llmContainer.innerHTML = '';
+        if (!llmData || Object.keys(llmData).length === 0) {
+            llmContainer.innerHTML = '<p class="text-muted">No LLM insights available.</p>';
+            return;
+        }
+
+        for (const [key, report] of Object.entries(llmData)) {
+            const nameMap = {
+                chatgpt52: 'ChatGPT 5.2',
+                deepseek_v3: 'DeepSeek V3',
+                gemini_v3_pro: 'Gemini V3 Pro',
+            };
+            const modelName = nameMap[key] || key;
+            const div = document.createElement('div');
+            div.className = 'llm-report-item prediction-result';
+            div.style.padding = '8px';
+            div.style.background = 'rgba(255, 255, 255, 0.05)';
+            div.style.borderRadius = '5px';
+            div.style.display = 'flex';
+            div.style.justifyContent = 'space-between';
+            div.style.alignItems = 'center';
+
+            const llmTrend = String(report?.signals?.trend_label || '').toUpperCase().trim();
+            const llmSignal = String(report?.signals?.investment_signal || '').trim();
+            const llmPrice = Number(
+                report?.market?.predicted_price_horizon ?? report?.market?.predicted_price_next_session
+            );
+            const reasoning = String(report?.reasoning || '').trim();
+
+            let priceClass = 'llm-price-flat';
+            let trendClass = 'llm-trend-flat';
+            let arrow = '';
+            if (llmTrend.includes('UPTREND')) {
+                priceClass = 'llm-price-up';
+                trendClass = 'llm-trend-up';
+                arrow = '鈫?';
+            } else if (llmTrend.includes('DOWNTREND')) {
+                priceClass = 'llm-price-down';
+                trendClass = 'llm-trend-down';
+                arrow = '鈫?';
+            }
+
+            let signalHtml = '';
+            if (llmSignal) {
+                const sc = 'signal-' + llmSignal.toLowerCase().replace(/\s+/g, '-');
+                signalHtml = `<div class="signal-badge ${sc}" style="font-size:0.7em;padding:2px 8px;margin-top:4px;">${llmSignal}</div>`;
+            }
+
+            div.innerHTML = `
+                <span style="font-weight:600;font-size:0.95em;">${modelName}</span>
+                <div style="text-align:right;">
+                  <div class="${priceClass}">${isFinite(llmPrice) ? usdFormatter.format(llmPrice) : 'N/A'}</div>
+                  <div class="${trendClass}">${arrow}${llmTrend || 'N/A'}</div>
+                  ${signalHtml}
+                </div>`;
+
+            div.addEventListener('mouseenter', () => {
+                const priceStr = isFinite(llmPrice) ? usdFormatter.format(llmPrice) : 'N/A';
+                showReasoningTooltip(div, modelName, priceStr, llmSignal, reasoning);
+            });
+            div.addEventListener('mouseleave', hideReasoningTooltip);
+            llmContainer.appendChild(div);
+        }
+    }
+
+    async function refreshLlmPredictions(ticker, horizon) {
+        const normalizedTicker = String(ticker || '').trim().toUpperCase();
+        const normalizedHorizon = String(horizon || '').trim().toUpperCase() || '1D';
+        if (!normalizedTicker) return;
+        try {
+            const resp = await fetch(
+                `/api/llm-predict?ticker=${encodeURIComponent(normalizedTicker)}&horizon=${encodeURIComponent(normalizedHorizon)}`
+            );
+            if (!resp.ok) return;
+            const body = await resp.json();
+            latestLlmPredictions = body?.models || null;
+            if (latestLlmPredictions) {
+                renderLlmInsights(latestLlmPredictions);
+            }
+        } catch (err) {
+            console.warn('LLM prediction update failed:', err);
         }
     }
 
@@ -829,12 +1002,16 @@ document.addEventListener('DOMContentLoaded', () => {
             currentTicker = String(data?.meta?.symbol || normalizedTicker).toUpperCase();
             input.value = currentTicker;
             _validatedTicker = currentTicker;
+            latestLlmPredictions = null;
             latestPredictedPrice = Number(data?.market?.predicted_price_horizon ?? data?.market?.predicted_price_next_session);
             latestTrajectory = Array.isArray(data?.market?.prediction_trajectory) ? data.market.prediction_trajectory : [];
+            latestTrajectoryUpper = Array.isArray(data?.market?.prediction_trajectory_upper) ? data.market.prediction_trajectory_upper : [];
+            latestTrajectoryLower = Array.isArray(data?.market?.prediction_trajectory_lower) ? data.market.prediction_trajectory_lower : [];
             latestAnalyzeHistory = normalizeHistoryPoints(data?.market?.history);
             latestAnalyzeTimeframe = getActiveTimeframe();
             try { updateDashboard(data); } catch (renderErr) { console.error('[IRIS] updateDashboard error:', renderErr); }
             await refreshChartForTimeframe(currentTicker, getActiveTimeframe(), false);
+            await refreshLlmPredictions(currentTicker, currentHorizon);
             if (typeof window._irisLoadRecommendations === 'function') { window._irisLoadRecommendations(currentTicker); }
 
         } catch (error) {
@@ -877,30 +1054,14 @@ document.addEventListener('DOMContentLoaded', () => {
         loadTickerData(sym, false);
     };
 
-    // --- Horizon button handlers ---
     function setActiveHorizon(horizonKey) {
-        currentHorizon = horizonKey || 'next_session';
-        horizonButtons.forEach((btn) => {
-            const btnKey = String(btn.dataset.horizon || '').trim();
-            btn.classList.toggle('active', btnKey === currentHorizon);
-        });
-        const label = HORIZON_LABELS[currentHorizon] || 'Next Session';
+        const normalized = String(horizonKey || '').trim().toUpperCase();
+        currentHorizon = HORIZON_LABELS[normalized] ? normalized : '1D';
+        const label = HORIZON_LABELS[currentHorizon] || '1 Day';
         if (predictedPriceLabelEl) {
             predictedPriceLabelEl.textContent = `Predicted (${label})`;
         }
     }
-
-    horizonButtons.forEach((btn) => {
-        btn.addEventListener('click', async () => {
-            const horizonKey = String(btn.dataset.horizon || '').trim();
-            if (!horizonKey || horizonKey === currentHorizon) return;
-            setActiveHorizon(horizonKey);
-            const ticker = currentTicker || input.value.trim().toUpperCase();
-            if (!ticker) return;
-            // Re-run analysis with the new horizon
-            await loadTickerData(ticker, true);
-        });
-    });
 
     timeframeButtons.forEach((btn) => {
         btn.addEventListener('click', async () => {
@@ -915,10 +1076,67 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             currentTicker = ticker;
-            await refreshChartForTimeframe(currentTicker, timeframeKey, true);
+            setLoading(true);
+            try {
+                // 1) Refresh chart history (fast and lightweight)
+                await refreshChartForTimeframe(currentTicker, timeframeKey, false);
+
+                // 2) Sync horizon and update prediction if needed
+                const newHorizon = timeframeKey;
+                if (HORIZON_LABELS[newHorizon]) {
+                    const horizonChanged = newHorizon !== currentHorizon;
+                    setActiveHorizon(newHorizon);
+                    if (horizonChanged) {
+                        try {
+                            const predResp = await fetch(
+                                `/api/predict?ticker=${encodeURIComponent(ticker)}&horizon=${encodeURIComponent(newHorizon)}`
+                            );
+                            if (predResp.ok) {
+                                const pred = await predResp.json();
+                                latestPredictedPrice = Number(pred?.predicted_price);
+                                latestTrajectory = Array.isArray(pred?.prediction_trajectory) ? pred.prediction_trajectory : [];
+                                latestTrajectoryUpper = Array.isArray(pred?.prediction_trajectory_upper) ? pred.prediction_trajectory_upper : [];
+                                latestTrajectoryLower = Array.isArray(pred?.prediction_trajectory_lower) ? pred.prediction_trajectory_lower : [];
+
+                                if (predictedPriceEl && Number.isFinite(latestPredictedPrice)) {
+                                    predictedPriceEl.textContent = usdFormatter.format(latestPredictedPrice);
+                                }
+
+                                applyTrendBadge(pred?.trend_label || '');
+                                renderInvestmentSignalBadge(pred?.investment_signal || '');
+                                renderChart(
+                                    latestAnalyzeHistory,
+                                    latestPredictedPrice,
+                                    latestTrajectory,
+                                    latestTrajectoryUpper,
+                                    latestTrajectoryLower,
+                                );
+                                await refreshLlmPredictions(currentTicker, currentHorizon);
+                            }
+                        } catch (err) {
+                            console.warn('Prediction update failed:', err);
+                        }
+                    }
+                }
+            } finally {
+                setLoading(false);
+            }
         });
     });
     setActiveTimeframe(getActiveTimeframe());
+    setActiveHorizon(currentHorizon);
+
+    // Mobile: tap to toggle prediction tooltips.
+    document.addEventListener('touchstart', (e) => {
+        const target = e.target.closest('.prediction-result');
+        if (!target) {
+            hideReasoningTooltip();
+            return;
+        }
+        if (activeTooltip && activeTooltip.parentElement === target) {
+            hideReasoningTooltip();
+        }
+    });
 
     window.addEventListener('resize', () => {
         resizeChartToContainer();
@@ -1154,7 +1372,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }).format(dt);
     }
 
-    function renderChart(history, predictedPrice, trajectory) {
+    function renderChart(history, predictedPrice, trajectory, trajectoryUpper = [], trajectoryLower = []) {
         if (lwChart) {
             lwChart.remove();
             lwChart = null;
@@ -1344,16 +1562,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (Number.isFinite(predictedPrice) && lastDataPoint) {
             const lastTime = lastDataPoint.time;
             const isUpForecast = predictedPrice >= lastDataPoint.value;
-            const forecastColor = isUpForecast ? '#10b981' : '#ef4444';
-            const forecastTopColor = isUpForecast ? 'rgba(16, 185, 129, 0.35)' : 'rgba(239, 68, 68, 0.35)';
-            const forecastBottomColor = isUpForecast ? 'rgba(16, 185, 129, 0.0)' : 'rgba(239, 68, 68, 0.0)';
+            const forecastColor = isUpForecast ? '#06b6d4' : '#f97316';
 
-            // Build forecast data points from trajectory
             const trajPoints = Array.isArray(trajectory) && trajectory.length > 0 ? trajectory : [predictedPrice];
             const forecastData = [];
+            const upperPoints = Array.isArray(trajectoryUpper) ? trajectoryUpper : [];
+            const lowerPoints = Array.isArray(trajectoryLower) ? trajectoryLower : [];
+            const upperData = [];
+            const lowerData = [];
 
-            // Calculate step size based on the actual time intervals in the chart data
-            let stepSeconds = 24 * 60 * 60; // default 1 day
+            let stepSeconds = 24 * 60 * 60;
             if (typeof lastTime === 'number' && Number.isFinite(lastTime)) {
                 if (history.length >= 2) {
                     const prevTime = history[history.length - 2].time;
@@ -1363,29 +1581,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Start forecast from the last real data point
             forecastData.push({ time: lastDataPoint.time, value: lastDataPoint.value });
+            upperData.push({ time: lastDataPoint.time, value: Number(lastDataPoint.value) });
+            lowerData.push({ time: lastDataPoint.time, value: Number(lastDataPoint.value) });
 
-            // Calculate the total horizon days and spacing
             const HORIZON_DAYS = {
-                'next_session': 1, '1W': 5, '1M': 21, '3M': 63, '6M': 126, '1Y': 252,
+                '1D': 1, '5D': 5, '1M': 21, '6M': 126, '1Y': 252, '5Y': 1260,
             };
             const totalDays = HORIZON_DAYS[currentHorizon] || 1;
 
-            // Map trajectory points to future dates
             for (let i = 0; i < trajPoints.length; i++) {
-                // Distribute trajectory points across the horizon
                 const dayOffset = trajPoints.length === 1
                     ? totalDays
                     : Math.round(((i + 1) / trajPoints.length) * totalDays);
 
                 if (typeof lastTime === 'number' && Number.isFinite(lastTime)) {
+                    const timeValue = lastTime + (dayOffset * stepSeconds);
                     forecastData.push({
-                        time: lastTime + (dayOffset * stepSeconds),
+                        time: timeValue,
                         value: trajPoints[i],
                     });
+                    const fallbackUpper = Number(trajPoints[i]) * 1.02;
+                    const fallbackLower = Number(trajPoints[i]) * 0.98;
+                    upperData.push({
+                        time: timeValue,
+                        value: Number.isFinite(Number(upperPoints[i])) ? Number(upperPoints[i]) : fallbackUpper,
+                    });
+                    lowerData.push({
+                        time: timeValue,
+                        value: Number.isFinite(Number(lowerPoints[i])) ? Number(lowerPoints[i]) : fallbackLower,
+                    });
                 } else {
-                    // String-based date: add days skipping weekends
                     const d = new Date(lastTime);
                     let added = 0;
                     while (added < dayOffset) {
@@ -1395,18 +1621,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     const y = d.getFullYear();
                     const m = String(d.getMonth() + 1).padStart(2, '0');
                     const dd = String(d.getDate()).padStart(2, '0');
-                    forecastData.push({ time: `${y}-${m}-${dd}`, value: trajPoints[i] });
+                    const timeValue = `${y}-${m}-${dd}`;
+                    forecastData.push({ time: timeValue, value: trajPoints[i] });
+                    const fallbackUpper = Number(trajPoints[i]) * 1.02;
+                    const fallbackLower = Number(trajPoints[i]) * 0.98;
+                    upperData.push({
+                        time: timeValue,
+                        value: Number.isFinite(Number(upperPoints[i])) ? Number(upperPoints[i]) : fallbackUpper,
+                    });
+                    lowerData.push({
+                        time: timeValue,
+                        value: Number.isFinite(Number(lowerPoints[i])) ? Number(lowerPoints[i]) : fallbackLower,
+                    });
                 }
             }
 
-            // Draw forecast area series — prominent, visually distinct from historical data
             let forecastSeries;
             const forecastOpts = {
                 lineColor: forecastColor,
-                topColor: forecastTopColor,
-                bottomColor: forecastBottomColor,
                 lineWidth: 3,
-                lineStyle: LightweightCharts.LineStyle.Dashed,
+                lineStyle: LightweightCharts.LineStyle.LargeDashed,
                 crosshairMarkerVisible: true,
                 crosshairMarkerRadius: 5,
                 priceLineVisible: true,
@@ -1415,14 +1649,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 priceLineStyle: LightweightCharts.LineStyle.Dotted,
                 lastValueVisible: true,
             };
-            if (typeof lwChart.addAreaSeries === 'function') {
-                forecastSeries = lwChart.addAreaSeries(forecastOpts);
+            if (typeof lwChart.addLineSeries === 'function') {
+                forecastSeries = lwChart.addLineSeries(forecastOpts);
             } else {
-                forecastSeries = lwChart.addSeries(LightweightCharts.AreaSeries, forecastOpts);
+                forecastSeries = lwChart.addSeries(LightweightCharts.LineSeries, forecastOpts);
             }
             forecastSeries.setData(forecastData);
 
-            // Add marker at the final predicted point
+            const upperBandOpts = {
+                lineColor: 'rgba(6, 182, 212, 0.12)',
+                topColor: 'rgba(6, 182, 212, 0.10)',
+                bottomColor: 'rgba(6, 182, 212, 0.02)',
+                lineWidth: 1,
+                priceLineVisible: false,
+                lastValueVisible: false,
+                crosshairMarkerVisible: false,
+            };
+            const lowerBandOpts = {
+                lineColor: 'rgba(6, 182, 212, 0.10)',
+                topColor: 'rgba(6, 182, 212, 0.02)',
+                bottomColor: 'rgba(6, 182, 212, 0.10)',
+                lineWidth: 1,
+                priceLineVisible: false,
+                lastValueVisible: false,
+                crosshairMarkerVisible: false,
+            };
+            let upperBandSeries;
+            let lowerBandSeries;
+            if (typeof lwChart.addAreaSeries === 'function') {
+                upperBandSeries = lwChart.addAreaSeries(upperBandOpts);
+                lowerBandSeries = lwChart.addAreaSeries(lowerBandOpts);
+            } else {
+                upperBandSeries = lwChart.addSeries(LightweightCharts.AreaSeries, upperBandOpts);
+                lowerBandSeries = lwChart.addSeries(LightweightCharts.AreaSeries, lowerBandOpts);
+            }
+            upperBandSeries.setData(upperData);
+            lowerBandSeries.setData(lowerData);
+
             const lastForecast = forecastData[forecastData.length - 1];
             if (lastForecast && typeof forecastSeries.setMarkers === 'function') {
                 const horizonText = HORIZON_LABELS[currentHorizon] || 'Predicted';
@@ -1437,10 +1700,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]);
             }
         }
-
         // Extend right offset to give space for the forecast
         const HORIZON_OFFSET = {
-            'next_session': 2, '1W': 4, '1M': 6, '3M': 8, '6M': 10, '1Y': 12,
+            '1D': 2, '5D': 4, '1M': 6, '6M': 10, '1Y': 12, '5Y': 14,
         };
         lwChart.applyOptions({
             timeScale: { rightOffset: HORIZON_OFFSET[currentHorizon] || 2 },
@@ -1469,25 +1731,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Trend
         const trend = (data?.signals?.trend_label || '').trim();
-        trendLabelEl.textContent = trend || 'UNKNOWN';
-        if (trend.includes('UPTREND')) {
-            trendLabelEl.style.color = 'var(--status-green)';
-            trendLabelEl.style.border = '1px solid var(--status-green-glow)';
-        } else if (trend.includes('DOWNTREND')) {
-            trendLabelEl.style.color = 'var(--status-red)';
-            trendLabelEl.style.border = '1px solid var(--status-red-glow)';
-        } else {
-            trendLabelEl.style.color = 'var(--text-main)';
-            trendLabelEl.style.border = '1px solid var(--panel-border)';
-        }
+        applyTrendBadge(trend);
 
         // Apply contrarian colour to predicted price:
-        // uptrend → red (overbought risk), downtrend → green (opportunity signal)
+        // uptrend 鈫?red (overbought risk), downtrend 鈫?green (opportunity signal)
         predictedPriceEl.classList.remove('price-up', 'price-down');
         if (trend.includes('UPTREND')) {
             predictedPriceEl.classList.add('price-up');
         } else if (trend.includes('DOWNTREND')) {
             predictedPriceEl.classList.add('price-down');
+        }
+
+        // Investment signal badge
+        renderInvestmentSignalBadge(data?.signals?.investment_signal || '');
+
+        // Make IRIS prediction card hoverable for reasoning.
+        const priceCard = document.querySelector('.price-card');
+        if (priceCard) {
+            const irisReasoning = data?.signals?.iris_reasoning?.summary || '';
+            priceCard.classList.add('prediction-result');
+            priceCard.onmouseenter = () => {
+                const priceStr = predictedPriceEl.textContent;
+                const signal = data?.signals?.investment_signal || '';
+                showReasoningTooltip(priceCard, 'IRIS Model', priceStr, signal, irisReasoning);
+            };
+            priceCard.onmouseleave = hideReasoningTooltip;
         }
 
         // Check Engine Light
@@ -1520,58 +1788,11 @@ document.addEventListener('DOMContentLoaded', () => {
             sentimentDescEl.textContent = 'Neutral Sentiment';
         }
 
-        // LLM Insights
-        const llmContainer = document.getElementById('llm-insights-container');
-        if (llmContainer) {
-            llmContainer.innerHTML = '';
-            if (data.llm_insights && Object.keys(data.llm_insights).length > 0) {
-                for (const [key, report] of Object.entries(data.llm_insights)) {
-                    const nameMap = {
-                        'chatgpt52': 'ChatGPT 5.2',
-                        'deepseek_v3': 'DeepSeek V3',
-                        'gemini_v3_pro': 'Gemini V3 Pro'
-                    };
-                    const modelName = nameMap[key] || key;
-                    const div = document.createElement('div');
-                    div.className = 'llm-report-item';
-                    div.style.padding = '8px';
-                    div.style.background = 'rgba(255, 255, 255, 0.05)';
-                    div.style.borderRadius = '5px';
-
-                    const llmTrend = String(report?.signals?.trend_label || '').toUpperCase().trim();
-                    const llmPrice = Number(report?.market?.predicted_price_next_session);
-                    if (!isFinite(llmPrice) && !llmTrend) {
-                        console.warn('[IRIS] LLM panel: missing data for model', key, report);
-                    }
-
-                    let priceClass = 'llm-price-flat';
-                    let trendClass = 'llm-trend-flat';
-                    let arrow = '';
-                    if (llmTrend.includes('UPTREND')) {
-                        priceClass = 'llm-price-up';
-                        trendClass = 'llm-trend-up';
-                        arrow = '↑ ';
-                    } else if (llmTrend.includes('DOWNTREND')) {
-                        priceClass = 'llm-price-down';
-                        trendClass = 'llm-trend-down';
-                        arrow = '↓ ';
-                    }
-
-                    div.style.display = 'flex';
-                    div.style.justifyContent = 'space-between';
-                    div.style.alignItems = 'center';
-                    div.innerHTML = `
-                        <span style="font-weight:600;font-size:0.95em;">${modelName}</span>
-                        <div style="text-align:right;">
-                          <div class="${priceClass}">${isFinite(llmPrice) ? usdFormatter.format(llmPrice) : 'N/A'}</div>
-                          <div class="${trendClass}">${arrow}${llmTrend}</div>
-                        </div>`;
-                    llmContainer.appendChild(div);
-                }
-            } else {
-                llmContainer.innerHTML = '<p class="text-muted">No LLM insights available.</p>';
-            }
-        }
+        // LLM Insights (prefer live /api/llm-predict results when available)
+        const llmData = latestLlmPredictions && Object.keys(latestLlmPredictions).length
+            ? latestLlmPredictions
+            : data.llm_insights;
+        renderLlmInsights(llmData);
 
 
         // Headlines
@@ -1600,7 +1821,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 : '';
                 li.className = 'headline-item' + catClass;
 
-                // Title — always a clickable link
+                // Title 鈥?always a clickable link
                 const titleEl = document.createElement('a');
                 titleEl.className = 'headline-title';
                 titleEl.textContent = title;
@@ -1608,7 +1829,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 titleEl.target = '_blank';
                 titleEl.rel = 'noopener noreferrer';
 
-                // Meta row — date + dot + source domain
+                // Meta row 鈥?date + dot + source domain
                 const metaEl = document.createElement('div');
                 metaEl.className = 'headline-meta';
 
@@ -1661,9 +1882,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-/* ─────────────────────────────────────────────────────
-   Recommended For You – Stock Recommendations
-   ───────────────────────────────────────────────────── */
+/* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+   Recommended For You 鈥?Stock Recommendations
+   鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
 
 (function initRecommendations() {
   'use strict';
@@ -1676,7 +1897,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!recSection || !recScroll) return;
 
-  // ── Sparkline drawing (lightweight canvas, no library) ──
+  // 鈹€鈹€ Sparkline drawing (lightweight canvas, no library) 鈹€鈹€
   function drawSparkline(canvas, dataPoints, isPositive) {
     if (!canvas || !dataPoints || dataPoints.length < 2) return;
     const ctx = canvas.getContext('2d');
@@ -1729,7 +1950,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.stroke();
   }
 
-  // ── Show loading skeleton ──
+  // 鈹€鈹€ Show loading skeleton 鈹€鈹€
   function showRecSkeleton() {
     recScroll.innerHTML = '';
     for (var i = 0; i < 5; i++) {
@@ -1745,7 +1966,7 @@ document.addEventListener('DOMContentLoaded', () => {
     recSection.classList.remove('hidden');
   }
 
-  // ── Build one recommendation card ──
+  // 鈹€鈹€ Build one recommendation card 鈹€鈹€
   function buildRecCard(item) {
     var pctVal   = item.price_change_pct || 0;
     var isPos    = pctVal > 0;
@@ -1790,7 +2011,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return card;
   }
 
-  // ── Fetch and render recommendations ──
+  // 鈹€鈹€ Fetch and render recommendations 鈹€鈹€
   function fetchRecommendations(ticker) {
     if (!ticker) return;
     showRecSkeleton();
@@ -1831,7 +2052,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-  // ── Scroll navigation ──
+  // 鈹€鈹€ Scroll navigation 鈹€鈹€
   function updateRecNav() {
     if (!recPrevBtn || !recNextBtn) return;
     recPrevBtn.disabled = recScroll.scrollLeft <= 5;
@@ -1852,7 +2073,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   recScroll.addEventListener('scroll', updateRecNav);
 
-  // ── Expose globally so the main analysis callback can trigger it ──
+  // 鈹€鈹€ Expose globally so the main analysis callback can trigger it 鈹€鈹€
   window._irisLoadRecommendations = fetchRecommendations;
 
 })();
+

@@ -21,4 +21,4 @@ COPY --chown=user . $HOME/app
 RUN mkdir -p $HOME/app/data/demo_guests && chmod -R 777 $HOME/app/data
 
 EXPOSE 7860
-CMD ["gunicorn", "-b", "0.0.0.0:7860", "app:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:7860", "--threads", "4", "--timeout", "120", "app:app"]

@@ -17,6 +17,7 @@ import json
 import math
 import os
 import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterable, List
@@ -215,6 +216,67 @@ Rules:
 - headlines_used items must be JSON objects with "title" (string) and "url" (empty string ""). Never output raw strings in that array."""
 
 
+def _build_horizon_forecast_prompt(
+    symbol: str,
+    mode: str,
+    current_price: float,
+    sma_5: float,
+    rsi_14: float,
+    sentiment_score: float,
+    horizon_label: str,
+    horizon_days: int,
+    headlines_summary: str,
+) -> str:
+    return f"""You are a quantitative financial analyst.
+
+Given the stock ticker "{symbol}", produce a forecast for the {horizon_label} horizon ({horizon_days} trading days).
+
+Current metrics:
+- current_price_usd: {current_price:.4f}
+- sma_5_usd: {sma_5:.4f}
+- rsi_14: {rsi_14:.2f}
+- sentiment_score: {sentiment_score:.4f}
+- horizon: {horizon_label} ({horizon_days} trading days)
+
+Recent relevant headlines:
+{headlines_summary}
+
+Respond with ONLY a single JSON object (no markdown, no code fences):
+{{
+  "meta": {{
+    "symbol": "{symbol}",
+    "generated_at": "<ISO8601-UTC timestamp>",
+    "mode": "{mode}",
+    "horizon": "{horizon_label}",
+    "horizon_days": {horizon_days}
+  }},
+  "market": {{
+    "current_price": {current_price:.4f},
+    "predicted_price_horizon": <float>,
+    "predicted_price_next_session": <float>
+  }},
+  "signals": {{
+    "trend_label": "<STRONG UPTREND|WEAK UPTREND|WEAK DOWNTREND|STRONG DOWNTREND>",
+    "sentiment_score": {sentiment_score:.4f},
+    "check_engine_light": "<GREEN (..)|YELLOW (..)|RED (..)>",
+    "investment_signal": "<STRONG BUY|BUY|HOLD|SELL|STRONG SELL>"
+  }},
+  "evidence": {{
+    "headlines_used": [
+      {{"title": "<headline 1>", "url": ""}},
+      {{"title": "<headline 2>", "url": ""}}
+    ]
+  }},
+  "reasoning": "<2-3 sentence explanation of why you made this prediction>"
+}}
+
+Rules:
+- investment_signal MUST be exactly one of: STRONG BUY, BUY, HOLD, SELL, STRONG SELL
+- predicted_price_horizon is the price at END of the {horizon_label} period
+- reasoning should reference the metrics and headlines provided
+- Only output raw JSON"""
+
+
 def get_chatgpt52_forecast(
     symbol: str,
     current_price: float,
@@ -352,6 +414,152 @@ def get_geminiv3_forecast(
     content = response.text or ""
     data = _parse_llm_json(content)
     return _ensure_meta_fields(data, symbol, mode)
+
+
+def predict_with_llms(
+    symbol: str,
+    current_price: float,
+    sma_5: float,
+    rsi_14: float,
+    sentiment_score: float,
+    horizon: str,
+    horizon_days: int,
+    horizon_label: str,
+    headlines_summary: str,
+    mode: str = "live_forecast",
+) -> dict:
+    """Call all three LLM providers in parallel and return a results dict."""
+    del horizon  # Kept for compatibility with endpoint call signature.
+
+    prompt = _build_horizon_forecast_prompt(
+        symbol=symbol,
+        mode=mode,
+        current_price=current_price,
+        sma_5=sma_5,
+        rsi_14=rsi_14,
+        sentiment_score=sentiment_score,
+        horizon_label=horizon_label,
+        horizon_days=horizon_days,
+        headlines_summary=headlines_summary,
+    )
+
+    def _call_chatgpt():
+        try:
+            from openai import OpenAI  # type: ignore
+
+            client = OpenAI()
+            model_name = os.environ.get("OPENAI_MODEL_CHATGPT52", "gpt-4o")
+            resp = client.chat.completions.create(
+                model=model_name,
+                messages=[
+                    {"role": "system", "content": "You produce structured JSON forecasts for US equities."},
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=0.4,
+                timeout=15,
+            )
+            data = _parse_llm_json(resp.choices[0].message.content or "")
+            return _ensure_meta_fields(data, symbol, mode)
+        except Exception as e:
+            return {"error": str(e), "status": "unavailable"}
+
+    def _call_deepseek():
+        try:
+            import requests as req  # type: ignore
+
+            api_key = os.environ.get("DEEPSEEK_API_KEY")
+            if not api_key:
+                return {"error": "DEEPSEEK_API_KEY not set", "status": "unavailable"}
+
+            base_url = os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
+            model_name = os.environ.get("DEEPSEEK_MODEL", "deepseek-chat")
+            resp = req.post(
+                f"{base_url.rstrip('/')}/v1/chat/completions",
+                headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+                json={
+                    "model": model_name,
+                    "messages": [
+                        {"role": "system", "content": "You produce structured JSON forecasts for US equities."},
+                        {"role": "user", "content": prompt},
+                    ],
+                    "temperature": 0.4,
+                },
+                timeout=15,
+            )
+            resp.raise_for_status()
+            data = _parse_llm_json(resp.json()["choices"][0]["message"]["content"])
+            return _ensure_meta_fields(data, symbol, mode)
+        except Exception as e:
+            return {"error": str(e), "status": "unavailable"}
+
+    def _call_gemini():
+        try:
+            from google import genai  # type: ignore
+
+            api_key = os.environ.get("GEMINI_API_KEY")
+            if not api_key:
+                return {"error": "GEMINI_API_KEY not set", "status": "unavailable"}
+            model_name = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+            client = genai.Client(api_key=api_key)
+            resp = client.models.generate_content(model=model_name, contents=prompt)
+            data = _parse_llm_json(resp.text or "")
+            return _ensure_meta_fields(data, symbol, mode)
+        except Exception as e:
+            return {"error": str(e), "status": "unavailable"}
+
+    results = {}
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        futures = {
+            executor.submit(_call_chatgpt): "chatgpt52",
+            executor.submit(_call_deepseek): "deepseek_v3",
+            executor.submit(_call_gemini): "gemini_v3_pro",
+        }
+        try:
+            for future in as_completed(futures, timeout=20):
+                model_key = futures[future]
+                try:
+                    results[model_key] = future.result()
+                except Exception as e:
+                    results[model_key] = {"error": str(e), "status": "unavailable"}
+        except Exception:
+            # Preserve completed results and mark unresolved calls as unavailable.
+            pass
+
+    for model_key in ("chatgpt52", "deepseek_v3", "gemini_v3_pro"):
+        if model_key not in results:
+            results[model_key] = {"error": "timeout", "status": "unavailable"}
+
+    return results
+
+
+_VALID_SIGNALS = {"STRONG BUY", "BUY", "HOLD", "SELL", "STRONG SELL"}
+
+
+def _normalize_llm_result(result: dict) -> dict:
+    """Normalize signal and ensure reasoning exists."""
+    if "error" in result:
+        return result
+
+    signals = result.get("signals", {})
+    raw_signal = str(signals.get("investment_signal", "")).strip().upper()
+    if raw_signal not in _VALID_SIGNALS:
+        signals["investment_signal"] = "HOLD"
+    else:
+        signals["investment_signal"] = raw_signal
+    result["signals"] = signals
+
+    reasoning = str(result.get("reasoning", "")).strip()
+    if not reasoning or len(reasoning) < 10:
+        trend = str(signals.get("trend_label", "neutral")).lower().strip()
+        price = result.get("market", {}).get("predicted_price_horizon", "N/A")
+        reasoning = f"Model predicts {trend} trend to ${price}."
+    result["reasoning"] = reasoning[:300]
+    return result
+
+
+def _normalize_llm_signal(result: dict) -> dict:
+    """Backward-compatible alias for legacy callers."""
+    return _normalize_llm_result(result)
 
 
 def generate_reports_for_watchlist(*, mode: str = "live_forecast") -> None:

@@ -14,7 +14,7 @@
         })();
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/style.css?v=9">
+    <link rel="stylesheet" href="/static/style.css?v=10">
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%233b82f6%22>IA</text></svg>">
 </head>
@@ -132,24 +132,13 @@
               <!-- Row 1, Col 2: Market Prediction -->
               <div class="card glass-panel price-card">
                 <h3>Market Prediction</h3>
-                <div class="risk-horizon-selector" id="risk-horizon-selector">
-                    <span class="horizon-label">Analysis Horizon:</span>
-                    <div class="horizon-buttons" role="tablist" aria-label="Risk analysis horizon">
-                        <button type="button" class="horizon-btn active" data-horizon="next_session">Next Session</button>
-                        <button type="button" class="horizon-btn" data-horizon="1W">1 Week</button>
-                        <button type="button" class="horizon-btn" data-horizon="1M">1 Month</button>
-                        <button type="button" class="horizon-btn" data-horizon="3M">3 Months</button>
-                        <button type="button" class="horizon-btn" data-horizon="6M">6 Months</button>
-                        <button type="button" class="horizon-btn" data-horizon="1Y">1 Year</button>
-                    </div>
-                </div>
                 <div class="price-info">
                   <div class="price-row">
                     <span class="label">Current</span>
                     <span class="value" id="current-price">$0.00</span>
                   </div>
                   <div class="price-row highlight">
-                    <span class="label" id="predicted-price-label">Predicted (Next Session)</span>
+                    <span class="label" id="predicted-price-label">Predicted (1 Day)</span>
                     <span class="value" id="predicted-price">$0.00</span>
                   </div>
                 </div>
@@ -193,7 +182,6 @@
                     <button type="button" class="timeframe-btn" data-timeframe="5D">5D</button>
                     <button type="button" class="timeframe-btn" data-timeframe="1M">1M</button>
                     <button type="button" class="timeframe-btn active" data-timeframe="6M">6M</button>
-                    <button type="button" class="timeframe-btn" data-timeframe="YTD">YTD</button>
                     <button type="button" class="timeframe-btn" data-timeframe="1Y">1Y</button>
                     <button type="button" class="timeframe-btn" data-timeframe="5Y">5Y</button>
                 </div>
@@ -249,7 +237,7 @@
     <script
         src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js?v=4"></script>
     <script src="/static/tickerValidation.js?v=1"></script>
-    <script src="/static/app.js?v=22"></script>
+    <script src="/static/app.js?v=23"></script>
 </body>
 
 </html>

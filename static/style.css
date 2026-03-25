@@ -555,6 +555,99 @@ header {
 .llm-trend-down { font-size: 0.82em; color: var(--status-green); opacity: 0.85; }
 .llm-trend-flat { font-size: 0.82em; color: var(--text-muted); }
 
+/* Five-grade investment signal badges */
+.signal-badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+}
+
+.signal-strong-buy {
+    background: rgba(16, 185, 129, 0.18);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.signal-buy {
+    background: rgba(34, 197, 94, 0.14);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+.signal-hold {
+    background: rgba(156, 163, 175, 0.14);
+    color: #9ca3af;
+    border: 1px solid rgba(156, 163, 175, 0.25);
+}
+
+.signal-sell {
+    background: rgba(239, 68, 68, 0.14);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.signal-strong-sell {
+    background: rgba(220, 38, 38, 0.18);
+    color: #dc2626;
+    border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+.prediction-result {
+    position: relative;
+    cursor: help;
+}
+
+.prediction-tooltip {
+    position: absolute;
+    z-index: 100;
+    background: var(--card-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    max-width: 340px;
+    min-width: 240px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.prediction-tooltip.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.prediction-tooltip .tooltip-model {
+    font-weight: 700;
+    font-size: 0.88rem;
+    margin-bottom: 6px;
+    color: var(--text-main);
+}
+
+.prediction-tooltip .tooltip-details {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.prediction-tooltip .tooltip-reasoning {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    border-top: 1px solid var(--panel-border);
+    padding-top: 8px;
+}
+
 .card {
     padding: 2rem;
     display: flex;

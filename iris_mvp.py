@@ -2,6 +2,7 @@ import argparse
 import os
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 os.environ.setdefault("DISABLE_SAFETENSORS_CONVERSION", "1")
+import math
 import yfinance as yf
 from newsapi import NewsApiClient
 import nltk
@@ -45,22 +46,107 @@ TICKER_ALIASES = {
 
 # Mapping from user-facing horizon labels to number of trading days.
 RISK_HORIZON_MAP = {
-    "next_session": 1,
-    "1W": 5,
+    "1D": 1,
+    "5D": 5,
     "1M": 21,
-    "3M": 63,
     "6M": 126,
     "1Y": 252,
+    "5Y": 1260,
 }
 
 RISK_HORIZON_LABELS = {
-    "next_session": "Next Session",
-    "1W": "1 Week",
+    "1D": "1 Day",
+    "5D": "5 Days",
     "1M": "1 Month",
-    "3M": "3 Months",
     "6M": "6 Months",
     "1Y": "1 Year",
+    "5Y": "5 Years",
 }
+
+HORIZON_NEWS_LOOKBACK_DAYS = {
+    "1D": 7,
+    "5D": 14,
+    "1M": 30,
+    "6M": 90,
+    "1Y": 180,
+    "5Y": 365,
+}
+
+
+def derive_investment_signal(pct_change, sentiment_score, rsi, horizon_days):
+    """Derive a five-grade investment signal from model outputs."""
+    score = 0.0
+
+    # Price momentum component (-40 to +40)
+    norm_threshold = max(0.1, 0.5 * math.log2(horizon_days + 1))
+    norm_pct = pct_change / norm_threshold
+    score += max(-40.0, min(40.0, norm_pct * 20.0))
+
+    # Sentiment component (-30 to +30)
+    score += max(-30.0, min(30.0, sentiment_score * 30.0))
+
+    # RSI contrarian component (-30 to +30)
+    if rsi > 70:
+        score -= (rsi - 70) * 1.0
+    elif rsi < 30:
+        score += (30 - rsi) * 1.0
+
+    if score > 35:
+        return "STRONG BUY"
+    if score > 10:
+        return "BUY"
+    if score > -10:
+        return "HOLD"
+    if score > -35:
+        return "SELL"
+    return "STRONG SELL"
+
+
+def generate_rf_reasoning(model, last_features, current_price, predicted_price, horizon_label, feature_names=None):
+    """Generate human-readable reasoning from RF model feature importances."""
+    del last_features  # Reserved for future use.
+    if feature_names is None:
+        feature_names = [
+            "Day Trend",
+            "SMA(5)",
+            "SMA(10)",
+            "SMA(20)",
+            "Daily Returns",
+            "RSI(14)",
+            "Volume",
+            "Sentiment",
+        ]
+
+    pct = ((predicted_price - current_price) / current_price * 100) if current_price else 0.0
+    direction = "upward" if pct > 0 else "downward"
+
+    importances = getattr(model, "feature_importances_", None)
+    if importances is None or len(importances) == 0:
+        return {
+            "pct_change": round(pct, 2),
+            "direction": direction,
+            "top_factors": [],
+            "summary": f"Model predicts {pct:+.2f}% {direction} move over {horizon_label}.",
+        }
+
+    top_idx = np.argsort(importances)[-3:][::-1]
+    factors = [feature_names[i] for i in top_idx if i < len(feature_names)]
+    if len(factors) < 2:
+        factors = (factors + ["technical momentum", "sentiment"])[:2]
+
+    summary = (
+        f"Model predicts {pct:+.2f}% {direction} move over {horizon_label}, "
+        f"driven primarily by {factors[0]} and {factors[1]}."
+    )
+    if len(factors) > 2:
+        summary += f" {factors[2]} also contributed significantly."
+
+    return {
+        "pct_change": round(pct, 2),
+        "direction": direction,
+        "top_factors": factors,
+        "summary": summary,
+    }
 COMPANY_NAME_TO_TICKERS = {
     "GOOGLE": ["GOOG", "GOOGL"],
     "ALPHABET": ["GOOG", "GOOGL"],
@@ -204,6 +290,7 @@ def llm_filter_headlines(
     *,
     max_keep: int = 12,
     model=None,
+    long_horizon: bool = False,
 ) -> list:
     """
     Use an LLM to decide which raw headline candidates are worth
@@ -237,6 +324,13 @@ def llm_filter_headlines(
                 title = str(h.get("title", "")).strip()
                 lines.append(f"{i}: {title}")
             numbered = "\n".join(lines)
+            long_horizon_guidance = ""
+            if long_horizon:
+                long_horizon_guidance = """
+
+ADDITIONAL CONTEXT: The user is analyzing a LONG-TERM horizon (6 months+).
+Prioritize articles about: industry outlook, regulatory changes, macro-economic trends,
+structural shifts, and long-term competitive dynamics over daily price movements."""
 
             prompt = f"""You are a financial news relevance classifier for the stock ticker "{ticker}".
 
@@ -255,6 +349,7 @@ EXCLUDE a headline if:
 - It is entertainment, sports, lifestyle, or celebrity content
 - It is a video/torrent/piracy listing
 - It has no conceivable link to the stock's price or business
+{long_horizon_guidance}
 
 Respond with ONLY a JSON object in this exact format - no markdown, no explanation:
 {{"keep": [list of integer indices to include], "reason": "one sentence summary of what you filtered"}}
@@ -907,7 +1002,7 @@ class IRIS_System:
         except Exception:
             return self._simulated_market_data(ticker)
 
-    def analyze_news(self, ticker):
+    def analyze_news(self, ticker, lookback_days=21, long_horizon=False):
         """
         Fetches raw headlines from all available sources, then uses
         llm_filter_headlines() to select those relevant to the ticker.
@@ -917,8 +1012,12 @@ class IRIS_System:
         search_terms = _get_search_terms(ticker_symbol)
         from datetime import datetime, timedelta, timezone
         _now = datetime.now(timezone.utc)
-        _news_from_date = (_now - timedelta(days=21)).strftime("%Y-%m-%d")
-        _webz_ts = int((_now - timedelta(days=21)).timestamp()) * 1000
+        try:
+            _lookback = max(7, int(lookback_days))
+        except (TypeError, ValueError):
+            _lookback = 21
+        _news_from_date = (_now - timedelta(days=_lookback)).strftime("%Y-%m-%d")
+        _webz_ts = int((_now - timedelta(days=_lookback)).timestamp()) * 1000
         raw_candidates = []
         seen_urls = set()
         seen_titles = set()
@@ -1099,6 +1198,7 @@ class IRIS_System:
             ticker_symbol,
             raw_candidates,
             max_keep=40,
+            long_horizon=bool(long_horizon),
         )
         print(f"[NEWS] {ticker_symbol}: {len(headlines)} headlines after LLM filter.")
 
@@ -1147,7 +1247,7 @@ class IRIS_System:
             sentiment_value = 0.0
 
         if history_prices is None or len(history_prices) < 5:
-            return "INSUFFICIENT DATA", 0.0
+            return "INSUFFICIENT DATA", 0.0, [], [], [], None
 
         horizon_days = max(1, int(horizon_days))
 
@@ -1272,7 +1372,7 @@ class IRIS_System:
         pct_change = ((predicted_price - current_price) / current_price * 100) if current_price else 0.0
 
         # Adjust trend thresholds for longer horizons
-        threshold = 0.5 * horizon_days
+        threshold = 0.5 * math.log2(horizon_days + 1)
 
         if pct_change > threshold:
             label = "STRONG UPTREND "
@@ -1290,7 +1390,21 @@ class IRIS_System:
             sampled.append(trajectory[-1])  # always include final point
             trajectory = sampled
 
-        return label, predicted_price, trajectory
+        # Confidence band widens with forecast step.
+        trajectory_upper = []
+        trajectory_lower = []
+        if trajectory:
+            if hasattr(model, "estimators_"):
+                for i, price in enumerate(trajectory):
+                    step_frac = (i + 1) / len(trajectory)
+                    band_width = float(price) * 0.02 * (1 + step_frac)
+                    trajectory_upper.append(float(price) + band_width)
+                    trajectory_lower.append(float(price) - band_width)
+            else:
+                trajectory_upper = [float(p) * 1.02 for p in trajectory]
+                trajectory_lower = [float(p) * 0.98 for p in trajectory]
+
+        return label, predicted_price, trajectory, trajectory_upper, trajectory_lower, model
 
     def draw_chart(self, symbol: str, history_df, current_price: float, predicted_price: float, trend_label: str, save_dir: str = ""):
         """Draw live price history and prediction trend; save to dated subfolder under data/charts (YYYY-MM-DD)."""
@@ -1335,7 +1449,7 @@ class IRIS_System:
         period: str = "60d",
         interval: str = "1d",
         include_chart_history: bool = False,
-        risk_horizon: str = "next_session",
+        risk_horizon: str = "1D",
     ):
         """Run analysis for a single ticker; returns report dict or None."""
         ticker = self.resolve_user_ticker_input(ticker, interactive_prompt=interactive_prompt, quiet=quiet)
@@ -1352,12 +1466,22 @@ class IRIS_System:
             return None
 
         # Resolve risk horizon
-        horizon_key = str(risk_horizon or "next_session").strip()
+        horizon_key = str(risk_horizon or "1D").strip().upper()
         horizon_days = RISK_HORIZON_MAP.get(horizon_key, 1)
-        horizon_label = RISK_HORIZON_LABELS.get(horizon_key, "Next Session")
+        horizon_label = RISK_HORIZON_LABELS.get(horizon_key, "1 Day")
 
-        sentiment_score, headlines = self.analyze_news(analyzed_ticker)
-        trend_label, predicted_price, prediction_trajectory = self.predict_trend(data, sentiment_score, horizon_days=horizon_days)
+        news_lookback = HORIZON_NEWS_LOOKBACK_DAYS.get(horizon_key, 21)
+        is_long_horizon = horizon_days >= 126
+        sentiment_score, headlines = self.analyze_news(
+            analyzed_ticker,
+            lookback_days=news_lookback,
+            long_horizon=is_long_horizon,
+        )
+        trend_label, predicted_price, prediction_trajectory, traj_upper, traj_lower, rf_model = self.predict_trend(
+            data,
+            sentiment_score,
+            horizon_days=horizon_days,
+        )
         light = " GREEN (Safe to Proceed)"
         if sentiment_score < -0.05 or "STRONG DOWNTREND" in trend_label:
             light = " RED (Risk Detected - Caution)"
@@ -1366,6 +1490,26 @@ class IRIS_System:
 
         market_session_date = None
         history_df = data.get("history_df")
+        last_rsi = 50.0
+        if history_df is not None and "rsi_14" in history_df.columns and len(history_df):
+            last_rsi = float(history_df["rsi_14"].iloc[-1])
+        current_price = float(data["current_price"])
+        pct_change = ((predicted_price - current_price) / current_price * 100) if current_price else 0.0
+        investment_signal = derive_investment_signal(pct_change, sentiment_score, last_rsi, horizon_days)
+
+        iris_reasoning = {}
+        if rf_model is not None:
+            try:
+                iris_reasoning = generate_rf_reasoning(
+                    rf_model,
+                    None,
+                    current_price,
+                    predicted_price,
+                    horizon_label,
+                )
+            except Exception:
+                iris_reasoning = {"summary": "Reasoning generation failed."}
+
         if history_df is not None and len(history_df):
             try:
                 market_session_date = str(pd.Timestamp(history_df.index[-1]).date())
@@ -1405,11 +1549,15 @@ class IRIS_System:
                 "predicted_price_next_session": float(predicted_price),
                 "predicted_price_horizon": float(predicted_price),
                 "prediction_trajectory": [float(p) for p in prediction_trajectory],
+                "prediction_trajectory_upper": [float(p) for p in traj_upper],
+                "prediction_trajectory_lower": [float(p) for p in traj_lower],
             },
             "signals": {
                 "trend_label": trend_label,
                 "sentiment_score": float(sentiment_score),
                 "check_engine_light": light,
+                "investment_signal": investment_signal,
+                "iris_reasoning": iris_reasoning,
             },
             "evidence": {"headlines_used": evidence_headlines},
         }
