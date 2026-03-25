@@ -4,7 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en-US">
     <title>IRIS-AI | Vision in Volatility</title>
+    <style>
+      /* Force emoji rendering through emoji-capable fonts, not CJK fallbacks */
+      body, .llm-report-item, .llm-trend-up, .llm-trend-down, .llm-trend-flat,
+      .trend-badge, .signal-badge, .headline-title, .headline-meta {
+        font-family: 'Inter', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+      }
+    </style>
     <script>
         (function () {
             const saved = localStorage.getItem('iris-theme');

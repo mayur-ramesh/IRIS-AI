@@ -26,6 +26,9 @@ function applyTheme(theme) {
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Force en-US locale for all formatting.
+    const LOCALE = 'en-US';
+
     const TIMEFRAME_TO_QUERY = {
         '1D': { period: '1d', interval: '2m' },
         '5D': { period: '5d', interval: '15m' },
@@ -566,9 +569,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- End ticker autocomplete ---
 
     let historyRequestId = 0;
-    const usdFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+    const usdFormatter = new Intl.NumberFormat(LOCALE, { style: 'currency', currency: 'USD' });
 
-    const headlineDateFormatter = new Intl.DateTimeFormat('en-US', {
+    const headlineDateFormatter = new Intl.DateTimeFormat(LOCALE, {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
@@ -1360,7 +1363,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!(dt instanceof Date) || Number.isNaN(dt.getTime())) {
             return String(timeValue ?? '');
         }
-        return new Intl.DateTimeFormat('en-US', {
+        return new Intl.DateTimeFormat(LOCALE, {
             year: 'numeric',
             month: 'short',
             day: '2-digit',
@@ -1432,14 +1435,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     const o = { timeZone: 'UTC' };
                     // TickMarkType: 0=Year 1=Month 2=DayOfMonth 3=Time 4=TimeWithSeconds
                     if (tickMarkType === 0)
-                        return d.toLocaleDateString('en-US', { ...o, year: 'numeric' });
+                        return d.toLocaleDateString(LOCALE, { ...o, year: 'numeric' });
                     if (tickMarkType === 1)
-                        return d.toLocaleDateString('en-US', { ...o, month: 'short' });
+                        return d.toLocaleDateString(LOCALE, { ...o, month: 'short' });
                     if (tickMarkType === 2)
-                        return d.toLocaleDateString('en-US', { ...o, month: 'short', day: 'numeric' });
+                        return d.toLocaleDateString(LOCALE, { ...o, month: 'short', day: 'numeric' });
                     if (tickMarkType === 3 || tickMarkType === 4)
-                        return d.toLocaleTimeString('en-US', { ...o, hour: '2-digit', minute: '2-digit', hour12: false });
-                    return d.toLocaleDateString('en-US', o);
+                        return d.toLocaleTimeString(LOCALE, { ...o, hour: '2-digit', minute: '2-digit', hour12: false });
+                    return d.toLocaleDateString(LOCALE, o);
                 },
             },
             crosshair: {
@@ -1716,7 +1719,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resTicker.textContent = data?.meta?.symbol || '??';
         const date = new Date(data?.meta?.generated_at);
         const modeStr = (data?.meta?.mode || 'live').toUpperCase();
-        resTime.textContent = `Updated: ${date.toLocaleString()} (${modeStr} MODE)`;
+        resTime.textContent = `Updated: ${date.toLocaleString(LOCALE)} (${modeStr} MODE)`;
         setActiveTimeframe(resolveTimeframeFromMeta(data?.meta || {}));
 
         // Sync horizon state from response

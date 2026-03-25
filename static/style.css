@@ -1,5 +1,5 @@
 :root {
-    --font-main: 'Inter', sans-serif;
+    --font-main: 'Inter', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
 
     /* Light mode */
     --bg-main: #f8f9fa;
