@@ -1538,7 +1538,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const volumeOptions = {
             color: '#26a69a',
             priceFormat: { type: 'volume' },
-            priceScaleId: '', // set as an overlay
+            priceScaleId: 'volume_scale',
         };
 
         if (typeof lwChart.addHistogramSeries === 'function') {
@@ -1549,9 +1549,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         volumeSeries.priceScale().applyOptions({
             scaleMargins: {
-                top: 0.8, // highest point of the series will be at 80% from the top
+                top: 0.82,
                 bottom: 0,
             },
+            drawTicks: false,
+            borderVisible: false,
+            visible: false,
         });
 
         const volumeData = history.map((p, index) => {
@@ -1565,7 +1568,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 color: color
             };
         });
-        volumeSeries.setData(volumeData);
+        if (volumeData.some((d) => d.value > 0)) {
+            volumeSeries.setData(volumeData);
+        }
 
         lwChart.subscribeCrosshairMove((param) => {
             if (!param || !param.point || !param.time) {

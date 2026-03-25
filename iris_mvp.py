@@ -870,9 +870,10 @@ class IRIS_System:
         df["rsi_14"] = rsi.fillna(50.0).clip(0.0, 100.0)
 
         unix_seconds = np.asarray(date_index.asi8 // 10**9, dtype=np.int64)
+        sim_volumes = rng.integers(700_000, 3_500_000, size=points).astype(float)
         history_points = [
-            {"time": int(ts), "open": float(o), "high": float(h), "low": float(l), "close": float(c), "value": float(c)}
-            for ts, o, h, l, c in zip(unix_seconds, open_values, high_values, low_values, close_values)
+            {"time": int(ts), "open": float(o), "high": float(h), "low": float(l), "close": float(c), "value": float(c), "volume": float(vol)}
+            for ts, o, h, l, c, vol in zip(unix_seconds, open_values, high_values, low_values, close_values, sim_volumes)
             if ts > 0 and np.isfinite(c)
         ]
         return {
@@ -946,18 +947,26 @@ class IRIS_System:
             open_values = np.asarray(open_series, dtype=np.float64)
             high_values = np.asarray(high_series, dtype=np.float64)
             low_values = np.asarray(low_series, dtype=np.float64)
+            vol_series_for_chart = pd.to_numeric(
+                hist.get("Volume", pd.Series(0, index=hist.index)),
+                errors="coerce",
+            ).fillna(0).clip(lower=0)
+            vol_values_for_chart = np.asarray(vol_series_for_chart, dtype=np.float64)
+            if len(vol_values_for_chart) != len(close_values):
+                vol_values_for_chart = np.zeros(len(close_values), dtype=np.float64)
             
             unix_seconds_all = _infer_unix_seconds_from_index(hist.index)
             valid_chart_mask = np.isfinite(close_values) & np.isfinite(unix_seconds_all) & (unix_seconds_all >= 1e8)
             
             history_points = [
-                {"time": int(ts), "open": float(o), "high": float(h), "low": float(l), "close": float(c), "value": float(c)}
-                for ts, o, h, l, c in zip(
+                {"time": int(ts), "open": float(o), "high": float(h), "low": float(l), "close": float(c), "value": float(c), "volume": float(v)}
+                for ts, o, h, l, c, v in zip(
                     unix_seconds_all[valid_chart_mask], 
                     open_values[valid_chart_mask], 
                     high_values[valid_chart_mask], 
                     low_values[valid_chart_mask], 
-                    close_values[valid_chart_mask]
+                    close_values[valid_chart_mask],
+                    vol_values_for_chart[valid_chart_mask],
                 )
             ]
             history_values = close_values[valid_chart_mask]
