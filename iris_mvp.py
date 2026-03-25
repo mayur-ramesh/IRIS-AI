@@ -1210,8 +1210,51 @@ class IRIS_System:
         except Exception as _e:
             print(f"[NEWS] yfinance error: {_e}")
 
-        # -- Source 4: simulation fallback --------------------------------
-        if not raw_candidates:
+        # -- Source 4: Google News RSS (always available, no API key) -----
+        try:
+            import urllib.request as _gn_req
+            import urllib.parse as _gn_parse
+            import xml.etree.ElementTree as _gn_et
+
+            _primary_name = search_terms["names"][0] if search_terms.get("names") else ticker_symbol
+            _gn_queries = [
+                f"{ticker_symbol} stock",
+                _primary_name,
+            ]
+            if _lookback >= 60 and search_terms.get("sector"):
+                _gn_queries.append(search_terms["sector"][0])
+
+            for _gn_q in _gn_queries:
+                if len(raw_candidates) >= 150:
+                    break
+                try:
+                    _gn_url = (
+                        "https://news.google.com/rss/search?q="
+                        f"{_gn_parse.quote(_gn_q)}+when:{min(_lookback, 30)}d&hl=en-US&gl=US&ceid=US:en"
+                    )
+                    _gn_rq = _gn_req.Request(
+                        _gn_url,
+                        headers={
+                            "User-Agent": "Mozilla/5.0 (compatible; IRIS-AI/1.0)",
+                            "Accept": "application/xml",
+                        },
+                    )
+                    with _gn_req.urlopen(_gn_rq, timeout=6) as _gn_resp:
+                        _gn_xml = _gn_resp.read().decode("utf-8", errors="replace")
+                    _gn_root = _gn_et.fromstring(_gn_xml)
+                    for _gn_item in _gn_root.iter("item"):
+                        _gn_title = (_gn_item.findtext("title") or "").strip()
+                        _gn_link = (_gn_item.findtext("link") or "").strip()
+                        _gn_pub = (_gn_item.findtext("pubDate") or "").strip()
+                        if _gn_title and _gn_link:
+                            collect(title=_gn_title, url=_gn_link, published_at=_gn_pub)
+                except Exception as _gn_e:
+                    print(f"[NEWS] Google News RSS error for '{_gn_q}': {_gn_e}")
+        except Exception as _gn_outer:
+            print(f"[NEWS] Google News RSS import error: {_gn_outer}")
+
+        # -- Source 5: simulation fallback ---------------------------------
+        if len(raw_candidates) < 5:
             # Simulation mode: generate Google News search links so every headline is clickable
             import urllib.parse as _sim_urlparse
             _search_base = "https://news.google.com/search?q="
@@ -1248,28 +1291,13 @@ class IRIS_System:
 
         print(f"[NEWS] {ticker_symbol}: {len(raw_candidates)} raw candidates collected.")
 
-        # -- Phase 2: LLM filter -------------------------------------------
-        headlines = llm_filter_headlines(
-            ticker_symbol,
-            raw_candidates,
-            max_keep=40,
-            long_horizon=bool(long_horizon),
-            use_llm=not fast_mode,
-        )
-        print(f"[NEWS] {ticker_symbol}: {len(headlines)} headlines after LLM filter.")
-
-        # Ensure every headline has a category key for the frontend tag logic
-        for h in headlines:
-            if "category" not in h:
-                h["category"] = "financial"
-
-        # -- Sentiment scoring (confidence-weighted + recency-aware) -------
+        # -- Phase 2a: Sentiment scoring on ALL raw candidates -------------
         weighted_sum = 0.0
         weight_total = 0.0
-        if self.sentiment_analyzer and headlines:
+        if self.sentiment_analyzer and raw_candidates:
             title_texts = []
             headline_indices = []
-            for idx, h in enumerate(headlines):
+            for idx, h in enumerate(raw_candidates):
                 title_text = str(h.get("title", "")).strip()
                 if not title_text:
                     continue
@@ -1302,7 +1330,7 @@ class IRIS_System:
                 try:
                     label = str(result.get("label", "")).lower()
                     confidence = float(result.get("score", 0.0))
-                    recency_weight = 1.0 + max(0.0, (1.0 - idx / max(len(headlines), 1)) * 0.5)
+                    recency_weight = 1.0 + max(0.0, (1.0 - idx / max(len(raw_candidates), 1)) * 0.5)
                     w = confidence * recency_weight
 
                     if label == "positive":
@@ -1318,6 +1346,25 @@ class IRIS_System:
 
         avg_score = weighted_sum / weight_total if weight_total > 0 else 0.0
         avg_score = max(-1.0, min(1.0, avg_score))
+
+        # -- Phase 2b: LLM filter for display only -------------------------
+        headlines = llm_filter_headlines(
+            ticker_symbol,
+            raw_candidates,
+            max_keep=40,
+            long_horizon=bool(long_horizon),
+            use_llm=not fast_mode,
+        )
+        print(
+            f"[NEWS] {ticker_symbol}: {len(headlines)} headlines after LLM filter "
+            f"(sentiment scored on {len(raw_candidates)} raw)."
+        )
+
+        # Ensure every headline has a category key for the frontend tag logic
+        for h in headlines:
+            if "category" not in h:
+                h["category"] = "financial"
+
         return avg_score, headlines
 
     def predict_trend(self, data, sentiment_score, horizon_days=1, sample_to_max_points=True, max_points=50):
