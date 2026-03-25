@@ -872,6 +872,8 @@ document.addEventListener('DOMContentLoaded', () => {
             div.style.alignItems = 'center';
 
             const llmTrend = String(report?.signals?.trend_label || '').toUpperCase().trim();
+            // Strip non-ASCII characters (e.g., emoji that can render as garbled symbols on CJK systems).
+            const cleanTrend = llmTrend.replace(/[^\x20-\x7E]/g, '').trim();
             const llmSignal = String(report?.signals?.investment_signal || '').trim();
             const llmPrice = Number(
                 report?.market?.predicted_price_horizon ?? report?.market?.predicted_price_next_session
@@ -881,14 +883,14 @@ document.addEventListener('DOMContentLoaded', () => {
             let priceClass = 'llm-price-flat';
             let trendClass = 'llm-trend-flat';
             let arrow = '';
-            if (llmTrend.includes('UPTREND')) {
+            if (cleanTrend.includes('UPTREND')) {
                 priceClass = 'llm-price-up';
                 trendClass = 'llm-trend-up';
-                arrow = '鈫?';
-            } else if (llmTrend.includes('DOWNTREND')) {
+                arrow = '\u2191 ';
+            } else if (cleanTrend.includes('DOWNTREND')) {
                 priceClass = 'llm-price-down';
                 trendClass = 'llm-trend-down';
-                arrow = '鈫?';
+                arrow = '\u2193 ';
             }
 
             let signalHtml = '';
@@ -901,7 +903,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span style="font-weight:600;font-size:0.95em;">${modelName}</span>
                 <div style="text-align:right;">
                   <div class="${priceClass}">${isFinite(llmPrice) ? usdFormatter.format(llmPrice) : 'N/A'}</div>
-                  <div class="${trendClass}">${arrow}${llmTrend || 'N/A'}</div>
+                  <div class="${trendClass}">${arrow}${cleanTrend || 'N/A'}</div>
                   ${signalHtml}
                 </div>`;
 
@@ -1105,7 +1107,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                     predictedPriceEl.textContent = usdFormatter.format(latestPredictedPrice);
                                 }
 
-                                applyTrendBadge(pred?.trend_label || '');
+                                const trend = String(pred?.trend_label || '').replace(/[^\x20-\x7E]/g, '').trim();
+                                applyTrendBadge(trend);
                                 renderInvestmentSignalBadge(pred?.investment_signal || '');
                                 renderChart(
                                     latestAnalyzeHistory,
@@ -1733,7 +1736,7 @@ document.addEventListener('DOMContentLoaded', () => {
         predictedPriceEl.textContent = isFinite(predictedPrice) ? usdFormatter.format(predictedPrice) : 'N/A';
 
         // Trend
-        const trend = (data?.signals?.trend_label || '').trim();
+        const trend = (data?.signals?.trend_label || '').replace(/[^\x20-\x7E]/g, '').trim();
         applyTrendBadge(trend);
 
         // Apply contrarian colour to predicted price:

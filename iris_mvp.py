@@ -1375,13 +1375,13 @@ class IRIS_System:
         threshold = 0.5 * math.log2(horizon_days + 1)
 
         if pct_change > threshold:
-            label = "STRONG UPTREND "
+            label = "STRONG UPTREND"
         elif pct_change > 0:
-            label = "WEAK UPTREND "
+            label = "WEAK UPTREND"
         elif pct_change < -threshold:
-            label = "STRONG DOWNTREND "
+            label = "STRONG DOWNTREND"
         else:
-            label = "WEAK DOWNTREND "
+            label = "WEAK DOWNTREND"
 
         # Sample trajectory to max 50 points for chart rendering
         if len(trajectory) > 50:

@@ -195,7 +195,7 @@ Respond with a single JSON object with this exact structure and field names:
     "predicted_price_next_session": <float>
   }},
   "signals": {{
-    "trend_label": "<string like 'WEAK UPTREND ' or 'WEAK DOWNTREND '>",
+    "trend_label": "<exactly one of: STRONG UPTREND, WEAK UPTREND, WEAK DOWNTREND, STRONG DOWNTREND>",
     "sentiment_score": <float between -1 and 1>,
     "check_engine_light": "<string description like ' RED (..)' or ' YELLOW (..)' or ' GREEN (..)'>"
   }},
@@ -272,6 +272,7 @@ Respond with ONLY a single JSON object (no markdown, no code fences):
 
 Rules:
 - investment_signal MUST be exactly one of: STRONG BUY, BUY, HOLD, SELL, STRONG SELL
+- trend_label must be plain ASCII text with no emoji, no Unicode symbols, no special characters
 - predicted_price_horizon is the price at END of the {horizon_label} period
 - reasoning should reference the metrics and headlines provided
 - Only output raw JSON"""
