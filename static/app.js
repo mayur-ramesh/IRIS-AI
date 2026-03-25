@@ -1024,8 +1024,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (llmContainer) {
-            const label = HORIZON_LABELS[normalizedHorizon] || normalizedHorizon;
-            llmContainer.innerHTML = `<p class="text-muted" style="text-align:center;padding:16px 0;">Updating LLM insights for ${label}...</p>`;
+            const skeletonRows = ['ChatGPT 5.2', 'DeepSeek V3', 'Gemini V3 Pro'].map((name) => `
+                <div class="llm-report-item" style="padding:8px;background:rgba(255,255,255,0.03);border-radius:5px;display:flex;justify-content:space-between;align-items:center;min-height:44px;">
+                    <span style="font-weight:600;font-size:0.95em;opacity:0.4;">${name}</span>
+                    <span class="llm-loading-pulse" style="font-size:0.82em;color:var(--text-muted);opacity:0.5;">Loading...</span>
+                </div>
+            `).join('');
+            llmContainer.innerHTML = skeletonRows;
         }
 
         const llmAbort = new AbortController();

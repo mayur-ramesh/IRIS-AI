@@ -514,13 +514,23 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 120px;
 }
 
 /* LLM Insights: scrollable content area */
 .llm-card .llm-info {
   flex: 1;
-  min-height: 0;
+  min-height: 160px;
   overflow-y: auto;
+}
+
+.llm-loading-pulse {
+  animation: llmPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes llmPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.2; }
 }
 
 /* Headlines: fixed title, scrollable list */
