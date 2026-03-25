@@ -926,27 +926,29 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!llmContainer) return;
 
         llmContainer.innerHTML = '';
-        if (!llmInsights || Object.keys(llmInsights).length === 0) {
-            llmContainer.innerHTML = '<p class="text-muted">No LLM insights available.</p>';
-            return;
-        }
-
         const horizonLabel = HORIZON_LABELS[horizonKey] || '';
+        const modelOrder = [
+            ['chatgpt52', 'ChatGPT 5.2'],
+            ['deepseek_v3', 'DeepSeek V3'],
+            ['gemini_v3_pro', 'Gemini V3 Pro'],
+        ];
 
-        for (const [key, report] of Object.entries(llmInsights)) {
-            const nameMap = {
-                chatgpt52: 'ChatGPT 5.2',
-                deepseek_v3: 'DeepSeek V3',
-                gemini_v3_pro: 'Gemini V3 Pro',
-            };
-            const modelName = nameMap[key] || key;
+        for (const [key, modelName] of modelOrder) {
+            const report = (llmInsights && typeof llmInsights === 'object' && llmInsights[key])
+                ? llmInsights[key]
+                : { error: 'Model unavailable', status: 'unavailable' };
 
             if (report?.status === 'unavailable' || report?.error) {
                 const errDiv = document.createElement('div');
                 errDiv.className = 'llm-report-item';
-                errDiv.style.cssText = 'padding:8px;background:rgba(255,255,255,0.05);border-radius:5px;opacity:0.5;';
-                errDiv.innerHTML = `<span style="font-weight:600;font-size:0.95em;">${modelName}</span>
-                    <span class="text-muted" style="font-size:0.82em;">Unavailable</span>`;
+                errDiv.style.cssText = 'padding:8px;background:rgba(255,255,255,0.03);border-radius:5px;display:flex;justify-content:space-between;align-items:center;min-height:44px;';
+                const rawReason = String(report?.error || '').toLowerCase();
+                const reason = rawReason.includes('not configured') || rawReason.includes('not set')
+                    ? 'API key not set'
+                    : 'Temporarily unavailable';
+                errDiv.innerHTML = `
+                    <span style="font-weight:600;font-size:0.95em;opacity:0.5;">${modelName}</span>
+                    <span style="font-size:0.82em;color:var(--text-muted);opacity:0.6;">${reason}</span>`;
                 llmContainer.appendChild(errDiv);
                 continue;
             }
@@ -1026,8 +1028,16 @@ document.addEventListener('DOMContentLoaded', () => {
             llmContainer.innerHTML = `<p class="text-muted" style="text-align:center;padding:16px 0;">Updating LLM insights for ${label}...</p>`;
         }
 
-        fetch(`/api/llm-predict?ticker=${encodeURIComponent(normalizedTicker)}&horizon=${encodeURIComponent(normalizedHorizon)}`)
-            .then((resp) => (resp.ok ? resp.json() : null))
+        const llmAbort = new AbortController();
+        const llmTimeout = setTimeout(() => llmAbort.abort(), 30000);
+
+        fetch(`/api/llm-predict?ticker=${encodeURIComponent(normalizedTicker)}&horizon=${encodeURIComponent(normalizedHorizon)}`, {
+            signal: llmAbort.signal,
+        })
+            .then((resp) => {
+                clearTimeout(llmTimeout);
+                return resp.ok ? resp.json() : null;
+            })
             .then((llmData) => {
                 if (llmData && llmData.models) {
                     cachedLlmByHorizon[normalizedHorizon] = llmData.models;
@@ -1038,9 +1048,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     llmContainer.innerHTML = '<p class="text-muted">LLM insights unavailable for this timeframe.</p>';
                 }
             })
-            .catch(() => {
+            .catch((err) => {
+                clearTimeout(llmTimeout);
                 if (currentHorizon === normalizedHorizon && llmContainer) {
-                    llmContainer.innerHTML = '<p class="text-muted">Failed to load LLM insights.</p>';
+                    const msg = err && err.name === 'AbortError'
+                        ? 'LLM request timed out. Try again later.'
+                        : 'Failed to load LLM insights.';
+                    llmContainer.innerHTML = `<p class="text-muted">${msg}</p>`;
                 }
             });
     }

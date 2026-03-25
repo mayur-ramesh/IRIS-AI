@@ -634,10 +634,7 @@ def predict_only():
 
 @app.route('/api/llm-predict', methods=['GET'])
 def llm_predict_endpoint():
-    """Parallel LLM prediction endpoint with horizon context."""
-    if not iris_app:
-        return jsonify({"error": "IRIS System not initialized"}), 500
-
+    """Parallel LLM prediction hardened to always return 3 model results."""
     ticker = str(request.args.get('ticker', '') or '').strip().upper()
     horizon = str(request.args.get('horizon', '1D') or '1D').strip().upper()
     if not ticker:
@@ -654,35 +651,48 @@ def llm_predict_endpoint():
         horizon_days = RISK_HORIZON_MAP.get(horizon, 1)
         horizon_label = RISK_HORIZON_LABELS.get(horizon, "1 Day")
 
-        data = iris_app.get_market_data(ticker)
-        if not data:
-            return jsonify({"error": f"No market data for {ticker}"}), 404
-
-        current_price = float(data["current_price"])
-        history_df = data.get("history_df")
+        # Gather market context. Failures here should not block LLM calls.
+        current_price = 0.0
         sma_5 = current_price
         rsi_14 = 50.0
-        if history_df is not None and len(history_df):
-            if "sma_5" in history_df.columns:
-                sma_5 = float(history_df["sma_5"].iloc[-1])
-            if "rsi_14" in history_df.columns:
-                rsi_14 = float(history_df["rsi_14"].iloc[-1])
+        sentiment_score = 0.0
+        headlines_summary = "No market data available."
 
-        sentiment_score, headlines = iris_app.analyze_news(
-            ticker,
-            lookback_days=min(30, horizon_days),
-            long_horizon=horizon_days >= 126,
-        )
-        headlines_summary = "; ".join(
-            h.get("title", "")[:80] for h in (headlines or [])[:5]
-        ) or "No recent headlines available."
+        try:
+            data = iris_app.get_market_data(ticker) if iris_app else None
+            if data:
+                current_price = float(data.get("current_price", 0.0) or 0.0)
+                sma_5 = current_price
+                history_df = data.get("history_df")
+                if history_df is not None and len(history_df):
+                    if "sma_5" in history_df.columns:
+                        sma_5 = float(history_df["sma_5"].iloc[-1])
+                    if "rsi_14" in history_df.columns:
+                        rsi_14 = float(history_df["rsi_14"].iloc[-1])
+        except Exception as e:
+            print(f"[LLM-PREDICT] Market data failed for {ticker}: {e}")
+
+        try:
+            if iris_app:
+                lookback = min(30, horizon_days) if horizon_days > 0 else 21
+                sent, headlines = iris_app.analyze_news(
+                    ticker,
+                    lookback_days=lookback,
+                    long_horizon=horizon_days >= 126,
+                )
+                sentiment_score = float(sent)
+                headlines_summary = "; ".join(
+                    h.get("title", "")[:80] for h in (headlines or [])[:5]
+                ) or "No recent headlines available."
+        except Exception as e:
+            print(f"[LLM-PREDICT] News fetch failed for {ticker}: {e}")
 
         results = predict_with_llms(
             symbol=ticker,
             current_price=current_price,
             sma_5=sma_5,
             rsi_14=rsi_14,
-            sentiment_score=float(sentiment_score),
+            sentiment_score=sentiment_score,
             horizon=horizon,
             horizon_days=horizon_days,
             horizon_label=horizon_label,
@@ -702,8 +712,18 @@ def llm_predict_endpoint():
         _llm_predict_cache[cache_key] = {"data": response_data, "ts": time.time()}
         return jsonify(response_data)
     except Exception:
-        print(f"Error in /api/llm-predict: {traceback.format_exc()}")
-        return jsonify({"error": "LLM prediction failed"}), 500
+        print(f"[LLM-PREDICT] Unhandled error: {traceback.format_exc()}")
+        fallback = {
+            "ticker": ticker,
+            "horizon": horizon,
+            "horizon_label": RISK_HORIZON_LABELS.get(horizon, horizon),
+            "models": {
+                "chatgpt52": {"error": "Service error", "status": "unavailable"},
+                "deepseek_v3": {"error": "Service error", "status": "unavailable"},
+                "gemini_v3_pro": {"error": "Service error", "status": "unavailable"},
+            },
+        }
+        return jsonify(fallback)
 
 
 @app.route('/api/chart')

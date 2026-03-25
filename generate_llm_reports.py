@@ -17,6 +17,7 @@ import json
 import math
 import os
 import re
+import time as _time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
@@ -72,6 +73,31 @@ def _load_env():
 
 
 _load_env()
+
+
+def _retry_llm_call(fn, max_retries=2, base_delay=1.0):
+    """Retry an LLM API call with exponential backoff."""
+    last_err = None
+    for attempt in range(max_retries + 1):
+        try:
+            return fn()
+        except Exception as exc:
+            last_err = exc
+            err_str = str(exc).lower()
+            if any(
+                kw in err_str
+                for kw in [
+                    "api_key",
+                    "authentication",
+                    "unauthorized",
+                    "invalid key",
+                    "not installed",
+                ]
+            ):
+                break
+            if attempt < max_retries:
+                _time.sleep(base_delay * (2 ** attempt))
+    return {"error": str(last_err), "status": "unavailable"}
 
 
 def _canonical_ticker(symbol: str) -> str:
@@ -429,7 +455,7 @@ def predict_with_llms(
     headlines_summary: str,
     mode: str = "live_forecast",
 ) -> dict:
-    """Call all three LLM providers in parallel and return a results dict."""
+    """Call all three LLM providers in parallel with retries and return all 3 keys."""
     del horizon  # Kept for compatibility with endpoint call signature.
 
     prompt = _build_horizon_forecast_prompt(
@@ -445,78 +471,72 @@ def predict_with_llms(
     )
 
     def _call_chatgpt():
-        try:
-            from openai import OpenAI  # type: ignore
+        api_key = os.environ.get("OPENAI_API_KEY", "").strip()
+        if not api_key:
+            return {"error": "OPENAI_API_KEY not configured", "status": "unavailable"}
+        from openai import OpenAI  # type: ignore
 
-            client = OpenAI()
-            model_name = os.environ.get("OPENAI_MODEL_CHATGPT52", "gpt-4o")
-            resp = client.chat.completions.create(
-                model=model_name,
-                messages=[
+        client = OpenAI(api_key=api_key)
+        model_name = os.environ.get("OPENAI_MODEL_CHATGPT52", "gpt-4o")
+        resp = client.chat.completions.create(
+            model=model_name,
+            messages=[
+                {"role": "system", "content": "You produce structured JSON forecasts for US equities."},
+                {"role": "user", "content": prompt},
+            ],
+            temperature=0.4,
+            max_tokens=800,
+        )
+        data = _parse_llm_json(resp.choices[0].message.content or "")
+        return _ensure_meta_fields(data, symbol, mode)
+
+    def _call_deepseek():
+        api_key = os.environ.get("DEEPSEEK_API_KEY", "").strip()
+        if not api_key:
+            return {"error": "DEEPSEEK_API_KEY not configured", "status": "unavailable"}
+        import requests as req  # type: ignore
+
+        base_url = os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
+        model_name = os.environ.get("DEEPSEEK_MODEL", "deepseek-chat")
+        resp = req.post(
+            f"{base_url.rstrip('/')}/v1/chat/completions",
+            headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+            json={
+                "model": model_name,
+                "messages": [
                     {"role": "system", "content": "You produce structured JSON forecasts for US equities."},
                     {"role": "user", "content": prompt},
                 ],
-                temperature=0.4,
-                timeout=15,
-            )
-            data = _parse_llm_json(resp.choices[0].message.content or "")
-            return _ensure_meta_fields(data, symbol, mode)
-        except Exception as e:
-            return {"error": str(e), "status": "unavailable"}
-
-    def _call_deepseek():
-        try:
-            import requests as req  # type: ignore
-
-            api_key = os.environ.get("DEEPSEEK_API_KEY")
-            if not api_key:
-                return {"error": "DEEPSEEK_API_KEY not set", "status": "unavailable"}
-
-            base_url = os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
-            model_name = os.environ.get("DEEPSEEK_MODEL", "deepseek-chat")
-            resp = req.post(
-                f"{base_url.rstrip('/')}/v1/chat/completions",
-                headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
-                json={
-                    "model": model_name,
-                    "messages": [
-                        {"role": "system", "content": "You produce structured JSON forecasts for US equities."},
-                        {"role": "user", "content": prompt},
-                    ],
-                    "temperature": 0.4,
-                },
-                timeout=15,
-            )
-            resp.raise_for_status()
-            data = _parse_llm_json(resp.json()["choices"][0]["message"]["content"])
-            return _ensure_meta_fields(data, symbol, mode)
-        except Exception as e:
-            return {"error": str(e), "status": "unavailable"}
+                "temperature": 0.4,
+                "max_tokens": 800,
+            },
+            timeout=20,
+        )
+        resp.raise_for_status()
+        data = _parse_llm_json(resp.json()["choices"][0]["message"]["content"])
+        return _ensure_meta_fields(data, symbol, mode)
 
     def _call_gemini():
-        try:
-            from google import genai  # type: ignore
+        api_key = os.environ.get("GEMINI_API_KEY", "").strip()
+        if not api_key:
+            return {"error": "GEMINI_API_KEY not configured", "status": "unavailable"}
+        from google import genai  # type: ignore
 
-            api_key = os.environ.get("GEMINI_API_KEY")
-            if not api_key:
-                return {"error": "GEMINI_API_KEY not set", "status": "unavailable"}
-            model_name = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
-            client = genai.Client(api_key=api_key)
-            resp = client.models.generate_content(model=model_name, contents=prompt)
-            data = _parse_llm_json(resp.text or "")
-            return _ensure_meta_fields(data, symbol, mode)
-        except Exception as e:
-            return {"error": str(e), "status": "unavailable"}
+        model_name = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+        client = genai.Client(api_key=api_key)
+        resp = client.models.generate_content(model=model_name, contents=prompt)
+        data = _parse_llm_json(resp.text or "")
+        return _ensure_meta_fields(data, symbol, mode)
 
     results = {}
     with ThreadPoolExecutor(max_workers=3) as executor:
         futures = {
-            executor.submit(_call_chatgpt): "chatgpt52",
-            executor.submit(_call_deepseek): "deepseek_v3",
-            executor.submit(_call_gemini): "gemini_v3_pro",
+            executor.submit(_retry_llm_call, _call_chatgpt): "chatgpt52",
+            executor.submit(_retry_llm_call, _call_deepseek): "deepseek_v3",
+            executor.submit(_retry_llm_call, _call_gemini): "gemini_v3_pro",
         }
         try:
-            for future in as_completed(futures, timeout=20):
+            for future in as_completed(futures, timeout=45):
                 model_key = futures[future]
                 try:
                     results[model_key] = future.result()
@@ -528,7 +548,7 @@ def predict_with_llms(
 
     for model_key in ("chatgpt52", "deepseek_v3", "gemini_v3_pro"):
         if model_key not in results:
-            results[model_key] = {"error": "timeout", "status": "unavailable"}
+            results[model_key] = {"error": "Request timed out", "status": "unavailable"}
 
     return results
 
