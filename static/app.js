@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const aRect = anchor.getBoundingClientRect();
             const tipW = tooltip.offsetWidth;
             const tipH = tooltip.offsetHeight;
+            const viewH = window.innerHeight;
 
             // Try left first.
             let left = tRect.left - aRect.left - tipW - 12;
@@ -141,6 +142,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             left = Math.max(4, Math.min(left, aRect.width - tipW - 4));
             top = Math.max(4, top);
+
+            const tooltipBottomAbs = aRect.top + top + tipH;
+            if (tooltipBottomAbs > viewH - 20) {
+                const availableH = viewH - (aRect.top + top) - 20;
+                tooltip.style.maxHeight = `${Math.max(120, availableH)}px`;
+            } else {
+                tooltip.style.maxHeight = '';
+            }
 
             tooltip.style.left = `${left}px`;
             tooltip.style.top = `${top}px`;

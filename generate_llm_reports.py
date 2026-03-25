@@ -554,7 +554,21 @@ def _normalize_llm_result(result: dict) -> dict:
         trend = str(signals.get("trend_label", "neutral")).lower().strip()
         price = result.get("market", {}).get("predicted_price_horizon", "N/A")
         reasoning = f"Model predicts {trend} trend to ${price}."
-    result["reasoning"] = reasoning[:300]
+
+    # Truncate at sentence boundary (defensive), avoiding mid-word cuts.
+    max_len = 500
+    if len(reasoning) > max_len:
+        truncated = reasoning[:max_len]
+        last_period = truncated.rfind(". ")
+        if last_period > 100:
+            reasoning = truncated[:last_period + 1]
+        else:
+            last_space = truncated.rfind(" ")
+            if last_space > 100:
+                reasoning = truncated[:last_space] + "\u2026"
+            else:
+                reasoning = truncated + "\u2026"
+    result["reasoning"] = reasoning
     return result
 
 

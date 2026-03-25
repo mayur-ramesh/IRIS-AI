@@ -141,6 +141,11 @@ def generate_rf_reasoning(model, last_features, current_price, predicted_price, 
     if len(factors) > 2:
         summary += f" {factors[2]} also contributed significantly."
 
+    # Defensive cap for unusually verbose summaries.
+    if len(summary) > 500:
+        cut = summary[:500].rfind(". ")
+        summary = summary[:cut + 1] if cut > 100 else summary[:500] + "\u2026"
+
     return {
         "pct_change": round(pct, 2),
         "direction": direction,
