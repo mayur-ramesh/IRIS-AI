@@ -723,6 +723,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Headlines card height sync: keep right-column headlines card aligned with
+    // the combined height of the left-column cards.
+    function syncHeadlinesCardHeight() {
+        const headlinesCard = document.querySelector('.headlines-card');
+        if (!headlinesCard) return;
+
+        // Preserve mobile behavior where CSS intentionally removes the cap.
+        if (window.matchMedia && window.matchMedia('(max-width: 768px)').matches) {
+            headlinesCard.style.removeProperty('--headlines-card-height');
+            headlinesCard.style.removeProperty('max-height');
+            return;
+        }
+
+        const grid = document.querySelector('.dashboard-3col');
+        if (!grid) return;
+
+        const gridStyle = window.getComputedStyle(grid);
+        const gap = parseFloat(gridStyle.rowGap) || parseFloat(gridStyle.gap) || 16;
+
+        const riskCard = document.querySelector('.engine-light-card');
+        const priceCard = document.querySelector('.price-card');
+        const sentCard = document.querySelector('.sentiment-card');
+        const llmCard = document.querySelector('.llm-card');
+
+        const row1Height = Math.max(
+            riskCard?.offsetHeight || 0,
+            priceCard?.offsetHeight || 0
+        );
+        const row2Height = Math.max(
+            sentCard?.offsetHeight || 0,
+            llmCard?.offsetHeight || 0
+        );
+
+        if (row1Height > 0 && row2Height > 0) {
+            const targetHeight = row1Height + gap + row2Height;
+            headlinesCard.style.setProperty('--headlines-card-height', `${targetHeight}px`);
+            headlinesCard.style.maxHeight = `${targetHeight}px`;
+        }
+    }
+
     function syncThemeToggleState() {
         if (!themeToggle) return;
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -1009,6 +1049,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             llmContainer.appendChild(div);
         }
+
+        requestAnimationFrame(() => syncHeadlinesCardHeight());
     }
 
     function updateLlmForHorizon(ticker, horizonKey, forceRefresh = false) {
@@ -1186,6 +1228,11 @@ document.addEventListener('DOMContentLoaded', () => {
             latestAnalyzeHistory = normalizeHistoryPoints(data?.market?.history);
             latestAnalyzeTimeframe = getActiveTimeframe();
             try { updateDashboard(data); } catch (renderErr) { console.error('[IRIS] updateDashboard error:', renderErr); }
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    syncHeadlinesCardHeight();
+                });
+            });
             if (currentHorizon && currentTicker) {
                 updateLlmForHorizon(currentTicker, currentHorizon, true);
             }
@@ -1384,6 +1431,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('resize', () => {
         resizeChartToContainer();
+        syncHeadlinesCardHeight();
     });
 
     function openFeedbackModal() {

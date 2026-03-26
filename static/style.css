@@ -481,7 +481,9 @@ header {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  max-height: 520px;
+  /* No fixed max-height - JS will set it dynamically to match left columns.
+     Fallback max-height if JS is unavailable or has not run yet. */
+  max-height: var(--headlines-card-height, 480px);
 }
 
 .sentiment-card {
