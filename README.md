@@ -70,15 +70,22 @@ Notes:
 
 * **Live Demo (Hugging Face Space):**
   * https://huggingface.co/spaces/Brajmovech/IRIS-AI_DEMO
+* **Latest Updates (March 26, 2026):**
+  * Finalized headlines panel UX fixes: restored stable scroll behavior, tightened spacing/density, and added dynamic height sync so the right-column headlines card always aligns with left-column dashboard cards.
+  * Added frontend height re-sync triggers after dashboard render, async LLM insights render, and browser resize for consistent layout across ticker/data states.
+  * Synced frontend fixes to both local and server projects with cache-version updates for immediate deployment refresh.
 * **Backend & REST API (`app.py`):**
   * Set up a Flask server with CORS support.
   * Implemented core API endpoints (`/api/analyze`, `/api/chart`, `/api/session-summary/latest`) to securely interface the frontend dashboard with the backend AI engines.
   * **LLM Integration**: Aggregates predictions from ChatGPT 5.2, DeepSeek V3, and Gemini V3 Pro to provide comparative "LLM Insights".
+  * **Pipeline Efficiency**: Removed redundant news-processing work in `/api/llm-predict` to reduce repeated backend load.
+  * **Reliability**: Hardened LLM prediction handling for unavailable models and failure edge cases.
 * **AI & Risk Engine (`iris_mvp.py`):**
   * **Market Data:** Integrated `yfinance` to pull historical OHLCV data.
   * **Trend Prediction:** Built a "Crystal Ball" feature using `scikit-learn`'s Ridge regression to predict next-session prices and identify Uptrends/Downtrends.
   * **Sentiment Analysis:** Integrated the `transformers` library using the `ProsusAI/finbert` model to analyze the sentiment of recent market headlines.
   * **Strict News Filtering:** Implemented `Webz.io` and `NewsAPI` aggregation with strict Regex boundaries and noise reduction patterns to ensure high-quality financial context.
+  * **Coverage Expansion:** Added Google News RSS ingestion and candidate scoring to improve headline coverage quality.
 * **Automated Schedulers (`run_daily.py` & `generate_llm_reports.py`):**
   * Developed timezone-aware automation scripts to trigger bulk ticker analyses exactly at the US market open (09:00 ET).
   * Implemented automated LLM forecasting scripts to build baseline reference data.
@@ -86,3 +93,5 @@ Notes:
   * Built a sleek, responsive UI to query tickers dynamically.
   * Integrated **TradingView Lightweight Charts** featuring real-time interactive **Candlestick** and **Volume Histogram** overlays.
   * Added dynamic UI widgets for the "Check Engine Light" (Risk Indicator), Market Prediction summaries, LLM Insights, and a Sentiment Meter with recent headline rendering.
+  * Added LLM timeout/retry UX flow and smoother loading-state handling for model cards.
+  * Improved ticker input validation to support special market symbols.
