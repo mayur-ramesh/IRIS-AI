@@ -455,7 +455,7 @@ header {
 .dashboard-3col {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto auto;
   gap: 1rem;
   align-items: stretch;
   margin-bottom: 1.5rem;
@@ -481,6 +481,7 @@ header {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  max-height: 520px;
 }
 
 .sentiment-card {
@@ -539,7 +540,7 @@ header {
 }
 
 .headlines-card .headlines-list {
-  flex: 1;
+  flex: 1 1 0;
   overflow-y: auto;
   padding-right: 0.25rem;
   min-height: 0;
@@ -1461,7 +1462,7 @@ footer p {
         overflow: visible;
     }
 
-    .headlines-list {
+    .headlines-card .headlines-list {
         max-height: 360px;
         flex: none;
     }
