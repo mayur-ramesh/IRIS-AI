@@ -113,6 +113,29 @@ class TestInputSanitisation(unittest.TestCase):
         self.assertIn(result.code, (ErrorCode.INVALID_FORMAT, ErrorCode.EMPTY_INPUT))
 
     # 7 ---
+    def test_index_symbols_valid_format(self):
+        """^GSPC, ^DJI, ^IXIC should pass format validation."""
+        for sym in ["^GSPC", "^DJI", "^IXIC", "^RUT", "^VIX"]:
+            result = validate_ticker_format(sym)
+            self.assertTrue(result.valid, f"Expected {sym} to pass format check, got: {result.error}")
+            self.assertEqual(result.ticker, sym)
+
+    # 8 ---
+    def test_futures_symbols_valid_format(self):
+        """CL=F, GC=F, SI=F should pass format validation."""
+        for sym in ["CL=F", "GC=F", "SI=F", "HG=F", "NG=F"]:
+            result = validate_ticker_format(sym)
+            self.assertTrue(result.valid, f"Expected {sym} to pass format check, got: {result.error}")
+            self.assertEqual(result.ticker, sym)
+
+    # 9 ---
+    def test_composite_symbols_valid_format(self):
+        """DX-Y.NYB should pass format validation."""
+        result = validate_ticker_format("DX-Y.NYB")
+        self.assertTrue(result.valid, f"Expected DX-Y.NYB to pass format check, got: {result.error}")
+        self.assertEqual(result.ticker, "DX-Y.NYB")
+
+    # 10 ---
     def test_special_characters_rejected(self):
         """'AAPL!' must be rejected as INVALID_FORMAT."""
         result = validate_ticker_format("AAPL!")

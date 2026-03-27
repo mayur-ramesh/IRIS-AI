@@ -38,14 +38,14 @@ describe('validateTickerFormat', () => {
             const result = validateTickerFormat(bad);
             assert.equal(result.valid, false,
                 `Expected "${bad}" to be rejected`);
-            assert.match(result.error, /only letters/i);
+            assert.match(result.error, /invalid ticker format/i);
         }
     });
 
     test('test_too_long_ticker_rejected — 6+ letters rejected', () => {
         const result = validateTickerFormat('ABCDEF');
         assert.equal(result.valid, false);
-        assert.match(result.error, /1-5 letters/i);
+        assert.match(result.error, /invalid ticker format/i);
     });
 
     test('reserved words rejected', () => {
@@ -63,6 +63,32 @@ describe('validateTickerFormat', () => {
             assert.equal(result.valid, true,
                 `Expected "${good}" to pass format check`);
             assert.equal(result.cleaned, good.trim().toUpperCase());
+        }
+    });
+
+    test('index symbols pass format check', () => {
+        for (const sym of ['^GSPC', '^DJI', '^IXIC', '^RUT', '^VIX']) {
+            const result = validateTickerFormat(sym);
+            assert.equal(result.valid, true, `Expected "${sym}" to pass format check`);
+        }
+    });
+
+    test('futures symbols pass format check', () => {
+        for (const sym of ['CL=F', 'GC=F', 'SI=F', 'HG=F', 'NG=F']) {
+            const result = validateTickerFormat(sym);
+            assert.equal(result.valid, true, `Expected "${sym}" to pass format check`);
+        }
+    });
+
+    test('composite symbols pass format check', () => {
+        const result = validateTickerFormat('DX-Y.NYB');
+        assert.equal(result.valid, true, 'Expected "DX-Y.NYB" to pass format check');
+    });
+
+    test('invalid special-looking inputs still rejected', () => {
+        for (const bad of ['^', '=F', 'CL=X', '^^DJI', 'TOOLONGBASE=F']) {
+            const result = validateTickerFormat(bad);
+            assert.equal(result.valid, false, `Expected "${bad}" to be rejected`);
         }
     });
 });

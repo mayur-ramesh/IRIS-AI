@@ -73,6 +73,15 @@
     // 1-5 letters optionally followed by ONE dot and 1-2 letters (e.g. BRK.B)
     const _TICKER_RE = /^[A-Z]{1,5}(\.[A-Z]{1,2})?$/;
 
+    // Yahoo special symbols (mirrors Python ticker_validator.py)
+    const _INDEX_RE     = /^\^[A-Z0-9.\-]{1,14}$/;                       // ^GSPC, ^DJI, ^IXIC
+    const _FUTURES_RE   = /^[A-Z0-9]{1,8}=F$/;                           // CL=F, GC=F, SI=F
+    const _COMPOSITE_RE = /^[A-Z0-9]{1,8}-[A-Z0-9]{1,8}\.[A-Z]{1,6}$/;  // DX-Y.NYB
+
+    function _isSpecialMarketSymbol(ticker) {
+        return _INDEX_RE.test(ticker) || _FUTURES_RE.test(ticker) || _COMPOSITE_RE.test(ticker);
+    }
+
     /**
      * Instant client-side format check — no network call.
      * Sanitises *input* before checking.
@@ -91,9 +100,9 @@
             return { valid: false, code: ErrorCodes.RESERVED_WORD,
                      error: _CRYPTO_MESSAGE };
         }
-        if (!_TICKER_RE.test(cleaned)) {
+        if (!_TICKER_RE.test(cleaned) && !_isSpecialMarketSymbol(cleaned)) {
             return { valid: false, code: ErrorCodes.INVALID_FORMAT,
-                     error: 'Tickers are 1-5 letters, optionally with a class suffix (e.g., BRK.B).' };
+                     error: 'Invalid ticker format. Use stock format (e.g., AAPL, BRK.B) or special market symbols (e.g., ^GSPC, CL=F).' };
         }
         if (_RESERVED.has(cleaned)) {
             return { valid: false, code: ErrorCodes.RESERVED_WORD,
