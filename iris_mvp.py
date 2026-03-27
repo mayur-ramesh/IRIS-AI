@@ -274,9 +274,126 @@ TICKER_SEARCH_TERMS = {
 }
 
 
+# ---------------------------------------------------------------------------
+# Special market symbol → human-readable name + news search synonyms.
+# Indices (^GSPC), futures (CL=F), and composites (DX-Y.NYB) cannot be
+# queried by their raw symbol on any news API — use these name lists instead.
+# ---------------------------------------------------------------------------
+
+SPECIAL_SYMBOL_TERMS = {
+    # --- US Equity Indices ---
+    "^GSPC": {
+        "display_name": "S&P 500",
+        "names": ["S&P 500", "SP500", "S&P500", "Standard & Poor's 500"],
+        "sector": ["US stock market", "equities", "index fund", "Wall Street"],
+    },
+    "^DJI": {
+        "display_name": "Dow Jones",
+        "names": ["Dow Jones", "DJIA", "Dow Jones Industrial Average"],
+        "sector": ["US stock market", "blue chip stocks", "Wall Street"],
+    },
+    "^IXIC": {
+        "display_name": "Nasdaq Composite",
+        "names": ["Nasdaq Composite", "Nasdaq", "NASDAQ"],
+        "sector": ["tech stocks", "US stock market", "growth stocks"],
+    },
+    "^NDX": {
+        "display_name": "Nasdaq 100",
+        "names": ["Nasdaq 100", "NDX", "QQQ"],
+        "sector": ["tech stocks", "large-cap growth", "US stock market"],
+    },
+    "^RUT": {
+        "display_name": "Russell 2000",
+        "names": ["Russell 2000", "small-cap stocks", "IWM"],
+        "sector": ["small-cap", "US equities", "stock market"],
+    },
+    "^VIX": {
+        "display_name": "CBOE Volatility Index",
+        "names": ["VIX", "volatility index", "fear index", "CBOE VIX"],
+        "sector": ["market volatility", "options market", "investor sentiment"],
+    },
+    # --- Commodity Futures ---
+    "CL=F": {
+        "display_name": "Crude Oil",
+        "names": ["crude oil", "WTI crude", "oil futures", "West Texas Intermediate"],
+        "sector": ["energy", "commodities", "OPEC", "oil market"],
+    },
+    "GC=F": {
+        "display_name": "Gold",
+        "names": ["gold futures", "gold price", "gold", "precious metals"],
+        "sector": ["commodities", "safe haven", "precious metals", "inflation hedge"],
+    },
+    "SI=F": {
+        "display_name": "Silver",
+        "names": ["silver futures", "silver price", "silver", "precious metals"],
+        "sector": ["commodities", "precious metals", "industrial metals"],
+    },
+    "HG=F": {
+        "display_name": "Copper",
+        "names": ["copper futures", "copper price", "copper"],
+        "sector": ["commodities", "industrial metals", "manufacturing"],
+    },
+    "NG=F": {
+        "display_name": "Natural Gas",
+        "names": ["natural gas", "natural gas futures", "LNG"],
+        "sector": ["energy", "commodities", "utilities", "gas market"],
+    },
+    # --- Treasury / Bond Yields ---
+    "^TNX": {
+        "display_name": "10-Year Treasury Yield",
+        "names": ["10-year Treasury yield", "10-year yield", "Treasury bond"],
+        "sector": ["bonds", "interest rates", "Federal Reserve", "fixed income"],
+    },
+    "^TYX": {
+        "display_name": "30-Year Treasury Yield",
+        "names": ["30-year Treasury yield", "30-year yield", "long bond"],
+        "sector": ["bonds", "interest rates", "fixed income"],
+    },
+    # --- Currency ---
+    "DX-Y.NYB": {
+        "display_name": "US Dollar Index",
+        "names": ["US Dollar Index", "DXY", "dollar index"],
+        "sector": ["currency", "forex", "US dollar", "Federal Reserve"],
+    },
+    # --- Global Indices ---
+    "^FTSE": {
+        "display_name": "FTSE 100",
+        "names": ["FTSE 100", "FTSE", "UK stock market"],
+        "sector": ["UK equities", "European markets", "global stocks"],
+    },
+    "^N225": {
+        "display_name": "Nikkei 225",
+        "names": ["Nikkei 225", "Nikkei", "Japan stock market"],
+        "sector": ["Japanese equities", "Asian markets", "global stocks"],
+    },
+    "^HSI": {
+        "display_name": "Hang Seng Index",
+        "names": ["Hang Seng", "HSI", "Hong Kong stock market"],
+        "sector": ["Hong Kong equities", "Asian markets", "China stocks"],
+    },
+}
+
+
 def _get_search_terms(ticker_symbol: str) -> dict:
-    """Return names, people, products, sector lists for a ticker. Falls back to ticker-only."""
+    """Return names, people, products, sector lists for a ticker. Falls back to ticker-only.
+
+    Special market symbols (indices, futures, composites) are resolved via
+    SPECIAL_SYMBOL_TERMS so their raw symbol is never used as a news query term.
+    """
     ts = ticker_symbol.upper()
+
+    # Special symbols take priority — their raw form breaks news API queries.
+    special = SPECIAL_SYMBOL_TERMS.get(ts)
+    if special:
+        return {
+            "names": list(special["names"]),
+            "people": [],
+            "products": [],
+            "sector": list(special.get("sector", [])),
+            "ticker": ts,
+            "display_name": special["display_name"],
+        }
+
     entry = TICKER_SEARCH_TERMS.get(ts, {})
     names = list(entry.get("names", []))
     for company_name, tickers in COMPANY_NAME_TO_TICKERS.items():
@@ -292,6 +409,7 @@ def _get_search_terms(ticker_symbol: str) -> dict:
         "products": entry.get("products", []),
         "sector": entry.get("sector", []),
         "ticker": ts,
+        "display_name": names[0],
     }
 
 
@@ -1099,8 +1217,10 @@ class IRIS_System:
         # -- Source 1: NewsAPI ---------------------------------------------
         if (not fast_mode) and self.news_api:
             try:
-                # Build broad OR query: "TSLA" OR "Tesla" OR "Elon Musk"
-                _query_parts = [f'"{ticker_symbol}"']
+                # Build broad OR query. Special symbols (^GSPC, CL=F) must not
+                # appear raw in the query — use their mapped names only.
+                _is_special = ticker_symbol in SPECIAL_SYMBOL_TERMS
+                _query_parts = [] if _is_special else [f'"{ticker_symbol}"']
                 for _name in search_terms["names"][:3]:
                     _query_parts.append(f'"{_name}"')
                 for _person in search_terms["people"][:1]:
@@ -1153,7 +1273,11 @@ class IRIS_System:
             try:
                 import urllib.request as _urlreq, urllib.parse as _urlparse
                 _primary_name = search_terms["names"][0] if search_terms["names"] else ticker_symbol
-                _webz_q = f'("{ticker_symbol}" OR "{_primary_name}") language:english'
+                _secondary_name = search_terms["names"][1] if len(search_terms["names"]) > 1 else _primary_name
+                if ticker_symbol in SPECIAL_SYMBOL_TERMS:
+                    _webz_q = f'("{_primary_name}" OR "{_secondary_name}") language:english'
+                else:
+                    _webz_q = f'("{ticker_symbol}" OR "{_primary_name}") language:english'
                 _params = _urlparse.urlencode({
                     "token": self.webz_api_key,
                     "q": _webz_q,
@@ -1217,12 +1341,18 @@ class IRIS_System:
             import xml.etree.ElementTree as _gn_et
 
             _primary_name = search_terms["names"][0] if search_terms.get("names") else ticker_symbol
-            _gn_queries = [
-                f"{ticker_symbol} stock",
-                _primary_name,
-            ]
-            if _lookback >= 60 and search_terms.get("sector"):
-                _gn_queries.append(search_terms["sector"][0])
+            if ticker_symbol in SPECIAL_SYMBOL_TERMS:
+                # Raw symbol is meaningless to Google News — use human names directly.
+                _gn_queries = list(search_terms["names"][:2])
+                if search_terms.get("sector"):
+                    _gn_queries.append(search_terms["sector"][0])
+            else:
+                _gn_queries = [
+                    f"{ticker_symbol} stock",
+                    _primary_name,
+                ]
+                if _lookback >= 60 and search_terms.get("sector"):
+                    _gn_queries.append(search_terms["sector"][0])
 
             for _gn_q in _gn_queries:
                 if len(raw_candidates) >= 150:
@@ -1274,17 +1404,19 @@ class IRIS_System:
                      "url": _search_base + _sim_urlparse.quote("Nvidia quarterly revenue beats expectations")},
                 ]
             else:
+                _display = search_terms.get("display_name", _primary_name)
+                _search_name = search_terms["names"][0] if search_terms.get("names") else _primary_name
                 _sim_items = [
-                    {"title": f"{_primary_name} shares trade actively amid broad market movements",
-                     "url": _search_base + _sim_urlparse.quote(f"{ticker_symbol} market news")},
-                    {"title": f"Analysts review {_primary_name} outlook for current quarter",
-                     "url": _search_base + _sim_urlparse.quote(f"{ticker_symbol} analyst outlook")},
-                    {"title": f"{_primary_name} scheduled to report earnings this season",
-                     "url": _search_base + _sim_urlparse.quote(f"{ticker_symbol} earnings")},
-                    {"title": f"Sector trends may impact {_primary_name} performance this quarter",
-                     "url": _search_base + _sim_urlparse.quote(f"{ticker_symbol} sector trends")},
-                    {"title": f"Institutional investors adjust positions in {_primary_name}",
-                     "url": _search_base + _sim_urlparse.quote(f"{ticker_symbol} institutional activity")},
+                    {"title": f"{_display} market update: latest price action and analysis",
+                     "url": _search_base + _sim_urlparse.quote(f"{_search_name} market news")},
+                    {"title": f"Analysts weigh in on {_display} outlook",
+                     "url": _search_base + _sim_urlparse.quote(f"{_search_name} analyst outlook")},
+                    {"title": f"Macro factors driving {_display} movement this week",
+                     "url": _search_base + _sim_urlparse.quote(f"{_search_name} macro factors")},
+                    {"title": f"Institutional activity in {_display}: what the data shows",
+                     "url": _search_base + _sim_urlparse.quote(f"{_search_name} institutional")},
+                    {"title": f"{_display} technical levels and trend analysis",
+                     "url": _search_base + _sim_urlparse.quote(f"{_search_name} technical analysis")},
                 ]
             for entry in _sim_items:
                 collect(title=entry["title"], url=entry["url"])
