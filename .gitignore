@@ -224,3 +224,4 @@ data/valid_tickers.json
 data/ticker_names.json
 node_modules/
 /.agents
+data/valid_tickers.lock
