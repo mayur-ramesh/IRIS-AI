@@ -8110,5 +8110,761 @@
         }
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-27T01:24:04Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 252.89,
+      "predicted_price_next_session": 253.75
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": -0.1351,
+      "check_engine_light": "YELLOW (Price above short-term average but sentiment is negative, indicating potential near-term resistance.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Apple Stock Holds Above Key Moving Average Amid Market Volatility",
+          "url": ""
+        },
+        {
+          "title": "Mixed Analyst Sentiment Weighs on Tech Sector Outlook",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-27T01:24:40Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 207.54,
+      "predicted_price_next_session": 206.85
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0634,
+      "check_engine_light": "YELLOW (Price below short-term average with negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Amazon Q3 Earnings Beat Estimates, Cloud Growth in Focus",
+          "url": ""
+        },
+        {
+          "title": "Market Sentiment Cools on Broader Tech Sector Concerns",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "CL=F",
+      "generated_at": "2026-03-27T01:25:09Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 93.47,
+      "predicted_price_next_session": 93.15
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": -0.4236,
+      "check_engine_light": " YELLOW (Price above short-term average but negative sentiment suggests caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Crude Oil Holds Gains Above $93 Despite Bearish Sentiment",
+          "url": ""
+        },
+        {
+          "title": "Technical Support from 5-Day Average Offsets Negative Market Mood",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "generated_at": "2026-03-27T01:25:37Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 99.882,
+      "predicted_price_next_session": 99.75
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": -0.4569,
+      "check_engine_light": "YELLOW (Price above short-term average but sentiment is negative, indicating potential near-term pressure)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "US Dollar Index Holds Gains Above Key Technical Level",
+          "url": ""
+        },
+        {
+          "title": "Mixed Economic Data and Hawkish Fed Commentary Weigh on Risk Sentiment",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GC=F",
+      "generated_at": "2026-03-27T01:26:08Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 4389.7002,
+      "predicted_price_next_session": 4375.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1275,
+      "check_engine_light": " YELLOW (Price below short-term average with negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Gold Prices Slip as Dollar Holds Firm, Rate Cut Bets Cool",
+          "url": ""
+        },
+        {
+          "title": "Technical Pressure Mounts as Gold Breaks Below Key Moving Average",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-27T01:26:48Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 280.74,
+      "predicted_price_next_session": 278.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0678,
+      "check_engine_light": "YELLOW (Price below short-term average with negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Alphabet Q3 Ad Revenue Growth Misses Estimates, Shares Dip",
+          "url": ""
+        },
+        {
+          "title": "Tech Sector Faces Pressure Amid Rising Treasury Yields",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "HG=F",
+      "generated_at": "2026-03-27T01:27:24Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5.49,
+      "predicted_price_next_session": 5.52
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": -0.1111,
+      "check_engine_light": " YELLOW (Price above short-term average but sentiment remains negative, indicating potential resistance)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Copper Futures Edge Higher Amid Tight Supply Outlook",
+          "url": ""
+        },
+        {
+          "title": "Industrial Demand Concerns Weigh on Base Metal Sentiment",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-27T01:28:00Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 547.54,
+      "predicted_price_next_session": 540.25
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND",
+      "sentiment_score": -0.3723,
+      "check_engine_light": "RED (Price below 5-day SMA with negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Meta Shares Slide Amid Regulatory Scrutiny and Ad Revenue Concerns",
+          "url": ""
+        },
+        {
+          "title": "Technical Indicators Signal Continued Weakness for META Stock",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-27T01:28:37Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 365.97,
+      "predicted_price_next_session": 363.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.236,
+      "check_engine_light": " YELLOW (Price below short-term average with negative sentiment suggests continued near-term pressure)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Microsoft Stock Dips as AI Investment Costs Weigh on Investor Sentiment",
+          "url": ""
+        },
+        {
+          "title": "Analysts Note Potential Near-Term Consolidation for Tech Giants Amid Broader Market Volatility",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-27T01:29:18Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 52.07,
+      "predicted_price_next_session": 51.85
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1404,
+      "check_engine_light": "YELLOW (Price below 5-day SMA with negative sentiment suggests near-term pressure)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Nike Faces Ongoing Demand Concerns in Key Markets",
+          "url": ""
+        },
+        {
+          "title": "Analysts Highlight Margin Pressure Amidst Competitive Retail Landscape",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-27T01:30:00Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 171.24,
+      "predicted_price_next_session": 169.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0282,
+      "check_engine_light": " YELLOW (Price below 5-day SMA suggests near-term weakness, but positive sentiment may provide support.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "NVIDIA Stock Dips Below Key Moving Average Amid Broader Tech Pressure",
+          "url": ""
+        },
+        {
+          "title": "Analysts Maintain Positive Long-Term Outlook for NVDA Despite Recent Pullback",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "generated_at": "2026-03-27T01:30:29Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 68.025,
+      "predicted_price_next_session": 67.45
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1661,
+      "check_engine_light": "YELLOW (Price below 5-day SMA with negative sentiment suggests continued near-term pressure)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Silver Futures Under Pressure Amid Technical Breakdown",
+          "url": ""
+        },
+        {
+          "title": "Industrial Demand Concerns Weigh on Precious Metals Sentiment",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-27T01:31:04Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 372.11,
+      "predicted_price_next_session": 368.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.345,
+      "check_engine_light": "YELLOW (Price below short-term average with negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Tesla Stock Dips Below Key Moving Average Amid Broader Market Pressure",
+          "url": ""
+        },
+        {
+          "title": "Negative Sentiment Weighs on EV Sector as Demand Concerns Persist",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SPY",
+      "generated_at": "2026-03-27T01:31:42Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 645.09,
+      "predicted_price_next_session": 643.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.2734,
+      "check_engine_light": "YELLOW (Price below short-term average with negative sentiment suggests caution.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Broad Market Pullback as SPY Dips Below Key Moving Average",
+          "url": ""
+        },
+        {
+          "title": "Investor Sentiment Turns Cautious Amid Economic Data Concerns",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "^DJI",
+      "generated_at": "2026-03-27T01:32:22Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 45960.1094,
+      "predicted_price_next_session": 45820.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.3325,
+      "check_engine_light": " YELLOW (Price below short-term average with negative sentiment suggests caution.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Dow Jones Industrial Average Dips Below Key Moving Average",
+          "url": ""
+        },
+        {
+          "title": "Market Sentiment Turns Negative Amid Economic Uncertainty",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "^GSPC",
+      "generated_at": "2026-03-27T01:32:56Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 6477.1602,
+      "predicted_price_next_session": 6455.0
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND",
+      "sentiment_score": -0.2215,
+      "check_engine_light": "RED (Price below 5-day SMA with negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Market Sell-Off Continues as Inflation Concerns Persist",
+          "url": ""
+        },
+        {
+          "title": "S&P 500 Breaks Below Key Technical Support Level",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "^IXIC",
+      "generated_at": "2026-03-27T01:33:26Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 21408.0801,
+      "predicted_price_next_session": 21350.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.7026,
+      "check_engine_light": "YELLOW (Price below 5-day SMA with negative sentiment suggests continued near-term pressure)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Nasdaq Composite Dips Below Key Moving Average Amid Tech Sector Weakness",
+          "url": ""
+        },
+        {
+          "title": "Market Sentiment Sours as Inflation Concerns Weigh on Growth Stocks",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "JPM",
+      "generated_at": "2026-03-27T01:33:59Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 291.66,
+      "predicted_price_next_session": 292.1
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": -0.1787,
+      "check_engine_light": " YELLOW (Price above short-term average but sentiment is negative, indicating potential near-term resistance.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "JPMorgan Chase Stock Edges Higher Amid Mixed Market Sentiment",
+          "url": ""
+        },
+        {
+          "title": "Analysts Note Pressure on Banking Sector Despite Strong Fundamentals",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GS",
+      "generated_at": "2026-03-27T01:34:36Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 822.64,
+      "predicted_price_next_session": 818.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.016,
+      "check_engine_light": "YELLOW (Price below short-term average with negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Goldman Sachs Trading Revenue Faces Pressure Amid Market Volatility",
+          "url": ""
+        },
+        {
+          "title": "Investment Banking Outlook Weighs on Financial Sector Sentiment",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "USO",
+      "generated_at": "2026-03-27T01:35:14Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 117.26,
+      "predicted_price_next_session": 118.1
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": -0.0664,
+      "check_engine_light": "YELLOW (Price above short-term average but sentiment is negative, indicating potential near-term volatility)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Oil Prices Edge Higher Amid Geopolitical Tensions",
+          "url": ""
+        },
+        {
+          "title": "Mixed Sentiment Weighs on Energy Sector Outlook",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "XOM",
+      "generated_at": "2026-03-27T01:35:55Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 165.43,
+      "predicted_price_next_session": 166.85
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.2598,
+      "check_engine_light": " YELLOW (Price above SMA-5 suggests momentum, but sentiment is only mildly positive, indicating potential for consolidation.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "ExxonMobil Q3 Earnings Beat Estimates on Strong Production",
+          "url": ""
+        },
+        {
+          "title": "Oil Prices Steady Amid Geopolitical Tensions and OPEC+ Supply Outlook",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DIS",
+      "generated_at": "2026-03-27T01:36:29Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 94.75,
+      "predicted_price_next_session": 95.2
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0098,
+      "check_engine_light": "YELLOW (Price below short-term average with neutral-negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Disney Q4 Earnings Beat Estimates, Streaming Losses Narrow",
+          "url": ""
+        },
+        {
+          "title": "Market Sentiment Weighed by Broader Economic Concerns",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SPOT",
+      "generated_at": "2026-03-27T01:37:02Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 478.18,
+      "predicted_price_next_session": 475.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1206,
+      "check_engine_light": " YELLOW (Price below short-term average with negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Spotify Q3 Earnings Beat Estimates, But User Growth Concerns Linger",
+          "url": ""
+        },
+        {
+          "title": "Market Sentiment Sours on Tech Amid Broader Sector Weakness",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MCD",
+      "generated_at": "2026-03-27T01:37:38Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 308.93,
+      "predicted_price_next_session": 308.15
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.018,
+      "check_engine_light": " YELLOW (Price slightly below short-term average with negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "McDonald's Q3 Earnings Beat Estimates, But Global Sales Growth Slows",
+          "url": ""
+        },
+        {
+          "title": "Consumer Spending Concerns Weigh on Restaurant Sector Sentiment",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "BKNG",
+      "generated_at": "2026-03-27T01:38:12Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 4213.7598,
+      "predicted_price_next_session": 4245.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.06,
+      "check_engine_light": "YELLOW (Price below short-term average, but positive sentiment provides a mild counterweight)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Booking Holdings trades below key moving average amid mixed travel outlook",
+          "url": ""
+        },
+        {
+          "title": "Analysts maintain positive long-term view on BKNG despite recent price consolidation",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MRK",
+      "generated_at": "2026-03-27T01:38:47Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 118.93,
+      "predicted_price_next_session": 119.65
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.2915,
+      "check_engine_light": " YELLOW (Price above SMA but sentiment is only moderately positive)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Merck's Keytruda Shows Strong Oncology Sales Growth in Q3",
+          "url": ""
+        },
+        {
+          "title": "Analysts Note Steady Pipeline Progress Amidst Competitive Pressures",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "UNH",
+      "generated_at": "2026-03-27T01:39:22Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 268.05,
+      "predicted_price_next_session": 266.8
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0442,
+      "check_engine_light": " YELLOW (Price below short-term average with negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "UNH Stock Under Pressure Amid Healthcare Sector Volatility",
+          "url": ""
+        },
+        {
+          "title": "Analysts Note Margin Concerns for Major Insurers",
+          "url": ""
+        }
+      ]
+    }
   }
 ]

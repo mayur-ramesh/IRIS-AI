@@ -8062,5 +8062,761 @@
         }
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-03-27T01:23:56Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 252.89,
+      "predicted_price_next_session": 251.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1351,
+      "check_engine_light": " YELLOW (Caution advised due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Apple faces supply chain challenges",
+          "url": ""
+        },
+        {
+          "title": "Market reacts to Apple's latest earnings report",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-03-27T01:24:33Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 207.54,
+      "predicted_price_next_session": 206.8
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0634,
+      "check_engine_light": " YELLOW (caution due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Amazon Faces Challenges Amidst Market Volatility",
+          "url": ""
+        },
+        {
+          "title": "Tech Stocks Under Pressure as Sentiment Wanes",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "CL=F",
+      "generated_at": "2026-03-27T01:25:00Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 93.47,
+      "predicted_price_next_session": 92.8
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.4236,
+      "check_engine_light": " YELLOW (Caution due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Oil prices dip amid global economic concerns",
+          "url": ""
+        },
+        {
+          "title": "US crude oil inventories rise unexpectedly",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "generated_at": "2026-03-27T01:25:30Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 99.882,
+      "predicted_price_next_session": 99.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.4569,
+      "check_engine_light": " YELLOW (Potential for further decline)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Market sentiment remains bearish amid economic concerns",
+          "url": ""
+        },
+        {
+          "title": "Investors cautious as dollar index shows signs of weakness",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GC=F",
+      "generated_at": "2026-03-27T01:26:00Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 4389.7002,
+      "predicted_price_next_session": 4350.0
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND",
+      "sentiment_score": -0.1275,
+      "check_engine_light": " RED (High volatility expected due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Gold prices fall as dollar strengthens",
+          "url": ""
+        },
+        {
+          "title": "Market sentiment turns bearish on gold",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-03-27T01:26:42Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 280.74,
+      "predicted_price_next_session": 278.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0678,
+      "check_engine_light": " YELLOW (Caution advised due to negative sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Google faces new antitrust challenges",
+          "url": ""
+        },
+        {
+          "title": "Tech stocks see mixed performance amid market volatility",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "HG=F",
+      "generated_at": "2026-03-27T01:27:17Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5.49,
+      "predicted_price_next_session": 5.47
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1111,
+      "check_engine_light": "YELLOW (Caution advised due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Copper Prices Fall Amid Global Economic Concerns",
+          "url": ""
+        },
+        {
+          "title": "Analysts Predict Continued Volatility in Metal Markets",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-03-27T01:27:54Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 547.54,
+      "predicted_price_next_session": 540.0
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND",
+      "sentiment_score": -0.3723,
+      "check_engine_light": " RED (Bearish sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Meta faces regulatory challenges",
+          "url": ""
+        },
+        {
+          "title": "Market sentiment turns negative on tech stocks",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-03-27T01:28:30Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 365.97,
+      "predicted_price_next_session": 363.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.236,
+      "check_engine_light": " YELLOW (Caution advised due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Microsoft faces regulatory challenges in the EU",
+          "url": ""
+        },
+        {
+          "title": "Tech stocks decline amid market uncertainty",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-03-27T01:29:11Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 52.07,
+      "predicted_price_next_session": 51.8
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1404,
+      "check_engine_light": " YELLOW (Negative sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Nike faces challenges amid changing consumer preferences",
+          "url": ""
+        },
+        {
+          "title": "Analysts remain cautious on Nike's short-term outlook",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-03-27T01:29:52Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 171.24,
+      "predicted_price_next_session": 170.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0282,
+      "check_engine_light": " YELLOW (Potential volatility due to mixed signals)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "NVIDIA's Market Position Faces New Challenges",
+          "url": ""
+        },
+        {
+          "title": "Tech Stocks Show Mixed Performance Amidst Economic Uncertainty",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "generated_at": "2026-03-27T01:30:20Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 68.025,
+      "predicted_price_next_session": 67.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1661,
+      "check_engine_light": " YELLOW (Caution due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Silver prices struggle amid global economic uncertainty",
+          "url": ""
+        },
+        {
+          "title": "Market sentiment turns bearish on commodities",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-03-27T01:30:57Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 372.11,
+      "predicted_price_next_session": 369.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.345,
+      "check_engine_light": "YELLOW (Negative sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Tesla faces production challenges amid supply chain issues",
+          "url": ""
+        },
+        {
+          "title": "Analysts cautious on Tesla's near-term growth prospects",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SPY",
+      "generated_at": "2026-03-27T01:31:34Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 645.09,
+      "predicted_price_next_session": 643.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.2734,
+      "check_engine_light": " YELLOW (Potential for further decline)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Market Turbulence Expected Amid Economic Concerns",
+          "url": ""
+        },
+        {
+          "title": "Investors Wary as Sentiment Dips",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "^DJI",
+      "generated_at": "2026-03-27T01:32:15Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 45960.1094,
+      "predicted_price_next_session": 45850.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.3325,
+      "check_engine_light": " YELLOW (Caution advised due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Market Volatility Increases Amid Economic Concerns",
+          "url": ""
+        },
+        {
+          "title": "Investors Wary as Sentiment Turns Negative",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "^GSPC",
+      "generated_at": "2026-03-27T01:32:49Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 6477.1602,
+      "predicted_price_next_session": 6450.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.2215,
+      "check_engine_light": " YELLOW (Caution advised due to negative sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Market Volatility Increases Amid Economic Uncertainty",
+          "url": ""
+        },
+        {
+          "title": "Investors Cautious as Inflation Concerns Persist",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "^IXIC",
+      "generated_at": "2026-03-27T01:33:18Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 21408.0801,
+      "predicted_price_next_session": 21300.0
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND",
+      "sentiment_score": -0.7026,
+      "check_engine_light": " RED (High risk of further decline)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Tech Stocks Plummet Amid Economic Concerns",
+          "url": ""
+        },
+        {
+          "title": "Investor Sentiment Hits New Lows",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "JPM",
+      "generated_at": "2026-03-27T01:33:52Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 291.66,
+      "predicted_price_next_session": 290.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1787,
+      "check_engine_light": " YELLOW (Cautious sentiment and slight price drop expected)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "JPMorgan faces regulatory scrutiny over recent activities",
+          "url": ""
+        },
+        {
+          "title": "Market analysts predict slight downturn for financial stocks",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GS",
+      "generated_at": "2026-03-27T01:34:28Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 822.64,
+      "predicted_price_next_session": 819.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.016,
+      "check_engine_light": " YELLOW (caution due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Goldman Sachs faces regulatory challenges",
+          "url": ""
+        },
+        {
+          "title": "Market sentiment weakens amid economic concerns",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "USO",
+      "generated_at": "2026-03-27T01:35:06Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 117.26,
+      "predicted_price_next_session": 116.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0664,
+      "check_engine_light": "YELLOW (Caution advised due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Oil prices fall amid economic slowdown fears",
+          "url": ""
+        },
+        {
+          "title": "US crude stockpiles rise unexpectedly",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "XOM",
+      "generated_at": "2026-03-27T01:35:47Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 165.43,
+      "predicted_price_next_session": 167.5
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.2598,
+      "check_engine_light": " GREEN (Positive momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "ExxonMobil reports strong quarterly earnings",
+          "url": ""
+        },
+        {
+          "title": "Analysts upgrade ExxonMobil on positive market outlook",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DIS",
+      "generated_at": "2026-03-27T01:36:22Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 94.75,
+      "predicted_price_next_session": 94.2
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0098,
+      "check_engine_light": " YELLOW (Caution advised due to negative sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Disney faces challenges with streaming strategy",
+          "url": ""
+        },
+        {
+          "title": "Analysts weigh in on Disney's recent performance",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SPOT",
+      "generated_at": "2026-03-27T01:36:55Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 478.18,
+      "predicted_price_next_session": 475.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.1206,
+      "check_engine_light": " YELLOW (Caution advised due to negative sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Spotify faces challenges in subscriber growth",
+          "url": ""
+        },
+        {
+          "title": "Analysts downgrade Spotify amid market volatility",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MCD",
+      "generated_at": "2026-03-27T01:37:30Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 308.93,
+      "predicted_price_next_session": 308.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.018,
+      "check_engine_light": " YELLOW (Caution due to negative sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "McDonald's faces supply chain challenges",
+          "url": ""
+        },
+        {
+          "title": "Analysts cautious on McDonald's growth prospects",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "BKNG",
+      "generated_at": "2026-03-27T01:38:04Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 4213.7598,
+      "predicted_price_next_session": 4230.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.06,
+      "check_engine_light": " YELLOW (Potential for volatility)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Booking Holdings sees slight uptick in travel demand",
+          "url": ""
+        },
+        {
+          "title": "Market analysts express cautious optimism on travel sector",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MRK",
+      "generated_at": "2026-03-27T01:38:40Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 118.93,
+      "predicted_price_next_session": 119.5
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.2915,
+      "check_engine_light": " GREEN (Positive sentiment and price above SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Merck's new drug shows promise in trials",
+          "url": ""
+        },
+        {
+          "title": "Analysts upgrade Merck amid strong earnings",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "UNH",
+      "generated_at": "2026-03-27T01:39:15Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 268.05,
+      "predicted_price_next_session": 267.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": -0.0442,
+      "check_engine_light": " YELLOW (Caution: Slight negative sentiment and price below SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "UNH faces regulatory challenges",
+          "url": ""
+        },
+        {
+          "title": "Healthcare sector under pressure",
+          "url": ""
+        }
+      ]
+    }
   }
 ]
