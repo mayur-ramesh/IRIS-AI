@@ -12646,5 +12646,761 @@
         }
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-04-02T06:22:23Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 255.63,
+      "predicted_price_next_session": 257.1
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price above short-term average, but neutral sentiment suggests limited momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Apple stock trades above key moving average as market awaits product updates",
+          "url": ""
+        },
+        {
+          "title": "Neutral analyst sentiment prevails for AAPL ahead of quarterly earnings season",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-04-02T06:22:50Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 210.57,
+      "predicted_price_next_session": 212.85
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price above SMA-5 indicates positive momentum, but neutral sentiment suggests a lack of strong directional catalyst.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Amazon Web Services Announces New AI Tools for Enterprise Clients",
+          "url": ""
+        },
+        {
+          "title": "Retail Sector Shows Mixed Signals Ahead of Key Holiday Shopping Data",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "CL=F",
+      "generated_at": "2026-04-02T06:23:28Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 106.54,
+      "predicted_price_next_session": 107.85
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price above SMA indicates momentum, but neutral sentiment warrants caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Crude Oil Futures Extend Gains Amid Supply Concerns",
+          "url": ""
+        },
+        {
+          "title": "Technical Breakout Suggests Continued Upside for WTI",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "generated_at": "2026-04-02T06:24:18Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 100.149,
+      "predicted_price_next_session": 100.21
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price slightly above short-term average with neutral sentiment, indicating low momentum.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "US Dollar Index Holds Near Recent Highs Amid Mixed Economic Data",
+          "url": ""
+        },
+        {
+          "title": "Treasury Yields Stabilize, Limiting Major Currency Moves",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GC=F",
+      "generated_at": "2026-04-02T06:24:47Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 4601.8999,
+      "predicted_price_next_session": 4595.0
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price below 5-day SMA indicates mild bearish pressure, but neutral sentiment provides no countervailing catalyst.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Gold Prices Consolidate Below Key Moving Average Amid Neutral Market Sentiment",
+          "url": ""
+        },
+        {
+          "title": "Traders Await Economic Data for Direction as Gold Holds Near $4600",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GOOG",
+      "generated_at": "2026-04-02T06:25:09Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 294.9,
+      "predicted_price_next_session": 297.5
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price is well above short-term average, but neutral sentiment suggests momentum may be purely technical)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Alphabet (GOOG) Stock Continues Rally, Breaks Key Technical Resistance",
+          "url": ""
+        },
+        {
+          "title": "Market Analysts Note Mixed Sentiment Despite Strong Price Performance for Tech Giants",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "HG=F",
+      "generated_at": "2026-04-02T06:25:33Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5.5385,
+      "predicted_price_next_session": 5.54
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price is marginally below its short-term average, indicating a slight loss of momentum, but neutral sentiment provides no clear directional catalyst.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Copper Futures Consolidate Near Key Technical Level Amid Neutral Market Sentiment",
+          "url": ""
+        },
+        {
+          "title": "Industrial Metals Show Limited Directional Bias as Traders Await Macroeconomic Data",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-04-02T06:26:02Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 579.23,
+      "predicted_price_next_session": 585.5
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price above SMA indicates momentum, but neutral sentiment suggests a lack of fresh catalysts for a major breakout.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Meta Stock Continues Rally, Trading Well Above Key Moving Average",
+          "url": ""
+        },
+        {
+          "title": "Market Sentiment on Tech Giants Remains Neutral Amid Broader Indecision",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-04-02T06:27:24Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 369.37,
+      "predicted_price_next_session": 371.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price above short-term average but neutral sentiment suggests limited momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Microsoft Cloud Growth Meets Expectations Amid Stable Market Conditions",
+          "url": ""
+        },
+        {
+          "title": "Tech Sector Consolidates as Investors Await Key Economic Data",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-04-02T06:28:30Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 44.63,
+      "predicted_price_next_session": 44.15
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "RED (Price is significantly below 5-day SMA, indicating strong downward momentum, with neutral sentiment offering no countervailing support.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Nike Shares Under Pressure Amid Broader Market Weakness and Growth Concerns",
+          "url": ""
+        },
+        {
+          "title": "Analysts Note Stock Trading Below Key Moving Average, Signaling Bearish Technical Outlook",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-04-02T06:29:31Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 175.75,
+      "predicted_price_next_session": 178.2
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price significantly above short-term moving average, indicating strong momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "NVIDIA Stock Continues Rally on Strong AI Demand Outlook",
+          "url": ""
+        },
+        {
+          "title": "Technical Analysis Shows NVDA Above Key Moving Average Support",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "generated_at": "2026-04-02T06:30:14Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 70.29,
+      "predicted_price_next_session": 69.85
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price below 5-day SMA indicates bearish momentum, but neutral sentiment tempers the signal)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Silver Futures Trade Below Key Moving Average as Momentum Weakens",
+          "url": ""
+        },
+        {
+          "title": "Neutral Market Sentiment Prevails Amid Lack of Catalysts for Precious Metals",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-04-02T06:31:03Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 381.26,
+      "predicted_price_next_session": 387.5
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price above short-term average, but sentiment is neutral)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Tesla stock breaks above key 5-day moving average",
+          "url": ""
+        },
+        {
+          "title": "Market awaits fresh catalysts as Tesla sentiment remains neutral",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SPY",
+      "generated_at": "2026-04-02T06:31:32Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 655.24,
+      "predicted_price_next_session": 658.5
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price is above SMA-5, but neutral sentiment suggests momentum may be purely technical)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "SPY Trades Above Key Short-Term Moving Average",
+          "url": ""
+        },
+        {
+          "title": "Market Sentiment Neutral Amid Consolidation",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "^DJI",
+      "generated_at": "2026-04-02T06:32:03Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 46565.7383,
+      "predicted_price_next_session": 46680.0
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price well above 5-day SMA, indicating strong momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Dow Jones Industrial Average Extends Gains Amid Strong Technical Momentum",
+          "url": ""
+        },
+        {
+          "title": "Market Sentiment Neutral as Index Holds Above Key Moving Average",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "^GSPC",
+      "generated_at": "2026-04-02T06:32:23Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 6575.3198,
+      "predicted_price_next_session": 6588.5
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price above short-term average but neutral sentiment suggests limited momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "S&P 500 Holds Above Key Moving Average Amid Quiet Session",
+          "url": ""
+        },
+        {
+          "title": "Market Sentiment Neutral as Traders Await Economic Data",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "^IXIC",
+      "generated_at": "2026-04-02T06:32:56Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 21840.9492,
+      "predicted_price_next_session": 21925.0
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price significantly above 5-day SMA indicates strong momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Nasdaq Composite Extends Gains, Trading Above Key Moving Average",
+          "url": ""
+        },
+        {
+          "title": "Tech Sector Momentum Drives Index to New Session Highs",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "JPM",
+      "generated_at": "2026-04-02T06:33:52Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 295.38,
+      "predicted_price_next_session": 297.25
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price above SMA indicates momentum, but neutral sentiment suggests a lack of strong directional catalyst.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "JPMorgan Chase Stock Trades Above Key Moving Average",
+          "url": ""
+        },
+        {
+          "title": "Major Banks Show Resilience Amid Mixed Economic Data",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GS",
+      "generated_at": "2026-04-02T06:34:12Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 860.21,
+      "predicted_price_next_session": 868.0
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price is significantly above short-term average, but neutral sentiment suggests a potential for consolidation.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Goldman Sachs Stock Rises Above Key Technical Average",
+          "url": ""
+        },
+        {
+          "title": "Market Awaits Fed Policy Clues Amid Neutral Sector Sentiment",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "USO",
+      "generated_at": "2026-04-02T06:36:24Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 124.09,
+      "predicted_price_next_session": 123.85
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price below 5-day SMA indicates mild bearish pressure, but neutral sentiment provides no countervailing catalyst)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Oil ETF USO trades below short-term moving average amid flat market sentiment",
+          "url": ""
+        },
+        {
+          "title": "USO price action shows consolidation as technical indicators point to slight downside bias",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "XOM",
+      "generated_at": "2026-04-02T06:36:50Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 160.78,
+      "predicted_price_next_session": 159.25
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price below 5-day SMA suggests near-term weakness, but neutral sentiment tempers the bearish signal.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "ExxonMobil Trading Below Key Short-Term Moving Average",
+          "url": ""
+        },
+        {
+          "title": "Oil Prices Steady as Market Awaits OPEC+ Guidance",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DIS",
+      "generated_at": "2026-04-02T06:37:13Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 96.56,
+      "predicted_price_next_session": 97.25
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price above short-term average, but neutral sentiment suggests limited momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Disney Stock Holds Above Key Moving Average",
+          "url": ""
+        },
+        {
+          "title": "Market Sentiment on DIS Remains Neutral Amid Sector Rotation",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SPOT",
+      "generated_at": "2026-04-02T06:37:52Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 470.01,
+      "predicted_price_next_session": 468.5
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price below short-term average with neutral sentiment suggests consolidation pressure)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Spotify Trading Below Key Moving Average Amid Market Consolidation",
+          "url": ""
+        },
+        {
+          "title": "Neutral Sentiment Weighs on SPOT as Technicals Point to Near-Term Weakness",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MCD",
+      "generated_at": "2026-04-02T06:38:14Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 307.29,
+      "predicted_price_next_session": 306.85
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price below short-term average with neutral sentiment suggests consolidation pressure.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "McDonald's Stock Trades Below Key 5-Day Moving Average",
+          "url": ""
+        },
+        {
+          "title": "Neutral Market Sentiment Prevails for MCD Amid Sector Rotation",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "BKNG",
+      "generated_at": "2026-04-02T06:39:01Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 4184.5601,
+      "predicted_price_next_session": 4198.75
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price above SMA but neutral sentiment suggests consolidation)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Booking Holdings trades above key moving average amid stable travel demand",
+          "url": ""
+        },
+        {
+          "title": "Market sentiment neutral for BKNG as broader indices show mixed signals",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MRK",
+      "generated_at": "2026-04-02T06:39:57Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 120.84,
+      "predicted_price_next_session": 121.25
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price above short-term average suggests mild momentum, but neutral sentiment provides no directional catalyst.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Merck's Keytruda Shows Continued Growth in Oncology Portfolio",
+          "url": ""
+        },
+        {
+          "title": "Pharma Sector Trades Mixed Amid Broader Market Volatility",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "UNH",
+      "generated_at": "2026-04-02T06:40:23Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 273.98,
+      "predicted_price_next_session": 275.5
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": " YELLOW (Price above SMA indicates momentum, but neutral sentiment warrants caution)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "UnitedHealth Group Trading Above Key Moving Average",
+          "url": ""
+        },
+        {
+          "title": "Market Awaits Healthcare Sector Catalysts Amid Neutral Sentiment",
+          "url": ""
+        }
+      ]
+    }
   }
 ]

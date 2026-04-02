@@ -12964,5 +12964,509 @@
         }
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "AAPL",
+      "generated_at": "2026-04-02T06:22:30Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 255.63,
+      "predicted_price_next_session": 257.25
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price maintaining significant elevation above 5-day SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Institutional accumulation observed at recent resistance levels",
+          "url": ""
+        },
+        {
+          "title": "Supply chain optimization reports suggest improved margins",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "AMZN",
+      "generated_at": "2026-04-02T06:23:11Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 210.57,
+      "predicted_price_next_session": 211.85
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price maintains position above 5-day SMA despite neutral sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Amazon stock sustains momentum above technical moving averages",
+          "url": ""
+        },
+        {
+          "title": "Institutional interest remains steady in large-cap tech sector",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "CL=F",
+      "generated_at": "2026-04-02T06:24:00Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 106.54,
+      "predicted_price_next_session": 107.12
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price extension above SMA-5, neutral sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Global supply constraints maintain floor for crude prices",
+          "url": ""
+        },
+        {
+          "title": "Energy markets stabilize as inventories show unexpected draw",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "generated_at": "2026-04-02T06:24:26Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 100.149,
+      "predicted_price_next_session": 100.185
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price remains resilient above the 5-day SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "US Dollar Index hovers as market weighs macroeconomic outlook",
+          "url": ""
+        },
+        {
+          "title": "Technical support levels hold firm for DXY amid neutral sentiment",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "META",
+      "generated_at": "2026-04-02T06:26:29Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 579.23,
+      "predicted_price_next_session": 584.12
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price holding significantly above 5-day SMA support)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Meta Platforms maintains bullish structure as price leads moving average",
+          "url": ""
+        },
+        {
+          "title": "Tech giants see sustained momentum despite neutral short-term sentiment",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-04-02T06:29:09Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 44.63,
+      "predicted_price_next_session": 43.85
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "RED (Current price is significantly below SMA_5, suggesting continued downward pressure)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Nike retail volume faces headwinds as consumer spending shifts",
+          "url": ""
+        },
+        {
+          "title": "Technical indicators suggest oversold conditions for footwear giant",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-04-02T06:29:46Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 175.75,
+      "predicted_price_next_session": 178.65
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price maintains significant spread above SMA-5 despite neutral sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Nvidia expansion in data center segment continues to drive institutional interest",
+          "url": ""
+        },
+        {
+          "title": "Market analysts monitor chip supply chains as AI demand hits new peaks",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SI=F",
+      "generated_at": "2026-04-02T06:30:42Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 70.29,
+      "predicted_price_next_session": 69.45
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "RED (Price significantly below SMA-5 suggests continued bearish momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Silver futures retreat as dollar gains strength in early trading",
+          "url": ""
+        },
+        {
+          "title": "Industrial metals face headwinds amid shifting macroeconomic outlook",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-04-02T06:31:12Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 381.26,
+      "predicted_price_next_session": 385.45
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price remains significantly above 5-day SMA; neutral sentiment suggests consolidation)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Tesla expands Supercharger network footprint globally",
+          "url": ""
+        },
+        {
+          "title": "Analyst sentiment holds steady ahead of manufacturing update",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "SPY",
+      "generated_at": "2026-04-02T06:31:42Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 655.24,
+      "predicted_price_next_session": 658.12
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Current price is 1.8% above the 5-day SMA, indicating robust short-term momentum.)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "SPY continues upward trajectory as tech sector rallies",
+          "url": ""
+        },
+        {
+          "title": "Market participants maintain neutral outlook amid data light week",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "^GSPC",
+      "generated_at": "2026-04-02T06:32:38Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 6575.3198,
+      "predicted_price_next_session": 6598.15
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price significantly above 5-day SMA indicates strong momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Index maintains strong technical positioning above key moving averages",
+          "url": ""
+        },
+        {
+          "title": "Market consolidation expected as neutral sentiment balances technical breakout",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "^IXIC",
+      "generated_at": "2026-04-02T06:33:34Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 21840.9492,
+      "predicted_price_next_session": 21925.5
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price shows significant strength above the 5-day SMA while sentiment remains neutral)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Tech sector maintains momentum as index breaks above short-term averages",
+          "url": ""
+        },
+        {
+          "title": "Macroeconomic stability supports continued accumulation in growth stocks",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GS",
+      "generated_at": "2026-04-02T06:36:02Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 860.21,
+      "predicted_price_next_session": 865.45
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Significant price gap above SMA 5 suggests strong short-term momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Goldman Sachs technical indicators signal sustained bullish momentum",
+          "url": ""
+        },
+        {
+          "title": "Institutional inflows drive financial sector to new relative highs",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "DIS",
+      "generated_at": "2026-04-02T06:37:34Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 96.56,
+      "predicted_price_next_session": 97.18
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Current price holding above SMA-5 indicates positive short-term momentum despite neutral sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Disney focuses on streaming profitability targets",
+          "url": ""
+        },
+        {
+          "title": "Theme park revenue outlook remains stable for the quarter",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MCD",
+      "generated_at": "2026-04-02T06:38:38Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 307.29,
+      "predicted_price_next_session": 306.75
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price remains below 5-day SMA indicating minor bearish momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "McDonald's explores national $5 meal deal to lure back customers",
+          "url": ""
+        },
+        {
+          "title": "Consumer discretionary spending remains cautious amid inflation",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "BKNG",
+      "generated_at": "2026-04-02T06:39:37Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 4184.5601,
+      "predicted_price_next_session": 4210.25
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price remains above 5-day SMA indicating short-term momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Travel sector outlook remains stable amid fluctuating consumer discretionary spend",
+          "url": ""
+        },
+        {
+          "title": "Booking Holdings continues to outperform short-term moving averages",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MRK",
+      "generated_at": "2026-04-02T06:40:04Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 120.84,
+      "predicted_price_next_session": 121.35
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price currently 1.07% above 5-day SMA indicating short-term technical strength)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Merck continues to strengthen oncology portfolio through clinical milestones",
+          "url": ""
+        },
+        {
+          "title": "Pharmaceutical stocks see steady accumulation amid neutral sector sentiment",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "UNH",
+      "generated_at": "2026-04-02T06:40:33Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 273.98,
+      "predicted_price_next_session": 275.12
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price remains comfortably above the 5-day SMA, indicating sustained bullish momentum despite neutral sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "UnitedHealth Group navigates regulatory landscape in latest quarterly outlook",
+          "url": ""
+        },
+        {
+          "title": "Managed care organizations see steady membership growth trends",
+          "url": ""
+        }
+      ]
+    }
   }
 ]
