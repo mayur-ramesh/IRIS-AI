@@ -22,7 +22,7 @@
         })();
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/style.css?v=10">
+    <link rel="stylesheet" href="/static/style.css?v=11">
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%233b82f6%22>IA</text></svg>">
 </head>
@@ -149,6 +149,10 @@
                     <span class="label" id="predicted-price-label">Predicted (1 Day)</span>
                     <span class="value" id="predicted-price">$0.00</span>
                   </div>
+                  <div class="price-row accuracy-row hidden" id="accuracy-row">
+                    <span class="label">Model Confidence</span>
+                    <span class="value" id="accuracy-value">—</span>
+                  </div>
                 </div>
                 <div class="trend-badge" id="trend-label">UNKNOWN TREND</div>
               </div>
@@ -185,13 +189,16 @@
             <!-- Market Chart -->
             <div class="card glass-panel chart-card" id="chart-section">
                 <h3>Market Chart & Trend</h3>
-                <div class="chart-timeframes" role="tablist" aria-label="Chart timeframe">
-                    <button type="button" class="timeframe-btn" data-timeframe="1D">1D</button>
-                    <button type="button" class="timeframe-btn" data-timeframe="5D">5D</button>
-                    <button type="button" class="timeframe-btn" data-timeframe="1M">1M</button>
-                    <button type="button" class="timeframe-btn active" data-timeframe="6M">6M</button>
-                    <button type="button" class="timeframe-btn" data-timeframe="1Y">1Y</button>
-                    <button type="button" class="timeframe-btn" data-timeframe="5Y">5Y</button>
+                <div class="chart-controls-row">
+                    <div class="chart-timeframes" role="tablist" aria-label="Chart timeframe">
+                        <button type="button" class="timeframe-btn" data-timeframe="1D">1D</button>
+                        <button type="button" class="timeframe-btn" data-timeframe="5D">5D</button>
+                        <button type="button" class="timeframe-btn" data-timeframe="1M">1M</button>
+                        <button type="button" class="timeframe-btn active" data-timeframe="6M">6M</button>
+                        <button type="button" class="timeframe-btn" data-timeframe="1Y">1Y</button>
+                        <button type="button" class="timeframe-btn" data-timeframe="5Y">5Y</button>
+                    </div>
+                    <span id="chart-forecast-confidence" class="chart-forecast-confidence hidden"></span>
                 </div>
                 <div class="chart-container" id="advanced-chart"
                     style="position: relative; width: 100%; height: 300px;">
@@ -245,7 +252,7 @@
     <script
         src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js?v=4"></script>
     <script src="/static/tickerValidation.js?v=1"></script>
-    <script src="/static/app.js?v=23"></script>
+    <script src="/static/app.js?v=24"></script>
 </body>
 
 </html>

@@ -1513,9 +1513,19 @@ class IRIS_System:
             sentiment_value = 0.0
 
         if history_prices is None or len(history_prices) < 5:
-            return "INSUFFICIENT DATA", 0.0, [], [], [], None
+            return "INSUFFICIENT DATA", 0.0, [], [], [], None, 0.0
 
         horizon_days = max(1, int(horizon_days))
+
+        # Historical volatility for confidence band sizing.
+        _prices_arr = np.array([float(p) for p in history_prices if p is not None], dtype=float)
+        if len(_prices_arr) >= 2:
+            _log_ret = np.diff(np.log(np.where(_prices_arr > 0, _prices_arr, 1e-10)))
+            _daily_vol = float(np.std(_log_ret)) if len(_log_ret) > 0 else 0.01
+        else:
+            _daily_vol = 0.01
+        _daily_vol = max(0.003, min(0.10, _daily_vol))
+        model_confidence = 65.0  # Default if OOB unavailable.
 
         # Feature matrix: day index + technical features + sentiment.
         required_cols = ["sma_5", "sma_10", "sma_20", "returns_1d", "rsi_14", "Volume"]
@@ -1528,8 +1538,10 @@ class IRIS_System:
                 np.full((n, 1), sentiment_value),
             ])
             y = history_df["Close"].values
-            model = RandomForestRegressor(n_estimators=RF_TREE_COUNT, random_state=42)
+            model = RandomForestRegressor(n_estimators=RF_TREE_COUNT, random_state=42, oob_score=True)
             model.fit(X, y)
+            _raw_oob = float(getattr(model, 'oob_score_', 0.5))
+            model_confidence = max(0.0, min(100.0, 50.0 + _raw_oob * 50.0))
 
             # Iterative multi-step prediction
             last = history_df.iloc[-1]
@@ -1598,8 +1610,10 @@ class IRIS_System:
                 np.full(n, sentiment_value),
             ])
             y = close_series.values
-            model = RandomForestRegressor(n_estimators=RF_TREE_COUNT, random_state=42)
+            model = RandomForestRegressor(n_estimators=RF_TREE_COUNT, random_state=42, oob_score=True)
             model.fit(X, y)
+            _raw_oob = float(getattr(model, 'oob_score_', 0.5))
+            model_confidence = max(0.0, min(100.0, 50.0 + _raw_oob * 50.0))
 
             # Iterative multi-step prediction (fallback path)
             cur_close = float(close_series.iloc[-1]) if n else 0.0
@@ -1657,21 +1671,19 @@ class IRIS_System:
             sampled.append(trajectory[-1])  # always include final point
             trajectory = sampled
 
-        # Confidence band widens with forecast step.
+        # Confidence bands widen proportional to sqrt(time) using historical volatility.
         trajectory_upper = []
         trajectory_lower = []
         if trajectory:
-            if hasattr(model, "estimators_"):
-                for i, price in enumerate(trajectory):
-                    step_frac = (i + 1) / len(trajectory)
-                    band_width = float(price) * 0.02 * (1 + step_frac)
-                    trajectory_upper.append(float(price) + band_width)
-                    trajectory_lower.append(float(price) - band_width)
-            else:
-                trajectory_upper = [float(p) * 1.02 for p in trajectory]
-                trajectory_lower = [float(p) * 0.98 for p in trajectory]
+            traj_len = max(len(trajectory), 1)
+            for i, price in enumerate(trajectory):
+                days_out = (i + 1) * (horizon_days / traj_len)
+                sigma = _daily_vol * math.sqrt(max(1.0, days_out)) * 1.96
+                band_width = float(price) * sigma
+                trajectory_upper.append(float(price) + band_width)
+                trajectory_lower.append(float(price) - band_width)
 
-        return label, predicted_price, trajectory, trajectory_upper, trajectory_lower, model
+        return label, predicted_price, trajectory, trajectory_upper, trajectory_lower, model, model_confidence
 
     def predict_all_horizons(self, data, sentiment_score, max_horizon_days=None):
         """Run all horizon predictions using one long-horizon model pass."""
@@ -1714,7 +1726,7 @@ class IRIS_System:
         full_trajectory = []
         rf_model = None
         try:
-            _, predicted_long, trajectory_long, _, _, rf_model = self.predict_trend(
+            _, predicted_long, trajectory_long, _, _, rf_model, base_confidence = self.predict_trend(
                 data,
                 sentiment_score,
                 horizon_days=effective_max_horizon,
@@ -1726,6 +1738,10 @@ class IRIS_System:
                 full_trajectory = [float(predicted_long)]
         except Exception as exc:
             print(f"  predict_all_horizons bootstrap failed: {exc}")
+
+        _HORIZON_CONF_FACTOR = {
+            "1D": 1.00, "5D": 0.95, "1M": 0.88, "6M": 0.78, "1Y": 0.68, "5Y": 0.58
+        }
 
         for horizon_key, horizon_days in RISK_HORIZON_MAP.items():
             horizon_label = RISK_HORIZON_LABELS.get(horizon_key, horizon_key)
@@ -1761,6 +1777,7 @@ class IRIS_System:
                     except Exception:
                         reasoning = {"summary": "Reasoning unavailable."}
 
+                horizon_conf = round(base_confidence * _HORIZON_CONF_FACTOR.get(horizon_key, 0.75), 1)
                 results[horizon_key] = {
                     "predicted_price": float(predicted_price),
                     "trend_label": trend_label,
@@ -1771,6 +1788,7 @@ class IRIS_System:
                     "iris_reasoning": reasoning,
                     "horizon_days": int(horizon_days),
                     "horizon_label": horizon_label,
+                    "model_confidence": horizon_conf,
                 }
             except Exception as exc:
                 print(f"  predict_all_horizons: {horizon_key} failed: {exc}")
@@ -1902,7 +1920,7 @@ class IRIS_System:
             except TypeError:
                 executor.shutdown(wait=not cancel_pending)
 
-        trend_label, predicted_price, prediction_trajectory, traj_upper, traj_lower, rf_model = self.predict_trend(
+        trend_label, predicted_price, prediction_trajectory, traj_upper, traj_lower, rf_model, model_confidence = self.predict_trend(
             data,
             sentiment_score,
             horizon_days=horizon_days,
@@ -1991,6 +2009,7 @@ class IRIS_System:
                 "check_engine_light": light,
                 "investment_signal": investment_signal,
                 "iris_reasoning": iris_reasoning,
+                "model_confidence": round(float(model_confidence), 1),
             },
             "evidence": {"headlines_used": evidence_headlines},
             "all_horizons": all_horizon_predictions,

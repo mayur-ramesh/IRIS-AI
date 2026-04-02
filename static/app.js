@@ -92,6 +92,37 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const predictedPriceLabelEl = document.getElementById('predicted-price-label');
+    const accuracyValueEl = document.getElementById('accuracy-value');
+    const accuracyRowEl = document.getElementById('accuracy-row');
+    const chartForecastConfidenceEl = document.getElementById('chart-forecast-confidence');
+
+    function updateAccuracyDisplay(confidence) {
+        const pct = Number.isFinite(Number(confidence)) ? Number(confidence) : null;
+        if (pct === null || pct <= 0) {
+            if (accuracyRowEl) accuracyRowEl.classList.add('hidden');
+            if (chartForecastConfidenceEl) {
+                chartForecastConfidenceEl.textContent = '';
+                chartForecastConfidenceEl.classList.add('hidden');
+            }
+            return;
+        }
+        const formatted = pct.toFixed(1) + '%';
+        let colorClass = 'accuracy-high';
+        if (pct < 60) colorClass = 'accuracy-low';
+        else if (pct < 75) colorClass = 'accuracy-medium';
+
+        if (accuracyValueEl) {
+            accuracyValueEl.textContent = formatted;
+            accuracyValueEl.className = 'value ' + colorClass;
+        }
+        if (accuracyRowEl) accuracyRowEl.classList.remove('hidden');
+        if (chartForecastConfidenceEl) {
+            chartForecastConfidenceEl.textContent = formatted + ' confidence';
+            chartForecastConfidenceEl.className = 'chart-forecast-confidence ' + colorClass;
+            chartForecastConfidenceEl.classList.remove('hidden');
+        }
+    }
+
     // --- Prediction reasoning tooltip ---
     let activeTooltip = null;
     let activeTooltipTarget = null;
@@ -1331,6 +1362,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     renderInvestmentSignalBadge(cached.investment_signal || '');
+                    updateAccuracyDisplay(cached.model_confidence ?? null);
                     if (priceCard) {
                         priceCard._irisReasoning = String(cached?.iris_reasoning?.summary || '');
                     }
@@ -1363,6 +1395,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 predictedPriceEl.classList.add('price-down');
                             }
                             renderInvestmentSignalBadge(pred?.investment_signal || '');
+                            updateAccuracyDisplay(pred?.model_confidence ?? null);
 
                             if (priceCard) {
                                 priceCard._irisReasoning = String(pred?.iris_reasoning?.summary || '');
@@ -1376,6 +1409,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 prediction_trajectory_lower: latestTrajectoryLower,
                                 investment_signal: String(pred?.investment_signal || ''),
                                 iris_reasoning: pred?.iris_reasoning || {},
+                                model_confidence: pred?.model_confidence ?? null,
                             };
                         }
                     } catch (err) {
@@ -2024,6 +2058,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Trend
         const trend = (data?.signals?.trend_label || '').replace(/[^\x20-\x7E]/g, '').trim();
         applyTrendBadge(trend);
+
+        // Model confidence / accuracy
+        const modelConf = data?.signals?.model_confidence
+            ?? data?.all_horizons?.[currentHorizon]?.model_confidence;
+        updateAccuracyDisplay(modelConf);
 
         // Apply contrarian colour to predicted price:
         // uptrend 鈫?red (overbought risk), downtrend 鈫?green (opportunity signal)

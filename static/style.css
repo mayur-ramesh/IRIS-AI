@@ -823,6 +823,15 @@ header {
     background: var(--trend-badge-bg);
 }
 
+.accuracy-row {
+    font-size: 0.82rem;
+    opacity: 0.85;
+}
+
+.accuracy-high { color: var(--status-green); }
+.accuracy-medium { color: #f59e0b; }
+.accuracy-low { color: var(--status-red); }
+
 .sentiment-meter {
     text-align: center;
     margin-bottom: 1.5rem;
@@ -1037,12 +1046,28 @@ footer p {
     flex-direction: column;
 }
 
+.chart-controls-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0 0 0.7rem;
+}
+
 .chart-timeframes {
     display: flex;
     align-items: center;
     gap: 0.35rem;
     flex-wrap: wrap;
-    margin: 0 0 0.7rem;
+}
+
+.chart-forecast-confidence {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+    white-space: nowrap;
 }
 
 .timeframe-btn {
