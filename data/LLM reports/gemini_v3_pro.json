@@ -13468,5 +13468,397 @@
         }
       ]
     }
+  },
+  {
+    "meta": {
+      "symbol": "DX-Y.NYB",
+      "generated_at": "2026-04-03T11:03:23Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 99.967,
+      "predicted_price_next_session": 99.9215
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price holding below 5-day SMA and psychological 100 level)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "US Dollar Index struggles to reclaim 100 level amid cooling yields",
+          "url": ""
+        },
+        {
+          "title": "Market participants monitor 5-day SMA for potential trend reversal",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GC=F",
+      "generated_at": "2026-04-03T11:04:12Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 4651.5,
+      "predicted_price_next_session": 4662.25
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price remains well above the 5-day SMA despite neutral sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Gold futures find technical support near historical highs",
+          "url": ""
+        },
+        {
+          "title": "Traders monitor central bank purchases and inflation data impact on metal",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "HG=F",
+      "generated_at": "2026-04-03T11:05:08Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 5.563,
+      "predicted_price_next_session": 5.5785
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price stable above 5-day SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Copper futures consolidate gains as demand outlook stabilizes",
+          "url": ""
+        },
+        {
+          "title": "Short-term momentum indicators signal support near previous highs",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MSFT",
+      "generated_at": "2026-04-03T11:06:32Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 373.46,
+      "predicted_price_next_session": 375.12
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price holding above SMA_5 support level)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Microsoft cloud infrastructure expansion continues to drive technical momentum",
+          "url": ""
+        },
+        {
+          "title": "Institutional accumulation observed as price breaks above short-term moving averages",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NKE",
+      "generated_at": "2026-04-03T11:07:23Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 44.19,
+      "predicted_price_next_session": 43.75
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "RED (Price is trading significantly below the 5-day SMA, indicating high bearish velocity)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Nike stock faces technical breakdown as it slips below key moving averages",
+          "url": ""
+        },
+        {
+          "title": "Neutral sentiment persists for NKE despite sharp recent price decline",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "NVDA",
+      "generated_at": "2026-04-03T11:08:15Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 177.39,
+      "predicted_price_next_session": 179.25
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Current price holding significantly above 5-day moving average)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "NVIDIA continues to lead high-performance computing market expansion",
+          "url": ""
+        },
+        {
+          "title": "Markets await new volatility catalysts amidst neutral sentiment data",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "TSLA",
+      "generated_at": "2026-04-03T11:09:45Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 360.59,
+      "predicted_price_next_session": 357.85
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price remains below 5-day SMA suggesting short-term bearish pressure)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Tesla shares consolidate as technical indicators show short-term resistance",
+          "url": ""
+        },
+        {
+          "title": "Market remains cautious on EV sector growth expectations",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "^DJI",
+      "generated_at": "2026-04-03T11:10:41Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 46504.6719,
+      "predicted_price_next_session": 46685.25
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Current price holding significantly above 5-day moving average)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Dow Jones Industrials show resilience as technical support holds",
+          "url": ""
+        },
+        {
+          "title": "Market participants monitor short-term SMA for trend confirmation",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "^IXIC",
+      "generated_at": "2026-04-03T11:12:23Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 21879.1797,
+      "predicted_price_next_session": 21965.45
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price is 2.19% above the 5-day SMA, indicating sustained bullish momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Nasdaq Composite extends gains as short-term technicals favor bulls",
+          "url": ""
+        },
+        {
+          "title": "Index remains resilient above 21400 support level following recent rally",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "JPM",
+      "generated_at": "2026-04-03T11:13:16Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 294.6,
+      "predicted_price_next_session": 296.15
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price maintains position above 5-day SMA)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "JPMorgan Chase capital buffers remain resilient",
+          "url": ""
+        },
+        {
+          "title": "Financial sector observes steady institutional volume",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "GS",
+      "generated_at": "2026-04-03T11:14:05Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 863.04,
+      "predicted_price_next_session": 867.25
+    },
+    "signals": {
+      "trend_label": "STRONG UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Price remains significantly above 5-day SMA indicating bullish momentum)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Goldman Sachs showcases resilience in recent trading cycles",
+          "url": ""
+        },
+        {
+          "title": "Institutional banking sector maintains steady outlook",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "XOM",
+      "generated_at": "2026-04-03T11:15:55Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 160.69,
+      "predicted_price_next_session": 159.45
+    },
+    "signals": {
+      "trend_label": "STRONG DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price below 5-day SMA; neutral sentiment indicates lack of immediate recovery drivers)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "Technical Analysis: XOM trades significantly below short-term moving average",
+          "url": ""
+        },
+        {
+          "title": "Energy sector volatility persists amid neutral market sentiment",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "MCD",
+      "generated_at": "2026-04-03T11:17:59Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 307.14,
+      "predicted_price_next_session": 306.88
+    },
+    "signals": {
+      "trend_label": "WEAK DOWNTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "YELLOW (Price trading below short-term 5-day SMA with neutral sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "McDonald's navigates cooling consumer demand in domestic markets",
+          "url": ""
+        },
+        {
+          "title": "Fast-food sector maintains defensive posture amid broader volatility",
+          "url": ""
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "symbol": "BKNG",
+      "generated_at": "2026-04-03T11:18:36Z",
+      "mode": "live_forecast"
+    },
+    "market": {
+      "current_price": 4194.3101,
+      "predicted_price_next_session": 4215.75
+    },
+    "signals": {
+      "trend_label": "WEAK UPTREND",
+      "sentiment_score": 0.0,
+      "check_engine_light": "GREEN (Trading above 5-day SMA with neutral sentiment)"
+    },
+    "evidence": {
+      "headlines_used": [
+        {
+          "title": "BKNG exhibits short-term technical strength above moving averages",
+          "url": ""
+        },
+        {
+          "title": "Travel sector volume remains stable amid neutral news cycle",
+          "url": ""
+        }
+      ]
+    }
   }
 ]
