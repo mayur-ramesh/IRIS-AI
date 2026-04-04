@@ -3,6 +3,7 @@
 import sys
 import os
 import unittest
+from unittest.mock import patch
 
 try:
     import pytest
@@ -78,6 +79,21 @@ class TestFullValidation(unittest.TestCase):
         self.assertIsInstance(result.suggestions, list)
         if not result.valid:
             self.assertTrue(len(result.suggestions) > 0 or result.error != "")
+
+
+class TestLocalDbFastPath(unittest.TestCase):
+
+    def test_known_ticker_skips_yfinance_lookup(self):
+        with patch("ticker_validator.is_known_ticker", return_value=True), \
+             patch("ticker_validator.get_company_name", return_value="Apple Inc."), \
+             patch("ticker_validator.yf.Ticker") as mock_ticker:
+            result = validate_ticker("AAPL")
+
+        self.assertTrue(result.valid)
+        self.assertEqual(result.company_name, "Apple Inc.")
+        self.assertEqual(result.source, "local_db")
+        self.assertFalse(result.warning)
+        mock_ticker.assert_not_called()
 
 
 if __name__ == "__main__":

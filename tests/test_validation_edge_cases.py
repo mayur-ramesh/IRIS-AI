@@ -150,14 +150,14 @@ class TestGracefulDegradation(unittest.TestCase):
 
     # 8 ---
     def test_graceful_degradation_api_down(self):
-        """When yfinance times out but ticker IS in local DB, return valid with warning."""
+        """Known SEC tickers should validate locally even if yfinance is unavailable."""
         with patch(
             "ticker_validator.yf.Ticker", side_effect=TimeoutError("Connection timed out")
         ), patch("ticker_validator.is_known_ticker", return_value=True):
             result = validate_ticker("AAPL")
 
-        self.assertTrue(result.valid, "Should degrade gracefully to local DB")
-        self.assertIn("local database", result.warning.lower())
+        self.assertTrue(result.valid, "Known SEC tickers should validate offline")
+        self.assertFalse(result.warning)
         self.assertEqual(result.source, "local_db")
 
     # 9 ---

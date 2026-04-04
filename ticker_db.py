@@ -301,6 +301,11 @@ def load_ticker_names() -> dict[str, str]:
         return _name_cache
 
 
+def get_company_name(ticker: str) -> str:
+    """Return the locally cached company name for *ticker*, if available."""
+    return load_ticker_names().get(ticker.strip().upper(), "")
+
+
 def search_tickers(query: str, limit: int = 8) -> list[dict]:
     """Return tickers whose symbol starts with *query* (case-insensitive prefix match).
 

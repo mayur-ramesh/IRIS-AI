@@ -12,7 +12,7 @@ from functools import lru_cache
 
 import yfinance as yf
 
-from ticker_db import find_similar_tickers, is_known_ticker
+from ticker_db import find_similar_tickers, get_company_name, is_known_ticker
 
 logger = logging.getLogger(__name__)
 
@@ -242,6 +242,14 @@ def validate_ticker_exists(ticker: str) -> TickerValidationResult:
         logger.warning("Local ticker DB unavailable when checking %s", normalized)
 
     try:
+        if in_local_db and not is_special_symbol:
+            return TickerValidationResult(
+                valid=True,
+                ticker=normalized,
+                company_name=get_company_name(normalized) or "(verified offline)",
+                source="local_db",
+            )
+
         return _cached_api_lookup(normalized)
 
     except Exception as exc:

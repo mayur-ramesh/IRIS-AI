@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let latestTrajectoryLower = [];
     let cachedHorizons = {};
     let cachedLlmByHorizon = {};
+    let latestAnalyzeResponse = null;
 
     const HORIZON_LABELS = {
         '1D': '1 Day',
@@ -95,6 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
         '1Y': '1 Year',
         '5Y': '5 Years',
     };
+
+    const DASHBOARD_STATE_STORAGE_KEY = 'iris-dashboard-state-v1';
 
     const predictedPriceLabelEl = document.getElementById('predicted-price-label');
     const accuracyValueEl = document.getElementById('accuracy-value');
@@ -372,6 +375,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function _buildValidationSuccessMessage(result, fallbackTicker) {
+        const companyLabel = String(result?.company_name || fallbackTicker || '').trim();
+        if (result?.source === 'local_db' && !result?.warning) {
+            return companyLabel
+                ? `✓ Verified in SEC database: ${companyLabel}`
+                : '✓ Verified in SEC database';
+        }
+        return `✓ ${companyLabel || fallbackTicker || 'Ticker verified'}`;
+    }
+
     // Route a failed remote-validation result to the right visual treatment
     function _routeValidationError(result, val) {
         const code = result.code || '';
@@ -446,10 +459,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (result.valid) {
             _validatedTicker = val;
             analyzeBtn.disabled = false;
-            const hasWarning = !!(result.warning);
+            const isSecVerified = result.source === 'local_db' && !result.warning;
+            const hasWarning = !!(result.warning && !isSecVerified);
             _setInputState(hasWarning ? 'warn' : 'valid');
             _showValidationHint(
-                hasWarning ? `\u26A0 ${result.warning}` : `\u2713 ${result.company_name || val}`,
+                hasWarning ? `\u26A0 ${result.warning}` : _buildValidationSuccessMessage(result, val),
                 hasWarning ? 'warn' : 'success'
             );
             _renderSuggestions([]);
@@ -1251,6 +1265,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currentTicker = String(data?.meta?.symbol || normalizedTicker).toUpperCase();
             input.value = currentTicker;
             _validatedTicker = currentTicker;
+            latestAnalyzeResponse = data;
             cachedLlmByHorizon = {};
             const initialLlm = data?.llm_insights;
             const initialHorizon = String(data?.meta?.risk_horizon || currentHorizon || '1D').trim().toUpperCase();
@@ -1275,6 +1290,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             await refreshChartForTimeframe(currentTicker, getActiveTimeframe(), false);
             if (typeof window._irisLoadRecommendations === 'function') { window._irisLoadRecommendations(currentTicker); }
+            _saveDashboardState();
 
         } catch (error) {
             clearTimeout(timeoutId);
@@ -1326,6 +1342,172 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function applyPredictionState(snapshot) {
+        if (!snapshot || typeof snapshot !== 'object') {
+            return false;
+        }
+
+        latestPredictedPrice = Number(snapshot.predicted_price);
+        latestTrajectory = Array.isArray(snapshot.prediction_trajectory) ? snapshot.prediction_trajectory : [];
+        latestTrajectoryUpper = Array.isArray(snapshot.prediction_trajectory_upper) ? snapshot.prediction_trajectory_upper : [];
+        latestTrajectoryLower = Array.isArray(snapshot.prediction_trajectory_lower) ? snapshot.prediction_trajectory_lower : [];
+
+        if (predictedPriceEl) {
+            predictedPriceEl.textContent = Number.isFinite(latestPredictedPrice)
+                ? usdFormatter.format(latestPredictedPrice)
+                : 'N/A';
+        }
+
+        const trend = String(snapshot.trend_label || '').replace(/[^\x20-\x7E]/g, '').trim();
+        applyTrendBadge(trend);
+        predictedPriceEl.classList.remove('price-up', 'price-down');
+        if (trend.includes('UPTREND')) {
+            predictedPriceEl.classList.add('price-up');
+        } else if (trend.includes('DOWNTREND')) {
+            predictedPriceEl.classList.add('price-down');
+        }
+
+        renderInvestmentSignalBadge(snapshot.investment_signal || '');
+        updateAccuracyDisplay(snapshot.model_confidence ?? null);
+
+        const priceCard = document.querySelector('.price-card');
+        if (priceCard) {
+            priceCard._irisReasoning = String(snapshot?.iris_reasoning?.summary || '');
+        }
+
+        return true;
+    }
+
+    function _saveDashboardState() {
+        if (!currentTicker || !latestAnalyzeResponse) {
+            return;
+        }
+
+        const snapshot = {
+            currentTicker,
+            validatedTicker: _validatedTicker,
+            activeTimeframe: getActiveTimeframe(),
+            currentHorizon,
+            analyzeData: latestAnalyzeResponse,
+            latestPredictedPrice: Number.isFinite(latestPredictedPrice) ? latestPredictedPrice : null,
+            latestTrajectory: Array.isArray(latestTrajectory) ? latestTrajectory : [],
+            latestTrajectoryUpper: Array.isArray(latestTrajectoryUpper) ? latestTrajectoryUpper : [],
+            latestTrajectoryLower: Array.isArray(latestTrajectoryLower) ? latestTrajectoryLower : [],
+            latestAnalyzeHistory: Array.isArray(latestAnalyzeHistory) ? latestAnalyzeHistory : [],
+            latestAnalyzeTimeframe,
+            cachedHorizons: cachedHorizons && typeof cachedHorizons === 'object' ? cachedHorizons : {},
+            cachedLlmByHorizon: cachedLlmByHorizon && typeof cachedLlmByHorizon === 'object' ? cachedLlmByHorizon : {},
+            savedAt: Date.now(),
+        };
+
+        try {
+            sessionStorage.setItem(DASHBOARD_STATE_STORAGE_KEY, JSON.stringify(snapshot));
+        } catch (error) {
+            console.debug('[IRIS] Unable to persist dashboard state:', error);
+        }
+    }
+
+    function _restoreDashboardState() {
+        let rawSnapshot = null;
+        try {
+            rawSnapshot = sessionStorage.getItem(DASHBOARD_STATE_STORAGE_KEY);
+        } catch (error) {
+            rawSnapshot = null;
+        }
+
+        if (!rawSnapshot) {
+            return;
+        }
+
+        let snapshot = null;
+        try {
+            snapshot = JSON.parse(rawSnapshot);
+        } catch (error) {
+            try {
+                sessionStorage.removeItem(DASHBOARD_STATE_STORAGE_KEY);
+            } catch (_) {}
+            return;
+        }
+
+        const analyzeData = snapshot && typeof snapshot === 'object' ? snapshot.analyzeData : null;
+        const restoredTicker = String(snapshot?.currentTicker || analyzeData?.meta?.symbol || '').trim().toUpperCase();
+        if (!analyzeData || !restoredTicker) {
+            return;
+        }
+
+        latestAnalyzeResponse = analyzeData;
+        currentTicker = restoredTicker;
+        _validatedTicker = String(snapshot?.validatedTicker || restoredTicker).trim().toUpperCase();
+        cachedHorizons = snapshot?.cachedHorizons && typeof snapshot.cachedHorizons === 'object'
+            ? snapshot.cachedHorizons
+            : (analyzeData?.all_horizons && typeof analyzeData.all_horizons === 'object' ? analyzeData.all_horizons : {});
+        cachedLlmByHorizon = snapshot?.cachedLlmByHorizon && typeof snapshot.cachedLlmByHorizon === 'object'
+            ? snapshot.cachedLlmByHorizon
+            : {};
+
+        latestPredictedPrice = Number(snapshot?.latestPredictedPrice);
+        if (!Number.isFinite(latestPredictedPrice)) {
+            latestPredictedPrice = Number(analyzeData?.market?.predicted_price_horizon ?? analyzeData?.market?.predicted_price_next_session);
+        }
+        latestTrajectory = Array.isArray(snapshot?.latestTrajectory)
+            ? snapshot.latestTrajectory
+            : (Array.isArray(analyzeData?.market?.prediction_trajectory) ? analyzeData.market.prediction_trajectory : []);
+        latestTrajectoryUpper = Array.isArray(snapshot?.latestTrajectoryUpper)
+            ? snapshot.latestTrajectoryUpper
+            : (Array.isArray(analyzeData?.market?.prediction_trajectory_upper) ? analyzeData.market.prediction_trajectory_upper : []);
+        latestTrajectoryLower = Array.isArray(snapshot?.latestTrajectoryLower)
+            ? snapshot.latestTrajectoryLower
+            : (Array.isArray(analyzeData?.market?.prediction_trajectory_lower) ? analyzeData.market.prediction_trajectory_lower : []);
+        latestAnalyzeHistory = normalizeHistoryPoints(
+            Array.isArray(snapshot?.latestAnalyzeHistory) ? snapshot.latestAnalyzeHistory : analyzeData?.market?.history
+        );
+        latestAnalyzeTimeframe = String(snapshot?.latestAnalyzeTimeframe || '').trim().toUpperCase()
+            || resolveTimeframeFromMeta(analyzeData?.meta || {});
+
+        updateDashboard(analyzeData);
+
+        const restoredTimeframe = TIMEFRAME_TO_QUERY[String(snapshot?.activeTimeframe || '').trim().toUpperCase()]
+            ? String(snapshot.activeTimeframe).trim().toUpperCase()
+            : resolveTimeframeFromMeta(analyzeData?.meta || {});
+        setActiveTimeframe(restoredTimeframe);
+
+        const restoredHorizon = HORIZON_LABELS[String(snapshot?.currentHorizon || '').trim().toUpperCase()]
+            ? String(snapshot.currentHorizon).trim().toUpperCase()
+            : String(analyzeData?.meta?.risk_horizon || currentHorizon).trim().toUpperCase();
+        setActiveHorizon(restoredHorizon);
+
+        const restoredPrediction = cachedHorizons[restoredHorizon];
+        if (restoredPrediction) {
+            applyPredictionState(restoredPrediction);
+        }
+
+        input.value = currentTicker;
+        analyzeBtn.disabled = false;
+        if (clearBtn) clearBtn.classList.remove('hidden');
+        _setInputState('valid');
+        _clearValidationHint();
+        dashboard.classList.remove('hidden');
+
+        if (Array.isArray(latestAnalyzeHistory) && latestAnalyzeHistory.length > 0) {
+            renderChart(
+                latestAnalyzeHistory,
+                latestPredictedPrice,
+                latestTrajectory,
+                latestTrajectoryUpper,
+                latestTrajectoryLower,
+            );
+        }
+        if (typeof window._irisLoadRecommendations === 'function') {
+            window._irisLoadRecommendations(currentTicker);
+        }
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                syncHeadlinesCardHeight();
+            });
+        });
+    }
+
     timeframeButtons.forEach((btn) => {
         btn.addEventListener('click', async () => {
             const timeframeKey = String(btn.dataset.timeframe || '').toUpperCase();
@@ -1349,29 +1531,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setActiveHorizon(newHorizon);
                 const cached = cachedHorizons[newHorizon];
                 if (cached && typeof cached === 'object') {
-                    latestPredictedPrice = Number(cached.predicted_price);
-                    latestTrajectory = Array.isArray(cached.prediction_trajectory) ? cached.prediction_trajectory : [];
-                    latestTrajectoryUpper = Array.isArray(cached.prediction_trajectory_upper) ? cached.prediction_trajectory_upper : [];
-                    latestTrajectoryLower = Array.isArray(cached.prediction_trajectory_lower) ? cached.prediction_trajectory_lower : [];
-
-                    if (predictedPriceEl && Number.isFinite(latestPredictedPrice)) {
-                        predictedPriceEl.textContent = usdFormatter.format(latestPredictedPrice);
-                    }
-
-                    const trend = String(cached.trend_label || '').replace(/[^\x20-\x7E]/g, '').trim();
-                    applyTrendBadge(trend);
-                    predictedPriceEl.classList.remove('price-up', 'price-down');
-                    if (trend.includes('UPTREND')) {
-                        predictedPriceEl.classList.add('price-up');
-                    } else if (trend.includes('DOWNTREND')) {
-                        predictedPriceEl.classList.add('price-down');
-                    }
-
-                    renderInvestmentSignalBadge(cached.investment_signal || '');
-                    updateAccuracyDisplay(cached.model_confidence ?? null);
-                    if (priceCard) {
-                        priceCard._irisReasoning = String(cached?.iris_reasoning?.summary || '');
-                    }
+                    applyPredictionState(cached);
                 } else {
                     // Fallback for older reports without all_horizons.
                     if (priceCard) {
@@ -1417,6 +1577,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 iris_reasoning: pred?.iris_reasoning || {},
                                 model_confidence: pred?.model_confidence ?? null,
                             };
+                            applyPredictionState(cachedHorizons[newHorizon]);
                         }
                     } catch (err) {
                         console.warn('Prediction update failed:', err);
@@ -1451,11 +1612,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.remove('is-loading');
                 hideChartLoading();
                 timeframeButtons.forEach((b) => { b.disabled = false; });
+                _saveDashboardState();
             }
         });
     });
     setActiveTimeframe(getActiveTimeframe());
     setActiveHorizon(currentHorizon);
+    _restoreDashboardState();
+
+    window.addEventListener('pagehide', () => {
+        _saveDashboardState();
+    });
 
     // Mobile: tap to toggle prediction tooltips.
     document.addEventListener('touchstart', (e) => {
