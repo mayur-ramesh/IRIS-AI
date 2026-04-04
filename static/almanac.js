@@ -16,10 +16,62 @@
     let irisPromise = null;
     let tradingDates = [];
     let monthKeys = [];
+    let seasonalTooltip = null;
+    let activeTooltipTarget = null;
 
     const tabs = Array.from(document.querySelectorAll('.alm-tab'));
     const views = Array.from(document.querySelectorAll('.alm-view'));
     const themeToggle = document.getElementById('theme-toggle');
+    const SEASONAL_MONTH_ORDER = [
+        '2026-11',
+        '2026-12',
+        '2026-01',
+        '2026-02',
+        '2026-03',
+        '2026-04',
+        '2026-05',
+        '2026-06',
+        '2026-07',
+        '2026-08',
+        '2026-09',
+        '2026-10',
+    ];
+    const SEASONAL_PHASES = {
+        bullish: new Set(['2026-11', '2026-12', '2026-01', '2026-02', '2026-03', '2026-04']),
+        bearish: new Set(['2026-05', '2026-06', '2026-07', '2026-08', '2026-09', '2026-10']),
+    };
+    const SEASONAL_SIGNAL_META = {
+        timing: {
+            className: 'sg-g',
+            category: 'Timing edge',
+            meaning: 'Recurring seasonal setup with a historically constructive timing bias.',
+            order: 1,
+        },
+        weekly_timing: {
+            className: 'sg-a',
+            category: 'Weekly pattern',
+            meaning: 'Shorter seasonal window or rally pattern that tends to matter over a few sessions or weeks.',
+            order: 2,
+        },
+        macro_context: {
+            className: 'sg-b',
+            category: 'Macro context',
+            meaning: 'Broader election-cycle or macro seasonal backdrop that frames the month rather than a single entry signal.',
+            order: 3,
+        },
+        risk_indicator: {
+            className: 'sg-r',
+            category: 'Risk indicator',
+            meaning: 'Higher-stakes warning or historical indicator worth watching for downside or regime risk.',
+            order: 4,
+        },
+        default: {
+            className: 'sg-n',
+            category: 'Reference',
+            meaning: 'General seasonal context from the Almanac source.',
+            order: 9,
+        },
+    };
 
     function escapeHtml(value) {
         return String(value ?? '')
@@ -216,6 +268,161 @@
         });
     }
 
+    function formatMonthShort(monthKey) {
+        return new Date(monthKey + '-01T12:00:00').toLocaleDateString('en-US', { month: 'short' });
+    }
+
+    function capitalize(value) {
+        const text = String(value || '').trim();
+        if (!text) {
+            return '';
+        }
+        return text.charAt(0).toUpperCase() + text.slice(1);
+    }
+
+    function getSeasonalMonthKeys() {
+        const preferred = SEASONAL_MONTH_ORDER.filter((monthKey) => monthKeys.includes(monthKey));
+        const extras = monthKeys.filter((monthKey) => !SEASONAL_MONTH_ORDER.includes(monthKey));
+        return preferred.concat(extras);
+    }
+
+    function getSeasonalSignalMeta(type) {
+        return SEASONAL_SIGNAL_META[type] || SEASONAL_SIGNAL_META.default;
+    }
+
+    function getSeasonalPhase(monthKey) {
+        if (SEASONAL_PHASES.bullish.has(monthKey)) {
+            return {
+                key: 'bullish',
+                label: 'Best Six Months',
+                tone: 'bull',
+                note: 'Historically stronger seasonal phase',
+            };
+        }
+        if (SEASONAL_PHASES.bearish.has(monthKey)) {
+            return {
+                key: 'bearish',
+                label: 'Worst Six Months',
+                tone: 'bear',
+                note: 'Historically weaker seasonal phase',
+            };
+        }
+        return {
+            key: 'neutral',
+            label: 'Seasonal Phase',
+            tone: 'bull',
+            note: 'Additional seasonal context',
+        };
+    }
+
+    function getBiasClass(bias) {
+        if (bias === 'bullish') {
+            return 'alm-dir-d';
+        }
+        if (bias === 'bearish') {
+            return 'alm-dir-n';
+        }
+        return 'alm-dir-s';
+    }
+
+    function renderBiasBadge(bias) {
+        const label = capitalize(bias || 'mixed') || 'Mixed';
+        return '<span class="alm-direction-badge alm-sig-bias ' + getBiasClass(bias) + '">' + escapeHtml(label) + '</span>';
+    }
+
+    function renderSeasonalLegend() {
+        const legendOrder = ['timing', 'risk_indicator', 'weekly_timing', 'macro_context', 'default'];
+        return legendOrder.map((typeKey) => {
+            const meta = getSeasonalSignalMeta(typeKey);
+            return ''
+                + '<div class="alm-sig-legend-item">'
+                + '  <span class="alm-sig-dot ' + meta.className + '" aria-hidden="true"></span>'
+                + '  <span><strong>' + escapeHtml(meta.category) + '</strong> <span class="alm-note-caption"> ' + escapeHtml(meta.meaning) + '</span></span>'
+                + '</div>';
+        }).join('');
+    }
+
+    function ensureSeasonalTooltip() {
+        if (seasonalTooltip) {
+            return seasonalTooltip;
+        }
+        seasonalTooltip = document.createElement('div');
+        seasonalTooltip.className = 'alm-sig-tooltip';
+        seasonalTooltip.setAttribute('role', 'tooltip');
+        seasonalTooltip.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(seasonalTooltip);
+        return seasonalTooltip;
+    }
+
+    function positionSeasonalTooltip(target) {
+        if (!seasonalTooltip || !target) {
+            return;
+        }
+        const targetRect = target.getBoundingClientRect();
+        const tooltipRect = seasonalTooltip.getBoundingClientRect();
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        const spacing = 12;
+        let left = targetRect.left + ((targetRect.width - tooltipRect.width) / 2);
+        let top = targetRect.bottom + spacing;
+
+        if (top + tooltipRect.height > viewportHeight - spacing) {
+            top = targetRect.top - tooltipRect.height - spacing;
+        }
+        if (top < spacing) {
+            top = Math.max(spacing, targetRect.bottom + spacing);
+        }
+
+        left = Math.max(spacing, Math.min(left, viewportWidth - tooltipRect.width - spacing));
+        top = Math.max(spacing, Math.min(top, viewportHeight - tooltipRect.height - spacing));
+
+        seasonalTooltip.style.left = left + 'px';
+        seasonalTooltip.style.top = top + 'px';
+    }
+
+    function showSeasonalTooltip(target) {
+        if (!target) {
+            return;
+        }
+        const tooltip = ensureSeasonalTooltip();
+        const title = target.getAttribute('data-sig-title') || target.textContent || 'Seasonal signal';
+        const category = target.getAttribute('data-sig-category') || 'Reference';
+        const description = target.getAttribute('data-sig-description') || 'No description available.';
+        const month = target.getAttribute('data-sig-month') || '2026';
+        const meaning = target.getAttribute('data-sig-meaning') || '';
+        const toneClass = target.getAttribute('data-sig-tone') || 'sg-n';
+
+        tooltip.style.left = '-9999px';
+        tooltip.style.top = '-9999px';
+        tooltip.innerHTML = ''
+            + '<div class="alm-sig-tooltip-title">' + escapeHtml(title) + '</div>'
+            + '<div class="alm-sig-tooltip-meta">'
+            + '  <span class="alm-sig-dot ' + escapeHtml(toneClass) + '" aria-hidden="true"></span>'
+            + '  <span>' + escapeHtml(category) + ' | ' + escapeHtml(month) + '</span>'
+            + '</div>'
+            + '<div class="alm-sig-tooltip-body">' + escapeHtml(description) + '</div>'
+            + (meaning ? '<div class="alm-sig-tooltip-meaning">' + escapeHtml(meaning) + '</div>' : '');
+        tooltip.classList.add('is-visible');
+        tooltip.setAttribute('aria-hidden', 'false');
+        activeTooltipTarget = target;
+        positionSeasonalTooltip(target);
+    }
+
+    function hideSeasonalTooltip() {
+        if (!seasonalTooltip) {
+            return;
+        }
+        seasonalTooltip.classList.remove('is-visible');
+        seasonalTooltip.setAttribute('aria-hidden', 'true');
+        seasonalTooltip.style.left = '-9999px';
+        seasonalTooltip.style.top = '-9999px';
+        activeTooltipTarget = null;
+    }
+
+    function getSignalBadgeTarget(node) {
+        return node instanceof Element ? node.closest('.alm-sig-badge') : null;
+    }
+
     function resolveNearestTradingDate(candidate) {
         if (!tradingDates.length) {
             return DEFAULT_DATE;
@@ -312,10 +519,17 @@
         const weeklyTable = document.getElementById('weekly-table-container');
         const monthlyPanel = document.getElementById('almanac-monthly-content');
         const seasonalStrip = document.getElementById('seasonal-heatmap-strip');
+        const seasonalLegend = document.getElementById('seasonal-legend');
+        const seasonalSignals = document.getElementById('seasonal-signals-table');
+        const seasonalRanking = document.getElementById('seasonal-monthly-ranking');
         if (dailyPanel) dailyPanel.innerHTML = message;
         if (weeklyTable) weeklyTable.innerHTML = message;
         if (monthlyPanel) monthlyPanel.innerHTML = message;
         if (seasonalStrip) seasonalStrip.innerHTML = message;
+        if (seasonalLegend) seasonalLegend.innerHTML = '';
+        if (seasonalSignals) seasonalSignals.innerHTML = '';
+        if (seasonalRanking) seasonalRanking.innerHTML = '';
+        hideSeasonalTooltip();
     }
 
     function monthMetricValueClass(value) {
@@ -652,23 +866,42 @@
     async function renderSeasonalView() {
         const payload = await loadAlmanacFull();
         const strip = document.getElementById('seasonal-heatmap-strip');
-        const signalsList = document.getElementById('seasonal-signals-list');
+        const legend = document.getElementById('seasonal-legend');
+        const signalsTable = document.getElementById('seasonal-signals-table');
         const ranking = document.getElementById('seasonal-monthly-ranking');
 
         if (!payload) {
             if (strip) strip.innerHTML = '<div class="alm-empty">Seasonal data could not be loaded.</div>';
-            if (signalsList) signalsList.innerHTML = '';
+            if (legend) legend.innerHTML = '';
+            if (signalsTable) signalsTable.innerHTML = '';
             if (ranking) ranking.innerHTML = '';
+            hideSeasonalTooltip();
             return;
         }
 
+        const seasonalMonthKeys = getSeasonalMonthKeys();
+        const signalsByMonth = {};
+        seasonalMonthKeys.forEach((monthKey) => {
+            signalsByMonth[monthKey] = [];
+        });
+        (Array.isArray(payload.signals) ? payload.signals : []).forEach((signal) => {
+            const monthKey = signal?.source_month;
+            if (!monthKey) {
+                return;
+            }
+            if (!signalsByMonth[monthKey]) {
+                signalsByMonth[monthKey] = [];
+            }
+            signalsByMonth[monthKey].push(signal);
+        });
+
         if (strip) {
-            strip.innerHTML = monthKeys.map((monthKey) => {
+            strip.innerHTML = seasonalMonthKeys.map((monthKey) => {
                 const monthInfo = payload.months[monthKey];
                 const heatmapEntry = payload.heatmap[monthKey] || {};
                 const rankValue = getMonthDisplayRank(monthKey, monthInfo, heatmapEntry);
                 const isCurrent = monthKey === currentMonth;
-                const monthLabel = new Date(monthKey + '-01T12:00:00').toLocaleDateString('en-US', { month: 'short' });
+                const monthLabel = formatMonthShort(monthKey);
                 const tooltip = monthLabel + ' 2026 | overall rank #' + (monthInfo?.vital_stats?.sp500?.rank ?? '?')
                     + ' | midterm rank #' + (heatmapEntry.sp500_midterm_rank ?? '?')
                     + ' | midterm avg ' + formatPercent(heatmapEntry.sp500_midterm);
@@ -680,23 +913,87 @@
             }).join('');
         }
 
-        if (signalsList) {
-            const signals = Array.isArray(payload.signals) ? payload.signals : [];
-            if (!signals.length) {
-                signalsList.innerHTML = '<div class="alm-note-box" style="width:100%;">No tagged seasonal signals were extracted for this dataset.</div>';
-            } else {
-                signalsList.innerHTML = signals.map((signal) => {
-                    const typeClass = signal.type === 'timing'
-                        ? 'alm-signal-timing'
-                        : signal.type === 'weekly_timing'
-                            ? 'alm-signal-weekly'
-                            : signal.type === 'risk_indicator'
-                                ? 'alm-signal-risk'
-                                : 'alm-signal-macro';
-                    const title = signal.label + ' (' + signal.source_month + '): ' + signal.description;
-                    return '<div class="alm-signal-badge ' + typeClass + '" title="' + escapeHtml(title) + '">' + escapeHtml(signal.label) + '</div>';
-                }).join('');
-            }
+        if (legend) {
+            legend.innerHTML = renderSeasonalLegend();
+        }
+
+        if (signalsTable) {
+            const rows = [];
+            let previousPhaseKey = '';
+
+            seasonalMonthKeys.forEach((monthKey) => {
+                const monthInfo = payload.months[monthKey];
+                if (!monthInfo) {
+                    return;
+                }
+                const phase = getSeasonalPhase(monthKey);
+                const heatmapEntry = payload.heatmap[monthKey] || {};
+                const sp500 = monthInfo.vital_stats?.sp500 || {};
+                const monthSignals = (signalsByMonth[monthKey] || [])
+                    .slice()
+                    .sort((left, right) => {
+                        const typeSort = getSeasonalSignalMeta(left.type).order - getSeasonalSignalMeta(right.type).order;
+                        if (typeSort !== 0) {
+                            return typeSort;
+                        }
+                        return String(left.label || '').localeCompare(String(right.label || ''));
+                    });
+
+                if (phase.key !== previousPhaseKey) {
+                    rows.push(
+                        '<tr class="alm-sig-phase-row">'
+                        + '  <td colspan="5">'
+                        + '    <span class="alm-sig-phase ' + phase.tone + '">' + escapeHtml(phase.label) + '</span>'
+                        + '    <span class="alm-sig-phase-note">' + escapeHtml(phase.note) + '</span>'
+                        + '  </td>'
+                        + '</tr>'
+                    );
+                    previousPhaseKey = phase.key;
+                }
+
+                const signalMarkup = monthSignals.length
+                    ? '<div class="alm-sig-badges">' + monthSignals.map((signal) => {
+                        const meta = getSeasonalSignalMeta(signal.type);
+                        return ''
+                            + '<button type="button" class="alm-sig-badge ' + meta.className + '"'
+                            + ' data-sig-title="' + escapeHtml(signal.label || 'Seasonal signal') + '"'
+                            + ' data-sig-category="' + escapeHtml(meta.category) + '"'
+                            + ' data-sig-description="' + escapeHtml(signal.description || 'No description available in the current source.') + '"'
+                            + ' data-sig-month="' + escapeHtml((monthInfo.name || formatMonthShort(monthKey)) + ' 2026') + '"'
+                            + ' data-sig-meaning="' + escapeHtml(meta.meaning) + '"'
+                            + ' data-sig-tone="' + escapeHtml(meta.className) + '">'
+                            + escapeHtml(signal.label || 'Signal')
+                            + '</button>';
+                    }).join('') + '</div>'
+                    : '<div class="alm-sig-empty">No tagged seasonal signals were extracted for this month in the current dataset.</div>';
+
+                rows.push(
+                    '<tr' + (monthKey === currentMonth ? ' class="alm-sig-current"' : '') + '>'
+                    + '  <td class="alm-sig-col-month">'
+                    + '    <span class="alm-sig-month-name">' + escapeHtml(monthInfo.name || monthKey) + '</span>'
+                    + '    <span class="alm-sig-month-meta">Overall #' + escapeHtml(sp500.rank ?? '?') + '</span>'
+                    + '  </td>'
+                    + '  <td class="alm-sig-col-bias">' + renderBiasBadge(heatmapEntry.bias || 'mixed') + '</td>'
+                    + '  <td class="alm-sig-col-rank alm-sig-hide-mobile"><span class="alm-sig-stat">#' + escapeHtml(getMonthDisplayRank(monthKey, monthInfo, heatmapEntry) || '?') + '</span></td>'
+                    + '  <td class="alm-sig-col-midterm alm-sig-hide-mobile"><span class="alm-sig-stat ' + monthMetricValueClass(heatmapEntry.sp500_midterm) + '">' + escapeHtml(formatPercent(heatmapEntry.sp500_midterm)) + '</span></td>'
+                    + '  <td class="alm-sig-col-signals">' + signalMarkup + '</td>'
+                    + '</tr>'
+                );
+            });
+
+            signalsTable.innerHTML = rows.length
+                ? ''
+                    + '<table class="alm-sig-table">'
+                    + '  <thead><tr>'
+                    + '    <th class="alm-sig-col-month">Month</th>'
+                    + '    <th class="alm-sig-col-bias">Bias</th>'
+                    + '    <th class="alm-sig-col-rank alm-sig-hide-mobile">Midterm Rank</th>'
+                    + '    <th class="alm-sig-col-midterm alm-sig-hide-mobile">Midterm Avg</th>'
+                    + '    <th class="alm-sig-col-signals">Signals</th>'
+                    + '  </tr></thead>'
+                    + '  <tbody>' + rows.join('') + '</tbody>'
+                    + '</table>'
+                : '<div class="alm-note-box">No tagged seasonal signals were extracted for this dataset.</div>';
         }
 
         if (ranking) {
@@ -736,9 +1033,12 @@
                 + '  <tbody>' + rows + '</tbody>'
                 + '</table>';
         }
+
+        hideSeasonalTooltip();
     }
 
     function refreshCurrentView() {
+        hideSeasonalTooltip();
         if (currentView === 'daily') {
             renderDailyView();
         } else if (currentView === 'weekly') {
@@ -822,6 +1122,60 @@
         document.getElementById('week-next')?.addEventListener('click', () => navigateWeek(1));
         document.getElementById('month-prev')?.addEventListener('click', () => navigateMonth(-1));
         document.getElementById('month-next')?.addEventListener('click', () => navigateMonth(1));
+
+        document.addEventListener('mouseover', (event) => {
+            const badge = getSignalBadgeTarget(event.target);
+            if (badge) {
+                showSeasonalTooltip(badge);
+            }
+        });
+
+        document.addEventListener('mouseout', (event) => {
+            const badge = getSignalBadgeTarget(event.target);
+            if (!badge) {
+                return;
+            }
+            const nextBadge = getSignalBadgeTarget(event.relatedTarget);
+            if (nextBadge === badge) {
+                return;
+            }
+            if (activeTooltipTarget === badge) {
+                hideSeasonalTooltip();
+            }
+        });
+
+        document.addEventListener('focusin', (event) => {
+            const badge = getSignalBadgeTarget(event.target);
+            if (badge) {
+                showSeasonalTooltip(badge);
+            }
+        });
+
+        document.addEventListener('focusout', (event) => {
+            const badge = getSignalBadgeTarget(event.target);
+            if (badge && activeTooltipTarget === badge) {
+                hideSeasonalTooltip();
+            }
+        });
+
+        document.addEventListener('mousemove', (event) => {
+            if (activeTooltipTarget && activeTooltipTarget.contains(event.target)) {
+                positionSeasonalTooltip(activeTooltipTarget);
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                hideSeasonalTooltip();
+            }
+        });
+
+        window.addEventListener('scroll', hideSeasonalTooltip, true);
+        window.addEventListener('resize', () => {
+            if (activeTooltipTarget) {
+                positionSeasonalTooltip(activeTooltipTarget);
+            }
+        });
     }
 
     initializeTheme();
