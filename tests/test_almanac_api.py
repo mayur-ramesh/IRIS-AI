@@ -1,0 +1,89 @@
+"""Tests for the almanac comparison page and read-only almanac API routes."""
+
+import os
+import sys
+import unittest
+from unittest.mock import patch
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+
+import app as app_module
+
+
+class TestAlmanacAPI(unittest.TestCase):
+    def setUp(self):
+        app_module.app.config["TESTING"] = True
+        self.client = app_module.app.test_client()
+        app_module._almanac_data = None
+
+    def tearDown(self):
+        app_module._almanac_data = None
+
+    def test_almanac_page_route(self):
+        resp = self.client.get("/almanac")
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b"Seasonality Comparison", resp.data)
+        self.assertIn(b"IRIS predictions vs Stock Trader's Almanac 2026", resp.data)
+
+    def test_homepage_contains_almanac_nav_link(self):
+        resp = self.client.get("/")
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b'href="/almanac"', resp.data)
+
+    def test_almanac_daily_specific_date(self):
+        resp = self.client.get("/api/almanac/daily?date=2026-04-09")
+        self.assertEqual(resp.status_code, 200)
+        data = resp.get_json()
+        self.assertEqual(data["date"], "2026-04-09")
+        self.assertEqual(data["s"], 61.9)
+        self.assertEqual(data["icon"], "bull")
+
+    def test_almanac_week_endpoint(self):
+        resp = self.client.get("/api/almanac/week?start=2026-04-06")
+        self.assertEqual(resp.status_code, 200)
+        data = resp.get_json()
+        self.assertEqual(data["week_start"], "2026-04-06")
+        self.assertEqual(data["week_end"], "2026-04-10")
+        self.assertEqual(len(data["daily"]), 5)
+        self.assertEqual(data["month_overview"]["name"], "April")
+
+    def test_almanac_month_endpoint(self):
+        resp = self.client.get("/api/almanac/month/2026-04")
+        self.assertEqual(resp.status_code, 200)
+        data = resp.get_json()
+        self.assertEqual(data["month"]["name"], "April")
+        self.assertEqual(data["month"]["vital_stats"]["sp500"]["rank"], 2)
+        self.assertIn("2026-04-09", data["daily"])
+
+    def test_almanac_seasonal_endpoint(self):
+        resp = self.client.get("/api/almanac/seasonal")
+        self.assertEqual(resp.status_code, 200)
+        data = resp.get_json()
+        self.assertIn("heatmap", data)
+        self.assertIn("signals", data)
+        self.assertIn("months", data)
+        self.assertEqual(data["heatmap"]["2026-10"]["sp500_midterm_rank"], 1)
+        self.assertEqual(data["months"]["2026-08"]["vital_stats"]["sp500"]["midterm_avg"], -0.4)
+
+    def test_almanac_daily_missing_date_returns_404(self):
+        resp = self.client.get("/api/almanac/daily?date=2026-04-05")
+        self.assertEqual(resp.status_code, 404)
+        data = resp.get_json()
+        self.assertIn("error", data)
+
+    def test_almanac_month_missing_returns_404(self):
+        resp = self.client.get("/api/almanac/month/2027-01")
+        self.assertEqual(resp.status_code, 404)
+        data = resp.get_json()
+        self.assertIn("error", data)
+
+    def test_almanac_missing_json_returns_404(self):
+        with patch.object(app_module, "_load_almanac_data", return_value={"error": "almanac_2026.json not found"}):
+            resp = self.client.get("/api/almanac/seasonal")
+        self.assertEqual(resp.status_code, 404)
+        data = resp.get_json()
+        self.assertEqual(data["error"], "almanac_2026.json not found")
+
+
+if __name__ == "__main__":
+    unittest.main()
