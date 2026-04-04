@@ -110,6 +110,7 @@ SECTOR_PEERS = {
 
 _yf_info_cache = {}
 _YF_INFO_TTL = 300  # seconds
+_almanac_data = None
 
 
 def _get_cached_yf_info(ticker):
@@ -129,6 +130,22 @@ def _get_cached_yf_info(ticker):
         info = {}
     _yf_info_cache[symbol] = {"info": info, "ts": now_ts}
     return info
+
+
+def _load_almanac_data():
+    """Load repo-tracked almanac data once for the comparison UI."""
+    global _almanac_data
+    if _almanac_data is None:
+        almanac_path = PROJECT_ROOT / "data" / "almanac_2026" / "almanac_2026.json"
+        if not almanac_path.exists():
+            _almanac_data = {"error": "almanac_2026.json not found"}
+            return _almanac_data
+        try:
+            with open(almanac_path, "r", encoding="utf-8") as f:
+                _almanac_data = json.load(f)
+        except Exception as exc:
+            _almanac_data = {"error": f"Failed to load almanac_2026.json: {exc}"}
+    return _almanac_data
 
 
 def _get_related_tickers(ticker, count=7):
@@ -276,6 +293,105 @@ def get_latest_llm_reports(symbol: str) -> dict:
 def index():
     """Serve the main dashboard."""
     return render_template('index.html')
+
+
+@app.route('/almanac')
+def almanac_comparison():
+    """Serve the IRIS vs Almanac comparison dashboard."""
+    return render_template('almanac_comparison.html')
+
+
+@app.route('/api/almanac/daily')
+def almanac_daily():
+    """Return almanac daily scores."""
+    data = _load_almanac_data()
+    if "error" in data:
+        return jsonify(data), 404
+
+    daily = data.get("daily", {})
+    date_param = str(request.args.get("date", "") or "").strip()
+    from_param = str(request.args.get("from", "") or "").strip()
+    to_param = str(request.args.get("to", "") or "").strip()
+
+    if date_param:
+        entry = daily.get(date_param)
+        if entry is None:
+            return jsonify({"error": f"No data for {date_param}"}), 404
+        return jsonify(entry)
+
+    if from_param and to_param:
+        filtered = {k: v for k, v in daily.items() if from_param <= k <= to_param}
+        return jsonify({"from": from_param, "to": to_param, "daily": filtered})
+
+    return jsonify({"daily": daily})
+
+
+@app.route('/api/almanac/month/<month_key>')
+def almanac_month(month_key):
+    """Return monthly overview plus daily scores for the selected month."""
+    data = _load_almanac_data()
+    if "error" in data:
+        return jsonify(data), 404
+
+    month = data.get("months", {}).get(month_key)
+    if month is None:
+        return jsonify({"error": f"No data for month {month_key}"}), 404
+
+    daily = data.get("daily", {})
+    month_daily = {k: v for k, v in daily.items() if k.startswith(f"{month_key}-")}
+    return jsonify({"month": month, "daily": month_daily})
+
+
+@app.route('/api/almanac/seasonal')
+def almanac_seasonal():
+    """Return seasonal heatmap, signals, and month summaries."""
+    data = _load_almanac_data()
+    if "error" in data:
+        return jsonify(data), 404
+
+    return jsonify(
+        {
+            "heatmap": data.get("seasonal_heatmap", {}),
+            "signals": data.get("seasonal_signals", []),
+            "months": data.get("months", {}),
+        }
+    )
+
+
+@app.route('/api/almanac/week')
+def almanac_week():
+    """Return a five-trading-day slice starting from the requested date."""
+    data = _load_almanac_data()
+    if "error" in data:
+        return jsonify(data), 404
+
+    start = str(request.args.get("start", "") or "").strip()
+    daily = data.get("daily", {})
+    all_dates = sorted(daily.keys())
+    if not all_dates:
+        return jsonify({"error": "No almanac daily data available"}), 404
+
+    if not start:
+        start = all_dates[0]
+
+    try:
+        idx = next(i for i, date_key in enumerate(all_dates) if date_key >= start)
+    except StopIteration:
+        return jsonify({"error": f"No trading days found from {start}"}), 404
+
+    week_dates = all_dates[idx : idx + 5]
+    week_data = {date_key: daily[date_key] for date_key in week_dates}
+    month_key = week_dates[0][:7] if week_dates else start[:7]
+    month_info = data.get("months", {}).get(month_key, {})
+
+    return jsonify(
+        {
+            "week_start": week_dates[0] if week_dates else start,
+            "week_end": week_dates[-1] if week_dates else start,
+            "daily": week_data,
+            "month_overview": month_info,
+        }
+    )
 
 @app.route('/api/history/<ticker>', methods=['GET'])
 def get_history(ticker):
@@ -513,11 +629,11 @@ def analyze_ticker():
         company_name = ""
     # -------------------------------------------------------------------------
 
-    # --- Optional data guardrail layer (disabled by default for faster UI analysis) ---
+    # --- Data guardrail layer (enabled by default; can be disabled explicitly) ---
     market_data = None
     grounded_prompt = None
-    guardrails_requested = str(request.args.get('guardrails', '0') or '0').strip().lower() in {"1", "true", "yes", "on"}
-    if _GUARDRAILS_AVAILABLE and guardrails_requested:
+    guardrails_enabled = str(request.args.get('guardrails', '1') or '1').strip().lower() not in {"0", "false", "no", "off"}
+    if _GUARDRAILS_AVAILABLE and guardrails_enabled:
         market_data = _fetch_market_data(ticker)
         if "error" in market_data:
             return jsonify({

@@ -1,9 +1,14 @@
 ﻿const THEME_STORAGE_KEY = 'iris-theme';
 
+const LEGACY_THEME_STORAGE_KEY = 'iris-theme-preference';
+
 function getPreferredTheme() {
     let savedTheme = null;
     try {
         savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+        if (savedTheme !== 'light' && savedTheme !== 'dark') {
+            savedTheme = localStorage.getItem(LEGACY_THEME_STORAGE_KEY);
+        }
     } catch (error) {
         savedTheme = null;
     }
@@ -807,6 +812,7 @@ document.addEventListener('DOMContentLoaded', () => {
             applyTheme(nextTheme);
             try {
                 localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+                localStorage.setItem(LEGACY_THEME_STORAGE_KEY, nextTheme);
             } catch (error) {
                 // Ignore storage failures and continue with in-memory theme.
             }
