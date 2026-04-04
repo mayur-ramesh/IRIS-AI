@@ -41,73 +41,50 @@
 | 2026-12-31 | Thu | 33.3 | 28.6 | 28.6 | Last Trading Day of the Year; NASDAQ Down 19 of Last 25 |
 | 2027-01-01 | Fri | — | — | — | New Year's Day (Market Closed) |
 
-## Almanac Signal Translation (for IRIS benchmarking)
+# December Vital Statistics
 
-| Date | Day | S&P Prob | Signal | Confidence |
-|------|-----|----------|--------|------------|
-| 2026-11-30 | Mon | 52.4 | HOLD | Low |
-| 2026-12-01 | Tue | 42.9 | SELL | Low |
-| 2026-12-02 | Wed | 47.6 | HOLD | Low |
-| 2026-12-03 | Thu | 52.4 | HOLD | Low |
-| 2026-12-04 | Fri | 47.6 | HOLD | Low |
-| 2026-12-07 | Mon | 61.9 | BUY | Medium |
-| 2026-12-08 | Tue | 61.9 | BUY | Medium |
-| 2026-12-09 | Wed | 52.4 | HOLD | Low |
-| 2026-12-10 | Thu | 61.9 | BUY | Medium |
-| 2026-12-11 | Fri | 52.4 | HOLD | Low |
-| 2026-12-14 | Mon | 42.9 | SELL | Low |
-| 2026-12-15 | Tue | 61.9 | BUY | Medium |
-| 2026-12-16 | Wed | 52.4 | HOLD | Low |
-| 2026-12-17 | Thu | 33.3 | SELL | Medium |
-| 2026-12-18 | Fri | 47.6 | HOLD | Low |
-| 2026-12-21 | Mon | 61.9 | BUY | Medium |
-| 2026-12-22 | Tue | 66.7 | BUY | Medium |
-| 2026-12-23 | Wed | 66.7 | BUY | Medium |
-| 2026-12-24 | Thu | 61.9 | BUY | Medium |
-| 2026-12-28 | Mon | 66.7 | BUY | Medium |
-| 2026-12-29 | Tue | 47.6 | HOLD | Low |
-| 2026-12-30 | Wed | 42.9 | SELL | Low |
-| 2026-12-31 | Thu | 28.6 | SELL | High |
+| Index | Rank | Up | Down | Avg % Chg | Midterm Yr Avg |
+|-------|------|----|------|-----------|----------------|
+| DJIA | 3 | 52 | 23 | 1.5% | 0.6% |
+| S&P 500 | 3 | 55 | 20 | 1.4% | 0.8% |
+| NASDAQ | 3 | 33 | 21 | 1.5% | -0.9% |
+| Russell 1K | 3 | 34 | 12 | 1.2% | -0.5% |
+| Russell 2K | 2 | 34 | 12 | 2.1% | -0.3% |
 
-### Signal Translation Key
-- **BUY:** S&P probability ≥ 60.0% → historically bullish day
-- **SELL:** S&P probability ≤ 45.0% → historically bearish day
-- **HOLD:** S&P probability between 45.1%–59.9% → no clear historical edge
+# Seasonal Signals and Trading Indicators
 
-### Confidence Levels
-- **High:** S&P probability ≥ 70% or ≤ 30%
-- **Medium:** S&P probability 60–69.9% or 30.1–40%
-- **Low:** S&P probability 40.1–59.9%
 
-## Key December Events & Patterns
-- **Dec 1:** First Trading Day — NASDAQ up 25 of 38, but down 7 of last 13
-- **Dec 4:** Chanukah
-- **Dec 9:** FOMC Meeting
-- **Dec 10:** Small Cap Strength Starts in Mid-December (January Effect begins)
-- **Dec 14:** Monday Before Triple Witching
-- **Dec 15–18:** December Triple-Witching Week — S&P Up 29 of Last 41; Q4 TWW most bullish quarter
-- **Dec 18:** Triple-Witching Day — S&P Up 27 of Last 43, but Down 7 of Last 10; "Free Lunch" stock list compiled from new lows
-- **Dec 21–24:** Week After Triple-Witching — Dow Up 27 of Last 34, avg gain 0.8%
-- **Dec 24:** Shortened Trading Day; Santa Claus Rally begins (last 5 trading days of year + first 2 of January); avg 1.2% gain since 1969
-- **Dec 25:** Christmas Day (Market Closed)
-- **Dec 31:** Last Trading Day of the Year — NASDAQ down 19 of last 25
+## Santa Claus Rally [timing]
 
-## Santa Claus Rally Window (Dec 24, 2026 – Jan 4, 2027)
-- **Historical avg gain:** 1.2% (S&P 500, since 1969); 1.3% (since 1950)
-- **Warning:** If Santa Claus should fail to call, bears may come to Broad and Wall
-- Santa's failure to show tends to precede bear markets or periods where stocks could be purchased at lower prices later in the year
+Last 5 trading days of December plus first 2 trading days of January. S&P 500 avg gain 1.3% since 1950, 1.2% since 1969. In 2026: Dec 24 through Jan 4, 2027. Yale Hirsch's warning: "If Santa Claus should fail to call, bears may come to Broad and Wall." Santa's failure to show tends to precede bear markets or periods where stocks could be purchased at lower prices later in the year.
 
-## January Effect / Small Cap Outperformance (Mid-Dec Start)
-- **Russell 2000 vs Russell 1000 (38-year avg, Dec 1987–Feb 2025):**
-  - 12/15–12/31: R2K +2.5% vs R1K +1.3% (annualized: 76.1% vs 34.4%)
-  - 12/15–01/31: R2K +3.1% vs R1K +2.1%
-  - 12/15–02/28: R2K +4.3% vs R1K +2.4%
+## Q4 Triple Witching Most Bullish [weekly_timing]
 
-## Monthly Statistics Summary
-| Index | Rank | Up | Down | Avg % Chg | Midterm Avg |
-|-------|------|----|------|-----------|-------------|
-| DJIA | 3 | 52 | 23 | +1.5% | +0.6% |
-| S&P 500 | 3 | 55 | 20 | +1.4% | +0.8% |
-| NASDAQ | 3 | 33 | 21 | +1.5% | –0.9% |
-| Russell 1K | 3 | 34 | 12 | +1.2% | –0.5% |
-| Russell 2K | 2 | 34 | 12 | +2.1% | –0.3% |
+December triple-witching week is the most bullish of all four quarterly expirations. S&P up 29 of last 41 during TWW. Triple-witching day itself (Fri Dec 18): S&P up 27 of last 43, but down 7 of last 10 — recent weakness despite long-term bullish record. Week after triple witching (Dec 21-24): Dow up 27 of last 34, avg gain 0.8%.
+
+## January Effect Begins Mid-December [timing]
+
+Small caps start outperforming large caps from mid-December, not January. Tax-loss selling creates bargains in beaten-down small stocks. Russell 2000 vs Russell 1000 (38-year avg, Dec 1987-Feb 2025): 12/15-12/31 R2K +2.5% vs R1K +1.3%. The effect extends through February: 12/15-02/28 R2K +4.3% vs R1K +2.4%.
+
+## Free Lunch Strategy [timing]
+
+Buy stocks hitting new lows on triple-witching Friday in December. Based on tax-loss selling overdoing the decline in thinly traded stocks. The "Free Lunch" list is compiled from new lows on Dec 18, 2026. Historically provides a quick bounce into January as selling pressure exhausts.
+
+## December First Trading Day Weak [weekly_timing]
+
+December first trading day is surprisingly weak: Dow up only 46.7%, S&P 49.3%. NASDAQ fares better at 59.3% but has been down 7 of last 13. Contrasts sharply with November's strong first day (65.3%). Early December is generally the weakest part of the month before mid-month strength kicks in.
+
+## Year-End Bearish Final Days [weekly_timing]
+
+Last trading day of the year: NASDAQ down 19 of last 25 — one of the most reliably bearish single days in the calendar. Dow and S&P also weak: D 33.3, S 28.6, N 28.6. The penultimate days (Dec 29-30) are also bearish: S&P 47.6 and 42.9. Tax-loss selling and portfolio window-dressing create late-December selling pressure before the Santa Claus Rally window resets.
+
+# IRIS Translation Rules for December
+
+1. December is #3 ranked for all three major indexes — solidly bullish but weaker in midterm years (S&P +0.8% midterm vs +1.4% all-years).
+2. The S&P 500 (S column) is the primary benchmark for SPY predictions.
+3. Week 1 (Nov 30 - Dec 4): WEAK START. First trading day (S 42.9), Wed (S 47.6), Fri (S 47.6). All neutral-to-bearish. Early December danger zone.
+4. Week 2 (Dec 7-11): Recovery. Mon-Tue strong (S 61.9 both days). FOMC Wed neutral (S 52.4). Small cap strength begins Thu (S 61.9).
+5. Week 3 (Dec 14-18, Triple Witching): Mixed. TWW starts strong Tue (S 61.9) but Thu crashes to S 33.3 — one of lowest scores in database. TWW day Fri moderate (S 47.6).
+6. Week 4 (Dec 21-24): POST-TWW STRENGTH + SANTA RALLY START. Mon-Wed all strong (S 61.9, 66.7, 66.7). Thu Dec 24 (S 61.9) = Santa Claus Rally begins.
+7. Week 5 (Dec 28-31): YEAR-END SELLOFF. Mon strong (S 66.7) but Tue-Thu collapse: S 47.6, 42.9, 28.6. Dec 31 (S 28.6) is among the most bearish single days in the database.
+8. Key dates: Dec 18 (Triple Witching + Free Lunch list), Dec 24 (Santa Rally begins), Dec 31 (year-end bearish, NASDAQ down 19 of 25).

@@ -69,6 +69,37 @@ class TestAlmanacAPI(unittest.TestCase):
         self.assertEqual(data["heatmap"]["2026-10"]["sp500_midterm_rank"], 1)
         self.assertEqual(data["months"]["2026-08"]["vital_stats"]["sp500"]["midterm_avg"], -0.4)
 
+    def test_build_payload_includes_november_and_december_seasonal_signals(self):
+        payload = build_payload()
+        seasonal_signals = payload["seasonal_signals"]
+        november_signals = [signal for signal in seasonal_signals if signal["source_month"] == "2026-11"]
+        december_signals = [signal for signal in seasonal_signals if signal["source_month"] == "2026-12"]
+
+        self.assertEqual(len(november_signals), 6)
+        self.assertEqual(len(december_signals), 6)
+        self.assertEqual(
+            {signal["label"] for signal in november_signals},
+            {
+                "Best Six Months Begins",
+                "November First Trading Day Strong",
+                "Midterm Election Bullish Window",
+                "November OpEx Week Strong",
+                "Thanksgiving Trade",
+                "Pre-Thanksgiving Week Weakness",
+            },
+        )
+        self.assertEqual(
+            {signal["label"] for signal in december_signals},
+            {
+                "Santa Claus Rally",
+                "Q4 Triple Witching Most Bullish",
+                "January Effect Begins Mid-December",
+                "Free Lunch Strategy",
+                "December First Trading Day Weak",
+                "Year-End Bearish Final Days",
+            },
+        )
+
     def test_almanac_daily_missing_date_returns_404(self):
         resp = self.client.get("/api/almanac/daily?date=2026-04-05")
         self.assertEqual(resp.status_code, 404)
