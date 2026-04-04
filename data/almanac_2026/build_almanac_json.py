@@ -8,6 +8,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_PATH = BASE_DIR / "almanac_2026.json"
+DB_DUMP_OUTPUT_PATH = BASE_DIR / "almanac_2026_db_dump.json"
 SOURCE_DEFAULT = "Stock Trader's Almanac 2026 (Wiley)"
 TARGET_YEAR = 2026
 
@@ -34,6 +35,12 @@ INDEX_KEY_MAP = {
     "sp500": "sp500",
     "s&p500": "sp500",
     "nasdaq": "nasdaq",
+}
+
+INDEX_LABEL_MAP = {
+    "dow": "DJIA",
+    "sp500": "S&P 500",
+    "nasdaq": "NASDAQ",
 }
 
 UNICODE_REPLACEMENTS = {
@@ -494,14 +501,173 @@ def build_payload() -> dict[str, object]:
     return payload
 
 
+def _build_table(columns: list[str], rows: list[dict[str, object]]) -> dict[str, object]:
+    return {
+        "columns": columns,
+        "row_count": len(rows),
+        "rows": rows,
+    }
+
+
+def build_structured_db_dump(payload: dict[str, object]) -> dict[str, object]:
+    meta = dict(payload.get("meta", {}))
+    months = dict(payload.get("months", {}))
+    daily = dict(payload.get("daily", {}))
+    seasonal_signals = list(payload.get("seasonal_signals", []))
+    seasonal_heatmap = dict(payload.get("seasonal_heatmap", {}))
+
+    metadata_rows = [
+        {"key": "source", "value": meta.get("source", SOURCE_DEFAULT)},
+        {"key": "year", "value": int(meta.get("year", TARGET_YEAR))},
+        {"key": "generated_at", "value": meta.get("generated_at", _iso_now())},
+        {"key": "format", "value": "almanac-json-db-v1"},
+    ]
+
+    month_rows: list[dict[str, object]] = []
+    vital_rows: list[dict[str, object]] = []
+    for month_key in sorted(months.keys()):
+        month = dict(months[month_key])
+        month_rows.append(
+            {
+                "month_key": month_key,
+                "name": month.get("name", ""),
+                "month_num": int(month.get("month_num", 0) or 0),
+                "overview": month.get("overview", ""),
+            }
+        )
+        for index_key in ("dow", "sp500", "nasdaq"):
+            stats = dict(month.get("vital_stats", {}).get(index_key, {}))
+            vital_rows.append(
+                {
+                    "month_key": month_key,
+                    "index_key": index_key,
+                    "index_name": INDEX_LABEL_MAP[index_key],
+                    "rank": int(stats.get("rank", 0) or 0),
+                    "years_up": int(stats.get("up", 0) or 0),
+                    "years_down": int(stats.get("down", 0) or 0),
+                    "avg_pct_change": float(stats.get("avg_change", 0.0) or 0.0),
+                    "midterm_yr_avg": float(stats.get("midterm_avg", 0.0) or 0.0),
+                }
+            )
+
+    daily_rows = []
+    for date_key in sorted(daily.keys()):
+        entry = dict(daily[date_key])
+        daily_rows.append(
+            {
+                "date": date_key,
+                "day_of_week": entry.get("day", ""),
+                "dow_prob": float(entry.get("d", 0.0) or 0.0),
+                "sp500_prob": float(entry.get("s", 0.0) or 0.0),
+                "nasdaq_prob": float(entry.get("n", 0.0) or 0.0),
+                "dow_dir": entry.get("d_dir", ""),
+                "sp500_dir": entry.get("s_dir", ""),
+                "nasdaq_dir": entry.get("n_dir", ""),
+                "icon": entry.get("icon"),
+                "notes": entry.get("notes", ""),
+            }
+        )
+
+    signal_rows = []
+    for signal in seasonal_signals:
+        signal_rows.append(
+            {
+                "id": signal.get("id", ""),
+                "label": signal.get("label", ""),
+                "type": signal.get("type", ""),
+                "source_month": signal.get("source_month", ""),
+                "description": signal.get("description", ""),
+            }
+        )
+
+    heatmap_rows = []
+    for month_key in sorted(seasonal_heatmap.keys()):
+        entry = dict(seasonal_heatmap[month_key])
+        heatmap_rows.append(
+            {
+                "month_key": month_key,
+                "bias": entry.get("bias", ""),
+                "sp500_rank": int(entry.get("sp500_rank", 0) or 0),
+                "sp500_avg": float(entry.get("sp500_avg", 0.0) or 0.0),
+                "sp500_midterm": float(entry.get("sp500_midterm", 0.0) or 0.0),
+                "sp500_midterm_rank": int(entry.get("sp500_midterm_rank", 0) or 0),
+            }
+        )
+
+    tables = {
+        "metadata": _build_table(["key", "value"], metadata_rows),
+        "months": _build_table(["month_key", "name", "month_num", "overview"], month_rows),
+        "vital_statistics": _build_table(
+            [
+                "month_key",
+                "index_key",
+                "index_name",
+                "rank",
+                "years_up",
+                "years_down",
+                "avg_pct_change",
+                "midterm_yr_avg",
+            ],
+            vital_rows,
+        ),
+        "daily_probabilities": _build_table(
+            [
+                "date",
+                "day_of_week",
+                "dow_prob",
+                "sp500_prob",
+                "nasdaq_prob",
+                "dow_dir",
+                "sp500_dir",
+                "nasdaq_dir",
+                "icon",
+                "notes",
+            ],
+            daily_rows,
+        ),
+        "seasonal_signals": _build_table(
+            ["id", "label", "type", "source_month", "description"],
+            signal_rows,
+        ),
+        "seasonal_heatmap": _build_table(
+            [
+                "month_key",
+                "bias",
+                "sp500_rank",
+                "sp500_avg",
+                "sp500_midterm",
+                "sp500_midterm_rank",
+            ],
+            heatmap_rows,
+        ),
+    }
+    return {
+        "_meta": {
+            "format": "almanac-json-db-v1",
+            "source": meta.get("source", SOURCE_DEFAULT),
+            "year": int(meta.get("year", TARGET_YEAR) or TARGET_YEAR),
+            "generated_at": meta.get("generated_at", _iso_now()),
+            "tables": list(tables.keys()),
+        },
+        **tables,
+    }
+
+
 def main() -> None:
     payload = build_payload()
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    db_dump = build_structured_db_dump(payload)
+    DB_DUMP_OUTPUT_PATH.write_text(json.dumps(db_dump, indent=2), encoding="utf-8")
     print(
         "Generated almanac JSON:",
         f"months={len(payload['months'])}",
         f"daily={len(payload['daily'])}",
         f"signals={len(payload['seasonal_signals'])}",
+    )
+    print(
+        "Generated almanac JSON DB:",
+        f"tables={len(db_dump['_meta']['tables'])}",
+        f"path={DB_DUMP_OUTPUT_PATH.name}",
     )
 
 

@@ -112,6 +112,16 @@ _yf_info_cache = {}
 _YF_INFO_TTL = 300  # seconds
 _almanac_data = None
 
+_ALMANAC_INDEX_KEY_MAP = {
+    "djia": "dow",
+    "dow": "dow",
+    "dow jones industrial average": "dow",
+    "s&p 500": "sp500",
+    "sp500": "sp500",
+    "s&p500": "sp500",
+    "nasdaq": "nasdaq",
+}
+
 
 def _get_cached_yf_info(ticker):
     """Cache yfinance Ticker.info payloads to reduce repeated network calls."""
@@ -132,19 +142,192 @@ def _get_cached_yf_info(ticker):
     return info
 
 
+def _almanac_iso_now():
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def _almanac_table_rows(payload, table_name):
+    table = payload.get(table_name, {})
+    if isinstance(table, dict):
+        rows = table.get("rows", [])
+        if isinstance(rows, list):
+            return [row for row in rows if isinstance(row, dict)]
+    return []
+
+
+def _almanac_float(value, default=0.0):
+    try:
+        if value is None or value == "":
+            return float(default)
+        return float(value)
+    except (TypeError, ValueError):
+        return float(default)
+
+
+def _almanac_int(value, default=0):
+    try:
+        if value is None or value == "":
+            return int(default)
+        return int(float(value))
+    except (TypeError, ValueError):
+        return int(default)
+
+
+def _normalize_almanac_index(value):
+    cleaned = str(value or "").strip().lower().replace(".", "")
+    return _ALMANAC_INDEX_KEY_MAP.get(cleaned)
+
+
+def _normalize_almanac_dump(payload):
+    metadata_rows = _almanac_table_rows(payload, "metadata")
+    metadata = {str(row.get("key", "")).strip(): row.get("value") for row in metadata_rows}
+
+    month_rows = _almanac_table_rows(payload, "months")
+    vital_rows = _almanac_table_rows(payload, "vital_statistics")
+    daily_rows = _almanac_table_rows(payload, "daily_probabilities")
+    signal_rows = _almanac_table_rows(payload, "seasonal_signals")
+    heatmap_rows = _almanac_table_rows(payload, "seasonal_heatmap")
+
+    if not month_rows or not daily_rows:
+        return {"error": "Unsupported almanac JSON format"}
+
+    months = {}
+    for row in month_rows:
+        month_key = str(row.get("month_key", "")).strip()
+        if not month_key:
+            continue
+        months[month_key] = {
+            "name": str(row.get("name", "")).strip(),
+            "month_num": _almanac_int(row.get("month_num"), 0),
+            "overview": str(row.get("overview", "")).strip(),
+            "vital_stats": {},
+        }
+
+    for row in vital_rows:
+        month_key = str(row.get("month_key", "")).strip()
+        index_key = str(row.get("index_key", "")).strip() or _normalize_almanac_index(row.get("index_name"))
+        if month_key not in months or index_key not in {"dow", "sp500", "nasdaq"}:
+            continue
+        months[month_key]["vital_stats"][index_key] = {
+            "rank": _almanac_int(row.get("rank"), 0),
+            "up": _almanac_int(row.get("years_up"), 0),
+            "down": _almanac_int(row.get("years_down"), 0),
+            "avg_change": _almanac_float(row.get("avg_pct_change"), 0.0),
+            "midterm_avg": _almanac_float(row.get("midterm_yr_avg"), 0.0),
+        }
+
+    daily = {}
+    for row in daily_rows:
+        date_key = str(row.get("date", "")).strip()
+        if not date_key:
+            continue
+        daily[date_key] = {
+            "date": date_key,
+            "day": str(row.get("day_of_week", "")).strip().upper()[:3],
+            "d": _almanac_float(row.get("dow_prob"), 0.0),
+            "s": _almanac_float(row.get("sp500_prob"), 0.0),
+            "n": _almanac_float(row.get("nasdaq_prob"), 0.0),
+            "d_dir": str(row.get("dow_dir", "")).strip().upper(),
+            "s_dir": str(row.get("sp500_dir", "")).strip().upper(),
+            "n_dir": str(row.get("nasdaq_dir", "")).strip().upper(),
+            "icon": row.get("icon"),
+            "notes": str(row.get("notes", "")).strip(),
+        }
+
+    seasonal_signals = []
+    for row in signal_rows:
+        seasonal_signals.append(
+            {
+                "id": str(row.get("id", "")).strip(),
+                "label": str(row.get("label", row.get("signal", ""))).strip(),
+                "type": str(row.get("type", row.get("relevance", ""))).strip(),
+                "source_month": str(row.get("source_month", "")).strip(),
+                "description": str(row.get("description", row.get("detail", ""))).strip(),
+            }
+        )
+
+    seasonal_heatmap = {}
+    for row in heatmap_rows:
+        month_key = str(row.get("month_key", "")).strip()
+        if not month_key:
+            continue
+        seasonal_heatmap[month_key] = {
+            "bias": str(row.get("bias", "")).strip(),
+            "sp500_rank": _almanac_int(row.get("sp500_rank"), 0),
+            "sp500_avg": _almanac_float(row.get("sp500_avg"), 0.0),
+            "sp500_midterm": _almanac_float(row.get("sp500_midterm"), 0.0),
+            "sp500_midterm_rank": _almanac_int(row.get("sp500_midterm_rank"), 0),
+        }
+
+    return {
+        "meta": {
+            "source": str(
+                metadata.get("source")
+                or payload.get("_meta", {}).get("source")
+                or "Stock Trader's Almanac 2026 (Wiley)"
+            ),
+            "year": _almanac_int(
+                metadata.get("year", payload.get("_meta", {}).get("year")),
+                2026,
+            ),
+            "generated_at": str(
+                metadata.get("generated_at")
+                or payload.get("_meta", {}).get("generated_at")
+                or _almanac_iso_now()
+            ),
+        },
+        "months": months,
+        "daily": {date_key: daily[date_key] for date_key in sorted(daily.keys())},
+        "seasonal_signals": seasonal_signals,
+        "seasonal_heatmap": seasonal_heatmap,
+    }
+
+
+def _normalize_almanac_payload(payload):
+    if not isinstance(payload, dict):
+        return {"error": "Invalid almanac payload"}
+
+    required_keys = {"meta", "months", "daily", "seasonal_signals", "seasonal_heatmap"}
+    if required_keys.issubset(payload.keys()):
+        return payload
+
+    if payload.get("_meta") or payload.get("daily_probabilities") or payload.get("vital_statistics"):
+        return _normalize_almanac_dump(payload)
+
+    return {"error": "Unsupported almanac JSON format"}
+
+
 def _load_almanac_data():
-    """Load repo-tracked almanac data once for the comparison UI."""
+    """Load JSON-backed almanac data once for the comparison UI."""
     global _almanac_data
-    if _almanac_data is None:
-        almanac_path = PROJECT_ROOT / "data" / "almanac_2026" / "almanac_2026.json"
-        if not almanac_path.exists():
-            _almanac_data = {"error": "almanac_2026.json not found"}
-            return _almanac_data
+    if _almanac_data is not None:
+        return _almanac_data
+
+    almanac_dir = PROJECT_ROOT / "data" / "almanac_2026"
+    candidates = [
+        ("primary", almanac_dir / "almanac_2026.json"),
+        ("structured-db", almanac_dir / "almanac_2026_db_dump.json"),
+    ]
+
+    for label, path in candidates:
+        if not path.exists():
+            continue
         try:
-            with open(almanac_path, "r", encoding="utf-8") as f:
-                _almanac_data = json.load(f)
+            with open(path, "r", encoding="utf-8") as f:
+                raw_payload = json.load(f)
+            _almanac_data = _normalize_almanac_payload(raw_payload)
+            if "error" in _almanac_data:
+                print(f"[ALMANAC] ERROR: {path.name} could not be normalized ({_almanac_data['error']})")
+                return _almanac_data
+            print(f"[ALMANAC] Loaded {label} almanac data from {path}")
+            return _almanac_data
         except Exception as exc:
-            _almanac_data = {"error": f"Failed to load almanac_2026.json: {exc}"}
+            _almanac_data = {"error": f"Failed to load {path.name}: {exc}"}
+            print(f"[ALMANAC] ERROR: {_almanac_data['error']}")
+            return _almanac_data
+
+    _almanac_data = {"error": "No almanac data found. Run build_almanac_json.py first."}
+    print(f"[ALMANAC] ERROR: {_almanac_data['error']}")
     return _almanac_data
 
 

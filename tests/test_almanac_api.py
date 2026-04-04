@@ -1,13 +1,17 @@
 """Tests for the almanac comparison page and read-only almanac API routes."""
 
+import json
 import os
+import shutil
 import sys
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import app as app_module
+from data.almanac_2026.build_almanac_json import build_payload, build_structured_db_dump
 
 
 class TestAlmanacAPI(unittest.TestCase):
@@ -83,6 +87,31 @@ class TestAlmanacAPI(unittest.TestCase):
         self.assertEqual(resp.status_code, 404)
         data = resp.get_json()
         self.assertEqual(data["error"], "almanac_2026.json not found")
+
+    def test_almanac_structured_json_db_fallback(self):
+        fallback_payload = build_structured_db_dump(build_payload())
+        temp_root = Path(__file__).resolve().parent / "tmp_almanac_fallback"
+        if temp_root.exists():
+            shutil.rmtree(temp_root)
+        try:
+            almanac_dir = temp_root / "data" / "almanac_2026"
+            almanac_dir.mkdir(parents=True, exist_ok=True)
+            (almanac_dir / "almanac_2026_db_dump.json").write_text(
+                json.dumps(fallback_payload, indent=2),
+                encoding="utf-8",
+            )
+
+            with patch.object(app_module, "PROJECT_ROOT", temp_root):
+                app_module._almanac_data = None
+                resp = self.client.get("/api/almanac/daily?date=2026-04-09")
+        finally:
+            shutil.rmtree(temp_root, ignore_errors=True)
+
+        self.assertEqual(resp.status_code, 200)
+        data = resp.get_json()
+        self.assertEqual(data["date"], "2026-04-09")
+        self.assertEqual(data["s"], 61.9)
+        self.assertEqual(data["icon"], "bull")
 
 
 if __name__ == "__main__":

@@ -222,6 +222,8 @@ data/*_report.json
 data/feedback_logs.json
 data/valid_tickers.json
 data/ticker_names.json
+data/almanac_2026/almanac_2026.db
+*.db
 node_modules/
 /.agents
 data/valid_tickers.lock
