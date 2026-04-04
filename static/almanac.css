@@ -1,0 +1,552 @@
+.alm-container {
+    padding-bottom: 2.5rem;
+}
+
+.alm-intro-card {
+    margin-bottom: 1.5rem;
+}
+
+.alm-intro-copy {
+    margin: 0.5rem 0 0;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.alm-nav-link-active {
+    color: var(--timeframe-active-text);
+    background: var(--timeframe-active-bg);
+    border-color: var(--timeframe-active-text);
+}
+
+.alm-view-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0 0 2rem;
+}
+
+.alm-tab {
+    border: none;
+    background: transparent;
+    border-radius: 999px;
+    padding: 0.55rem 1.2rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.alm-tab:hover {
+    background: var(--timeframe-hover-bg);
+    color: var(--timeframe-active-text);
+    transform: translateY(-1px);
+}
+
+.alm-tab.active {
+    background: var(--timeframe-active-bg);
+    color: var(--timeframe-active-text);
+}
+
+.alm-view {
+    animation: fadeIn 0.3s ease;
+}
+
+.alm-view.hidden {
+    display: none !important;
+}
+
+.alm-date-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
+}
+
+.alm-nav-btn {
+    border: 1px solid var(--panel-border);
+    background: transparent;
+    border-radius: 999px;
+    padding: 0.55rem 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.alm-nav-btn:hover {
+    background: var(--timeframe-hover-bg);
+    border-color: var(--timeframe-active-text);
+    transform: translateY(-1px);
+}
+
+.alm-date-label {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.alm-date-picker {
+    background: var(--panel-bg);
+    color: var(--text-main);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.92rem;
+}
+
+.alm-split-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.alm-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    padding: 1.25rem;
+    box-shadow: var(--shadow-panel);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.alm-panel:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.alm-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--panel-border);
+}
+
+.alm-panel-body {
+    min-height: 220px;
+}
+
+.alm-panel-badge {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.alm-badge-iris {
+    background: rgba(79, 111, 149, 0.15);
+    color: var(--accent-blue);
+    border: 1px solid rgba(79, 111, 149, 0.3);
+}
+
+.alm-badge-almanac {
+    background: rgba(180, 140, 58, 0.12);
+    color: var(--status-yellow);
+    border: 1px solid rgba(180, 140, 58, 0.25);
+}
+
+.alm-panel-sub {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.alm-verdict-bar {
+    margin-top: 1rem;
+    padding: 1rem;
+    text-align: center;
+    background: var(--bg-subtle);
+    border-radius: 12px;
+    border: 1px solid var(--panel-border);
+}
+
+.alm-agree,
+.alm-split,
+.alm-neutral {
+    font-weight: 700;
+}
+
+.alm-agree {
+    color: var(--status-green);
+}
+
+.alm-split {
+    color: var(--status-yellow);
+}
+
+.alm-neutral {
+    color: var(--text-muted);
+}
+
+.alm-empty {
+    min-height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-muted);
+    line-height: 1.6;
+    padding: 1rem;
+}
+
+.alm-score-shell {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.alm-score-value {
+    font-size: 2.3rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.alm-score-bullish {
+    color: var(--status-green);
+}
+
+.alm-score-bearish {
+    color: var(--status-red);
+}
+
+.alm-score-sideways {
+    color: var(--status-yellow);
+}
+
+.alm-score-caption,
+.alm-note-caption,
+.alm-stat-label,
+.alm-mini-title,
+.alm-calendar-score,
+.alm-weekday {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
+
+.alm-pill-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.alm-direction-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.alm-dir-d {
+    background: rgba(63, 127, 107, 0.15);
+    color: var(--status-green);
+}
+
+.alm-dir-s {
+    background: rgba(180, 140, 58, 0.12);
+    color: var(--status-yellow);
+}
+
+.alm-dir-n {
+    background: rgba(182, 78, 90, 0.15);
+    color: var(--status-red);
+}
+
+.alm-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    background: var(--bg-subtle);
+    color: var(--text-main);
+    font-size: 0.82rem;
+    font-weight: 600;
+    border: 1px solid var(--panel-border);
+}
+
+.alm-stat-grid,
+.alm-triple-grid,
+.alm-month-metrics {
+    display: grid;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.alm-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.alm-triple-grid,
+.alm-month-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.alm-stat-card,
+.alm-mini-card,
+.alm-metric-card {
+    background: var(--bg-subtle);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    padding: 0.85rem;
+    text-align: center;
+}
+
+.alm-stat-value,
+.alm-mini-value,
+.alm-metric-value {
+    color: var(--text-main);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 0.25rem;
+}
+
+.alm-metric-value.is-positive {
+    color: var(--status-green);
+}
+
+.alm-metric-value.is-negative {
+    color: var(--status-red);
+}
+
+.alm-note-box {
+    background: var(--bg-subtle);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    padding: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.alm-week-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.alm-week-table th {
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    background: var(--bg-subtle);
+    border-bottom: 1px solid var(--panel-border);
+}
+
+.alm-week-table td {
+    padding: 0.75rem 1rem;
+    font-size: 0.92rem;
+    color: var(--text-main);
+    border-bottom: 1px solid var(--panel-border);
+}
+
+.alm-week-table tr:last-child td {
+    border-bottom: none;
+}
+
+#weekly-agreement-strip {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.alm-agree-cell {
+    flex: 1 1 120px;
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: 8px;
+    background: var(--card-bg);
+    border: 1px solid var(--panel-border);
+}
+
+#seasonal-heatmap-strip {
+    display: flex;
+    gap: 0.35rem;
+    margin-bottom: 1.25rem;
+    padding: 1rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--panel-border);
+    flex-wrap: wrap;
+}
+
+.alm-month-cell {
+    flex: 1 1 72px;
+    min-height: 56px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: default;
+    transition: transform 0.2s ease;
+}
+
+.alm-month-cell:hover {
+    transform: scale(1.03);
+}
+
+.alm-month-cell.bullish {
+    background: rgba(63, 127, 107, 0.72);
+    color: #fff;
+}
+
+.alm-month-cell.bearish {
+    background: rgba(182, 78, 90, 0.72);
+    color: #fff;
+}
+
+.alm-month-cell.mixed {
+    background: rgba(180, 140, 58, 0.7);
+    color: #fff;
+}
+
+.alm-month-cell.current {
+    outline: 2px solid var(--text-main);
+    outline-offset: 2px;
+}
+
+#monthly-calendar-heatmap {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.35rem;
+    padding: 1rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--panel-border);
+    margin-top: 1rem;
+}
+
+.alm-cal-day {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.alm-cal-day.empty {
+    background: transparent;
+}
+
+.alm-cal-daynum {
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+#seasonal-signals-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.alm-signal-badge {
+    padding: 0.45rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+}
+
+.alm-signal-timing {
+    background: rgba(79, 111, 149, 0.12);
+    color: var(--accent-blue);
+    border-color: rgba(79, 111, 149, 0.25);
+}
+
+.alm-signal-weekly {
+    background: rgba(180, 140, 58, 0.12);
+    color: var(--status-yellow);
+    border-color: rgba(180, 140, 58, 0.25);
+}
+
+.alm-signal-macro {
+    background: rgba(182, 78, 90, 0.12);
+    color: var(--status-red);
+    border-color: rgba(182, 78, 90, 0.25);
+}
+
+.alm-signal-risk {
+    background: rgba(182, 78, 90, 0.18);
+    color: var(--status-red);
+    border-color: rgba(182, 78, 90, 0.35);
+    font-weight: 700;
+}
+
+.alm-rank-heading {
+    margin: 1.5rem 0 0.75rem;
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.alm-rank-meta {
+    font-size: 0.72rem;
+    opacity: 0.82;
+}
+
+@media (max-width: 768px) {
+    .alm-split-grid,
+    .alm-triple-grid,
+    .alm-month-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .alm-stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .alm-date-nav {
+        align-items: stretch;
+    }
+
+    .alm-date-label {
+        width: 100%;
+        text-align: center;
+    }
+
+    #monthly-calendar-heatmap {
+        gap: 0.25rem;
+        padding: 0.75rem;
+    }
+
+    .alm-cal-daynum {
+        font-size: 0.8rem;
+    }
+
+    .alm-calendar-score {
+        font-size: 0.68rem;
+    }
+
+    .alm-week-table th,
+    .alm-week-table td {
+        padding: 0.65rem 0.55rem;
+        font-size: 0.82rem;
+    }
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en-US">
+    <title>IRIS-AI | Almanac Comparison</title>
+    <style>
+      body, .alm-panel, .alm-week-table, .alm-signal-badge {
+        font-family: 'Inter', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+      }
+    </style>
+    <script>
+        (function () {
+            let saved = null;
+            try {
+                saved = localStorage.getItem('iris-theme') || localStorage.getItem('iris-theme-preference');
+            } catch (error) {
+                saved = null;
+            }
+            const preferDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = saved === 'dark' || saved === 'light' ? saved : (preferDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css?v=11">
+    <link rel="stylesheet" href="/static/almanac.css?v=1">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%233b82f6%22>IA</text></svg>">
+</head>
+
+<body>
+    <div class="glow-bg"></div>
+    <nav class="top-nav">
+        <div class="top-nav-inner">
+            <a href="/" class="nav-brand">IRIS<span class="brand-highlight">-AI</span></a>
+            <div class="nav-actions">
+                <a href="/" class="nav-link">Dashboard</a>
+                <a href="/almanac" class="nav-link alm-nav-link-active" aria-current="page">Almanac</a>
+                <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light and dark mode"
+                    aria-pressed="false">
+                    <span class="theme-toggle-track" aria-hidden="true">
+                        <span class="theme-toggle-thumb"></span>
+                    </span>
+                    <span class="theme-toggle-label">Light / Dark</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="logo">
+            <h1>IRIS<span class="highlight">-AI</span></h1>
+        </div>
+        <p class="subtitle">IRIS predictions vs Stock Trader's Almanac 2026</p>
+    </header>
+
+    <main class="container alm-container">
+        <section class="glass-panel alm-intro-card">
+            <h2>Seasonality Comparison</h2>
+            <p class="alm-intro-copy">
+                Compare live IRIS SPY analysis against curated 2026 Almanac seasonality for daily, weekly,
+                monthly, and full-year context.
+            </p>
+        </section>
+
+        <div id="view-tabs" class="alm-view-tabs" role="tablist" aria-label="Comparison views">
+            <button class="alm-tab active" data-view="daily" role="tab" aria-selected="true">Daily</button>
+            <button class="alm-tab" data-view="weekly" role="tab" aria-selected="false">Weekly</button>
+            <button class="alm-tab" data-view="monthly" role="tab" aria-selected="false">Monthly</button>
+            <button class="alm-tab" data-view="seasonal" role="tab" aria-selected="false">Seasonal</button>
+        </div>
+
+        <section id="view-daily" class="alm-view" aria-labelledby="view-tabs">
+            <div class="alm-date-nav">
+                <button id="date-prev" class="alm-nav-btn" type="button" aria-label="Previous trading day">&lt;</button>
+                <span id="date-label" class="alm-date-label">April 9, 2026</span>
+                <button id="date-next" class="alm-nav-btn" type="button" aria-label="Next trading day">&gt;</button>
+                <input type="date" id="date-picker" class="alm-date-picker" value="2026-04-09">
+            </div>
+            <div class="alm-split-grid">
+                <div class="alm-panel">
+                    <div class="alm-panel-header">
+                        <span class="alm-panel-badge alm-badge-iris">IRIS</span>
+                        <span class="alm-panel-sub">Live SPY analysis</span>
+                    </div>
+                    <div id="iris-daily-content" class="alm-panel-body">
+                        <div class="alm-empty">Loading IRIS prediction...</div>
+                    </div>
+                </div>
+                <div class="alm-panel">
+                    <div class="alm-panel-header">
+                        <span class="alm-panel-badge alm-badge-almanac">Almanac</span>
+                        <span class="alm-panel-sub">Historical probability</span>
+                    </div>
+                    <div id="almanac-daily-content" class="alm-panel-body">
+                        <div class="alm-empty">Loading almanac data...</div>
+                    </div>
+                </div>
+            </div>
+            <div id="daily-verdict" class="alm-verdict-bar">
+                <span class="alm-neutral">Awaiting comparison</span>
+            </div>
+        </section>
+
+        <section id="view-weekly" class="alm-view hidden" aria-labelledby="view-tabs">
+            <div class="alm-date-nav">
+                <button id="week-prev" class="alm-nav-btn" type="button">Prev Week</button>
+                <span id="week-label" class="alm-date-label">Week of Apr 6 - Apr 10, 2026</span>
+                <button id="week-next" class="alm-nav-btn" type="button">Next Week</button>
+            </div>
+            <div id="weekly-table-container" class="alm-table-shell">
+                <div class="alm-empty">Loading weekly data...</div>
+            </div>
+            <div id="weekly-agreement-strip"></div>
+        </section>
+
+        <section id="view-monthly" class="alm-view hidden" aria-labelledby="view-tabs">
+            <div class="alm-date-nav">
+                <button id="month-prev" class="alm-nav-btn" type="button" aria-label="Previous month">&lt;</button>
+                <span id="month-label" class="alm-date-label">April 2026</span>
+                <button id="month-next" class="alm-nav-btn" type="button" aria-label="Next month">&gt;</button>
+            </div>
+            <div class="alm-split-grid">
+                <div class="alm-panel">
+                    <div class="alm-panel-header">
+                        <span class="alm-panel-badge alm-badge-iris">IRIS Monthly</span>
+                        <span class="alm-panel-sub">Current implementation scope</span>
+                    </div>
+                    <div id="iris-monthly-content" class="alm-panel-body">
+                        <div class="alm-empty">Loading monthly summary...</div>
+                    </div>
+                </div>
+                <div class="alm-panel">
+                    <div class="alm-panel-header">
+                        <span class="alm-panel-badge alm-badge-almanac">Almanac Monthly</span>
+                        <span class="alm-panel-sub">Historical month profile</span>
+                    </div>
+                    <div id="almanac-monthly-content" class="alm-panel-body">
+                        <div class="alm-empty">Loading monthly summary...</div>
+                    </div>
+                </div>
+            </div>
+            <div id="monthly-calendar-heatmap"></div>
+        </section>
+
+        <section id="view-seasonal" class="alm-view hidden" aria-labelledby="view-tabs">
+            <div class="alm-panel">
+                <div class="alm-panel-header">
+                    <span class="alm-panel-badge alm-badge-almanac">Seasonal Heatmap</span>
+                    <span class="alm-panel-sub">Midterm-aware monthly backdrop</span>
+                </div>
+                <div id="seasonal-heatmap-strip"></div>
+                <div id="seasonal-signals-list"></div>
+                <div id="seasonal-monthly-ranking"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>IRIS-AI provides decision support flags based on historical data and sentiment analysis. It does not provide financial advice.</p>
+        <p>Almanac source: Stock Trader's Almanac 2026 (Wiley).</p>
+    </footer>
+
+    <script src="/static/almanac.js?v=1"></script>
+</body>
+
+</html>
