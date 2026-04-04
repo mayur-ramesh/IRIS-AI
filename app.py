@@ -959,6 +959,8 @@ def feedback_status():
         "cwd": os.getcwd(),
         "project_root": str(PROJECT_ROOT),
         "data_dir": str(DATA_DIR),
+        "iris_initialized": iris_app is not None,
+        "finbert_status": getattr(iris_app, "finbert_status", None) if iris_app is not None else None,
         "feedback_log_path": str(log_path),
         "feedback_log_exists": exists,
         "feedback_log_entries": count,

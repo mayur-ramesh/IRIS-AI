@@ -1,12 +1,56 @@
 import argparse
 import os
+from pathlib import Path
+from storage_paths import resolve_data_dir
+
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 os.environ.setdefault("DISABLE_SAFETENSORS_CONVERSION", "1")
+
+# Load .env early so runtime/cache paths and FinBERT config honor local overrides.
+try:
+    from dotenv import load_dotenv  # type: ignore
+    load_dotenv()
+except ImportError:
+    pass
+
+
+def _env_flag(name, default=False):
+    raw = os.environ.get(name)
+    if raw is None:
+        return default
+    return str(raw).strip().lower() in {"1", "true", "yes", "on"}
+
+
+def _resolve_optional_dir(raw_value):
+    raw = str(raw_value or "").strip()
+    if not raw:
+        return None
+    candidate = Path(raw).expanduser()
+    if not candidate.is_absolute():
+        candidate = PROJECT_ROOT / candidate
+    candidate.mkdir(parents=True, exist_ok=True)
+    return candidate
+
+
+PROJECT_ROOT = Path(__file__).resolve().parent
+DEMO_MODE = _env_flag("DEMO_MODE")
+DATA_DIR = resolve_data_dir(PROJECT_ROOT, DEMO_MODE)
+SESSIONS_DIR = DATA_DIR / "sessions"
+CHARTS_DIR = DATA_DIR / "charts"
+YF_CACHE_DIR = DATA_DIR / "yfinance_tz_cache"
+DEFAULT_FINBERT_CACHE_DIR = DATA_DIR / "huggingface" / "transformers"
+FINBERT_CACHE_DIR = _resolve_optional_dir(os.environ.get("IRIS_FINBERT_CACHE_DIR"))
+
+for _cache_dir in (SESSIONS_DIR, CHARTS_DIR, YF_CACHE_DIR):
+    _cache_dir.mkdir(parents=True, exist_ok=True)
+
+FINBERT_ENABLED = _env_flag("IRIS_ENABLE_FINBERT", default=True)
+FINBERT_MODEL_ID = str(os.environ.get("IRIS_FINBERT_MODEL_ID", "ProsusAI/finbert") or "").strip() or "ProsusAI/finbert"
+
 import math
 import yfinance as yf
 from newsapi import NewsApiClient
 import nltk
-from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
 import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 import pandas as pd
@@ -14,8 +58,17 @@ import time
 import json
 import re
 from concurrent.futures import ThreadPoolExecutor
-from pathlib import Path
-from storage_paths import resolve_data_dir
+
+try:
+    from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
+    _TRANSFORMERS_AVAILABLE = True
+    _TRANSFORMERS_IMPORT_ERROR = None
+except Exception as exc:
+    AutoModelForSequenceClassification = None
+    AutoTokenizer = None
+    pipeline = None
+    _TRANSFORMERS_AVAILABLE = False
+    _TRANSFORMERS_IMPORT_ERROR = exc
 
 # Optional: charting (graceful fallback if matplotlib missing)
 try:
@@ -27,20 +80,8 @@ try:
 except ImportError:
     _HAS_MATPLOTLIB = False
 
-# Load .env if available (for NEWS_API_KEY, IRIS_TICKERS)
-try:
-    from dotenv import load_dotenv  # type: ignore
-    load_dotenv()
-except ImportError:
-    pass
 NEWS_API_KEY = os.environ.get("NEWS_API_KEY") or None
 WEBZ_API_KEY = os.environ.get("WEBZ_API_KEY") or None
-DEMO_MODE = os.environ.get("DEMO_MODE", "false").lower() == "true"
-PROJECT_ROOT = Path(__file__).resolve().parent
-DATA_DIR = resolve_data_dir(PROJECT_ROOT, DEMO_MODE)
-SESSIONS_DIR = DATA_DIR / "sessions"
-CHARTS_DIR = DATA_DIR / "charts"
-YF_CACHE_DIR = DATA_DIR / "yfinance_tz_cache"
 TICKER_ALIASES = {
     "GOOGL": "GOOG",
 }
@@ -660,22 +701,52 @@ class IRIS_System:
         
         # Setup Sentiment Brain (FinBERT - financial sentiment model)
         print("   -> Loading FinBERT AI Model (This may take a moment on first run)...")
-        try:
-            finbert_model_id = "ProsusAI/finbert"
-            tokenizer = AutoTokenizer.from_pretrained(finbert_model_id)
-            model = AutoModelForSequenceClassification.from_pretrained(
-                finbert_model_id,
-                use_safetensors=False,
-            )
-            self.sentiment_analyzer = pipeline(
-                "sentiment-analysis",
-                model=model,
-                tokenizer=tokenizer,
-            )
-            print("   -> FinBERT Loaded Successfully!")
-        except Exception as e:
-            print(f"   -> Error loading FinBERT: {e}")
-            self.sentiment_analyzer = None
+        self.sentiment_analyzer = None
+        self.finbert_status = {
+            "enabled": FINBERT_ENABLED,
+            "model_id": FINBERT_MODEL_ID,
+            "cache_dir": (
+                str(FINBERT_CACHE_DIR)
+                if FINBERT_CACHE_DIR is not None
+                else os.environ.get("TRANSFORMERS_CACHE") or os.environ.get("HF_HOME")
+            ),
+            "ready": False,
+            "reason": None,
+        }
+        if not FINBERT_ENABLED:
+            self.finbert_status["reason"] = "disabled via IRIS_ENABLE_FINBERT"
+            print("   -> FinBERT disabled via IRIS_ENABLE_FINBERT")
+        elif not _TRANSFORMERS_AVAILABLE:
+            self.finbert_status["reason"] = f"transformers/PyTorch unavailable ({_TRANSFORMERS_IMPORT_ERROR})"
+            print(f"   -> FinBERT disabled: {self.finbert_status['reason']}")
+        else:
+            try:
+                tokenizer_kwargs = {}
+                model_kwargs = {
+                    "use_safetensors": False,
+                }
+                if FINBERT_CACHE_DIR is not None:
+                    tokenizer_kwargs["cache_dir"] = str(FINBERT_CACHE_DIR)
+                    model_kwargs["cache_dir"] = str(FINBERT_CACHE_DIR)
+                tokenizer = AutoTokenizer.from_pretrained(
+                    FINBERT_MODEL_ID,
+                    **tokenizer_kwargs,
+                )
+                model = AutoModelForSequenceClassification.from_pretrained(
+                    FINBERT_MODEL_ID,
+                    **model_kwargs,
+                )
+                self.sentiment_analyzer = pipeline(
+                    "sentiment-analysis",
+                    model=model,
+                    tokenizer=tokenizer,
+                )
+                self.finbert_status["ready"] = True
+                self.finbert_status["reason"] = "loaded"
+                print(f"   -> FinBERT Loaded Successfully! ({FINBERT_MODEL_ID})")
+            except Exception as e:
+                self.finbert_status["reason"] = str(e)
+                print(f"   -> Error loading FinBERT: {e}")
         
         #  Setup News Connection
         self.news_api = None

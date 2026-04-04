@@ -46,6 +46,23 @@ This keeps generated reports, sessions, feedback logs, and yfinance caches machi
 
 ---
 
+## FinBERT Setup
+
+FinBERT sentiment analysis is enabled by default for IRIS.
+
+* Dependencies are already declared in `requirements.txt`:
+  * `torch`
+  * `transformers`
+* On first startup, IRIS loads the `ProsusAI/finbert` model using the normal Hugging Face cache for the machine.
+* Optional environment overrides:
+  * `IRIS_ENABLE_FINBERT=false` to disable FinBERT explicitly
+  * `IRIS_FINBERT_MODEL_ID=<hugging-face-model-id>` to swap the model
+  * `IRIS_FINBERT_CACHE_DIR=<path>` to pin the model cache to a project-local folder such as `runtime_data/huggingface/transformers`
+
+If FinBERT cannot load, IRIS now logs the exact reason and continues running with sentiment fallback behavior instead of failing app startup.
+
+---
+
 ## Historical Reports and Trend Accuracy
 
 Use these commands to keep the pipeline reproducible across machines.
