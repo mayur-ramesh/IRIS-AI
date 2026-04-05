@@ -104,6 +104,9 @@ def sanitize_ticker_input(raw: str) -> str:
 # Standard US tickers: 1-5 letters, optionally ONE dot + 1-2 letters.
 # Covers BRK.B, BRK.A, class shares, etc.
 _STANDARD_TICKER_RE = re.compile(r"^[A-Z]{1,5}(\.[A-Z]{1,2})?$")
+# Preferred share tickers: base symbol + hyphen + series code.
+# Covers T-PA, BAC-PB, WFC-PL, JPM-PC, etc.
+_PREFERRED_TICKER_RE = re.compile(r"^[A-Z]{1,5}-[A-Z0-9]{1,3}$")
 # Yahoo special symbols:
 # - Indices: ^GSPC, ^IXIC, ^DJI
 # - Futures: CL=F, GC=F, SI=F, HG=F
@@ -138,13 +141,15 @@ def validate_ticker_format(ticker: str) -> TickerValidationResult:
         )
 
     is_standard = bool(_STANDARD_TICKER_RE.fullmatch(normalized))
+    is_preferred = bool(_PREFERRED_TICKER_RE.fullmatch(normalized))
     is_special = _is_special_market_symbol(normalized)
-    if not (is_standard or is_special):
+    if not (is_standard or is_preferred or is_special):
         return TickerValidationResult(
             valid=False, ticker=normalized, code=ErrorCode.INVALID_FORMAT,
             error=(
                 f'"{normalized}" is not a valid ticker format. '
-                "Use stock format (e.g., AAPL, BRK.B) or special market symbols (e.g., ^GSPC, CL=F)."
+                "Use stock format (e.g., AAPL, BRK.B), preferred shares (e.g., T-PA, BAC-PB), "
+                "or special market symbols (e.g., ^GSPC, CL=F)."
             ),
         )
 

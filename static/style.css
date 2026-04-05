@@ -1046,6 +1046,12 @@ footer p {
     flex-direction: column;
 }
 
+.chart-timeframe-hint {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin: 0 0 0.5rem;
+}
+
 .chart-controls-row {
     display: flex;
     align-items: center;

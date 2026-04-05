@@ -1029,11 +1029,11 @@
 
     function parseCheckEngineLight(rawValue) {
         const value = String(rawValue || '').trim();
+        if (!value) {
+            return { label: 'N/A — analyze a ticker first', tone: 'neutral', missing: true };
+        }
         const tone = value.startsWith('RED') ? 'red' : value.startsWith('YELLOW') ? 'yellow' : 'green';
-        return {
-            label: value || 'UNKNOWN',
-            tone,
-        };
+        return { label: value, tone, missing: false };
     }
 
     function getIrisSignal(payload) {
@@ -1213,7 +1213,9 @@
                 ? 'var(--status-red)'
                 : light.tone === 'yellow'
                     ? 'var(--status-yellow)'
-                    : 'var(--status-green)';
+                    : light.tone === 'neutral'
+                        ? 'var(--text-muted)'
+                        : 'var(--status-green)';
             const indexCards = [
                 { key: 'dji', label: 'Dow', data: indices.dji },
                 { key: 'gspc', label: 'S&P 500', data: indices.gspc },
@@ -1222,16 +1224,17 @@
                 const entry = idx.data;
                 if (!entry || !entry.available) {
                     return '<div class="alm-mini-card"><div class="alm-mini-title">' + idx.label
-                        + '</div><div class="alm-note-caption">Unavailable</div></div>';
+                        + '</div><div class="alm-note-caption">No report — click Refresh</div></div>';
                 }
                 const direction = String(entry.direction || '').toLowerCase();
+                const signalText = entry.investment_signal || (entry.trend_label ? '' : 'Loading...');
                 return ''
                     + '<div class="alm-mini-card">'
                     + '  <div class="alm-mini-title">' + escapeHtml(idx.label) + '</div>'
                     + '  <div class="alm-mini-value" style="color:' + irisDirectionColor(direction) + ';">'
                     +       irisDirectionArrow(direction) + ' ' + escapeHtml(formatIrisPctChange(entry.pct_change))
                     + '  </div>'
-                    + '  <div class="' + irisSignalClass(entry.investment_signal) + '">' + escapeHtml(entry.investment_signal || 'HOLD') + '</div>'
+                    + '  <div class="' + irisSignalClass(entry.investment_signal) + '">' + escapeHtml(signalText || 'HOLD') + '</div>'
                     + '  <div class="alm-note-caption">' + escapeHtml(entry.trend_label || 'Trend unavailable') + '</div>'
                     + '</div>';
             }).join('');
@@ -1250,9 +1253,10 @@
             irisPanel.innerHTML = ''
                 + '<div class="alm-score-shell">'
                 + '  <div class="alm-score-caption">Check Engine Light</div>'
-                + '  <div class="alm-score-value" style="color:' + lightColor + ';">'
-                +       escapeHtml(light.label.split(' ')[0] || 'UNKNOWN')
+                + '  <div class="alm-score-value" style="color:' + lightColor + '; font-size:' + (light.missing ? '0.9rem' : '') + ';">'
+                +       escapeHtml(light.missing ? 'No Report' : (light.label.split(' ')[0] || 'N/A'))
                 + '  </div>'
+                +      (light.missing ? '<div class="alm-note-caption" style="margin-top:0.25rem;">Click Refresh below to fetch live data</div>' : '')
                 + '</div>'
                 + '<div class="alm-triple-grid">' + indexCards + '</div>'
                 + trendBox
@@ -1305,7 +1309,11 @@
             }).join(' <span class="alm-note-caption">|</span> ');
 
             verdict.innerHTML = ''
-                + '<div class="alm-note-caption">IRIS vs Almanac direction per index</div>'
+                + '<div class="alm-note-caption">IRIS direction vs Almanac historical bias'
+                + ' &mdash; <strong>AGREE</strong> = both point the same way'
+                + ' &nbsp;&middot;&nbsp; <strong>DISAGREE</strong> = opposing signals'
+                + ' &nbsp;&middot;&nbsp; <strong>NEUTRAL</strong> = one or both are sideways / no clear call'
+                + '</div>'
                 + '<div style="margin-top:0.35rem;">' + badges + '</div>';
         }
     }
@@ -1343,7 +1351,9 @@
             weekLabel.textContent = formatWeekRangeLabel(currentWeekStart);
         }
 
-        const weekAccuracy = await loadWeekAccuracy(currentWeekStart) || buildWeeklyAccuracyFallback(accPayload, weekDates);
+        const weekAccuracyFromApi = await loadWeekAccuracy(currentWeekStart);
+        const weekAccuracy = weekAccuracyFromApi || buildWeeklyAccuracyFallback(accPayload, weekDates);
+        const usingFallbackAccuracy = !weekAccuracyFromApi;
 
         if (container) {
             const rows = weekDays.map((day) => {
@@ -1381,17 +1391,21 @@
 
             container.innerHTML = ''
                 + '<table class="alm-week-table">'
-                + '  <thead><tr><th>Day</th><th>Dow</th><th>S&amp;P 500</th><th>NASDAQ</th><th>Icon</th><th>Notes</th><th>Daily Accuracy</th></tr></thead>'
+                + '  <thead><tr><th>Day</th><th>Dow</th><th>S&amp;P 500</th><th>NASDAQ</th><th>Icon</th><th>Notes</th><th>Backtest (Hits/Total)</th></tr></thead>'
                 + '  <tbody>' + rows + '</tbody>'
                 + '</table>';
         }
 
         if (strip) {
+            const fallbackNote = usingFallbackAccuracy
+                ? '<div class="alm-note-caption" style="width:100%;text-align:center;margin-top:0.5rem;">* Accuracy totals computed from daily records (no weekly summary available for this period)</div>'
+                : '';
             strip.innerHTML = ''
                 + buildWeeklySummaryCard('Overall', weekAccuracy)
                 + buildWeeklySummaryCard('Dow', weekAccuracy?.dow)
                 + buildWeeklySummaryCard('S&P 500', weekAccuracy?.sp500)
-                + buildWeeklySummaryCard('NASDAQ', weekAccuracy?.nasdaq);
+                + buildWeeklySummaryCard('NASDAQ', weekAccuracy?.nasdaq)
+                + fallbackNote;
         }
     }
 
@@ -1466,9 +1480,12 @@
         if (irisPanel) {
             irisPanel.innerHTML = ''
                 + '<div class="alm-note-box">'
-                + 'Monthly IRIS aggregation is intentionally lightweight in this pass.'
-                + '<br><br>The page currently reuses cached IRIS index snapshots for daily comparison only.'
-                + '<br><br>Planned future extension: stored historical IRIS reports by session date for weekly and monthly accuracy summaries.'
+                + '<strong>IRIS day-by-day view</strong><br><br>'
+                + 'IRIS predictions are compared against the Almanac one trading day at a time. '
+                + 'Switch to the <strong>Daily</strong> tab and use the date arrows to step through any trading day in this month.'
+                + '<br><br>'
+                + 'The calendar below shows Almanac historical probability scores for each day in ' + escapeHtml(formatMonthLabel(currentMonth)) + '. '
+                + 'Hover or tap any date cell to see the full breakdown.'
                 + '</div>';
         }
 
@@ -1529,10 +1546,10 @@
                 monthSummary.style.display = '';
                 monthSummary.className = 'alm-month-acc-summary';
                 monthSummary.innerHTML = 'Month Accuracy: '
-                    + monthAcc.hits + '/' + monthAcc.total_calls + ' (' + formatAccuracyPct(monthAcc.accuracy, 1) + '%)'
-                    + '<span class="alm-note-caption">D: ' + formatAccuracyPct(monthAcc.dow?.pct ?? 0, 0) + '%'
-                    + ' &middot; S: ' + formatAccuracyPct(monthAcc.sp500?.pct ?? 0, 0) + '%'
-                    + ' &middot; N: ' + formatAccuracyPct(monthAcc.nasdaq?.pct ?? 0, 0) + '%</span>';
+                    + monthAcc.hits + '/' + monthAcc.total_calls + ' direction calls correct (' + formatAccuracyPct(monthAcc.accuracy, 1) + '%)'
+                    + '<span class="alm-note-caption"> Dow: ' + formatAccuracyPct(monthAcc.dow?.pct ?? 0, 0) + '%'
+                    + ' &middot; S&amp;P: ' + formatAccuracyPct(monthAcc.sp500?.pct ?? 0, 0) + '%'
+                    + ' &middot; NASDAQ: ' + formatAccuracyPct(monthAcc.nasdaq?.pct ?? 0, 0) + '%</span>';
             }
         }
     }

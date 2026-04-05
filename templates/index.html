@@ -190,14 +190,15 @@
             <!-- Market Chart -->
             <div class="card glass-panel chart-card" id="chart-section">
                 <h3>Market Chart & Trend</h3>
+                <p class="chart-timeframe-hint">Select timeframe: shows historical chart + future prediction for the selected period</p>
                 <div class="chart-controls-row">
                     <div class="chart-timeframes" role="tablist" aria-label="Chart timeframe">
-                        <button type="button" class="timeframe-btn" data-timeframe="1D">1D</button>
-                        <button type="button" class="timeframe-btn" data-timeframe="5D">5D</button>
-                        <button type="button" class="timeframe-btn" data-timeframe="1M">1M</button>
-                        <button type="button" class="timeframe-btn active" data-timeframe="6M">6M</button>
-                        <button type="button" class="timeframe-btn" data-timeframe="1Y">1Y</button>
-                        <button type="button" class="timeframe-btn" data-timeframe="5Y">5Y</button>
+                        <button type="button" class="timeframe-btn" data-timeframe="1D" title="Last 1 day chart + next session prediction">1D</button>
+                        <button type="button" class="timeframe-btn" data-timeframe="5D" title="Last 5 days chart + 5-day ahead prediction">5D</button>
+                        <button type="button" class="timeframe-btn" data-timeframe="1M" title="Last 1 month chart + 1-month ahead prediction">1M</button>
+                        <button type="button" class="timeframe-btn active" data-timeframe="6M" title="Last 6 months chart + 6-month ahead prediction">6M</button>
+                        <button type="button" class="timeframe-btn" data-timeframe="1Y" title="Last 1 year chart + 1-year ahead prediction">1Y</button>
+                        <button type="button" class="timeframe-btn" data-timeframe="5Y" title="Last 5 years chart + 5-year ahead prediction">5Y</button>
                     </div>
                     <span id="chart-forecast-confidence" class="chart-forecast-confidence hidden"></span>
                 </div>

@@ -599,6 +599,10 @@ def _format_iris_snapshot_entry(report: dict, label: str):
     if not isinstance(top_factors, list):
         top_factors = []
 
+    trend_label = str(h1d.get("trend_label") or signals.get("trend_label", "")).strip()
+    investment_signal = str(h1d.get("investment_signal") or signals.get("investment_signal", "")).strip()
+    check_engine_light = str(signals.get("check_engine_light", "")).strip()
+
     return {
         "available": True,
         "label": label,
@@ -607,11 +611,11 @@ def _format_iris_snapshot_entry(report: dict, label: str):
         "generated_at": str(meta.get("generated_at", "")).strip(),
         "current_price": current_price or None,
         "predicted_price": predicted_price or None,
-        "trend_label": str(h1d.get("trend_label") or signals.get("trend_label", "")).strip(),
-        "investment_signal": str(h1d.get("investment_signal") or signals.get("investment_signal", "")).strip(),
-        "check_engine_light": str(signals.get("check_engine_light", "")).strip(),
+        "trend_label": trend_label or "Trend data unavailable",
+        "investment_signal": investment_signal or "HOLD",
+        "check_engine_light": check_engine_light,
         "pct_change": pct_change,
-        "direction": direction,
+        "direction": direction or _iris_direction_from_pct_change(pct_change),
         "top_factors": top_factors,
         "model_confidence": h1d.get("model_confidence") or signals.get("model_confidence"),
         "sentiment_score": _safe_float(signals.get("sentiment_score"), 0.0),

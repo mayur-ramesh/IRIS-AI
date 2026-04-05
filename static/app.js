@@ -126,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (accuracyRowEl) accuracyRowEl.classList.remove('hidden');
         if (chartForecastConfidenceEl) {
             chartForecastConfidenceEl.textContent = formatted + ' confidence';
+            chartForecastConfidenceEl.title = `Model confidence: ${formatted} — Based on out-of-bag R² score and prediction consistency across decision trees. Longer horizons apply a decay factor since forecasts further out are inherently less reliable.`;
             chartForecastConfidenceEl.className = 'chart-forecast-confidence ' + colorClass;
             chartForecastConfidenceEl.classList.remove('hidden');
         }
@@ -2062,10 +2063,46 @@ document.addEventListener('DOMContentLoaded', () => {
             chartTooltip.style.top = `${y}px`;
         });
 
+        // Dynamic subtitle: explains both functions of the selected timeframe.
+        const HORIZON_SUBTITLE_MAP = {
+            '1D': 'Showing last 1 day of price history \u2022 Predicting next session ahead',
+            '5D': 'Showing last 5 days of price history \u2022 Predicting 5 days ahead',
+            '1M': 'Showing last 1 month of price history \u2022 Predicting 1 month ahead',
+            '6M': 'Showing last 6 months of price history \u2022 Predicting 6 months ahead',
+            '1Y': 'Showing last 1 year of price history \u2022 Predicting 1 year ahead',
+            '5Y': 'Showing last 5 years of price history \u2022 Predicting 5 years ahead',
+        };
+        let chartSubtitleEl = document.getElementById('chart-horizon-subtitle');
+        if (!chartSubtitleEl) {
+            chartSubtitleEl = document.createElement('p');
+            chartSubtitleEl.id = 'chart-horizon-subtitle';
+            chartSubtitleEl.className = 'chart-timeframe-hint';
+            chartSubtitleEl.style.textAlign = 'center';
+            chartSubtitleEl.style.marginTop = '0.4rem';
+            const chartContainer = document.getElementById('advanced-chart');
+            if (chartContainer && chartContainer.parentNode) {
+                chartContainer.parentNode.insertBefore(chartSubtitleEl, chartContainer.nextSibling);
+            }
+        }
+        if (chartSubtitleEl) {
+            chartSubtitleEl.textContent = HORIZON_SUBTITLE_MAP[currentHorizon] || '';
+        }
+
         const lastDataPoint = history[history.length - 1];
         if (Number.isFinite(predictedPrice) && lastDataPoint) {
             const lastTime = lastDataPoint.time;
             const isUpForecast = predictedPrice >= lastDataPoint.value;
+
+            // Mark the "Today / Historical →" boundary on the main price series.
+            if (typeof mainSeries.setMarkers === 'function') {
+                mainSeries.setMarkers([{
+                    time: lastDataPoint.time,
+                    position: 'aboveBar',
+                    color: 'rgba(148, 163, 184, 0.9)',
+                    shape: 'arrowDown',
+                    text: 'Today',
+                }]);
+            }
             const forecastColor = isUpForecast ? '#06b6d4' : '#f97316';
 
             const trajPoints = Array.isArray(trajectory) && trajectory.length > 0 ? trajectory : [predictedPrice];

@@ -1611,8 +1611,9 @@ class IRIS_System:
             y = history_df["Close"].values
             model = RandomForestRegressor(n_estimators=RF_TREE_COUNT, random_state=42, oob_score=True)
             model.fit(X, y)
-            _raw_oob = float(getattr(model, 'oob_score_', 0.5))
-            model_confidence = max(0.0, min(100.0, 50.0 + _raw_oob * 50.0))
+            _raw_oob = float(getattr(model, 'oob_score_', 0.0))
+            _oob_r2_clamped = max(0.0, _raw_oob)
+            model_confidence = 65.0  # Updated after prediction loop with spread component.
 
             # Iterative multi-step prediction
             last = history_df.iloc[-1]
@@ -1626,6 +1627,7 @@ class IRIS_System:
 
             predicted_price = cur_close
             trajectory = []
+            _last_pred_row = None
             for step in range(horizon_days):
                 next_sma5 = (predicted_price + cur_sma5 * 4) / 5
                 next_sma10 = (predicted_price + cur_sma10 * 9) / 10
@@ -1643,6 +1645,7 @@ class IRIS_System:
                     cur_volume,
                     sentiment_value,
                 ]])
+                _last_pred_row = next_row
                 predicted_price = float(model.predict(next_row)[0])
                 trajectory.append(predicted_price)
                 # Feed predictions forward for next iteration
@@ -1650,6 +1653,15 @@ class IRIS_System:
                 cur_sma10 = next_sma10
                 cur_sma20 = next_sma20
                 cur_rsi = next_rsi
+
+            # Composite confidence: OOB R² (60%) + tree prediction spread (40%).
+            if _last_pred_row is not None and abs(predicted_price) > 0:
+                _tree_preds = np.array([t.predict(_last_pred_row)[0] for t in model.estimators_])
+                _spread_std = float(np.std(_tree_preds))
+                _spread_score = max(0.0, 1.0 - (_spread_std / abs(predicted_price)))
+                model_confidence = min(95.0, max(0.0, (_oob_r2_clamped * 0.6 + _spread_score * 0.4) * 100.0))
+            else:
+                model_confidence = min(95.0, max(0.0, _oob_r2_clamped * 60.0))
         else:
             n = len(history_prices)
             days = np.arange(n).reshape(-1, 1)
@@ -1683,8 +1695,9 @@ class IRIS_System:
             y = close_series.values
             model = RandomForestRegressor(n_estimators=RF_TREE_COUNT, random_state=42, oob_score=True)
             model.fit(X, y)
-            _raw_oob = float(getattr(model, 'oob_score_', 0.5))
-            model_confidence = max(0.0, min(100.0, 50.0 + _raw_oob * 50.0))
+            _raw_oob = float(getattr(model, 'oob_score_', 0.0))
+            _oob_r2_clamped = max(0.0, _raw_oob)
+            model_confidence = 65.0  # Updated after prediction loop with spread component.
 
             # Iterative multi-step prediction (fallback path)
             cur_close = float(close_series.iloc[-1]) if n else 0.0
@@ -1695,6 +1708,7 @@ class IRIS_System:
 
             predicted_price = cur_close
             trajectory = []
+            _last_pred_row = None
             for step in range(horizon_days):
                 next_sma5 = (predicted_price + cur_sma5 * 4) / 5
                 next_sma10 = (predicted_price + cur_sma10 * 9) / 10
@@ -1712,12 +1726,22 @@ class IRIS_System:
                     0.0,
                     sentiment_value,
                 ]])
+                _last_pred_row = next_row
                 predicted_price = float(model.predict(next_row)[0])
                 trajectory.append(predicted_price)
                 cur_sma5 = next_sma5
                 cur_sma10 = next_sma10
                 cur_sma20 = next_sma20
                 cur_rsi = next_rsi
+
+            # Composite confidence: OOB R² (60%) + tree prediction spread (40%).
+            if _last_pred_row is not None and abs(predicted_price) > 0:
+                _tree_preds = np.array([t.predict(_last_pred_row)[0] for t in model.estimators_])
+                _spread_std = float(np.std(_tree_preds))
+                _spread_score = max(0.0, 1.0 - (_spread_std / abs(predicted_price)))
+                model_confidence = min(95.0, max(0.0, (_oob_r2_clamped * 0.6 + _spread_score * 0.4) * 100.0))
+            else:
+                model_confidence = min(95.0, max(0.0, _oob_r2_clamped * 60.0))
 
         current_price = float(history_prices[-1]) if len(history_prices) else 0.0
         pct_change = ((predicted_price - current_price) / current_price * 100) if current_price else 0.0
@@ -1811,7 +1835,7 @@ class IRIS_System:
             print(f"  predict_all_horizons bootstrap failed: {exc}")
 
         _HORIZON_CONF_FACTOR = {
-            "1D": 1.00, "5D": 0.95, "1M": 0.88, "6M": 0.78, "1Y": 0.68, "5Y": 0.58
+            "1D": 1.00, "5D": 0.95, "1M": 0.85, "6M": 0.70, "1Y": 0.55, "5Y": 0.35
         }
 
         for horizon_key, horizon_days in RISK_HORIZON_MAP.items():
