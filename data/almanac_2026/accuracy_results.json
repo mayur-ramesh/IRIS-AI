@@ -1,0 +1,3118 @@
+{
+  "meta": {
+    "last_updated": "2026-04-05T07:00:42.132269Z",
+    "total_days_scored": 63,
+    "data_range": {
+      "from": "2026-01-02",
+      "to": "2026-04-02"
+    },
+    "source": "Historic CSV backtest via scripts/seed_accuracy.py"
+  },
+  "daily": {
+    "2026-01-02": {
+      "actual": {
+        "dji": 48382.39,
+        "sp500": 6858.47,
+        "nasdaq": 23235.63
+      },
+      "prev_close": {
+        "dji": 48063.29,
+        "sp500": 6845.5,
+        "nasdaq": 23241.99
+      },
+      "pct_change": {
+        "dji": 0.006639,
+        "sp500": 0.001895,
+        "nasdaq": -0.000274
+      },
+      "almanac_scores": {
+        "d": 66.7,
+        "s": 52.4,
+        "n": 61.9
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 2,
+      "total_calls": 3,
+      "context": "First Trading Day of Year, NASDAQ Up 18 of Last 28"
+    },
+    "2026-01-05": {
+      "actual": {
+        "dji": 48977.18,
+        "sp500": 6902.05,
+        "nasdaq": 23395.82
+      },
+      "prev_close": {
+        "dji": 48382.39,
+        "sp500": 6858.47,
+        "nasdaq": 23235.63
+      },
+      "pct_change": {
+        "dji": 0.012294,
+        "sp500": 0.006354,
+        "nasdaq": 0.006894
+      },
+      "almanac_scores": {
+        "d": 61.9,
+        "s": 47.6,
+        "n": 38.1
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        }
+      },
+      "hits": 1,
+      "total_calls": 3,
+      "context": "Second Trading Day of the Year, Dow Up 21 of Last 32; Santa Claus Rally Ends"
+    },
+    "2026-01-06": {
+      "actual": {
+        "dji": 49462.08,
+        "sp500": 6944.82,
+        "nasdaq": 23547.17
+      },
+      "prev_close": {
+        "dji": 48977.18,
+        "sp500": 6902.05,
+        "nasdaq": 23395.82
+      },
+      "pct_change": {
+        "dji": 0.009901,
+        "sp500": 0.006197,
+        "nasdaq": 0.006469
+      },
+      "almanac_scores": {
+        "d": 47.6,
+        "s": 52.4,
+        "n": 47.6
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        }
+      },
+      "hits": 1,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-01-07": {
+      "actual": {
+        "dji": 48996.08,
+        "sp500": 6920.93,
+        "nasdaq": 23584.27
+      },
+      "prev_close": {
+        "dji": 49462.08,
+        "sp500": 6944.82,
+        "nasdaq": 23547.17
+      },
+      "pct_change": {
+        "dji": -0.009421,
+        "sp500": -0.00344,
+        "nasdaq": 0.001576
+      },
+      "almanac_scores": {
+        "d": 61.9,
+        "s": 66.7,
+        "n": 61.9
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 1,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-01-08": {
+      "actual": {
+        "dji": 49266.11,
+        "sp500": 6921.46,
+        "nasdaq": 23480.02
+      },
+      "prev_close": {
+        "dji": 48996.08,
+        "sp500": 6920.93,
+        "nasdaq": 23584.27
+      },
+      "pct_change": {
+        "dji": 0.005511,
+        "sp500": 7.7e-05,
+        "nasdaq": -0.00442
+      },
+      "almanac_scores": {
+        "d": 42.9,
+        "s": 52.4,
+        "n": 71.4
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 1,
+      "total_calls": 3,
+      "context": "January's First Five Days Act as an Early Warning"
+    },
+    "2026-01-09": {
+      "actual": {
+        "dji": 49504.07,
+        "sp500": 6966.28,
+        "nasdaq": 23671.35
+      },
+      "prev_close": {
+        "dji": 49266.11,
+        "sp500": 6921.46,
+        "nasdaq": 23480.02
+      },
+      "pct_change": {
+        "dji": 0.00483,
+        "sp500": 0.006476,
+        "nasdaq": 0.008149
+      },
+      "almanac_scores": {
+        "d": 52.4,
+        "s": 57.1,
+        "n": 66.7
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": "January Ends Best Three-Month Span"
+    },
+    "2026-01-12": {
+      "actual": {
+        "dji": 49590.2,
+        "sp500": 6977.27,
+        "nasdaq": 23733.9
+      },
+      "prev_close": {
+        "dji": 49504.07,
+        "sp500": 6966.28,
+        "nasdaq": 23671.35
+      },
+      "pct_change": {
+        "dji": 0.00174,
+        "sp500": 0.001578,
+        "nasdaq": 0.002642
+      },
+      "almanac_scores": {
+        "d": 61.9,
+        "s": 71.4,
+        "n": 71.4
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": "First Trading Day of January Monthly Expiration Week, Dow Up 20 of Last 33"
+    },
+    "2026-01-13": {
+      "actual": {
+        "dji": 49191.99,
+        "sp500": 6963.74,
+        "nasdaq": 23709.87
+      },
+      "prev_close": {
+        "dji": 49590.2,
+        "sp500": 6977.27,
+        "nasdaq": 23733.9
+      },
+      "pct_change": {
+        "dji": -0.00803,
+        "sp500": -0.001939,
+        "nasdaq": -0.001012
+      },
+      "almanac_scores": {
+        "d": 52.4,
+        "s": 52.4,
+        "n": 61.9
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 0,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-01-14": {
+      "actual": {
+        "dji": 49149.63,
+        "sp500": 6926.6,
+        "nasdaq": 23471.75
+      },
+      "prev_close": {
+        "dji": 49191.99,
+        "sp500": 6963.74,
+        "nasdaq": 23709.87
+      },
+      "pct_change": {
+        "dji": -0.000861,
+        "sp500": -0.005333,
+        "nasdaq": -0.010043
+      },
+      "almanac_scores": {
+        "d": 47.6,
+        "s": 52.4,
+        "n": 47.6
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 2,
+      "total_calls": 3,
+      "context": "January Monthly Expiration Week, Dow Up 11 of Last 15"
+    },
+    "2026-01-15": {
+      "actual": {
+        "dji": 49442.44,
+        "sp500": 6944.47,
+        "nasdaq": 23530.02
+      },
+      "prev_close": {
+        "dji": 49149.63,
+        "sp500": 6926.6,
+        "nasdaq": 23471.75
+      },
+      "pct_change": {
+        "dji": 0.005958,
+        "sp500": 0.00258,
+        "nasdaq": 0.002483
+      },
+      "almanac_scores": {
+        "d": 42.9,
+        "s": 47.6,
+        "n": 42.9
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        }
+      },
+      "hits": 0,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-01-16": {
+      "actual": {
+        "dji": 49359.33,
+        "sp500": 6940.01,
+        "nasdaq": 23515.39
+      },
+      "prev_close": {
+        "dji": 49442.44,
+        "sp500": 6944.47,
+        "nasdaq": 23530.02
+      },
+      "pct_change": {
+        "dji": -0.001681,
+        "sp500": -0.000642,
+        "nasdaq": -0.000622
+      },
+      "almanac_scores": {
+        "d": 57.1,
+        "s": 66.7,
+        "n": 66.7
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 0,
+      "total_calls": 3,
+      "context": "January Monthly Expiration Day, Dow Up 13 of Last 15; Day Before MLK Day"
+    },
+    "2026-01-20": {
+      "actual": {
+        "dji": 48488.59,
+        "sp500": 6796.86,
+        "nasdaq": 22954.32
+      },
+      "prev_close": {
+        "dji": 49359.33,
+        "sp500": 6940.01,
+        "nasdaq": 23515.39
+      },
+      "pct_change": {
+        "dji": -0.017641,
+        "sp500": -0.020627,
+        "nasdaq": -0.02386
+      },
+      "almanac_scores": {
+        "d": 42.9,
+        "s": 42.9,
+        "n": 47.6
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": "Day After Martin Luther King Jr. Day, NASDAQ Down 7 of Last 10"
+    },
+    "2026-01-21": {
+      "actual": {
+        "dji": 49077.23,
+        "sp500": 6875.62,
+        "nasdaq": 23224.82
+      },
+      "prev_close": {
+        "dji": 48488.59,
+        "sp500": 6796.86,
+        "nasdaq": 22954.32
+      },
+      "pct_change": {
+        "dji": 0.01214,
+        "sp500": 0.011588,
+        "nasdaq": 0.011784
+      },
+      "almanac_scores": {
+        "d": 52.4,
+        "s": 61.9,
+        "n": 47.6
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        }
+      },
+      "hits": 2,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-01-22": {
+      "actual": {
+        "dji": 49384.01,
+        "sp500": 6913.35,
+        "nasdaq": 23436.02
+      },
+      "prev_close": {
+        "dji": 49077.23,
+        "sp500": 6875.62,
+        "nasdaq": 23224.82
+      },
+      "pct_change": {
+        "dji": 0.006251,
+        "sp500": 0.005488,
+        "nasdaq": 0.009094
+      },
+      "almanac_scores": {
+        "d": 42.9,
+        "s": 57.1,
+        "n": 52.4
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 2,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-01-23": {
+      "actual": {
+        "dji": 49098.71,
+        "sp500": 6915.61,
+        "nasdaq": 23501.24
+      },
+      "prev_close": {
+        "dji": 49384.01,
+        "sp500": 6913.35,
+        "nasdaq": 23436.02
+      },
+      "pct_change": {
+        "dji": -0.005777,
+        "sp500": 0.000327,
+        "nasdaq": 0.002783
+      },
+      "almanac_scores": {
+        "d": 47.6,
+        "s": 52.4,
+        "n": 66.7
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-01-26": {
+      "actual": {
+        "dji": 49412.4,
+        "sp500": 6950.23,
+        "nasdaq": 23601.36
+      },
+      "prev_close": {
+        "dji": 49098.71,
+        "sp500": 6915.61,
+        "nasdaq": 23501.24
+      },
+      "pct_change": {
+        "dji": 0.006389,
+        "sp500": 0.005006,
+        "nasdaq": 0.00426
+      },
+      "almanac_scores": {
+        "d": 57.1,
+        "s": 61.9,
+        "n": 57.1
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-01-27": {
+      "actual": {
+        "dji": 49003.41,
+        "sp500": 6978.6,
+        "nasdaq": 23817.1
+      },
+      "prev_close": {
+        "dji": 49412.4,
+        "sp500": 6950.23,
+        "nasdaq": 23601.36
+      },
+      "pct_change": {
+        "dji": -0.008277,
+        "sp500": 0.004082,
+        "nasdaq": 0.009141
+      },
+      "almanac_scores": {
+        "d": 57.1,
+        "s": 47.6,
+        "n": 61.9
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 1,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-01-28": {
+      "actual": {
+        "dji": 49015.6,
+        "sp500": 6978.03,
+        "nasdaq": 23857.45
+      },
+      "prev_close": {
+        "dji": 49003.41,
+        "sp500": 6978.6,
+        "nasdaq": 23817.1
+      },
+      "pct_change": {
+        "dji": 0.000249,
+        "sp500": -8.2e-05,
+        "nasdaq": 0.001694
+      },
+      "almanac_scores": {
+        "d": 52.4,
+        "s": 42.9,
+        "n": 57.1
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": "FOMC Meeting"
+    },
+    "2026-01-29": {
+      "actual": {
+        "dji": 49071.56,
+        "sp500": 6969.01,
+        "nasdaq": 23685.12
+      },
+      "prev_close": {
+        "dji": 49015.6,
+        "sp500": 6978.03,
+        "nasdaq": 23857.45
+      },
+      "pct_change": {
+        "dji": 0.001142,
+        "sp500": -0.001293,
+        "nasdaq": -0.007223
+      },
+      "almanac_scores": {
+        "d": 47.6,
+        "s": 47.6,
+        "n": 42.9
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 2,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-01-30": {
+      "actual": {
+        "dji": 48892.47,
+        "sp500": 6939.03,
+        "nasdaq": 23461.82
+      },
+      "prev_close": {
+        "dji": 49071.56,
+        "sp500": 6969.01,
+        "nasdaq": 23685.12
+      },
+      "pct_change": {
+        "dji": -0.00365,
+        "sp500": -0.004302,
+        "nasdaq": -0.009428
+      },
+      "almanac_scores": {
+        "d": 38.1,
+        "s": 42.9,
+        "n": 52.4
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 2,
+      "total_calls": 3,
+      "context": "January Barometer 84.0% Accurate"
+    },
+    "2026-02-02": {
+      "actual": {
+        "dji": 49407.66,
+        "sp500": 6976.44,
+        "nasdaq": 23592.11
+      },
+      "prev_close": {
+        "dji": 48892.47,
+        "sp500": 6939.03,
+        "nasdaq": 23461.82
+      },
+      "pct_change": {
+        "dji": 0.010537,
+        "sp500": 0.005391,
+        "nasdaq": 0.005553
+      },
+      "almanac_scores": {
+        "d": 85.7,
+        "s": 81.0,
+        "n": 81.0
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": "First Trading Day in February, Dow Up 19 of Last 23"
+    },
+    "2026-02-03": {
+      "actual": {
+        "dji": 49240.99,
+        "sp500": 6917.81,
+        "nasdaq": 23255.19
+      },
+      "prev_close": {
+        "dji": 49407.66,
+        "sp500": 6976.44,
+        "nasdaq": 23592.11
+      },
+      "pct_change": {
+        "dji": -0.003373,
+        "sp500": -0.008404,
+        "nasdaq": -0.014281
+      },
+      "almanac_scores": {
+        "d": 57.1,
+        "s": 71.4,
+        "n": 66.7
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 0,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-02-04": {
+      "actual": {
+        "dji": 49501.3,
+        "sp500": 6882.72,
+        "nasdaq": 22904.58
+      },
+      "prev_close": {
+        "dji": 49240.99,
+        "sp500": 6917.81,
+        "nasdaq": 23255.19
+      },
+      "pct_change": {
+        "dji": 0.005286,
+        "sp500": -0.005072,
+        "nasdaq": -0.015077
+      },
+      "almanac_scores": {
+        "d": 47.6,
+        "s": 38.1,
+        "n": 33.3
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 2,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-02-05": {
+      "actual": {
+        "dji": 48908.72,
+        "sp500": 6798.4,
+        "nasdaq": 22540.59
+      },
+      "prev_close": {
+        "dji": 49501.3,
+        "sp500": 6882.72,
+        "nasdaq": 22904.58
+      },
+      "pct_change": {
+        "dji": -0.011971,
+        "sp500": -0.012251,
+        "nasdaq": -0.015892
+      },
+      "almanac_scores": {
+        "d": 66.7,
+        "s": 71.4,
+        "n": 61.9
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 0,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-02-06": {
+      "actual": {
+        "dji": 50115.67,
+        "sp500": 6932.3,
+        "nasdaq": 23031.21
+      },
+      "prev_close": {
+        "dji": 48908.72,
+        "sp500": 6798.4,
+        "nasdaq": 22540.59
+      },
+      "pct_change": {
+        "dji": 0.024678,
+        "sp500": 0.019696,
+        "nasdaq": 0.021766
+      },
+      "almanac_scores": {
+        "d": 61.9,
+        "s": 57.1,
+        "n": 57.1
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-02-09": {
+      "actual": {
+        "dji": 50135.87,
+        "sp500": 6964.82,
+        "nasdaq": 23238.67
+      },
+      "prev_close": {
+        "dji": 50115.67,
+        "sp500": 6932.3,
+        "nasdaq": 23031.21
+      },
+      "pct_change": {
+        "dji": 0.000403,
+        "sp500": 0.004691,
+        "nasdaq": 0.009008
+      },
+      "almanac_scores": {
+        "d": 47.6,
+        "s": 61.9,
+        "n": 61.9
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 2,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-02-10": {
+      "actual": {
+        "dji": 50188.14,
+        "sp500": 6941.81,
+        "nasdaq": 23102.47
+      },
+      "prev_close": {
+        "dji": 50135.87,
+        "sp500": 6964.82,
+        "nasdaq": 23238.67
+      },
+      "pct_change": {
+        "dji": 0.001043,
+        "sp500": -0.003304,
+        "nasdaq": -0.005861
+      },
+      "almanac_scores": {
+        "d": 52.4,
+        "s": 57.1,
+        "n": 61.9
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 1,
+      "total_calls": 3,
+      "context": "Week Before February Monthly Expiration Week, NASDAQ Up 11 of Last 16"
+    },
+    "2026-02-11": {
+      "actual": {
+        "dji": 50121.4,
+        "sp500": 6941.47,
+        "nasdaq": 23066.47
+      },
+      "prev_close": {
+        "dji": 50188.14,
+        "sp500": 6941.81,
+        "nasdaq": 23102.47
+      },
+      "pct_change": {
+        "dji": -0.00133,
+        "sp500": -4.9e-05,
+        "nasdaq": -0.001558
+      },
+      "almanac_scores": {
+        "d": 61.9,
+        "s": 57.1,
+        "n": 57.1
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 0,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-02-12": {
+      "actual": {
+        "dji": 49451.98,
+        "sp500": 6832.76,
+        "nasdaq": 22597.15
+      },
+      "prev_close": {
+        "dji": 50121.4,
+        "sp500": 6941.47,
+        "nasdaq": 23066.47
+      },
+      "pct_change": {
+        "dji": -0.013356,
+        "sp500": -0.015661,
+        "nasdaq": -0.020346
+      },
+      "almanac_scores": {
+        "d": 57.1,
+        "s": 71.4,
+        "n": 71.4
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 0,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-02-13": {
+      "actual": {
+        "dji": 49500.93,
+        "sp500": 6836.17,
+        "nasdaq": 22546.67
+      },
+      "prev_close": {
+        "dji": 49451.98,
+        "sp500": 6832.76,
+        "nasdaq": 22597.15
+      },
+      "pct_change": {
+        "dji": 0.00099,
+        "sp500": 0.000499,
+        "nasdaq": -0.002234
+      },
+      "almanac_scores": {
+        "d": 47.6,
+        "s": 61.9,
+        "n": 81.0
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 1,
+      "total_calls": 3,
+      "context": "Day Before Presidents' Day Weekend, S&P Up 10 of Last 15"
+    },
+    "2026-02-17": {
+      "actual": {
+        "dji": 49533.19,
+        "sp500": 6843.22,
+        "nasdaq": 22578.38
+      },
+      "prev_close": {
+        "dji": 49500.93,
+        "sp500": 6836.17,
+        "nasdaq": 22546.67
+      },
+      "pct_change": {
+        "dji": 0.000652,
+        "sp500": 0.001031,
+        "nasdaq": 0.001406
+      },
+      "almanac_scores": {
+        "d": 71.4,
+        "s": 71.4,
+        "n": 71.4
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": "Day After Presidents Day; First Trading Day of February Monthly Expiration Week, Dow Up 22 of Last 32"
+    },
+    "2026-02-18": {
+      "actual": {
+        "dji": 49662.66,
+        "sp500": 6881.31,
+        "nasdaq": 22753.63
+      },
+      "prev_close": {
+        "dji": 49533.19,
+        "sp500": 6843.22,
+        "nasdaq": 22578.38
+      },
+      "pct_change": {
+        "dji": 0.002614,
+        "sp500": 0.005566,
+        "nasdaq": 0.007762
+      },
+      "almanac_scores": {
+        "d": 61.9,
+        "s": 52.4,
+        "n": 42.9
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        }
+      },
+      "hits": 2,
+      "total_calls": 3,
+      "context": "Ash Wednesday"
+    },
+    "2026-02-19": {
+      "actual": {
+        "dji": 49395.16,
+        "sp500": 6861.89,
+        "nasdaq": 22682.73
+      },
+      "prev_close": {
+        "dji": 49662.66,
+        "sp500": 6881.31,
+        "nasdaq": 22753.63
+      },
+      "pct_change": {
+        "dji": -0.005386,
+        "sp500": -0.002822,
+        "nasdaq": -0.003116
+      },
+      "almanac_scores": {
+        "d": 42.9,
+        "s": 38.1,
+        "n": 38.1
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-02-20": {
+      "actual": {
+        "dji": 49625.97,
+        "sp500": 6909.51,
+        "nasdaq": 22886.07
+      },
+      "prev_close": {
+        "dji": 49395.16,
+        "sp500": 6861.89,
+        "nasdaq": 22682.73
+      },
+      "pct_change": {
+        "dji": 0.004673,
+        "sp500": 0.00694,
+        "nasdaq": 0.008965
+      },
+      "almanac_scores": {
+        "d": 38.1,
+        "s": 33.3,
+        "n": 33.3
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        }
+      },
+      "hits": 0,
+      "total_calls": 3,
+      "context": "February Monthly Expiration Day, NASDAQ Down 15 of Last 22"
+    },
+    "2026-02-23": {
+      "actual": {
+        "dji": 48804.06,
+        "sp500": 6837.75,
+        "nasdaq": 22627.27
+      },
+      "prev_close": {
+        "dji": 49625.97,
+        "sp500": 6909.51,
+        "nasdaq": 22886.07
+      },
+      "pct_change": {
+        "dji": -0.016562,
+        "sp500": -0.010386,
+        "nasdaq": -0.011308
+      },
+      "almanac_scores": {
+        "d": 47.6,
+        "s": 38.1,
+        "n": 42.9
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": "End of February Miserable in Recent Years"
+    },
+    "2026-02-24": {
+      "actual": {
+        "dji": 49174.5,
+        "sp500": 6890.07,
+        "nasdaq": 22863.68
+      },
+      "prev_close": {
+        "dji": 48804.06,
+        "sp500": 6837.75,
+        "nasdaq": 22627.27
+      },
+      "pct_change": {
+        "dji": 0.00759,
+        "sp500": 0.007652,
+        "nasdaq": 0.010448
+      },
+      "almanac_scores": {
+        "d": 47.6,
+        "s": 52.4,
+        "n": 42.9
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        }
+      },
+      "hits": 1,
+      "total_calls": 3,
+      "context": "Week After February Monthly Expiration Week, Dow Down 15 of Last 27"
+    },
+    "2026-02-25": {
+      "actual": {
+        "dji": 49482.15,
+        "sp500": 6946.13,
+        "nasdaq": 23152.08
+      },
+      "prev_close": {
+        "dji": 49174.5,
+        "sp500": 6890.07,
+        "nasdaq": 22863.68
+      },
+      "pct_change": {
+        "dji": 0.006256,
+        "sp500": 0.008136,
+        "nasdaq": 0.012614
+      },
+      "almanac_scores": {
+        "d": 57.1,
+        "s": 61.9,
+        "n": 76.2
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-02-26": {
+      "actual": {
+        "dji": 49499.2,
+        "sp500": 6908.86,
+        "nasdaq": 22878.38
+      },
+      "prev_close": {
+        "dji": 49482.15,
+        "sp500": 6946.13,
+        "nasdaq": 23152.08
+      },
+      "pct_change": {
+        "dji": 0.000345,
+        "sp500": -0.005366,
+        "nasdaq": -0.011822
+      },
+      "almanac_scores": {
+        "d": 42.9,
+        "s": 47.6,
+        "n": 61.9
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 1,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-02-27": {
+      "actual": {
+        "dji": 48977.92,
+        "sp500": 6878.88,
+        "nasdaq": 22668.21
+      },
+      "prev_close": {
+        "dji": 49499.2,
+        "sp500": 6908.86,
+        "nasdaq": 22878.38
+      },
+      "pct_change": {
+        "dji": -0.010531,
+        "sp500": -0.004339,
+        "nasdaq": -0.009186
+      },
+      "almanac_scores": {
+        "d": 28.6,
+        "s": 28.6,
+        "n": 33.3
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-03-02": {
+      "actual": {
+        "dji": 48904.78,
+        "sp500": 6881.62,
+        "nasdaq": 22748.86
+      },
+      "prev_close": {
+        "dji": 48977.92,
+        "sp500": 6878.88,
+        "nasdaq": 22668.21
+      },
+      "pct_change": {
+        "dji": -0.001493,
+        "sp500": 0.000398,
+        "nasdaq": 0.003558
+      },
+      "almanac_scores": {
+        "d": 66.7,
+        "s": 66.7,
+        "n": 61.9
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 2,
+      "total_calls": 3,
+      "context": "First Trading Day in March, S&P Up 17 of Last 26"
+    },
+    "2026-03-03": {
+      "actual": {
+        "dji": 48501.27,
+        "sp500": 6816.63,
+        "nasdaq": 22516.69
+      },
+      "prev_close": {
+        "dji": 48904.78,
+        "sp500": 6881.62,
+        "nasdaq": 22748.86
+      },
+      "pct_change": {
+        "dji": -0.008251,
+        "sp500": -0.009444,
+        "nasdaq": -0.010206
+      },
+      "almanac_scores": {
+        "d": 33.3,
+        "s": 38.1,
+        "n": 42.9
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-03-04": {
+      "actual": {
+        "dji": 48739.41,
+        "sp500": 6869.5,
+        "nasdaq": 22807.48
+      },
+      "prev_close": {
+        "dji": 48501.27,
+        "sp500": 6816.63,
+        "nasdaq": 22516.69
+      },
+      "pct_change": {
+        "dji": 0.00491,
+        "sp500": 0.007756,
+        "nasdaq": 0.012914
+      },
+      "almanac_scores": {
+        "d": 52.4,
+        "s": 57.1,
+        "n": 47.6
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        }
+      },
+      "hits": 2,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-03-05": {
+      "actual": {
+        "dji": 47954.74,
+        "sp500": 6830.71,
+        "nasdaq": 22748.99
+      },
+      "prev_close": {
+        "dji": 48739.41,
+        "sp500": 6869.5,
+        "nasdaq": 22807.48
+      },
+      "pct_change": {
+        "dji": -0.016099,
+        "sp500": -0.005647,
+        "nasdaq": -0.002565
+      },
+      "almanac_scores": {
+        "d": 47.6,
+        "s": 52.4,
+        "n": 38.1
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 2,
+      "total_calls": 3,
+      "context": "March Historically Strong Early in the Month"
+    },
+    "2026-03-06": {
+      "actual": {
+        "dji": 47501.55,
+        "sp500": 6740.02,
+        "nasdaq": 22387.68
+      },
+      "prev_close": {
+        "dji": 47954.74,
+        "sp500": 6830.71,
+        "nasdaq": 22748.99
+      },
+      "pct_change": {
+        "dji": -0.00945,
+        "sp500": -0.013277,
+        "nasdaq": -0.015882
+      },
+      "almanac_scores": {
+        "d": 47.6,
+        "s": 47.6,
+        "n": 33.3
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-03-09": {
+      "actual": {
+        "dji": 47740.8,
+        "sp500": 6795.99,
+        "nasdaq": 22695.95
+      },
+      "prev_close": {
+        "dji": 47501.55,
+        "sp500": 6740.02,
+        "nasdaq": 22387.68
+      },
+      "pct_change": {
+        "dji": 0.005037,
+        "sp500": 0.008304,
+        "nasdaq": 0.01377
+      },
+      "almanac_scores": {
+        "d": 38.1,
+        "s": 38.1,
+        "n": 42.9
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        }
+      },
+      "hits": 0,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-03-10": {
+      "actual": {
+        "dji": 47706.51,
+        "sp500": 6781.48,
+        "nasdaq": 22697.1
+      },
+      "prev_close": {
+        "dji": 47740.8,
+        "sp500": 6795.99,
+        "nasdaq": 22695.95
+      },
+      "pct_change": {
+        "dji": -0.000718,
+        "sp500": -0.002135,
+        "nasdaq": 5.1e-05
+      },
+      "almanac_scores": {
+        "d": 66.7,
+        "s": 61.9,
+        "n": 57.1
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 1,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-03-11": {
+      "actual": {
+        "dji": 47417.27,
+        "sp500": 6775.8,
+        "nasdaq": 22716.13
+      },
+      "prev_close": {
+        "dji": 47706.51,
+        "sp500": 6781.48,
+        "nasdaq": 22697.1
+      },
+      "pct_change": {
+        "dji": -0.006063,
+        "sp500": -0.000838,
+        "nasdaq": 0.000838
+      },
+      "almanac_scores": {
+        "d": 47.6,
+        "s": 57.1,
+        "n": 42.9
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        }
+      },
+      "hits": 1,
+      "total_calls": 3,
+      "context": "Dow Down 1469 Points March 9-22 in 2001"
+    },
+    "2026-03-12": {
+      "actual": {
+        "dji": 46677.85,
+        "sp500": 6672.62,
+        "nasdaq": 22311.98
+      },
+      "prev_close": {
+        "dji": 47417.27,
+        "sp500": 6775.8,
+        "nasdaq": 22716.13
+      },
+      "pct_change": {
+        "dji": -0.015594,
+        "sp500": -0.015228,
+        "nasdaq": -0.017791
+      },
+      "almanac_scores": {
+        "d": 52.4,
+        "s": 57.1,
+        "n": 61.9
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 0,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-03-13": {
+      "actual": {
+        "dji": 46558.47,
+        "sp500": 6632.19,
+        "nasdaq": 22105.36
+      },
+      "prev_close": {
+        "dji": 46677.85,
+        "sp500": 6672.62,
+        "nasdaq": 22311.98
+      },
+      "pct_change": {
+        "dji": -0.002558,
+        "sp500": -0.006059,
+        "nasdaq": -0.00926
+      },
+      "almanac_scores": {
+        "d": 66.7,
+        "s": 42.9,
+        "n": 47.6
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 2,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-03-16": {
+      "actual": {
+        "dji": 46946.41,
+        "sp500": 6699.38,
+        "nasdaq": 22374.18
+      },
+      "prev_close": {
+        "dji": 46558.47,
+        "sp500": 6632.19,
+        "nasdaq": 22105.36
+      },
+      "pct_change": {
+        "dji": 0.008332,
+        "sp500": 0.010131,
+        "nasdaq": 0.012161
+      },
+      "almanac_scores": {
+        "d": 61.9,
+        "s": 47.6,
+        "n": 47.6
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        }
+      },
+      "hits": 1,
+      "total_calls": 3,
+      "context": "Monday Before March Triple Witching, Dow Up 27 of Last 38"
+    },
+    "2026-03-17": {
+      "actual": {
+        "dji": 46993.26,
+        "sp500": 6716.09,
+        "nasdaq": 22479.53
+      },
+      "prev_close": {
+        "dji": 46946.41,
+        "sp500": 6699.38,
+        "nasdaq": 22374.18
+      },
+      "pct_change": {
+        "dji": 0.000998,
+        "sp500": 0.002494,
+        "nasdaq": 0.004709
+      },
+      "almanac_scores": {
+        "d": 61.9,
+        "s": 66.7,
+        "n": 71.4
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": "St. Patrick's Day"
+    },
+    "2026-03-18": {
+      "actual": {
+        "dji": 46225.15,
+        "sp500": 6624.7,
+        "nasdaq": 22152.42
+      },
+      "prev_close": {
+        "dji": 46993.26,
+        "sp500": 6716.09,
+        "nasdaq": 22479.53
+      },
+      "pct_change": {
+        "dji": -0.016345,
+        "sp500": -0.013608,
+        "nasdaq": -0.014551
+      },
+      "almanac_scores": {
+        "d": 61.9,
+        "s": 61.9,
+        "n": 71.4
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 0,
+      "total_calls": 3,
+      "context": "FOMC Meeting"
+    },
+    "2026-03-19": {
+      "actual": {
+        "dji": 46021.43,
+        "sp500": 6606.49,
+        "nasdaq": 22090.69
+      },
+      "prev_close": {
+        "dji": 46225.15,
+        "sp500": 6624.7,
+        "nasdaq": 22152.42
+      },
+      "pct_change": {
+        "dji": -0.004407,
+        "sp500": -0.002749,
+        "nasdaq": -0.002787
+      },
+      "almanac_scores": {
+        "d": 61.9,
+        "s": 52.4,
+        "n": 76.2
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 0,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-03-20": {
+      "actual": {
+        "dji": 45577.47,
+        "sp500": 6506.48,
+        "nasdaq": 21647.61
+      },
+      "prev_close": {
+        "dji": 46021.43,
+        "sp500": 6606.49,
+        "nasdaq": 22090.69
+      },
+      "pct_change": {
+        "dji": -0.009647,
+        "sp500": -0.015138,
+        "nasdaq": -0.020057
+      },
+      "almanac_scores": {
+        "d": 52.4,
+        "s": 52.4,
+        "n": 61.9
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 0,
+      "total_calls": 3,
+      "context": "March Triple-Witching Day Mixed Last 30 Years, NASDAQ Up 8 of Last 11"
+    },
+    "2026-03-23": {
+      "actual": {
+        "dji": 46208.47,
+        "sp500": 6581.0,
+        "nasdaq": 21946.76
+      },
+      "prev_close": {
+        "dji": 45577.47,
+        "sp500": 6506.48,
+        "nasdaq": 21647.61
+      },
+      "pct_change": {
+        "dji": 0.013845,
+        "sp500": 0.011453,
+        "nasdaq": 0.013819
+      },
+      "almanac_scores": {
+        "d": 42.9,
+        "s": 38.1,
+        "n": 42.9
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        }
+      },
+      "hits": 0,
+      "total_calls": 3,
+      "context": "Week after Triple Witching, Dow Down 23 of Last 38"
+    },
+    "2026-03-24": {
+      "actual": {
+        "dji": 46124.06,
+        "sp500": 6556.37,
+        "nasdaq": 21761.89
+      },
+      "prev_close": {
+        "dji": 46208.47,
+        "sp500": 6581.0,
+        "nasdaq": 21946.76
+      },
+      "pct_change": {
+        "dji": -0.001827,
+        "sp500": -0.003743,
+        "nasdaq": -0.008424
+      },
+      "almanac_scores": {
+        "d": 42.9,
+        "s": 47.6,
+        "n": 52.4
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 2,
+      "total_calls": 3,
+      "context": "March Historically Weak Later in the Month"
+    },
+    "2026-03-25": {
+      "actual": {
+        "dji": 46429.49,
+        "sp500": 6591.9,
+        "nasdaq": 21929.83
+      },
+      "prev_close": {
+        "dji": 46124.06,
+        "sp500": 6556.37,
+        "nasdaq": 21761.89
+      },
+      "pct_change": {
+        "dji": 0.006622,
+        "sp500": 0.005419,
+        "nasdaq": 0.007717
+      },
+      "almanac_scores": {
+        "d": 61.9,
+        "s": 57.1,
+        "n": 66.7
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-03-26": {
+      "actual": {
+        "dji": 45960.11,
+        "sp500": 6477.16,
+        "nasdaq": 21408.08
+      },
+      "prev_close": {
+        "dji": 46429.49,
+        "sp500": 6591.9,
+        "nasdaq": 21929.83
+      },
+      "pct_change": {
+        "dji": -0.01011,
+        "sp500": -0.017406,
+        "nasdaq": -0.023792
+      },
+      "almanac_scores": {
+        "d": 47.6,
+        "s": 47.6,
+        "n": 38.1
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-03-27": {
+      "actual": {
+        "dji": 45166.64,
+        "sp500": 6368.85,
+        "nasdaq": 20948.36
+      },
+      "prev_close": {
+        "dji": 45960.11,
+        "sp500": 6477.16,
+        "nasdaq": 21408.08
+      },
+      "pct_change": {
+        "dji": -0.017264,
+        "sp500": -0.016722,
+        "nasdaq": -0.021474
+      },
+      "almanac_scores": {
+        "d": 47.6,
+        "s": 47.6,
+        "n": 47.6
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": "Start Looking for Dow and S&P MACD SELL Signal on April 1"
+    },
+    "2026-03-30": {
+      "actual": {
+        "dji": 45216.14,
+        "sp500": 6343.72,
+        "nasdaq": 20794.64
+      },
+      "prev_close": {
+        "dji": 45166.64,
+        "sp500": 6368.85,
+        "nasdaq": 20948.36
+      },
+      "pct_change": {
+        "dji": 0.001096,
+        "sp500": -0.003946,
+        "nasdaq": -0.007338
+      },
+      "almanac_scores": {
+        "d": 66.7,
+        "s": 61.9,
+        "n": 71.4
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 1,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2026-03-31": {
+      "actual": {
+        "dji": 46341.51,
+        "sp500": 6528.52,
+        "nasdaq": 21590.63
+      },
+      "prev_close": {
+        "dji": 45216.14,
+        "sp500": 6343.72,
+        "nasdaq": 20794.64
+      },
+      "pct_change": {
+        "dji": 0.024889,
+        "sp500": 0.029131,
+        "nasdaq": 0.038279
+      },
+      "almanac_scores": {
+        "d": 47.6,
+        "s": 47.6,
+        "n": 52.4
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "MISS",
+          "predicted": "DOWN",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 1,
+      "total_calls": 3,
+      "context": "Last Day of March, Dow Down 21 of Last 36, Russell 2000 Up 26 of Last 36"
+    },
+    "2026-04-01": {
+      "actual": {
+        "dji": 46565.74,
+        "sp500": 6575.32,
+        "nasdaq": 21840.95
+      },
+      "prev_close": {
+        "dji": 46341.51,
+        "sp500": 6528.52,
+        "nasdaq": 21590.63
+      },
+      "pct_change": {
+        "dji": 0.004839,
+        "sp500": 0.007169,
+        "nasdaq": 0.011594
+      },
+      "almanac_scores": {
+        "d": 66.7,
+        "s": 66.7,
+        "n": 61.9
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": "First Trading Day in April, S&P Up 22 of Last 31"
+    },
+    "2026-04-02": {
+      "actual": {
+        "dji": 46504.67,
+        "sp500": 6582.69,
+        "nasdaq": 21879.18
+      },
+      "prev_close": {
+        "dji": 46565.74,
+        "sp500": 6575.32,
+        "nasdaq": 21840.95
+      },
+      "pct_change": {
+        "dji": -0.001311,
+        "sp500": 0.001121,
+        "nasdaq": 0.00175
+      },
+      "almanac_scores": {
+        "d": 71.4,
+        "s": 76.2,
+        "n": 71.4
+      },
+      "results": {
+        "d": {
+          "verdict": "MISS",
+          "predicted": "UP",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "UP",
+          "actual": "UP"
+        }
+      },
+      "hits": 2,
+      "total_calls": 3,
+      "context": "Passover; NASDAQ Up 21 of Last 25 Days Before Good Friday"
+    }
+  },
+  "weekly": {
+    "2026-W00": {
+      "hits": 2,
+      "total_calls": 3,
+      "accuracy": 66.7,
+      "dates": [
+        "2026-01-02"
+      ],
+      "dow": {
+        "hits": 1,
+        "total": 1,
+        "pct": 100.0
+      },
+      "sp500": {
+        "hits": 1,
+        "total": 1,
+        "pct": 100.0
+      },
+      "nasdaq": {
+        "hits": 0,
+        "total": 1,
+        "pct": 0.0
+      }
+    },
+    "2026-W01": {
+      "hits": 7,
+      "total_calls": 15,
+      "accuracy": 46.7,
+      "dates": [
+        "2026-01-05",
+        "2026-01-06",
+        "2026-01-07",
+        "2026-01-08",
+        "2026-01-09"
+      ],
+      "dow": {
+        "hits": 2,
+        "total": 5,
+        "pct": 40.0
+      },
+      "sp500": {
+        "hits": 3,
+        "total": 5,
+        "pct": 60.0
+      },
+      "nasdaq": {
+        "hits": 2,
+        "total": 5,
+        "pct": 40.0
+      }
+    },
+    "2026-W02": {
+      "hits": 5,
+      "total_calls": 15,
+      "accuracy": 33.3,
+      "dates": [
+        "2026-01-12",
+        "2026-01-13",
+        "2026-01-14",
+        "2026-01-15",
+        "2026-01-16"
+      ],
+      "dow": {
+        "hits": 2,
+        "total": 5,
+        "pct": 40.0
+      },
+      "sp500": {
+        "hits": 1,
+        "total": 5,
+        "pct": 20.0
+      },
+      "nasdaq": {
+        "hits": 2,
+        "total": 5,
+        "pct": 40.0
+      }
+    },
+    "2026-W03": {
+      "hits": 10,
+      "total_calls": 12,
+      "accuracy": 83.3,
+      "dates": [
+        "2026-01-20",
+        "2026-01-21",
+        "2026-01-22",
+        "2026-01-23"
+      ],
+      "dow": {
+        "hits": 3,
+        "total": 4,
+        "pct": 75.0
+      },
+      "sp500": {
+        "hits": 4,
+        "total": 4,
+        "pct": 100.0
+      },
+      "nasdaq": {
+        "hits": 3,
+        "total": 4,
+        "pct": 75.0
+      }
+    },
+    "2026-W04": {
+      "hits": 11,
+      "total_calls": 15,
+      "accuracy": 73.3,
+      "dates": [
+        "2026-01-26",
+        "2026-01-27",
+        "2026-01-28",
+        "2026-01-29",
+        "2026-01-30"
+      ],
+      "dow": {
+        "hits": 3,
+        "total": 5,
+        "pct": 60.0
+      },
+      "sp500": {
+        "hits": 4,
+        "total": 5,
+        "pct": 80.0
+      },
+      "nasdaq": {
+        "hits": 4,
+        "total": 5,
+        "pct": 80.0
+      }
+    },
+    "2026-W05": {
+      "hits": 8,
+      "total_calls": 15,
+      "accuracy": 53.3,
+      "dates": [
+        "2026-02-02",
+        "2026-02-03",
+        "2026-02-04",
+        "2026-02-05",
+        "2026-02-06"
+      ],
+      "dow": {
+        "hits": 2,
+        "total": 5,
+        "pct": 40.0
+      },
+      "sp500": {
+        "hits": 3,
+        "total": 5,
+        "pct": 60.0
+      },
+      "nasdaq": {
+        "hits": 3,
+        "total": 5,
+        "pct": 60.0
+      }
+    },
+    "2026-W06": {
+      "hits": 4,
+      "total_calls": 15,
+      "accuracy": 26.7,
+      "dates": [
+        "2026-02-09",
+        "2026-02-10",
+        "2026-02-11",
+        "2026-02-12",
+        "2026-02-13"
+      ],
+      "dow": {
+        "hits": 1,
+        "total": 5,
+        "pct": 20.0
+      },
+      "sp500": {
+        "hits": 2,
+        "total": 5,
+        "pct": 40.0
+      },
+      "nasdaq": {
+        "hits": 1,
+        "total": 5,
+        "pct": 20.0
+      }
+    },
+    "2026-W07": {
+      "hits": 8,
+      "total_calls": 12,
+      "accuracy": 66.7,
+      "dates": [
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-02-20"
+      ],
+      "dow": {
+        "hits": 3,
+        "total": 4,
+        "pct": 75.0
+      },
+      "sp500": {
+        "hits": 3,
+        "total": 4,
+        "pct": 75.0
+      },
+      "nasdaq": {
+        "hits": 2,
+        "total": 4,
+        "pct": 50.0
+      }
+    },
+    "2026-W08": {
+      "hits": 11,
+      "total_calls": 15,
+      "accuracy": 73.3,
+      "dates": [
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25",
+        "2026-02-26",
+        "2026-02-27"
+      ],
+      "dow": {
+        "hits": 3,
+        "total": 5,
+        "pct": 60.0
+      },
+      "sp500": {
+        "hits": 5,
+        "total": 5,
+        "pct": 100.0
+      },
+      "nasdaq": {
+        "hits": 3,
+        "total": 5,
+        "pct": 60.0
+      }
+    },
+    "2026-W09": {
+      "hits": 12,
+      "total_calls": 15,
+      "accuracy": 80.0,
+      "dates": [
+        "2026-03-02",
+        "2026-03-03",
+        "2026-03-04",
+        "2026-03-05",
+        "2026-03-06"
+      ],
+      "dow": {
+        "hits": 4,
+        "total": 5,
+        "pct": 80.0
+      },
+      "sp500": {
+        "hits": 4,
+        "total": 5,
+        "pct": 80.0
+      },
+      "nasdaq": {
+        "hits": 4,
+        "total": 5,
+        "pct": 80.0
+      }
+    },
+    "2026-W10": {
+      "hits": 4,
+      "total_calls": 15,
+      "accuracy": 26.7,
+      "dates": [
+        "2026-03-09",
+        "2026-03-10",
+        "2026-03-11",
+        "2026-03-12",
+        "2026-03-13"
+      ],
+      "dow": {
+        "hits": 1,
+        "total": 5,
+        "pct": 20.0
+      },
+      "sp500": {
+        "hits": 1,
+        "total": 5,
+        "pct": 20.0
+      },
+      "nasdaq": {
+        "hits": 2,
+        "total": 5,
+        "pct": 40.0
+      }
+    },
+    "2026-W11": {
+      "hits": 4,
+      "total_calls": 15,
+      "accuracy": 26.7,
+      "dates": [
+        "2026-03-16",
+        "2026-03-17",
+        "2026-03-18",
+        "2026-03-19",
+        "2026-03-20"
+      ],
+      "dow": {
+        "hits": 2,
+        "total": 5,
+        "pct": 40.0
+      },
+      "sp500": {
+        "hits": 1,
+        "total": 5,
+        "pct": 20.0
+      },
+      "nasdaq": {
+        "hits": 1,
+        "total": 5,
+        "pct": 20.0
+      }
+    },
+    "2026-W12": {
+      "hits": 11,
+      "total_calls": 15,
+      "accuracy": 73.3,
+      "dates": [
+        "2026-03-23",
+        "2026-03-24",
+        "2026-03-25",
+        "2026-03-26",
+        "2026-03-27"
+      ],
+      "dow": {
+        "hits": 4,
+        "total": 5,
+        "pct": 80.0
+      },
+      "sp500": {
+        "hits": 4,
+        "total": 5,
+        "pct": 80.0
+      },
+      "nasdaq": {
+        "hits": 3,
+        "total": 5,
+        "pct": 60.0
+      }
+    },
+    "2026-W13": {
+      "hits": 7,
+      "total_calls": 12,
+      "accuracy": 58.3,
+      "dates": [
+        "2026-03-30",
+        "2026-03-31",
+        "2026-04-01",
+        "2026-04-02"
+      ],
+      "dow": {
+        "hits": 2,
+        "total": 4,
+        "pct": 50.0
+      },
+      "sp500": {
+        "hits": 2,
+        "total": 4,
+        "pct": 50.0
+      },
+      "nasdaq": {
+        "hits": 3,
+        "total": 4,
+        "pct": 75.0
+      }
+    }
+  },
+  "monthly": {
+    "2026-01": {
+      "hits": 35,
+      "total_calls": 60,
+      "accuracy": 58.3,
+      "dow": {
+        "hits": 11,
+        "total": 20,
+        "pct": 55.0
+      },
+      "sp500": {
+        "hits": 13,
+        "total": 20,
+        "pct": 65.0
+      },
+      "nasdaq": {
+        "hits": 11,
+        "total": 20,
+        "pct": 55.0
+      },
+      "trading_days": 20
+    },
+    "2026-02": {
+      "hits": 31,
+      "total_calls": 57,
+      "accuracy": 54.4,
+      "dow": {
+        "hits": 9,
+        "total": 19,
+        "pct": 47.4
+      },
+      "sp500": {
+        "hits": 13,
+        "total": 19,
+        "pct": 68.4
+      },
+      "nasdaq": {
+        "hits": 9,
+        "total": 19,
+        "pct": 47.4
+      },
+      "trading_days": 19
+    },
+    "2026-03": {
+      "hits": 33,
+      "total_calls": 66,
+      "accuracy": 50.0,
+      "dow": {
+        "hits": 12,
+        "total": 22,
+        "pct": 54.5
+      },
+      "sp500": {
+        "hits": 10,
+        "total": 22,
+        "pct": 45.5
+      },
+      "nasdaq": {
+        "hits": 11,
+        "total": 22,
+        "pct": 50.0
+      },
+      "trading_days": 22
+    },
+    "2026-04": {
+      "hits": 5,
+      "total_calls": 6,
+      "accuracy": 83.3,
+      "dow": {
+        "hits": 1,
+        "total": 2,
+        "pct": 50.0
+      },
+      "sp500": {
+        "hits": 2,
+        "total": 2,
+        "pct": 100.0
+      },
+      "nasdaq": {
+        "hits": 2,
+        "total": 2,
+        "pct": 100.0
+      },
+      "trading_days": 2
+    }
+  }
+}

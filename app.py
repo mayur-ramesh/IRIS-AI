@@ -28,6 +28,7 @@ try:
         RISK_HORIZON_MAP,
         RISK_HORIZON_LABELS,
         derive_investment_signal,
+        generate_rf_reasoning,
     )
     iris_app = IRIS_System()
 except ImportError as e:
@@ -111,6 +112,10 @@ SECTOR_PEERS = {
 _yf_info_cache = {}
 _YF_INFO_TTL = 300  # seconds
 _almanac_data = None
+_accuracy_data = None
+_accuracy_mtime = 0.0
+_iris_snapshot_cache = {"data": None, "ts": 0.0}
+_IRIS_SNAPSHOT_TTL = 300  # 5 minutes
 
 _ALMANAC_INDEX_KEY_MAP = {
     "djia": "dow",
@@ -329,6 +334,161 @@ def _load_almanac_data():
     _almanac_data = {"error": "No almanac data found. Run build_almanac_json.py first."}
     print(f"[ALMANAC] ERROR: {_almanac_data['error']}")
     return _almanac_data
+
+
+def _load_accuracy_data():
+    """Load accuracy_results.json with file-mtime caching."""
+    global _accuracy_data, _accuracy_mtime
+    path = PROJECT_ROOT / "data" / "almanac_2026" / "accuracy_results.json"
+    if not path.exists():
+        return None
+    mtime = path.stat().st_mtime
+    if _accuracy_data is not None and mtime <= _accuracy_mtime:
+        return _accuracy_data
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            _accuracy_data = json.load(f)
+        _accuracy_mtime = mtime
+        return _accuracy_data
+    except Exception as e:
+        print(f"[ACCURACY] Error loading: {e}")
+        return None
+
+
+def _iris_price_threshold(symbol: str) -> float:
+    token = str(symbol or "").strip().upper()
+    if "DJI" in token:
+        return 10000.0
+    if "IXIC" in token:
+        return 5000.0
+    return 400.0
+
+
+def _safe_float(value, default=0.0):
+    try:
+        if value is None or value == "":
+            return float(default)
+        return float(value)
+    except (TypeError, ValueError):
+        return float(default)
+
+
+def _iris_direction_from_pct_change(pct_change: float) -> str:
+    if pct_change > 0:
+        return "upward"
+    if pct_change < 0:
+        return "downward"
+    return "flat"
+
+
+def _iris_prediction_light(trend_label: str, sentiment_score=0.0) -> str:
+    normalized_trend = str(trend_label or "").upper()
+    sentiment = _safe_float(sentiment_score, 0.0)
+    if sentiment < -0.05 or "STRONG DOWNTREND" in normalized_trend:
+        return " RED (Risk Detected - Caution)"
+    if abs(sentiment) < 0.05 and "WEAK" in normalized_trend:
+        return " YELLOW (Neutral / Noise)"
+    return " GREEN (Safe to Proceed)"
+
+
+def _read_latest_iris_report(symbol: str):
+    """Read the latest valid IRIS report for the requested symbol from DATA_DIR."""
+    token = str(symbol or "").strip().upper()
+    bare = token.lstrip("^_")
+    filename_candidates = []
+    for candidate in (
+        f"{token}_report.json",
+        f"^{bare}_report.json",
+        f"_{bare}_report.json",
+        f"{bare}_report.json",
+    ):
+        path = DATA_DIR / candidate
+        if path not in filename_candidates:
+            filename_candidates.append(path)
+
+    min_price = _iris_price_threshold(token)
+
+    for path in filename_candidates:
+        if not path.exists():
+            continue
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                reports = json.load(f)
+            if not isinstance(reports, list):
+                reports = [reports]
+            for report in reversed(reports):
+                if not isinstance(report, dict):
+                    continue
+                current_price = _safe_float(report.get("market", {}).get("current_price"), 0.0)
+                if current_price < min_price:
+                    continue
+                horizon_1d = report.get("all_horizons", {}).get("1D", {})
+                meta = report.get("meta", {})
+                horizon_days = meta.get("horizon_days", 1) if isinstance(meta, dict) else 1
+                if not isinstance(horizon_1d, dict) and int(_safe_float(horizon_days, 1)) != 1:
+                    continue
+                return report
+        except Exception:
+            continue
+    return None
+
+
+def _format_iris_snapshot_entry(report: dict, label: str):
+    meta = report.get("meta", {}) if isinstance(report, dict) else {}
+    market = report.get("market", {}) if isinstance(report, dict) else {}
+    signals = report.get("signals", {}) if isinstance(report, dict) else {}
+    h1d = report.get("all_horizons", {}).get("1D", {}) if isinstance(report, dict) else {}
+    if not isinstance(meta, dict):
+        meta = {}
+    if not isinstance(market, dict):
+        market = {}
+    if not isinstance(signals, dict):
+        signals = {}
+    if not isinstance(h1d, dict):
+        h1d = {}
+
+    current_price = _safe_float(market.get("current_price"), 0.0)
+    predicted_price = (
+        market.get("predicted_price_next_session")
+        or h1d.get("predicted_price")
+        or market.get("predicted_price_horizon")
+    )
+    predicted_price = _safe_float(predicted_price, 0.0)
+
+    reasoning = h1d.get("iris_reasoning") or signals.get("iris_reasoning") or {}
+    if not isinstance(reasoning, dict):
+        reasoning = {}
+    pct_change = reasoning.get("pct_change")
+    if pct_change in (None, "") and current_price:
+        pct_change = ((predicted_price - current_price) / current_price) * 100
+    pct_change = round(_safe_float(pct_change, 0.0), 2)
+
+    direction = str(reasoning.get("direction", "")).strip().lower()
+    if not direction:
+        direction = _iris_direction_from_pct_change(pct_change)
+
+    top_factors = reasoning.get("top_factors", [])
+    if not isinstance(top_factors, list):
+        top_factors = []
+
+    return {
+        "available": True,
+        "label": label,
+        "symbol": str(meta.get("symbol") or meta.get("source_symbol") or "").strip(),
+        "session_date": str(meta.get("market_session_date", "")).strip(),
+        "generated_at": str(meta.get("generated_at", "")).strip(),
+        "current_price": current_price or None,
+        "predicted_price": predicted_price or None,
+        "trend_label": str(h1d.get("trend_label") or signals.get("trend_label", "")).strip(),
+        "investment_signal": str(h1d.get("investment_signal") or signals.get("investment_signal", "")).strip(),
+        "check_engine_light": str(signals.get("check_engine_light", "")).strip(),
+        "pct_change": pct_change,
+        "direction": direction,
+        "top_factors": top_factors,
+        "model_confidence": h1d.get("model_confidence") or signals.get("model_confidence"),
+        "sentiment_score": _safe_float(signals.get("sentiment_score"), 0.0),
+        "source": "report_snapshot",
+    }
 
 
 def _get_related_tickers(ticker, count=7):
@@ -575,6 +735,254 @@ def almanac_week():
             "month_overview": month_info,
         }
     )
+
+
+# --- Almanac Accuracy Tracking API ---
+
+def _accuracy_unavailable_response():
+    return jsonify(
+        {
+            "available": False,
+            "message": "Run scripts/seed_accuracy.py to generate accuracy data.",
+        }
+    )
+
+
+def _accuracy_pct(hits, total):
+    if not total:
+        return 0.0
+    return round((hits / total) * 100, 1)
+
+
+@app.route('/api/almanac/accuracy')
+def almanac_accuracy():
+    """Return almanac historic accuracy results."""
+    data = _load_accuracy_data()
+    if data is None:
+        return _accuracy_unavailable_response()
+
+    daily = data.get("daily", {})
+    date_param = str(request.args.get("date", "") or "").strip()
+    from_param = str(request.args.get("from", "") or "").strip()
+    to_param = str(request.args.get("to", "") or "").strip()
+
+    if date_param:
+        entry = daily.get(date_param)
+        if entry is None:
+            return jsonify({"error": f"No accuracy data for {date_param}"}), 404
+        return jsonify(entry)
+
+    if from_param and to_param:
+        filtered = {k: v for k, v in daily.items() if from_param <= k <= to_param}
+        return jsonify({"from": from_param, "to": to_param, "daily": filtered})
+
+    return jsonify({"daily": daily})
+
+
+@app.route('/api/almanac/accuracy/week')
+def almanac_accuracy_week():
+    """Return weekly accuracy results for the requested week."""
+    data = _load_accuracy_data()
+    if data is None:
+        return _accuracy_unavailable_response()
+
+    start = str(request.args.get("start", "") or "").strip()
+    if not start:
+        return jsonify({"error": "start query parameter is required"}), 400
+
+    try:
+        week_key = datetime.strptime(start, "%Y-%m-%d").strftime("%Y-W%W")
+    except ValueError:
+        return jsonify({"error": "Invalid start date. Expected YYYY-MM-DD"}), 400
+
+    weekly_entry = (data.get("weekly") or {}).get(week_key)
+    if weekly_entry is None:
+        return jsonify({"error": f"No weekly accuracy found for {week_key}"}), 404
+    return jsonify(weekly_entry)
+
+
+@app.route('/api/almanac/accuracy/month')
+def almanac_accuracy_month():
+    """Return monthly accuracy results for the requested month."""
+    data = _load_accuracy_data()
+    if data is None:
+        return _accuracy_unavailable_response()
+
+    month_key = str(request.args.get("month", "") or "").strip()
+    if not month_key:
+        return jsonify({"error": "month query parameter is required"}), 400
+
+    monthly_entry = (data.get("monthly") or {}).get(month_key)
+    if monthly_entry is None:
+        return jsonify({"error": f"No monthly accuracy found for {month_key}"}), 404
+    return jsonify(monthly_entry)
+
+
+@app.route('/api/almanac/accuracy/summary')
+def almanac_accuracy_summary():
+    """Return aggregate historic accuracy metrics."""
+    data = _load_accuracy_data()
+    if data is None:
+        return _accuracy_unavailable_response()
+
+    monthly = data.get("monthly") or {}
+    daily = data.get("daily") or {}
+
+    overall_hits = sum(int(month.get("hits", 0)) for month in monthly.values())
+    overall_total = sum(int(month.get("total_calls", 0)) for month in monthly.values())
+
+    per_index = {}
+    for index_key in ("dow", "sp500", "nasdaq"):
+        hits = sum(int(month.get(index_key, {}).get("hits", 0)) for month in monthly.values())
+        total = sum(int(month.get(index_key, {}).get("total", 0)) for month in monthly.values())
+        per_index[index_key] = {
+            "hits": hits,
+            "total": total,
+            "pct": _accuracy_pct(hits, total),
+        }
+
+    return jsonify(
+        {
+            "overall": {
+                "hits": overall_hits,
+                "total_calls": overall_total,
+                "accuracy": _accuracy_pct(overall_hits, overall_total),
+            },
+            "monthly": monthly,
+            "per_index": per_index,
+            "last_scored_date": max(daily.keys()) if daily else None,
+            "total_days": len(daily),
+        }
+    )
+
+
+# --- IRIS Snapshot for Almanac Dashboard ---
+
+@app.route('/api/almanac/iris-snapshot')
+def almanac_iris_snapshot():
+    """Return the latest cached IRIS index predictions from on-disk report files."""
+    now = time.time()
+    if (
+        _iris_snapshot_cache["data"] is not None
+        and (now - _iris_snapshot_cache["ts"]) < _IRIS_SNAPSHOT_TTL
+    ):
+        return jsonify(_iris_snapshot_cache["data"])
+
+    symbols = {
+        "spy": {"file_symbol": "SPY", "label": "SPY (S&P 500 ETF)"},
+        "dji": {"file_symbol": "^DJI", "label": "Dow Jones"},
+        "gspc": {"file_symbol": "^GSPC", "label": "S&P 500 Index"},
+        "ixic": {"file_symbol": "^IXIC", "label": "NASDAQ"},
+    }
+
+    result = {
+        "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "indices": {},
+    }
+
+    for key, info in symbols.items():
+        report = _read_latest_iris_report(info["file_symbol"])
+        if not report:
+            result["indices"][key] = {
+                "available": False,
+                "label": info["label"],
+            }
+            continue
+        result["indices"][key] = _format_iris_snapshot_entry(report, info["label"])
+
+    _iris_snapshot_cache["data"] = result
+    _iris_snapshot_cache["ts"] = now
+    return jsonify(result)
+
+
+@app.route('/api/almanac/iris-refresh')
+def almanac_iris_refresh():
+    """Run lightweight 1D IRIS predictions for the dashboard's major indices."""
+    if not iris_app:
+        return jsonify({"error": "IRIS not initialized"}), 500
+
+    tickers = {
+        "spy": {"ticker": "SPY", "label": "SPY (S&P 500 ETF)"},
+        "dji": {"ticker": "^DJI", "label": "Dow Jones"},
+        "gspc": {"ticker": "^GSPC", "label": "S&P 500 Index"},
+        "ixic": {"ticker": "^IXIC", "label": "NASDAQ"},
+    }
+    generated_at = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    result = {"generated_at": generated_at, "indices": {}}
+
+    for key, info in tickers.items():
+        ticker = info["ticker"]
+        try:
+            data = iris_app.get_market_data(ticker)
+            if not data:
+                result["indices"][key] = {
+                    "available": False,
+                    "label": info["label"],
+                }
+                continue
+
+            trend_label, predicted_price, trajectory, traj_upper, traj_lower, rf_model, model_confidence = iris_app.predict_trend(
+                data,
+                sentiment_score=0.0,
+                horizon_days=1,
+            )
+
+            current_price = _safe_float(data.get("current_price"), 0.0)
+            pct_change = ((predicted_price - current_price) / current_price * 100) if current_price else 0.0
+            history_df = data.get("history_df")
+            last_rsi = 50.0
+            session_date = time.strftime("%Y-%m-%d")
+            if history_df is not None and "rsi_14" in history_df.columns and len(history_df):
+                last_rsi = float(history_df["rsi_14"].iloc[-1])
+            if history_df is not None and len(history_df):
+                try:
+                    session_date = str(pd.Timestamp(history_df.index[-1]).date())
+                except Exception:
+                    session_date = time.strftime("%Y-%m-%d")
+
+            investment_signal = derive_investment_signal(pct_change, 0.0, last_rsi, 1)
+            reasoning = {}
+            if rf_model is not None:
+                try:
+                    reasoning = generate_rf_reasoning(
+                        rf_model,
+                        None,
+                        current_price,
+                        predicted_price,
+                        "1 Day",
+                    )
+                except Exception:
+                    reasoning = {}
+
+            result["indices"][key] = {
+                "available": True,
+                "label": info["label"],
+                "symbol": ticker,
+                "session_date": session_date,
+                "generated_at": generated_at,
+                "current_price": round(current_price, 6),
+                "predicted_price": round(float(predicted_price), 6),
+                "trend_label": trend_label,
+                "investment_signal": investment_signal,
+                "check_engine_light": _iris_prediction_light(trend_label, 0.0).strip(),
+                "pct_change": round(float(pct_change), 2),
+                "direction": _iris_direction_from_pct_change(pct_change),
+                "top_factors": reasoning.get("top_factors", []) if isinstance(reasoning, dict) else [],
+                "model_confidence": round(float(model_confidence), 1),
+                "sentiment_score": 0.0,
+                "source": "live_rf_prediction",
+            }
+        except Exception as e:
+            result["indices"][key] = {
+                "available": False,
+                "label": info["label"],
+                "error": str(e),
+            }
+
+    _iris_snapshot_cache["data"] = None
+    _iris_snapshot_cache["ts"] = 0.0
+    return jsonify(result)
+
 
 @app.route('/api/history/<ticker>', methods=['GET'])
 def get_history(ticker):
