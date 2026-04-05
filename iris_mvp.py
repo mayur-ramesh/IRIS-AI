@@ -655,7 +655,7 @@ def normalize_ticker_list(symbols):
 
 
 DEFAULT_TICKERS = normalize_ticker_list(
-    os.environ.get("IRIS_TICKERS", "AAPL,MSFT,GOOG,AMZN,NVDA,META,TSLA").split(",")
+    os.environ.get("IRIS_TICKERS", "SPY,^DJI,^GSPC,^IXIC,AAPL,MSFT,GOOG,AMZN,NVDA,META,TSLA").split(",")
 )
 
 

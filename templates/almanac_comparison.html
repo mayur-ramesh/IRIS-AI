@@ -26,7 +26,7 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/style.css?v=11">
-    <link rel="stylesheet" href="/static/almanac.css?v=2">
+    <link rel="stylesheet" href="/static/almanac.css?v=4">
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%233b82f6%22>IA</text></svg>">
 </head>
@@ -61,7 +61,7 @@
         <section class="glass-panel alm-intro-card">
             <h2>Seasonality Comparison</h2>
             <p class="alm-intro-copy">
-                Compare live IRIS SPY analysis against curated 2026 Almanac seasonality for daily, weekly,
+                Compare cached IRIS index predictions against curated 2026 Almanac seasonality for daily, weekly,
                 monthly, and full-year context.
             </p>
         </section>
@@ -84,7 +84,7 @@
                 <div class="alm-panel">
                     <div class="alm-panel-header">
                         <span class="alm-panel-badge alm-badge-iris">IRIS</span>
-                        <span class="alm-panel-sub">Live SPY analysis</span>
+                        <span class="alm-panel-sub">Index Predictions (Dow / S&amp;P / NASDAQ)</span>
                     </div>
                     <div id="iris-daily-content" class="alm-panel-body">
                         <div class="alm-empty">Loading IRIS prediction...</div>
@@ -165,7 +165,7 @@
         <p>Almanac source: Stock Trader's Almanac 2026 (Wiley).</p>
     </footer>
 
-    <script src="/static/almanac.js?v=2"></script>
+    <script src="/static/almanac.js?v=4"></script>
 </body>
 
 </html>

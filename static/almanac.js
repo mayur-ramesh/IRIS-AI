@@ -12,6 +12,8 @@
     let currentMonth = '2026-04';
     let almanacData = null;
     let almanacPromise = null;
+    let accuracyCache = null;
+    let accuracyPromise = null;
     let irisLiveData = null;
     let irisPromise = null;
     let tradingDates = [];
@@ -168,6 +170,22 @@
         return almanacPromise;
     }
 
+    async function loadAccuracyData() {
+        if (accuracyCache) return accuracyCache;
+        if (accuracyPromise) return accuracyPromise;
+        accuracyPromise = fetchJson('/api/almanac/accuracy')
+            .then((payload) => {
+                if (payload.available === false) return null;
+                accuracyCache = payload;
+                return payload;
+            })
+            .catch(() => {
+                accuracyPromise = null;
+                return null;
+            });
+        return accuracyPromise;
+    }
+
     async function fetchIrisLive() {
         if (irisLiveData) {
             return irisLiveData;
@@ -175,13 +193,13 @@
         if (irisPromise) {
             return irisPromise;
         }
-        irisPromise = fetchJson('/api/analyze?ticker=' + encodeURIComponent(SPY_TICKER))
+        irisPromise = fetchJson('/api/almanac/iris-snapshot')
             .then((payload) => {
                 irisLiveData = payload;
                 return payload;
             })
             .catch((error) => {
-                console.error('Failed to load IRIS SPY data:', error);
+                console.error('IRIS snapshot failed:', error);
                 irisPromise = null;
                 return null;
             });
@@ -242,6 +260,24 @@
         return prefix + numeric.toFixed(1) + '%';
     }
 
+    function formatPctDelta(value) {
+        const numeric = Number(value);
+        if (!Number.isFinite(numeric)) {
+            return 'N/A';
+        }
+        const percentValue = numeric * 100;
+        const prefix = percentValue > 0 ? '+' : '';
+        return prefix + percentValue.toFixed(2) + '%';
+    }
+
+    function formatAccuracyPct(value, digits = 1) {
+        const numeric = Number(value);
+        if (!Number.isFinite(numeric)) {
+            return '0.0';
+        }
+        return numeric.toFixed(digits);
+    }
+
     function formatLongDate(dateStr) {
         const date = new Date(dateStr + 'T12:00:00');
         return date.toLocaleDateString('en-US', {
@@ -270,6 +306,126 @@
 
     function formatMonthShort(monthKey) {
         return new Date(monthKey + '-01T12:00:00').toLocaleDateString('en-US', { month: 'short' });
+    }
+
+    function accuracyCardClass(verdict) {
+        if (verdict === 'HIT') {
+            return 'alm-acc-hit';
+        }
+        if (verdict === 'MISS') {
+            return 'alm-acc-miss';
+        }
+        return 'alm-acc-neutral';
+    }
+
+    function buildAccuracyPanel(accDay, dateStr) {
+        const cards = [
+            { signalKey: 'd', dataKey: 'dji', label: 'Dow' },
+            { signalKey: 's', dataKey: 'sp500', label: 'S&P 500' },
+            { signalKey: 'n', dataKey: 'nasdaq', label: 'NASDAQ' },
+        ].map((entry) => {
+            const result = accDay?.results?.[entry.signalKey] || {};
+            const pctValue = Number(accDay?.pct_change?.[entry.dataKey]);
+            const pctClass = pctValue > 0 ? 'alm-acc-positive' : pctValue < 0 ? 'alm-acc-negative' : 'alm-note-caption';
+            const verdictLabel = result.verdict || '--';
+            const predictedLabel = result.predicted || '--';
+            const actualLabel = result.actual || '--';
+            return ''
+                + '<div class="alm-acc-card ' + accuracyCardClass(result.verdict) + '">'
+                + '  <div class="alm-mini-title">' + escapeHtml(entry.label) + '</div>'
+                + '  <div><strong>' + escapeHtml(predictedLabel) + '</strong> predicted</div>'
+                + '  <div class="' + pctClass + '"><strong>' + escapeHtml(formatPctDelta(pctValue)) + '</strong> actual</div>'
+                + '  <div class="alm-note-caption">Actual direction: ' + escapeHtml(actualLabel) + '</div>'
+                + '  <div class="alm-acc-badge">' + escapeHtml(verdictLabel) + '</div>'
+                + '</div>';
+        }).join('');
+
+        const noteMarkup = accDay.context
+            ? '<div class="alm-note-box">' + escapeHtml(accDay.context) + '</div>'
+            : '';
+
+        return ''
+            + '<div class="alm-accuracy-panel">'
+            + '  <div class="alm-mini-title">Backtest Result - ' + escapeHtml(formatLongDate(dateStr)) + '</div>'
+            + '  <div class="alm-acc-grid">' + cards + '</div>'
+            + '  <div class="alm-acc-score">' + escapeHtml(accDay.hits + '/' + accDay.total_calls + ' correct') + '</div>'
+            + noteMarkup
+            + '</div>';
+    }
+
+    function irisSignalClass(signal) {
+        const normalized = String(signal || '').toUpperCase();
+        if (normalized.includes('BUY')) {
+            return 'alm-signal-buy';
+        }
+        if (normalized.includes('SELL')) {
+            return 'alm-signal-sell';
+        }
+        return 'alm-signal-hold';
+    }
+
+    function irisDirectionArrow(direction) {
+        if (direction === 'upward') {
+            return '&uarr;';
+        }
+        if (direction === 'downward') {
+            return '&darr;';
+        }
+        return '&rarr;';
+    }
+
+    function irisDirectionColor(direction) {
+        if (direction === 'upward') {
+            return 'var(--status-green)';
+        }
+        if (direction === 'downward') {
+            return 'var(--status-red)';
+        }
+        return 'var(--text-muted)';
+    }
+
+    function formatIrisPctChange(value) {
+        const numeric = Number(value);
+        if (!Number.isFinite(numeric)) {
+            return 'N/A';
+        }
+        const prefix = numeric > 0 ? '+' : '';
+        return prefix + numeric.toFixed(2) + '%';
+    }
+
+    function getPrimaryIrisSnapshot(indices) {
+        return indices?.spy || indices?.gspc || indices?.dji || indices?.ixic || {};
+    }
+
+    function buildIrisTrendSummary(indices) {
+        const order = [
+            { key: 'dji', label: 'Dow' },
+            { key: 'gspc', label: 'S&P 500' },
+            { key: 'ixic', label: 'NASDAQ' },
+        ];
+        const parts = order
+            .map((item) => {
+                const entry = indices?.[item.key];
+                if (!entry?.available || !entry.trend_label) {
+                    return '';
+                }
+                return item.label + ': ' + entry.trend_label;
+            })
+            .filter(Boolean);
+        return parts.join(' | ');
+    }
+
+    function ensureMonthAccuracySummary(calendar) {
+        if (!calendar || !calendar.parentNode) {
+            return null;
+        }
+        let summary = document.getElementById('monthly-calendar-accuracy-summary');
+        if (!summary) {
+            summary = document.createElement('div');
+            summary.id = 'monthly-calendar-accuracy-summary';
+            calendar.insertAdjacentElement('afterend', summary);
+        }
+        return summary;
     }
 
     function capitalize(value) {
@@ -617,74 +773,131 @@
                 + notesMarkup;
         }
 
+        const accPayload = await loadAccuracyData();
+        const accDay = accPayload?.daily?.[currentDate];
+        if (accDay && almanacPanel) {
+            const accHtml = buildAccuracyPanel(accDay, currentDate);
+            almanacPanel.insertAdjacentHTML('beforeend', accHtml);
+        }
+
         if (irisPanel) {
-            irisPanel.innerHTML = '<div class="alm-empty">Loading live IRIS SPY analysis...</div>';
+            irisPanel.innerHTML = '<div class="alm-empty">Loading IRIS index snapshot...</div>';
         }
 
         const irisData = await fetchIrisLive();
-        if (!irisData || !irisData.signals) {
+        if (!irisData || !irisData.indices) {
             if (irisPanel) {
                 irisPanel.innerHTML = ''
-                    + '<div class="alm-empty">IRIS live SPY data is unavailable right now.'
-                    + '<br><small>This comparison page reuses the existing live analysis endpoint only.</small></div>';
+                    + '<div class="alm-empty">IRIS index snapshot is unavailable right now.'
+                    + '<br><small>Use the refresh action once report files are available.</small></div>';
             }
             if (verdict) {
-                verdict.innerHTML = '<span class="alm-neutral">Almanac loaded; IRIS live comparison unavailable</span>';
+                verdict.innerHTML = '<span class="alm-neutral">Almanac loaded; IRIS index snapshot unavailable</span>';
             }
             return;
         }
-
-        const light = parseCheckEngineLight(irisData.signals?.check_engine_light);
-        const signal = getIrisSignal(irisData);
-        const trend = String(irisData.signals?.trend_label || '').trim() || 'No trend label';
-        const confidence = Number(
-            irisData.signals?.model_confidence
-            ?? irisData.all_horizons?.['1D']?.model_confidence
-        );
-        const currentPrice = formatCurrency(irisData.market?.current_price);
-        const predictedPrice = formatCurrency(
-            irisData.market?.predicted_price_horizon
-            ?? irisData.market?.predicted_price_next_session
-        );
-        const lightColor = light.tone === 'red'
-            ? 'var(--status-red)'
-            : light.tone === 'yellow'
-                ? 'var(--status-yellow)'
-                : 'var(--status-green)';
-
         if (irisPanel) {
+            const indices = irisData.indices;
+            const spyData = getPrimaryIrisSnapshot(indices);
+            const light = parseCheckEngineLight(spyData.check_engine_light || '');
+            const lightColor = light.tone === 'red'
+                ? 'var(--status-red)'
+                : light.tone === 'yellow'
+                    ? 'var(--status-yellow)'
+                    : 'var(--status-green)';
+            const indexCards = [
+                { key: 'dji', label: 'Dow', data: indices.dji },
+                { key: 'gspc', label: 'S&P 500', data: indices.gspc },
+                { key: 'ixic', label: 'NASDAQ', data: indices.ixic },
+            ].map((idx) => {
+                const entry = idx.data;
+                if (!entry || !entry.available) {
+                    return '<div class="alm-mini-card"><div class="alm-mini-title">' + idx.label
+                        + '</div><div class="alm-note-caption">Unavailable</div></div>';
+                }
+                const direction = String(entry.direction || '').toLowerCase();
+                return ''
+                    + '<div class="alm-mini-card">'
+                    + '  <div class="alm-mini-title">' + escapeHtml(idx.label) + '</div>'
+                    + '  <div class="alm-mini-value" style="color:' + irisDirectionColor(direction) + ';">'
+                    +       irisDirectionArrow(direction) + ' ' + escapeHtml(formatIrisPctChange(entry.pct_change))
+                    + '  </div>'
+                    + '  <div class="' + irisSignalClass(entry.investment_signal) + '">' + escapeHtml(entry.investment_signal || 'HOLD') + '</div>'
+                    + '  <div class="alm-note-caption">' + escapeHtml(entry.trend_label || 'Trend unavailable') + '</div>'
+                    + '</div>';
+            }).join('');
+
+            const sessionDate = spyData.session_date || '';
+            const today = new Date().toISOString().slice(0, 10);
+            const isStale = Boolean(sessionDate) && sessionDate < today;
+            const trendSummary = buildIrisTrendSummary(indices);
+            const refreshMeta = sessionDate
+                ? (isStale ? 'Data from: ' + sessionDate : 'Snapshot date: ' + sessionDate)
+                : 'Snapshot date unavailable';
+            const trendBox = trendSummary
+                ? '<div class="alm-note-box"><strong>Trend Summary:</strong> ' + escapeHtml(trendSummary) + '</div>'
+                : '';
+
             irisPanel.innerHTML = ''
                 + '<div class="alm-score-shell">'
                 + '  <div class="alm-score-caption">Check Engine Light</div>'
-                + '  <div class="alm-score-value" style="color:' + lightColor + ';">' + escapeHtml(light.label.split(' ')[0]) + '</div>'
-                + '</div>'
-                + '<div class="alm-pill-row">' + signalBadge(signal) + '</div>'
-                + '<div class="alm-stat-grid">'
-                + '  <div class="alm-stat-card">'
-                + '    <div class="alm-stat-label">Current Price</div>'
-                + '    <div class="alm-stat-value">' + escapeHtml(currentPrice) + '</div>'
-                + '  </div>'
-                + '  <div class="alm-stat-card">'
-                + '    <div class="alm-stat-label">Predicted Price</div>'
-                + '    <div class="alm-stat-value">' + escapeHtml(predictedPrice) + '</div>'
+                + '  <div class="alm-score-value" style="color:' + lightColor + ';">'
+                +       escapeHtml(light.label.split(' ')[0] || 'UNKNOWN')
                 + '  </div>'
                 + '</div>'
-                + '<div class="alm-note-box">'
-                + '  <strong>Trend:</strong> ' + escapeHtml(trend)
-                + '  <br><strong>Confidence:</strong> ' + escapeHtml(Number.isFinite(confidence) ? confidence.toFixed(1) + '%' : 'N/A')
-                + '  <br><strong>Scope:</strong> Current live SPY snapshot reused for this comparison pass.'
-                + '</div>';
+                + '<div class="alm-triple-grid">' + indexCards + '</div>'
+                + trendBox
+                + '<div class="alm-note-caption" style="margin-top:0.35rem;">'
+                + escapeHtml(refreshMeta)
+                + ' | <a href="#" id="iris-refresh-btn" class="alm-refresh-link">Refresh</a></div>';
+
+            const refreshBtn = document.getElementById('iris-refresh-btn');
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', async (event) => {
+                    event.preventDefault();
+                    refreshBtn.textContent = 'Refreshing...';
+                    try {
+                        const fresh = await fetchJson('/api/almanac/iris-refresh');
+                        irisLiveData = fresh;
+                        irisPromise = null;
+                        renderDailyView();
+                    } catch (error) {
+                        console.error('IRIS refresh failed:', error);
+                        refreshBtn.textContent = 'Refresh failed';
+                    }
+                });
+            }
         }
 
-        if (verdict) {
-            const agreement = computeAgreement(signal, dayData.s_dir);
+        if (verdict && irisData?.indices) {
+            const pairs = [
+                { label: 'Dow', irisKey: 'dji', almDir: dayData.d_dir },
+                { label: 'S&P', irisKey: 'gspc', almDir: dayData.s_dir },
+                { label: 'NASDAQ', irisKey: 'ixic', almDir: dayData.n_dir },
+            ];
+
+            const badges = pairs.map((pair) => {
+                const irisIdx = irisData.indices[pair.irisKey];
+                if (!irisIdx?.available) {
+                    return '<span class="alm-verdict-neutral">' + escapeHtml(pair.label) + ': --</span>';
+                }
+
+                const irisDir = irisIdx.direction === 'upward'
+                    ? 'D'
+                    : irisIdx.direction === 'downward'
+                        ? 'N'
+                        : 'S';
+                const almDir = pair.almDir;
+                const agree = (irisDir === 'D' && almDir === 'D') || (irisDir === 'N' && almDir === 'N');
+                const agreeLabel = almDir === 'S' || irisDir === 'S' ? 'NEUTRAL' : (agree ? 'AGREE' : 'DISAGREE');
+
+                return '<span class="alm-verdict-' + agreeLabel.toLowerCase() + '">'
+                    + escapeHtml(pair.label) + ': ' + escapeHtml(agreeLabel) + '</span>';
+            }).join(' <span class="alm-note-caption">|</span> ');
+
             verdict.innerHTML = ''
-                + '<div class="alm-note-caption">Live IRIS vs historical Almanac direction</div>'
-                + '<div style="margin-top:0.35rem; font-size:1.05rem;">' + agreementBadge(agreement) + '</div>'
-                + '<div class="alm-note-caption" style="margin-top:0.4rem;">'
-                + 'IRIS: ' + escapeHtml(signal)
-                + ' | Almanac S&amp;P: ' + escapeHtml(dayData.s_dir) + ' (' + escapeHtml(dayData.s) + ')'
-                + '</div>';
+                + '<div class="alm-note-caption">IRIS vs Almanac direction per index</div>'
+                + '<div style="margin-top:0.35rem;">' + badges + '</div>';
         }
     }
 
@@ -693,12 +906,19 @@
         const weekLabel = document.getElementById('week-label');
         const container = document.getElementById('weekly-table-container');
         const strip = document.getElementById('weekly-agreement-strip');
+        const existingAccuracyBar = document.getElementById('weekly-accuracy-bar');
+
+        if (existingAccuracyBar) {
+            existingAccuracyBar.remove();
+        }
 
         if (!payload) {
             if (container) container.innerHTML = '<div class="alm-empty">Weekly Almanac data could not be loaded.</div>';
             if (strip) strip.innerHTML = '';
             return;
         }
+
+        const accPayload = await loadAccuracyData();
 
         const weekDates = getWeekDates(currentWeekStart);
         if (!weekDates.length) {
@@ -715,6 +935,17 @@
         if (container) {
             const rows = weekDates.map((dateKey) => {
                 const day = payload.daily[dateKey];
+                const acc = accPayload?.daily?.[dateKey];
+                const accClass = !acc || Number(acc.total_calls) <= 0
+                    ? 'alm-acc-neutral'
+                    : acc.hits >= 2
+                        ? 'alm-acc-hit'
+                        : acc.hits === 0
+                            ? 'alm-acc-miss'
+                            : 'alm-acc-neutral';
+                const accCell = acc
+                    ? '<td class="' + accClass + '"><strong>' + acc.hits + '/' + acc.total_calls + '</strong></td>'
+                    : '<td><span class="alm-note-caption">--</span></td>';
                 return ''
                     + '<tr>'
                     + '  <td><strong>' + escapeHtml(day.day) + '</strong><br><span class="alm-note-caption">' + escapeHtml(dateKey) + '</span></td>'
@@ -722,12 +953,13 @@
                     + '  <td>' + directionBadge(day.s_dir) + '</td>'
                     + '  <td>' + (day.icon ? '<span class="alm-chip">' + escapeHtml(day.icon.replace('_', ' ')) + '</span>' : '<span class="alm-note-caption">None</span>') + '</td>'
                     + '  <td>' + escapeHtml(day.notes || '-') + '</td>'
+                    + accCell
                     + '</tr>';
             }).join('');
 
             container.innerHTML = ''
                 + '<table class="alm-week-table">'
-                + '  <thead><tr><th>Day</th><th>S&amp;P Score</th><th>Direction</th><th>Icon</th><th>Notes</th></tr></thead>'
+                + '  <thead><tr><th>Day</th><th>S&amp;P Score</th><th>Direction</th><th>Icon</th><th>Notes</th><th>Accuracy</th></tr></thead>'
                 + '  <tbody>' + rows + '</tbody>'
                 + '</table>';
         }
@@ -739,18 +971,46 @@
                     + '<div class="alm-agree-cell">'
                     + '  <div class="alm-weekday">' + escapeHtml(day.day) + '</div>'
                     + '  <div class="alm-mini-value ' + scoreClass(day.s) + '">' + escapeHtml(day.s_dir) + '</div>'
-                    + '  <div class="alm-weekday">' + escapeHtml(day.s) + ' S&amp;P</div>'
-                    + '</div>';
+                + '  <div class="alm-weekday">' + escapeHtml(day.s) + ' S&amp;P</div>'
+                + '</div>';
             }).join('');
+        }
+
+        let wHits = 0;
+        let wCalls = 0;
+        weekDates.forEach((dateKey) => {
+            const entry = accPayload?.daily?.[dateKey];
+            if (entry) {
+                wHits += Number(entry.hits || 0);
+                wCalls += Number(entry.total_calls || 0);
+            }
+        });
+        if (wCalls > 0) {
+            const wPct = (wHits / wCalls * 100).toFixed(0);
+            const barClass = wPct >= 60 ? 'acc-good' : wPct < 40 ? 'acc-poor' : 'acc-mixed';
+            const bar = document.createElement('div');
+            bar.id = 'weekly-accuracy-bar';
+            bar.className = 'alm-week-accuracy-bar';
+            bar.innerHTML = '<span>Week Accuracy</span>'
+                + '<strong class="' + barClass + '">' + wHits + '/' + wCalls + ' (' + wPct + '%)</strong>';
+            if (strip && strip.parentNode) {
+                strip.parentNode.insertBefore(bar, strip.nextSibling);
+            }
         }
     }
 
     async function renderMonthlyView() {
-        const payload = await loadAlmanacFull();
+        const [payload, accPayload] = await Promise.all([loadAlmanacFull(), loadAccuracyData()]);
         const monthLabel = document.getElementById('month-label');
         const almanacPanel = document.getElementById('almanac-monthly-content');
         const irisPanel = document.getElementById('iris-monthly-content');
         const calendar = document.getElementById('monthly-calendar-heatmap');
+        const monthSummary = ensureMonthAccuracySummary(calendar);
+
+        if (monthSummary) {
+            monthSummary.style.display = 'none';
+            monthSummary.innerHTML = '';
+        }
 
         if (!payload) {
             if (almanacPanel) almanacPanel.innerHTML = '<div class="alm-empty">Monthly Almanac data could not be loaded.</div>';
@@ -807,7 +1067,7 @@
             irisPanel.innerHTML = ''
                 + '<div class="alm-note-box">'
                 + 'Monthly IRIS aggregation is intentionally lightweight in this pass.'
-                + '<br><br>The page currently reuses live SPY analysis for daily comparison only.'
+                + '<br><br>The page currently reuses cached IRIS index snapshots for daily comparison only.'
                 + '<br><br>Planned future extension: stored historical IRIS reports by session date for weekly and monthly accuracy summaries.'
                 + '</div>';
         }
@@ -836,14 +1096,27 @@
                         : Number(dayData.s) <= 40
                             ? 'rgba(182, 78, 90, 0.48)'
                             : 'rgba(180, 140, 58, 0.3)';
-                    pieces.push(
-                        '<div class="alm-cal-day" style="background:' + background + '; border-color: var(--panel-border);" title="'
-                        + escapeHtml(dateKey + ': S&P ' + dayData.s + ' (' + dayData.s_dir + ')')
-                        + '">'
-                        + '  <div class="alm-cal-daynum">' + day + '</div>'
-                        + '  <div class="alm-calendar-score">' + escapeHtml(dayData.s) + '</div>'
-                        + '</div>'
-                    );
+                    const accDay = accPayload?.daily?.[dateKey];
+                    let cellTitle = dateKey + ': S&P ' + dayData.s + ' (' + dayData.s_dir + ')';
+                    let cellHtml = ''
+                        + '<div class="alm-cal-day" style="background:' + background + '; border-color: var(--panel-border);" title="';
+                    if (accDay && accDay.total_calls > 0) {
+                        const dotColor = accDay.hits >= 2 ? '#28a745'
+                            : accDay.hits === 1 ? '#ffc107'
+                                : '#dc3545';
+                        cellTitle += ' | ' + accDay.hits + '/' + accDay.total_calls + ' correct';
+                        cellHtml += escapeHtml(cellTitle) + '">'
+                            + '  <div class="alm-cal-daynum">' + day + '</div>'
+                            + '  <div class="alm-calendar-score">' + escapeHtml(dayData.s) + '</div>'
+                            + '  <span class="alm-cal-acc-dot" style="background:' + dotColor + '"></span>'
+                            + '</div>';
+                    } else {
+                        cellHtml += escapeHtml(cellTitle) + '">'
+                            + '  <div class="alm-cal-daynum">' + day + '</div>'
+                            + '  <div class="alm-calendar-score">' + escapeHtml(dayData.s) + '</div>'
+                            + '</div>';
+                    }
+                    pieces.push(cellHtml);
                 } else {
                     const currentDateObj = new Date(dateKey + 'T12:00:00');
                     const dayOfWeek = currentDateObj.getDay();
@@ -860,6 +1133,19 @@
             }
 
             calendar.innerHTML = pieces.join('');
+        }
+
+        if (monthSummary) {
+            const monthAcc = accPayload?.monthly?.[currentMonth];
+            if (monthAcc) {
+                monthSummary.style.display = '';
+                monthSummary.className = 'alm-month-acc-summary';
+                monthSummary.innerHTML = 'Month Accuracy: '
+                    + monthAcc.hits + '/' + monthAcc.total_calls + ' (' + formatAccuracyPct(monthAcc.accuracy, 1) + '%)'
+                    + '<span class="alm-note-caption">D: ' + formatAccuracyPct(monthAcc.dow?.pct ?? 0, 0) + '%'
+                    + ' &middot; S: ' + formatAccuracyPct(monthAcc.sp500?.pct ?? 0, 0) + '%'
+                    + ' &middot; N: ' + formatAccuracyPct(monthAcc.nasdaq?.pct ?? 0, 0) + '%</span>';
+            }
         }
     }
 

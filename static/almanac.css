@@ -273,6 +273,59 @@
     border: 1px solid var(--panel-border);
 }
 
+.alm-signal-buy,
+.alm-signal-sell,
+.alm-signal-hold {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.alm-signal-buy {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+    border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+.alm-signal-sell {
+    background: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.alm-signal-hold {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.alm-verdict-agree {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.alm-verdict-disagree {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.alm-verdict-neutral {
+    color: #6c757d;
+    font-weight: 600;
+}
+
+.alm-refresh-link {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.alm-refresh-link:hover {
+    text-decoration: underline;
+}
+
 .alm-stat-grid,
 .alm-triple-grid,
 .alm-month-metrics {
@@ -327,6 +380,64 @@
     font-size: 0.9rem;
 }
 
+.alm-accuracy-panel {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    background: var(--card-bg);
+    border: 1px solid var(--border, var(--panel-border));
+}
+
+.alm-acc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.4rem;
+    margin: 0.5rem 0;
+}
+
+.alm-acc-card {
+    text-align: center;
+    padding: 0.55rem 0.4rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.22rem;
+}
+
+.alm-acc-hit {
+    background: rgba(40, 167, 69, 0.12);
+    border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+.alm-acc-miss {
+    background: rgba(220, 53, 69, 0.12);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.alm-acc-neutral {
+    background: rgba(108, 117, 125, 0.1);
+    border: 1px solid rgba(108, 117, 125, 0.2);
+}
+
+.alm-acc-badge,
+.alm-acc-score {
+    font-weight: 700;
+}
+
+.alm-acc-score {
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+.alm-acc-positive {
+    color: var(--status-green);
+}
+
+.alm-acc-negative {
+    color: var(--status-red);
+}
+
 .alm-week-table {
     width: 100%;
     border-collapse: separate;
@@ -374,6 +485,30 @@
     border-radius: 8px;
     background: var(--card-bg);
     border: 1px solid var(--panel-border);
+}
+
+.alm-week-accuracy-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    border-radius: 8px;
+    background: var(--card-bg);
+    border: 1px solid var(--border, var(--panel-border));
+    font-size: 0.9rem;
+}
+
+.acc-good {
+    color: #28a745;
+}
+
+.acc-mixed {
+    color: #856404;
+}
+
+.acc-poor {
+    color: #dc3545;
 }
 
 #seasonal-heatmap-strip {
@@ -446,6 +581,7 @@
     padding: 0.25rem;
     text-align: center;
     border: 1px solid transparent;
+    position: relative;
 }
 
 .alm-cal-day.empty {
@@ -455,6 +591,30 @@
 .alm-cal-daynum {
     font-size: 0.88rem;
     font-weight: 700;
+}
+
+.alm-cal-acc-dot {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.alm-month-acc-summary {
+    text-align: center;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border, var(--panel-border));
+}
+
+.alm-month-acc-summary .alm-note-caption {
+    display: block;
+    margin-top: 0.2rem;
 }
 
 .alm-sig-legend {
@@ -756,7 +916,8 @@
 @media (max-width: 768px) {
     .alm-split-grid,
     .alm-triple-grid,
-    .alm-month-metrics {
+    .alm-month-metrics,
+    .alm-acc-grid {
         grid-template-columns: 1fr;
     }
 
