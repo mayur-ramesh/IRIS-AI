@@ -96,6 +96,14 @@ class TestAlmanacAPI(unittest.TestCase):
         self.assertEqual(data["month"]["name"], "April")
         self.assertEqual(data["month"]["vital_stats"]["sp500"]["rank"], 2)
         self.assertIn("2026-04-09", data["daily"])
+        self.assertEqual(len(data["calendar_days"]), 30)
+        good_friday = next(day for day in data["calendar_days"] if day["date"] == "2026-04-03")
+        self.assertEqual(good_friday["status"], "closed")
+        self.assertFalse(good_friday["market_open"])
+        self.assertIn("Good Friday", good_friday["status_reason"])
+        april_ninth = next(day for day in data["calendar_days"] if day["date"] == "2026-04-09")
+        self.assertTrue(april_ninth["almanac_available"])
+        self.assertEqual(april_ninth["s"], 61.9)
 
     def test_almanac_seasonal_endpoint(self):
         resp = self.client.get("/api/almanac/seasonal")

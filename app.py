@@ -224,13 +224,16 @@ def _market_closure_reason(date_key: str) -> str | None:
     return _market_holiday_map(target.year).get(target)
 
 
-def _almanac_weekday_entry(date_key: str, daily: dict[str, dict], data_year: int | None):
+def _almanac_calendar_entry(date_key: str, daily: dict[str, dict], data_year: int | None):
+    parsed_date = datetime.strptime(date_key, "%Y-%m-%d").date()
+    is_weekend = parsed_date.weekday() >= 5
     entry = daily.get(date_key)
     if entry:
         return {
             **entry,
             "date": date_key,
             "day": str(entry.get("day", "")).strip().upper()[:3],
+            "is_weekend": is_weekend,
             "market_open": True,
             "almanac_available": True,
             "status": "open",
@@ -238,8 +241,11 @@ def _almanac_weekday_entry(date_key: str, daily: dict[str, dict], data_year: int
         }
 
     closure_reason = _market_closure_reason(date_key)
-    parsed = datetime.strptime(date_key, "%Y-%m-%d")
-    if closure_reason:
+    if is_weekend:
+        status = "closed"
+        status_reason = "Weekend market closure"
+        market_open = False
+    elif closure_reason:
         status = "closed"
         status_reason = closure_reason
         market_open = False
@@ -251,7 +257,7 @@ def _almanac_weekday_entry(date_key: str, daily: dict[str, dict], data_year: int
 
     return {
         "date": date_key,
-        "day": parsed.strftime("%a").upper()[:3],
+        "day": parsed_date.strftime("%a").upper()[:3],
         "d": None,
         "s": None,
         "n": None,
@@ -260,11 +266,16 @@ def _almanac_weekday_entry(date_key: str, daily: dict[str, dict], data_year: int
         "n_dir": "",
         "icon": None,
         "notes": "",
+        "is_weekend": is_weekend,
         "market_open": market_open,
         "almanac_available": False,
         "status": status,
         "status_reason": status_reason,
     }
+
+
+def _almanac_weekday_entry(date_key: str, daily: dict[str, dict], data_year: int | None):
+    return _almanac_calendar_entry(date_key, daily, data_year)
 
 
 def _almanac_table_rows(payload, table_name):
@@ -799,7 +810,25 @@ def almanac_month(month_key):
 
     daily = data.get("daily", {})
     month_daily = {k: v for k, v in daily.items() if k.startswith(f"{month_key}-")}
-    return jsonify({"month": month, "daily": month_daily})
+    data_year = data.get("meta", {}).get("year") if isinstance(data.get("meta"), dict) else None
+
+    try:
+        month_start = datetime.strptime(f"{month_key}-01", "%Y-%m-%d").date()
+    except ValueError:
+        return jsonify({"error": f"Invalid month key {month_key}. Expected YYYY-MM"}), 400
+
+    if month_start.month == 12:
+        next_month = date(month_start.year + 1, 1, 1)
+    else:
+        next_month = date(month_start.year, month_start.month + 1, 1)
+    days_in_month = (next_month - month_start).days
+
+    calendar_days = [
+        _almanac_calendar_entry((month_start + timedelta(days=offset)).isoformat(), daily, data_year)
+        for offset in range(days_in_month)
+    ]
+
+    return jsonify({"month": month, "daily": month_daily, "calendar_days": calendar_days})
 
 
 @app.route('/api/almanac/seasonal')

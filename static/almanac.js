@@ -16,12 +16,17 @@
     let accuracyPromise = null;
     let weeklyAccuracyCache = {};
     let weeklyAccuracyPromiseCache = {};
+    let monthDetailCache = {};
+    let monthDetailPromiseCache = {};
     let irisLiveData = null;
     let irisPromise = null;
     let tradingDates = [];
     let monthKeys = [];
     let seasonalTooltip = null;
+    let monthlyTooltip = null;
     let activeTooltipTarget = null;
+    let activeMonthlyTooltipTarget = null;
+    let currentMonthCalendarLookup = {};
 
     const tabs = Array.from(document.querySelectorAll('.alm-tab'));
     const views = Array.from(document.querySelectorAll('.alm-view'));
@@ -77,9 +82,9 @@
         },
     };
     const WEEKLY_INDEX_META = [
-        { scoreKey: 'd', directionKey: 'd_dir', accuracyKey: 'd', pctKey: 'dji', weeklyKey: 'dow', label: 'Dow' },
-        { scoreKey: 's', directionKey: 's_dir', accuracyKey: 's', pctKey: 'sp500', weeklyKey: 'sp500', label: 'S&P 500' },
-        { scoreKey: 'n', directionKey: 'n_dir', accuracyKey: 'n', pctKey: 'nasdaq', weeklyKey: 'nasdaq', label: 'NASDAQ' },
+        { scoreKey: 'd', directionKey: 'd_dir', accuracyKey: 'd', pctKey: 'dji', weeklyKey: 'dow', label: 'Dow', shortLabel: 'Dow' },
+        { scoreKey: 's', directionKey: 's_dir', accuracyKey: 's', pctKey: 'sp500', weeklyKey: 'sp500', label: 'S&P 500', shortLabel: 'S&P' },
+        { scoreKey: 'n', directionKey: 'n_dir', accuracyKey: 'n', pctKey: 'nasdaq', weeklyKey: 'nasdaq', label: 'NASDAQ', shortLabel: 'Nas' },
     ];
 
     function escapeHtml(value) {
@@ -217,6 +222,31 @@
         return weeklyAccuracyPromiseCache[key];
     }
 
+    async function loadMonthDetail(monthKey) {
+        const key = String(monthKey || '').trim();
+        if (!key) {
+            return null;
+        }
+        if (monthDetailCache[key]) {
+            return monthDetailCache[key];
+        }
+        if (monthDetailPromiseCache[key]) {
+            return monthDetailPromiseCache[key];
+        }
+        monthDetailPromiseCache[key] = fetchJson('/api/almanac/month/' + encodeURIComponent(key))
+            .then((payload) => {
+                monthDetailCache[key] = payload;
+                delete monthDetailPromiseCache[key];
+                return payload;
+            })
+            .catch((error) => {
+                console.error('Failed to load month detail:', error);
+                delete monthDetailPromiseCache[key];
+                return null;
+            });
+        return monthDetailPromiseCache[key];
+    }
+
     async function fetchIrisLive() {
         if (irisLiveData) {
             return irisLiveData;
@@ -337,6 +367,140 @@
 
     function formatMonthShort(monthKey) {
         return new Date(monthKey + '-01T12:00:00').toLocaleDateString('en-US', { month: 'short' });
+    }
+
+    function formatAlmanacDirection(direction) {
+        const normalized = String(direction || '').toUpperCase();
+        if (normalized === 'D') {
+            return 'Bullish';
+        }
+        if (normalized === 'N') {
+            return 'Bearish';
+        }
+        return 'Sideways';
+    }
+
+    function monthDayToneClass(day) {
+        if (!day) {
+            return 'is-empty';
+        }
+        if (!day.almanac_available) {
+            return day.status === 'closed' ? 'is-closed' : 'is-no-data';
+        }
+        const scores = WEEKLY_INDEX_META
+            .map((indexMeta) => Number(day[indexMeta.scoreKey]))
+            .filter((value) => Number.isFinite(value));
+        const average = scores.length
+            ? scores.reduce((sum, value) => sum + value, 0) / scores.length
+            : 50;
+        if (average >= 60) {
+            return 'is-bullish';
+        }
+        if (average <= 40) {
+            return 'is-bearish';
+        }
+        return 'is-mixed';
+    }
+
+    function buildMonthlyCalendarScoreLine(day, indexMeta) {
+        const score = day?.[indexMeta.scoreKey];
+        if (score === null || score === undefined || score === '') {
+            return '';
+        }
+        return ''
+            + '<div class="alm-cal-line ' + scoreClass(score) + '">'
+            + '  <span class="alm-cal-line-label">' + escapeHtml(indexMeta.shortLabel) + '</span>'
+            + '  <strong>' + escapeHtml(score) + '</strong>'
+            + '</div>';
+    }
+
+    function monthlyStatusBadge(day) {
+        if (!day || day.almanac_available) {
+            return '';
+        }
+        if (day.status === 'closed') {
+            if (day.is_weekend) {
+                return 'Weekend';
+            }
+            return 'Holiday';
+        }
+        return 'No Entry';
+    }
+
+    function buildMonthlyTooltipIndexRow(day, accDay, indexMeta) {
+        const score = day?.[indexMeta.scoreKey];
+        const direction = day?.[indexMeta.directionKey];
+        const result = accDay?.results?.[indexMeta.accuracyKey] || {};
+        const pctValue = Number(accDay?.pct_change?.[indexMeta.pctKey]);
+        const pctClass = pctValue > 0 ? 'alm-acc-positive' : pctValue < 0 ? 'alm-acc-negative' : 'alm-note-caption';
+        const actualText = accDay && Number.isFinite(pctValue)
+            ? 'Actual ' + formatPctDelta(pctValue)
+            : 'Historic result pending';
+        const verdictText = result.verdict || 'No call';
+
+        return ''
+            + '<div class="alm-month-tip-row">'
+            + '  <div class="alm-month-tip-row-head">'
+            + '    <span class="alm-mini-title">' + escapeHtml(indexMeta.label) + '</span>'
+            + '    <span class="alm-week-index-score ' + scoreClass(score) + '">' + escapeHtml(score) + '</span>'
+            +      directionBadge(direction)
+            + '  </div>'
+            + '  <div class="alm-month-tip-row-meta">'
+            + '    <span class="' + pctClass + '">' + escapeHtml(actualText) + '</span>'
+            + '    <span class="alm-week-index-verdict ' + accuracyCardClass(result.verdict) + '">' + escapeHtml(verdictText) + '</span>'
+            + '  </div>'
+            + '</div>';
+    }
+
+    function showMonthlyTooltip(target) {
+        if (!target) {
+            return;
+        }
+        const dateKey = target.getAttribute('data-month-date') || '';
+        const day = currentMonthCalendarLookup[dateKey];
+        if (!day) {
+            return;
+        }
+
+        const tooltip = ensureMonthlyTooltip();
+        const accDay = accuracyCache?.daily?.[dateKey] || null;
+        const statusLabel = day.almanac_available
+            ? 'Almanac entry'
+            : (day.status === 'closed' ? 'Market closed' : 'No Almanac entry');
+        const noteText = day.almanac_available
+            ? (day.notes || 'No additional Almanac note for this day.')
+            : (day.status_reason || 'No additional detail is available for this date.');
+        const iconText = day.icon ? capitalize(String(day.icon).replace(/_/g, ' ')) : '';
+        const accuracyText = accDay && Number(accDay.total_calls) > 0
+            ? 'Historic accuracy: ' + accDay.hits + '/' + accDay.total_calls + ' correct'
+            : 'Historic accuracy: no scored result yet';
+
+        resetTooltipPosition(tooltip);
+        tooltip.innerHTML = ''
+            + '<div class="alm-month-tooltip-title">' + escapeHtml(formatLongDate(dateKey)) + '</div>'
+            + '<div class="alm-month-tooltip-meta">'
+            + '  <span class="alm-month-tooltip-chip">' + escapeHtml(statusLabel) + '</span>'
+            +      (iconText ? '<span class="alm-month-tooltip-chip is-icon">' + escapeHtml(iconText) + '</span>' : '')
+            + '</div>'
+            +      (day.almanac_available
+                ? '<div class="alm-month-tip-grid">' + WEEKLY_INDEX_META.map((indexMeta) => buildMonthlyTooltipIndexRow(day, accDay, indexMeta)).join('') + '</div>'
+                : '')
+            + '<div class="alm-month-tip-note">' + escapeHtml(noteText) + '</div>'
+            +      (day.almanac_available ? '<div class="alm-month-tip-accuracy">' + escapeHtml(accuracyText) + '</div>' : '');
+        tooltip.classList.add('is-visible');
+        tooltip.setAttribute('aria-hidden', 'false');
+        activeMonthlyTooltipTarget = target;
+        positionMonthlyTooltip(target);
+    }
+
+    function hideMonthlyTooltip() {
+        if (!monthlyTooltip) {
+            return;
+        }
+        monthlyTooltip.classList.remove('is-visible');
+        monthlyTooltip.setAttribute('aria-hidden', 'true');
+        resetTooltipPosition(monthlyTooltip);
+        activeMonthlyTooltipTarget = null;
     }
 
     function accuracyCardClass(verdict) {
@@ -661,12 +825,32 @@
         return seasonalTooltip;
     }
 
-    function positionSeasonalTooltip(target) {
-        if (!seasonalTooltip || !target) {
+    function ensureMonthlyTooltip() {
+        if (monthlyTooltip) {
+            return monthlyTooltip;
+        }
+        monthlyTooltip = document.createElement('div');
+        monthlyTooltip.className = 'alm-month-tooltip';
+        monthlyTooltip.setAttribute('role', 'tooltip');
+        monthlyTooltip.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(monthlyTooltip);
+        return monthlyTooltip;
+    }
+
+    function resetTooltipPosition(tooltip) {
+        if (!tooltip) {
+            return;
+        }
+        tooltip.style.left = '-9999px';
+        tooltip.style.top = '-9999px';
+    }
+
+    function positionFloatingTooltip(tooltip, target) {
+        if (!tooltip || !target) {
             return;
         }
         const targetRect = target.getBoundingClientRect();
-        const tooltipRect = seasonalTooltip.getBoundingClientRect();
+        const tooltipRect = tooltip.getBoundingClientRect();
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
         const spacing = 12;
@@ -683,8 +867,16 @@
         left = Math.max(spacing, Math.min(left, viewportWidth - tooltipRect.width - spacing));
         top = Math.max(spacing, Math.min(top, viewportHeight - tooltipRect.height - spacing));
 
-        seasonalTooltip.style.left = left + 'px';
-        seasonalTooltip.style.top = top + 'px';
+        tooltip.style.left = left + 'px';
+        tooltip.style.top = top + 'px';
+    }
+
+    function positionSeasonalTooltip(target) {
+        positionFloatingTooltip(seasonalTooltip, target);
+    }
+
+    function positionMonthlyTooltip(target) {
+        positionFloatingTooltip(monthlyTooltip, target);
     }
 
     function showSeasonalTooltip(target) {
@@ -699,8 +891,7 @@
         const meaning = target.getAttribute('data-sig-meaning') || '';
         const toneClass = target.getAttribute('data-sig-tone') || 'sg-n';
 
-        tooltip.style.left = '-9999px';
-        tooltip.style.top = '-9999px';
+        resetTooltipPosition(tooltip);
         tooltip.innerHTML = ''
             + '<div class="alm-sig-tooltip-title">' + escapeHtml(title) + '</div>'
             + '<div class="alm-sig-tooltip-meta">'
@@ -721,13 +912,16 @@
         }
         seasonalTooltip.classList.remove('is-visible');
         seasonalTooltip.setAttribute('aria-hidden', 'true');
-        seasonalTooltip.style.left = '-9999px';
-        seasonalTooltip.style.top = '-9999px';
+        resetTooltipPosition(seasonalTooltip);
         activeTooltipTarget = null;
     }
 
     function getSignalBadgeTarget(node) {
         return node instanceof Element ? node.closest('.alm-sig-badge') : null;
+    }
+
+    function getMonthDayTarget(node) {
+        return node instanceof Element ? node.closest('.alm-cal-day[data-month-date]') : null;
     }
 
     function resolveNearestTradingDate(candidate) {
@@ -1203,6 +1397,8 @@
         const irisPanel = document.getElementById('iris-monthly-content');
         const calendar = document.getElementById('monthly-calendar-heatmap');
         const monthSummary = ensureMonthAccuracySummary(calendar);
+        currentMonthCalendarLookup = {};
+        hideMonthlyTooltip();
 
         if (monthSummary) {
             monthSummary.style.display = 'none';
@@ -1220,9 +1416,11 @@
             currentMonth = monthKeys.includes('2026-04') ? '2026-04' : monthKeys[0];
         }
 
-        const monthInfo = payload.months[currentMonth];
+        const monthPayload = await loadMonthDetail(currentMonth);
+        const monthInfo = monthPayload?.month || payload.months[currentMonth];
         if (!monthInfo) {
             if (almanacPanel) almanacPanel.innerHTML = '<div class="alm-empty">No monthly data found.</div>';
+            if (calendar) calendar.innerHTML = '<div class="alm-empty">Calendar unavailable for this month.</div>';
             return;
         }
 
@@ -1270,10 +1468,11 @@
         }
 
         if (calendar) {
-            const [yearString, monthString] = currentMonth.split('-');
-            const year = Number(yearString);
-            const monthNumber = Number(monthString);
-            const daysInMonth = new Date(year, monthNumber, 0).getDate();
+            const calendarDays = Array.isArray(monthPayload?.calendar_days) ? monthPayload.calendar_days : [];
+            currentMonthCalendarLookup = calendarDays.reduce((lookup, day) => {
+                lookup[day.date] = day;
+                return lookup;
+            }, {});
             const monthStart = new Date(currentMonth + '-01T12:00:00');
             const mondayOffset = (monthStart.getDay() + 6) % 7;
             const pieces = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((label) => {
@@ -1284,52 +1483,39 @@
                 pieces.push('<div class="alm-cal-day empty"></div>');
             }
 
-            for (let day = 1; day <= daysInMonth; day += 1) {
-                const dateKey = currentMonth + '-' + String(day).padStart(2, '0');
-                const dayData = payload.daily[dateKey];
-                if (dayData) {
-                    const background = Number(dayData.s) >= 60
-                        ? 'rgba(63, 127, 107, 0.48)'
-                        : Number(dayData.s) <= 40
-                            ? 'rgba(182, 78, 90, 0.48)'
-                            : 'rgba(180, 140, 58, 0.3)';
-                    const accDay = accPayload?.daily?.[dateKey];
-                    let cellTitle = dateKey + ': S&P ' + dayData.s + ' (' + dayData.s_dir + ')';
-                    let cellHtml = ''
-                        + '<div class="alm-cal-day" style="background:' + background + '; border-color: var(--panel-border);" title="';
-                    if (accDay && accDay.total_calls > 0) {
-                        const dotColor = accDay.hits >= 2 ? '#28a745'
-                            : accDay.hits === 1 ? '#ffc107'
-                                : '#dc3545';
-                        cellTitle += ' | ' + accDay.hits + '/' + accDay.total_calls + ' correct';
-                        cellHtml += escapeHtml(cellTitle) + '">'
-                            + '  <div class="alm-cal-daynum">' + day + '</div>'
-                            + '  <div class="alm-calendar-score">' + escapeHtml(dayData.s) + '</div>'
-                            + '  <span class="alm-cal-acc-dot" style="background:' + dotColor + '"></span>'
-                            + '</div>';
-                    } else {
-                        cellHtml += escapeHtml(cellTitle) + '">'
-                            + '  <div class="alm-cal-daynum">' + day + '</div>'
-                            + '  <div class="alm-calendar-score">' + escapeHtml(dayData.s) + '</div>'
-                            + '</div>';
-                    }
-                    pieces.push(cellHtml);
-                } else {
-                    const currentDateObj = new Date(dateKey + 'T12:00:00');
-                    const dayOfWeek = currentDateObj.getDay();
-                    const weekend = dayOfWeek === 0 || dayOfWeek === 6;
+            if (!calendarDays.length) {
+                calendar.innerHTML = '<div class="alm-empty">No calendar day data found for this month.</div>';
+            } else {
+                calendarDays.forEach((dayData) => {
+                    const dayNumber = Number(String(dayData.date || '').slice(-2));
+                    const accDay = dayData.almanac_available ? accPayload?.daily?.[dayData.date] : null;
+                    const accuracyClass = dailyAccuracyClass(accDay);
+                    const statusBadge = dayData.almanac_available
+                        ? (dayData.icon ? '<span class="alm-cal-badge">' + escapeHtml(capitalize(String(dayData.icon).replace(/_/g, ' '))) + '</span>' : '')
+                        : '<span class="alm-cal-badge is-muted">' + escapeHtml(monthlyStatusBadge(dayData)) + '</span>';
+                    const linesMarkup = dayData.almanac_available
+                        ? WEEKLY_INDEX_META.map((indexMeta) => buildMonthlyCalendarScoreLine(dayData, indexMeta)).join('')
+                        : ''
+                            + '<div class="alm-cal-status">' + escapeHtml(dayData.status === 'closed' ? 'Market Closed' : 'No Almanac Entry') + '</div>'
+                            + '<div class="alm-cal-status-sub">' + escapeHtml(dayData.is_weekend ? 'Weekend' : (dayData.status === 'closed' ? 'Holiday' : 'Market open')) + '</div>';
+                    const accuracyDot = accDay && Number(accDay.total_calls) > 0
+                        ? '<span class="alm-cal-acc-dot ' + accuracyClass + '"></span>'
+                        : '';
                     pieces.push(
-                        '<div class="alm-cal-day' + (weekend ? ' empty' : '') + '"'
-                        + (weekend ? '' : ' style="background: var(--bg-subtle); border-color: var(--panel-border);"')
-                        + '>'
-                        + '  <div class="alm-cal-daynum">' + day + '</div>'
-                        + (weekend ? '' : '  <div class="alm-calendar-score">Holiday</div>')
+                        ''
+                        + '<div class="alm-cal-day ' + monthDayToneClass(dayData) + '" tabindex="0" data-month-date="' + escapeHtml(dayData.date) + '" aria-label="' + escapeHtml(formatLongDate(dayData.date)) + '">'
+                        + '  <div class="alm-cal-daytop">'
+                        + '    <div class="alm-cal-daynum">' + escapeHtml(dayNumber) + '</div>'
+                        +      statusBadge
+                        + '  </div>'
+                        + '  <div class="alm-cal-body">' + linesMarkup + '</div>'
+                        +      accuracyDot
                         + '</div>'
                     );
-                }
-            }
+                });
 
-            calendar.innerHTML = pieces.join('');
+                calendar.innerHTML = pieces.join('');
+            }
         }
 
         if (monthSummary) {
@@ -1522,6 +1708,7 @@
 
     function refreshCurrentView() {
         hideSeasonalTooltip();
+        hideMonthlyTooltip();
         if (currentView === 'daily') {
             renderDailyView();
         } else if (currentView === 'weekly') {
@@ -1620,20 +1807,36 @@
             const badge = getSignalBadgeTarget(event.target);
             if (badge) {
                 showSeasonalTooltip(badge);
+                return;
+            }
+            const dayBlock = getMonthDayTarget(event.target);
+            if (dayBlock) {
+                showMonthlyTooltip(dayBlock);
             }
         });
 
         document.addEventListener('mouseout', (event) => {
             const badge = getSignalBadgeTarget(event.target);
-            if (!badge) {
+            if (badge) {
+                const nextBadge = getSignalBadgeTarget(event.relatedTarget);
+                if (nextBadge === badge) {
+                    return;
+                }
+                if (activeTooltipTarget === badge) {
+                    hideSeasonalTooltip();
+                }
+            }
+
+            const dayBlock = getMonthDayTarget(event.target);
+            if (!dayBlock) {
                 return;
             }
-            const nextBadge = getSignalBadgeTarget(event.relatedTarget);
-            if (nextBadge === badge) {
+            const nextDayBlock = getMonthDayTarget(event.relatedTarget);
+            if (nextDayBlock === dayBlock) {
                 return;
             }
-            if (activeTooltipTarget === badge) {
-                hideSeasonalTooltip();
+            if (activeMonthlyTooltipTarget === dayBlock) {
+                hideMonthlyTooltip();
             }
         });
 
@@ -1641,6 +1844,11 @@
             const badge = getSignalBadgeTarget(event.target);
             if (badge) {
                 showSeasonalTooltip(badge);
+                return;
+            }
+            const dayBlock = getMonthDayTarget(event.target);
+            if (dayBlock) {
+                showMonthlyTooltip(dayBlock);
             }
         });
 
@@ -1649,24 +1857,38 @@
             if (badge && activeTooltipTarget === badge) {
                 hideSeasonalTooltip();
             }
+            const dayBlock = getMonthDayTarget(event.target);
+            if (dayBlock && activeMonthlyTooltipTarget === dayBlock) {
+                hideMonthlyTooltip();
+            }
         });
 
         document.addEventListener('mousemove', (event) => {
             if (activeTooltipTarget && activeTooltipTarget.contains(event.target)) {
                 positionSeasonalTooltip(activeTooltipTarget);
             }
+            if (activeMonthlyTooltipTarget && activeMonthlyTooltipTarget.contains(event.target)) {
+                positionMonthlyTooltip(activeMonthlyTooltipTarget);
+            }
         });
 
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') {
                 hideSeasonalTooltip();
+                hideMonthlyTooltip();
             }
         });
 
-        window.addEventListener('scroll', hideSeasonalTooltip, true);
+        window.addEventListener('scroll', () => {
+            hideSeasonalTooltip();
+            hideMonthlyTooltip();
+        }, true);
         window.addEventListener('resize', () => {
             if (activeTooltipTarget) {
                 positionSeasonalTooltip(activeTooltipTarget);
+            }
+            if (activeMonthlyTooltipTarget) {
+                positionMonthlyTooltip(activeMonthlyTooltipTarget);
             }
         });
     }
