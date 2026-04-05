@@ -3,7 +3,7 @@
     "format": "almanac-json-db-v1",
     "source": "Stock Trader's Almanac 2026 (Wiley)",
     "year": 2026,
-    "generated_at": "2026-04-04T14:52:12.351842Z",
+    "generated_at": "2026-04-05T10:29:48.765585Z",
     "tables": [
       "metadata",
       "months",
@@ -30,7 +30,7 @@
       },
       {
         "key": "generated_at",
-        "value": "2026-04-04T14:52:12.351842Z"
+        "value": "2026-04-05T10:29:48.765585Z"
       },
       {
         "key": "format",
@@ -509,10 +509,50 @@
       "icon",
       "notes"
     ],
-    "row_count": 251,
+    "row_count": 254,
     "rows": [
       {
+        "date": "2025-12-29",
+        "source_month": "2026-01",
+        "day_of_week": "MON",
+        "dow_prob": 42.9,
+        "sp500_prob": 47.6,
+        "nasdaq_prob": 38.1,
+        "dow_dir": "S",
+        "sp500_dir": "S",
+        "nasdaq_dir": "N",
+        "icon": null,
+        "notes": ""
+      },
+      {
+        "date": "2025-12-30",
+        "source_month": "2026-01",
+        "day_of_week": "TUE",
+        "dow_prob": 42.9,
+        "sp500_prob": 42.9,
+        "nasdaq_prob": 38.1,
+        "dow_dir": "S",
+        "sp500_dir": "S",
+        "nasdaq_dir": "N",
+        "icon": null,
+        "notes": ""
+      },
+      {
+        "date": "2025-12-31",
+        "source_month": "2026-01",
+        "day_of_week": "WED",
+        "dow_prob": 33.3,
+        "sp500_prob": 28.6,
+        "nasdaq_prob": 28.6,
+        "dow_dir": "N",
+        "sp500_dir": "N",
+        "nasdaq_dir": "N",
+        "icon": "bear",
+        "notes": "Last Trading Day of the Year, NASDAQ Down 19 of last 25"
+      },
+      {
         "date": "2026-01-02",
+        "source_month": "2026-01",
         "day_of_week": "FRI",
         "dow_prob": 66.7,
         "sp500_prob": 52.4,
@@ -525,6 +565,7 @@
       },
       {
         "date": "2026-01-05",
+        "source_month": "2026-01",
         "day_of_week": "MON",
         "dow_prob": 61.9,
         "sp500_prob": 47.6,
@@ -537,6 +578,7 @@
       },
       {
         "date": "2026-01-06",
+        "source_month": "2026-01",
         "day_of_week": "TUE",
         "dow_prob": 47.6,
         "sp500_prob": 52.4,
@@ -549,6 +591,7 @@
       },
       {
         "date": "2026-01-07",
+        "source_month": "2026-01",
         "day_of_week": "WED",
         "dow_prob": 61.9,
         "sp500_prob": 66.7,
@@ -561,6 +604,7 @@
       },
       {
         "date": "2026-01-08",
+        "source_month": "2026-01",
         "day_of_week": "THU",
         "dow_prob": 42.9,
         "sp500_prob": 52.4,
@@ -573,6 +617,7 @@
       },
       {
         "date": "2026-01-09",
+        "source_month": "2026-01",
         "day_of_week": "FRI",
         "dow_prob": 52.4,
         "sp500_prob": 57.1,
@@ -585,6 +630,7 @@
       },
       {
         "date": "2026-01-12",
+        "source_month": "2026-01",
         "day_of_week": "MON",
         "dow_prob": 61.9,
         "sp500_prob": 71.4,
@@ -597,6 +643,7 @@
       },
       {
         "date": "2026-01-13",
+        "source_month": "2026-01",
         "day_of_week": "TUE",
         "dow_prob": 52.4,
         "sp500_prob": 52.4,
@@ -609,6 +656,7 @@
       },
       {
         "date": "2026-01-14",
+        "source_month": "2026-01",
         "day_of_week": "WED",
         "dow_prob": 47.6,
         "sp500_prob": 52.4,
@@ -621,6 +669,7 @@
       },
       {
         "date": "2026-01-15",
+        "source_month": "2026-01",
         "day_of_week": "THU",
         "dow_prob": 42.9,
         "sp500_prob": 47.6,
@@ -633,6 +682,7 @@
       },
       {
         "date": "2026-01-16",
+        "source_month": "2026-01",
         "day_of_week": "FRI",
         "dow_prob": 57.1,
         "sp500_prob": 66.7,
@@ -645,6 +695,7 @@
       },
       {
         "date": "2026-01-20",
+        "source_month": "2026-01",
         "day_of_week": "TUE",
         "dow_prob": 42.9,
         "sp500_prob": 42.9,
@@ -657,6 +708,7 @@
       },
       {
         "date": "2026-01-21",
+        "source_month": "2026-01",
         "day_of_week": "WED",
         "dow_prob": 52.4,
         "sp500_prob": 61.9,
@@ -669,6 +721,7 @@
       },
       {
         "date": "2026-01-22",
+        "source_month": "2026-01",
         "day_of_week": "THU",
         "dow_prob": 42.9,
         "sp500_prob": 57.1,
@@ -681,6 +734,7 @@
       },
       {
         "date": "2026-01-23",
+        "source_month": "2026-01",
         "day_of_week": "FRI",
         "dow_prob": 47.6,
         "sp500_prob": 52.4,
@@ -693,6 +747,7 @@
       },
       {
         "date": "2026-01-26",
+        "source_month": "2026-01",
         "day_of_week": "MON",
         "dow_prob": 57.1,
         "sp500_prob": 61.9,
@@ -705,6 +760,7 @@
       },
       {
         "date": "2026-01-27",
+        "source_month": "2026-01",
         "day_of_week": "TUE",
         "dow_prob": 57.1,
         "sp500_prob": 47.6,
@@ -717,6 +773,7 @@
       },
       {
         "date": "2026-01-28",
+        "source_month": "2026-01",
         "day_of_week": "WED",
         "dow_prob": 52.4,
         "sp500_prob": 42.9,
@@ -729,6 +786,7 @@
       },
       {
         "date": "2026-01-29",
+        "source_month": "2026-01",
         "day_of_week": "THU",
         "dow_prob": 47.6,
         "sp500_prob": 47.6,
@@ -741,6 +799,7 @@
       },
       {
         "date": "2026-01-30",
+        "source_month": "2026-01",
         "day_of_week": "FRI",
         "dow_prob": 38.1,
         "sp500_prob": 42.9,
@@ -753,6 +812,7 @@
       },
       {
         "date": "2026-02-02",
+        "source_month": "2026-02",
         "day_of_week": "MON",
         "dow_prob": 85.7,
         "sp500_prob": 81.0,
@@ -765,6 +825,7 @@
       },
       {
         "date": "2026-02-03",
+        "source_month": "2026-02",
         "day_of_week": "TUE",
         "dow_prob": 57.1,
         "sp500_prob": 71.4,
@@ -777,6 +838,7 @@
       },
       {
         "date": "2026-02-04",
+        "source_month": "2026-02",
         "day_of_week": "WED",
         "dow_prob": 47.6,
         "sp500_prob": 38.1,
@@ -789,6 +851,7 @@
       },
       {
         "date": "2026-02-05",
+        "source_month": "2026-02",
         "day_of_week": "THU",
         "dow_prob": 66.7,
         "sp500_prob": 71.4,
@@ -801,6 +864,7 @@
       },
       {
         "date": "2026-02-06",
+        "source_month": "2026-02",
         "day_of_week": "FRI",
         "dow_prob": 61.9,
         "sp500_prob": 57.1,
@@ -813,6 +877,7 @@
       },
       {
         "date": "2026-02-09",
+        "source_month": "2026-02",
         "day_of_week": "MON",
         "dow_prob": 47.6,
         "sp500_prob": 61.9,
@@ -825,6 +890,7 @@
       },
       {
         "date": "2026-02-10",
+        "source_month": "2026-02",
         "day_of_week": "TUE",
         "dow_prob": 52.4,
         "sp500_prob": 57.1,
@@ -837,6 +903,7 @@
       },
       {
         "date": "2026-02-11",
+        "source_month": "2026-02",
         "day_of_week": "WED",
         "dow_prob": 61.9,
         "sp500_prob": 57.1,
@@ -849,6 +916,7 @@
       },
       {
         "date": "2026-02-12",
+        "source_month": "2026-02",
         "day_of_week": "THU",
         "dow_prob": 57.1,
         "sp500_prob": 71.4,
@@ -861,6 +929,7 @@
       },
       {
         "date": "2026-02-13",
+        "source_month": "2026-02",
         "day_of_week": "FRI",
         "dow_prob": 47.6,
         "sp500_prob": 61.9,
@@ -873,6 +942,7 @@
       },
       {
         "date": "2026-02-17",
+        "source_month": "2026-02",
         "day_of_week": "TUE",
         "dow_prob": 71.4,
         "sp500_prob": 71.4,
@@ -885,6 +955,7 @@
       },
       {
         "date": "2026-02-18",
+        "source_month": "2026-02",
         "day_of_week": "WED",
         "dow_prob": 61.9,
         "sp500_prob": 52.4,
@@ -897,6 +968,7 @@
       },
       {
         "date": "2026-02-19",
+        "source_month": "2026-02",
         "day_of_week": "THU",
         "dow_prob": 42.9,
         "sp500_prob": 38.1,
@@ -909,6 +981,7 @@
       },
       {
         "date": "2026-02-20",
+        "source_month": "2026-02",
         "day_of_week": "FRI",
         "dow_prob": 38.1,
         "sp500_prob": 33.3,
@@ -921,6 +994,7 @@
       },
       {
         "date": "2026-02-23",
+        "source_month": "2026-02",
         "day_of_week": "MON",
         "dow_prob": 47.6,
         "sp500_prob": 38.1,
@@ -933,6 +1007,7 @@
       },
       {
         "date": "2026-02-24",
+        "source_month": "2026-02",
         "day_of_week": "TUE",
         "dow_prob": 47.6,
         "sp500_prob": 52.4,
@@ -945,6 +1020,7 @@
       },
       {
         "date": "2026-02-25",
+        "source_month": "2026-02",
         "day_of_week": "WED",
         "dow_prob": 57.1,
         "sp500_prob": 61.9,
@@ -957,6 +1033,7 @@
       },
       {
         "date": "2026-02-26",
+        "source_month": "2026-02",
         "day_of_week": "THU",
         "dow_prob": 42.9,
         "sp500_prob": 47.6,
@@ -969,6 +1046,7 @@
       },
       {
         "date": "2026-02-27",
+        "source_month": "2026-02",
         "day_of_week": "FRI",
         "dow_prob": 28.6,
         "sp500_prob": 28.6,
@@ -981,6 +1059,7 @@
       },
       {
         "date": "2026-03-02",
+        "source_month": "2026-03",
         "day_of_week": "MON",
         "dow_prob": 66.7,
         "sp500_prob": 66.7,
@@ -993,6 +1072,7 @@
       },
       {
         "date": "2026-03-03",
+        "source_month": "2026-03",
         "day_of_week": "TUE",
         "dow_prob": 33.3,
         "sp500_prob": 38.1,
@@ -1005,6 +1085,7 @@
       },
       {
         "date": "2026-03-04",
+        "source_month": "2026-03",
         "day_of_week": "WED",
         "dow_prob": 52.4,
         "sp500_prob": 57.1,
@@ -1017,6 +1098,7 @@
       },
       {
         "date": "2026-03-05",
+        "source_month": "2026-03",
         "day_of_week": "THU",
         "dow_prob": 47.6,
         "sp500_prob": 52.4,
@@ -1029,6 +1111,7 @@
       },
       {
         "date": "2026-03-06",
+        "source_month": "2026-03",
         "day_of_week": "FRI",
         "dow_prob": 47.6,
         "sp500_prob": 47.6,
@@ -1041,6 +1124,7 @@
       },
       {
         "date": "2026-03-09",
+        "source_month": "2026-03",
         "day_of_week": "MON",
         "dow_prob": 38.1,
         "sp500_prob": 38.1,
@@ -1053,6 +1137,7 @@
       },
       {
         "date": "2026-03-10",
+        "source_month": "2026-03",
         "day_of_week": "TUE",
         "dow_prob": 66.7,
         "sp500_prob": 61.9,
@@ -1065,6 +1150,7 @@
       },
       {
         "date": "2026-03-11",
+        "source_month": "2026-03",
         "day_of_week": "WED",
         "dow_prob": 47.6,
         "sp500_prob": 57.1,
@@ -1077,6 +1163,7 @@
       },
       {
         "date": "2026-03-12",
+        "source_month": "2026-03",
         "day_of_week": "THU",
         "dow_prob": 52.4,
         "sp500_prob": 57.1,
@@ -1089,6 +1176,7 @@
       },
       {
         "date": "2026-03-13",
+        "source_month": "2026-03",
         "day_of_week": "FRI",
         "dow_prob": 66.7,
         "sp500_prob": 42.9,
@@ -1101,6 +1189,7 @@
       },
       {
         "date": "2026-03-16",
+        "source_month": "2026-03",
         "day_of_week": "MON",
         "dow_prob": 61.9,
         "sp500_prob": 47.6,
@@ -1113,6 +1202,7 @@
       },
       {
         "date": "2026-03-17",
+        "source_month": "2026-03",
         "day_of_week": "TUE",
         "dow_prob": 61.9,
         "sp500_prob": 66.7,
@@ -1125,6 +1215,7 @@
       },
       {
         "date": "2026-03-18",
+        "source_month": "2026-03",
         "day_of_week": "WED",
         "dow_prob": 61.9,
         "sp500_prob": 61.9,
@@ -1137,6 +1228,7 @@
       },
       {
         "date": "2026-03-19",
+        "source_month": "2026-03",
         "day_of_week": "THU",
         "dow_prob": 61.9,
         "sp500_prob": 52.4,
@@ -1149,6 +1241,7 @@
       },
       {
         "date": "2026-03-20",
+        "source_month": "2026-03",
         "day_of_week": "FRI",
         "dow_prob": 52.4,
         "sp500_prob": 52.4,
@@ -1161,6 +1254,7 @@
       },
       {
         "date": "2026-03-23",
+        "source_month": "2026-03",
         "day_of_week": "MON",
         "dow_prob": 42.9,
         "sp500_prob": 38.1,
@@ -1173,6 +1267,7 @@
       },
       {
         "date": "2026-03-24",
+        "source_month": "2026-03",
         "day_of_week": "TUE",
         "dow_prob": 42.9,
         "sp500_prob": 47.6,
@@ -1185,6 +1280,7 @@
       },
       {
         "date": "2026-03-25",
+        "source_month": "2026-03",
         "day_of_week": "WED",
         "dow_prob": 61.9,
         "sp500_prob": 57.1,
@@ -1197,6 +1293,7 @@
       },
       {
         "date": "2026-03-26",
+        "source_month": "2026-03",
         "day_of_week": "THU",
         "dow_prob": 47.6,
         "sp500_prob": 47.6,
@@ -1209,6 +1306,7 @@
       },
       {
         "date": "2026-03-27",
+        "source_month": "2026-03",
         "day_of_week": "FRI",
         "dow_prob": 47.6,
         "sp500_prob": 47.6,
@@ -1221,6 +1319,7 @@
       },
       {
         "date": "2026-03-30",
+        "source_month": "2026-04",
         "day_of_week": "MON",
         "dow_prob": 66.7,
         "sp500_prob": 61.9,
@@ -1233,6 +1332,7 @@
       },
       {
         "date": "2026-03-31",
+        "source_month": "2026-04",
         "day_of_week": "TUE",
         "dow_prob": 47.6,
         "sp500_prob": 47.6,
@@ -1245,6 +1345,7 @@
       },
       {
         "date": "2026-04-01",
+        "source_month": "2026-04",
         "day_of_week": "WED",
         "dow_prob": 66.7,
         "sp500_prob": 66.7,
@@ -1257,6 +1358,7 @@
       },
       {
         "date": "2026-04-02",
+        "source_month": "2026-04",
         "day_of_week": "THU",
         "dow_prob": 71.4,
         "sp500_prob": 76.2,
@@ -1269,6 +1371,7 @@
       },
       {
         "date": "2026-04-06",
+        "source_month": "2026-04",
         "day_of_week": "MON",
         "dow_prob": 47.6,
         "sp500_prob": 52.4,
@@ -1281,6 +1384,7 @@
       },
       {
         "date": "2026-04-07",
+        "source_month": "2026-04",
         "day_of_week": "TUE",
         "dow_prob": 57.1,
         "sp500_prob": 57.1,
@@ -1293,6 +1397,7 @@
       },
       {
         "date": "2026-04-08",
+        "source_month": "2026-04",
         "day_of_week": "WED",
         "dow_prob": 47.6,
         "sp500_prob": 47.6,
@@ -1305,6 +1410,7 @@
       },
       {
         "date": "2026-04-09",
+        "source_month": "2026-04",
         "day_of_week": "THU",
         "dow_prob": 66.7,
         "sp500_prob": 61.9,
@@ -1317,6 +1423,7 @@
       },
       {
         "date": "2026-04-10",
+        "source_month": "2026-04",
         "day_of_week": "FRI",
         "dow_prob": 47.6,
         "sp500_prob": 52.4,
@@ -1329,6 +1436,7 @@
       },
       {
         "date": "2026-04-13",
+        "source_month": "2026-04",
         "day_of_week": "MON",
         "dow_prob": 47.6,
         "sp500_prob": 57.1,
@@ -1341,6 +1449,7 @@
       },
       {
         "date": "2026-04-14",
+        "source_month": "2026-04",
         "day_of_week": "TUE",
         "dow_prob": 52.4,
         "sp500_prob": 57.1,
@@ -1353,6 +1462,7 @@
       },
       {
         "date": "2026-04-15",
+        "source_month": "2026-04",
         "day_of_week": "WED",
         "dow_prob": 61.9,
         "sp500_prob": 57.1,
@@ -1365,6 +1475,7 @@
       },
       {
         "date": "2026-04-16",
+        "source_month": "2026-04",
         "day_of_week": "THU",
         "dow_prob": 52.4,
         "sp500_prob": 57.1,
@@ -1377,6 +1488,7 @@
       },
       {
         "date": "2026-04-17",
+        "source_month": "2026-04",
         "day_of_week": "FRI",
         "dow_prob": 61.9,
         "sp500_prob": 66.7,
@@ -1389,6 +1501,7 @@
       },
       {
         "date": "2026-04-20",
+        "source_month": "2026-04",
         "day_of_week": "MON",
         "dow_prob": 47.6,
         "sp500_prob": 47.6,
@@ -1401,6 +1514,7 @@
       },
       {
         "date": "2026-04-21",
+        "source_month": "2026-04",
         "day_of_week": "TUE",
         "dow_prob": 66.7,
         "sp500_prob": 52.4,
@@ -1413,6 +1527,7 @@
       },
       {
         "date": "2026-04-22",
+        "source_month": "2026-04",
         "day_of_week": "WED",
         "dow_prob": 61.9,
         "sp500_prob": 66.7,
@@ -1425,6 +1540,7 @@
       },
       {
         "date": "2026-04-23",
+        "source_month": "2026-04",
         "day_of_week": "THU",
         "dow_prob": 66.7,
         "sp500_prob": 61.9,
@@ -1437,6 +1553,7 @@
       },
       {
         "date": "2026-04-24",
+        "source_month": "2026-04",
         "day_of_week": "FRI",
         "dow_prob": 52.4,
         "sp500_prob": 61.9,
@@ -1449,6 +1566,7 @@
       },
       {
         "date": "2026-04-27",
+        "source_month": "2026-05",
         "day_of_week": "MON",
         "dow_prob": 52.4,
         "sp500_prob": 47.6,
@@ -1461,6 +1579,7 @@
       },
       {
         "date": "2026-04-28",
+        "source_month": "2026-05",
         "day_of_week": "TUE",
         "dow_prob": 66.7,
         "sp500_prob": 57.1,
@@ -1473,6 +1592,7 @@
       },
       {
         "date": "2026-04-29",
+        "source_month": "2026-05",
         "day_of_week": "WED",
         "dow_prob": 71.4,
         "sp500_prob": 71.4,
@@ -1485,6 +1605,7 @@
       },
       {
         "date": "2026-04-30",
+        "source_month": "2026-05",
         "day_of_week": "THU",
         "dow_prob": 28.6,
         "sp500_prob": 33.3,
@@ -1497,6 +1618,7 @@
       },
       {
         "date": "2026-05-01",
+        "source_month": "2026-05",
         "day_of_week": "FRI",
         "dow_prob": 57.1,
         "sp500_prob": 61.9,
@@ -1509,6 +1631,7 @@
       },
       {
         "date": "2026-05-04",
+        "source_month": "2026-05",
         "day_of_week": "MON",
         "dow_prob": 66.7,
         "sp500_prob": 52.4,
@@ -1521,6 +1644,7 @@
       },
       {
         "date": "2026-05-05",
+        "source_month": "2026-05",
         "day_of_week": "TUE",
         "dow_prob": 52.4,
         "sp500_prob": 47.6,
@@ -1533,6 +1657,7 @@
       },
       {
         "date": "2026-05-06",
+        "source_month": "2026-05",
         "day_of_week": "WED",
         "dow_prob": 38.1,
         "sp500_prob": 42.9,
@@ -1545,6 +1670,7 @@
       },
       {
         "date": "2026-05-07",
+        "source_month": "2026-05",
         "day_of_week": "THU",
         "dow_prob": 66.7,
         "sp500_prob": 66.7,
@@ -1557,6 +1683,7 @@
       },
       {
         "date": "2026-05-08",
+        "source_month": "2026-05",
         "day_of_week": "FRI",
         "dow_prob": 66.7,
         "sp500_prob": 52.4,
@@ -1569,6 +1696,7 @@
       },
       {
         "date": "2026-05-11",
+        "source_month": "2026-05",
         "day_of_week": "MON",
         "dow_prob": 38.1,
         "sp500_prob": 47.6,
@@ -1581,6 +1709,7 @@
       },
       {
         "date": "2026-05-12",
+        "source_month": "2026-05",
         "day_of_week": "TUE",
         "dow_prob": 57.1,
         "sp500_prob": 57.1,
@@ -1593,6 +1722,7 @@
       },
       {
         "date": "2026-05-13",
+        "source_month": "2026-05",
         "day_of_week": "WED",
         "dow_prob": 28.6,
         "sp500_prob": 28.6,
@@ -1605,6 +1735,7 @@
       },
       {
         "date": "2026-05-14",
+        "source_month": "2026-05",
         "day_of_week": "THU",
         "dow_prob": 57.1,
         "sp500_prob": 47.6,
@@ -1617,6 +1748,7 @@
       },
       {
         "date": "2026-05-15",
+        "source_month": "2026-05",
         "day_of_week": "FRI",
         "dow_prob": 66.7,
         "sp500_prob": 57.1,
@@ -1629,6 +1761,7 @@
       },
       {
         "date": "2026-05-18",
+        "source_month": "2026-05",
         "day_of_week": "MON",
         "dow_prob": 47.6,
         "sp500_prob": 52.4,
@@ -1641,6 +1774,7 @@
       },
       {
         "date": "2026-05-19",
+        "source_month": "2026-05",
         "day_of_week": "TUE",
         "dow_prob": 38.1,
         "sp500_prob": 38.1,
@@ -1653,6 +1787,7 @@
       },
       {
         "date": "2026-05-20",
+        "source_month": "2026-05",
         "day_of_week": "WED",
         "dow_prob": 38.1,
         "sp500_prob": 42.9,
@@ -1665,6 +1800,7 @@
       },
       {
         "date": "2026-05-21",
+        "source_month": "2026-05",
         "day_of_week": "THU",
         "dow_prob": 47.6,
         "sp500_prob": 47.6,
@@ -1677,6 +1813,7 @@
       },
       {
         "date": "2026-05-22",
+        "source_month": "2026-05",
         "day_of_week": "FRI",
         "dow_prob": 47.6,
         "sp500_prob": 52.4,
@@ -1689,6 +1826,7 @@
       },
       {
         "date": "2026-05-26",
+        "source_month": "2026-05",
         "day_of_week": "TUE",
         "dow_prob": 57.1,
         "sp500_prob": 71.4,
@@ -1701,6 +1839,7 @@
       },
       {
         "date": "2026-05-27",
+        "source_month": "2026-05",
         "day_of_week": "WED",
         "dow_prob": 52.4,
         "sp500_prob": 61.9,
@@ -1713,6 +1852,7 @@
       },
       {
         "date": "2026-05-28",
+        "source_month": "2026-05",
         "day_of_week": "THU",
         "dow_prob": 66.7,
         "sp500_prob": 71.4,
@@ -1725,6 +1865,7 @@
       },
       {
         "date": "2026-05-29",
+        "source_month": "2026-05",
         "day_of_week": "FRI",
         "dow_prob": 28.6,
         "sp500_prob": 42.9,
@@ -1737,6 +1878,7 @@
       },
       {
         "date": "2026-06-01",
+        "source_month": "2026-06",
         "day_of_week": "MON",
         "dow_prob": 71.4,
         "sp500_prob": 66.7,
@@ -1749,6 +1891,7 @@
       },
       {
         "date": "2026-06-02",
+        "source_month": "2026-06",
         "day_of_week": "TUE",
         "dow_prob": 66.7,
         "sp500_prob": 76.2,
@@ -1761,6 +1904,7 @@
       },
       {
         "date": "2026-06-03",
+        "source_month": "2026-06",
         "day_of_week": "WED",
         "dow_prob": 33.3,
         "sp500_prob": 38.1,
@@ -1773,6 +1917,7 @@
       },
       {
         "date": "2026-06-04",
+        "source_month": "2026-06",
         "day_of_week": "THU",
         "dow_prob": 71.4,
         "sp500_prob": 61.9,
@@ -1785,6 +1930,7 @@
       },
       {
         "date": "2026-06-05",
+        "source_month": "2026-06",
         "day_of_week": "FRI",
         "dow_prob": 61.9,
         "sp500_prob": 38.1,
@@ -1797,6 +1943,7 @@
       },
       {
         "date": "2026-06-08",
+        "source_month": "2026-06",
         "day_of_week": "MON",
         "dow_prob": 71.4,
         "sp500_prob": 71.4,
@@ -1809,6 +1956,7 @@
       },
       {
         "date": "2026-06-09",
+        "source_month": "2026-06",
         "day_of_week": "TUE",
         "dow_prob": 38.1,
         "sp500_prob": 38.1,
@@ -1821,6 +1969,7 @@
       },
       {
         "date": "2026-06-10",
+        "source_month": "2026-06",
         "day_of_week": "WED",
         "dow_prob": 33.3,
         "sp500_prob": 38.1,
@@ -1833,6 +1982,7 @@
       },
       {
         "date": "2026-06-11",
+        "source_month": "2026-06",
         "day_of_week": "THU",
         "dow_prob": 57.1,
         "sp500_prob": 61.9,
@@ -1845,6 +1995,7 @@
       },
       {
         "date": "2026-06-12",
+        "source_month": "2026-06",
         "day_of_week": "FRI",
         "dow_prob": 52.4,
         "sp500_prob": 61.9,
@@ -1857,6 +2008,7 @@
       },
       {
         "date": "2026-06-15",
+        "source_month": "2026-06",
         "day_of_week": "MON",
         "dow_prob": 57.1,
         "sp500_prob": 66.7,
@@ -1869,6 +2021,7 @@
       },
       {
         "date": "2026-06-16",
+        "source_month": "2026-06",
         "day_of_week": "TUE",
         "dow_prob": 52.4,
         "sp500_prob": 52.4,
@@ -1881,6 +2034,7 @@
       },
       {
         "date": "2026-06-17",
+        "source_month": "2026-06",
         "day_of_week": "WED",
         "dow_prob": 52.4,
         "sp500_prob": 52.4,
@@ -1893,6 +2047,7 @@
       },
       {
         "date": "2026-06-18",
+        "source_month": "2026-06",
         "day_of_week": "THU",
         "dow_prob": 52.4,
         "sp500_prob": 52.4,
@@ -1905,6 +2060,7 @@
       },
       {
         "date": "2026-06-22",
+        "source_month": "2026-06",
         "day_of_week": "MON",
         "dow_prob": 38.1,
         "sp500_prob": 42.9,
@@ -1917,6 +2073,7 @@
       },
       {
         "date": "2026-06-23",
+        "source_month": "2026-06",
         "day_of_week": "TUE",
         "dow_prob": 47.6,
         "sp500_prob": 52.4,
@@ -1929,6 +2086,7 @@
       },
       {
         "date": "2026-06-24",
+        "source_month": "2026-06",
         "day_of_week": "WED",
         "dow_prob": 28.6,
         "sp500_prob": 23.8,
@@ -1941,6 +2099,7 @@
       },
       {
         "date": "2026-06-25",
+        "source_month": "2026-06",
         "day_of_week": "THU",
         "dow_prob": 47.6,
         "sp500_prob": 57.1,
@@ -1953,6 +2112,7 @@
       },
       {
         "date": "2026-06-26",
+        "source_month": "2026-06",
         "day_of_week": "FRI",
         "dow_prob": 47.6,
         "sp500_prob": 47.6,
@@ -1965,6 +2125,7 @@
       },
       {
         "date": "2026-06-29",
+        "source_month": "2026-07",
         "day_of_week": "MON",
         "dow_prob": 61.9,
         "sp500_prob": 61.9,
@@ -1977,6 +2138,7 @@
       },
       {
         "date": "2026-06-30",
+        "source_month": "2026-07",
         "day_of_week": "TUE",
         "dow_prob": 57.1,
         "sp500_prob": 57.1,
@@ -1989,6 +2151,7 @@
       },
       {
         "date": "2026-07-01",
+        "source_month": "2026-07",
         "day_of_week": "WED",
         "dow_prob": 81.0,
         "sp500_prob": 85.0,
@@ -2001,6 +2164,7 @@
       },
       {
         "date": "2026-07-02",
+        "source_month": "2026-07",
         "day_of_week": "THU",
         "dow_prob": 38.1,
         "sp500_prob": 47.6,
@@ -2013,6 +2177,7 @@
       },
       {
         "date": "2026-07-06",
+        "source_month": "2026-07",
         "day_of_week": "MON",
         "dow_prob": 57.1,
         "sp500_prob": 66.7,
@@ -2025,6 +2190,7 @@
       },
       {
         "date": "2026-07-07",
+        "source_month": "2026-07",
         "day_of_week": "TUE",
         "dow_prob": 57.1,
         "sp500_prob": 57.1,
@@ -2037,6 +2203,7 @@
       },
       {
         "date": "2026-07-08",
+        "source_month": "2026-07",
         "day_of_week": "WED",
         "dow_prob": 52.4,
         "sp500_prob": 57.1,
@@ -2049,6 +2216,7 @@
       },
       {
         "date": "2026-07-09",
+        "source_month": "2026-07",
         "day_of_week": "THU",
         "dow_prob": 61.9,
         "sp500_prob": 66.7,
@@ -2061,6 +2229,7 @@
       },
       {
         "date": "2026-07-10",
+        "source_month": "2026-07",
         "day_of_week": "FRI",
         "dow_prob": 57.1,
         "sp500_prob": 66.7,
@@ -2073,6 +2242,7 @@
       },
       {
         "date": "2026-07-13",
+        "source_month": "2026-07",
         "day_of_week": "MON",
         "dow_prob": 76.2,
         "sp500_prob": 66.7,
@@ -2085,6 +2255,7 @@
       },
       {
         "date": "2026-07-14",
+        "source_month": "2026-07",
         "day_of_week": "TUE",
         "dow_prob": 76.2,
         "sp500_prob": 66.7,
@@ -2097,6 +2268,7 @@
       },
       {
         "date": "2026-07-15",
+        "source_month": "2026-07",
         "day_of_week": "WED",
         "dow_prob": 71.4,
         "sp500_prob": 47.6,
@@ -2109,6 +2281,7 @@
       },
       {
         "date": "2026-07-16",
+        "source_month": "2026-07",
         "day_of_week": "THU",
         "dow_prob": 52.4,
         "sp500_prob": 52.4,
@@ -2121,6 +2294,7 @@
       },
       {
         "date": "2026-07-17",
+        "source_month": "2026-07",
         "day_of_week": "FRI",
         "dow_prob": 66.7,
         "sp500_prob": 61.9,
@@ -2133,6 +2307,7 @@
       },
       {
         "date": "2026-07-20",
+        "source_month": "2026-07",
         "day_of_week": "MON",
         "dow_prob": 76.2,
         "sp500_prob": 71.4,
@@ -2145,6 +2320,7 @@
       },
       {
         "date": "2026-07-21",
+        "source_month": "2026-07",
         "day_of_week": "TUE",
         "dow_prob": 28.6,
         "sp500_prob": 33.3,
@@ -2157,6 +2333,7 @@
       },
       {
         "date": "2026-07-22",
+        "source_month": "2026-07",
         "day_of_week": "WED",
         "dow_prob": 52.4,
         "sp500_prob": 47.6,
@@ -2169,6 +2346,7 @@
       },
       {
         "date": "2026-07-23",
+        "source_month": "2026-07",
         "day_of_week": "THU",
         "dow_prob": 52.4,
         "sp500_prob": 57.1,
@@ -2181,6 +2359,7 @@
       },
       {
         "date": "2026-07-24",
+        "source_month": "2026-07",
         "day_of_week": "FRI",
         "dow_prob": 38.1,
         "sp500_prob": 52.4,
@@ -2193,6 +2372,7 @@
       },
       {
         "date": "2026-07-27",
+        "source_month": "2026-08",
         "day_of_week": "MON",
         "dow_prob": 66.7,
         "sp500_prob": 57.1,
@@ -2205,6 +2385,7 @@
       },
       {
         "date": "2026-07-28",
+        "source_month": "2026-08",
         "day_of_week": "TUE",
         "dow_prob": 52.4,
         "sp500_prob": 47.6,
@@ -2217,6 +2398,7 @@
       },
       {
         "date": "2026-07-29",
+        "source_month": "2026-08",
         "day_of_week": "WED",
         "dow_prob": 42.9,
         "sp500_prob": 38.1,
@@ -2229,6 +2411,7 @@
       },
       {
         "date": "2026-07-30",
+        "source_month": "2026-08",
         "day_of_week": "THU",
         "dow_prob": 52.4,
         "sp500_prob": 61.9,
@@ -2241,6 +2424,7 @@
       },
       {
         "date": "2026-07-31",
+        "source_month": "2026-08",
         "day_of_week": "FRI",
         "dow_prob": 38.1,
         "sp500_prob": 42.9,
@@ -2253,6 +2437,7 @@
       },
       {
         "date": "2026-08-03",
+        "source_month": "2026-08",
         "day_of_week": "MON",
         "dow_prob": 38.1,
         "sp500_prob": 38.1,
@@ -2265,6 +2450,7 @@
       },
       {
         "date": "2026-08-04",
+        "source_month": "2026-08",
         "day_of_week": "TUE",
         "dow_prob": 42.9,
         "sp500_prob": 47.6,
@@ -2277,6 +2463,7 @@
       },
       {
         "date": "2026-08-05",
+        "source_month": "2026-08",
         "day_of_week": "WED",
         "dow_prob": 57.1,
         "sp500_prob": 52.4,
@@ -2289,6 +2476,7 @@
       },
       {
         "date": "2026-08-06",
+        "source_month": "2026-08",
         "day_of_week": "THU",
         "dow_prob": 47.6,
         "sp500_prob": 52.4,
@@ -2301,6 +2489,7 @@
       },
       {
         "date": "2026-08-07",
+        "source_month": "2026-08",
         "day_of_week": "FRI",
         "dow_prob": 52.4,
         "sp500_prob": 47.6,
@@ -2313,6 +2502,7 @@
       },
       {
         "date": "2026-08-10",
+        "source_month": "2026-08",
         "day_of_week": "MON",
         "dow_prob": 52.4,
         "sp500_prob": 52.4,
@@ -2325,6 +2515,7 @@
       },
       {
         "date": "2026-08-11",
+        "source_month": "2026-08",
         "day_of_week": "TUE",
         "dow_prob": 38.1,
         "sp500_prob": 42.9,
@@ -2337,6 +2528,7 @@
       },
       {
         "date": "2026-08-12",
+        "source_month": "2026-08",
         "day_of_week": "WED",
         "dow_prob": 33.3,
         "sp500_prob": 47.6,
@@ -2349,6 +2541,7 @@
       },
       {
         "date": "2026-08-13",
+        "source_month": "2026-08",
         "day_of_week": "THU",
         "dow_prob": 61.9,
         "sp500_prob": 47.6,
@@ -2361,6 +2554,7 @@
       },
       {
         "date": "2026-08-14",
+        "source_month": "2026-08",
         "day_of_week": "FRI",
         "dow_prob": 66.7,
         "sp500_prob": 57.1,
@@ -2373,6 +2567,7 @@
       },
       {
         "date": "2026-08-17",
+        "source_month": "2026-08",
         "day_of_week": "MON",
         "dow_prob": 57.1,
         "sp500_prob": 66.7,
@@ -2385,6 +2580,7 @@
       },
       {
         "date": "2026-08-18",
+        "source_month": "2026-08",
         "day_of_week": "TUE",
         "dow_prob": 52.4,
         "sp500_prob": 61.9,
@@ -2397,6 +2593,7 @@
       },
       {
         "date": "2026-08-19",
+        "source_month": "2026-08",
         "day_of_week": "WED",
         "dow_prob": 61.9,
         "sp500_prob": 61.9,
@@ -2409,6 +2606,7 @@
       },
       {
         "date": "2026-08-20",
+        "source_month": "2026-08",
         "day_of_week": "THU",
         "dow_prob": 52.4,
         "sp500_prob": 47.6,
@@ -2421,6 +2619,7 @@
       },
       {
         "date": "2026-08-21",
+        "source_month": "2026-08",
         "day_of_week": "FRI",
         "dow_prob": 47.6,
         "sp500_prob": 42.9,
@@ -2433,6 +2632,7 @@
       },
       {
         "date": "2026-08-24",
+        "source_month": "2026-08",
         "day_of_week": "MON",
         "dow_prob": 61.9,
         "sp500_prob": 57.1,
@@ -2445,6 +2645,7 @@
       },
       {
         "date": "2026-08-25",
+        "source_month": "2026-08",
         "day_of_week": "TUE",
         "dow_prob": 57.1,
         "sp500_prob": 57.1,
@@ -2457,6 +2658,7 @@
       },
       {
         "date": "2026-08-26",
+        "source_month": "2026-08",
         "day_of_week": "WED",
         "dow_prob": 47.6,
         "sp500_prob": 57.1,
@@ -2469,6 +2671,7 @@
       },
       {
         "date": "2026-08-27",
+        "source_month": "2026-08",
         "day_of_week": "THU",
         "dow_prob": 90.5,
         "sp500_prob": 90.5,
@@ -2481,6 +2684,7 @@
       },
       {
         "date": "2026-08-28",
+        "source_month": "2026-08",
         "day_of_week": "FRI",
         "dow_prob": 42.9,
         "sp500_prob": 42.9,
@@ -2493,6 +2697,7 @@
       },
       {
         "date": "2026-08-31",
+        "source_month": "2026-09",
         "day_of_week": "MON",
         "dow_prob": 47.6,
         "sp500_prob": 52.4,
@@ -2505,6 +2710,7 @@
       },
       {
         "date": "2026-09-01",
+        "source_month": "2026-09",
         "day_of_week": "TUE",
         "dow_prob": 42.9,
         "sp500_prob": 52.4,
@@ -2517,6 +2723,7 @@
       },
       {
         "date": "2026-09-02",
+        "source_month": "2026-09",
         "day_of_week": "WED",
         "dow_prob": 66.7,
         "sp500_prob": 42.9,
@@ -2529,6 +2736,7 @@
       },
       {
         "date": "2026-09-03",
+        "source_month": "2026-09",
         "day_of_week": "THU",
         "dow_prob": 52.4,
         "sp500_prob": 47.6,
@@ -2541,6 +2749,7 @@
       },
       {
         "date": "2026-09-04",
+        "source_month": "2026-09",
         "day_of_week": "FRI",
         "dow_prob": 47.6,
         "sp500_prob": 47.6,
@@ -2553,6 +2762,7 @@
       },
       {
         "date": "2026-09-08",
+        "source_month": "2026-09",
         "day_of_week": "TUE",
         "dow_prob": 57.1,
         "sp500_prob": 47.6,
@@ -2565,6 +2775,7 @@
       },
       {
         "date": "2026-09-09",
+        "source_month": "2026-09",
         "day_of_week": "WED",
         "dow_prob": 61.9,
         "sp500_prob": 71.4,
@@ -2577,6 +2788,7 @@
       },
       {
         "date": "2026-09-10",
+        "source_month": "2026-09",
         "day_of_week": "THU",
         "dow_prob": 81.0,
         "sp500_prob": 81.0,
@@ -2589,6 +2801,7 @@
       },
       {
         "date": "2026-09-11",
+        "source_month": "2026-09",
         "day_of_week": "FRI",
         "dow_prob": 66.7,
         "sp500_prob": 76.2,
@@ -2601,6 +2814,7 @@
       },
       {
         "date": "2026-09-14",
+        "source_month": "2026-09",
         "day_of_week": "MON",
         "dow_prob": 61.9,
         "sp500_prob": 57.1,
@@ -2613,6 +2827,7 @@
       },
       {
         "date": "2026-09-15",
+        "source_month": "2026-09",
         "day_of_week": "TUE",
         "dow_prob": 61.9,
         "sp500_prob": 57.1,
@@ -2625,6 +2840,7 @@
       },
       {
         "date": "2026-09-16",
+        "source_month": "2026-09",
         "day_of_week": "WED",
         "dow_prob": 76.2,
         "sp500_prob": 71.4,
@@ -2637,6 +2853,7 @@
       },
       {
         "date": "2026-09-17",
+        "source_month": "2026-09",
         "day_of_week": "THU",
         "dow_prob": 47.6,
         "sp500_prob": 47.6,
@@ -2649,6 +2866,7 @@
       },
       {
         "date": "2026-09-18",
+        "source_month": "2026-09",
         "day_of_week": "FRI",
         "dow_prob": 52.4,
         "sp500_prob": 47.6,
@@ -2661,6 +2879,7 @@
       },
       {
         "date": "2026-09-21",
+        "source_month": "2026-09",
         "day_of_week": "MON",
         "dow_prob": 42.9,
         "sp500_prob": 23.8,
@@ -2673,6 +2892,7 @@
       },
       {
         "date": "2026-09-22",
+        "source_month": "2026-09",
         "day_of_week": "TUE",
         "dow_prob": 38.1,
         "sp500_prob": 28.6,
@@ -2685,6 +2905,7 @@
       },
       {
         "date": "2026-09-23",
+        "source_month": "2026-09",
         "day_of_week": "WED",
         "dow_prob": 28.6,
         "sp500_prob": 28.6,
@@ -2697,6 +2918,7 @@
       },
       {
         "date": "2026-09-24",
+        "source_month": "2026-09",
         "day_of_week": "THU",
         "dow_prob": 47.6,
         "sp500_prob": 47.6,
@@ -2709,6 +2931,7 @@
       },
       {
         "date": "2026-09-25",
+        "source_month": "2026-09",
         "day_of_week": "FRI",
         "dow_prob": 47.6,
         "sp500_prob": 38.1,
@@ -2721,6 +2944,7 @@
       },
       {
         "date": "2026-09-28",
+        "source_month": "2026-10",
         "day_of_week": "MON",
         "dow_prob": 66.7,
         "sp500_prob": 71.4,
@@ -2733,6 +2957,7 @@
       },
       {
         "date": "2026-09-29",
+        "source_month": "2026-10",
         "day_of_week": "TUE",
         "dow_prob": 57.1,
         "sp500_prob": 52.4,
@@ -2745,6 +2970,7 @@
       },
       {
         "date": "2026-09-30",
+        "source_month": "2026-10",
         "day_of_week": "WED",
         "dow_prob": 42.9,
         "sp500_prob": 38.1,
@@ -2757,6 +2983,7 @@
       },
       {
         "date": "2026-10-01",
+        "source_month": "2026-10",
         "day_of_week": "THU",
         "dow_prob": 47.6,
         "sp500_prob": 57.1,
@@ -2769,6 +2996,7 @@
       },
       {
         "date": "2026-10-02",
+        "source_month": "2026-10",
         "day_of_week": "FRI",
         "dow_prob": 38.1,
         "sp500_prob": 42.9,
@@ -2781,6 +3009,7 @@
       },
       {
         "date": "2026-10-05",
+        "source_month": "2026-10",
         "day_of_week": "MON",
         "dow_prob": 66.7,
         "sp500_prob": 66.7,
@@ -2793,6 +3022,7 @@
       },
       {
         "date": "2026-10-06",
+        "source_month": "2026-10",
         "day_of_week": "TUE",
         "dow_prob": 61.9,
         "sp500_prob": 57.1,
@@ -2805,6 +3035,7 @@
       },
       {
         "date": "2026-10-07",
+        "source_month": "2026-10",
         "day_of_week": "WED",
         "dow_prob": 33.3,
         "sp500_prob": 33.3,
@@ -2817,6 +3048,7 @@
       },
       {
         "date": "2026-10-08",
+        "source_month": "2026-10",
         "day_of_week": "THU",
         "dow_prob": 52.4,
         "sp500_prob": 47.6,
@@ -2829,6 +3061,7 @@
       },
       {
         "date": "2026-10-09",
+        "source_month": "2026-10",
         "day_of_week": "FRI",
         "dow_prob": 66.7,
         "sp500_prob": 61.9,
@@ -2841,6 +3074,7 @@
       },
       {
         "date": "2026-10-12",
+        "source_month": "2026-10",
         "day_of_week": "MON",
         "dow_prob": 47.6,
         "sp500_prob": 47.6,
@@ -2853,6 +3087,7 @@
       },
       {
         "date": "2026-10-13",
+        "source_month": "2026-10",
         "day_of_week": "TUE",
         "dow_prob": 33.3,
         "sp500_prob": 42.9,
@@ -2865,6 +3100,7 @@
       },
       {
         "date": "2026-10-14",
+        "source_month": "2026-10",
         "day_of_week": "WED",
         "dow_prob": 61.9,
         "sp500_prob": 57.1,
@@ -2877,6 +3113,7 @@
       },
       {
         "date": "2026-10-15",
+        "source_month": "2026-10",
         "day_of_week": "THU",
         "dow_prob": 52.4,
         "sp500_prob": 57.1,
@@ -2889,6 +3126,7 @@
       },
       {
         "date": "2026-10-16",
+        "source_month": "2026-10",
         "day_of_week": "FRI",
         "dow_prob": 66.7,
         "sp500_prob": 71.4,
@@ -2901,6 +3139,7 @@
       },
       {
         "date": "2026-10-19",
+        "source_month": "2026-10",
         "day_of_week": "MON",
         "dow_prob": 52.4,
         "sp500_prob": 57.1,
@@ -2913,6 +3152,7 @@
       },
       {
         "date": "2026-10-20",
+        "source_month": "2026-10",
         "day_of_week": "TUE",
         "dow_prob": 47.6,
         "sp500_prob": 52.4,
@@ -2925,6 +3165,7 @@
       },
       {
         "date": "2026-10-21",
+        "source_month": "2026-10",
         "day_of_week": "WED",
         "dow_prob": 28.6,
         "sp500_prob": 38.1,
@@ -2937,6 +3178,7 @@
       },
       {
         "date": "2026-10-22",
+        "source_month": "2026-10",
         "day_of_week": "THU",
         "dow_prob": 52.4,
         "sp500_prob": 66.7,
@@ -2949,6 +3191,7 @@
       },
       {
         "date": "2026-10-23",
+        "source_month": "2026-10",
         "day_of_week": "FRI",
         "dow_prob": 57.1,
         "sp500_prob": 71.4,
@@ -2961,6 +3204,7 @@
       },
       {
         "date": "2026-10-26",
+        "source_month": "2026-11",
         "day_of_week": "MON",
         "dow_prob": 38.1,
         "sp500_prob": 33.3,
@@ -2973,6 +3217,7 @@
       },
       {
         "date": "2026-10-27",
+        "source_month": "2026-11",
         "day_of_week": "TUE",
         "dow_prob": 66.7,
         "sp500_prob": 57.1,
@@ -2985,6 +3230,7 @@
       },
       {
         "date": "2026-10-28",
+        "source_month": "2026-11",
         "day_of_week": "WED",
         "dow_prob": 38.1,
         "sp500_prob": 38.1,
@@ -2997,6 +3243,7 @@
       },
       {
         "date": "2026-10-29",
+        "source_month": "2026-11",
         "day_of_week": "THU",
         "dow_prob": 61.9,
         "sp500_prob": 66.7,
@@ -3009,6 +3256,7 @@
       },
       {
         "date": "2026-10-30",
+        "source_month": "2026-11",
         "day_of_week": "FRI",
         "dow_prob": 47.6,
         "sp500_prob": 52.4,
@@ -3021,6 +3269,7 @@
       },
       {
         "date": "2026-11-02",
+        "source_month": "2026-11",
         "day_of_week": "MON",
         "dow_prob": 61.9,
         "sp500_prob": 61.9,
@@ -3033,6 +3282,7 @@
       },
       {
         "date": "2026-11-03",
+        "source_month": "2026-11",
         "day_of_week": "TUE",
         "dow_prob": 61.9,
         "sp500_prob": 66.7,
@@ -3045,6 +3295,7 @@
       },
       {
         "date": "2026-11-04",
+        "source_month": "2026-11",
         "day_of_week": "WED",
         "dow_prob": 66.7,
         "sp500_prob": 61.9,
@@ -3057,6 +3308,7 @@
       },
       {
         "date": "2026-11-05",
+        "source_month": "2026-11",
         "day_of_week": "THU",
         "dow_prob": 71.4,
         "sp500_prob": 81.0,
@@ -3069,6 +3321,7 @@
       },
       {
         "date": "2026-11-06",
+        "source_month": "2026-11",
         "day_of_week": "FRI",
         "dow_prob": 76.2,
         "sp500_prob": 71.4,
@@ -3081,6 +3334,7 @@
       },
       {
         "date": "2026-11-09",
+        "source_month": "2026-11",
         "day_of_week": "MON",
         "dow_prob": 66.7,
         "sp500_prob": 61.9,
@@ -3093,6 +3347,7 @@
       },
       {
         "date": "2026-11-10",
+        "source_month": "2026-11",
         "day_of_week": "TUE",
         "dow_prob": 47.6,
         "sp500_prob": 33.3,
@@ -3105,6 +3360,7 @@
       },
       {
         "date": "2026-11-11",
+        "source_month": "2026-11",
         "day_of_week": "WED",
         "dow_prob": 38.1,
         "sp500_prob": 52.4,
@@ -3117,6 +3373,7 @@
       },
       {
         "date": "2026-11-12",
+        "source_month": "2026-11",
         "day_of_week": "THU",
         "dow_prob": 66.7,
         "sp500_prob": 61.9,
@@ -3129,6 +3386,7 @@
       },
       {
         "date": "2026-11-13",
+        "source_month": "2026-11",
         "day_of_week": "FRI",
         "dow_prob": 42.9,
         "sp500_prob": 42.9,
@@ -3141,6 +3399,7 @@
       },
       {
         "date": "2026-11-16",
+        "source_month": "2026-11",
         "day_of_week": "MON",
         "dow_prob": 66.7,
         "sp500_prob": 57.1,
@@ -3153,6 +3412,7 @@
       },
       {
         "date": "2026-11-17",
+        "source_month": "2026-11",
         "day_of_week": "TUE",
         "dow_prob": 57.1,
         "sp500_prob": 61.9,
@@ -3165,6 +3425,7 @@
       },
       {
         "date": "2026-11-18",
+        "source_month": "2026-11",
         "day_of_week": "WED",
         "dow_prob": 33.3,
         "sp500_prob": 42.9,
@@ -3177,6 +3438,7 @@
       },
       {
         "date": "2026-11-19",
+        "source_month": "2026-11",
         "day_of_week": "THU",
         "dow_prob": 52.4,
         "sp500_prob": 57.1,
@@ -3189,6 +3451,7 @@
       },
       {
         "date": "2026-11-20",
+        "source_month": "2026-11",
         "day_of_week": "FRI",
         "dow_prob": 61.9,
         "sp500_prob": 57.1,
@@ -3201,6 +3464,7 @@
       },
       {
         "date": "2026-11-23",
+        "source_month": "2026-11",
         "day_of_week": "MON",
         "dow_prob": 71.4,
         "sp500_prob": 66.7,
@@ -3213,6 +3477,7 @@
       },
       {
         "date": "2026-11-24",
+        "source_month": "2026-11",
         "day_of_week": "TUE",
         "dow_prob": 71.4,
         "sp500_prob": 61.9,
@@ -3225,6 +3490,7 @@
       },
       {
         "date": "2026-11-25",
+        "source_month": "2026-11",
         "day_of_week": "WED",
         "dow_prob": 66.7,
         "sp500_prob": 61.9,
@@ -3237,6 +3503,7 @@
       },
       {
         "date": "2026-11-27",
+        "source_month": "2026-11",
         "day_of_week": "FRI",
         "dow_prob": 61.9,
         "sp500_prob": 61.9,
@@ -3249,6 +3516,7 @@
       },
       {
         "date": "2026-11-30",
+        "source_month": "2026-12",
         "day_of_week": "MON",
         "dow_prob": 57.1,
         "sp500_prob": 52.4,
@@ -3261,6 +3529,7 @@
       },
       {
         "date": "2026-12-01",
+        "source_month": "2026-12",
         "day_of_week": "TUE",
         "dow_prob": 42.9,
         "sp500_prob": 42.9,
@@ -3273,6 +3542,7 @@
       },
       {
         "date": "2026-12-02",
+        "source_month": "2026-12",
         "day_of_week": "WED",
         "dow_prob": 38.1,
         "sp500_prob": 47.6,
@@ -3285,6 +3555,7 @@
       },
       {
         "date": "2026-12-03",
+        "source_month": "2026-12",
         "day_of_week": "THU",
         "dow_prob": 57.1,
         "sp500_prob": 52.4,
@@ -3297,6 +3568,7 @@
       },
       {
         "date": "2026-12-04",
+        "source_month": "2026-12",
         "day_of_week": "FRI",
         "dow_prob": 47.6,
         "sp500_prob": 47.6,
@@ -3309,6 +3581,7 @@
       },
       {
         "date": "2026-12-07",
+        "source_month": "2026-12",
         "day_of_week": "MON",
         "dow_prob": 66.7,
         "sp500_prob": 61.9,
@@ -3321,6 +3594,7 @@
       },
       {
         "date": "2026-12-08",
+        "source_month": "2026-12",
         "day_of_week": "TUE",
         "dow_prob": 61.9,
         "sp500_prob": 61.9,
@@ -3333,6 +3607,7 @@
       },
       {
         "date": "2026-12-09",
+        "source_month": "2026-12",
         "day_of_week": "WED",
         "dow_prob": 47.6,
         "sp500_prob": 52.4,
@@ -3345,6 +3620,7 @@
       },
       {
         "date": "2026-12-10",
+        "source_month": "2026-12",
         "day_of_week": "THU",
         "dow_prob": 57.1,
         "sp500_prob": 61.9,
@@ -3357,6 +3633,7 @@
       },
       {
         "date": "2026-12-11",
+        "source_month": "2026-12",
         "day_of_week": "FRI",
         "dow_prob": 61.9,
         "sp500_prob": 52.4,
@@ -3369,6 +3646,7 @@
       },
       {
         "date": "2026-12-14",
+        "source_month": "2026-12",
         "day_of_week": "MON",
         "dow_prob": 47.6,
         "sp500_prob": 42.9,
@@ -3381,6 +3659,7 @@
       },
       {
         "date": "2026-12-15",
+        "source_month": "2026-12",
         "day_of_week": "TUE",
         "dow_prob": 61.9,
         "sp500_prob": 61.9,
@@ -3393,6 +3672,7 @@
       },
       {
         "date": "2026-12-16",
+        "source_month": "2026-12",
         "day_of_week": "WED",
         "dow_prob": 42.9,
         "sp500_prob": 52.4,
@@ -3405,6 +3685,7 @@
       },
       {
         "date": "2026-12-17",
+        "source_month": "2026-12",
         "day_of_week": "THU",
         "dow_prob": 28.6,
         "sp500_prob": 33.3,
@@ -3417,6 +3698,7 @@
       },
       {
         "date": "2026-12-18",
+        "source_month": "2026-12",
         "day_of_week": "FRI",
         "dow_prob": 52.4,
         "sp500_prob": 47.6,
@@ -3429,6 +3711,7 @@
       },
       {
         "date": "2026-12-21",
+        "source_month": "2026-12",
         "day_of_week": "MON",
         "dow_prob": 71.4,
         "sp500_prob": 61.9,
@@ -3441,6 +3724,7 @@
       },
       {
         "date": "2026-12-22",
+        "source_month": "2026-12",
         "day_of_week": "TUE",
         "dow_prob": 66.7,
         "sp500_prob": 66.7,
@@ -3453,6 +3737,7 @@
       },
       {
         "date": "2026-12-23",
+        "source_month": "2026-12",
         "day_of_week": "WED",
         "dow_prob": 71.4,
         "sp500_prob": 66.7,
@@ -3465,6 +3750,7 @@
       },
       {
         "date": "2026-12-24",
+        "source_month": "2026-12",
         "day_of_week": "THU",
         "dow_prob": 52.4,
         "sp500_prob": 61.9,
@@ -3477,6 +3763,7 @@
       },
       {
         "date": "2026-12-28",
+        "source_month": "2026-12",
         "day_of_week": "MON",
         "dow_prob": 76.2,
         "sp500_prob": 66.7,
@@ -3489,6 +3776,7 @@
       },
       {
         "date": "2026-12-29",
+        "source_month": "2026-12",
         "day_of_week": "TUE",
         "dow_prob": 42.9,
         "sp500_prob": 47.6,
@@ -3501,6 +3789,7 @@
       },
       {
         "date": "2026-12-30",
+        "source_month": "2026-12",
         "day_of_week": "WED",
         "dow_prob": 42.9,
         "sp500_prob": 42.9,
@@ -3513,6 +3802,7 @@
       },
       {
         "date": "2026-12-31",
+        "source_month": "2026-12",
         "day_of_week": "THU",
         "dow_prob": 33.3,
         "sp500_prob": 28.6,

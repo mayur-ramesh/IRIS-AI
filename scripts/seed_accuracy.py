@@ -12,7 +12,7 @@ import csv
 import json
 import sys
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 
@@ -178,6 +178,12 @@ def pct(value: int, total: int) -> float:
     return round((value / total) * 100, 1)
 
 
+def week_start_key(date_key: str) -> str:
+    parsed = datetime.strptime(date_key, "%Y-%m-%d")
+    week_start = parsed - timedelta(days=parsed.weekday())
+    return week_start.strftime("%Y-%m-%d")
+
+
 def build_daily_results(
     almanac_daily: dict[str, dict[str, object]],
     history_by_index: dict[str, dict[str, dict[str, float | None]]],
@@ -297,7 +303,7 @@ def aggregate_periods(
 def build_output(daily_results: dict[str, dict[str, object]]) -> dict[str, object]:
     weekly = aggregate_periods(
         daily_results,
-        key_builder=lambda date_key: datetime.strptime(date_key, "%Y-%m-%d").strftime("%Y-W%W"),
+        key_builder=week_start_key,
         include_dates=True,
     )
     monthly = aggregate_periods(

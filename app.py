@@ -6,7 +6,7 @@ import json
 import logging
 import time
 from collections import defaultdict
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -159,6 +159,114 @@ def _almanac_week_range(start_value: str):
     return week_start.isoformat(), week_end.isoformat()
 
 
+def _nth_weekday_of_month(year: int, month: int, weekday: int, occurrence: int) -> date:
+    first_day = date(year, month, 1)
+    offset = (weekday - first_day.weekday()) % 7
+    return first_day + timedelta(days=offset + ((occurrence - 1) * 7))
+
+
+def _last_weekday_of_month(year: int, month: int, weekday: int) -> date:
+    if month == 12:
+        next_month = date(year + 1, 1, 1)
+    else:
+        next_month = date(year, month + 1, 1)
+    last_day = next_month - timedelta(days=1)
+    offset = (last_day.weekday() - weekday) % 7
+    return last_day - timedelta(days=offset)
+
+
+def _easter_sunday(year: int) -> date:
+    """Return Gregorian Easter Sunday for the requested year."""
+    a = year % 19
+    b = year // 100
+    c = year % 100
+    d = b // 4
+    e = b % 4
+    f = (b + 8) // 25
+    g = (b - f + 1) // 3
+    h = (19 * a + b - d - g + 15) % 30
+    i = c // 4
+    k = c % 4
+    l = (32 + 2 * e + 2 * i - h - k) % 7
+    m = (a + 11 * h + 22 * l) // 451
+    month = (h + l - 7 * m + 114) // 31
+    day = ((h + l - 7 * m + 114) % 31) + 1
+    return date(year, month, day)
+
+
+def _observed_fixed_holiday(year: int, month: int, day: int) -> date:
+    holiday = date(year, month, day)
+    if holiday.weekday() == 5:
+        return holiday - timedelta(days=1)
+    if holiday.weekday() == 6:
+        return holiday + timedelta(days=1)
+    return holiday
+
+
+def _market_holiday_map(year: int) -> dict[date, str]:
+    easter = _easter_sunday(year)
+    return {
+        _observed_fixed_holiday(year, 1, 1): "New Year's Day market holiday",
+        _nth_weekday_of_month(year, 1, 0, 3): "Martin Luther King Jr. Day market holiday",
+        _nth_weekday_of_month(year, 2, 0, 3): "Presidents' Day market holiday",
+        easter - timedelta(days=2): "Good Friday market holiday",
+        _last_weekday_of_month(year, 5, 0): "Memorial Day market holiday",
+        _observed_fixed_holiday(year, 6, 19): "Juneteenth market holiday",
+        _observed_fixed_holiday(year, 7, 4): "Independence Day market holiday",
+        _nth_weekday_of_month(year, 9, 0, 1): "Labor Day market holiday",
+        _nth_weekday_of_month(year, 11, 3, 4): "Thanksgiving Day market holiday",
+        _observed_fixed_holiday(year, 12, 25): "Christmas Day market holiday",
+    }
+
+
+def _market_closure_reason(date_key: str) -> str | None:
+    target = datetime.strptime(date_key, "%Y-%m-%d").date()
+    return _market_holiday_map(target.year).get(target)
+
+
+def _almanac_weekday_entry(date_key: str, daily: dict[str, dict], data_year: int | None):
+    entry = daily.get(date_key)
+    if entry:
+        return {
+            **entry,
+            "date": date_key,
+            "day": str(entry.get("day", "")).strip().upper()[:3],
+            "market_open": True,
+            "almanac_available": True,
+            "status": "open",
+            "status_reason": "",
+        }
+
+    closure_reason = _market_closure_reason(date_key)
+    parsed = datetime.strptime(date_key, "%Y-%m-%d")
+    if closure_reason:
+        status = "closed"
+        status_reason = closure_reason
+        market_open = False
+    else:
+        status = "no_data"
+        market_open = True
+        year_note = f" outside the {data_year} dataset" if data_year else ""
+        status_reason = f"Market open, but no Almanac entry is available for this date{year_note}."
+
+    return {
+        "date": date_key,
+        "day": parsed.strftime("%a").upper()[:3],
+        "d": None,
+        "s": None,
+        "n": None,
+        "d_dir": "",
+        "s_dir": "",
+        "n_dir": "",
+        "icon": None,
+        "notes": "",
+        "market_open": market_open,
+        "almanac_available": False,
+        "status": status,
+        "status_reason": status_reason,
+    }
+
+
 def _almanac_table_rows(payload, table_name):
     table = payload.get(table_name, {})
     if isinstance(table, dict):
@@ -236,6 +344,7 @@ def _normalize_almanac_dump(payload):
             continue
         daily[date_key] = {
             "date": date_key,
+            "source_month": str(row.get("source_month", "")).strip(),
             "day": str(row.get("day_of_week", "")).strip().upper()[:3],
             "d": _almanac_float(row.get("dow_prob"), 0.0),
             "s": _almanac_float(row.get("sp500_prob"), 0.0),
@@ -711,7 +820,7 @@ def almanac_seasonal():
 
 @app.route('/api/almanac/week')
 def almanac_week():
-    """Return the Monday-to-Friday trading slice for the requested week."""
+    """Return the Monday-to-Friday calendar slice for the requested week."""
     data = _load_almanac_data()
     if "error" in data:
         return jsonify(data), 404
@@ -730,18 +839,30 @@ def almanac_week():
     except ValueError:
         return jsonify({"error": "Invalid start date. Expected YYYY-MM-DD"}), 400
 
-    week_dates = [date_key for date_key in all_dates if week_start <= date_key <= week_end]
-    if not week_dates:
-        return jsonify({"error": f"No trading days found for week starting {week_start}"}), 404
+    calendar_dates = [
+        (datetime.strptime(week_start, "%Y-%m-%d") + timedelta(days=offset)).strftime("%Y-%m-%d")
+        for offset in range(5)
+    ]
+    week_dates = [date_key for date_key in calendar_dates if date_key in daily]
+    if not week_dates and not any(_market_closure_reason(date_key) for date_key in calendar_dates):
+        return jsonify({"error": f"No weekday entries found for week starting {week_start}"}), 404
 
     week_data = {date_key: daily[date_key] for date_key in week_dates}
-    month_key = week_dates[0][:7] if week_dates else start[:7]
+    data_year = data.get("meta", {}).get("year") if isinstance(data.get("meta"), dict) else None
+    week_entries = [_almanac_weekday_entry(date_key, daily, data_year) for date_key in calendar_dates]
+    first_available = next((entry for entry in week_entries if entry.get("almanac_available")), None)
+    month_key = (
+        str(first_available.get("source_month", "")).strip()
+        if first_available
+        else ""
+    ) or (str(first_available.get("date", week_start))[:7] if first_available else week_start[:7])
     month_info = data.get("months", {}).get(month_key, {})
 
     return jsonify(
         {
             "week_start": week_start,
             "week_end": week_end,
+            "weekdays": week_entries,
             "daily": week_data,
             "month_overview": month_info,
         }
@@ -810,12 +931,14 @@ def almanac_accuracy_week():
     weekly = data.get("weekly") or {}
     week_dates = sorted(date_key for date_key in daily.keys() if week_start <= date_key <= week_end)
 
-    weekly_entry = None
-    for date_key in week_dates:
-        week_key = datetime.strptime(date_key, "%Y-%m-%d").strftime("%Y-W%W")
-        weekly_entry = weekly.get(week_key)
-        if weekly_entry is not None:
-            break
+    weekly_entry = weekly.get(week_start)
+
+    if weekly_entry is None:
+        for date_key in week_dates:
+            legacy_week_key = datetime.strptime(date_key, "%Y-%m-%d").strftime("%Y-W%W")
+            weekly_entry = weekly.get(legacy_week_key)
+            if weekly_entry is not None:
+                break
 
     if weekly_entry is None:
         return jsonify({"error": f"No weekly accuracy found for week starting {week_start}"}), 404

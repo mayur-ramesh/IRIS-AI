@@ -1,14 +1,98 @@
 {
   "meta": {
-    "last_updated": "2026-04-05T07:00:42.132269Z",
-    "total_days_scored": 63,
+    "last_updated": "2026-04-05T10:31:45.482959Z",
+    "total_days_scored": 65,
     "data_range": {
-      "from": "2026-01-02",
+      "from": "2025-12-30",
       "to": "2026-04-02"
     },
     "source": "Historic CSV backtest via scripts/seed_accuracy.py"
   },
   "daily": {
+    "2025-12-30": {
+      "actual": {
+        "dji": 48367.06,
+        "sp500": 6896.24,
+        "nasdaq": 23419.08
+      },
+      "prev_close": {
+        "dji": 48461.93,
+        "sp500": 6905.74,
+        "nasdaq": 23474.35
+      },
+      "pct_change": {
+        "dji": -0.001958,
+        "sp500": -0.001376,
+        "nasdaq": -0.002354
+      },
+      "almanac_scores": {
+        "d": 42.9,
+        "s": 42.9,
+        "n": 38.1
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": ""
+    },
+    "2025-12-31": {
+      "actual": {
+        "dji": 48063.29,
+        "sp500": 6845.5,
+        "nasdaq": 23241.99
+      },
+      "prev_close": {
+        "dji": 48367.06,
+        "sp500": 6896.24,
+        "nasdaq": 23419.08
+      },
+      "pct_change": {
+        "dji": -0.006281,
+        "sp500": -0.007358,
+        "nasdaq": -0.007562
+      },
+      "almanac_scores": {
+        "d": 33.3,
+        "s": 28.6,
+        "n": 28.6
+      },
+      "results": {
+        "d": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "s": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        },
+        "n": {
+          "verdict": "HIT",
+          "predicted": "DOWN",
+          "actual": "DOWN"
+        }
+      },
+      "hits": 3,
+      "total_calls": 3,
+      "context": "Last Trading Day of the Year, NASDAQ Down 19 of last 25"
+    },
     "2026-01-02": {
       "actual": {
         "dji": 48382.39,
@@ -2657,30 +2741,32 @@
     }
   },
   "weekly": {
-    "2026-W00": {
-      "hits": 2,
-      "total_calls": 3,
-      "accuracy": 66.7,
+    "2025-12-29": {
+      "hits": 8,
+      "total_calls": 9,
+      "accuracy": 88.9,
       "dates": [
+        "2025-12-30",
+        "2025-12-31",
         "2026-01-02"
       ],
       "dow": {
-        "hits": 1,
-        "total": 1,
+        "hits": 3,
+        "total": 3,
         "pct": 100.0
       },
       "sp500": {
-        "hits": 1,
-        "total": 1,
+        "hits": 3,
+        "total": 3,
         "pct": 100.0
       },
       "nasdaq": {
-        "hits": 0,
-        "total": 1,
-        "pct": 0.0
+        "hits": 2,
+        "total": 3,
+        "pct": 66.7
       }
     },
-    "2026-W01": {
+    "2026-01-05": {
       "hits": 7,
       "total_calls": 15,
       "accuracy": 46.7,
@@ -2707,7 +2793,7 @@
         "pct": 40.0
       }
     },
-    "2026-W02": {
+    "2026-01-12": {
       "hits": 5,
       "total_calls": 15,
       "accuracy": 33.3,
@@ -2734,7 +2820,7 @@
         "pct": 40.0
       }
     },
-    "2026-W03": {
+    "2026-01-19": {
       "hits": 10,
       "total_calls": 12,
       "accuracy": 83.3,
@@ -2760,7 +2846,7 @@
         "pct": 75.0
       }
     },
-    "2026-W04": {
+    "2026-01-26": {
       "hits": 11,
       "total_calls": 15,
       "accuracy": 73.3,
@@ -2787,7 +2873,7 @@
         "pct": 80.0
       }
     },
-    "2026-W05": {
+    "2026-02-02": {
       "hits": 8,
       "total_calls": 15,
       "accuracy": 53.3,
@@ -2814,7 +2900,7 @@
         "pct": 60.0
       }
     },
-    "2026-W06": {
+    "2026-02-09": {
       "hits": 4,
       "total_calls": 15,
       "accuracy": 26.7,
@@ -2841,7 +2927,7 @@
         "pct": 20.0
       }
     },
-    "2026-W07": {
+    "2026-02-16": {
       "hits": 8,
       "total_calls": 12,
       "accuracy": 66.7,
@@ -2867,7 +2953,7 @@
         "pct": 50.0
       }
     },
-    "2026-W08": {
+    "2026-02-23": {
       "hits": 11,
       "total_calls": 15,
       "accuracy": 73.3,
@@ -2894,7 +2980,7 @@
         "pct": 60.0
       }
     },
-    "2026-W09": {
+    "2026-03-02": {
       "hits": 12,
       "total_calls": 15,
       "accuracy": 80.0,
@@ -2921,7 +3007,7 @@
         "pct": 80.0
       }
     },
-    "2026-W10": {
+    "2026-03-09": {
       "hits": 4,
       "total_calls": 15,
       "accuracy": 26.7,
@@ -2948,7 +3034,7 @@
         "pct": 40.0
       }
     },
-    "2026-W11": {
+    "2026-03-16": {
       "hits": 4,
       "total_calls": 15,
       "accuracy": 26.7,
@@ -2975,7 +3061,7 @@
         "pct": 20.0
       }
     },
-    "2026-W12": {
+    "2026-03-23": {
       "hits": 11,
       "total_calls": 15,
       "accuracy": 73.3,
@@ -3002,7 +3088,7 @@
         "pct": 60.0
       }
     },
-    "2026-W13": {
+    "2026-03-30": {
       "hits": 7,
       "total_calls": 12,
       "accuracy": 58.3,
@@ -3030,6 +3116,27 @@
     }
   },
   "monthly": {
+    "2025-12": {
+      "hits": 6,
+      "total_calls": 6,
+      "accuracy": 100.0,
+      "dow": {
+        "hits": 2,
+        "total": 2,
+        "pct": 100.0
+      },
+      "sp500": {
+        "hits": 2,
+        "total": 2,
+        "pct": 100.0
+      },
+      "nasdaq": {
+        "hits": 2,
+        "total": 2,
+        "pct": 100.0
+      },
+      "trading_days": 2
+    },
     "2026-01": {
       "hits": 35,
       "total_calls": 60,

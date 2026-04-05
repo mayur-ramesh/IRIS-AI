@@ -67,7 +67,7 @@ ACCURACY_FIXTURE = {
         },
     },
     "weekly": {
-        "2026-W00": {
+        "2025-12-29": {
             "dates": ["2026-01-02"],
             "hits": 2,
             "total_calls": 2,
@@ -76,7 +76,7 @@ ACCURACY_FIXTURE = {
             "sp500": {"hits": 1, "total": 1, "pct": 100.0},
             "nasdaq": {"hits": 0, "total": 0, "pct": 0.0},
         },
-        "2026-W01": {
+        "2026-01-05": {
             "dates": ["2026-01-05", "2026-01-06"],
             "hits": 5,
             "total_calls": 6,
@@ -99,6 +99,90 @@ ACCURACY_FIXTURE = {
     },
 }
 
+CROSS_YEAR_ACCURACY_FIXTURE = {
+    "meta": {
+        "last_updated": "2026-04-05T12:00:00Z",
+        "total_days_scored": 3,
+        "data_range": {"from": "2025-12-30", "to": "2026-01-02"},
+        "source": "Historic CSV backtest via scripts/seed_accuracy.py",
+    },
+    "daily": {
+        "2025-12-30": {
+            "actual": {"dji": 99.0, "sp500": 199.0, "nasdaq": 299.0},
+            "prev_close": {"dji": 100.0, "sp500": 200.0, "nasdaq": 300.0},
+            "pct_change": {"dji": -0.01, "sp500": -0.005, "nasdaq": -0.003333},
+            "almanac_scores": {"d": 42.9, "s": 42.9, "n": 38.1},
+            "results": {
+                "d": {"verdict": "HIT", "predicted": "DOWN", "actual": "DOWN"},
+                "s": {"verdict": "HIT", "predicted": "DOWN", "actual": "DOWN"},
+                "n": {"verdict": "HIT", "predicted": "DOWN", "actual": "DOWN"},
+            },
+            "hits": 3,
+            "total_calls": 3,
+            "context": "",
+        },
+        "2025-12-31": {
+            "actual": {"dji": 98.0, "sp500": 198.0, "nasdaq": 298.0},
+            "prev_close": {"dji": 99.0, "sp500": 199.0, "nasdaq": 299.0},
+            "pct_change": {"dji": -0.010101, "sp500": -0.005025, "nasdaq": -0.003344},
+            "almanac_scores": {"d": 33.3, "s": 28.6, "n": 28.6},
+            "results": {
+                "d": {"verdict": "HIT", "predicted": "DOWN", "actual": "DOWN"},
+                "s": {"verdict": "HIT", "predicted": "DOWN", "actual": "DOWN"},
+                "n": {"verdict": "HIT", "predicted": "DOWN", "actual": "DOWN"},
+            },
+            "hits": 3,
+            "total_calls": 3,
+            "context": "Last Trading Day of the Year",
+        },
+        "2026-01-02": {
+            "actual": {"dji": 99.0, "sp500": 199.0, "nasdaq": 297.0},
+            "prev_close": {"dji": 98.0, "sp500": 198.0, "nasdaq": 298.0},
+            "pct_change": {"dji": 0.010204, "sp500": 0.005051, "nasdaq": -0.003356},
+            "almanac_scores": {"d": 66.7, "s": 52.4, "n": 61.9},
+            "results": {
+                "d": {"verdict": "HIT", "predicted": "UP", "actual": "UP"},
+                "s": {"verdict": "HIT", "predicted": "UP", "actual": "UP"},
+                "n": {"verdict": "MISS", "predicted": "UP", "actual": "DOWN"},
+            },
+            "hits": 2,
+            "total_calls": 3,
+            "context": "First Trading Day of Year",
+        },
+    },
+    "weekly": {
+        "2025-12-29": {
+            "dates": ["2025-12-30", "2025-12-31", "2026-01-02"],
+            "hits": 8,
+            "total_calls": 9,
+            "accuracy": 88.9,
+            "dow": {"hits": 3, "total": 3, "pct": 100.0},
+            "sp500": {"hits": 3, "total": 3, "pct": 100.0},
+            "nasdaq": {"hits": 2, "total": 3, "pct": 66.7},
+        }
+    },
+    "monthly": {
+        "2025-12": {
+            "hits": 6,
+            "total_calls": 6,
+            "accuracy": 100.0,
+            "dow": {"hits": 2, "total": 2, "pct": 100.0},
+            "sp500": {"hits": 2, "total": 2, "pct": 100.0},
+            "nasdaq": {"hits": 2, "total": 2, "pct": 100.0},
+            "trading_days": 2,
+        },
+        "2026-01": {
+            "hits": 2,
+            "total_calls": 3,
+            "accuracy": 66.7,
+            "dow": {"hits": 1, "total": 1, "pct": 100.0},
+            "sp500": {"hits": 1, "total": 1, "pct": 100.0},
+            "nasdaq": {"hits": 0, "total": 1, "pct": 0.0},
+            "trading_days": 1,
+        },
+    },
+}
+
 
 class TestAlmanacAccuracyAPI(unittest.TestCase):
     def setUp(self):
@@ -118,9 +202,12 @@ class TestAlmanacAccuracyAPI(unittest.TestCase):
         return root
 
     def write_accuracy_fixture(self, root: Path) -> None:
+        self.write_accuracy_payload(root, ACCURACY_FIXTURE)
+
+    def write_accuracy_payload(self, root: Path, payload: dict) -> None:
         path = root / "data" / "almanac_2026" / "accuracy_results.json"
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps(ACCURACY_FIXTURE, indent=2), encoding="utf-8")
+        path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
     def test_accuracy_endpoint_reports_unavailable_when_seed_file_is_missing(self):
         temp_root = self.make_root("accuracy_api_unavailable")
@@ -179,7 +266,7 @@ class TestAlmanacAccuracyAPI(unittest.TestCase):
 
     def test_accuracy_week_route_supports_cross_year_monday_week_starts(self):
         temp_root = self.make_root("accuracy_api_cross_year_week")
-        self.write_accuracy_fixture(temp_root)
+        self.write_accuracy_payload(temp_root, CROSS_YEAR_ACCURACY_FIXTURE)
         try:
             with patch.object(app_module, "PROJECT_ROOT", temp_root):
                 week_resp = self.client.get("/api/almanac/accuracy/week?start=2025-12-29")
@@ -190,8 +277,11 @@ class TestAlmanacAccuracyAPI(unittest.TestCase):
         data = week_resp.get_json()
         self.assertEqual(data["week_start"], "2025-12-29")
         self.assertEqual(data["week_end"], "2026-01-02")
-        self.assertEqual(data["dates"], ["2026-01-02"])
-        self.assertEqual(data["hits"], 2)
+        self.assertEqual(data["dates"], ["2025-12-30", "2025-12-31", "2026-01-02"])
+        self.assertEqual(data["hits"], 8)
+        self.assertEqual(data["total_calls"], 9)
+        self.assertEqual(data["dow"]["pct"], 100.0)
+        self.assertEqual(data["nasdaq"]["pct"], 66.7)
 
     def test_accuracy_summary_aggregates_monthly_and_per_index_totals(self):
         temp_root = self.make_root("accuracy_api_summary")

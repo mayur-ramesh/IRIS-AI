@@ -482,6 +482,11 @@
     gap: 0.38rem;
 }
 
+.alm-week-index-empty {
+    justify-content: center;
+    min-height: 78px;
+}
+
 .alm-week-index-head,
 .alm-week-index-meta,
 .alm-week-index-foot {
@@ -514,6 +519,26 @@
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.04em;
+}
+
+.alm-week-status-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.24rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(108, 117, 125, 0.12);
+    border: 1px solid rgba(108, 117, 125, 0.22);
+    color: var(--text-main);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+
+.alm-week-status-chip.is-closed {
+    background: rgba(182, 78, 90, 0.12);
+    border-color: rgba(182, 78, 90, 0.22);
+    color: var(--status-red);
 }
 
 .alm-week-accuracy-cell {

@@ -435,6 +435,23 @@
             + '</div>';
     }
 
+    function buildWeeklyStatusCell(day) {
+        const closed = day?.status === 'closed';
+        const label = closed ? 'Market Closed' : 'No Almanac Data';
+        const chipClass = closed ? 'alm-week-status-chip is-closed' : 'alm-week-status-chip';
+        const detail = closed ? 'No trading session' : 'Market open';
+
+        return ''
+            + '<div class="alm-week-index-cell alm-week-index-empty">'
+            + '  <div class="alm-week-index-head">'
+            + '    <span class="' + chipClass + '">' + escapeHtml(label) + '</span>'
+            + '  </div>'
+            + '  <div class="alm-week-index-meta">'
+            + '    <span class="alm-note-caption">' + escapeHtml(detail) + '</span>'
+            + '  </div>'
+            + '</div>';
+    }
+
     function buildWeeklySummaryCard(label, summary) {
         const hits = Number(summary?.hits || 0);
         const totalValue = summary?.total ?? summary?.total_calls ?? 0;
@@ -1107,15 +1124,22 @@
         }
 
         const accPayload = await loadAccuracyData();
-
-        const weekDates = getWeekDates(currentWeekStart);
-        if (!weekDates.length) {
-            if (container) container.innerHTML = '<div class="alm-empty">No trading week found for that start date.</div>';
+        currentWeekStart = resolveNearestWeekStart(currentWeekStart);
+        let weekPayload = null;
+        try {
+            weekPayload = await fetchJson('/api/almanac/week?start=' + encodeURIComponent(currentWeekStart));
+        } catch (error) {
+            console.error('Failed to load weekly almanac view:', error);
+        }
+        if (!weekPayload || !Array.isArray(weekPayload.weekdays) || !weekPayload.weekdays.length) {
+            if (container) container.innerHTML = '<div class="alm-empty">No weekly calendar data found for that start date.</div>';
             if (strip) strip.innerHTML = '';
             return;
         }
 
-        currentWeekStart = resolveNearestWeekStart(currentWeekStart);
+        const weekDays = weekPayload.weekdays;
+        const weekDates = weekDays.filter((day) => day.almanac_available).map((day) => day.date);
+        currentWeekStart = weekPayload.week_start || currentWeekStart;
         if (weekLabel) {
             weekLabel.textContent = formatWeekRangeLabel(currentWeekStart);
         }
@@ -1123,29 +1147,35 @@
         const weekAccuracy = await loadWeekAccuracy(currentWeekStart) || buildWeeklyAccuracyFallback(accPayload, weekDates);
 
         if (container) {
-            const rows = weekDates.map((dateKey) => {
-                const day = payload.daily[dateKey];
-                const acc = accPayload?.daily?.[dateKey];
+            const rows = weekDays.map((day) => {
+                const acc = day.almanac_available ? accPayload?.daily?.[day.date] : null;
                 const accClass = dailyAccuracyClass(acc);
                 const indexCells = WEEKLY_INDEX_META.map((indexMeta) => {
-                    return '<td>' + buildWeeklyIndexCell(day, acc, indexMeta) + '</td>';
+                    const cellMarkup = day.almanac_available
+                        ? buildWeeklyIndexCell(day, acc, indexMeta)
+                        : buildWeeklyStatusCell(day);
+                    return '<td>' + cellMarkup + '</td>';
                 }).join('');
+                const iconMarkup = day.almanac_available
+                    ? (day.icon ? '<span class="alm-chip">' + escapeHtml(day.icon.replace('_', ' ')) + '</span>' : '<span class="alm-note-caption">None</span>')
+                    : '<span class="alm-chip">' + escapeHtml(day.status === 'closed' ? 'Holiday / Closure' : 'Open / No Entry') + '</span>';
+                const noteText = day.almanac_available ? (day.notes || '-') : (day.status_reason || 'No additional detail available.');
                 const accuracyPct = acc && Number(acc.total_calls) > 0
                     ? formatAccuracyPct((Number(acc.hits || 0) / Number(acc.total_calls || 1)) * 100, 0) + '% accuracy'
-                    : 'No data';
+                    : (day.status === 'closed' ? 'Market closed' : 'No scoring data');
                 const accuracyCell = acc
                     ? ''
                         + '<td class="alm-week-accuracy-cell">'
                         + '  <div class="alm-week-index-verdict ' + accClass + '">' + escapeHtml(acc.hits + '/' + acc.total_calls) + '</div>'
                         + '  <div class="alm-note-caption">' + escapeHtml(accuracyPct) + '</div>'
                         + '</td>'
-                    : '<td class="alm-week-accuracy-cell"><span class="alm-note-caption">--</span></td>';
+                    : '<td class="alm-week-accuracy-cell"><span class="alm-note-caption">' + escapeHtml(accuracyPct) + '</span></td>';
                 return ''
                     + '<tr>'
-                    + '  <td><strong>' + escapeHtml(day.day) + '</strong><br><span class="alm-note-caption">' + escapeHtml(dateKey) + '</span></td>'
+                    + '  <td><strong>' + escapeHtml(day.day) + '</strong><br><span class="alm-note-caption">' + escapeHtml(day.date) + '</span></td>'
                     + indexCells
-                    + '  <td>' + (day.icon ? '<span class="alm-chip">' + escapeHtml(day.icon.replace('_', ' ')) + '</span>' : '<span class="alm-note-caption">None</span>') + '</td>'
-                    + '  <td>' + escapeHtml(day.notes || '-') + '</td>'
+                    + '  <td>' + iconMarkup + '</td>'
+                    + '  <td>' + escapeHtml(noteText) + '</td>'
                     + accuracyCell
                     + '</tr>';
             }).join('');

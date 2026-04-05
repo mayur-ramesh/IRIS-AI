@@ -50,6 +50,9 @@ class TestAlmanacAPI(unittest.TestCase):
         self.assertEqual(data["week_start"], "2026-04-06")
         self.assertEqual(data["week_end"], "2026-04-10")
         self.assertEqual(len(data["daily"]), 5)
+        self.assertEqual(len(data["weekdays"]), 5)
+        self.assertTrue(all(day["market_open"] for day in data["weekdays"]))
+        self.assertTrue(all(day["almanac_available"] for day in data["weekdays"]))
         self.assertEqual(data["month_overview"]["name"], "April")
 
     def test_almanac_week_endpoint_uses_monday_to_friday_calendar_range(self):
@@ -58,8 +61,33 @@ class TestAlmanacAPI(unittest.TestCase):
         data = resp.get_json()
         self.assertEqual(data["week_start"], "2025-12-29")
         self.assertEqual(data["week_end"], "2026-01-02")
-        self.assertEqual(list(data["daily"].keys()), ["2026-01-02"])
+        self.assertEqual(list(data["daily"].keys()), ["2025-12-29", "2025-12-30", "2025-12-31", "2026-01-02"])
+        self.assertEqual([day["date"] for day in data["weekdays"]], [
+            "2025-12-29",
+            "2025-12-30",
+            "2025-12-31",
+            "2026-01-01",
+            "2026-01-02",
+        ])
+        self.assertTrue(data["weekdays"][0]["almanac_available"])
+        self.assertEqual(data["weekdays"][0]["source_month"], "2026-01")
+        self.assertTrue(data["weekdays"][1]["almanac_available"])
+        self.assertTrue(data["weekdays"][2]["almanac_available"])
+        self.assertEqual(data["weekdays"][3]["status"], "closed")
+        self.assertFalse(data["weekdays"][3]["market_open"])
+        self.assertIn("New Year's Day", data["weekdays"][3]["status_reason"])
+        self.assertTrue(data["weekdays"][4]["almanac_available"])
         self.assertEqual(data["month_overview"]["name"], "January")
+
+    def test_build_payload_includes_cross_year_january_lead_in_dates(self):
+        payload = build_payload()
+        daily = payload["daily"]
+        self.assertIn("2025-12-29", daily)
+        self.assertIn("2025-12-30", daily)
+        self.assertIn("2025-12-31", daily)
+        self.assertEqual(daily["2025-12-31"]["icon"], "bear")
+        self.assertEqual(daily["2025-12-31"]["source_month"], "2026-01")
+        self.assertIn("Last Trading Day of the Year", daily["2025-12-31"]["notes"])
 
     def test_almanac_month_endpoint(self):
         resp = self.client.get("/api/almanac/month/2026-04")

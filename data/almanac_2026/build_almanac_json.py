@@ -278,7 +278,26 @@ def _extract_daily_entries(
     entries: list[tuple[str, dict[str, object], bool]] = []
     for row in rows:
         raw_date = row.get(header_lookup["Date"], "").strip()
-        if not raw_date.startswith(f"{TARGET_YEAR}-"):
+        try:
+            parsed_date = datetime.strptime(raw_date, "%Y-%m-%d")
+        except ValueError:
+            continue
+
+        include_cross_year_december = (
+            source_month_num == 1
+            and parsed_date.year == TARGET_YEAR - 1
+            and parsed_date.month == 12
+        )
+        include_cross_year_january = (
+            source_month_num == 12
+            and parsed_date.year == TARGET_YEAR + 1
+            and parsed_date.month == 1
+        )
+        if not (
+            parsed_date.year == TARGET_YEAR
+            or include_cross_year_december
+            or include_cross_year_january
+        ):
             continue
 
         try:
@@ -288,8 +307,8 @@ def _extract_daily_entries(
         except ValueError:
             continue
 
-        date_month = int(raw_date[5:7])
-        date_matches_month = date_month == source_month_num
+        date_month = parsed_date.month
+        date_matches_month = parsed_date.year == TARGET_YEAR and date_month == source_month_num
         day_value = _strip_markdown(row.get(header_lookup["Day"], "")).upper()
 
         d_dir = (
@@ -311,6 +330,7 @@ def _extract_daily_entries(
         entry = {
             "date": raw_date,
             "day": day_value[:3],
+            "source_month": month_key,
             "d": d_score,
             "s": s_score,
             "n": n_score,
@@ -556,6 +576,7 @@ def build_structured_db_dump(payload: dict[str, object]) -> dict[str, object]:
         daily_rows.append(
             {
                 "date": date_key,
+                "source_month": entry.get("source_month", ""),
                 "day_of_week": entry.get("day", ""),
                 "dow_prob": float(entry.get("d", 0.0) or 0.0),
                 "sp500_prob": float(entry.get("s", 0.0) or 0.0),
