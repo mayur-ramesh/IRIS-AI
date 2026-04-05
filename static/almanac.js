@@ -1151,7 +1151,12 @@
             almanacPanel.innerHTML = ''
                 + '<div class="alm-score-shell">'
                 + '  <div class="alm-score-value ' + scoreClass(dayData.s) + '">' + escapeHtml(dayData.s) + '</div>'
-                + '  <div class="alm-score-caption">S&amp;P 500 probability score</div>'
+                + '  <div class="alm-score-caption">S&amp;P 500 historical up-day probability</div>'
+                + '  <div class="alm-note-caption" style="margin-top:0.25rem;">'
+                + '    <span style="color:var(--status-green);">60–100 Bullish</span>'
+                + '    &nbsp;&middot;&nbsp;<span>41–59 Sideways</span>'
+                + '    &nbsp;&middot;&nbsp;<span style="color:var(--status-red);">0–40 Bearish</span>'
+                + '  </div>'
                 + '</div>'
                 + '<div class="alm-pill-row">'
                 +      directionBadge(dayData.s_dir)

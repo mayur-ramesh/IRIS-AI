@@ -61,8 +61,12 @@
         <section class="glass-panel alm-intro-card">
             <h2>Seasonality Comparison</h2>
             <p class="alm-intro-copy">
-                Compare cached IRIS index predictions against curated 2026 Almanac seasonality for daily, weekly,
-                monthly, and full-year context.
+                Compare IRIS index predictions against Stock Trader's Almanac 2026 historical patterns.
+                Each index shows a <strong>probability score (0–100)</strong> — the historical likelihood of an up day based on past years:
+                <strong style="color:var(--status-green);">60–100 = Bullish</strong> &nbsp;·&nbsp;
+                <strong style="color:var(--text-muted);">41–59 = Sideways</strong> &nbsp;·&nbsp;
+                <strong style="color:var(--status-red);">0–40 = Bearish</strong>.
+                Use the tabs below to view by day, week, month, or full year.
             </p>
         </section>
 
@@ -93,7 +97,7 @@
                 <div class="alm-panel">
                     <div class="alm-panel-header">
                         <span class="alm-panel-badge alm-badge-almanac">Almanac</span>
-                        <span class="alm-panel-sub">Historical probability</span>
+                        <span class="alm-panel-sub">Historical up-day probability (score 0–100)</span>
                     </div>
                     <div id="almanac-daily-content" class="alm-panel-body">
                         <div class="alm-empty">Loading almanac data...</div>
