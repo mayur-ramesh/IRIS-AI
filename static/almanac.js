@@ -14,6 +14,8 @@
     let almanacPromise = null;
     let accuracyCache = null;
     let accuracyPromise = null;
+    let weeklyAccuracyCache = {};
+    let weeklyAccuracyPromiseCache = {};
     let irisLiveData = null;
     let irisPromise = null;
     let tradingDates = [];
@@ -74,6 +76,11 @@
             order: 9,
         },
     };
+    const WEEKLY_INDEX_META = [
+        { scoreKey: 'd', directionKey: 'd_dir', accuracyKey: 'd', pctKey: 'dji', weeklyKey: 'dow', label: 'Dow' },
+        { scoreKey: 's', directionKey: 's_dir', accuracyKey: 's', pctKey: 'sp500', weeklyKey: 'sp500', label: 'S&P 500' },
+        { scoreKey: 'n', directionKey: 'n_dir', accuracyKey: 'n', pctKey: 'nasdaq', weeklyKey: 'nasdaq', label: 'NASDAQ' },
+    ];
 
     function escapeHtml(value) {
         return String(value ?? '')
@@ -184,6 +191,30 @@
                 return null;
             });
         return accuracyPromise;
+    }
+
+    async function loadWeekAccuracy(startDate) {
+        const key = String(startDate || '').trim();
+        if (!key) {
+            return null;
+        }
+        if (weeklyAccuracyCache[key]) {
+            return weeklyAccuracyCache[key];
+        }
+        if (weeklyAccuracyPromiseCache[key]) {
+            return weeklyAccuracyPromiseCache[key];
+        }
+        weeklyAccuracyPromiseCache[key] = fetchJson('/api/almanac/accuracy/week?start=' + encodeURIComponent(key))
+            .then((payload) => {
+                weeklyAccuracyCache[key] = payload;
+                delete weeklyAccuracyPromiseCache[key];
+                return payload;
+            })
+            .catch(() => {
+                delete weeklyAccuracyPromiseCache[key];
+                return null;
+            });
+        return weeklyAccuracyPromiseCache[key];
     }
 
     async function fetchIrisLive() {
@@ -316,6 +347,109 @@
             return 'alm-acc-miss';
         }
         return 'alm-acc-neutral';
+    }
+
+    function dailyAccuracyClass(accDay) {
+        if (!accDay || Number(accDay.total_calls) <= 0) {
+            return 'alm-acc-neutral';
+        }
+        if (Number(accDay.hits) === Number(accDay.total_calls)) {
+            return 'alm-acc-hit';
+        }
+        if (Number(accDay.hits) === 0) {
+            return 'alm-acc-miss';
+        }
+        return 'alm-acc-neutral';
+    }
+
+    function buildWeeklyAccuracyFallback(accPayload, weekDates) {
+        const fallback = {
+            hits: 0,
+            total_calls: 0,
+            accuracy: 0,
+            dow: { hits: 0, total: 0, pct: 0 },
+            sp500: { hits: 0, total: 0, pct: 0 },
+            nasdaq: { hits: 0, total: 0, pct: 0 },
+        };
+
+        weekDates.forEach((dateKey) => {
+            const accDay = accPayload?.daily?.[dateKey];
+            if (!accDay) {
+                return;
+            }
+            fallback.hits += Number(accDay.hits || 0);
+            fallback.total_calls += Number(accDay.total_calls || 0);
+
+            WEEKLY_INDEX_META.forEach((indexMeta) => {
+                const result = accDay.results?.[indexMeta.accuracyKey];
+                if (!result || !result.verdict) {
+                    return;
+                }
+                fallback[indexMeta.weeklyKey].total += 1;
+                if (result.verdict === 'HIT') {
+                    fallback[indexMeta.weeklyKey].hits += 1;
+                }
+            });
+        });
+
+        fallback.accuracy = fallback.total_calls > 0
+            ? Number(formatAccuracyPct((fallback.hits / fallback.total_calls) * 100, 1))
+            : 0;
+
+        WEEKLY_INDEX_META.forEach((indexMeta) => {
+            const bucket = fallback[indexMeta.weeklyKey];
+            bucket.pct = bucket.total > 0
+                ? Number(formatAccuracyPct((bucket.hits / bucket.total) * 100, 1))
+                : 0;
+        });
+
+        return fallback;
+    }
+
+    function buildWeeklyIndexCell(day, accDay, indexMeta) {
+        const score = day?.[indexMeta.scoreKey];
+        const direction = day?.[indexMeta.directionKey];
+        const result = accDay?.results?.[indexMeta.accuracyKey] || {};
+        const pctValue = Number(accDay?.pct_change?.[indexMeta.pctKey]);
+        const pctClass = pctValue > 0 ? 'alm-acc-positive' : pctValue < 0 ? 'alm-acc-negative' : 'alm-note-caption';
+        const verdictClass = accuracyCardClass(result.verdict);
+        const verdictLabel = result.verdict || 'NO CALL';
+        const predictionLabel = result.predicted || '--';
+        const actualLabel = result.actual || '--';
+
+        return ''
+            + '<div class="alm-week-index-cell">'
+            + '  <div class="alm-week-index-head">'
+            + '    <span class="alm-week-index-score ' + scoreClass(score) + '">' + escapeHtml(score) + '</span>'
+            +      directionBadge(direction)
+            + '  </div>'
+            + '  <div class="alm-week-index-meta">'
+            + '    <span class="alm-week-index-trend">' + escapeHtml(predictionLabel) + ' call</span>'
+            + '    <span class="alm-week-index-sep">&middot;</span>'
+            + '    <span class="' + pctClass + '">Actual ' + escapeHtml(formatPctDelta(pctValue)) + '</span>'
+            + '  </div>'
+            + '  <div class="alm-week-index-foot">'
+            + '    <span class="alm-week-index-verdict ' + verdictClass + '">' + escapeHtml(verdictLabel) + '</span>'
+            + '    <span class="alm-note-caption">Actual ' + escapeHtml(actualLabel) + '</span>'
+            + '  </div>'
+            + '</div>';
+    }
+
+    function buildWeeklySummaryCard(label, summary) {
+        const hits = Number(summary?.hits || 0);
+        const totalValue = summary?.total ?? summary?.total_calls ?? 0;
+        const total = Number(totalValue);
+        const pct = total > 0
+            ? Number(summary?.pct ?? summary?.accuracy ?? ((hits / total) * 100))
+            : 0;
+        const toneClass = pct >= 60 ? 'acc-good' : pct < 40 ? 'acc-poor' : 'acc-mixed';
+
+        return ''
+            + '<div class="alm-agree-cell alm-week-summary-card">'
+            + '  <div class="alm-weekday">' + escapeHtml(label) + '</div>'
+            + '  <div class="alm-mini-value ' + toneClass + '">' + escapeHtml(hits + '/' + total) + '</div>'
+            + '  <div class="alm-weekday">' + escapeHtml(formatAccuracyPct(pct, 0) + '% accuracy') + '</div>'
+            + '</div>';
     }
 
     function buildAccuracyPanel(accDay, dateStr) {
@@ -932,67 +1066,60 @@
             weekLabel.textContent = 'Week of ' + formatShortDay(weekDates[0]) + ' - ' + formatShortDay(weekDates[weekDates.length - 1]) + ', 2026';
         }
 
+        const weekAccuracy = await loadWeekAccuracy(currentWeekStart) || buildWeeklyAccuracyFallback(accPayload, weekDates);
+
         if (container) {
             const rows = weekDates.map((dateKey) => {
                 const day = payload.daily[dateKey];
                 const acc = accPayload?.daily?.[dateKey];
-                const accClass = !acc || Number(acc.total_calls) <= 0
-                    ? 'alm-acc-neutral'
-                    : acc.hits >= 2
-                        ? 'alm-acc-hit'
-                        : acc.hits === 0
-                            ? 'alm-acc-miss'
-                            : 'alm-acc-neutral';
-                const accCell = acc
-                    ? '<td class="' + accClass + '"><strong>' + acc.hits + '/' + acc.total_calls + '</strong></td>'
-                    : '<td><span class="alm-note-caption">--</span></td>';
+                const accClass = dailyAccuracyClass(acc);
+                const indexCells = WEEKLY_INDEX_META.map((indexMeta) => {
+                    return '<td>' + buildWeeklyIndexCell(day, acc, indexMeta) + '</td>';
+                }).join('');
+                const accuracyPct = acc && Number(acc.total_calls) > 0
+                    ? formatAccuracyPct((Number(acc.hits || 0) / Number(acc.total_calls || 1)) * 100, 0) + '% accuracy'
+                    : 'No data';
+                const accuracyCell = acc
+                    ? ''
+                        + '<td class="alm-week-accuracy-cell">'
+                        + '  <div class="alm-week-index-verdict ' + accClass + '">' + escapeHtml(acc.hits + '/' + acc.total_calls) + '</div>'
+                        + '  <div class="alm-note-caption">' + escapeHtml(accuracyPct) + '</div>'
+                        + '</td>'
+                    : '<td class="alm-week-accuracy-cell"><span class="alm-note-caption">--</span></td>';
                 return ''
                     + '<tr>'
                     + '  <td><strong>' + escapeHtml(day.day) + '</strong><br><span class="alm-note-caption">' + escapeHtml(dateKey) + '</span></td>'
-                    + '  <td class="' + scoreClass(day.s) + '"><strong>' + escapeHtml(day.s) + '</strong></td>'
-                    + '  <td>' + directionBadge(day.s_dir) + '</td>'
+                    + indexCells
                     + '  <td>' + (day.icon ? '<span class="alm-chip">' + escapeHtml(day.icon.replace('_', ' ')) + '</span>' : '<span class="alm-note-caption">None</span>') + '</td>'
                     + '  <td>' + escapeHtml(day.notes || '-') + '</td>'
-                    + accCell
+                    + accuracyCell
                     + '</tr>';
             }).join('');
 
             container.innerHTML = ''
                 + '<table class="alm-week-table">'
-                + '  <thead><tr><th>Day</th><th>S&amp;P Score</th><th>Direction</th><th>Icon</th><th>Notes</th><th>Accuracy</th></tr></thead>'
+                + '  <thead><tr><th>Day</th><th>Dow</th><th>S&amp;P 500</th><th>NASDAQ</th><th>Icon</th><th>Notes</th><th>Daily Accuracy</th></tr></thead>'
                 + '  <tbody>' + rows + '</tbody>'
                 + '</table>';
         }
 
         if (strip) {
-            strip.innerHTML = weekDates.map((dateKey) => {
-                const day = payload.daily[dateKey];
-                return ''
-                    + '<div class="alm-agree-cell">'
-                    + '  <div class="alm-weekday">' + escapeHtml(day.day) + '</div>'
-                    + '  <div class="alm-mini-value ' + scoreClass(day.s) + '">' + escapeHtml(day.s_dir) + '</div>'
-                + '  <div class="alm-weekday">' + escapeHtml(day.s) + ' S&amp;P</div>'
-                + '</div>';
-            }).join('');
+            strip.innerHTML = ''
+                + buildWeeklySummaryCard('Overall', weekAccuracy)
+                + buildWeeklySummaryCard('Dow', weekAccuracy?.dow)
+                + buildWeeklySummaryCard('S&P 500', weekAccuracy?.sp500)
+                + buildWeeklySummaryCard('NASDAQ', weekAccuracy?.nasdaq);
         }
 
-        let wHits = 0;
-        let wCalls = 0;
-        weekDates.forEach((dateKey) => {
-            const entry = accPayload?.daily?.[dateKey];
-            if (entry) {
-                wHits += Number(entry.hits || 0);
-                wCalls += Number(entry.total_calls || 0);
-            }
-        });
-        if (wCalls > 0) {
-            const wPct = (wHits / wCalls * 100).toFixed(0);
-            const barClass = wPct >= 60 ? 'acc-good' : wPct < 40 ? 'acc-poor' : 'acc-mixed';
+        if (weekAccuracy && Number(weekAccuracy.total_calls || 0) > 0) {
+            const barClass = Number(weekAccuracy.accuracy) >= 60 ? 'acc-good' : Number(weekAccuracy.accuracy) < 40 ? 'acc-poor' : 'acc-mixed';
             const bar = document.createElement('div');
             bar.id = 'weekly-accuracy-bar';
             bar.className = 'alm-week-accuracy-bar';
-            bar.innerHTML = '<span>Week Accuracy</span>'
-                + '<strong class="' + barClass + '">' + wHits + '/' + wCalls + ' (' + wPct + '%)</strong>';
+            bar.innerHTML = '<span>Historic Weekly Accuracy</span>'
+                + '<strong class="' + barClass + '">' + escapeHtml(
+                    weekAccuracy.hits + '/' + weekAccuracy.total_calls + ' (' + formatAccuracyPct(weekAccuracy.accuracy, 0) + '%)'
+                ) + '</strong>';
             if (strip && strip.parentNode) {
                 strip.parentNode.insertBefore(bar, strip.nextSibling);
             }

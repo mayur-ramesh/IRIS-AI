@@ -168,6 +168,9 @@ class TestAlmanacAccuracyAPI(unittest.TestCase):
 
         self.assertEqual(week_resp.status_code, 200)
         self.assertEqual(week_resp.get_json()["hits"], 5)
+        self.assertEqual(week_resp.get_json()["dates"], ["2026-01-05", "2026-01-06"])
+        self.assertEqual(week_resp.get_json()["dow"]["pct"], 100.0)
+        self.assertEqual(week_resp.get_json()["nasdaq"]["pct"], 50.0)
         self.assertEqual(month_resp.status_code, 200)
         self.assertEqual(month_resp.get_json()["trading_days"], 3)
         self.assertEqual(invalid_week_resp.status_code, 400)

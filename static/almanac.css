@@ -438,8 +438,13 @@
     color: var(--status-red);
 }
 
+.alm-table-shell {
+    overflow-x: auto;
+}
+
 .alm-week-table {
     width: 100%;
+    min-width: 980px;
     border-collapse: separate;
     border-spacing: 0;
     background: var(--card-bg);
@@ -468,6 +473,55 @@
 
 .alm-week-table tr:last-child td {
     border-bottom: none;
+}
+
+.alm-week-index-cell {
+    display: flex;
+    min-width: 150px;
+    flex-direction: column;
+    gap: 0.38rem;
+}
+
+.alm-week-index-head,
+.alm-week-index-meta,
+.alm-week-index-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.alm-week-index-score {
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.alm-week-index-trend {
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.alm-week-index-sep {
+    color: var(--text-muted);
+}
+
+.alm-week-index-verdict {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.22rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+
+.alm-week-accuracy-cell {
+    text-align: center;
+}
+
+.alm-week-summary-card {
+    min-width: 130px;
 }
 
 #weekly-agreement-strip {
@@ -951,6 +1005,14 @@
     .alm-week-table td {
         padding: 0.65rem 0.55rem;
         font-size: 0.82rem;
+    }
+
+    .alm-week-table {
+        min-width: 860px;
+    }
+
+    .alm-week-index-cell {
+        min-width: 132px;
     }
 
     .alm-sig-legend {
