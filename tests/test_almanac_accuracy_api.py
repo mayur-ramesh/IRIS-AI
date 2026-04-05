@@ -171,9 +171,27 @@ class TestAlmanacAccuracyAPI(unittest.TestCase):
         self.assertEqual(week_resp.get_json()["dates"], ["2026-01-05", "2026-01-06"])
         self.assertEqual(week_resp.get_json()["dow"]["pct"], 100.0)
         self.assertEqual(week_resp.get_json()["nasdaq"]["pct"], 50.0)
+        self.assertEqual(week_resp.get_json()["week_start"], "2026-01-05")
+        self.assertEqual(week_resp.get_json()["week_end"], "2026-01-09")
         self.assertEqual(month_resp.status_code, 200)
         self.assertEqual(month_resp.get_json()["trading_days"], 3)
         self.assertEqual(invalid_week_resp.status_code, 400)
+
+    def test_accuracy_week_route_supports_cross_year_monday_week_starts(self):
+        temp_root = self.make_root("accuracy_api_cross_year_week")
+        self.write_accuracy_fixture(temp_root)
+        try:
+            with patch.object(app_module, "PROJECT_ROOT", temp_root):
+                week_resp = self.client.get("/api/almanac/accuracy/week?start=2025-12-29")
+        finally:
+            shutil.rmtree(temp_root, ignore_errors=True)
+
+        self.assertEqual(week_resp.status_code, 200)
+        data = week_resp.get_json()
+        self.assertEqual(data["week_start"], "2025-12-29")
+        self.assertEqual(data["week_end"], "2026-01-02")
+        self.assertEqual(data["dates"], ["2026-01-02"])
+        self.assertEqual(data["hits"], 2)
 
     def test_accuracy_summary_aggregates_monthly_and_per_index_totals(self):
         temp_root = self.make_root("accuracy_api_summary")

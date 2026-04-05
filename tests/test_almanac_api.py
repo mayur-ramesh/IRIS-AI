@@ -28,6 +28,7 @@ class TestAlmanacAPI(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertIn(b"Seasonality Comparison", resp.data)
         self.assertIn(b"IRIS predictions vs Stock Trader's Almanac 2026", resp.data)
+        self.assertIn(b"Current Week", resp.data)
 
     def test_homepage_contains_almanac_nav_link(self):
         resp = self.client.get("/")
@@ -50,6 +51,15 @@ class TestAlmanacAPI(unittest.TestCase):
         self.assertEqual(data["week_end"], "2026-04-10")
         self.assertEqual(len(data["daily"]), 5)
         self.assertEqual(data["month_overview"]["name"], "April")
+
+    def test_almanac_week_endpoint_uses_monday_to_friday_calendar_range(self):
+        resp = self.client.get("/api/almanac/week?start=2025-12-29")
+        self.assertEqual(resp.status_code, 200)
+        data = resp.get_json()
+        self.assertEqual(data["week_start"], "2025-12-29")
+        self.assertEqual(data["week_end"], "2026-01-02")
+        self.assertEqual(list(data["daily"].keys()), ["2026-01-02"])
+        self.assertEqual(data["month_overview"]["name"], "January")
 
     def test_almanac_month_endpoint(self):
         resp = self.client.get("/api/almanac/month/2026-04")

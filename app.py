@@ -6,7 +6,7 @@ import json
 import logging
 import time
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -149,6 +149,14 @@ def _get_cached_yf_info(ticker):
 
 def _almanac_iso_now():
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def _almanac_week_range(start_value: str):
+    """Return Monday-Friday ISO dates for the requested week anchor."""
+    parsed = datetime.strptime(start_value, "%Y-%m-%d").date()
+    week_start = parsed - timedelta(days=parsed.weekday())
+    week_end = week_start + timedelta(days=4)
+    return week_start.isoformat(), week_end.isoformat()
 
 
 def _almanac_table_rows(payload, table_name):
@@ -703,7 +711,7 @@ def almanac_seasonal():
 
 @app.route('/api/almanac/week')
 def almanac_week():
-    """Return a five-trading-day slice starting from the requested date."""
+    """Return the Monday-to-Friday trading slice for the requested week."""
     data = _load_almanac_data()
     if "error" in data:
         return jsonify(data), 404
@@ -718,19 +726,22 @@ def almanac_week():
         start = all_dates[0]
 
     try:
-        idx = next(i for i, date_key in enumerate(all_dates) if date_key >= start)
-    except StopIteration:
-        return jsonify({"error": f"No trading days found from {start}"}), 404
+        week_start, week_end = _almanac_week_range(start)
+    except ValueError:
+        return jsonify({"error": "Invalid start date. Expected YYYY-MM-DD"}), 400
 
-    week_dates = all_dates[idx : idx + 5]
+    week_dates = [date_key for date_key in all_dates if week_start <= date_key <= week_end]
+    if not week_dates:
+        return jsonify({"error": f"No trading days found for week starting {week_start}"}), 404
+
     week_data = {date_key: daily[date_key] for date_key in week_dates}
     month_key = week_dates[0][:7] if week_dates else start[:7]
     month_info = data.get("months", {}).get(month_key, {})
 
     return jsonify(
         {
-            "week_start": week_dates[0] if week_dates else start,
-            "week_end": week_dates[-1] if week_dates else start,
+            "week_start": week_start,
+            "week_end": week_end,
             "daily": week_data,
             "month_overview": month_info,
         }
@@ -791,14 +802,28 @@ def almanac_accuracy_week():
         return jsonify({"error": "start query parameter is required"}), 400
 
     try:
-        week_key = datetime.strptime(start, "%Y-%m-%d").strftime("%Y-W%W")
+        week_start, week_end = _almanac_week_range(start)
     except ValueError:
         return jsonify({"error": "Invalid start date. Expected YYYY-MM-DD"}), 400
 
-    weekly_entry = (data.get("weekly") or {}).get(week_key)
+    daily = data.get("daily") or {}
+    weekly = data.get("weekly") or {}
+    week_dates = sorted(date_key for date_key in daily.keys() if week_start <= date_key <= week_end)
+
+    weekly_entry = None
+    for date_key in week_dates:
+        week_key = datetime.strptime(date_key, "%Y-%m-%d").strftime("%Y-W%W")
+        weekly_entry = weekly.get(week_key)
+        if weekly_entry is not None:
+            break
+
     if weekly_entry is None:
-        return jsonify({"error": f"No weekly accuracy found for {week_key}"}), 404
-    return jsonify(weekly_entry)
+        return jsonify({"error": f"No weekly accuracy found for week starting {week_start}"}), 404
+
+    payload = dict(weekly_entry)
+    payload["week_start"] = week_start
+    payload["week_end"] = week_end
+    return jsonify(payload)
 
 
 @app.route('/api/almanac/accuracy/month')

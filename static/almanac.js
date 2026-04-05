@@ -727,16 +727,75 @@
         return tradingDates[tradingDates.length - 1];
     }
 
+    function parseDateKey(dateStr) {
+        return new Date(dateStr + 'T12:00:00');
+    }
+
+    function toDateKey(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return year + '-' + month + '-' + day;
+    }
+
+    function addDays(dateStr, amount) {
+        const next = parseDateKey(dateStr);
+        next.setDate(next.getDate() + amount);
+        return toDateKey(next);
+    }
+
+    function getWeekStart(dateStr) {
+        const date = parseDateKey(dateStr);
+        const weekday = date.getDay();
+        const offset = weekday === 0 ? -6 : 1 - weekday;
+        date.setDate(date.getDate() + offset);
+        return toDateKey(date);
+    }
+
+    function getAvailableWeekStarts() {
+        return Array.from(new Set(tradingDates.map((dateKey) => getWeekStart(dateKey)))).sort();
+    }
+
+    function resolveNearestWeekStart(candidate) {
+        const weekStarts = getAvailableWeekStarts();
+        const desired = getWeekStart(candidate || DEFAULT_DATE);
+        if (!weekStarts.length) {
+            return desired;
+        }
+        if (weekStarts.includes(desired)) {
+            return desired;
+        }
+        const nextWeek = weekStarts.find((weekStart) => weekStart >= desired);
+        if (nextWeek) {
+            return nextWeek;
+        }
+        return weekStarts[weekStarts.length - 1];
+    }
+
     function getWeekDates(startDate) {
         if (!tradingDates.length) {
             return [];
         }
-        const resolvedStart = resolveNearestTradingDate(startDate);
-        const startIndex = tradingDates.findIndex((dateKey) => dateKey === resolvedStart);
-        if (startIndex < 0) {
-            return [];
+        const weekStart = resolveNearestWeekStart(startDate);
+        const weekEnd = addDays(weekStart, 4);
+        return tradingDates.filter((dateKey) => dateKey >= weekStart && dateKey <= weekEnd);
+    }
+
+    function formatWeekRangeLabel(weekStart) {
+        const weekEnd = addDays(weekStart, 4);
+        const startDate = parseDateKey(weekStart);
+        const endDate = parseDateKey(weekEnd);
+        const startOptions = { month: 'short', day: 'numeric' };
+        const endOptions = { month: 'short', day: 'numeric', year: 'numeric' };
+
+        if (startDate.getFullYear() !== endDate.getFullYear()) {
+            startOptions.year = 'numeric';
         }
-        return tradingDates.slice(startIndex, startIndex + 5);
+
+        return 'Week of '
+            + startDate.toLocaleDateString('en-US', startOptions)
+            + ' - '
+            + endDate.toLocaleDateString('en-US', endOptions);
     }
 
     function getMonthDisplayRank(monthKey, monthInfo, heatmapEntry) {
@@ -852,7 +911,7 @@
         }
 
         currentDate = resolveNearestTradingDate(currentDate);
-        currentWeekStart = currentDate;
+        currentWeekStart = getWeekStart(currentDate);
         currentMonth = currentDate.slice(0, 7);
 
         if (dateLabel) {
@@ -1040,11 +1099,6 @@
         const weekLabel = document.getElementById('week-label');
         const container = document.getElementById('weekly-table-container');
         const strip = document.getElementById('weekly-agreement-strip');
-        const existingAccuracyBar = document.getElementById('weekly-accuracy-bar');
-
-        if (existingAccuracyBar) {
-            existingAccuracyBar.remove();
-        }
 
         if (!payload) {
             if (container) container.innerHTML = '<div class="alm-empty">Weekly Almanac data could not be loaded.</div>';
@@ -1061,9 +1115,9 @@
             return;
         }
 
-        currentWeekStart = weekDates[0];
+        currentWeekStart = resolveNearestWeekStart(currentWeekStart);
         if (weekLabel) {
-            weekLabel.textContent = 'Week of ' + formatShortDay(weekDates[0]) + ' - ' + formatShortDay(weekDates[weekDates.length - 1]) + ', 2026';
+            weekLabel.textContent = formatWeekRangeLabel(currentWeekStart);
         }
 
         const weekAccuracy = await loadWeekAccuracy(currentWeekStart) || buildWeeklyAccuracyFallback(accPayload, weekDates);
@@ -1109,20 +1163,6 @@
                 + buildWeeklySummaryCard('Dow', weekAccuracy?.dow)
                 + buildWeeklySummaryCard('S&P 500', weekAccuracy?.sp500)
                 + buildWeeklySummaryCard('NASDAQ', weekAccuracy?.nasdaq);
-        }
-
-        if (weekAccuracy && Number(weekAccuracy.total_calls || 0) > 0) {
-            const barClass = Number(weekAccuracy.accuracy) >= 60 ? 'acc-good' : Number(weekAccuracy.accuracy) < 40 ? 'acc-poor' : 'acc-mixed';
-            const bar = document.createElement('div');
-            bar.id = 'weekly-accuracy-bar';
-            bar.className = 'alm-week-accuracy-bar';
-            bar.innerHTML = '<span>Historic Weekly Accuracy</span>'
-                + '<strong class="' + barClass + '">' + escapeHtml(
-                    weekAccuracy.hits + '/' + weekAccuracy.total_calls + ' (' + formatAccuracyPct(weekAccuracy.accuracy, 0) + '%)'
-                ) + '</strong>';
-            if (strip && strip.parentNode) {
-                strip.parentNode.insertBefore(bar, strip.nextSibling);
-            }
         }
     }
 
@@ -1491,11 +1531,20 @@
         if (!tradingDates.length) {
             return;
         }
-        const weekDates = getWeekDates(currentWeekStart);
-        const currentStart = weekDates[0] || resolveNearestTradingDate(currentWeekStart);
-        const index = tradingDates.indexOf(currentStart);
-        const nextIndex = Math.max(0, Math.min(tradingDates.length - 5, index + (delta * 5)));
-        currentWeekStart = tradingDates[nextIndex];
+        const weekStarts = getAvailableWeekStarts();
+        const currentStart = resolveNearestWeekStart(currentWeekStart);
+        const index = weekStarts.indexOf(currentStart);
+        const safeIndex = index >= 0 ? index : 0;
+        const nextIndex = Math.max(0, Math.min(weekStarts.length - 1, safeIndex + delta));
+        currentWeekStart = weekStarts[nextIndex];
+        renderWeeklyView();
+    }
+
+    function jumpToCurrentWeek() {
+        if (!tradingDates.length) {
+            return;
+        }
+        currentWeekStart = resolveNearestWeekStart(getCurrentYearAwareDefaultDate());
         renderWeeklyView();
     }
 
@@ -1533,6 +1582,7 @@
         });
         document.getElementById('week-prev')?.addEventListener('click', () => navigateWeek(-1));
         document.getElementById('week-next')?.addEventListener('click', () => navigateWeek(1));
+        document.getElementById('week-current')?.addEventListener('click', () => jumpToCurrentWeek());
         document.getElementById('month-prev')?.addEventListener('click', () => navigateMonth(-1));
         document.getElementById('month-next')?.addEventListener('click', () => navigateMonth(1));
 
@@ -1600,7 +1650,7 @@
             return;
         }
         currentDate = getCurrentYearAwareDefaultDate();
-        currentWeekStart = currentDate;
+        currentWeekStart = getWeekStart(currentDate);
         currentMonth = currentDate.slice(0, 7);
         refreshCurrentView();
     });
