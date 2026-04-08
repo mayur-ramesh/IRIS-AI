@@ -63,6 +63,22 @@ If FinBERT cannot load, IRIS now logs the exact reason and continues running wit
 
 ---
 
+## News API and Webz.io Key Fallback
+
+IRIS now supports multiple API keys for NewsAPI and Webz.io headline collection failover.
+
+* NewsAPI:
+  * `NEWS_API_KEY=your_primary_key`
+  * `NEWS_API_KEYS=key_one,key_two,key_three`
+* Webz.io:
+  * `WEBZ_API_KEY=your_primary_key`
+  * `WEBZ_API_KEYS=key_one,key_two,key_three`
+* If both plural and legacy single-key vars are set, IRIS uses the plural list first and then appends the legacy single key if it is different.
+* When NewsAPI reports a rate/quota exhaustion error, IRIS retries the same request with the next configured NewsAPI key.
+* When Webz reports a rate-limit, quota, or token-limit style error, IRIS retries the same request with the next configured Webz key.
+
+---
+
 ## Historical Reports and Trend Accuracy
 
 Use these commands to keep the pipeline reproducible across machines.

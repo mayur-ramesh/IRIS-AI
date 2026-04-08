@@ -50,6 +50,7 @@ FINBERT_MODEL_ID = str(os.environ.get("IRIS_FINBERT_MODEL_ID", "ProsusAI/finbert
 import math
 import yfinance as yf
 from newsapi import NewsApiClient
+from newsapi.newsapi_exception import NewsAPIException
 import nltk
 import numpy as np
 from sklearn.ensemble import RandomForestRegressor
@@ -57,6 +58,7 @@ import pandas as pd
 import time
 import json
 import re
+import threading
 from concurrent.futures import ThreadPoolExecutor
 
 try:
@@ -80,8 +82,42 @@ try:
 except ImportError:
     _HAS_MATPLOTLIB = False
 
-NEWS_API_KEY = os.environ.get("NEWS_API_KEY") or None
-WEBZ_API_KEY = os.environ.get("WEBZ_API_KEY") or None
+def _parse_multi_value_env(raw_value):
+    raw = str(raw_value or "").replace("\r", "\n")
+    if not raw.strip():
+        return []
+    values = []
+    seen = set()
+    for token in re.split(r"[\n,;]+", raw):
+        value = token.strip()
+        if not value or value in seen:
+            continue
+        values.append(value)
+        seen.add(value)
+    return values
+
+
+def _load_api_keys_from_env(*env_names):
+    keys = []
+    for env_name in env_names:
+        for key in _parse_multi_value_env(os.environ.get(env_name)):
+            if key not in keys:
+                keys.append(key)
+    return keys
+
+
+def _load_news_api_keys_from_env():
+    return _load_api_keys_from_env("NEWS_API_KEYS", "NEWS_API_KEY")
+
+
+def _load_webz_api_keys_from_env():
+    return _load_api_keys_from_env("WEBZ_API_KEYS", "WEBZ_API_KEY")
+
+
+NEWS_API_KEYS = _load_news_api_keys_from_env()
+NEWS_API_KEY = NEWS_API_KEYS[0] if NEWS_API_KEYS else None
+WEBZ_API_KEYS = _load_webz_api_keys_from_env()
+WEBZ_API_KEY = WEBZ_API_KEYS[0] if WEBZ_API_KEYS else None
 TICKER_ALIASES = {
     "GOOGL": "GOOG",
 }
@@ -750,17 +786,370 @@ class IRIS_System:
         
         #  Setup News Connection
         self.news_api = None
-        if NEWS_API_KEY:
-            self.news_api = NewsApiClient(api_key=NEWS_API_KEY)
-            print("   -> NewsAPI Connection: ESTABLISHED")
+        self.news_api_keys = list(NEWS_API_KEYS)
+        self.news_api_key = self.news_api_keys[0] if self.news_api_keys else None
+        self.news_api_clients = []
+        self._news_api_key_index = 0
+        self._news_api_key_lock = threading.Lock()
+        if self.news_api_keys:
+            self.news_api_clients = [NewsApiClient(api_key=api_key) for api_key in self.news_api_keys]
+            self.news_api = self.news_api_clients[0]
+            _label = "key" if len(self.news_api_keys) == 1 else "keys"
+            print(f"   -> NewsAPI Connection: ESTABLISHED ({len(self.news_api_keys)} {_label})")
         else:
             print("   -> NewsAPI Connection: SIMULATION MODE (No Key Found)")
-        self.webz_api_key = WEBZ_API_KEY
-        if self.webz_api_key:
-            print("   -> Webz.io News API: ESTABLISHED")
+        self.webz_api_keys = list(WEBZ_API_KEYS)
+        self.webz_api_key = self.webz_api_keys[0] if self.webz_api_keys else None
+        self._webz_api_key_index = 0
+        self._webz_api_key_lock = threading.Lock()
+        if self.webz_api_keys:
+            _label = "key" if len(self.webz_api_keys) == 1 else "keys"
+            print(f"   -> Webz.io News API: ESTABLISHED ({len(self.webz_api_keys)} {_label})")
         else:
             print("   -> Webz.io News API: NOT CONFIGURED")
         self.merge_alias_reports()
+
+    @staticmethod
+    def _is_newsapi_limit_error(detail_text="", payload=None):
+        fragments = []
+        payload_code = ""
+        if detail_text:
+            fragments.append(str(detail_text))
+        if isinstance(payload, dict):
+            status = payload.get("status")
+            code = payload.get("code")
+            message = payload.get("message")
+            if status:
+                fragments.append(str(status))
+            if code:
+                payload_code = str(code).strip().lower()
+                fragments.append(str(code))
+            if message:
+                fragments.append(str(message))
+        detail = " ".join(fragments).lower()
+        explicit_codes = {
+            "ratelimited",
+            "apikeyexhausted",
+        }
+        explicit_terms = (
+            "rate limit",
+            "rate limited",
+            "too many requests",
+            "quota",
+            "call limit",
+            "request limit",
+            "limit reached",
+            "limit exceeded",
+            "api key exhausted",
+        )
+        if payload_code in explicit_codes:
+            return True
+        return any(term in detail for term in explicit_terms)
+
+    @staticmethod
+    def _summarize_newsapi_error_payload(payload):
+        if not isinstance(payload, dict):
+            return str(payload)
+        fragments = []
+        status = payload.get("status")
+        code = payload.get("code")
+        message = payload.get("message")
+        if status:
+            fragments.append(f"status={status}")
+        if code:
+            fragments.append(f"code={code}")
+        if message:
+            fragments.append(str(message))
+        if fragments:
+            return "; ".join(fragments)
+        return json.dumps(payload)[:200]
+
+    def _ordered_news_api_clients(self):
+        if not self.news_api_clients:
+            return []
+        with self._news_api_key_lock:
+            start_index = self._news_api_key_index % len(self.news_api_clients)
+        return [
+            (
+                self.news_api_keys[(start_index + offset) % len(self.news_api_clients)],
+                self.news_api_clients[(start_index + offset) % len(self.news_api_clients)],
+            )
+            for offset in range(len(self.news_api_clients))
+        ]
+
+    def _set_preferred_news_api_key(self, api_key):
+        if api_key not in self.news_api_keys or not self.news_api_clients:
+            return
+        with self._news_api_key_lock:
+            self._news_api_key_index = self.news_api_keys.index(api_key)
+            self.news_api_key = api_key
+            self.news_api = self.news_api_clients[self._news_api_key_index]
+
+    def _mark_news_api_key_exhausted(self, api_key):
+        if api_key not in self.news_api_keys or not self.news_api_clients:
+            return
+        with self._news_api_key_lock:
+            current_index = self.news_api_keys.index(api_key)
+            self._news_api_key_index = (current_index + 1) % len(self.news_api_clients)
+            self.news_api_key = self.news_api_keys[self._news_api_key_index]
+            self.news_api = self.news_api_clients[self._news_api_key_index]
+
+    def _news_api_get_everything(self, **kwargs):
+        if not self.news_api_clients:
+            return {"articles": []}
+
+        ordered_clients = self._ordered_news_api_clients()
+        total_keys = len(ordered_clients)
+        last_limit_error = None
+
+        for attempt_index, (api_key, client) in enumerate(ordered_clients, start=1):
+            try:
+                response = client.get_everything(**kwargs)
+            except NewsAPIException as exc:
+                payload = exc.get_exception() if hasattr(exc, "get_exception") else getattr(exc, "exception", None)
+                if self._is_newsapi_limit_error(detail_text=str(exc), payload=payload):
+                    last_limit_error = RuntimeError(
+                        f"NewsAPI key {attempt_index}/{total_keys} hit a usage limit."
+                    )
+                    self._mark_news_api_key_exhausted(api_key)
+                    if attempt_index < total_keys:
+                        print(
+                            f"[NEWS] NewsAPI key {attempt_index}/{total_keys} hit a usage limit; "
+                            "trying the next configured key."
+                        )
+                        continue
+                    raise last_limit_error from exc
+                raise RuntimeError(
+                    f"NewsAPI error: {self._summarize_newsapi_error_payload(payload)}"
+                ) from exc
+            except Exception as exc:
+                if self._is_newsapi_limit_error(detail_text=str(exc)):
+                    last_limit_error = RuntimeError(
+                        f"NewsAPI key {attempt_index}/{total_keys} hit a usage limit."
+                    )
+                    self._mark_news_api_key_exhausted(api_key)
+                    if attempt_index < total_keys:
+                        print(
+                            f"[NEWS] NewsAPI key {attempt_index}/{total_keys} hit a usage limit; "
+                            "trying the next configured key."
+                        )
+                        continue
+                    raise last_limit_error from exc
+                raise
+
+            if not isinstance(response, dict):
+                raise RuntimeError("NewsAPI returned a non-JSON-object response.")
+
+            if self._is_newsapi_limit_error(payload=response):
+                last_limit_error = RuntimeError(
+                    f"NewsAPI key {attempt_index}/{total_keys} hit a usage limit."
+                )
+                self._mark_news_api_key_exhausted(api_key)
+                if attempt_index < total_keys:
+                    print(
+                        f"[NEWS] NewsAPI key {attempt_index}/{total_keys} hit a usage limit; "
+                        "trying the next configured key."
+                    )
+                    continue
+                raise last_limit_error
+
+            if str(response.get("status") or "").lower() == "error":
+                raise RuntimeError(
+                    f"NewsAPI response error: {self._summarize_newsapi_error_payload(response)}"
+                )
+
+            self._set_preferred_news_api_key(api_key)
+            return response
+
+        if last_limit_error is not None:
+            raise last_limit_error
+        return {"articles": []}
+
+    @staticmethod
+    def _is_webz_limit_error(status_code=None, detail_text="", payload=None):
+        fragments = []
+        if detail_text:
+            fragments.append(str(detail_text))
+        if isinstance(payload, dict):
+            for field in ("status", "message", "error", "reason"):
+                value = payload.get(field)
+                if value:
+                    fragments.append(str(value))
+            errors = payload.get("errors")
+            if isinstance(errors, list):
+                fragments.extend(str(item) for item in errors if item)
+            elif errors:
+                fragments.append(str(errors))
+        detail = " ".join(fragments).lower()
+        explicit_limit_terms = (
+            "rate limit",
+            "call limit",
+            "quota",
+            "usage limit",
+            "limit reached",
+            "limit exceeded",
+            "too many requests",
+            "daily limit",
+            "credits exhausted",
+            "credit limit",
+        )
+        explicit_key_terms = (
+            "invalid token",
+            "token expired",
+            "invalid api key",
+            "invalid key",
+            "inactive token",
+            "unauthorized",
+            "forbidden",
+        )
+        if status_code == 429:
+            return True
+        if any(term in detail for term in explicit_limit_terms):
+            return True
+        if any(term in detail for term in explicit_key_terms):
+            return True
+        if status_code in {401, 402, 403} and (
+            "token" in detail or "key" in detail or "quota" in detail or "limit" in detail
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def _summarize_webz_error_payload(payload):
+        if not isinstance(payload, dict):
+            return str(payload)
+        fragments = []
+        status = payload.get("status")
+        if status:
+            fragments.append(f"status={status}")
+        for field in ("message", "error", "reason"):
+            value = payload.get(field)
+            if value:
+                fragments.append(str(value))
+        errors = payload.get("errors")
+        if isinstance(errors, list):
+            fragments.extend(str(item) for item in errors[:3] if item)
+        elif errors:
+            fragments.append(str(errors))
+        if fragments:
+            return "; ".join(fragments)
+        return json.dumps(payload)[:200]
+
+    def _ordered_webz_api_keys(self):
+        if not self.webz_api_keys:
+            return []
+        with self._webz_api_key_lock:
+            start_index = self._webz_api_key_index % len(self.webz_api_keys)
+        return [
+            self.webz_api_keys[(start_index + offset) % len(self.webz_api_keys)]
+            for offset in range(len(self.webz_api_keys))
+        ]
+
+    def _set_preferred_webz_api_key(self, api_key):
+        if api_key not in self.webz_api_keys:
+            return
+        with self._webz_api_key_lock:
+            self._webz_api_key_index = self.webz_api_keys.index(api_key)
+            self.webz_api_key = api_key
+
+    def _mark_webz_api_key_exhausted(self, api_key):
+        if api_key not in self.webz_api_keys:
+            return
+        with self._webz_api_key_lock:
+            current_index = self.webz_api_keys.index(api_key)
+            self._webz_api_key_index = (current_index + 1) % len(self.webz_api_keys)
+            self.webz_api_key = self.webz_api_keys[self._webz_api_key_index]
+
+    def _fetch_webz_posts(self, query, timestamp_ms):
+        if not self.webz_api_keys:
+            return []
+
+        import urllib.error as _urlerr
+        import urllib.parse as _urlparse
+        import urllib.request as _urlreq
+
+        ordered_keys = self._ordered_webz_api_keys()
+        total_keys = len(ordered_keys)
+        last_limit_error = None
+
+        for attempt_index, api_key in enumerate(ordered_keys, start=1):
+            params = _urlparse.urlencode({
+                "token": api_key,
+                "q": query,
+                "ts": timestamp_ms,
+                "sort": "relevancy",
+                "order": "desc",
+                "size": 60,
+                "format": "json",
+            })
+            request = _urlreq.Request(
+                f"https://api.webz.io/newsApiLite?{params}",
+                headers={"Accept": "application/json"},
+            )
+            try:
+                with _urlreq.urlopen(request, timeout=8) as response:
+                    payload = json.loads(response.read().decode("utf-8"))
+            except _urlerr.HTTPError as exc:
+                response_body = ""
+                try:
+                    response_body = exc.read().decode("utf-8", errors="replace")
+                except Exception:
+                    pass
+                if self._is_webz_limit_error(status_code=exc.code, detail_text=response_body):
+                    last_limit_error = RuntimeError(
+                        f"Webz.io key {attempt_index}/{total_keys} hit a usage limit."
+                    )
+                    self._mark_webz_api_key_exhausted(api_key)
+                    if attempt_index < total_keys:
+                        print(
+                            f"[NEWS] Webz.io key {attempt_index}/{total_keys} hit a usage limit; "
+                            "trying the next configured key."
+                        )
+                        continue
+                    raise last_limit_error from exc
+                raise RuntimeError(f"Webz.io HTTP {exc.code}: {response_body or exc.reason}") from exc
+            except Exception as exc:
+                if self._is_webz_limit_error(detail_text=str(exc)):
+                    last_limit_error = RuntimeError(
+                        f"Webz.io key {attempt_index}/{total_keys} hit a usage limit."
+                    )
+                    self._mark_webz_api_key_exhausted(api_key)
+                    if attempt_index < total_keys:
+                        print(
+                            f"[NEWS] Webz.io key {attempt_index}/{total_keys} hit a usage limit; "
+                            "trying the next configured key."
+                        )
+                        continue
+                    raise last_limit_error from exc
+                raise
+
+            if not isinstance(payload, dict):
+                raise RuntimeError("Webz.io returned a non-JSON-object response.")
+
+            if self._is_webz_limit_error(payload=payload):
+                last_limit_error = RuntimeError(
+                    f"Webz.io key {attempt_index}/{total_keys} hit a usage limit."
+                )
+                self._mark_webz_api_key_exhausted(api_key)
+                if attempt_index < total_keys:
+                    print(
+                        f"[NEWS] Webz.io key {attempt_index}/{total_keys} hit a usage limit; "
+                        "trying the next configured key."
+                    )
+                    continue
+                raise last_limit_error
+
+            if payload.get("error") or payload.get("errors") or str(payload.get("status") or "").lower() == "error":
+                raise RuntimeError(
+                    f"Webz.io response error: {self._summarize_webz_error_payload(payload)}"
+                )
+
+            self._set_preferred_webz_api_key(api_key)
+            return payload.get("posts") or []
+
+        if last_limit_error is not None:
+            raise last_limit_error
+        return []
 
     def _read_report_file(self, path: Path):
         if not path.exists():
@@ -1286,7 +1675,7 @@ class IRIS_System:
             })
 
         # -- Source 1: NewsAPI ---------------------------------------------
-        if (not fast_mode) and self.news_api:
+        if (not fast_mode) and self.news_api_clients:
             try:
                 # Build broad OR query. Special symbols (^GSPC, CL=F) must not
                 # appear raw in the query — use their mapped names only.
@@ -1298,7 +1687,7 @@ class IRIS_System:
                     _query_parts.append(f'"{_person}"')
                 newsapi_query = " OR ".join(_query_parts)
 
-                response = self.news_api.get_everything(
+                response = self._news_api_get_everything(
                     q=newsapi_query,
                     language="en",
                     sort_by="publishedAt",
@@ -1319,7 +1708,7 @@ class IRIS_System:
                         sector_query = " OR ".join(
                             f'"{s}"' for s in search_terms["sector"][:3]
                         )
-                        sector_resp = self.news_api.get_everything(
+                        sector_resp = self._news_api_get_everything(
                             q=sector_query,
                             language="en",
                             sort_by="relevancy",
@@ -1340,31 +1729,15 @@ class IRIS_System:
                 print(f"[NEWS] NewsAPI error: {_e}")
 
         # -- Source 2: Webz.io ---------------------------------------------
-        if (not fast_mode) and self.webz_api_key:
+        if (not fast_mode) and self.webz_api_keys:
             try:
-                import urllib.request as _urlreq, urllib.parse as _urlparse
                 _primary_name = search_terms["names"][0] if search_terms["names"] else ticker_symbol
                 _secondary_name = search_terms["names"][1] if len(search_terms["names"]) > 1 else _primary_name
                 if ticker_symbol in SPECIAL_SYMBOL_TERMS:
                     _webz_q = f'("{_primary_name}" OR "{_secondary_name}") language:english'
                 else:
                     _webz_q = f'("{ticker_symbol}" OR "{_primary_name}") language:english'
-                _params = _urlparse.urlencode({
-                    "token": self.webz_api_key,
-                    "q": _webz_q,
-                    "ts": _webz_ts,
-                    "sort": "relevancy",
-                    "order": "desc",
-                    "size": 60,
-                    "format": "json",
-                })
-                _req = _urlreq.Request(
-                    f"https://api.webz.io/newsApiLite?{_params}",
-                    headers={"Accept": "application/json"},
-                )
-                with _urlreq.urlopen(_req, timeout=8) as _resp:
-                    _data = json.loads(_resp.read().decode("utf-8"))
-                for post in (_data.get("posts") or []):
+                for post in self._fetch_webz_posts(_webz_q, _webz_ts):
                     if not isinstance(post, dict):
                         continue
                     collect(
@@ -2083,7 +2456,7 @@ class IRIS_System:
                 "source_symbol": analyzed_ticker,
                 "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                 "market_session_date": market_session_date,
-                "mode": "live" if NEWS_API_KEY else "simulation",
+                "mode": "live" if (self.news_api_clients or self.webz_api_keys) else "simulation",
                 "period": period,
                 "interval": interval,
                 "risk_horizon": horizon_key,

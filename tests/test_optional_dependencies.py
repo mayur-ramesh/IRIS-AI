@@ -16,7 +16,9 @@ class TestOptionalTransformersDependency(unittest.TestCase):
     def test_finbert_can_be_disabled_explicitly(self):
         """IRIS_System should honor the explicit FinBERT feature flag."""
         with patch.object(iris_mvp, "FINBERT_ENABLED", False), \
+             patch.object(iris_mvp, "NEWS_API_KEYS", []), \
              patch.object(iris_mvp, "NEWS_API_KEY", None), \
+             patch.object(iris_mvp, "WEBZ_API_KEYS", []), \
              patch.object(iris_mvp, "WEBZ_API_KEY", None), \
              patch.object(iris_mvp.IRIS_System, "merge_alias_reports", return_value=None):
             system = iris_mvp.IRIS_System()
@@ -29,7 +31,9 @@ class TestOptionalTransformersDependency(unittest.TestCase):
         """IRIS_System should still initialize when transformers/PyTorch are unavailable."""
         with patch.object(iris_mvp, "_TRANSFORMERS_AVAILABLE", False), \
              patch.object(iris_mvp, "_TRANSFORMERS_IMPORT_ERROR", ImportError("PyTorch not found")), \
+             patch.object(iris_mvp, "NEWS_API_KEYS", []), \
              patch.object(iris_mvp, "NEWS_API_KEY", None), \
+             patch.object(iris_mvp, "WEBZ_API_KEYS", []), \
              patch.object(iris_mvp, "WEBZ_API_KEY", None), \
              patch.object(iris_mvp.IRIS_System, "merge_alias_reports", return_value=None):
             system = iris_mvp.IRIS_System()
